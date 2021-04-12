@@ -47,6 +47,5 @@ namespace UnitTestObligatorio1
             Boolean result = passwordManager.login("Lucia", wrongPassword);
             Assert.IsFalse(result);
         }
-
     }
 }
