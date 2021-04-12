@@ -5,14 +5,14 @@ using System;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    public class UnitTestLogin
+    public class UnitTestLogIn
     {
 
-        [TestMethod]
-        public void createPasswordManager()
+        public void LoginUserInvalidNoUsers()
         {
-            PasswordManager passwordManager = new PasswordManager();
-            Assert.IsNotNull(passwordManager);
+            passwordManager = new PasswordManager();
+            Boolean result = passwordManager.login("Pepe", "alsdfjadf");
+            Assert.IsFalse(result);
         }
 
         PasswordManager passwordManager;
@@ -20,45 +20,33 @@ namespace UnitTestObligatorio1
         public void createPasswordManagerBeforeTests()
         {
             passwordManager = new PasswordManager();
+            passwordManager.createUser("Lucia", "Lucia$123");
         }
 
         [TestMethod]
-        public void createValidUser()
+        public void LoginUserValid()
         {
-            try
-            {
-                passwordManager.createUser("Juan", "hola123");
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Expected no exception, but got: " + ex.Message);
-            }
+            Boolean result = passwordManager.login("Lucia", "Lucia$123");
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "The password is too short (min. 5 characters).")]
-        public void createInvalidUserPasswordTooShort()
+        public void LoginUserWrongPassword()
         {
-            passwordManager.createUser("Juan", "hola");
+            Boolean result = passwordManager.login("Lucia", "hoal3823");
+            Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "The password is too long (max. 25 characters).")]
-        public void createInvalidUserPasswordTooLong()
+        [DataRow("hoal3823")]
+        [DataRow("")]
+        [DataRow("lucia$123")]
+        [DataRow("Lucia$1234")]
+        [DataTestMethod]
+        public void LoginUserWrongPassword(string wrongPassword)
         {
-            passwordManager.createUser("Pepe", "hola12345678910111213141516171819202122");
+            Boolean result = passwordManager.login("Lucia", wrongPassword);
+            Assert.IsFalse(result);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "The password contains invalid characters(32 - 126 in ascii).")]
-        public void createInvalidUserPasswordInvalidCharacter()
-        {
-            passwordManager.createUser("Pepe", "½½½½hola½½½½");
-        }
-
 
     }
 }
