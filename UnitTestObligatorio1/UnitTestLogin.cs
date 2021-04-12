@@ -7,7 +7,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestLogin
     {
-        
+
         [TestMethod]
         public void createPasswordManager()
         {
@@ -49,6 +49,14 @@ namespace UnitTestObligatorio1
         public void createInvalidUserPasswordTooLong()
         {
             passwordManager.createUser("Pepe", "hola12345678910111213141516171819202122");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "The password contains invalid characters(32 - 126 in ascii).")]
+        public void createInvalidUserPasswordInvalidCharacter()
+        {
+            passwordManager.createUser("Pepe", "½½½½hola½½½½");
         }
 
 
