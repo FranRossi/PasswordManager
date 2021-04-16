@@ -2,6 +2,7 @@
 using Obligatorio1_DA1;
 using System;
 
+
 namespace UnitTestObligatorio1
 {
     [TestClass]
@@ -69,5 +70,8 @@ namespace UnitTestObligatorio1
             passwordManager.createUser("Pepe", "121hola");
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException)),
+            "The name is too long (max. 25 characters)."]
     }
 }
