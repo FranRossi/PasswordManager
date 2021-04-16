@@ -73,7 +73,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
-          "The name is too long (max. 25 characters).")]
+          "The name is empty (max. 25 characters).")]
         public void createUserNameEmpty()
         {
             passwordManager.createUser(" ", "password");
@@ -81,10 +81,21 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
-            "The name is too long (max. 25 characters).")]
+            "The name is too short (max. 25 characters).")]
         public void createUserNameTooShort()
         {
             passwordManager.createUser("Khea", " ");
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+           "The name is too long (max. 25 characters).")]
+        public void createUserNameTooLong()
+        {
+            passwordManager.createUser("MaritoBaracus1234VisualStudioEnterprise", "password");
+        }
+
+
+
     }
 }
