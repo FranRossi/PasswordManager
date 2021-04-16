@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using Obligatorio1_DA1.Utilities;
 
 namespace Obligatorio1_DA1
 {
@@ -15,17 +15,10 @@ namespace Obligatorio1_DA1
 
         public void createUser(string name, string pass)
         {
-            if (pass.Length < 5)
-                throw new ArgumentException("The password is too short (min. 5 characters).");
-            else if (pass.Length > 25)
-                throw new ArgumentException("The password is too long (max. 25 characters).");
-            Regex regex = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
-            if (!regex.IsMatch(pass))
-                throw new ArgumentException("The password contains invalid characters (32-126 in ascii).");
+            User newUser = new User(name, pass);
             if (userList.Exists(user => user.Name == name))
                 throw new ArgumentException("The username is already taken");
 
-            User newUser = new User(name, pass);
             userList.Add(newUser);
         }
 
