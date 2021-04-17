@@ -11,7 +11,7 @@ namespace UnitTestObligatorio1
         public void LoginUserInvalidNoUsers()
         {
             passwordManager = new PasswordManager();
-            Boolean result = passwordManager.login("Pepe", "alsdfjadf");
+            Boolean result = passwordManager.login("Pepe12", "alsdfjadf");
             Assert.IsFalse(result);
         }
 
@@ -47,5 +47,14 @@ namespace UnitTestObligatorio1
             Boolean result = passwordManager.login("Lucia", wrongPassword);
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void LoginUserWithPasswordAlreadyTaken()
+        {
+            passwordManager.createUser("Pepe12", "Lucia$123");
+            Boolean result = passwordManager.login("Pepe12", "Lucia$123");
+            Assert.IsTrue(result);
+        }
+
     }
 }

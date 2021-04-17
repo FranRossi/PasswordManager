@@ -42,7 +42,7 @@ namespace UnitTestObligatorio1
             "The password is too short (min. 5 characters).")]
         public void createInvalidUserPasswordTooShort()
         {
-            passwordManager.createUser("Juan", "hola");
+            passwordManager.createUser("Juan12", "hola");
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace UnitTestObligatorio1
             "The password is too long (max. 25 characters).")]
         public void createInvalidUserPasswordTooLong()
         {
-            passwordManager.createUser("Pepe", "hola12345678910111213141516171819202122");
+            passwordManager.createUser("Pepe12", "hola12345678910111213141516171819202122");
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace UnitTestObligatorio1
             "The password contains invalid characters(32 - 126 in ascii).")]
         public void createInvalidUserPasswordInvalidCharacter()
         {
-            passwordManager.createUser("Pepe", "½½½½hola½½½½");
+            passwordManager.createUser("Pepe12", "½½½½hola½½½½");
         }
 
         [TestMethod]
@@ -66,8 +66,8 @@ namespace UnitTestObligatorio1
             "The username is already taken")]
         public void createInvalidUserNameAlreadyTaken()
         {
-            passwordManager.createUser("Pepe", "pepe1232");
-            passwordManager.createUser("Pepe", "121hola");
+            passwordManager.createUser("Pepe12", "pepe1232");
+            passwordManager.createUser("Pepe12", "121hola");
         }
 
 
