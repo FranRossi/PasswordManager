@@ -6,7 +6,16 @@ namespace Obligatorio1_DA1
     class User
     {
         private string pass;
-        public string Name { get; set; }
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                validateName(value);
+                name = value;
+            }
+        }
         public string Pass
         {
             get => pass;
@@ -22,6 +31,14 @@ namespace Obligatorio1_DA1
         {
             this.Name = name;
             this.Pass = pass;
+        }
+
+        private void validateName(string name)
+        {
+            if (!Validator.minLength(name, 5))
+                throw new ArgumentException("The name is too short (min. 5 characters).");
+            if (!Validator.maxLength(name, 25))
+                throw new ArgumentException("The name is too long (max. 25 characters).");
         }
 
         private void validatePassword(string pass)

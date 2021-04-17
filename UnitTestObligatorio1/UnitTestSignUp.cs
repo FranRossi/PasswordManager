@@ -29,7 +29,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                passwordManager.createUser("Juan", "hola123");
+                passwordManager.createUser("Juancito", "hola123");
             }
             catch (Exception ex)
             {
@@ -73,15 +73,15 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
-          "The name is empty (max. 25 characters).")]
+          "The name is too short (min. 5 characters).")]
         public void createUserNameEmpty()
         {
-            passwordManager.createUser(" ", "password");
+            passwordManager.createUser("", "password");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
-            "The name is too short (max. 25 characters).")]
+            "The name is too short (min. 5 characters).")]
         public void createUserNameTooShort()
         {
             passwordManager.createUser("Khea", " ");
