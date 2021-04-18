@@ -2,7 +2,6 @@
 using Obligatorio1_DA1;
 using System;
 
-
 namespace UnitTestObligatorio1
 {
     [TestClass]
