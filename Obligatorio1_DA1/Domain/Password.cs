@@ -41,7 +41,6 @@ namespace Obligatorio1_DA1.Domain
 
             return pass;
         }
-
         private static void addRandomCharFromSubSet(ref string word, string subSet, Random random, List<char> mainSet)
         {
             List<char> listofValidChars = subSet.ToList();
