@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
+using Obligatorio1_DA1.Exceptions;
 
 namespace Obligatorio1_DA1
 {
@@ -17,7 +18,7 @@ namespace Obligatorio1_DA1
         {
             User newUser = new User(name, pass);
             if (userList.Exists(user => user.Name == name))
-                throw new ArgumentException("The username is already taken");
+                throw new UsernameAlreadyTakenException();
 
             userList.Add(newUser);
         }
