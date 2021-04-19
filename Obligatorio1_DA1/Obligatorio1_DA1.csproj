@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\PasswordInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\PasswordTooLongException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyTakenException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Form1.cs">

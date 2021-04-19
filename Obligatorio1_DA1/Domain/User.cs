@@ -48,7 +48,7 @@ namespace Obligatorio1_DA1
             if (!Validator.minLength(pass, 5))
                 throw new ArgumentException("The password is too short (min. 5 characters).");
             if (!Validator.maxLength(pass, 25))
-                throw new ArgumentException("The password is too long (max. 25 characters).");
+                throw new PasswordTooLongException();
             if (!Validator.asciiCharacterRange(pass))
                 throw new PasswordInvalidCharactersException();
         }

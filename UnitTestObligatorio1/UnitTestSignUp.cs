@@ -48,8 +48,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-            "The password is too long (max. 25 characters).")]
+        [ExpectedException(typeof(PasswordTooLongException))]
         public void createInvalidUserPasswordTooLong()
         {
             passwordManager.createUser("Pepe12", "hola12345678910111213141516171819202122");
