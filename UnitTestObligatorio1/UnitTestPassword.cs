@@ -54,13 +54,13 @@ namespace UnitTestObligatorio1
 
 
 
-        [DataRow(1, true, false, false, false, "[A-Z]+")]
-        [DataRow(1, false, true, false, false, "[a-z]+")]
-        [DataRow(1, true, true, false, false, "^(?=.*[a-zA-Z]).{2}$")]
-        [DataRow(1, false, false, true, false, "[0-9]+")]
-        [DataRow(1, false, false, false, true, "([ -/]|[:-@]|[\\[-`]|[\\|-~])+")]
-        [DataRow(4, true, true, true, true, "[ -~]{4}")]
-        [DataRow(20, true, true, true, true, "[ -~]{20}")]
+        [DataRow(5, true, false, false, false, "^[A-Z]{5}$")]
+        [DataRow(6, false, true, false, false, "^[a-z]{6}$")]
+        [DataRow(8, true, true, false, false, "^([a-z]|[A-Z]){8}$")]
+        [DataRow(15, false, false, true, false, "^[0-9]{15}$")]
+        [DataRow(25, false, false, false, true, "^([ -/]|[:-@]|[[-`]|[{-~]){25}$")]
+        [DataRow(6, true, true, true, true, "^[ -~]{6}$")]
+        [DataRow(20, true, true, true, true, "^[ -~]{20}$")]
         [DataTestMethod]
         public void generateValidPassword
                (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, string regex)
@@ -68,6 +68,17 @@ namespace UnitTestObligatorio1
             string pass = Password.generate(length, upercase, lowercase, digits, specialDigits);
             Regex r = new Regex(regex);
             Assert.IsTrue(r.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
+        }
+
+        [DataRow(4, true, false, false, false)]
+        [DataRow(6, false, false, false, false)]
+        [DataTestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "The password is too short or to long(min. 5 characters, max 25).")]
+        public void generateInvalidPassword
+               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        {
+            string pass = Password.generate(length, upercase, lowercase, digits, specialDigits);
         }
 
 

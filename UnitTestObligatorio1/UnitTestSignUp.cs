@@ -88,12 +88,11 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
-           "The name is too long (max. 25 characters).")]
+           "The name is too long(max. 25 characters).")]
         public void createUserNameTooLong()
         {
             passwordManager.createUser("MaritoBaracus1234VisualStudioEnterprise", "password");
         }
-
 
 
     }
