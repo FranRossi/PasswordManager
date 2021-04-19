@@ -64,8 +64,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-            "The username is already taken")]
+        [ExpectedException(typeof(UsernameAlreadyTakenException))]
         public void createInvalidUserNameAlreadyTaken()
         {
             passwordManager.createUser("Pepe12", "pepe1232");
