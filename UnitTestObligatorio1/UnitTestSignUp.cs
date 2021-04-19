@@ -40,8 +40,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-            "The password is too short (min. 5 characters).")]
+        [ExpectedException(typeof(PasswordTooShortException))]
         public void createInvalidUserPasswordTooShort()
         {
             passwordManager.createUser("Juan12", "hola");
@@ -71,24 +70,21 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-          "The name is too short (min. 5 characters).")]
+        [ExpectedException(typeof(NameTooShortException)]
         public void createUserNameEmpty()
         {
             passwordManager.createUser("", "password");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-            "The name is too short (min. 5 characters).")]
+        [ExpectedException(typeof(NameTooShortException)]
         public void createUserNameTooShort()
         {
             passwordManager.createUser("Khea", " ");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-           "The name is too long (max. 25 characters).")]
+        [ExpectedException(typeof(NameTooLongException)]
         public void createUserNameTooLong()
         {
             passwordManager.createUser("MaritoBaracus1234VisualStudioEnterprise", "password");
