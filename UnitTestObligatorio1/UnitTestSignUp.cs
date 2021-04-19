@@ -56,8 +56,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ValidationException),
-            "The password contains invalid characters(32 - 126 in ascii).")]
+        [ExpectedException(typeof(PasswordInvalidCharactersException))]
         public void createInvalidUserPasswordInvalidCharacter()
         {
             passwordManager.createUser("Pepe12", "½½½½hola½½½½");

@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Utilities;
+using Obligatorio1_DA1.Exceptions;
 using System;
 
 namespace Obligatorio1_DA1
@@ -49,7 +50,7 @@ namespace Obligatorio1_DA1
             if (!Validator.maxLength(pass, 25))
                 throw new ArgumentException("The password is too long (max. 25 characters).");
             if (!Validator.asciiCharacterRange(pass))
-                throw new ArgumentException("The password contains invalid characters (32-126 in ascii).");
+                throw new PasswordInvalidCharactersException();
         }
 
     }
