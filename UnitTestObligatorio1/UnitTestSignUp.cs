@@ -48,7 +48,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
             "The password is too long (max. 25 characters).")]
         public void createInvalidUserPasswordTooLong()
         {
@@ -56,7 +56,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
             "The password contains invalid characters(32 - 126 in ascii).")]
         public void createInvalidUserPasswordInvalidCharacter()
         {
@@ -64,7 +64,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
             "The username is already taken")]
         public void createInvalidUserNameAlreadyTaken()
         {
@@ -74,7 +74,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
           "The name is too short (min. 5 characters).")]
         public void createUserNameEmpty()
         {
@@ -82,7 +82,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
             "The name is too short (min. 5 characters).")]
         public void createUserNameTooShort()
         {
@@ -90,7 +90,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
            "The name is too long (max. 25 characters).")]
         public void createUserNameTooLong()
         {
