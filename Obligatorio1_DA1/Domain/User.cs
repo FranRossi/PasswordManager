@@ -39,7 +39,7 @@ namespace Obligatorio1_DA1
             if (!Validator.minLength(name, 5))
                 throw new NameTooShortException();
             if (!Validator.maxLength(name, 25))
-                throw new ArgumentException("The name is too long (max. 25 characters).");
+                throw new NameTooLongException();
         }
 
         private void validatePassword(string pass)

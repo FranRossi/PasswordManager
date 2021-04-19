@@ -70,21 +70,21 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(NameTooShortException)]
+        [ExpectedException(typeof(NameTooShortException))]
         public void createUserNameEmpty()
         {
             passwordManager.createUser("", "password");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NameTooShortException)]
+        [ExpectedException(typeof(NameTooShortException))]
         public void createUserNameTooShort()
         {
             passwordManager.createUser("Khea", " ");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NameTooLongException)]
+        [ExpectedException(typeof(NameTooLongException))]
         public void createUserNameTooLong()
         {
             passwordManager.createUser("MaritoBaracus1234VisualStudioEnterprise", "password");
