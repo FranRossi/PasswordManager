@@ -38,7 +38,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
+        [ExpectedException(typeof(ValidationException),
             "The password is too short (min. 5 characters).")]
         public void createInvalidUserPasswordTooShort()
         {
@@ -94,8 +94,6 @@ namespace UnitTestObligatorio1
         {
             passwordManager.createUser("MaritoBaracus1234VisualStudioEnterprise", "password");
         }
-
-
 
     }
 }
