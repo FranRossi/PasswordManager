@@ -37,7 +37,7 @@ namespace Obligatorio1_DA1
         private void validateName(string name)
         {
             if (!Validator.minLength(name, 5))
-                throw new ArgumentException("The name is too short (min. 5 characters).");
+                throw new NameTooShortException();
             if (!Validator.maxLength(name, 25))
                 throw new ArgumentException("The name is too long (max. 25 characters).");
         }
