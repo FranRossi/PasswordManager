@@ -69,15 +69,22 @@ namespace Obligatorio1_DA1.Domain
 
         private PasswordStrengthColor calculatePasswordStrength(string pass)
         {
-            PasswordStrengthColor result = PasswordStrengthColor.Red;
             if (isOrangeStrength(pass))
                 return PasswordStrengthColor.Orange;
-            return result;
+            if (isYellowStrength(pass))
+                return PasswordStrengthColor.Yellow;
+            return PasswordStrengthColor.Red;
         }
 
         private bool isOrangeStrength(string pass)
         {
             Regex regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
+            return regex.IsMatch(pass);
+        }
+
+        private bool isYellowStrength(string pass)
+        {
+            Regex regex = new Regex(@"^[a-z]{14,}$", RegexOptions.IgnoreCase);
             return regex.IsMatch(pass);
         }
 
