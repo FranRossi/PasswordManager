@@ -134,10 +134,31 @@ namespace UnitTestObligatorio1
                     Category = "Facultad",
                     Site = "ort.edu.uy",
                     Username = "239850",
-                    Pass = "AlfredoJuanGarciaPerez",
+                    Pass = "alfredojuangarciaperez",
                     Notes = "No me roben la cuenta"
                 };
                 Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Yellow);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void createPasswordWithLightGreenStrength()
+        {
+            try
+            {
+                Password pass = new Password
+                {
+                    Category = "Facultad",
+                    Site = "ort.edu.uy",
+                    Username = "239850",
+                    Pass = "AlfredoJuanGarciaPerez",
+                    Notes = "No me roben la cuenta"
+                };
+                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.LightGreen);
             }
             catch (ValidationException ex)
             {

@@ -73,6 +73,8 @@ namespace Obligatorio1_DA1.Domain
                 return PasswordStrengthColor.Orange;
             if (isYellowStrength(pass))
                 return PasswordStrengthColor.Yellow;
+            if (isLightGreenStrength(pass))
+                return PasswordStrengthColor.LightGreen;
             return PasswordStrengthColor.Red;
         }
 
@@ -84,7 +86,13 @@ namespace Obligatorio1_DA1.Domain
 
         private bool isYellowStrength(string pass)
         {
-            Regex regex = new Regex(@"^[a-z]{14,}$", RegexOptions.IgnoreCase);
+            Regex regex = new Regex(@"^(?:[A-Z]{14,}|[a-z]{14,})$", RegexOptions.Compiled);
+            return regex.IsMatch(pass);
+        }
+
+        private bool isLightGreenStrength(string pass)
+        {
+            Regex regex = new Regex(@"^(?=[a-z]+[A-Z]|[A-Z]+[a-z])[a-zA-z]{14,}$", RegexOptions.Compiled);
             return regex.IsMatch(pass);
         }
 

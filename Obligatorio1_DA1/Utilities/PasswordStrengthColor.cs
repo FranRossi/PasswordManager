@@ -10,6 +10,7 @@ namespace Obligatorio1_DA1.Utilities
     {
         Red,
         Orange,
-        Yellow
+        Yellow,
+        LightGreen
     }
 }
