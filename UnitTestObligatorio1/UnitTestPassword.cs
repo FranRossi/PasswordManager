@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Text.RegularExpressions;
 
@@ -79,6 +81,27 @@ namespace UnitTestObligatorio1
             string pass = Password.generate(length, upercase, lowercase, digits, specialDigits);
         }
 
+
+        [TestMethod]
+        public void createPasswordWithRedStrength()
+        {
+            try
+            {
+                Password pass = new Password
+                {
+                    Category = "Facultad",
+                    Site = "ort.edu.uy",
+                    Username = "239850",
+                    Pass = "239850Ort2019",
+                    Notes = "No me roben la cuenta"
+                };
+                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Red);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+        }
 
 
     }
