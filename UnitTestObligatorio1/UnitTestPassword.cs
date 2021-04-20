@@ -92,7 +92,7 @@ namespace UnitTestObligatorio1
                     Category = "Facultad",
                     Site = "ort.edu.uy",
                     Username = "239850",
-                    Pass = "239850Ort2019",
+                    Pass = "239850",
                     Notes = "No me roben la cuenta"
                 };
                 Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Red);
