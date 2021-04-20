@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Obligatorio1_DA1.Domain
 {
@@ -18,7 +19,7 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 pass = value;
-                this.PasswordStrength = calculatePasswordStrength();
+                this.PasswordStrength = calculatePasswordStrength(value);
             }
         }
         public string Notes { get; set; }
@@ -66,10 +67,18 @@ namespace Obligatorio1_DA1.Domain
             word = word.Insert(index, randomChar + "");
         }
 
-        private PasswordStrengthColor calculatePasswordStrength()
+        private PasswordStrengthColor calculatePasswordStrength(string pass)
         {
             PasswordStrengthColor result = PasswordStrengthColor.Red;
+            if (isOrangeStrength(pass))
+                return PasswordStrengthColor.Orange;
             return result;
+        }
+
+        private bool isOrangeStrength(string pass)
+        {
+            Regex regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
+            return regex.IsMatch(pass);
         }
 
 

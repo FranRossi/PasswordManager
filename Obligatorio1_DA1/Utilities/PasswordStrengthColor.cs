@@ -8,6 +8,7 @@ namespace Obligatorio1_DA1.Utilities
 {
     public enum PasswordStrengthColor
     {
-        Red = 0
+        Red,
+        Orange
     }
 }

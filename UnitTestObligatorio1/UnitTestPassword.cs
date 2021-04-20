@@ -103,6 +103,27 @@ namespace UnitTestObligatorio1
             }
         }
 
+        [TestMethod]
+        public void createPasswordWithOrangeStrength()
+        {
+            try
+            {
+                Password pass = new Password
+                {
+                    Category = "Facultad",
+                    Site = "ort.edu.uy",
+                    Username = "239850",
+                    Pass = "239850058932",
+                    Notes = "No me roben la cuenta"
+                };
+                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Orange);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+        }
+
 
     }
 }
