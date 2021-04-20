@@ -70,7 +70,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(NameTooShortException))]
-        public void createUserNameEmpty()
+        public void createUserEmptyName()
         {
             passwordManager.createUser("", "password");
         }

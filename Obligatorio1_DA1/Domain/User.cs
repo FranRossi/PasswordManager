@@ -36,18 +36,18 @@ namespace Obligatorio1_DA1
 
         private void validateName(string name)
         {
-            if (!Validator.minLength(name, 5))
+            if (!Validator.minLengthOfString(name, 5))
                 throw new NameTooShortException();
-            if (!Validator.maxLength(name, 25))
+            if (!Validator.maxLengthOfString(name, 25))
                 throw new NameTooLongException();
         }
 
         private void validatePassword(string pass)
         {
 
-            if (!Validator.minLength(pass, 5))
+            if (!Validator.minLengthOfString(pass, 5))
                 throw new PasswordTooShortException();
-            if (!Validator.maxLength(pass, 25))
+            if (!Validator.maxLengthOfString(pass, 25))
                 throw new PasswordTooLongException();
             if (!Validator.asciiCharacterRange(pass))
                 throw new PasswordInvalidCharactersException();

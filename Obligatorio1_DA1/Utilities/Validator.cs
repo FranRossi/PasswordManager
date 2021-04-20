@@ -9,12 +9,12 @@ namespace Obligatorio1_DA1.Utilities
 {
     public static class Validator
     {
-        public static bool maxLength(string text, int maxNumber)
+        public static bool maxLengthOfString(string text, int maxNumber)
         {
             return (text.Length <= maxNumber);
         }
 
-        public static bool minLength(string text, int minNumber)
+        public static bool minLengthOfString(string text, int minNumber)
         {
             return (text.Length >= minNumber);
         }

@@ -12,28 +12,33 @@ namespace Obligatorio1_DA1.Domain
         public string Pass { get; set; }
         public string Notes { get; set; }
 
-        public static string generate(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        public static string generateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
             if (length < 5 || length > 25)
                 throw new ArgumentException();
             if (!(uppercase || lowercase || digits || specialDigits))
                 throw new ArgumentException();
 
+            const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";
+            const string digitsSet = "0123456789";
+            const string specialDigitsSet = " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
+
             List<char> validChars = new List<char>();
             string pass = "";
             Random random = new Random();
 
             if (uppercase)
-                addRandomCharFromSubSet(ref pass, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", random, validChars);
+                addRandomCharFromSubSet(ref pass, uppercaseSet, random, validChars);
 
             if (lowercase)
-                addRandomCharFromSubSet(ref pass, "abcdefghijklmnopqrstuvwxyz", random, validChars);
+                addRandomCharFromSubSet(ref pass, lowercaseSet, random, validChars);
 
             if (digits)
-                addRandomCharFromSubSet(ref pass, "0123456789", random, validChars);
+                addRandomCharFromSubSet(ref pass, digitsSet, random, validChars);
 
             if (specialDigits)
-                addRandomCharFromSubSet(ref pass, " !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~", random, validChars);
+                addRandomCharFromSubSet(ref pass, specialDigitsSet, random, validChars);
 
 
             while (pass.Length < length)
