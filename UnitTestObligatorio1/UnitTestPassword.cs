@@ -166,6 +166,27 @@ namespace UnitTestObligatorio1
             }
         }
 
+        [TestMethod]
+        public void createPasswordWithDarkGreenStrength()
+        {
+            try
+            {
+                Password pass = new Password
+                {
+                    Category = "Facultad",
+                    Site = "ort.edu.uy",
+                    Username = "239850",
+                    Pass = "AlfredoJuanGarciaPerez@1",
+                    Notes = "No me roben la cuenta"
+                };
+                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.DarkGreen);
+            }
+            catch (ValidationException ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+        }
+
 
     }
 }
