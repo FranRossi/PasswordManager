@@ -44,12 +44,11 @@ namespace Obligatorio1_DA1
 
         private void validatePassword(string pass)
         {
-
             if (!Validator.minLengthOfString(pass, 5))
                 throw new PasswordTooShortException();
             if (!Validator.maxLengthOfString(pass, 25))
                 throw new PasswordTooLongException();
-            if (!Validator.asciiCharacterRange(pass))
+            if (!Validator.asciiCharacterRangeForPassword(pass))
                 throw new PasswordInvalidCharactersException();
         }
 
