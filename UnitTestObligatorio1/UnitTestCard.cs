@@ -19,7 +19,7 @@ namespace UnitTestObligatorio1
                     Category = "Personal",
                     Name = "Visa Gold",
                     Type = "Visa",
-                    Number = "2354 6787 1300 3498",
+                    Number = "2354678713003498",
                     SecureCode = "189",
                     ExpirationDate = "10/21",
                     Notes = "Límite 400k UYU"
@@ -40,12 +40,28 @@ namespace UnitTestObligatorio1
                 Category = "Work",
                 Name = "Visa Black",
                 Type = "Visa",
-                Number = "2354 6787 1300 34",
+                Number = "23546787130034",
                 SecureCode = "189",
                 ExpirationDate = "10/21",
                 Notes = "This is a note"
             };
 
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NumberCardInvalidCharacters))]
+        public void createInvalidCardNumberWithWrongCharacteres()
+        {
+            Card card = new Card
+            {
+                Category = "Personal",
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "2s46f871/00r3498",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Límite 400k UYU"
+            };
         }
 
         [TestMethod]
@@ -77,7 +93,7 @@ namespace UnitTestObligatorio1
                     Category = "Work",
                     Name = "Visa Black",
                     Type = "Visa",
-                    Number = "2354 6787 1300 3498",
+                    Number = "2354678713003498",
                     SecureCode = "189",
                     ExpirationDate = "10/21"
                 };
@@ -98,7 +114,7 @@ namespace UnitTestObligatorio1
                 Category = "Work",
                 Name = "Visa Black",
                 Type = "Visa",
-                Number = "2354 6787 1300 3498",
+                Number = "2354678713003498",
                 SecureCode = "189",
                 ExpirationDate = "10/21",
                 Notes = "Límite 400k UYU"

@@ -29,20 +29,37 @@ namespace Obligatorio1_DA1
 
         private void validateNumber(string number)
         {
-            if (!Validator.stringIsExactlyThisLong(19, number))
+            if (!Validator.stringIsExactlyThisLong(16, number))
                 throw new NumberCardLengthIncorrect();
+            if (!Validator.numberCardOnlyDigits(number))
+                throw new NumberCardInvalidCharacters();
         }
 
         public string showOnly4LastDigits()
         {
-            return convertCardNumberIntoSecretNumber();
+            string numberCardWithSpaces = agregateSpacesToNumberCard(this.Number);
+            return convertCardNumberIntoSecretNumber(numberCardWithSpaces);
         }
 
-        private string convertCardNumberIntoSecretNumber()
+        private string convertCardNumberIntoSecretNumber(string numberCard)
         {
-            string regularNumber = this.Number;
-            string secretNumber = regularNumber.Substring(14);
+            string secretNumber = numberCard.Substring(14);
             return secretNumber.Insert(0, "XXXX XXXX XXXX ");
         }
+
+        private static string agregateSpacesToNumberCard(string numberCardWithoutSpaces)
+        {
+            for (int i = 0; i < numberCardWithoutSpaces.Length; i++)
+            {
+                if (i % 4 == 0 && i != 0)
+                {
+                    numberCardWithoutSpaces.Insert(i, " ");
+                }
+            }
+            return numberCardWithoutSpaces;
+
+        }
+
+
     }
 }

@@ -19,7 +19,7 @@ namespace Obligatorio1_DA1.Utilities
             return (text.Length >= minNumber);
         }
 
-        public static bool asciiCharacterRange(string text)
+        public static bool asciiCharacterRangeForPassword(string text)
         {
             Regex regex = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
             return (regex.IsMatch(text));
@@ -28,6 +28,13 @@ namespace Obligatorio1_DA1.Utilities
         public static bool stringIsExactlyThisLong(int supposedLong, string text)
         {
             return text.Length == supposedLong;
+        }
+
+        public static bool numberCardOnlyDigits(string cardNumber)
+        {
+            Regex regex = new Regex(@"^[0-9]{16}", RegexOptions.Compiled);
+            Boolean isValidNumber = regex.IsMatch(cardNumber);
+            return isValidNumber;
         }
     }
 }
