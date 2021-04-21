@@ -31,7 +31,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void createNewPasswordNoNotes()
+        public void createNewPasswordWithoutNotes()
         {
             try
             {
@@ -63,7 +63,7 @@ namespace UnitTestObligatorio1
         public void generateValidPassword
                (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, string regex)
         {
-            string pass = Password.generate(length, upercase, lowercase, digits, specialDigits);
+            string pass = Password.generateRandomPassword(length, upercase, lowercase, digits, specialDigits);
             Regex r = new Regex(regex);
             Assert.IsTrue(r.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
@@ -76,7 +76,7 @@ namespace UnitTestObligatorio1
         public void generateInvalidPassword
                (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
-            string pass = Password.generate(length, upercase, lowercase, digits, specialDigits);
+            string pass = Password.generateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
 
 
