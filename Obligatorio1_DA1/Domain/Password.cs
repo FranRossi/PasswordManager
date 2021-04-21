@@ -1,16 +1,114 @@
-﻿using System;
+﻿using Obligatorio1_DA1.Exceptions;
+using Obligatorio1_DA1.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using MissingFieldException = Obligatorio1_DA1.Exceptions.MissingFieldException;
 
 namespace Obligatorio1_DA1.Domain
 {
     public class Password
     {
-        public string Category { get; set; }
-        public string Site { get; set; }
-        public string Username { get; set; }
-        public string Pass { get; set; }
-        public string Notes { get; set; }
+        private string category;
+        private string site;
+        private string username;
+        private string pass;
+        private string notes;
+
+        public string Category
+        {
+            get => category;
+            set
+            {
+                validateCategory(value);
+                category = value;
+            }
+
+        }
+
+        private void validateCategory(string value)
+        {
+            if (!Validator.minLengthOfString(value, 3))
+                throw new CategoryTooShortException();
+            if (!Validator.maxLengthOfString(value, 15))
+                throw new CategoryTooLongException();
+        }
+        public string Site
+        {
+            get => site;
+            set
+            {
+                validateSite(value);
+                site = value;
+            }
+
+        }
+
+        private void validateSite(string value)
+        {
+            if (!Validator.minLengthOfString(value, 3))
+                throw new SiteTooShortException();
+            if (!Validator.maxLengthOfString(value, 25))
+                throw new SiteTooLongException();
+        }
+        public string Username
+        {
+            get => username;
+            set
+            {
+                validateUsername(value);
+                username = value;
+            }
+        }
+
+        private void validateUsername(string username)
+        {
+            if (username == null)
+                throw new MissingFieldException("nombre de usuario");
+            if (!Validator.minLengthOfString(username, 5))
+                throw new UsernameTooShortException();
+            if (!Validator.maxLengthOfString(username, 25))
+                throw new UsernameTooLongException();
+
+        }
+
+        public string Pass
+        {
+            get => pass;
+            set
+            {
+                validatePass(value);
+                pass = value;
+            }
+
+        }
+
+        private void validatePass(string value)
+        {
+            if (!Validator.minLengthOfString(value, 5))
+                throw new PasswordTooShortException();
+            if (!Validator.maxLengthOfString(value, 25))
+                throw new PasswordTooLongException();
+        }
+
+        public string Notes
+        {
+            get => notes;
+            set
+            {
+                validateNotes(value);
+                notes = value;
+            }
+
+        }
+
+        private void validateNotes(string value)
+        {
+            if (value == null)
+                return;
+            if (!Validator.maxLengthOfString(value, 250))
+                throw new NotesTooLongException();
+        }
 
         public static string generateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
