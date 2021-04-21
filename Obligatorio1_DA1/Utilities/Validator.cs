@@ -24,5 +24,10 @@ namespace Obligatorio1_DA1.Utilities
             Regex regex = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
             return (regex.IsMatch(text));
         }
+
+        public static bool stringIsExactlyThisLong(int supposedLong, string text)
+        {
+            return text.Length == supposedLong;
+        }
     }
 }
