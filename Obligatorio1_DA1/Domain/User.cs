@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Utilities;
+using Obligatorio1_DA1.Exceptions;
 using System;
 
 namespace Obligatorio1_DA1
@@ -35,21 +36,21 @@ namespace Obligatorio1_DA1
 
         private void validateName(string name)
         {
-            if (!Validator.minLength(name, 5))
-                throw new ArgumentException("The name is too short (min. 5 characters).");
-            if (!Validator.maxLength(name, 25))
-                throw new ArgumentException("The name is too long (max. 25 characters).");
+            if (!Validator.minLengthOfString(name, 5))
+                throw new NameTooShortException();
+            if (!Validator.maxLengthOfString(name, 25))
+                throw new NameTooLongException();
         }
 
         private void validatePassword(string pass)
         {
 
-            if (!Validator.minLength(pass, 5))
-                throw new ArgumentException("The password is too short (min. 5 characters).");
-            if (!Validator.maxLength(pass, 25))
-                throw new ArgumentException("The password is too long (max. 25 characters).");
+            if (!Validator.minLengthOfString(pass, 5))
+                throw new PasswordTooShortException();
+            if (!Validator.maxLengthOfString(pass, 25))
+                throw new PasswordTooLongException();
             if (!Validator.asciiCharacterRange(pass))
-                throw new ArgumentException("The password contains invalid characters (32-126 in ascii).");
+                throw new PasswordInvalidCharactersException();
         }
 
     }

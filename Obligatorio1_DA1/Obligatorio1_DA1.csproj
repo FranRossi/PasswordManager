@@ -49,6 +49,15 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Exceptions\MissingFieldException.cs" />
+    <Compile Include="Exceptions\PasswordExceptions.cs" />
+    <Compile Include="Exceptions\PasswordInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\NameTooLongException.cs" />
+    <Compile Include="Exceptions\PasswordTooLongException.cs" />
+    <Compile Include="Exceptions\NameTooShortException.cs" />
+    <Compile Include="Exceptions\PasswordTooShortException.cs" />
+    <Compile Include="Exceptions\UsernameAlreadyTakenException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
