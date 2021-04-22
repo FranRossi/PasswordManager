@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTestPasswordStrength.cs" />
+    <Compile Include="UnitTestCard.cs" />
     <Compile Include="UnitTestPassword.cs" />
     <Compile Include="UnitTestLogIn.cs" />
     <Compile Include="UnitTestSignUp.cs" />

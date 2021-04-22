@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class NameTooLongException : ValidationException
+
+    public class NumberCardLengthIncorrect : ValidationException
     {
-        public NameTooLongException()
+        public NumberCardLengthIncorrect()
         {
-            this.message = "El nomber ingresado es demasiado largo (max. 25 caracteres)";
+            this.message = "El número ingresado tiene que ser de 16 números.";
         }
     }
 }

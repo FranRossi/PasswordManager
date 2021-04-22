@@ -7,27 +7,27 @@ namespace Obligatorio1_DA1
 {
     public class PasswordManager
     {
-        private List<User> userList;
+        private List<User> users;
 
         public PasswordManager()
         {
-            userList = new List<User>();
+            users = new List<User>();
         }
 
-        public void createUser(string name, string pass)
+        public void createUser(string name, string password)
         {
-            User newUser = new User(name, pass);
-            if (userList.Exists(user => user.Name == name))
+            User newUser = new User(name, password);
+            if (users.Exists(user => user.Name == name))
                 throw new UsernameAlreadyTakenException();
 
-            userList.Add(newUser);
+            users.Add(newUser);
         }
 
-        public Boolean login(string name, string pass)
+        public Boolean login(string name, string password)
         {
-            foreach (User user in userList)
+            foreach (User user in users)
                 if (user.Name == name)
-                    if (user.Pass == pass)
+                    if (user.Pass == password)
                         return true;
                     else
                         return false;

@@ -8,7 +8,7 @@ namespace UnitTestObligatorio1
     public class UnitTestLogIn
     {
 
-        public void LoginUserInvalidNoUsers()
+        public void LoginUserWithoutAnyUserCreated()
         {
             passwordManager = new PasswordManager();
             Boolean result = passwordManager.login("Pepe12", "alsdfjadf");
@@ -24,7 +24,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void LoginUserValid()
+        public void LoginValidUser()
         {
             Boolean result = passwordManager.login("Lucia", "Lucia$123");
             Assert.IsTrue(result);

@@ -8,5 +8,7 @@ namespace Obligatorio1_DA1.Exceptions
 {
     public class ValidationException : Exception
     {
+        protected string message;
+        public override string Message => this.message;
     }
 }

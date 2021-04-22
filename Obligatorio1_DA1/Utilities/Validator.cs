@@ -9,20 +9,32 @@ namespace Obligatorio1_DA1.Utilities
 {
     public static class Validator
     {
-        public static bool maxLength(string text, int maxNumber)
+        public static bool maxLengthOfString(string text, int maxNumber)
         {
             return (text.Length <= maxNumber);
         }
 
-        public static bool minLength(string text, int minNumber)
+        public static bool minLengthOfString(string text, int minNumber)
         {
             return (text.Length >= minNumber);
         }
 
-        public static bool asciiCharacterRange(string text)
+        public static bool asciiCharacterRangeForPassword(string text)
         {
             Regex regex = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
             return (regex.IsMatch(text));
+        }
+
+        public static bool stringIsExactlyThisLong(int supposedLong, string text)
+        {
+            return text.Length == supposedLong;
+        }
+
+        public static bool numberCardOnlyDigits(string cardNumber)
+        {
+            Regex regex = new Regex(@"^[0-9]{16}", RegexOptions.Compiled);
+            Boolean isValidNumber = regex.IsMatch(cardNumber);
+            return isValidNumber;
         }
     }
 }
