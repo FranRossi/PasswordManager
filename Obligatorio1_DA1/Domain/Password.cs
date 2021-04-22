@@ -1,8 +1,9 @@
-﻿using Obligatorio1_DA1.Exceptions;
+using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MissingFieldException = Obligatorio1_DA1.Exceptions.MissingFieldException;
 
 namespace Obligatorio1_DA1.Domain
@@ -14,7 +15,7 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private string notes;
-
+      
         public string Category
         {
             get => category;
@@ -79,6 +80,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 validatePass(value);
                 pass = value;
+                this.PasswordStrength = calculatePasswordStrength(value);
             }
 
         }
@@ -155,7 +157,96 @@ namespace Obligatorio1_DA1.Domain
             char randomChar = validChars[random.Next(0, validChars.Count - 1)];
             int index = random.Next(0, word.Length);
             word = word.Insert(index, randomChar + "");
+        }
 
+        private PasswordStrengthColor calculatePasswordStrength(string pass)
+        {
+            if (isRedStrength(pass))
+                return PasswordStrengthColor.Red;
+            if (isOrangeStrength(pass))
+                return PasswordStrengthColor.Orange;
+            return calculateLargePasswordStrength(pass);
+        }
+
+        private PasswordStrengthColor calculateLargePasswordStrength(string pass)
+        {
+            bool hasUpperCase, hasLowerCase, hasNumber, hasSymbol;
+            hasUpperCase = hasLowerCase = hasNumber = hasSymbol = false;
+            int typeCount = 0;
+            for (int i = 0; i < pass.Length && typeCount < 4; i++)
+            {
+                if (isLowerCase(pass.ElementAt(i)) && !hasLowerCase)
+                {
+                    typeCount++;
+                    hasLowerCase = true;
+                }
+                else if (isUpperCase(pass.ElementAt(i)) && !hasUpperCase)
+                {
+                    typeCount++;
+                    hasUpperCase = true;
+                }
+                else if (isNumber(pass.ElementAt(i)) && !hasNumber)
+                {
+                    typeCount++;
+                    hasNumber = true;
+                }
+                else if (isSymbol(pass.ElementAt(i)) && !hasSymbol)
+                {
+                    typeCount++;
+                    hasSymbol = true;
+                }
+            }
+            if (hasLowerCase && hasUpperCase && typeCount == 2)
+                return PasswordStrengthColor.LightGreen;
+            return checkResultDependingOnTypeCount(typeCount);
+        }
+
+        private PasswordStrengthColor checkResultDependingOnTypeCount(int typeCount)
+        {
+            switch (typeCount)
+            {
+                case 3:
+                    return PasswordStrengthColor.LightGreen;
+                case 4:
+                    return PasswordStrengthColor.DarkGreen;
+                default:
+                    return PasswordStrengthColor.Yellow;
+            }
+        }
+
+        private bool isRedStrength(string pass)
+        {
+            Regex regex = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
+            return regex.IsMatch(pass);
+        }
+
+        private bool isOrangeStrength(string pass)
+        {
+            Regex regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
+            return regex.IsMatch(pass);
+        }
+
+        private bool isSymbol(char character)
+        {
+            Regex regex = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
+        }
+        private bool isNumber(char character)
+        {
+            Regex regex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
+        }
+
+        private bool isUpperCase(char character)
+        {
+            Regex regex = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
+        }
+
+        private bool isLowerCase(char character)
+        {
+            Regex regex = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
         }
 
 
