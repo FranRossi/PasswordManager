@@ -8,9 +8,6 @@ namespace Obligatorio1_DA1.Exceptions
 {
     public class UsernameTooShortException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public UsernameTooShortException()
         {
             this.message = "El nombre de usuario ingresado es demasiado corto (min. 5 caracteres). ";
@@ -18,9 +15,6 @@ namespace Obligatorio1_DA1.Exceptions
     }
     public class UsernameTooLongException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public UsernameTooLongException()
         {
             this.message = "El nombre de usuario ingresado es demasiado largo (max. 25 caracteres). ";
@@ -29,9 +23,6 @@ namespace Obligatorio1_DA1.Exceptions
 
     public class SiteTooShortException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public SiteTooShortException()
         {
             this.message = "El sitio es demasiado corto (min. 3 caracteres). ";
@@ -39,9 +30,6 @@ namespace Obligatorio1_DA1.Exceptions
     }
     public class SiteTooLongException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public SiteTooLongException()
         {
             this.message = "El sitio es demasiado largo (max. 25 caracteres). ";
@@ -51,9 +39,6 @@ namespace Obligatorio1_DA1.Exceptions
 
     public class CategoryTooShortException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public CategoryTooShortException()
         {
             this.message = "La categoria es demasiado corta (min. 3 caracteres). ";
@@ -61,9 +46,6 @@ namespace Obligatorio1_DA1.Exceptions
     }
     public class CategoryTooLongException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public CategoryTooLongException()
         {
             this.message = "La categoria es demasiado larga (max. 15 caracteres). ";
@@ -71,9 +53,6 @@ namespace Obligatorio1_DA1.Exceptions
     }
     public class NotesTooLongException : ValidationException
     {
-        private string message;
-        public override string Message => this.message;
-
         public NotesTooLongException()
         {
             this.message = "Las notes es demasiado larga (max. 250 caracteres). ";
