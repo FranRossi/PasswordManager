@@ -69,15 +69,63 @@ namespace Obligatorio1_DA1.Domain
 
         private PasswordStrengthColor calculatePasswordStrength(string pass)
         {
+            if (isRedStrength(pass))
+                return PasswordStrengthColor.Red;
             if (isOrangeStrength(pass))
                 return PasswordStrengthColor.Orange;
-            if (isYellowStrength(pass))
-                return PasswordStrengthColor.Yellow;
-            if (isLightGreenStrength(pass))
+            return calculateLargePasswordStrength(pass);
+        }
+
+        private PasswordStrengthColor calculateLargePasswordStrength(string pass)
+        {
+            bool hasUpperCase, hasLowerCase, hasNumber, hasSymbol;
+            hasUpperCase = hasLowerCase = hasNumber = hasSymbol = false;
+            int typeCount = 0;
+            for (int i = 0; i < pass.Length && typeCount < 4; i++)
+            {
+                if (isLowerCase(pass.ElementAt(i)) && !hasLowerCase)
+                {
+                    typeCount++;
+                    hasLowerCase = true;
+                }
+                else if (isUpperCase(pass.ElementAt(i)) && !hasUpperCase)
+                {
+                    typeCount++;
+                    hasUpperCase = true;
+                }
+                else if (isNumber(pass.ElementAt(i)) && !hasNumber)
+                {
+                    typeCount++;
+                    hasNumber = true;
+                }
+                else if (isSymbol(pass.ElementAt(i)) && !hasSymbol)
+                {
+                    typeCount++;
+                    hasSymbol = true;
+                }
+            }
+            if (hasLowerCase && hasUpperCase && typeCount == 2)
                 return PasswordStrengthColor.LightGreen;
-            if (isDarkGreenStrength(pass))
-                return PasswordStrengthColor.DarkGreen;
-            return PasswordStrengthColor.Red;
+            return checkResultDependingOnTypeCount(typeCount);
+        }
+
+        private PasswordStrengthColor checkResultDependingOnTypeCount(int typeCount)
+        {
+            switch (typeCount)
+            {
+                case 3:
+                    return PasswordStrengthColor.LightGreen;
+                case 4:
+                    return PasswordStrengthColor.DarkGreen;
+                default:
+                    return PasswordStrengthColor.Yellow;
+            }
+        }
+
+        private bool isRedStrength(string pass)
+        {
+            Regex regex = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
+            return regex.IsMatch(pass);
         }
 
         private bool isOrangeStrength(string pass)
@@ -86,22 +134,27 @@ namespace Obligatorio1_DA1.Domain
             return regex.IsMatch(pass);
         }
 
-        private bool isYellowStrength(string pass)
+        private bool isSymbol(char character)
         {
-            Regex regex = new Regex(@"^(?:[A-Z]{14,}|[a-z]{14,})$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex regex = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
+        }
+        private bool isNumber(char character)
+        {
+            Regex regex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
         }
 
-        private bool isLightGreenStrength(string pass)
+        private bool isUpperCase(char character)
         {
-            Regex regex = new Regex(@"^(?=[a-z]+[A-Z]|[A-Z]+[a-z])[a-zA-z]{14,}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex regex = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
         }
 
-        private bool isDarkGreenStrength(string pass)
+        private bool isLowerCase(char character)
         {
-            Regex regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@[-`{-~])[ -~]{14,}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex regex = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
+            return regex.IsMatch(character.ToString());
         }
 
 
