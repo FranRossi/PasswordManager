@@ -65,7 +65,7 @@ namespace UnitTestObligatorio1
         [DataRow("AAHTNINESHRIIHH")]
         [DataRow("nethiseanthneaa")]
         [DataRow("14893470823575754543")]
-        [DataRow("(!&*($$^&#^@($&)&@$)#$&@$(*@#&")]
+        [DataRow("(!&*($$^&#^@($&)&@$)#")]
         [DataRow("AAHTNINESHRIIH5453453")]
         [DataRow("nethiseant3232323hnea")]
         [DataRow("n$#@$ntdtshneaa")]
@@ -94,9 +94,9 @@ namespace UnitTestObligatorio1
 
         [DataRow("AAHTNrtsrHRIISH")]
         [DataRow("netMUN2hiseanthnea")]
-        [DataRow("148srtarst#$#@$@$@93470823575754543")]
-        [DataRow("chau123(!&*($$^&#^@($&)&@$)#$&@$(*@#&")]
-        [DataRow("HOLA123(!&*($$^&#^@($&)&@$)#$&@$(*@#&")]
+        [DataRow("148srtarst#$#@$5754543")]
+        [DataRow("chau123(!&*($$^&#^@($*@#&")]
+        [DataRow("HOLA123(!&*($$^&#^@($@#&")]
         [DataTestMethod]
         public void createPasswordWithLightGreenStrength(string password)
         {
@@ -121,7 +121,7 @@ namespace UnitTestObligatorio1
         [DataRow("AAHTNrtsr#3IIHH")]
         [DataRow("3#@rstaAaartsaa")]
         [DataRow("#stsrtARSRT2332")]
-        [DataRow("Chau123(!&*($$^&#^@($&)&@$)#$&@$(*@#&")]
+        [DataRow("Chau123(!&*($$^&#^@#&")]
         [DataTestMethod]
         public void createPasswordWithDarkGreenStrength(string password)
         {
@@ -131,8 +131,8 @@ namespace UnitTestObligatorio1
                 {
                     Category = "Facultad",
                     Site = "ort.edu.uy",
-                    Username = password,
-                    Pass = "AlfredoJuanGarciaPerez@1",
+                    Username = "AlfredoJuanGarciaPerez",
+                    Pass = password,
                     Notes = "No me roben la cuenta"
                 };
                 Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.DarkGreen);

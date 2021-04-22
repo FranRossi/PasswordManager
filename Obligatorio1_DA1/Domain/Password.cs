@@ -15,7 +15,8 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private string notes;
-      
+        public PasswordStrengthColor PasswordStrength { get; private set; }
+
         public string Category
         {
             get => category;
