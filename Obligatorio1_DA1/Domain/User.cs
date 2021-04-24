@@ -36,19 +36,19 @@ namespace Obligatorio1_DA1
 
         private void validateName(string name)
         {
-            if (!Validator.minLengthOfString(name, 5))
+            if (!Validator.MinLengthOfString(name, 5))
                 throw new NameTooShortException();
-            if (!Validator.maxLengthOfString(name, 25))
+            if (!Validator.MaxLengthOfString(name, 25))
                 throw new NameTooLongException();
         }
 
         private void validatePassword(string pass)
         {
-            if (!Validator.minLengthOfString(pass, 5))
+            if (!Validator.MinLengthOfString(pass, 5))
                 throw new PasswordTooShortException();
-            if (!Validator.maxLengthOfString(pass, 25))
+            if (!Validator.MaxLengthOfString(pass, 25))
                 throw new PasswordTooLongException();
-            if (!Validator.asciiCharacterRangeForPassword(pass))
+            if (!Validator.AsciiCharacterRangeForPassword(pass))
                 throw new PasswordInvalidCharactersException();
         }
 

@@ -15,7 +15,7 @@ namespace Obligatorio1_DA1
             get => number;
             set
             {
-                validateNumber(value);
+                ValidateNumber(value);
                 number = value;
             }
         }
@@ -27,27 +27,27 @@ namespace Obligatorio1_DA1
         public string Notes { get; set; }
 
 
-        private void validateNumber(string number)
+        private void ValidateNumber(string number)
         {
-            if (!Validator.stringIsExactlyThisLong(16, number))
+            if (!Validator.StringIsExactlyThisLong(16, number))
                 throw new NumberCardLengthIncorrect();
-            if (!Validator.numberCardOnlyDigits(number))
+            if (!Validator.NumberCardOnlyDigits(number))
                 throw new NumberCardInvalidCharacters();
         }
 
-        public string showOnly4LastDigits()
+        public string ShowOnly4LastDigits()
         {
-            string numberCardWithSpaces = agregateSpacesToNumberCard(this.Number);
-            return convertCardNumberIntoSecretNumber(numberCardWithSpaces);
+            string numberCardWithSpaces = AgregateSpacesToNumberCard(this.Number);
+            return ConvertCardNumberIntoSecretNumber(numberCardWithSpaces);
         }
 
-        private string convertCardNumberIntoSecretNumber(string numberCard)
+        private string ConvertCardNumberIntoSecretNumber(string numberCard)
         {
             string secretNumber = numberCard.Substring(14);
             return secretNumber.Insert(0, "XXXX XXXX XXXX");
         }
 
-        private static string agregateSpacesToNumberCard(string numberCardWithoutSpaces)
+        private static string AgregateSpacesToNumberCard(string numberCardWithoutSpaces)
         {
             int[] spacesAt = { 4, 9, 14 };
             int indexSpace = 0;

@@ -12,7 +12,7 @@ namespace UnitTestObligatorio1
     {
 
         [TestMethod]
-        public void createValidNewPassword()
+        public void CreateValidNewPassword()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void createNewPasswordWithoutNotes()
+        public void CreateNewPasswordWithoutNotes()
         {
             try
             {
@@ -54,7 +54,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(UsernameTooShortException))]
-        public void createNewPasswordWithUsernameTooShort()
+        public void CreateNewPasswordWithUsernameTooShort()
         {
             Password pass = new Password
             {
@@ -69,7 +69,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(UsernameTooLongException))]
-        public void createNewPasswordWithUsernameTooLong()
+        public void CreateNewPasswordWithUsernameTooLong()
         {
             Password pass = new Password
             {
@@ -84,7 +84,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(PasswordTooShortException))]
-        public void createNewPasswordTooShort()
+        public void CreateNewPasswordTooShort()
         {
             Password pass = new Password
             {
@@ -99,7 +99,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(PasswordTooLongException))]
-        public void createNewPasswordTooLong()
+        public void CreateNewPasswordTooLong()
         {
             Password pass = new Password
             {
@@ -115,7 +115,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(SiteTooShortException))]
-        public void createNewPasswordSiteTooShort()
+        public void CreateNewPasswordSiteTooShort()
         {
             Password pass = new Password
             {
@@ -130,7 +130,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(SiteTooLongException))]
-        public void createNewSiteSiteTooLong()
+        public void CreateNewSiteSiteTooLong()
         {
             Password pass = new Password
             {
@@ -145,7 +145,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(CategoryTooShortException))]
-        public void createNewPasswordCategoryTooShort()
+        public void CreateNewPasswordCategoryTooShort()
         {
             Password pass = new Password
             {
@@ -160,7 +160,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(CategoryTooLongException))]
-        public void createNewPasswordCategoryTooLong()
+        public void CreateNewPasswordCategoryTooLong()
         {
             Password pass = new Password
             {
@@ -175,7 +175,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(NotesTooLongException))]
-        public void createNewPasswordNotesTooLong()
+        public void CreateNewPasswordNotesTooLong()
         {
             Password pass = new Password
             {
@@ -204,10 +204,10 @@ namespace UnitTestObligatorio1
         [DataRow(6, true, true, true, true, "^[ -~]{6}$")]
         [DataRow(20, true, true, true, true, "^[ -~]{20}$")]
         [DataTestMethod]
-        public void generateValidPassword
+        public void GenerateValidPassword
                (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, string regex)
         {
-            string pass = Password.generateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
             Regex r = new Regex(regex);
             Assert.IsTrue(r.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
@@ -217,16 +217,16 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(ArgumentException),
             "The password is too short or to long(min. 5 characters, max 25).")]
-        public void generateInvalidPassword
+        public void GenerateInvalidPassword
                (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
-            string pass = Password.generateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
 
 
         [TestMethod]
         [ExpectedException(typeof(Obligatorio1_DA1.Exceptions.MissingFieldException))]
-        public void createNewPasswordWithoutUsername()
+        public void CreateNewPasswordWithoutUsername()
         {
             Password pass = new Password
             {

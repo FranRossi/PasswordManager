@@ -9,28 +9,28 @@ namespace Obligatorio1_DA1.Utilities
 {
     public static class Validator
     {
-        public static bool maxLengthOfString(string text, int maxNumber)
+        public static bool MaxLengthOfString(string text, int maxNumber)
         {
             return (text.Length <= maxNumber);
         }
 
-        public static bool minLengthOfString(string text, int minNumber)
+        public static bool MinLengthOfString(string text, int minNumber)
         {
             return (text.Length >= minNumber);
         }
 
-        public static bool asciiCharacterRangeForPassword(string text)
+        public static bool AsciiCharacterRangeForPassword(string text)
         {
             Regex regex = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
             return (regex.IsMatch(text));
         }
 
-        public static bool stringIsExactlyThisLong(int supposedLong, string text)
+        public static bool StringIsExactlyThisLong(int supposedLong, string text)
         {
             return text.Length == supposedLong;
         }
 
-        public static bool numberCardOnlyDigits(string cardNumber)
+        public static bool NumberCardOnlyDigits(string cardNumber)
         {
             Regex regex = new Regex(@"^[0-9]{16}", RegexOptions.Compiled);
             Boolean isValidNumber = regex.IsMatch(cardNumber);

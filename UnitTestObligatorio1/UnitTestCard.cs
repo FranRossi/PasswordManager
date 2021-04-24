@@ -148,7 +148,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateCardShowingOnlyLast4Digits()
         {
-            string cardNumberShowingOnlyLast4Digits = this._card.showOnly4LastDigits();
+            string cardNumberShowingOnlyLast4Digits = this._card.ShowOnly4LastDigits();
             Assert.AreEqual<string>("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
         }
 

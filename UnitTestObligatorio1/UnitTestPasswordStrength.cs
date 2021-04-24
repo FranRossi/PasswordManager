@@ -16,7 +16,7 @@ namespace UnitTestObligatorio1
         [DataRow("sAT4-@")]
         [DataRow("sT4-@")]
         [DataTestMethod]
-        public void createPasswordWithRedStrength(string password)
+        public void CreatePasswordWithRedStrength(string password)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace UnitTestObligatorio1
         [DataRow("sAT4-@sesesior")]
         [DataRow("sT4-@234a")]
         [DataTestMethod]
-        public void createPasswordWithOrangeStrength(string password)
+        public void CreatePasswordWithOrangeStrength(string password)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace UnitTestObligatorio1
         [DataRow("chau123(!&*($$^&#^@($*@#&")]
         [DataRow("HOLA123(!&*($$^&#^@($@#&")]
         [DataTestMethod]
-        public void createPasswordWithLightGreenStrength(string password)
+        public void CreatePasswordWithLightGreenStrength(string password)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace UnitTestObligatorio1
         [DataRow("#stsrtARSRT2332")]
         [DataRow("Chau123(!&*($$^&#^@#&")]
         [DataTestMethod]
-        public void createPasswordWithDarkGreenStrength(string password)
+        public void CreatePasswordWithDarkGreenStrength(string password)
         {
             try
             {
