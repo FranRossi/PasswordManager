@@ -44,16 +44,20 @@ namespace Obligatorio1_DA1
         private string convertCardNumberIntoSecretNumber(string numberCard)
         {
             string secretNumber = numberCard.Substring(14);
-            return secretNumber.Insert(0, "XXXX XXXX XXXX ");
+            return secretNumber.Insert(0, "XXXX XXXX XXXX");
         }
 
         private static string agregateSpacesToNumberCard(string numberCardWithoutSpaces)
         {
-            for (int i = 0; i < numberCardWithoutSpaces.Length; i++)
+            int[] spacesAt = { 4, 9, 14 };
+            int indexSpace = 0;
+            int numberCardLength = numberCardWithoutSpaces.Length;
+            for (int i = 0; i < numberCardLength; i++)
             {
                 if (i % 4 == 0 && i != 0)
                 {
-                    numberCardWithoutSpaces.Insert(i, " ");
+                    numberCardWithoutSpaces = numberCardWithoutSpaces.Insert(spacesAt[indexSpace], " ");
+                    indexSpace++;
                 }
             }
             return numberCardWithoutSpaces;

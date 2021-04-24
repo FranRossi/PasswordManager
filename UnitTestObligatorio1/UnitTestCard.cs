@@ -9,12 +9,15 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCard
     {
-        [TestMethod]
-        public void createNewCard()
+        private Card _card;
+
+
+        [TestInitialize]
+        public void TestInitialize()
         {
             try
             {
-                Card card = new Card
+                this._card = new Card
                 {
                     Category = "Personal",
                     Name = "Visa Gold",
@@ -31,11 +34,48 @@ namespace UnitTestObligatorio1
             }
         }
 
+
+        [TestMethod]
+        public void GetCategoryCard()
+        {
+            Assert.AreEqual<string>(this._card.Category, "Personal");
+        }
+
+        [TestMethod]
+        public void GetExpirationDateCard()
+        {
+            Assert.AreEqual<string>(this._card.ExpirationDate, "10/21");
+        }
+
+        [TestMethod]
+        public void GetNameCard()
+        {
+            Assert.AreEqual<string>(this._card.Name, "Visa Gold");
+        }
+
+        [TestMethod]
+        public void GetNotesCard()
+        {
+            Assert.AreEqual<string>(this._card.Notes, "Límite 400k UYU");
+        }
+
+        [TestMethod]
+        public void GetSecureCodeCard()
+        {
+            Assert.AreEqual<string>(this._card.SecureCode, "189");
+        }
+
+        [TestMethod]
+        public void GetTypeCard()
+        {
+            Assert.AreEqual<string>(this._card.Type, "Visa");
+        }
+
         [TestMethod]
         [ExpectedException(typeof(NumberCardLengthIncorrect))]
-        public void createInvalidCardNumberTooShort()
+        public void CreateInvalidCardNumberTooShort()
         {
-            Card card = new Card
+            Card newCard = new Card
             {
                 Category = "Work",
                 Name = "Visa Black",
@@ -50,9 +90,9 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(NumberCardInvalidCharacters))]
-        public void createInvalidCardNumberWithWrongCharacteres()
+        public void CreateInvalidCardNumberWithWrongCharacteres()
         {
-            Card card = new Card
+            Card newCard = new Card
             {
                 Category = "Personal",
                 Name = "Visa Gold",
@@ -66,9 +106,9 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(NumberCardLengthIncorrect))]
-        public void createInvalidCardNumberTooLong()
+        public void CreateInvalidCardNumberTooLong()
         {
-            Card card = new Card
+            Card newCard = new Card
             {
                 Category = "Work",
                 Name = "Visa Black",
@@ -84,11 +124,11 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        public void createNewCardWithoutNotes()
+        public void CreateNewCardWithoutNotes()
         {
             try
             {
-                Card card = new Card
+                Card newCard = new Card
                 {
                     Category = "Work",
                     Name = "Visa Black",
@@ -106,30 +146,13 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void createCardShowingOnlyLast4Digits()
+        public void CreateCardShowingOnlyLast4Digits()
         {
-
-            Card card = new Card
-            {
-                Category = "Work",
-                Name = "Visa Black",
-                Type = "Visa",
-                Number = "2354678713003498",
-                SecureCode = "189",
-                ExpirationDate = "10/21",
-                Notes = "Límite 400k UYU"
-            };
-            string cardNumberShowingOnlyLast4Digits = card.showOnly4LastDigits();
-            StringAssert.Equals("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
-
+            string cardNumberShowingOnlyLast4Digits = this._card.showOnly4LastDigits();
+            Assert.AreEqual<string>("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
         }
 
-
-
-
     }
-
-
 
 
 }
