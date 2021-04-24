@@ -1,20 +1,21 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1;
 using System;
+using System.Collections.Generic;
 
 namespace UnitTestObligatorio1
 {
     [TestClass]
     public class UnitTestCategory
     {
-        private Category _category;
+        private Category _categoryPersonal;
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
-                this._category = new Category()
+                this._categoryPersonal = new Category()
                 {
                     Name = "Personal"
                 };
@@ -28,7 +29,22 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCategoryName()
         {
-            Assert.AreEqual<string>(this._category.Name, "Personal");
+            Assert.AreEqual<string>(this._categoryPersonal.Name, "Personal");
+        }
+
+        [TestMethod]
+        public void CreateListOfCategoriesInUser()
+        {
+            User user = new User("Juancito", "Pepe123");
+            Assert.IsNotNull(user.Categories);
+        }
+
+        [TestMethod]
+        public void AddsCategoriesToUser()
+        {
+            User user = new User("Juancito", "Pepe123");
+            user.Categories.Add(this._categoryPersonal);
+            Assert.AreEqual(user.Categories[0], this._categoryPersonal);
         }
 
     }

@@ -1,13 +1,15 @@
 ﻿using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
 using System;
+using System.Collections.Generic;
 
 namespace Obligatorio1_DA1
 {
-    class User
+    public class User
     {
         private string pass;
         private string name;
+        private List<Category> categories;
         public string Name
         {
             get => name;
@@ -27,11 +29,20 @@ namespace Obligatorio1_DA1
             }
         }
 
+        public List<Category> Categories
+        {
+            get => categories;
+            set
+            {
+                categories = value;
+            }
+        }
 
         public User(string name, string pass)
         {
             this.Name = name;
             this.Pass = pass;
+            this.Categories = new List<Category>();
         }
 
         private void validateName(string name)
