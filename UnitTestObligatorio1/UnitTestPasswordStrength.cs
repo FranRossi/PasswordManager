@@ -4,12 +4,14 @@ using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
 using System;
 using System.Text.RegularExpressions;
-
+/*
 namespace UnitTestObligatorio1
 {
+
     [TestClass]
     public class UnitTestPasswordStrength
     {
+        
         [DataRow("23985023")]
         [DataRow("abcde876")]
         [DataRow("-d45023")]
@@ -146,3 +148,4 @@ namespace UnitTestObligatorio1
 
     }
 }
+*/

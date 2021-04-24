@@ -10,20 +10,19 @@ namespace Obligatorio1_DA1.Domain
 {
     public class Password
     {
-        private string category;
+        private Category category;
         private string site;
         private string username;
         private string pass;
         private string notes;
         public PasswordStrengthColor PasswordStrength { get; private set; }
 
-        public string Category
+        public Category Category
         {
             get => category;
             set
             {
-                ValidateCategory(value);
-                category = value;
+                this.category = value;
             }
 
         }
