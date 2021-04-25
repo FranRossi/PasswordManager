@@ -3,7 +3,7 @@ using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
 
-namespace Obligatorio1_DA1
+namespace Obligatorio1_DA1.Domain
 {
     public class User
     {
@@ -15,7 +15,7 @@ namespace Obligatorio1_DA1
             get => name;
             set
             {
-                validateName(value);
+                ValidateName(value);
                 name = value;
             }
         }
@@ -24,7 +24,7 @@ namespace Obligatorio1_DA1
             get => pass;
             set
             {
-                validatePassword(value);
+                ValidatePassword(value);
                 pass = value;
             }
         }
@@ -45,7 +45,7 @@ namespace Obligatorio1_DA1
             this.Categories = new List<Category>();
         }
 
-        private void validateName(string name)
+        private void ValidateName(string name)
         {
             if (!Validator.MinLengthOfString(name, 5))
                 throw new NameTooShortException();
@@ -53,7 +53,7 @@ namespace Obligatorio1_DA1
                 throw new NameTooLongException();
         }
 
-        private void validatePassword(string pass)
+        private void ValidatePassword(string pass)
         {
             if (!Validator.MinLengthOfString(pass, 5))
                 throw new PasswordTooShortException();

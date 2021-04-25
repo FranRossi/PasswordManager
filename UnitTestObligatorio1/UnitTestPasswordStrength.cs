@@ -87,7 +87,7 @@ namespace UnitTestObligatorio1
         [DataRow("14893470823@#@#@754543")]
         [DataRow("ARDSDSRUDEIR@@#")]
         [DataTestMethod]
-        public void createPasswordWithYellowStrength(string password)
+        public void CreatePasswordWithYellowStrength(string password)
         {
             try
             {

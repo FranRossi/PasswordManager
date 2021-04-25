@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Obligatorio1_DA1;
+using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using System;
 
@@ -11,7 +11,7 @@ namespace UnitTestObligatorio1
     {
 
         [TestMethod]
-        public void createPasswordManager()
+        public void CreatePasswordManager()
         {
             PasswordManager passwordManager = new PasswordManager();
             Assert.IsNotNull(passwordManager);
@@ -20,17 +20,17 @@ namespace UnitTestObligatorio1
 
         PasswordManager passwordManager;
         [TestInitialize]
-        public void createPasswordManagerBeforeTests()
+        public void CreatePasswordManagerBeforeTests()
         {
             passwordManager = new PasswordManager();
         }
 
         [TestMethod]
-        public void createValidUser()
+        public void CreateValidUser()
         {
             try
             {
-                passwordManager.createUser("Juancito", "hola123");
+                passwordManager.CreateUser("Juancito", "hola123");
             }
             catch (Exception ex)
             {
@@ -40,31 +40,31 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(PasswordTooShortException))]
-        public void createInvalidUserPasswordTooShort()
+        public void CreateInvalidUserPasswordTooShort()
         {
-            passwordManager.createUser("Juan12", "hola");
+            passwordManager.CreateUser("Juan12", "hola");
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordTooLongException))]
-        public void createInvalidUserPasswordTooLong()
+        public void CreateInvalidUserPasswordTooLong()
         {
-            passwordManager.createUser("Pepe12", "hola12345678910111213141516171819202122");
+            passwordManager.CreateUser("Pepe12", "hola12345678910111213141516171819202122");
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordInvalidCharactersException))]
-        public void createInvalidUserPasswordInvalidCharacter()
+        public void CreateInvalidUserPasswordInvalidCharacter()
         {
-            passwordManager.createUser("Pepe12", "½½½½hola½½½½");
+            passwordManager.CreateUser("Pepe12", "½½½½hola½½½½");
         }
 
         [TestMethod]
         [ExpectedException(typeof(UsernameAlreadyTakenException))]
-        public void createInvalidUserNameAlreadyTaken()
+        public void CreateInvalidUserNameAlreadyTaken()
         {
-            passwordManager.createUser("Pepe12", "pepe1232");
-            passwordManager.createUser("Pepe12", "121hola");
+            passwordManager.CreateUser("Pepe12", "pepe1232");
+            passwordManager.CreateUser("Pepe12", "121hola");
         }
 
 
@@ -72,21 +72,21 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(NameTooShortException))]
         public void createUserEmptyName()
         {
-            passwordManager.createUser("", "password");
+            passwordManager.CreateUser("", "password");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NameTooShortException))]
         public void createUserNameTooShort()
         {
-            passwordManager.createUser("Khea", " ");
+            passwordManager.CreateUser("Khea", " ");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NameTooLongException))]
         public void createUserNameTooLong()
         {
-            passwordManager.createUser("MaritoBaracus1234VisualStudioEnterprise", "password");
+            passwordManager.CreateUser("MaritoBaracus1234VisualStudioEnterprise", "password");
         }
     }
 }

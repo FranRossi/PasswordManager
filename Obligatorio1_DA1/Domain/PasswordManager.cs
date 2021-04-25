@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
 
-namespace Obligatorio1_DA1
+namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
@@ -14,7 +14,7 @@ namespace Obligatorio1_DA1
             users = new List<User>();
         }
 
-        public void createUser(string name, string password)
+        public void CreateUser(string name, string password)
         {
             User newUser = new User(name, password);
             if (users.Exists(user => user.Name == name))
@@ -23,7 +23,7 @@ namespace Obligatorio1_DA1
             users.Add(newUser);
         }
 
-        public Boolean login(string name, string password)
+        public Boolean Login(string name, string password)
         {
             foreach (User user in users)
                 if (user.Name == name)

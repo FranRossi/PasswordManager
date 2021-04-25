@@ -2,7 +2,7 @@
 using Obligatorio1_DA1.Exceptions;
 using System;
 
-namespace Obligatorio1_DA1
+namespace Obligatorio1_DA1.Domain
 {
     public class Card
     {
