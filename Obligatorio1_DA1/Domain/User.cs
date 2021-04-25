@@ -32,7 +32,7 @@ namespace Obligatorio1_DA1.Domain
         public List<Category> Categories
         {
             get => categories;
-            set
+            private set
             {
                 categories = value;
             }
@@ -42,6 +42,11 @@ namespace Obligatorio1_DA1.Domain
         {
             this.Name = name;
             this.Pass = pass;
+            this.Categories = new List<Category>();
+        }
+
+        public User()
+        {
             this.Categories = new List<Category>();
         }
 

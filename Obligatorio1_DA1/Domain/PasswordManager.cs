@@ -8,10 +8,12 @@ namespace Obligatorio1_DA1.Domain
     public class PasswordManager
     {
         private List<User> users;
+        private List<Password> passwords;
 
         public PasswordManager()
         {
             users = new List<User>();
+            passwords = new List<Password>();
         }
 
         public void CreateUser(string name, string password)
@@ -34,6 +36,11 @@ namespace Obligatorio1_DA1.Domain
             return false;
         }
 
-
+        public void CreatePassword(Password password)
+        {
+            if (!password.User.Categories.Contains(password.Category))
+                throw new InvalidPasswordCategoryException();
+            this.passwords.Add(password);
+        }
     }
 }

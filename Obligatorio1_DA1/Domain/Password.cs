@@ -27,13 +27,6 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
-        private void ValidateCategory(string value)
-        {
-            if (!Validator.MinLengthOfString(value, 3))
-                throw new CategoryTooShortException();
-            if (!Validator.MaxLengthOfString(value, 15))
-                throw new CategoryTooLongException();
-        }
         public string Site
         {
             get => site;
@@ -103,6 +96,8 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
+
+        public User User { get; set; }
 
         private void ValidateNotes(string value)
         {

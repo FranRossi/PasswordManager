@@ -24,6 +24,11 @@ namespace UnitTestObligatorio1
                     {
                         Name = "Personal"
                     },
+                    User = new User()
+                    {
+                        Name = "Gonzalo",
+                        Pass = "HolaSoyGonzalo123"
+                    },
                     Site = "ort.edu.uy",
                     Username = "239850",
                     Pass = "239850Ort2019",

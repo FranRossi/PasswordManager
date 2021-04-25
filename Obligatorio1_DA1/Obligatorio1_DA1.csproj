@@ -51,6 +51,7 @@
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\MissingFieldException.cs" />
+    <Compile Include="Exceptions\InvalidPasswordCategoryException.cs" />
     <Compile Include="Exceptions\PasswordExceptions.cs" />
     <Compile Include="Exceptions\NumberCardInvalidCharacters.cs" />
     <Compile Include="Exceptions\NumberCardLengthIncorrect.cs" />
