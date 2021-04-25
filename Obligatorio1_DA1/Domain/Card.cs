@@ -7,7 +7,7 @@ namespace Obligatorio1_DA1
     public class Card
     {
         private string number;
-        public string Category { get; set; }
+        public Category Category { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public string Number

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Obligatorio1_DA1;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
@@ -7,9 +8,37 @@ using System.Text.RegularExpressions;
 
 namespace UnitTestObligatorio1
 {
+
     [TestClass]
     public class UnitTestPasswordStrength
     {
+        private Password _password;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            try
+            {
+                this._password = new Password
+                {
+                    Category = new Category()
+                    {
+                        Name = "Personal"
+                    },
+                    Site = "ort.edu.uy",
+                    Username = "239850",
+                    Pass = "239850Ort2019",
+                    Notes = "No me roben la cuenta"
+                };
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+
+        }
+
+
         [DataRow("23985023")]
         [DataRow("abcde876")]
         [DataRow("-d45023")]
@@ -20,22 +49,14 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Password pass = new Password
-                {
-                    Category = "Facultad",
-                    Site = "ort.edu.uy",
-                    Username = "239850",
-                    Pass = password,
-                    Notes = "No me roben la cuenta"
-                };
-                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Red);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Red);
             }
             catch (ValidationException ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
-
         [DataRow("239850232")]
         [DataRow("abcst333de8762")]
         [DataRow("-d4502-s--ss-3")]
@@ -46,21 +67,15 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Password pass = new Password
-                {
-                    Category = "Facultad",
-                    Site = "ort.edu.uy",
-                    Username = "239850",
-                    Pass = password,
-                    Notes = "No me roben la cuenta"
-                };
-                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Orange);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Orange);
             }
             catch (ValidationException ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
+
 
         [DataRow("AAHTNINESHRIIHH")]
         [DataRow("nethiseanthneaa")]
@@ -76,21 +91,15 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Password pass = new Password
-                {
-                    Category = "Facultad",
-                    Site = "ort.edu.uy",
-                    Username = "239850",
-                    Pass = password,
-                    Notes = "No me roben la cuenta"
-                };
-                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.Yellow);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Yellow);
             }
             catch (ValidationException ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
+
 
         [DataRow("AAHTNrtsrHRIISH")]
         [DataRow("netMUN2hiseanthnea")]
@@ -102,21 +111,15 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Password pass = new Password
-                {
-                    Category = "Facultad",
-                    Site = "ort.edu.uy",
-                    Username = "239850",
-                    Pass = password,
-                    Notes = "No me roben la cuenta"
-                };
-                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.LightGreen);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.LightGreen);
             }
             catch (ValidationException ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
+
 
         [DataRow("AAHTNrtsr#3IIHH")]
         [DataRow("3#@rstaAaartsaa")]
@@ -127,15 +130,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Password pass = new Password
-                {
-                    Category = "Facultad",
-                    Site = "ort.edu.uy",
-                    Username = "AlfredoJuanGarciaPerez",
-                    Pass = password,
-                    Notes = "No me roben la cuenta"
-                };
-                Assert.AreEqual(pass.PasswordStrength, PasswordStrengthColor.DarkGreen);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.DarkGreen);
             }
             catch (ValidationException ex)
             {
@@ -143,6 +139,6 @@ namespace UnitTestObligatorio1
             }
         }
 
-
     }
 }
+

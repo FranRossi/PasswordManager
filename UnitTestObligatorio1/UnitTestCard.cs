@@ -19,7 +19,10 @@ namespace UnitTestObligatorio1
             {
                 this._card = new Card
                 {
-                    Category = "Personal",
+                    Category = new Category()
+                    {
+                        Name = "Personal"
+                    },
                     Name = "Visa Gold",
                     Type = "Visa",
                     Number = "2354678713003498",
@@ -38,7 +41,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCategoryCard()
         {
-            Assert.AreEqual<string>(this._card.Category, "Personal");
+            Assert.AreEqual<string>(this._card.Category.Name, "Personal");
         }
 
         [TestMethod]
@@ -77,7 +80,10 @@ namespace UnitTestObligatorio1
         {
             Card newCard = new Card
             {
-                Category = "Work",
+                Category = new Category()
+                {
+                    Name = "Personal"
+                },
                 Name = "Visa Black",
                 Type = "Visa",
                 Number = "23546787130034",
@@ -94,7 +100,10 @@ namespace UnitTestObligatorio1
         {
             Card newCard = new Card
             {
-                Category = "Personal",
+                Category = new Category()
+                {
+                    Name = "Personal"
+                },
                 Name = "Visa Gold",
                 Type = "Visa",
                 Number = "2s46f871/00r3498",
@@ -110,7 +119,10 @@ namespace UnitTestObligatorio1
         {
             Card newCard = new Card
             {
-                Category = "Work",
+                Category = new Category()
+                {
+                    Name = "Personal"
+                },
                 Name = "Visa Black",
                 Type = "Visa",
                 Number = "2354 6787 1300 3498 134",
@@ -130,7 +142,10 @@ namespace UnitTestObligatorio1
             {
                 Card newCard = new Card
                 {
-                    Category = "Work",
+                    Category = new Category()
+                    {
+                        Name = "Personal"
+                    },
                     Name = "Visa Black",
                     Type = "Visa",
                     Number = "2354678713003498",
