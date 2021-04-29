@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTestCategory.cs" />
-    <Compile Include="UnitTestPasswordManager.cs" />
     <Compile Include="UnitTestPasswordStrength.cs" />
     <Compile Include="UnitTestCard.cs" />
     <Compile Include="UnitTestPassword.cs" />

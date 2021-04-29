@@ -48,6 +48,7 @@ namespace Obligatorio1_DA1.Domain
             if (!Validator.MaxLengthOfString(value, 25))
                 throw new SiteTooLongException();
         }
+
         public string Username
         {
             get => username;
@@ -99,8 +100,6 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-
-
 
         private void ValidateNotes(string value)
         {

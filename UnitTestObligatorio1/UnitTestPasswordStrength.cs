@@ -13,23 +13,28 @@ namespace UnitTestObligatorio1
     public class UnitTestPasswordStrength
     {
         private Password _password;
+        private User _user;
+        private Category _category;
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
+                _user = new User()
+                {
+                    Name = "Gonzalo",
+                    Pass = "HolaSoyGonzalo123"
+                };
+                _category = new Category()
+                {
+                    Name = "Personal"
+                };
+                _user.Categories.Add(_category);
                 this._password = new Password
                 {
-                    Category = new Category()
-                    {
-                        Name = "Personal"
-                    },
-                    User = new User()
-                    {
-                        Name = "Gonzalo",
-                        Pass = "HolaSoyGonzalo123"
-                    },
+                    User = _user,
+                    Category = _category,
                     Site = "ort.edu.uy",
                     Username = "239850",
                     Pass = "239850Ort2019",
