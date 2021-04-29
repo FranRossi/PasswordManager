@@ -12,23 +12,31 @@ namespace UnitTestObligatorio1
     public class UnitTestPassword
     {
         private Password _password;
+        private PasswordManager _passwordManager;
+        private User _user;
+        private Category _category;
+
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
+                _passwordManager = new PasswordManager();
+                _user = new User()
+                {
+                    Name = "Gonzalo",
+                    Pass = "HolaSoyGonzalo123"
+                };
+                _category = new Category()
+                {
+                    Name = "Personal"
+                };
+                _user.Categories.Add(_category);
                 this._password = new Password
                 {
-                    Category = new Category()
-                    {
-                        Name = "Personal"
-                    },
-                    User = new User()
-                    {
-                        Name = "Gonzalo",
-                        Pass = "HolaSoyGonzalo123"
-                    },
+                    User = _user,
+                    Category = _category,
                     Site = "ort.edu.uy",
                     Username = "239850",
                     Pass = "239850Ort2019",
@@ -49,14 +57,13 @@ namespace UnitTestObligatorio1
             {
                 Password pass = new Password
                 {
-                    Category = new Category()
-                    {
-                        Name = "Work"
-                    },
+                    User = _user,
+                    Category = _category,
                     Site = "work.com",
                     Username = "Joseph",
                     Pass = "wwwjosph"
                 };
+                _passwordManager.CreatePassword(pass);
             }
             catch (Exception ex)
             {
@@ -155,17 +162,43 @@ namespace UnitTestObligatorio1
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
 
-
+        public void CreateValidPassword()
+        {
+            try
+            {
+                this._password = new Password
+                {
+                    User = _user,
+                    Category = _category,
+                    Site = "ort.edu.uy",
+                    Username = "239850",
+                    Pass = "239850Ort2019",
+                    Notes = "No me roben la cuenta"
+                };
+                _passwordManager.CreatePassword(this._password);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+        }
 
         [TestMethod]
-        [ExpectedException(typeof(Obligatorio1_DA1.Exceptions.MissingFieldException))]
-        public void CreateNewPasswordWithoutUsername()
+        [ExpectedException(typeof(InvalidPasswordCategoryException))]
+        public void CreateInvalidPasswordWrongCategory()
         {
+            Category unusedCategory = new Category()
+            {
+                Name = "Work"
+            };
             Password pass = new Password
             {
-                Site = "work.com",
-                Pass = "wwwjosph",
-                Notes = "This is my work.com password"
+                User = _user,
+                Category = unusedCategory,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
             };
         }
 
