@@ -7,27 +7,27 @@ namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
-        private List<User> users;
-        private List<Password> passwords;
+        private List<User> _users;
+        private List<Password> _passwords;
 
         public PasswordManager()
         {
-            users = new List<User>();
-            passwords = new List<Password>();
+            _users = new List<User>();
+            _passwords = new List<Password>();
         }
 
         public void CreateUser(string name, string password)
         {
             User newUser = new User(name, password);
-            if (users.Exists(user => user.Name == name))
+            if (_users.Exists(user => user.Name == name))
                 throw new UsernameAlreadyTakenException();
 
-            users.Add(newUser);
+            _users.Add(newUser);
         }
 
         public Boolean Login(string name, string password)
         {
-            foreach (User user in users)
+            foreach (User user in _users)
                 if (user.Name == name)
                     if (user.Pass == password)
                         return true;
@@ -38,7 +38,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
-            this.passwords.Add(password);
+            this._passwords.Add(password);
         }
     }
 }
