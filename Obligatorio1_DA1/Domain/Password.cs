@@ -16,12 +16,15 @@ namespace Obligatorio1_DA1.Domain
         private string pass;
         private string notes;
         public PasswordStrengthColor PasswordStrength { get; private set; }
+        public User User { get; set; }
 
         public Category Category
         {
             get => category;
             set
             {
+                if (!this.User.Categories.Contains(value))
+                    throw new InvalidPasswordCategoryException();
                 this.category = value;
             }
 
@@ -97,7 +100,7 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
-        public User User { get; set; }
+
 
         private void ValidateNotes(string value)
         {

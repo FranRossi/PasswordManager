@@ -12,10 +12,21 @@ namespace UnitTestObligatorio1
     public class UnitTestPasswordManager
     {
         PasswordManager passwordManager;
+        User user;
+        Category category;
         [TestInitialize]
         public void CreatePasswordManagerBeforeTests()
         {
             passwordManager = new PasswordManager();
+            user = new User()
+            {
+                Name = "Gonzalo",
+                Pass = "HolaSoyGonzalo123"
+            };
+            category = new Category()
+            {
+                Name = "Personal"
+            };
         }
 
         private Password _password;
@@ -24,29 +35,41 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                user.Categories.Add(category);
                 this._password = new Password
                 {
-                    Category = new Category()
-                    {
-                        Name = "Personal"
-                    },
-                    User = new User()
-                    {
-                        Name = "Gonzalo",
-                        Pass = "HolaSoyGonzalo123"
-                    },
+                    User = user,
+                    Category = category,
                     Site = "ort.edu.uy",
                     Username = "239850",
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                this._password.User.Categories.Add(this._password.Category);
                 passwordManager.CreatePassword(this._password);
             }
             catch (Exception ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidPasswordCategoryException))]
+        public void CreateInvalidPasswordWrongCategory()
+        {
+            Category unusedCategory = new Category()
+            {
+                Name = "Work"
+            };
+            Password pass = new Password
+            {
+                User = user,
+                Category = unusedCategory,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
         }
 
     }

@@ -38,8 +38,6 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
-            if (!password.User.Categories.Contains(password.Category))
-                throw new InvalidPasswordCategoryException();
             this.passwords.Add(password);
         }
     }
