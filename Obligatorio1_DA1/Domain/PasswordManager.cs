@@ -15,6 +15,7 @@ namespace Obligatorio1_DA1.Domain
         {
             _users = new List<User>();
             _passwords = new List<Password>();
+            _creditCards = new List<CreditCard>();
         }
 
         public void CreateUser(string name, string password)
