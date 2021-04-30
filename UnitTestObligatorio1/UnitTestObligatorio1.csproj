@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="UnitTestCategory.cs" />
     <Compile Include="UnitTestPasswordStrength.cs" />
-    <Compile Include="UnitTestCard.cs" />
+    <Compile Include="UnitTestCreditCard.cs" />
     <Compile Include="UnitTestPassword.cs" />
     <Compile Include="UnitTestLogIn.cs" />
     <Compile Include="UnitTestSignUp.cs" />

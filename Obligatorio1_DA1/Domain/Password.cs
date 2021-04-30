@@ -8,27 +8,15 @@ using MissingFieldException = Obligatorio1_DA1.Exceptions.MissingFieldException;
 
 namespace Obligatorio1_DA1.Domain
 {
-    public class Password
+    public class Password : Item
     {
-        private Category category;
         private string site;
         private string username;
         private string pass;
         private string notes;
         public PasswordStrengthColor PasswordStrength { get; private set; }
-        public User User { get; set; }
 
-        public Category Category
-        {
-            get => category;
-            set
-            {
-                if (!this.User.Categories.Contains(value))
-                    throw new InvalidPasswordCategoryException();
-                this.category = value;
-            }
 
-        }
 
         public string Site
         {
