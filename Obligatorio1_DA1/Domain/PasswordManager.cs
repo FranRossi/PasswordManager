@@ -9,6 +9,7 @@ namespace Obligatorio1_DA1.Domain
     {
         private List<User> _users;
         private List<Password> _passwords;
+        private List<CreditCard> _creditCards;
 
         public PasswordManager()
         {
@@ -39,6 +40,11 @@ namespace Obligatorio1_DA1.Domain
         public void CreatePassword(Password password)
         {
             this._passwords.Add(password);
+        }
+
+        public void CreateCreditCard(CreditCard creditCard)
+        {
+            this._creditCards.Add(creditCard);
         }
     }
 }
