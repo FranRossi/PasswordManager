@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Card.cs" />
+    <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\MissingFieldException.cs" />

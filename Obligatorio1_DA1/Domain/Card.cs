@@ -4,10 +4,9 @@ using System;
 
 namespace Obligatorio1_DA1.Domain
 {
-    public class Card
+    public class Card : Item
     {
         private string number;
-        public Category Category { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public string Number
@@ -19,12 +18,8 @@ namespace Obligatorio1_DA1.Domain
                 number = value;
             }
         }
-
-
-
         public string SecureCode { get; set; }
         public string ExpirationDate { get; set; }
-        public string Notes { get; set; }
 
 
         private void ValidateNumber(string number)
