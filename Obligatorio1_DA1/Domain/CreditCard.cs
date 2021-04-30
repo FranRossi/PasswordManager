@@ -4,7 +4,7 @@ using System;
 
 namespace Obligatorio1_DA1.Domain
 {
-    public class Card : Item
+    public class CreditCard : Item
     {
         private string number;
         public string Name { get; set; }

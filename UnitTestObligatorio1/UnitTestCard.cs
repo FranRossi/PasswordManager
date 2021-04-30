@@ -9,7 +9,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCard
     {
-        private Card _card;
+        private CreditCard _card;
         private PasswordManager _passwordManager;
         private User _user;
         private Category _category;
@@ -31,7 +31,7 @@ namespace UnitTestObligatorio1
                     Name = "Personal"
                 };
                 _user.Categories.Add(_category);
-                this._card = new Card
+                this._card = new CreditCard
                 {
                     User = _user,
                     Category = _category,
@@ -117,17 +117,10 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Card newCard = new Card
+                CreditCard newCard = new CreditCard
                 {
-                    User = new User()
-                    {
-                        Name = "Gonzalo",
-                        Pass = "HolaSoyGonzalo123"
-                    },
-                    Category = new Category()
-                    {
-                        Name = "Personal"
-                    },
+                    User = _user,
+                    Category = _category,
                     Name = "Visa Black",
                     Type = "Visa",
                     Number = "2354678713003498",
