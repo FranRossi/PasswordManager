@@ -7,7 +7,7 @@ using Obligatorio1_DA1.Exceptions;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    public class UnitTestCard
+    public class UnitTestCreditCard
     {
         private CreditCard _card;
         private PasswordManager _passwordManager;
