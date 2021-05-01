@@ -55,7 +55,19 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public NotesTooLongException()
         {
-            this.message = "Las notes es demasiado larga (max. 250 caracteres). ";
+            this.message = "Las notes son demasiado largas (max. 250 caracteres). ";
+        }
+    }
+
+    public class PasswordSharedWithSameUserException : Exception
+    {
+        protected string message;
+        public override string Message => this.message;
+
+        public PasswordSharedWithSameUserException()
+        {
+            this.message = "Un usuario no se puede compartir la constraseña a si mismo";
         }
     }
 }
+

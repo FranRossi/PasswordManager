@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
+using System.Linq;
 
 namespace Obligatorio1_DA1.Domain
 {
@@ -39,6 +40,16 @@ namespace Obligatorio1_DA1.Domain
         public void CreatePassword(Password password)
         {
             this._passwords.Add(password);
+        }
+
+        public List<Password> getPasswords(User user)
+        {
+            return this._passwords.Where(pass => pass.User == user).ToList();
+        }
+
+        public List<Password> getSharedPasswords(User user)
+        {
+            return this._passwords.Where(pass => pass.ShareWith.Contains(user)).ToList();
         }
     }
 }

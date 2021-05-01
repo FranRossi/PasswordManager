@@ -4,6 +4,7 @@ using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace UnitTestObligatorio1
@@ -49,6 +50,46 @@ namespace UnitTestObligatorio1
             }
 
         }
+
+        [TestMethod]
+        public void getPasswordContainsUserPassword()
+        {
+            this._passwordManager.CreatePassword(this._password);
+            List<Password> userPasswords = this._passwordManager.getPasswords(this._user);
+            CollectionAssert.Contains(userPasswords, this._password);
+        }
+
+        [TestMethod]
+        public void getPasswordOnlyContainsUserPassword()
+        {
+            User differentUser = new User()
+            {
+                Name = "Juan Perez",
+                Pass = "juan123"
+            };
+            Category categoryPersonal = new Category()
+            {
+                Name = "Personal"
+            };
+            differentUser.Categories.Add(categoryPersonal);
+            Password differentPassword = new Password
+            {
+                User = differentUser,
+                Category = categoryPersonal,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019"
+            };
+
+            this._passwordManager.CreatePassword(this._password);
+            this._passwordManager.CreatePassword(differentPassword);
+            List<Password> userPasswords = this._passwordManager.getPasswords(this._user);
+            CollectionAssert.DoesNotContain(userPasswords, differentPassword);
+        }
+
+
+
+
 
         [TestMethod]
         public void CreateNewPasswordWithoutNotes()
@@ -203,7 +244,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void SharePasswordToAnotherUser()
+        public void SharePasswordWithAnotherUser()
         {
             User userShareFrom = new User()
             {
@@ -229,8 +270,40 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            passwordToShare.ShareTo(userShareTo);
-            // TODO check if password was succesfully shared 
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareTo);
+            CollectionAssert.Contains(sharedWithUser, passwordToShare);
+
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(PasswordSharedWithSameUserException))]
+        public void SharePasswordWithSameUser()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareFrom);
+            List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareFrom);
         }
     }
 
