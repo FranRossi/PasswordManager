@@ -70,6 +70,29 @@ namespace UnitTestObligatorio1
             return dataBreach;
         }
 
-
+        private void AddCardsToPasswordManager()
+        {
+            string[] cardsToAdd = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
+            Category category = new Category()
+            {
+                Name = "Trabajo"
+            };
+            _currentUser.Categories.Add(category);
+            for (int i = 0; i < cardsToAdd.Length; i++)
+            {
+                CreditCard newCard = new CreditCard
+                {
+                    User = _currentUser,
+                    Category = category,
+                    Name = "Visa Gold",
+                    Type = "Visa",
+                    Number = cardsToAdd[i],
+                    SecureCode = "189",
+                    ExpirationDate = "10/21",
+                    Notes = "LÃ­mite 400k UYU"
+                };
+                _passwordManager.CreateCreditCard(newCard);
+            }
+        }
     }
 }
