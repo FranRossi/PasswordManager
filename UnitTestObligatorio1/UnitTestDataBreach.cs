@@ -9,12 +9,14 @@ namespace UnitTestObligatorio1
     public class UnitTestDataBreach
     {
         private string _passwordDataBreach;
+        private string _credtiCardDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
         [TestInitialize]
         public void TestInitialize()
         {
             _passwordDataBreach = CreatePasswordDataBreachString();
+            _credtiCardDataBreach = CreateCreditCardDataBreachString();
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
@@ -58,7 +60,7 @@ namespace UnitTestObligatorio1
             }
         }
 
-        private string CreateCardsDataBreachString()
+        private string CreateCreditCardDataBreachString()
         {
             string[] cardsToAdd = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
             string dataBreach = "";
