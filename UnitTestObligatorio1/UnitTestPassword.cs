@@ -243,8 +243,7 @@ namespace UnitTestObligatorio1
             };
         }
 
-        [TestMethod]
-        public void SharePasswordWithAnotherUser()
+        public void ShareOnePasswordWithAnotherUser()
         {
             User userShareFrom = new User()
             {
@@ -304,6 +303,67 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareFrom);
             List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareFrom);
+        }
+        public void ShareManyPasswordWithAnotherUser()
+        {
+            List<Password> expectedPasswords = new List<Password>();
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+
+            Password ort = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(ort);
+            expectedPasswords.Add(ort);
+            ort.ShareWithUser(userShareTo);
+
+            Password trello = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "trello.com",
+                Username = "josesito",
+                Pass = "239850Jose2019"
+            };
+            this._passwordManager.CreatePassword(trello);
+            expectedPasswords.Add(trello);
+            trello.ShareWithUser(userShareTo);
+
+            Password amazon = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "trello.com",
+                Username = "josesito",
+                Pass = "239850Jose2019"
+            };
+            this._passwordManager.CreatePassword(amazon);
+            expectedPasswords.Add(amazon);
+            amazon.ShareWithUser(userShareTo);
+
+            List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareTo);
+            CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
+
         }
     }
 
