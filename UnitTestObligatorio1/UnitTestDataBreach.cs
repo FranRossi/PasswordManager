@@ -131,7 +131,7 @@ namespace UnitTestObligatorio1
         {
             AddPasswordsFromDifferentToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            List<Item> breachResult = _passwordManager.getBreachedItems(_passwordDataBreach, _currentUser);
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_passwordDataBreach, _currentUser);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
         }
     }
