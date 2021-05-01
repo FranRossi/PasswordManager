@@ -10,15 +10,18 @@ namespace UnitTestObligatorio1
     {
         private string _passwordDataBreach;
         private string _credtiCardDataBreach;
+        private string _itemDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
         private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
+        private string[] _breachedItems = { "2354231413003498", "Passoword223", "nethiseant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
         [TestInitialize]
         public void TestInitialize()
         {
-            _passwordDataBreach = CreatePasswordDataBreachString();
-            _credtiCardDataBreach = CreateCreditCardDataBreachString();
+            _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
+            _credtiCardDataBreach = CreateDataBreachString(_breachedCreditCards);
+            _itemDataBreach = CreateDataBreachString(_breachedItems);
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
@@ -27,12 +30,12 @@ namespace UnitTestObligatorio1
             };
         }
 
-        private string CreatePasswordDataBreachString()
+        private string CreateDataBreachString(string[] breachedString)
         {
             string dataBreach = "";
-            for (int i = 0; i < _breachedPasswords.Length; i++)
+            for (int i = 0; i < breachedString.Length; i++)
             {
-                dataBreach += _breachedPasswords[i] + Environment.NewLine;
+                dataBreach += breachedString[i] + Environment.NewLine;
             }
 
             return dataBreach;
@@ -85,17 +88,6 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             _passwordManager.CreatePassword(newPassword);
-        }
-
-        private string CreateCreditCardDataBreachString()
-        {
-            string dataBreach = "";
-            for (int i = 0; i < breachedCreditCards.Length; i++)
-            {
-                dataBreach += breachedCreditCards[i] + Environment.NewLine;
-            }
-
-            return dataBreach;
         }
 
         private List<Item> AddBreachedCreditCardsToPasswordManager()
@@ -169,6 +161,16 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(breachResult, breachedCardList);
         }
 
+        [TestMethod]
+        public void CreditCardÁndPasswordDataBreach()
+        {
+            AddCreditCardsFromDifferentToUserPasswordManager();
+            AddPasswordsFromDifferentToPasswordManager();
+            List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
+            breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
 
+            List<Item> breachResult = _passwordManager.GetBreachedItems(, _currentUser);
+            CollectionAssert.AreEquivalent(breachResult, breachedCardList);
+        }
     }
 }
