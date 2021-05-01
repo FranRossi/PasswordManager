@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Interfaz
 {
-    public partial class UserLogin : UserControl
+    public partial class MainScreen : UserControl
     {
         private PasswordManager _myPasswordManager;
-        public UserLogin(PasswordManager passwordManager)
+        public MainScreen(PasswordManager passwordManager)
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
