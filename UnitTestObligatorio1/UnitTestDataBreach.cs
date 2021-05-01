@@ -60,6 +60,30 @@ namespace UnitTestObligatorio1
             }
         }
 
+        private void AddPasswordsFromDifferentToPasswordManager()
+        {
+            Category category = new Category()
+            {
+                Name = "Facultad"
+            };
+            User otherUser = new User()
+            {
+                Name = "Pedro",
+                Pass = "HolaSoyPedro123"
+            };
+            otherUser.Categories.Add(category);
+            Password newPassword = new Password
+            {
+                User = otherUser,
+                Category = category,
+                Site = "aulas.ort.edu.uy",
+                Username = "23985",
+                Pass = "Passoword223",
+                Notes = "No me roben la cuenta"
+            };
+            _passwordManager.CreatePassword(newPassword);
+        }
+
         private string CreateCreditCardDataBreachString()
         {
             string[] cardsToAdd = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
@@ -91,10 +115,16 @@ namespace UnitTestObligatorio1
                     Number = cardsToAdd[i],
                     SecureCode = "189",
                     ExpirationDate = "10/21",
-                    Notes = "LÃ­mite 400k UYU"
+                    Notes = "Tra­mite 400k UYU"
                 };
                 _passwordManager.CreateCreditCard(newCard);
             }
+        }
+
+        [TestMethod]
+        public void PasswordOnlyDataBreach()
+        {
+
         }
     }
 }
