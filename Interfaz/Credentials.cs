@@ -11,13 +11,20 @@ using System.Windows.Forms;
 
 namespace Interfaz
 {
-    public partial class UserLogin : UserControl
+    public partial class MainScreen : Form
     {
         private PasswordManager _myPasswordManager;
-        public UserLogin(PasswordManager passwordManager)
+        public MainScreen()
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
+            _myPasswordManager = new PasswordManager();
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            UserControl loginUser = new UserLogin(_myPasswordManager);
+            pnlMainScreen.Controls.Add(loginUser);
+            btnLogin.Hide();
         }
     }
 }

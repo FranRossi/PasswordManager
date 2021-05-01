@@ -1,14 +1,14 @@
 ﻿
 namespace Interfaz
 {
-    partial class MainScreen
+    partial class UserLogin
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -21,34 +21,62 @@ namespace Interfaz
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.txtMasterPassword = new System.Windows.Forms.TextBox();
+            this.lblMasterPassword = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // txtUserName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(420, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.txtUserName.Location = new System.Drawing.Point(284, 121);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(148, 26);
+            this.txtUserName.TabIndex = 0;
             // 
-            // MainScreen
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(158, 121);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(87, 20);
+            this.lblUserName.TabIndex = 1;
+            this.lblUserName.Text = "User name";
+            // 
+            // txtMasterPassword
+            // 
+            this.txtMasterPassword.Location = new System.Drawing.Point(284, 222);
+            this.txtMasterPassword.Name = "txtMasterPassword";
+            this.txtMasterPassword.Size = new System.Drawing.Size(148, 26);
+            this.txtMasterPassword.TabIndex = 2;
+            // 
+            // lblMasterPassword
+            // 
+            this.lblMasterPassword.AutoSize = true;
+            this.lblMasterPassword.Location = new System.Drawing.Point(135, 222);
+            this.lblMasterPassword.Name = "lblMasterPassword";
+            this.lblMasterPassword.Size = new System.Drawing.Size(130, 20);
+            this.lblMasterPassword.TabIndex = 3;
+            this.lblMasterPassword.Text = "Master password";
+            // 
+            // UserLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1212, 701);
-            this.Controls.Add(this.label1);
-            this.Name = "MainScreen";
-            this.Text = "Form1";
+            this.Controls.Add(this.lblMasterPassword);
+            this.Controls.Add(this.txtMasterPassword);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.txtUserName);
+            this.Name = "UserLogin";
+            this.Size = new System.Drawing.Size(605, 347);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -56,6 +84,9 @@ namespace Interfaz
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.TextBox txtMasterPassword;
+        private System.Windows.Forms.Label lblMasterPassword;
     }
 }
