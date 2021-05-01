@@ -246,6 +246,9 @@ namespace Obligatorio1_DA1.Domain
             return regex.IsMatch(character.ToString());
         }
 
+        public void ShareTo(User userShareTo)
+        {
+        }
 
     }
 

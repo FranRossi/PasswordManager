@@ -202,6 +202,36 @@ namespace UnitTestObligatorio1
             };
         }
 
+        [TestMethod]
+        public void SharePasswordToAnotherUser()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            passwordToShare.ShareTo(userShareTo);
+            // TODO check if password was succesfully shared 
+        }
     }
 
 }
