@@ -52,14 +52,14 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void getPasswordContainsUserPassword()
+        public void GetUserPasswords()
         {
             this._passwordManager.CreatePassword(this._password);
             List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
             CollectionAssert.Contains(userPasswords, this._password);
         }
 
-        public void deletePassword()
+        public void DeletePassword()
         {
             this._passwordManager.CreatePassword(this._password);
             this._passwordManager.DeletePassword(this._password);
@@ -68,7 +68,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void getPasswordOnlyContainsUserPassword()
+        public void GetUserPasswordsWithMultipleUsers()
         {
             User differentUser = new User()
             {
@@ -374,7 +374,7 @@ namespace UnitTestObligatorio1
 
         }
 
-        public void deleteSharedPassword()
+        public void DeleteSharedPassword()
         {
             User userShareFrom = new User()
             {

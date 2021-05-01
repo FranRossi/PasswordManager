@@ -15,15 +15,15 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private string notes;
-        private List<User> _shareWith;
+        private List<User> _sharedWith;
         public PasswordStrengthColor PasswordStrength { get; private set; }
         public User User { get; set; }
         public List<User> ShareWith
         {
-            get => _shareWith;
+            get => _sharedWith;
             private set
             {
-                this._shareWith = value;
+                this._sharedWith = value;
             }
         }
 
