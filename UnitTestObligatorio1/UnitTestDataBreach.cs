@@ -16,6 +16,7 @@ namespace UnitTestObligatorio1
         private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
         private string[] _breachedItems = { "2354231413003498", "Passoword223", "nethiseant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
+
         [TestInitialize]
         public void TestInitialize()
         {
@@ -30,6 +31,35 @@ namespace UnitTestObligatorio1
             };
         }
 
+        [TestMethod]
+        public void PasswordOnlyDataBreach()
+        {
+            AddPasswordsFromDifferentUserToPasswordManager();
+            List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_passwordDataBreach, _currentUser);
+            CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
+        }
+
+        [TestMethod]
+        public void CreditCardOnlyDataBreach()
+        {
+            AddCreditCardsFromDifferentToUserPasswordManager();
+            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_credtiCardDataBreach, _currentUser);
+            CollectionAssert.AreEquivalent(breachResult, breachedCardList);
+        }
+
+        [TestMethod]
+        public void CreditCardAndPasswordDataBreach()
+        {
+            AddCreditCardsFromDifferentToUserPasswordManager();
+            AddPasswordsFromDifferentUserToPasswordManager();
+            List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
+            breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_itemDataBreach, _currentUser);
+            CollectionAssert.AreEquivalent(breachResult, breachedItems);
+        }
+
         private string CreateDataBreachString(string[] breachedString)
         {
             string dataBreach = "";
@@ -37,7 +67,6 @@ namespace UnitTestObligatorio1
             {
                 dataBreach += breachedString[i] + Environment.NewLine;
             }
-
             return dataBreach;
         }
 
@@ -66,7 +95,7 @@ namespace UnitTestObligatorio1
             return brechedPasswordsList;
         }
 
-        private void AddPasswordsFromDifferentToPasswordManager()
+        private void AddPasswordsFromDifferentUserToPasswordManager()
         {
             Category category = new Category()
             {
@@ -143,33 +172,6 @@ namespace UnitTestObligatorio1
             _passwordManager.CreateCreditCard(newCard);
         }
 
-        [TestMethod]
-        public void PasswordOnlyDataBreach()
-        {
-            AddPasswordsFromDifferentToPasswordManager();
-            List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            List<Item> breachResult = _passwordManager.GetBreachedItems(_passwordDataBreach, _currentUser);
-            CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
-        }
 
-        [TestMethod]
-        public void CreditCardOnlyDataBreach()
-        {
-            AddCreditCardsFromDifferentToUserPasswordManager();
-            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
-            List<Item> breachResult = _passwordManager.GetBreachedItems(_credtiCardDataBreach, _currentUser);
-            CollectionAssert.AreEquivalent(breachResult, breachedCardList);
-        }
-
-        [TestMethod]
-        public void CreditCardAndPasswordDataBreach()
-        {
-            AddCreditCardsFromDifferentToUserPasswordManager();
-            AddPasswordsFromDifferentToPasswordManager();
-            List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
-            breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
-            List<Item> breachResult = _passwordManager.GetBreachedItems(_itemDataBreach, _currentUser);
-            CollectionAssert.AreEquivalent(breachResult, breachedItems);
-        }
     }
 }
