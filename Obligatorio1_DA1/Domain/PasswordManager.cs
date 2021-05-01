@@ -55,10 +55,11 @@ namespace Obligatorio1_DA1.Domain
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
-                {
                     if (pass.Pass == splittedDataBreach[i] && pass.User == currentUser)
                         breachedItems.Add(pass);
-                }
+                foreach (CreditCard card in _creditCards)
+                    if (card.Number == splittedDataBreach[i] && card.User == currentUser)
+                        breachedItems.Add(card);
             }
             return breachedItems;
         }

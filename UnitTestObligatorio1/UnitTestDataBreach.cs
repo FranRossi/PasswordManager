@@ -89,7 +89,6 @@ namespace UnitTestObligatorio1
 
         private string CreateCreditCardDataBreachString()
         {
-            string[] breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
             string dataBreach = "";
             for (int i = 0; i < breachedCreditCards.Length; i++)
             {
@@ -126,6 +125,32 @@ namespace UnitTestObligatorio1
             return breachedCreditCardList;
         }
 
+        private void AddCreditCardsFromDifferentToUserPasswordManager()
+        {
+            Category category = new Category()
+            {
+                Name = "Facultad"
+            };
+            User otherUser = new User()
+            {
+                Name = "Pedro",
+                Pass = "HolaSoyPedro123"
+            };
+            otherUser.Categories.Add(category);
+            CreditCard newCard = new CreditCard
+            {
+                User = otherUser,
+                Category = category,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "2354231413003498",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Tra­mite 400k UYU"
+            };
+            _passwordManager.CreateCreditCard(newCard);
+        }
+
         [TestMethod]
         public void PasswordOnlyDataBreach()
         {
@@ -134,5 +159,16 @@ namespace UnitTestObligatorio1
             List<Item> breachResult = _passwordManager.GetBreachedItems(_passwordDataBreach, _currentUser);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
         }
+
+        [TestMethod]
+        public void CreditCardOnlyDataBreach()
+        {
+            AddCreditCardsFromDifferentToUserPasswordManager();
+            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_credtiCardDataBreach, _currentUser);
+            CollectionAssert.AreEquivalent(breachResult, breachedCardList);
+        }
+
+
     }
 }
