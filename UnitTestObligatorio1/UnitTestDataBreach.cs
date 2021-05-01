@@ -35,6 +35,29 @@ namespace UnitTestObligatorio1
             return dataBreach;
         }
 
+        private void AddPasswordsToPasswordManager()
+        {
+            string[] passwordsToAdd = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            _currentUser.Categories.Add(category);
+            for (int i = 0; i < passwordsToAdd.Length; i++)
+            {
+                Password newPassword = new Password
+                {
+                    User = _currentUser,
+                    Category = category,
+                    Site = i + "ort.edu.uy",
+                    Username = "23985" + i,
+                    Pass = passwordsToAdd[i],
+                    Notes = "No me roben la cuenta"
+                };
+                _passwordManager.CreatePassword(newPassword);
+            }
+        }
+
 
     }
 }
