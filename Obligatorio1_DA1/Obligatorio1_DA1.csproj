@@ -47,11 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Category.cs" />
-    <Compile Include="Domain\Card.cs" />
+    <Compile Include="Domain\CreditCard.cs" />
+    <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\MissingFieldException.cs" />
-    <Compile Include="Exceptions\InvalidPasswordCategoryException.cs" />
+    <Compile Include="Exceptions\InvalidItemCategoryException.cs" />
     <Compile Include="Exceptions\PasswordExceptions.cs" />
     <Compile Include="Exceptions\NumberCardInvalidCharacters.cs" />
     <Compile Include="Exceptions\NumberCardLengthIncorrect.cs" />

@@ -7,9 +7,12 @@ using Obligatorio1_DA1.Exceptions;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    public class UnitTestCard
+    public class UnitTestCreditCard
     {
-        private Card _card;
+        private CreditCard _card;
+        private PasswordManager _passwordManager;
+        private User _user;
+        private Category _category;
 
 
         [TestInitialize]
@@ -17,12 +20,21 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._card = new Card
+                _passwordManager = new PasswordManager();
+                _user = new User()
                 {
-                    Category = new Category()
-                    {
-                        Name = "Personal"
-                    },
+                    Name = "Gonzalo",
+                    Pass = "HolaSoyGonzalo123"
+                };
+                _category = new Category()
+                {
+                    Name = "Personal"
+                };
+                _user.Categories.Add(_category);
+                this._card = new CreditCard
+                {
+                    User = _user,
+                    Category = _category,
                     Name = "Visa Gold",
                     Type = "Visa",
                     Number = "2354678713003498",
@@ -35,6 +47,35 @@ namespace UnitTestObligatorio1
             {
                 Assert.Fail("Expected no exception, but got: " + exception.Message);
             }
+        }
+
+
+        [TestMethod]
+        public void CreateValidCreditCard()
+        {
+            _user = new User()
+            {
+                Name = "Mauricio",
+                Pass = "HolaSoyGonzalo123"
+            };
+            _category = new Category()
+            {
+                Name = "Personal"
+            };
+            _user.Categories.Add(_category);
+            CreditCard creditCard = new CreditCard
+            {
+                User = _user,
+                Category = _category,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "7754678713003477",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Límite 400k UYU"
+            };
+
+            _passwordManager.CreateCreditCard(creditCard);
         }
 
 
@@ -78,59 +119,21 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(NumberCardLengthIncorrect))]
         public void CreateInvalidCardNumberTooShort()
         {
-            Card newCard = new Card
-            {
-                Category = new Category()
-                {
-                    Name = "Personal"
-                },
-                Name = "Visa Black",
-                Type = "Visa",
-                Number = "23546787130034",
-                SecureCode = "189",
-                ExpirationDate = "10/21",
-                Notes = "This is a note"
-            };
-
+            this._card.Number = "235467871";
         }
 
         [TestMethod]
         [ExpectedException(typeof(NumberCardInvalidCharacters))]
-        public void CreateInvalidCardNumberWithWrongCharacteres()
+        public void CreateInvalidCardNumberWithWrongCharacters()
         {
-            Card newCard = new Card
-            {
-                Category = new Category()
-                {
-                    Name = "Personal"
-                },
-                Name = "Visa Gold",
-                Type = "Visa",
-                Number = "2s46f871/00r3498",
-                SecureCode = "189",
-                ExpirationDate = "10/21",
-                Notes = "Límite 400k UYU"
-            };
+            this._card.Number = "2s46f871/00r3498";
         }
 
         [TestMethod]
         [ExpectedException(typeof(NumberCardLengthIncorrect))]
         public void CreateInvalidCardNumberTooLong()
         {
-            Card newCard = new Card
-            {
-                Category = new Category()
-                {
-                    Name = "Personal"
-                },
-                Name = "Visa Black",
-                Type = "Visa",
-                Number = "2354 6787 1300 3498 134",
-                SecureCode = "189",
-                ExpirationDate = "10/21",
-                Notes = "This is a note"
-            };
-
+            this._card.Number = "2354 6787 1300 3498 134/00r3498";
         }
 
 
@@ -140,12 +143,10 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                Card newCard = new Card
+                CreditCard newCard = new CreditCard
                 {
-                    Category = new Category()
-                    {
-                        Name = "Personal"
-                    },
+                    User = _user,
+                    Category = _category,
                     Name = "Visa Black",
                     Type = "Visa",
                     Number = "2354678713003498",
@@ -166,6 +167,7 @@ namespace UnitTestObligatorio1
             string cardNumberShowingOnlyLast4Digits = this._card.ShowOnly4LastDigits();
             Assert.AreEqual<string>("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
         }
+
 
     }
 

@@ -10,11 +10,13 @@ namespace Obligatorio1_DA1.Domain
     {
         private List<User> _users;
         private List<Password> _passwords;
+        private List<CreditCard> _creditCards;
 
         public PasswordManager()
         {
             _users = new List<User>();
             _passwords = new List<Password>();
+            _creditCards = new List<CreditCard>();
         }
 
         public void CreateUser(string name, string password)
@@ -41,6 +43,11 @@ namespace Obligatorio1_DA1.Domain
         {
             this._passwords.Add(password);
         }
+      
+        public void CreateCreditCard(CreditCard creditCard)
+        {
+            this._creditCards.Add(creditCard);
+        }
 
         public List<Password> GetPasswords(User user)
         {
@@ -55,6 +62,22 @@ namespace Obligatorio1_DA1.Domain
         public void DeletePassword(Password password)
         {
             this._passwords.Remove(password);
+        }
+
+        public List<Item> GetBreachedItems(string dataBreach, User currentUser)
+        {
+            List<Item> breachedItems = new List<Item>();
+            string[] splittedDataBreach = dataBreach.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            for (int i = 0; i < splittedDataBreach.Length; i++)
+            {
+                foreach (Password pass in _passwords)
+                    if (pass.Pass == splittedDataBreach[i] && pass.User == currentUser)
+                        breachedItems.Add(pass);
+                foreach (CreditCard card in _creditCards)
+                    if (card.Number == splittedDataBreach[i] && card.User == currentUser)
+                        breachedItems.Add(card);
+            }
+            return breachedItems;
         }
     }
 }
