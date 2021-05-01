@@ -312,7 +312,7 @@ namespace UnitTestObligatorio1
             passwordToShare.ShareWithUser(userShareFrom);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareFrom);
         }
-        public void ShareManyPasswordWithAnotherUser()
+        public void ShareManyPasswordsWithAnotherUser()
         {
             List<Password> expectedPasswords = new List<Password>();
 
