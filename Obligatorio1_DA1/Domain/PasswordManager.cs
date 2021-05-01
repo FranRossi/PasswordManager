@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
+using System.Linq;
 
 namespace Obligatorio1_DA1.Domain
 {
@@ -42,10 +43,25 @@ namespace Obligatorio1_DA1.Domain
         {
             this._passwords.Add(password);
         }
-
+      
         public void CreateCreditCard(CreditCard creditCard)
         {
             this._creditCards.Add(creditCard);
+        }
+
+        public List<Password> GetPasswords(User user)
+        {
+            return this._passwords.Where(pass => pass.User == user).ToList();
+        }
+
+        public List<Password> GetSharedPasswords(User user)
+        {
+            return this._passwords.Where(pass => pass.ShareWith.Contains(user)).ToList();
+        }
+
+        public void DeletePassword(Password password)
+        {
+            this._passwords.Remove(password);
         }
 
         public List<Item> GetBreachedItems(string dataBreach, User currentUser)

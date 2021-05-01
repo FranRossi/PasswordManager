@@ -4,6 +4,7 @@ using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace UnitTestObligatorio1
@@ -49,6 +50,54 @@ namespace UnitTestObligatorio1
             }
 
         }
+
+        [TestMethod]
+        public void GetUserPasswords()
+        {
+            this._passwordManager.CreatePassword(this._password);
+            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            CollectionAssert.Contains(userPasswords, this._password);
+        }
+
+        public void DeletePassword()
+        {
+            this._passwordManager.CreatePassword(this._password);
+            this._passwordManager.DeletePassword(this._password);
+            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            CollectionAssert.DoesNotContain(userPasswords, this._password);
+        }
+
+        [TestMethod]
+        public void GetUserPasswordsWithMultipleUsers()
+        {
+            User differentUser = new User()
+            {
+                Name = "Juan Perez",
+                Pass = "juan123"
+            };
+            Category categoryPersonal = new Category()
+            {
+                Name = "Personal"
+            };
+            differentUser.Categories.Add(categoryPersonal);
+            Password differentPassword = new Password
+            {
+                User = differentUser,
+                Category = categoryPersonal,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019"
+            };
+
+            this._passwordManager.CreatePassword(this._password);
+            this._passwordManager.CreatePassword(differentPassword);
+            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            CollectionAssert.DoesNotContain(userPasswords, differentPassword);
+        }
+
+
+
+
 
         [TestMethod]
         public void CreateNewPasswordWithoutNotes()
@@ -202,6 +251,163 @@ namespace UnitTestObligatorio1
             };
         }
 
+        public void ShareOnePasswordWithAnotherUser()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            CollectionAssert.Contains(sharedWithUser, passwordToShare);
+
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(PasswordSharedWithSameUserException))]
+        public void SharePasswordWithSameUser()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareFrom);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareFrom);
+        }
+        public void ShareManyPasswordsWithAnotherUser()
+        {
+            List<Password> expectedPasswords = new List<Password>();
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+
+            Password ort = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(ort);
+            expectedPasswords.Add(ort);
+            ort.ShareWithUser(userShareTo);
+
+            Password trello = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "trello.com",
+                Username = "josesito",
+                Pass = "239850Jose2019"
+            };
+            this._passwordManager.CreatePassword(trello);
+            expectedPasswords.Add(trello);
+            trello.ShareWithUser(userShareTo);
+
+            Password amazon = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "trello.com",
+                Username = "josesito",
+                Pass = "239850Jose2019"
+            };
+            this._passwordManager.CreatePassword(amazon);
+            expectedPasswords.Add(amazon);
+            amazon.ShareWithUser(userShareTo);
+
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
+
+        }
+
+        public void DeleteSharedPassword()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            this._passwordManager.DeletePassword(passwordToShare);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+
+        }
     }
+
 
 }

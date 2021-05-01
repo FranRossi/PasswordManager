@@ -14,7 +14,17 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private string notes;
+        private List<User> _sharedWith;
         public PasswordStrengthColor PasswordStrength { get; private set; }
+        public User User { get; set; }
+        public List<User> ShareWith
+        {
+            get => _sharedWith;
+            private set
+            {
+                this._sharedWith = value;
+            }
+        }
 
 
 
@@ -57,6 +67,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new UsernameTooLongException();
 
         }
+
 
         public string Pass
         {
@@ -234,6 +245,18 @@ namespace Obligatorio1_DA1.Domain
             return regex.IsMatch(character.ToString());
         }
 
+        public void ShareWithUser(User userShareWith)
+        {
+            if (this.ShareWith == null)
+            {
+                this.ShareWith = new List<User>();
+            }
+            if (this.User == userShareWith)
+            {
+                throw new PasswordSharedWithSameUserException();
+            }
+            this.ShareWith.Add(userShareWith);
+        }
 
     }
 
