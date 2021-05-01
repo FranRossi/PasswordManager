@@ -50,7 +50,33 @@ namespace UnitTestObligatorio1
         }
 
 
+        [TestMethod]
+        public void CreateValidCreditCard()
+        {
+            _user = new User()
+            {
+                Name = "Mauricio",
+                Pass = "HolaSoyGonzalo123"
+            };
+            _category = new Category()
+            {
+                Name = "Personal"
+            };
+            _user.Categories.Add(_category);
+            CreditCard creditCard = new CreditCard
+            {
+                User = _user,
+                Category = _category,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "7754678713003477",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Límite 400k UYU"
+            };
 
+            _passwordManager.CreateCreditCard(creditCard);
+        }
 
 
         [TestMethod]
@@ -141,6 +167,7 @@ namespace UnitTestObligatorio1
             string cardNumberShowingOnlyLast4Digits = this._card.ShowOnly4LastDigits();
             Assert.AreEqual<string>("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
         }
+
 
     }
 
