@@ -58,6 +58,18 @@ namespace UnitTestObligatorio1
             }
         }
 
+        private string CreateCardsDataBreachString()
+        {
+            string[] cardsToAdd = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
+            string dataBreach = "";
+            for (int i = 0; i < cardsToAdd.Length; i++)
+            {
+                dataBreach += cardsToAdd[i] + Environment.NewLine;
+            }
+
+            return dataBreach;
+        }
+
 
     }
 }
