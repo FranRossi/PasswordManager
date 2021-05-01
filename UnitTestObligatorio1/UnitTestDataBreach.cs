@@ -6,46 +6,35 @@ using System.Collections.Generic;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    public class UnitTestCategory
+    public class UnitTestDataBreach
     {
-        private Category _categoryPersonal;
-
+        private string _passwordDataBreach;
+        private PasswordManager _passwordManager;
+        private User _currentUser;
         [TestInitialize]
         public void TestInitialize()
         {
-            try
+            _passwordDataBreach = CreatePasswordDataBreachString();
+            _passwordManager = new PasswordManager();
+            _currentUser = new User()
             {
-                this._categoryPersonal = new Category()
-                {
-                    Name = "Personal"
-                };
-            }
-            catch (Exception exception)
+                Name = "Gonzalo",
+                Pass = "HolaSoyGonzalo123"
+            };
+        }
+
+        private string CreatePasswordDataBreachString()
+        {
+            string[] passwordsToAdd = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
+            string dataBreach = "";
+            for (int i = 0; i < passwordsToAdd.Length; i++)
             {
-                Assert.Fail("Expected no exception, but got: " + exception.Message);
+                dataBreach += passwordsToAdd[i] + Environment.NewLine;
             }
+
+            return dataBreach;
         }
 
-        [TestMethod]
-        public void GetCategoryName()
-        {
-            Assert.AreEqual<string>(this._categoryPersonal.Name, "Personal");
-        }
-
-        [TestMethod]
-        public void CreateListOfCategoriesInUser()
-        {
-            User user = new User("Juancito", "Pepe123");
-            Assert.IsNotNull(user.Categories);
-        }
-
-        [TestMethod]
-        public void AddsCategoriesToUser()
-        {
-            User user = new User("Juancito", "Pepe123");
-            user.Categories.Add(this._categoryPersonal);
-            Assert.AreEqual(user.Categories[0], this._categoryPersonal);
-        }
 
     }
 }
