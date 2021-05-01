@@ -12,6 +12,8 @@ namespace UnitTestObligatorio1
         private string _credtiCardDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
+        private string[] breachedPasswords = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
+        private string[] breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
         [TestInitialize]
         public void TestInitialize()
         {
@@ -27,11 +29,10 @@ namespace UnitTestObligatorio1
 
         private string CreatePasswordDataBreachString()
         {
-            string[] passwordsToAdd = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
             string dataBreach = "";
-            for (int i = 0; i < passwordsToAdd.Length; i++)
+            for (int i = 0; i < breachedPasswords.Length; i++)
             {
-                dataBreach += passwordsToAdd[i] + Environment.NewLine;
+                dataBreach += breachedPasswords[i] + Environment.NewLine;
             }
 
             return dataBreach;
@@ -39,13 +40,12 @@ namespace UnitTestObligatorio1
 
         private void AddPasswordsToPasswordManager()
         {
-            string[] passwordsToAdd = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
             Category category = new Category()
             {
                 Name = "Personal"
             };
             _currentUser.Categories.Add(category);
-            for (int i = 0; i < passwordsToAdd.Length; i++)
+            for (int i = 0; i < breachedPasswords.Length; i++)
             {
                 Password newPassword = new Password
                 {
@@ -53,7 +53,7 @@ namespace UnitTestObligatorio1
                     Category = category,
                     Site = i + "ort.edu.uy",
                     Username = "23985" + i,
-                    Pass = passwordsToAdd[i],
+                    Pass = breachedPasswords[i],
                     Notes = "No me roben la cuenta"
                 };
                 _passwordManager.CreatePassword(newPassword);
@@ -86,25 +86,24 @@ namespace UnitTestObligatorio1
 
         private string CreateCreditCardDataBreachString()
         {
-            string[] cardsToAdd = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
+            string[] breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
             string dataBreach = "";
-            for (int i = 0; i < cardsToAdd.Length; i++)
+            for (int i = 0; i < breachedCreditCards.Length; i++)
             {
-                dataBreach += cardsToAdd[i] + Environment.NewLine;
+                dataBreach += breachedCreditCards[i] + Environment.NewLine;
             }
 
             return dataBreach;
         }
 
-        private void AddCardsToPasswordManager()
+        private void AddCreditCardsToPasswordManager()
         {
-            string[] cardsToAdd = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
             Category category = new Category()
             {
                 Name = "Trabajo"
             };
             _currentUser.Categories.Add(category);
-            for (int i = 0; i < cardsToAdd.Length; i++)
+            for (int i = 0; i < breachedCreditCards.Length; i++)
             {
                 CreditCard newCard = new CreditCard
                 {
@@ -112,7 +111,7 @@ namespace UnitTestObligatorio1
                     Category = category,
                     Name = "Visa Gold",
                     Type = "Visa",
-                    Number = cardsToAdd[i],
+                    Number = breachedCreditCards[i],
                     SecureCode = "189",
                     ExpirationDate = "10/21",
                     Notes = "Tra­mite 400k UYU"
@@ -124,7 +123,9 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void PasswordOnlyDataBreach()
         {
-
+            AddPasswordsFromDifferentToPasswordManager();
+            AddPasswordsToPasswordManager();
+            _passwordManager.
         }
     }
 }
