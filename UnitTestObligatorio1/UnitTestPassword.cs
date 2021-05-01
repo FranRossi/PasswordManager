@@ -55,8 +55,16 @@ namespace UnitTestObligatorio1
         public void getPasswordContainsUserPassword()
         {
             this._passwordManager.CreatePassword(this._password);
-            List<Password> userPasswords = this._passwordManager.getPasswords(this._user);
+            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
             CollectionAssert.Contains(userPasswords, this._password);
+        }
+
+        public void deletePassword()
+        {
+            this._passwordManager.CreatePassword(this._password);
+            this._passwordManager.DeletePassword(this._password);
+            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            CollectionAssert.DoesNotContain(userPasswords, this._password);
         }
 
         [TestMethod]
@@ -83,7 +91,7 @@ namespace UnitTestObligatorio1
 
             this._passwordManager.CreatePassword(this._password);
             this._passwordManager.CreatePassword(differentPassword);
-            List<Password> userPasswords = this._passwordManager.getPasswords(this._user);
+            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
 
@@ -271,7 +279,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareTo);
-            List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
             CollectionAssert.Contains(sharedWithUser, passwordToShare);
 
         }
@@ -302,7 +310,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareFrom);
-            List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareFrom);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareFrom);
         }
         public void ShareManyPasswordWithAnotherUser()
         {
@@ -361,10 +369,45 @@ namespace UnitTestObligatorio1
             expectedPasswords.Add(amazon);
             amazon.ShareWithUser(userShareTo);
 
-            List<Password> sharedWithUser = this._passwordManager.getSharedPasswords(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
             CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
 
         }
+
+        public void deleteSharedPassword()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            this._passwordManager.DeletePassword(passwordToShare);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+
+        }
     }
+
 
 }

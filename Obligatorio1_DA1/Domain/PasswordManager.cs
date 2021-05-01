@@ -42,14 +42,19 @@ namespace Obligatorio1_DA1.Domain
             this._passwords.Add(password);
         }
 
-        public List<Password> getPasswords(User user)
+        public List<Password> GetPasswords(User user)
         {
             return this._passwords.Where(pass => pass.User == user).ToList();
         }
 
-        public List<Password> getSharedPasswords(User user)
+        public List<Password> GetSharedPasswords(User user)
         {
             return this._passwords.Where(pass => pass.ShareWith.Contains(user)).ToList();
+        }
+
+        public void DeletePassword(Password password)
+        {
+            this._passwords.Remove(password);
         }
     }
 }

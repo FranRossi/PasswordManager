@@ -79,6 +79,7 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
+
         public string Pass
         {
             get => pass;
