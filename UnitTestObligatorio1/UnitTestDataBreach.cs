@@ -162,15 +162,14 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void CreditCardÁndPasswordDataBreach()
+        public void CreditCardAndPasswordDataBreach()
         {
             AddCreditCardsFromDifferentToUserPasswordManager();
             AddPasswordsFromDifferentToPasswordManager();
             List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
             breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
-
-            List<Item> breachResult = _passwordManager.GetBreachedItems(, _currentUser);
-            CollectionAssert.AreEquivalent(breachResult, breachedCardList);
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_itemDataBreach, _currentUser);
+            CollectionAssert.AreEquivalent(breachResult, breachedItems);
         }
     }
 }
