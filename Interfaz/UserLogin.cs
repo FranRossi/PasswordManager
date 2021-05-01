@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Obligatorio1_DA1
+namespace Interfaz
 {
-    public partial class Form1 : Form
+    public partial class UserLogin : UserControl
     {
-        public Form1()
+        public UserLogin()
         {
             InitializeComponent();
         }
