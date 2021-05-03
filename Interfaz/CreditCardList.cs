@@ -71,5 +71,10 @@ namespace Presentation
 
             tblCreditCards.DataSource = result;
         }
+
+        private void btnAddsCreditCard_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
