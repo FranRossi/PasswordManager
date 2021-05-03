@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class DataBreach : UserControl
+    public partial class pnlDataBreachResult : UserControl
     {
-        public DataBreach()
+        public pnlDataBreachResult()
         {
             InitializeComponent();
         }

@@ -16,7 +16,6 @@ namespace Obligatorio1_DA1.Domain
         private string notes;
         private List<User> _sharedWith;
         public PasswordStrengthColor PasswordStrength { get; private set; }
-        public User User { get; set; }
         public List<User> ShareWith
         {
             get => _sharedWith;
