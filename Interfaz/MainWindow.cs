@@ -43,7 +43,9 @@ namespace Presentation
 
         private void tsmiPasswordStrength_Click(object sender, EventArgs e)
         {
-
+            UserControl passwordStrength = new PasswordStrength(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(passwordStrength);
         }
     }
 }
