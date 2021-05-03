@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class UsernameAlreadyTakenException : ValidationException
+    public class LogInException : Exception
     {
-        public UsernameAlreadyTakenException()
+        private string message;
+        public override string Message => this.message;
+        public LogInException()
         {
-            this.message = "El usuario ingresado ya esta en uso.";
+            this.message = "El nombre usuario o contraseña son incorrectos.";
         }
     }
 }

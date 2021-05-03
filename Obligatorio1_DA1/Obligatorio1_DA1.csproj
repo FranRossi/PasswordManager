@@ -64,6 +64,7 @@
     <Compile Include="Exceptions\PasswordTooLongException.cs" />
     <Compile Include="Exceptions\NameTooShortException.cs" />
     <Compile Include="Exceptions\PasswordTooShortException.cs" />
+    <Compile Include="Exceptions\LogInException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyTakenException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Domain\PasswordManager.cs" />

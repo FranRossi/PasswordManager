@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
 using System;
 
 namespace UnitTestObligatorio1
@@ -7,12 +8,12 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestLogIn
     {
-
+        [TestMethod]
+        [ExpectedException(typeof(LogInException))]
         public void LoginUserWithoutAnyUserCreated()
         {
             passwordManager = new PasswordManager();
-            Boolean result = passwordManager.Login("Pepe12", "alsdfjadf");
-            Assert.IsFalse(result);
+            passwordManager.Login("Pepe12", "alsdfjadf");
         }
 
         PasswordManager passwordManager;
@@ -20,21 +21,27 @@ namespace UnitTestObligatorio1
         public void createPasswordManagerBeforeTests()
         {
             passwordManager = new PasswordManager();
-            passwordManager.CreateUser("Lucia", "Lucia$123");
+            passwordManager.CreateUser("Lucia", "Lucia123");
         }
 
         [TestMethod]
         public void LoginValidUser()
         {
-            Boolean result = passwordManager.Login("Lucia", "Lucia$123");
-            Assert.IsTrue(result);
+            try
+            {
+                passwordManager.Login("Lucia", "Lucia123");
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
         }
 
         [TestMethod]
+        [ExpectedException(typeof(LogInException))]
         public void LoginUserWrongPassword()
         {
-            Boolean result = passwordManager.Login("Lucia", "hoal3823");
-            Assert.IsFalse(result);
+            passwordManager.Login("Lucia", "hoal3823");
         }
 
         [DataRow("hoal3823")]
@@ -42,18 +49,25 @@ namespace UnitTestObligatorio1
         [DataRow("lucia$123")]
         [DataRow("Lucia$1234")]
         [DataTestMethod]
+        [ExpectedException(typeof(LogInException))]
         public void LoginUserWrongPassword(string wrongPassword)
         {
-            Boolean result = passwordManager.Login("Lucia", wrongPassword);
-            Assert.IsFalse(result);
+            passwordManager.Login("Lucia", wrongPassword);
         }
 
         [TestMethod]
         public void LoginUserWithPasswordAlreadyTaken()
         {
-            passwordManager.CreateUser("Pepe12", "Lucia$123");
-            Boolean result = passwordManager.Login("Pepe12", "Lucia$123");
-            Assert.IsTrue(result);
+            passwordManager.CreateUser("Pepe12", "Lucia123");
+            try
+            {
+                passwordManager.Login("Pepe12", "Lucia123");
+
+            }
+            catch (LogInException ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
         }
 
     }

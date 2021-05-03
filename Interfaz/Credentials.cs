@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,39 +24,39 @@ namespace Interfaz
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            btnLogin.Hide();
-            btnSignUp.Hide();
-            ValidateLogin();
-        }
-
-        private void ValidateLogin()
-        {
             string userName = txtUserName.Text;
             string masterPassword = txtMasterPassword.Text;
-            _myPasswordManager.Login(userName, masterPassword);
-            MainScreenLogin();
+            try
+            {
+                _myPasswordManager.Login(userName, masterPassword);
+                ShowMainScreen();
+            }
+            catch (LogInException exception)
+            {
+                lblMessage.Text = exception.Message;
+            }
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            btnLogin.Hide();
-            btnSignUp.Hide();
-            SignUpToPasswordManager();
-        }
-
-        private void SignUpToPasswordManager()
-        {
             string userName = txtUserName.Text;
             string masterPassword = txtMasterPassword.Text;
-            _myPasswordManager.CreateUser(userName, masterPassword);
-            MainScreenLogin();
+            try
+            {
+                _myPasswordManager.CreateUser(userName, masterPassword);
+                ShowMainScreen();
+            }
+            catch (ValidationException exception)
+            {
+                lblMessage.Text = exception.Message;
+            }
         }
 
-        private void MainScreenLogin()
+        private void ShowMainScreen()
         {
             Form currentForm = this.FindForm();
             currentForm.Hide();
-            Form mainForm = new MainWindow();
+            Form mainForm = new MainWindow(_myPasswordManager);
             mainForm.Closed += (s, args) => currentForm.Close();
             mainForm.Show();
         }

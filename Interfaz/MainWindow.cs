@@ -15,10 +15,10 @@ namespace Interfaz
     {
         private PasswordManager _myPasswordManager;
         private UserControl _menu;
-        public MainWindow()
+        public MainWindow(PasswordManager pPasswordManager)
         {
             InitializeComponent();
-            _myPasswordManager = new PasswordManager();
+            _myPasswordManager = pPasswordManager;
         }
 
     }

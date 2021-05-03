@@ -29,6 +29,7 @@ namespace Interfaz
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblMasterPassword = new System.Windows.Forms.Label();
             this.txtMasterPassword = new System.Windows.Forms.TextBox();
@@ -37,6 +38,7 @@ namespace Interfaz
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.btnSignUp = new System.Windows.Forms.Button();
             this.lblMessage = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // lblTitle
@@ -117,6 +119,11 @@ namespace Interfaz
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
             this.lblMessage.TabIndex = 15;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // Credentials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,5 +153,6 @@ namespace Interfaz
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
