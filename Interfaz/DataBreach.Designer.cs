@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation
 {
-    partial class pnlDataBreachResult
+    partial class DataBreach
     {
         /// <summary> 
         /// Required designer variable.
@@ -34,14 +34,20 @@ namespace Presentation
             this.txtDataBreach = new System.Windows.Forms.TextBox();
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblDataBreachResult = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tblDataBreachCreditCard = new System.Windows.Forms.DataGridView();
+            this.lblCard = new System.Windows.Forms.Label();
+            this.lblPass = new System.Windows.Forms.Label();
+            this.tblDataBreachPassword = new System.Windows.Forms.DataGridView();
             this.pnlDataBreachText.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlDataBreachText
             // 
-            this.pnlDataBreachText.Controls.Add(this.label1);
             this.pnlDataBreachText.Controls.Add(this.btnVerifyDataBreach);
             this.pnlDataBreachText.Controls.Add(this.txtDataBreach);
             this.pnlDataBreachText.Controls.Add(this.lblSubtitle);
@@ -59,6 +65,7 @@ namespace Presentation
             this.btnVerifyDataBreach.TabIndex = 3;
             this.btnVerifyDataBreach.Text = "Verificar";
             this.btnVerifyDataBreach.UseVisualStyleBackColor = true;
+            this.btnVerifyDataBreach.Click += new System.EventHandler(this.btnVerifyDataBreach_Click);
             // 
             // txtDataBreach
             // 
@@ -87,33 +94,92 @@ namespace Presentation
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Data Breaches";
             // 
+            // lblDataBreachResult
+            // 
+            this.lblDataBreachResult.AutoSize = true;
+            this.lblDataBreachResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataBreachResult.Location = new System.Drawing.Point(3, 18);
+            this.lblDataBreachResult.Name = "lblDataBreachResult";
+            this.lblDataBreachResult.Size = new System.Drawing.Size(109, 25);
+            this.lblDataBreachResult.TabIndex = 4;
+            this.lblDataBreachResult.Text = "Resultados";
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tblDataBreachCreditCard);
+            this.panel1.Controls.Add(this.lblCard);
+            this.panel1.Controls.Add(this.lblPass);
+            this.panel1.Controls.Add(this.tblDataBreachPassword);
+            this.panel1.Controls.Add(this.lblDataBreachResult);
             this.panel1.Location = new System.Drawing.Point(293, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 393);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // tblDataBreachCreditCard
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(73, 184);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 25);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Data Breaches";
+            this.tblDataBreachCreditCard.AllowUserToAddRows = false;
+            this.tblDataBreachCreditCard.AllowUserToDeleteRows = false;
+            this.tblDataBreachCreditCard.AllowUserToResizeColumns = false;
+            this.tblDataBreachCreditCard.AllowUserToResizeRows = false;
+            this.tblDataBreachCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblDataBreachCreditCard.Location = new System.Drawing.Point(3, 245);
+            this.tblDataBreachCreditCard.MultiSelect = false;
+            this.tblDataBreachCreditCard.Name = "tblDataBreachCreditCard";
+            this.tblDataBreachCreditCard.ReadOnly = true;
+            this.tblDataBreachCreditCard.RowHeadersVisible = false;
+            this.tblDataBreachCreditCard.ShowCellErrors = false;
+            this.tblDataBreachCreditCard.ShowCellToolTips = false;
+            this.tblDataBreachCreditCard.ShowEditingIcon = false;
+            this.tblDataBreachCreditCard.ShowRowErrors = false;
+            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(477, 126);
+            this.tblDataBreachCreditCard.TabIndex = 7;
             // 
-            // pnlDataBreachResult
+            // lblCard
+            // 
+            this.lblCard.AutoSize = true;
+            this.lblCard.Location = new System.Drawing.Point(0, 229);
+            this.lblCard.Name = "lblCard";
+            this.lblCard.Size = new System.Drawing.Size(99, 13);
+            this.lblCard.TabIndex = 6;
+            this.lblCard.Text = "Tarjetas expuestas:";
+            // 
+            // lblPass
+            // 
+            this.lblPass.AutoSize = true;
+            this.lblPass.Location = new System.Drawing.Point(1, 63);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(120, 13);
+            this.lblPass.TabIndex = 4;
+            this.lblPass.Text = "Contraseñas expuestas:";
+            // 
+            // tblDataBreachPassword
+            // 
+            this.tblDataBreachPassword.AllowUserToAddRows = false;
+            this.tblDataBreachPassword.AllowUserToDeleteRows = false;
+            this.tblDataBreachPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.tblDataBreachPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblDataBreachPassword.Location = new System.Drawing.Point(4, 80);
+            this.tblDataBreachPassword.Name = "tblDataBreachPassword";
+            this.tblDataBreachPassword.ReadOnly = true;
+            this.tblDataBreachPassword.RowHeadersVisible = false;
+            this.tblDataBreachPassword.Size = new System.Drawing.Size(477, 131);
+            this.tblDataBreachPassword.TabIndex = 5;
+            // 
+            // DataBreach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlDataBreachText);
-            this.Name = "pnlDataBreachResult";
+            this.Name = "DataBreach";
             this.Size = new System.Drawing.Size(780, 399);
             this.pnlDataBreachText.ResumeLayout(false);
             this.pnlDataBreachText.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachPassword)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -126,6 +192,10 @@ namespace Presentation
         private System.Windows.Forms.TextBox txtDataBreach;
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDataBreachResult;
+        private System.Windows.Forms.DataGridView tblDataBreachCreditCard;
+        private System.Windows.Forms.Label lblCard;
+        private System.Windows.Forms.Label lblPass;
+        private System.Windows.Forms.DataGridView tblDataBreachPassword;
     }
 }

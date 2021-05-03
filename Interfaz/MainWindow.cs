@@ -19,6 +19,8 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
+            UserControl astda = new DataBreach(pPasswordManager);
+            pnlMainScreen.Controls.Add(astda);
         }
 
     }
