@@ -14,12 +14,18 @@ namespace Interfaz
     public partial class MainWindow : Form
     {
         private PasswordManager _myPasswordManager;
+        private UserControl _currentUserControl;
         public MainWindow()
         {
             InitializeComponent();
             _myPasswordManager = new PasswordManager();
-            UserControl credentials = new Credentials(_myPasswordManager);
-            pnlMainScreen.Controls.Add(credentials);
+            _currentUserControl = new Credentials(_myPasswordManager);
+            pnlMainScreen.Controls.Add(_currentUserControl);
+        }
+
+        private void CloseCurrentUserControl()
+        {
+            pnlMainScreen.Controls.Remove(_currentUserControl);
         }
     }
 }
