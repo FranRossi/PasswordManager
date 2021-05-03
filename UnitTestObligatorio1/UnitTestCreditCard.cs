@@ -178,7 +178,13 @@ namespace UnitTestObligatorio1
             CollectionAssert.Contains(creditCards, this._card);
         }
 
-
+        [TestMethod]
+        public void DeleteACreditCard()
+        {
+            this._passwordManager.DeleteCreditCard(this._card);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.DoesNotContain(creditCards, this._card);
+        }
 
     }
 

@@ -84,5 +84,10 @@ namespace Obligatorio1_DA1.Domain
         {
             return this._creditCards;
         }
+
+        public void DeleteCreditCard(CreditCard card)
+        {
+            this._creditCards.Remove(card);
+        }
     }
 }

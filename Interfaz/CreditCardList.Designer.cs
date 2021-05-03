@@ -69,6 +69,7 @@ namespace Presentation
             this.btnDeleteCreditCard.TabIndex = 2;
             this.btnDeleteCreditCard.Text = "Eliminar";
             this.btnDeleteCreditCard.UseVisualStyleBackColor = true;
+            this.btnDeleteCreditCard.Click += new System.EventHandler(this.btnDeleteCreditCard_Click);
             // 
             // btnModifiesCreditCard
             // 

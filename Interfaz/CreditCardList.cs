@@ -76,5 +76,11 @@ namespace Presentation
         {
 
         }
+
+        private void btnDeleteCreditCard_Click(object sender, EventArgs e)
+        {
+            var creditCardRow = tblCreditCards.CurrentRow;
+            _myPasswordManager.
+        }
     }
 }
