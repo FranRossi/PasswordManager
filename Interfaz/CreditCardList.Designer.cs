@@ -29,30 +29,30 @@ namespace Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tblCreditCards = new System.Windows.Forms.DataGridView();
             this.categoryCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creditCardNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expirationDateCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // tblCreditCards
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tblCreditCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCreditCards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.categoryCard,
             this.nameCard,
             this.typeCard,
             this.creditCardNumber,
             this.expirationDateCard});
-            this.dataGridView1.Location = new System.Drawing.Point(81, 99);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(814, 246);
-            this.dataGridView1.TabIndex = 0;
+            this.tblCreditCards.Location = new System.Drawing.Point(81, 99);
+            this.tblCreditCards.Name = "tblCreditCards";
+            this.tblCreditCards.RowHeadersWidth = 62;
+            this.tblCreditCards.RowTemplate.Height = 28;
+            this.tblCreditCards.Size = new System.Drawing.Size(814, 246);
+            this.tblCreditCards.TabIndex = 0;
             // 
             // categoryCard
             // 
@@ -93,17 +93,17 @@ namespace Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tblCreditCards);
             this.Name = "CreditCardList";
             this.Size = new System.Drawing.Size(1008, 604);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView tblCreditCards;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeCard;

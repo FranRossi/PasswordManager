@@ -23,7 +23,16 @@ namespace Presentation
 
         private void LoadCreditCardList()
         {
+            var result = _myPasswordManager.GetCreditCards().Select(r => new
+            {
+                categoryCard = r.Category,
+                nameCard = r.Name,
+                typeCard = r.Type,
+                creditCardNumber = r.Number,
+                expirationDateCard = r.ExpirationDate,
+            }).ToList();
 
+            tblCreditCards.DataSource = result;
 
         }
     }
