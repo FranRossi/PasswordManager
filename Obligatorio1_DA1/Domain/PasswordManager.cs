@@ -20,10 +20,9 @@ namespace Obligatorio1_DA1.Domain
             _creditCards = new List<CreditCard>();
         }
 
-        public void CreateUser(string name, string password)
+        public void CreateUser(User newUser)
         {
-            User newUser = new User(name, password);
-            if (_users.Exists(user => user.Name == name))
+            if (_users.Exists(user => user.Name == newUser.Name))
                 throw new UsernameAlreadyTakenException();
             _users.Add(newUser);
             _currentUser = newUser;

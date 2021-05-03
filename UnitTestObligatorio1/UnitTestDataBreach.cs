@@ -29,7 +29,7 @@ namespace UnitTestObligatorio1
                 Name = "Gonzalo",
                 Pass = "HolaSoyGonzalo123"
             };
-            _passwordManager.CreateUser("Gonzalo", "HolaSoyGonzalo123");
+            _passwordManager.CreateUser(_currentUser);
         }
 
         [TestMethod]

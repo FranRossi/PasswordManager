@@ -30,7 +30,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                passwordManager.CreateUser("Juancito", "hola123");
+                User newUser = new User("Juancito", "hola123");
+                passwordManager.CreateUser(newUser);
             }
             catch (Exception ex)
             {
@@ -42,29 +43,34 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(PasswordTooShortException))]
         public void CreateInvalidUserPasswordTooShort()
         {
-            passwordManager.CreateUser("Juan12", "hola");
+            User newUser = new User("Juan12", "hola");
+            passwordManager.CreateUser(newUser);
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordTooLongException))]
         public void CreateInvalidUserPasswordTooLong()
         {
-            passwordManager.CreateUser("Pepe12", "hola12345678910111213141516171819202122");
+            User newUser = new User("Pepe12", "hola12345678910111213141516171819202122");
+            passwordManager.CreateUser(newUser);
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordInvalidCharactersException))]
         public void CreateInvalidUserPasswordInvalidCharacter()
         {
-            passwordManager.CreateUser("Pepe12", "½½½½hola½½½½");
+            User newUser = new User("Pepe12", "½½½½hola½½½½");
+            passwordManager.CreateUser(newUser);
         }
 
         [TestMethod]
         [ExpectedException(typeof(UsernameAlreadyTakenException))]
         public void CreateInvalidUserNameAlreadyTaken()
         {
-            passwordManager.CreateUser("Pepe12", "pepe1232");
-            passwordManager.CreateUser("Pepe12", "121hola");
+            User newUser = new User("Pepe12", "pepe1232");
+            passwordManager.CreateUser(newUser);
+            User newUser2 = new User("Pepe12", "121hola");
+            passwordManager.CreateUser(newUser2);
         }
 
 
@@ -72,21 +78,24 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(NameTooShortException))]
         public void createUserEmptyName()
         {
-            passwordManager.CreateUser("", "password");
+            User newUser = new User("", "password");
+            passwordManager.CreateUser(newUser);
         }
 
         [TestMethod]
         [ExpectedException(typeof(NameTooShortException))]
         public void createUserNameTooShort()
         {
-            passwordManager.CreateUser("Khea", " ");
+            User newUser = new User("Khea", " ");
+            passwordManager.CreateUser(newUser);
         }
 
         [TestMethod]
         [ExpectedException(typeof(NameTooLongException))]
         public void createUserNameTooLong()
         {
-            passwordManager.CreateUser("MaritoBaracus1234VisualStudioEnterprise", "password");
+            User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");
+            passwordManager.CreateUser(newUser);
         }
     }
 }
