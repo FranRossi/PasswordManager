@@ -35,12 +35,17 @@ namespace Presentation
             // 
             // tblCreditCards
             // 
+            this.tblCreditCards.AllowUserToAddRows = false;
+            this.tblCreditCards.AllowUserToDeleteRows = false;
+            this.tblCreditCards.AllowUserToOrderColumns = true;
+            this.tblCreditCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.tblCreditCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblCreditCards.Location = new System.Drawing.Point(81, 99);
+            this.tblCreditCards.Location = new System.Drawing.Point(57, 99);
+            this.tblCreditCards.MultiSelect = false;
             this.tblCreditCards.Name = "tblCreditCards";
             this.tblCreditCards.RowHeadersWidth = 62;
             this.tblCreditCards.RowTemplate.Height = 28;
-            this.tblCreditCards.Size = new System.Drawing.Size(814, 246);
+            this.tblCreditCards.Size = new System.Drawing.Size(945, 345);
             this.tblCreditCards.TabIndex = 0;
             // 
             // CreditCardList
@@ -49,7 +54,7 @@ namespace Presentation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tblCreditCards);
             this.Name = "CreditCardList";
-            this.Size = new System.Drawing.Size(1008, 604);
+            this.Size = new System.Drawing.Size(1110, 623);
             ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).EndInit();
             this.ResumeLayout(false);
 

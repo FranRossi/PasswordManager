@@ -62,10 +62,10 @@ namespace Presentation
 
             var result = _myPasswordManager.GetCreditCards().Select(r => new
             {
-                Category = r.Category.Name,
+                Categoria = r.Category.Name,
                 Nombre = r.Name,
                 Tipo = r.Type,
-                Tarjeta = r.Number,
+                Tarjeta = r.ShowOnly4LastDigits(),
                 Vencimiento = r.ExpirationDate,
             }).ToList();
 

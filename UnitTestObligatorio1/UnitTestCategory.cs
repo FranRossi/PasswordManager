@@ -48,7 +48,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void ShowCategoryName()
+        public void ShowsCategoryAsAString()
         {
             string categotyName = this._categoryPersonal.ToString();
             Assert.AreEqual(categotyName, "Personal");
