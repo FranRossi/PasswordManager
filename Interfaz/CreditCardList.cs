@@ -18,9 +18,13 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-
+            LoadCreditCardList();
         }
 
+        private void LoadCreditCardList()
+        {
 
+
+        }
     }
 }
