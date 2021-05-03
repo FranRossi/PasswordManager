@@ -28,15 +28,15 @@ namespace Obligatorio1_DA1.Domain
             _users.Add(newUser);
         }
 
-        public Boolean Login(string name, string password)
+        public void Login(string name, string password)
         {
             foreach (User user in _users)
                 if (user.Name == name)
                     if (user.Pass == password)
-                        return true;
+                        return;
                     else
-                        return false;
-            return false;
+                        throw new LogInException();
+            throw new LogInException();
         }
 
         public void CreatePassword(Password password)

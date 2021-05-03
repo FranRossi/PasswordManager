@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2DBE2991-F523-4A88-88FD-E17F27462492}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Obligatorio1_DA1</RootNamespace>
-    <AssemblyName>Obligatorio1_DA1</AssemblyName>
+    <ProjectGuid>{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Interfaz</RootNamespace>
+    <AssemblyName>Interfaz</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,28 +46,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Category.cs" />
-    <Compile Include="Domain\CreditCard.cs" />
-    <Compile Include="Domain\Item.cs" />
-    <Compile Include="Domain\Password.cs" />
-    <Compile Include="Domain\User.cs" />
-    <Compile Include="Exceptions\MissingFieldException.cs" />
-    <Compile Include="Exceptions\InvalidItemCategoryException.cs" />
-    <Compile Include="Exceptions\PasswordExceptions.cs" />
-    <Compile Include="Exceptions\NumberCardInvalidCharacters.cs" />
-    <Compile Include="Exceptions\NumberCardLengthIncorrect.cs" />
-    <Compile Include="Exceptions\PasswordInvalidCharactersException.cs" />
-    <Compile Include="Exceptions\NameTooLongException.cs" />
-    <Compile Include="Exceptions\PasswordTooLongException.cs" />
-    <Compile Include="Exceptions\NameTooShortException.cs" />
-    <Compile Include="Exceptions\PasswordTooShortException.cs" />
-    <Compile Include="Exceptions\LogInException.cs" />
-    <Compile Include="Exceptions\UsernameAlreadyTakenException.cs" />
-    <Compile Include="Exceptions\ValidationException.cs" />
-    <Compile Include="Domain\PasswordManager.cs" />
+    <Compile Include="Credentials.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Credentials.Designer.cs">
+      <DependentUpon>Credentials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CredentialWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CredentialWindow.Designer.cs">
+      <DependentUpon>CredentialWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\PasswordStrengthColor.cs" />
-    <Compile Include="Utilities\Validator.cs" />
+    <Compile Include="MainScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainScreen.Designer.cs">
+      <DependentUpon>MainScreen.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Credentials.resx">
+      <DependentUpon>Credentials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CredentialWindow.resx">
+      <DependentUpon>CredentialWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,6 +90,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +106,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
+      <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
+      <Name>Obligatorio1_DA1</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obligatorio1_DA1", "Obligat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestObligatorio1", "UnitTestObligatorio1\UnitTestObligatorio1.csproj", "{DD34AD00-E10B-4715-BCD7-D4F9CE07E1C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Interfaz\Presentation.csproj", "{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DD34AD00-E10B-4715-BCD7-D4F9CE07E1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD34AD00-E10B-4715-BCD7-D4F9CE07E1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD34AD00-E10B-4715-BCD7-D4F9CE07E1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

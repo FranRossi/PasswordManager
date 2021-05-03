@@ -1,7 +1,7 @@
 ﻿
-namespace Obligatorio1_DA1
+namespace Presentation
 {
-    partial class Form1
+    partial class CredentialWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,30 @@ namespace Obligatorio1_DA1
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.pnlCredentials = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // pnlCredentials
+            // 
+            this.pnlCredentials.Location = new System.Drawing.Point(12, 12);
+            this.pnlCredentials.Name = "pnlCredentials";
+            this.pnlCredentials.Size = new System.Drawing.Size(776, 426);
+            this.pnlCredentials.TabIndex = 0;
+            // 
+            // CredentialWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.pnlCredentials);
+            this.Name = "CredentialWindow";
+            this.Text = "CredentialWindow";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel pnlCredentials;
     }
 }
-
