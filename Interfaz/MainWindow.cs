@@ -28,7 +28,9 @@ namespace Presentation
 
         private void tsmiCreditCards_Click(object sender, EventArgs e)
         {
-
+            UserControl creditCardList = new CreditCardList(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(creditCardList);
         }
 
         private void tsmiCategories_Click(object sender, EventArgs e)
