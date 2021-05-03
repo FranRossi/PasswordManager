@@ -13,6 +13,7 @@ namespace Interfaz
 {
     public partial class Credentials : UserControl
     {
+
         private PasswordManager _myPasswordManager;
         public Credentials(PasswordManager pPasswordManager)
         {
@@ -33,7 +34,6 @@ namespace Interfaz
             string masterPassword = txtMasterPassword.Text;
             _myPasswordManager.Login(userName, masterPassword);
             MainScreenLogin();
-
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
@@ -53,8 +53,13 @@ namespace Interfaz
 
         private void MainScreenLogin()
         {
-            UserControl mainScreen = new MainScreen(_myPasswordManager);
-            //pnlMainScreen.Controls.Add(mainScreen);
+            Form currentForm = this.FindForm();
+            currentForm.Hide();
+            Form mainForm = new MainWindow();
+            mainForm.Closed += (s, args) => currentForm.Close();
+            mainForm.Show();
         }
+
+
     }
 }

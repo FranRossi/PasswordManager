@@ -107,6 +107,7 @@ namespace Interfaz
             this.btnSignUp.TabIndex = 10;
             this.btnSignUp.Text = "Registrarse";
             this.btnSignUp.UseVisualStyleBackColor = true;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
             // lblMessage
             // 

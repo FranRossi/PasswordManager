@@ -52,6 +52,12 @@
     <Compile Include="Credentials.Designer.cs">
       <DependentUpon>Credentials.cs</DependentUpon>
     </Compile>
+    <Compile Include="CredentialWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CredentialWindow.Designer.cs">
+      <DependentUpon>CredentialWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     </Compile>
     <EmbeddedResource Include="Credentials.resx">
       <DependentUpon>Credentials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CredentialWindow.resx">
+      <DependentUpon>CredentialWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
