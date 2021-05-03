@@ -1,5 +1,5 @@
 ﻿
-namespace Interfaz
+namespace Presentation
 {
     partial class CredentialWindow
     {

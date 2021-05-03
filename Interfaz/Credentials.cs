@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Interfaz
+namespace Presentation
 {
     public partial class Credentials : UserControl
     {

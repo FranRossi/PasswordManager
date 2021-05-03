@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Interfaz.Properties
+namespace Presentation.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
