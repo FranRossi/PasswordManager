@@ -13,7 +13,7 @@ namespace Presentation
 {
     public partial class DataBreach : UserControl
     {
-        private PasswordManager _passwordManager;
+
 
         private PasswordManager _myPasswordManager;
         public DataBreach(PasswordManager pPasswordManager)
@@ -22,9 +22,11 @@ namespace Presentation
             _myPasswordManager = pPasswordManager;
         }
 
+
+
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
-            List<Item> breachResult = _passwordManager.GetBreachedItems(txtDataBreach.Text, _currentUser);
+            List<Item> breachResult = _myPasswordManager.GetBreachedItems(txtDataBreach.Text);
             List<Password> passwords = new List<Password>();
             List<CreditCard> creditCards = new List<CreditCard>();
             foreach (Item i in breachResult)
