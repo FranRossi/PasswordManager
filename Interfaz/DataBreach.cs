@@ -13,16 +13,13 @@ namespace Presentation
 {
     public partial class DataBreach : UserControl
     {
-
-
         private PasswordManager _myPasswordManager;
+
         public DataBreach(PasswordManager pPasswordManager)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
         }
-
-
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
