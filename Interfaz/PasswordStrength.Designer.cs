@@ -30,6 +30,8 @@ namespace Presentation
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tlpColorTable = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
@@ -42,15 +44,12 @@ namespace Presentation
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.dgvReport = new System.Windows.Forms.DataGridView();
-            this.group = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.chartPasswordStrength = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tlpColorTable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPasswordStrength)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpColorTable
@@ -244,47 +243,25 @@ namespace Presentation
             this.button2.Text = "Ver";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // dgvReport
-            // 
-            this.dgvReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.group,
-            this.quantity});
-            this.dgvReport.Location = new System.Drawing.Point(64, 43);
-            this.dgvReport.Name = "dgvReport";
-            this.dgvReport.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvReport.Size = new System.Drawing.Size(292, 313);
-            this.dgvReport.TabIndex = 0;
-            // 
-            // group
-            // 
-            this.group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.group.HeaderText = "Grupo";
-            this.group.Name = "group";
-            // 
-            // quantity
-            // 
-            this.quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.quantity.HeaderText = "Cantidad de Contraseñas";
-            this.quantity.Name = "quantity";
-            // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.dgvReport);
+            this.panel2.Controls.Add(this.chartPasswordStrength);
             this.panel2.Location = new System.Drawing.Point(304, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(476, 399);
             this.panel2.TabIndex = 1;
             // 
-            // button1
+            // chartPasswordStrength
             // 
-            this.button1.Location = new System.Drawing.Point(384, 99);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            chartArea1.Name = "ChartArea1";
+            this.chartPasswordStrength.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPasswordStrength.Legends.Add(legend1);
+            this.chartPasswordStrength.Location = new System.Drawing.Point(14, 55);
+            this.chartPasswordStrength.Name = "chartPasswordStrength";
+            this.chartPasswordStrength.Size = new System.Drawing.Size(447, 300);
+            this.chartPasswordStrength.TabIndex = 0;
+            this.chartPasswordStrength.Text = "Cantidad de Constrañas por Categoría/Grupo";
             // 
             // contextMenuStrip1
             // 
@@ -302,23 +279,19 @@ namespace Presentation
             this.Size = new System.Drawing.Size(780, 399);
             this.tlpColorTable.ResumeLayout(false);
             this.tlpColorTable.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartPasswordStrength)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvReport;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn group;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantity;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.TableLayoutPanel tlpColorTable;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -327,5 +300,6 @@ namespace Presentation
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPasswordStrength;
     }
 }

@@ -18,6 +18,7 @@ namespace Presentation
         {
             this._passwordManager = passwordManager;
             InitializeComponent();
+            this.LoadChart();
 
             /*            tbgroup.width = tbgroup.parent.width;
                         tbgroup.height = 300;
@@ -29,6 +30,21 @@ namespace Presentation
         private void tbGroup_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoadChart()
+        {
+            List<string> categories = new List<string> { "Persona", "Trabajo", "Facultad" };
+            List<string> colors = new List<string> { "Rojo", "Amarillo", "Verde" };
+            Random rand = new Random();
+            foreach (string color in colors)
+            {
+                this.chartPasswordStrength.Series.Add(color);
+                foreach (string category in categories)
+                {
+                    this.chartPasswordStrength.Series[color].Points.AddXY(category, rand.Next());
+                }
+            }
         }
     }
 }
