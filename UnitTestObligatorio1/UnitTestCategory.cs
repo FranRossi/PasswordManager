@@ -9,6 +9,7 @@ namespace UnitTestObligatorio1
     public class UnitTestCategory
     {
         private Category _categoryPersonal;
+        private PasswordManager _passwordManager;
 
         [TestInitialize]
         public void TestInitialize()
@@ -19,6 +20,7 @@ namespace UnitTestObligatorio1
                 {
                     Name = "Personal"
                 };
+                _passwordManager = new PasswordManager();
             }
             catch (Exception exception)
             {
@@ -43,7 +45,8 @@ namespace UnitTestObligatorio1
         public void AddsCategoriesToUser()
         {
             User user = new User("Juancito", "Pepe123");
-            user.Categories.Add(this._categoryPersonal);
+            _passwordManager.CreateUser(user);
+            _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
             Assert.AreEqual(user.Categories[0], this._categoryPersonal);
         }
 
