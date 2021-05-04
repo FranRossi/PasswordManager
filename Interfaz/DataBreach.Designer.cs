@@ -122,6 +122,7 @@ namespace Presentation
             this.tblDataBreachCreditCard.AllowUserToDeleteRows = false;
             this.tblDataBreachCreditCard.AllowUserToResizeColumns = false;
             this.tblDataBreachCreditCard.AllowUserToResizeRows = false;
+            this.tblDataBreachCreditCard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblDataBreachCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblDataBreachCreditCard.Location = new System.Drawing.Point(3, 245);
             this.tblDataBreachCreditCard.MultiSelect = false;
@@ -157,7 +158,7 @@ namespace Presentation
             // 
             this.tblDataBreachPassword.AllowUserToAddRows = false;
             this.tblDataBreachPassword.AllowUserToDeleteRows = false;
-            this.tblDataBreachPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.tblDataBreachPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblDataBreachPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblDataBreachPassword.Location = new System.Drawing.Point(4, 80);
             this.tblDataBreachPassword.Name = "tblDataBreachPassword";

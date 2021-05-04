@@ -13,8 +13,8 @@ namespace Presentation
 {
     public partial class DataBreach : UserControl
     {
-        private PasswordManager _myPasswordManager;
 
+        private PasswordManager _myPasswordManager;
         public DataBreach(PasswordManager pPasswordManager)
         {
             InitializeComponent();
@@ -33,8 +33,54 @@ namespace Presentation
                 else
                     creditCards.Add((CreditCard)i);
             }
+            loadTblCreditCard(creditCards);
+            loadTblPassword(passwords);
+        }
+
+        private void loadTblCreditCard(List<CreditCard> creditCards)
+        {
             tblDataBreachCreditCard.DataSource = creditCards;
-            tblDataBreachPassword.DataSource = passwords;
+            foreach (DataGridViewColumn c in tblDataBreachCreditCard.Columns)
+            {
+                switch (c.Name)
+                {
+                    case "Name":
+                        c.HeaderText = "Nombre";
+                        break;
+                    case "Number":
+                        c.HeaderText = "Numero";
+                        break;
+                    case "Type":
+                        c.HeaderText = "Tipo";
+                        break;
+                    default:
+                        c.Visible = false;
+                        break;
+                }
+            }
+        }
+
+        private void loadTblPassword(List<Password> creditCards)
+        {
+            tblDataBreachPassword.DataSource = creditCards;
+            foreach (DataGridViewColumn c in tblDataBreachPassword.Columns)
+            {
+                switch (c.Name)
+                {
+                    case "Site":
+                        c.HeaderText = "Sitio";
+                        break;
+                    case "username":
+                        c.HeaderText = "Nombre de usuario";
+                        break;
+                    case "Category":
+                        c.HeaderText = "Categoria";
+                        break;
+                    default:
+                        c.Visible = false;
+                        break;
+                }
+            }
         }
     }
 }
