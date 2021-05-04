@@ -38,7 +38,9 @@ namespace UnitTestObligatorio1
         public void CreateListOfCategoriesInUser()
         {
             User user = new User("Juancito", "Pepe123");
-            Assert.IsNotNull(user.Categories);
+            _passwordManager.CreateUser(user);
+            List<Category> categories = _passwordManager.GetCategoriesFromCurrentUser();
+            Assert.IsNotNull(categories);
         }
 
         [TestMethod]

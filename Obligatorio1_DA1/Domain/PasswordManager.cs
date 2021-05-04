@@ -42,6 +42,8 @@ namespace Obligatorio1_DA1.Domain
             throw new LogInException();
         }
 
+
+
         public void CreatePassword(Password password)
         {
             this._passwords.Add(password);
