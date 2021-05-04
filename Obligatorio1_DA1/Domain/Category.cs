@@ -29,5 +29,10 @@ namespace Obligatorio1_DA1.Domain
         {
             return this.Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            return ((Category)obj).Name == this.Name;
+        }
     }
 }

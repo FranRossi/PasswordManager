@@ -95,6 +95,15 @@ namespace Obligatorio1_DA1.Domain
             return breachedItems;
         }
 
+        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
+        {
+            foreach (Category categoryIterator in _currentUser.Categories)
+            {
+                if (categoryIterator.Equals(oldCategory))
+                    categoryIterator.Name = newCategory.Name;
+            }
+        }
+
         public List<CreditCard> GetCreditCards()
         {
             return this._creditCards;
