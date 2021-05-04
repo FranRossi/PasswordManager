@@ -41,7 +41,7 @@ namespace Presentation
             this.tblCreditCards.AllowUserToAddRows = false;
             this.tblCreditCards.AllowUserToDeleteRows = false;
             this.tblCreditCards.AllowUserToOrderColumns = true;
-            this.tblCreditCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.tblCreditCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblCreditCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblCreditCards.Location = new System.Drawing.Point(57, 99);
             this.tblCreditCards.MultiSelect = false;

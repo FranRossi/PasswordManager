@@ -84,6 +84,9 @@
     <EmbeddedResource Include="CredentialWindow.resx">
       <DependentUpon>CredentialWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreditCardList.resx">
+      <DependentUpon>CreditCardList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
