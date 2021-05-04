@@ -47,6 +47,11 @@ namespace Obligatorio1_DA1.Domain
             this._passwords.Add(password);
         }
 
+        public void CreateCategoryOnCurrentUser(Category category)
+        {
+            this._currentUser.Categories.Add(category);
+        }
+
         public void CreateCreditCard(CreditCard creditCard)
         {
             this._creditCards.Add(creditCard);
