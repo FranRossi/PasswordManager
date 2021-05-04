@@ -21,7 +21,6 @@ namespace Obligatorio1_DA1.Domain
         public string SecretNumber
         {
             get => ShowOnly4LastDigits();
-            private set ;
         }
         public string SecureCode { get; set; }
         public string ExpirationDate { get; set; }
