@@ -49,7 +49,7 @@ namespace UnitTestObligatorio1
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
-            Assert.AreEqual(user.Categories[0], this._categoryPersonal);
+            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], this._categoryPersonal);
         }
 
         [TestMethod]
