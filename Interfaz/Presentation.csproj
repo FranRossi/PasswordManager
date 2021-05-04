@@ -92,6 +92,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBreach.resx">
       <DependentUpon>DataBreach.cs</DependentUpon>
+	</EmbeddedResource>
     <EmbeddedResource Include="CreditCardList.resx">
       <DependentUpon>CreditCardList.cs</DependentUpon>
     </EmbeddedResource>
