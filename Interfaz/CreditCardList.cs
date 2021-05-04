@@ -27,9 +27,9 @@ namespace Presentation
             tblCreditCards.DataSource = null;
             tblCreditCards.Rows.Clear();
             tblCreditCards.DataSource = creditCards;
-            FormatCreditCardListOnTable(creditCards);
+            FormatCreditCardListOnTable();
         }
-        private void FormatCreditCardListOnTable(List<CreditCard> creditCards)
+        private void FormatCreditCardListOnTable()
         {
             foreach (DataGridViewColumn column in tblCreditCards.Columns)
             {
