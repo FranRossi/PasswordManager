@@ -18,10 +18,10 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            FormatTblCreditCard();
+            LoadTblCreditCard();
         }
 
-        private void FormatTblCreditCard()
+        private void LoadTblCreditCard()
         {
             List<CreditCard> creditCards = _myPasswordManager.GetCreditCards();
             tblCreditCards.DataSource = creditCards;
