@@ -18,13 +18,19 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            FormatTblCreditCard();
+            LoadTblCreditCard();
         }
 
-        private void FormatTblCreditCard()
+        private void LoadTblCreditCard()
         {
             List<CreditCard> creditCards = _myPasswordManager.GetCreditCards();
+            tblCreditCards.DataSource = null;
+            tblCreditCards.Rows.Clear();
             tblCreditCards.DataSource = creditCards;
+            FormatCreditCardListOnTable();
+        }
+        private void FormatCreditCardListOnTable()
+        {
             foreach (DataGridViewColumn column in tblCreditCards.Columns)
             {
                 switch (column.Name)
@@ -51,6 +57,7 @@ namespace Presentation
             }
         }
 
+
         private void btnAddsCreditCard_Click(object sender, EventArgs e)
         {
 
@@ -58,8 +65,9 @@ namespace Presentation
 
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)
         {
-            var creditCardRow = tblCreditCards.CurrentRow.DataBoundItem;
-
+            CreditCard creditCardRow = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
+            _myPasswordManager.DeleteCreditCard(creditCardRow);
+            LoadTblCreditCard();
         }
 
     }
