@@ -21,5 +21,31 @@ namespace Presentation
             _myPasswordManager = pPasswordManager;
         }
 
+        private void tsmiPasswords_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiCreditCards_Click(object sender, EventArgs e)
+        {
+            UserControl creditCardList = new CreditCardList(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(creditCardList);
+        }
+
+        private void tsmiCategories_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiDataBreaches_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmiPasswordStrength_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

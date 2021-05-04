@@ -78,6 +78,12 @@
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreditCardList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CreditCardList.Designer.cs">
+      <DependentUpon>CreditCardList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Credentials.resx">
       <DependentUpon>Credentials.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +92,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataBreach.resx">
       <DependentUpon>DataBreach.cs</DependentUpon>
+    <EmbeddedResource Include="CreditCardList.resx">
+      <DependentUpon>CreditCardList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

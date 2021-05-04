@@ -84,5 +84,15 @@ namespace Obligatorio1_DA1.Domain
             }
             return breachedItems;
         }
+
+        public List<CreditCard> GetCreditCards()
+        {
+            return this._creditCards;
+        }
+
+        public void DeleteCreditCard(CreditCard card)
+        {
+            this._creditCards.Remove(card);
+        }
     }
 }
