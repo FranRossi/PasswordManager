@@ -3,6 +3,7 @@ using Obligatorio1_DA1;
 using Obligatorio1_DA1.Domain;
 using System;
 using Obligatorio1_DA1.Exceptions;
+using System.Collections.Generic;
 
 namespace UnitTestObligatorio1
 {
@@ -164,10 +165,26 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateCardShowingOnlyLast4Digits()
         {
-            string cardNumberShowingOnlyLast4Digits = this._card.ShowOnly4LastDigits();
+            string cardNumberShowingOnlyLast4Digits = this._card.SecretNumber;
             Assert.AreEqual<string>("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
         }
 
+
+        [TestMethod]
+        public void GetCreditCards()
+        {
+            this._passwordManager.CreateCreditCard(this._card);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.Contains(creditCards, this._card);
+        }
+
+        [TestMethod]
+        public void DeleteACreditCard()
+        {
+            this._passwordManager.DeleteCreditCard(this._card);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.DoesNotContain(creditCards, this._card);
+        }
 
     }
 

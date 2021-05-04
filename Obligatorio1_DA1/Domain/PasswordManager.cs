@@ -43,7 +43,7 @@ namespace Obligatorio1_DA1.Domain
         {
             this._passwords.Add(password);
         }
-      
+
         public void CreateCreditCard(CreditCard creditCard)
         {
             this._creditCards.Add(creditCard);
@@ -78,6 +78,16 @@ namespace Obligatorio1_DA1.Domain
                         breachedItems.Add(card);
             }
             return breachedItems;
+        }
+
+        public List<CreditCard> GetCreditCards()
+        {
+            return this._creditCards;
+        }
+
+        public void DeleteCreditCard(CreditCard card)
+        {
+            this._creditCards.Remove(card);
         }
     }
 }

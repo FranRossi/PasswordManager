@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Interfaz</RootNamespace>
-    <AssemblyName>Interfaz</AssemblyName>
+    <RootNamespace>Presentation</RootNamespace>
+    <AssemblyName>Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -72,11 +72,20 @@
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreditCardList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CreditCardList.Designer.cs">
+      <DependentUpon>CreditCardList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Credentials.resx">
       <DependentUpon>Credentials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CredentialWindow.resx">
       <DependentUpon>CredentialWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreditCardList.resx">
+      <DependentUpon>CreditCardList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -89,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
