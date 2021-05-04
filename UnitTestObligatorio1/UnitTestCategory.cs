@@ -59,5 +59,19 @@ namespace UnitTestObligatorio1
             Assert.AreEqual(categotyName, "Personal");
         }
 
+        [TestMethod]
+        public void ModifyCategory()
+        {
+            User user = new User("Juancito", "Pepe123");
+            _passwordManager.CreateUser(user);
+            _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
+            Category newCategory = new Category()
+            {
+                Name = "Trabajo"
+            };
+            _passwordManager.ModifyCategoryOnCurrentUser(this._categoryPersonal, newCategory);
+            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], newCategory);
+        }
+
     }
 }
