@@ -40,44 +40,44 @@ namespace Presentation
         private void LoadTblCreditCard(List<CreditCard> creditCards)
         {
             tblDataBreachCreditCard.DataSource = creditCards;
-            foreach (DataGridViewColumn c in tblDataBreachCreditCard.Columns)
+            foreach (DataGridViewColumn column in tblDataBreachCreditCard.Columns)
             {
-                switch (c.Name)
+                switch (column.Name)
                 {
                     case "Name":
-                        c.HeaderText = "Nombre";
+                        column.HeaderText = "Nombre";
                         break;
                     case "Number":
-                        c.HeaderText = "Numero";
+                        column.HeaderText = "Numero";
                         break;
                     case "Type":
-                        c.HeaderText = "Tipo";
+                        column.HeaderText = "Tipo";
                         break;
                     default:
-                        c.Visible = false;
+                        column.Visible = false;
                         break;
                 }
             }
         }
 
-        private void LoadTblPassword(List<Password> creditCards)
+        private void LoadTblPassword(List<Password> passwords)
         {
-            tblDataBreachPassword.DataSource = creditCards;
-            foreach (DataGridViewColumn c in tblDataBreachPassword.Columns)
+            tblDataBreachPassword.DataSource = passwords;
+            foreach (DataGridViewColumn column in tblDataBreachPassword.Columns)
             {
-                switch (c.Name)
+                switch (column.Name)
                 {
                     case "Site":
-                        c.HeaderText = "Sitio";
+                        column.HeaderText = "Sitio";
                         break;
                     case "username":
-                        c.HeaderText = "Nombre de usuario";
+                        column.HeaderText = "Nombre de usuario";
                         break;
                     case "Category":
-                        c.HeaderText = "Categoria";
+                        column.HeaderText = "Categoria";
                         break;
                     default:
-                        c.Visible = false;
+                        column.Visible = false;
                         break;
                 }
             }
