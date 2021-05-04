@@ -42,7 +42,10 @@ namespace Obligatorio1_DA1.Domain
             throw new LogInException();
         }
 
-
+        public List<Category> GetCategoriesFromCurrentUser()
+        {
+            return this._currentUser.Categories;
+        }
 
         public void CreatePassword(Password password)
         {
