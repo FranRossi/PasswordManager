@@ -33,11 +33,11 @@ namespace Presentation
                 else
                     creditCards.Add((CreditCard)i);
             }
-            loadTblCreditCard(creditCards);
-            loadTblPassword(passwords);
+            LoadTblCreditCard(creditCards);
+            LoadTblPassword(passwords);
         }
 
-        private void loadTblCreditCard(List<CreditCard> creditCards)
+        private void LoadTblCreditCard(List<CreditCard> creditCards)
         {
             tblDataBreachCreditCard.DataSource = creditCards;
             foreach (DataGridViewColumn c in tblDataBreachCreditCard.Columns)
@@ -60,7 +60,7 @@ namespace Presentation
             }
         }
 
-        private void loadTblPassword(List<Password> creditCards)
+        private void LoadTblPassword(List<Password> creditCards)
         {
             tblDataBreachPassword.DataSource = creditCards;
             foreach (DataGridViewColumn c in tblDataBreachPassword.Columns)
