@@ -8,6 +8,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
+        private User _currentUser;
         private List<User> _users;
         private List<Password> _passwords;
         private List<CreditCard> _creditCards;
@@ -19,13 +20,12 @@ namespace Obligatorio1_DA1.Domain
             _creditCards = new List<CreditCard>();
         }
 
-        public void CreateUser(string name, string password)
+        public void CreateUser(User newUser)
         {
-            User newUser = new User(name, password);
-            if (_users.Exists(user => user.Name == name))
+            if (_users.Exists(user => user.Name == newUser.Name))
                 throw new UsernameAlreadyTakenException();
-
             _users.Add(newUser);
+            _currentUser = newUser;
         }
 
         public void Login(string name, string password)
@@ -33,7 +33,10 @@ namespace Obligatorio1_DA1.Domain
             foreach (User user in _users)
                 if (user.Name == name)
                     if (user.Pass == password)
+                    {
+                        _currentUser = user;
                         return;
+                    }
                     else
                         throw new LogInException();
             throw new LogInException();
@@ -64,17 +67,19 @@ namespace Obligatorio1_DA1.Domain
             this._passwords.Remove(password);
         }
 
-        public List<Item> GetBreachedItems(string dataBreach, User currentUser)
+        public List<Item> GetBreachedItems(string dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
             string[] splittedDataBreach = dataBreach.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
-                    if (pass.Pass == splittedDataBreach[i] && pass.User == currentUser)
+                    //Redefinir equals de user
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == _currentUser.Name)
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCards)
-                    if (card.Number == splittedDataBreach[i] && card.User == currentUser)
+                    //aca tmb
+                    if (card.Number == splittedDataBreach[i] && card.User.Name == _currentUser.Name)
                         breachedItems.Add(card);
             }
             return breachedItems;

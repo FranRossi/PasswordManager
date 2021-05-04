@@ -21,7 +21,8 @@ namespace UnitTestObligatorio1
         public void createPasswordManagerBeforeTests()
         {
             passwordManager = new PasswordManager();
-            passwordManager.CreateUser("Lucia", "Lucia123");
+            User newUser = new User("Lucia", "Lucia123");
+            passwordManager.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -58,7 +59,8 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void LoginUserWithPasswordAlreadyTaken()
         {
-            passwordManager.CreateUser("Pepe12", "Lucia123");
+            User newUser = new User("Pepe12", "Lucia123");
+            passwordManager.CreateUser(newUser);
             try
             {
                 passwordManager.Login("Pepe12", "Lucia123");
