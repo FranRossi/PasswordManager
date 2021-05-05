@@ -33,7 +33,6 @@ namespace Presentation
             {
                 try
                 {
-
                     CreditCard newCreditCard = new CreditCard
                     {
                         User = _myPasswordManager.CurrentUser,
@@ -45,6 +44,8 @@ namespace Presentation
                         ExpirationDate = txtExpirationDate.Text,
                         Notes = txtNotes.Text,
                     };
+                    _myPasswordManager.CreateCreditCard(newCreditCard);
+                    this.Close();
                 }
                 catch (ValidationException exception)
                 {
@@ -54,6 +55,7 @@ namespace Presentation
             else
                 lblError.Text = "Debe seleccionar una categoría";
         }
+
 
         private Boolean CategoryIsSelectedComboBox()
         {
