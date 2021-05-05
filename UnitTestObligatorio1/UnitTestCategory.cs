@@ -73,5 +73,19 @@ namespace UnitTestObligatorio1
             Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], newCategory);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(CategoryAlreadyAddedException))]
+        public void AddsAlreadyAddedCategoryToUser()
+        {
+            User user = new User("Juancito", "Pepe123");
+            _passwordManager.CreateUser(user);
+            _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
+            Category repeatedCategory = new Category()
+            {
+                Name = "Personal"
+            };
+            _passwordManager.CreateCategoryOnCurrentUser(repeatedCategory);
+        }
+
     }
 }
