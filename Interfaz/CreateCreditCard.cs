@@ -45,7 +45,8 @@ namespace Presentation
                         Notes = txtNotes.Text,
                     };
                     _myPasswordManager.CreateCreditCard(newCreditCard);
-                    this.Close();
+                    CloseForm();
+
                 }
                 catch (ValidationException exception)
                 {
@@ -56,8 +57,12 @@ namespace Presentation
                 lblError.Text = "Debe seleccionar una categoría";
         }
 
-
+        private void CloseForm()
+        {
+            this.Close();
+        }
         private Boolean CategoryIsSelectedComboBox()
+
         {
             if (cbCategory.SelectedItem == null)
                 return false;
@@ -65,5 +70,4 @@ namespace Presentation
             return true;
         }
     }
-}
 }
