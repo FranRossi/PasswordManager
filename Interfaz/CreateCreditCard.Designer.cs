@@ -32,7 +32,7 @@ namespace Presentation
             this.pnlCreditCard = new System.Windows.Forms.Panel();
             this.gpbCreditCard = new System.Windows.Forms.GroupBox();
             this.btnAccept = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtNotes = new System.Windows.Forms.RichTextBox();
             this.lblNotes = new System.Windows.Forms.Label();
             this.lblExpirationDate = new System.Windows.Forms.Label();
             this.txtExpirationDate = new System.Windows.Forms.TextBox();
@@ -47,6 +47,7 @@ namespace Presentation
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblCreditCard = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
             this.pnlCreditCard.SuspendLayout();
             this.gpbCreditCard.SuspendLayout();
             this.SuspendLayout();
@@ -63,8 +64,9 @@ namespace Presentation
             // gpbCreditCard
             // 
             this.gpbCreditCard.BackColor = System.Drawing.SystemColors.Menu;
+            this.gpbCreditCard.Controls.Add(this.lblError);
             this.gpbCreditCard.Controls.Add(this.btnAccept);
-            this.gpbCreditCard.Controls.Add(this.richTextBox1);
+            this.gpbCreditCard.Controls.Add(this.txtNotes);
             this.gpbCreditCard.Controls.Add(this.lblNotes);
             this.gpbCreditCard.Controls.Add(this.lblExpirationDate);
             this.gpbCreditCard.Controls.Add(this.txtExpirationDate);
@@ -94,13 +96,13 @@ namespace Presentation
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
-            // richTextBox1
+            // txtNotes
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(183, 371);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(203, 73);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "";
+            this.txtNotes.Location = new System.Drawing.Point(183, 371);
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(203, 73);
+            this.txtNotes.TabIndex = 14;
+            this.txtNotes.Text = "";
             // 
             // lblNotes
             // 
@@ -217,6 +219,14 @@ namespace Presentation
             this.lblCreditCard.TabIndex = 0;
             this.lblCreditCard.Text = "Tarjeta";
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(28, 468);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 20);
+            this.lblError.TabIndex = 16;
+            // 
             // CreateCreditCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -251,7 +261,8 @@ namespace Presentation
         private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Button btnAccept;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtNotes;
         private System.Windows.Forms.Label lblNotes;
+        private System.Windows.Forms.Label lblError;
     }
 }

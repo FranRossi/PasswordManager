@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,26 +29,39 @@ namespace Presentation
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            try
+            if (CategoryIsSelectedComboBox())
             {
-                /*CreditCard newCreditCard{
+                try
+                {
+
+                    CreditCard newCreditCard = new CreditCard
                     {
-                        User user = new User();
-                        Category = cbCategory.SelectedItem,
-                     Name = txtName.Text,
-                     Type = "Visa",
-                     Number = "2354678713003498",
-                     SecureCode = "189",
-                     ExpirationDate = "10/21",
-                     Notes = "Límite 400k UYU"
-                     };*/
-
-
+                        User = _myPasswordManager.CurrentUser,
+                        Category = (Category)cbCategory.SelectedItem,
+                        Name = txtName.Text,
+                        Type = txtType.Text,
+                        Number = txtNumber.Text,
+                        SecureCode = txtSecureCode.Text,
+                        ExpirationDate = txtExpirationDate.Text,
+                        Notes = txtNotes.Text,
+                    };
+                }
+                catch (ValidationException exception)
+                {
+                    lblError.Text = exception.Message;
+                }
             }
-            catch (Exception exception)
-            {
-                return;
-            }
+            else
+                lblError.Text = "Debe seleccionar una categoría";
+        }
+
+        private Boolean CategoryIsSelectedComboBox()
+        {
+            if (cbCategory.SelectedItem == null)
+                return false;
+
+            return true;
         }
     }
+}
 }
