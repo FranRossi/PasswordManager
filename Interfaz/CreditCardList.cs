@@ -103,7 +103,7 @@ namespace Presentation
         {
             Form createCreditCard = new CreateCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
-            createCreditCard.Show();
+            createCreditCard.ShowDialog();
         }
 
         private void RefreshForm(object sender, FormClosingEventArgs e)
