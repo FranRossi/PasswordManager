@@ -100,9 +100,19 @@ namespace Obligatorio1_DA1.Domain
             return report;
         }
 
-        public List<passwordReportByColor> GetPasswordReportColor(User currentUser)
+        public List<passwordReportByColor> GetPasswordReportByColor(User currentUser)
         {
-            throw new NotImplementedException();
+            List<passwordReportByColor> report = new List<passwordReportByColor>();
+            foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+            {
+                report.Add(new passwordReportByColor
+                {
+                    Color = color,
+                    Quantity = this.GetPasswords(currentUser).Count(pass => pass.PasswordStrength == color)
+                }
+                );
+            }
+            return report;
         }
     }
 }

@@ -77,7 +77,7 @@ namespace UnitTestObligatorio1
             Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
         }
 
-        [DataRow(PasswordStrengthColor.DarkGreen, 3)]
+        [DataRow(PasswordStrengthColor.DarkGreen, 2)]
         [DataRow(PasswordStrengthColor.LightGreen, 3)]
         [DataRow(PasswordStrengthColor.Orange, 0)]
         [DataRow(PasswordStrengthColor.Red, 3)]
@@ -85,7 +85,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void GetNumberOfPasswordByStrenghtColor(PasswordStrengthColor color, int quantity)
         {
-            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportColor(_currentUser);
+            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor(_currentUser);
             var redEntry = report.Find(entry => entry.Color == color);
             Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
         }
