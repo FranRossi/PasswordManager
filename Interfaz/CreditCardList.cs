@@ -60,7 +60,8 @@ namespace Presentation
 
         private void btnAddsCreditCard_Click(object sender, EventArgs e)
         {
-
+            Form createCreditCard = new CreateCreditCard(_myPasswordManager);
+            createCreditCard.Show();
         }
 
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)
