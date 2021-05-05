@@ -64,9 +64,9 @@ namespace Obligatorio1_DA1.Domain
             this._creditCards.Add(creditCard);
         }
 
-        public List<Password> GetPasswords(User user)
+        public List<Password> GetPasswords()
         {
-            return this._passwords.Where(pass => pass.User == user).ToList();
+            return this._passwords.Where(pass => pass.User == _currentUser).ToList();
         }
 
         public List<Password> GetSharedPasswords(User user)

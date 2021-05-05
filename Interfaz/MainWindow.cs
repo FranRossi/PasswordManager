@@ -23,7 +23,9 @@ namespace Presentation
 
         private void tsmiPasswords_Click(object sender, EventArgs e)
         {
-
+            UserControl passsworList = new PasswordList(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(passsworList);
         }
 
         private void tsmiCreditCards_Click(object sender, EventArgs e)
