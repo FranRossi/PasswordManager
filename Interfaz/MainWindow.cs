@@ -35,7 +35,9 @@ namespace Presentation
 
         private void tsmiCategories_Click(object sender, EventArgs e)
         {
-
+            UserControl categories = new Categories(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(categories);
         }
 
         private void tsmiDataBreaches_Click(object sender, EventArgs e)

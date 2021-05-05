@@ -42,9 +42,21 @@ namespace Obligatorio1_DA1.Domain
             throw new LogInException();
         }
 
+        public List<Category> GetCategoriesFromCurrentUser()
+        {
+            return this._currentUser.Categories;
+        }
+
         public void CreatePassword(Password password)
         {
             this._passwords.Add(password);
+        }
+
+        public void CreateCategoryOnCurrentUser(Category category)
+        {
+            if (this._currentUser.Categories.Contains(category))
+                throw new CategoryAlreadyAddedException();
+            this._currentUser.Categories.Add(category);
         }
 
         public void CreateCreditCard(CreditCard creditCard)
@@ -83,6 +95,15 @@ namespace Obligatorio1_DA1.Domain
                         breachedItems.Add(card);
             }
             return breachedItems;
+        }
+
+        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
+        {
+            foreach (Category categoryIterator in _currentUser.Categories)
+            {
+                if (categoryIterator.Equals(oldCategory))
+                    categoryIterator.Name = newCategory.Name;
+            }
         }
 
         public List<CreditCard> GetCreditCards()
