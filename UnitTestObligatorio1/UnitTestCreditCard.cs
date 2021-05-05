@@ -43,6 +43,7 @@ namespace UnitTestObligatorio1
                     ExpirationDate = "10/21",
                     Notes = "Límite 400k UYU"
                 };
+                _passwordManager.CreateUser(_user);
             }
             catch (Exception exception)
             {

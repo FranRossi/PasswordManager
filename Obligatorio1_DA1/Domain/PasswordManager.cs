@@ -108,7 +108,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<CreditCard> GetCreditCards()
         {
-            return this._creditCards.Where(card => card.User == CurrentUser).ToList();
+            return this._creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
         }
 
         public void DeleteCreditCard(CreditCard card)
