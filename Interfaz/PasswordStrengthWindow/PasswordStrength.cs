@@ -52,10 +52,43 @@ namespace Presentation
             pnlChartList.Controls.Clear();
             pnlChartList.Controls.Add(chartPanel);
         }
+        private void ShowPasswordList(PasswordStrengthColor color)
+        {
+            pnlChartList.Controls.Clear();
+            List<Password> password = this._passwordManager.GetPasswordsByColor(color, null);
+            UserControl passwordList = new PasswordListOfStrenghtColor(password);
+            pnlChartList.Controls.Add(passwordList);
+        }
 
         private void btmShowChart_Click(object sender, EventArgs e)
         {
             this.ShowChart();
+        }
+
+        private void btmShowPasswordsRed_Click(object sender, EventArgs e)
+        {
+            ShowPasswordList(PasswordStrengthColor.Red);
+        }
+
+        private void btmShowPasswordsOrange_Click(object sender, EventArgs e)
+        {
+            ShowPasswordList(PasswordStrengthColor.Orange);
+        }
+
+
+        private void btmShowPasswordsYellow_Click(object sender, EventArgs e)
+        {
+            ShowPasswordList(PasswordStrengthColor.Yellow);
+        }
+
+        private void btmShowPasswordsLightGreen_Click(object sender, EventArgs e)
+        {
+            ShowPasswordList(PasswordStrengthColor.LightGreen);
+        }
+
+        private void btmShowPasswordsDarkGreen_Click(object sender, EventArgs e)
+        {
+            ShowPasswordList(PasswordStrengthColor.DarkGreen);
         }
     }
 }
