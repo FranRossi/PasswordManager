@@ -32,7 +32,16 @@ namespace Obligatorio1_DA1.Domain
 
         public override bool Equals(object obj)
         {
-            return ((Category)obj).Name == this.Name;
+            Category categoryToCompare;
+            try
+            {
+                categoryToCompare = (Category)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return categoryToCompare.Name == this.Name;
         }
     }
 }
