@@ -54,6 +54,8 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateCategoryOnCurrentUser(Category category)
         {
+            if (this._currentUser.Categories.Contains(category))
+                throw new CategoryAlreadyAddedException();
             this._currentUser.Categories.Add(category);
         }
 
