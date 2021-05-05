@@ -186,6 +186,31 @@ namespace UnitTestObligatorio1
             CollectionAssert.DoesNotContain(creditCards, this._card);
         }
 
+        [TestMethod]
+        public void GetCreditCardsOnlyFromCurrentUser()
+        {
+            User user = new User()
+            {
+                Name = "Felipe",
+                Pass = "12345",
+            };
+            user.Categories.Add(this._category);
+            CreditCard _card2 = new CreditCard
+            {
+                User = user,
+                Category = this._category,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.CreateCreditCard(_card2);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.DoesNotContain(creditCards, _card2);
+        }
+
     }
 
 

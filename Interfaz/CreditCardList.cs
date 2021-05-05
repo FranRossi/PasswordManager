@@ -18,7 +18,54 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
+            pruebas();
             LoadTblCreditCard();
+        }
+
+        private void pruebas()
+        {
+            Category _category = new Category()
+            {
+                Name = "Personal"
+            };
+            Category _category2 = new Category()
+            {
+                Name = "Work"
+            };
+            _myPasswordManager.CurrentUser.Categories.Add(_category);
+            _myPasswordManager.CurrentUser.Categories.Add(_category2);
+            CreditCard _card = new CreditCard
+            {
+                User = _myPasswordManager.CurrentUser,
+                Category = _category,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "2354678713003498",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Límite 400k UYU"
+            };
+            User u = new User()
+            {
+                Name = "Felipe",
+                Pass = "12345",
+            };
+            u.Categories.Add(_category2);
+            CreditCard _card2 = new CreditCard
+            {
+                User = u,
+                Category = _category2,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+
+
+            _myPasswordManager.CreateCreditCard(_card);
+            _myPasswordManager.CreateCreditCard(_card2);
         }
 
         private void LoadTblCreditCard()
