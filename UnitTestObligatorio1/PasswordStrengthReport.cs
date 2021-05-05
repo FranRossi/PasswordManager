@@ -14,11 +14,16 @@ namespace UnitTestObligatorio1
     {
         private PasswordManager _passwordManager;
         private User _currentUser;
-        private String[] redPassword = { "23985023", "abcde876", "-d45023" };
-        private String[] orangePassword = { "239850232", "abcst333de8762", "-d4502-s--ss-3" };
-        private String[] yellowPassword = { "AAHTNINESHRIIHH", "nethiseant3232323hnea", "n$#@$ntdtshneaa" };
-        private String[] lightGreenPassword = { "AAHTNrtsrHRIISH", "148srtarst#$#@$5754543", "chau123(!&*($$^&#^@($*@#&", };
-        private String[] darkGreenPassword = { "3#@rstaAaartsaa", "Chau123(!&*($$^&#^@#&", "AAHTNrtsr#3IIHH" };
+        private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
+        private List<Password> redPassword = new List<Password>();
+        private String[] orangePasswordsName = { "239850232", "abcst333de8762", "-d4502-s--ss-3" };
+        private List<Password> orangePassword = new List<Password>();
+        private String[] yellowPasswordsName = { "AAHTNINESHRIIHH", "nethiseant3232323hnea", "n$#@$ntdtshneaa" };
+        private List<Password> yellowPassword = new List<Password>();
+        private String[] lightGreenPasswordsName = { "AAHTNrtsrHRIISH", "148srtarst#$#@$5754543", "chau123(!&*($$^&#^@($*@#&", };
+        private List<Password> lightGreenPassword = new List<Password>();
+        private String[] darkGreenPasswordsName = { "3#@rstaAaartsaa", "Chau123(!&*($$^&#^@#&", "AAHTNrtsr#3IIHH" };
+        private List<Password> darkGreenPassword = new List<Password>();
         private Category _personal;
         private Category _work;
         private Category _university;
@@ -41,22 +46,22 @@ namespace UnitTestObligatorio1
             AddCategoryToPasswordManager(ref _university, "University");
             AddCategoryToPasswordManager(ref _family, "Family");
 
-            ValueTuple<string, Category>[] passwords = new (string pass, Category category)[]
+            ValueTuple<List<Password>, string, Category>[] passwords = new (List<Password> passwords, string pass, Category category)[]
               {
-                  (redPassword[0] ,_family),
-                  (redPassword[1],_family),
-                  (redPassword[2],_family),
+                  (redPassword,redPasswordsName[0] ,_family),
+                  (redPassword,redPasswordsName[1],_family),
+                  (redPassword,redPasswordsName[2],_family),
 
-                  (yellowPassword[0],_family),
-                  (yellowPassword[1],_family),
-                  (yellowPassword[2],_university),
+                  (yellowPassword,yellowPasswordsName[0],_family),
+                  (yellowPassword,yellowPasswordsName[1],_family),
+                  (yellowPassword,yellowPasswordsName[2],_university),
 
-                  (lightGreenPassword[0],_family),
-                  (lightGreenPassword[1],_university),
-                  (lightGreenPassword[2],_work),
+                  (lightGreenPassword,lightGreenPasswordsName[0],_family),
+                  (lightGreenPassword,lightGreenPasswordsName[1],_university),
+                  (lightGreenPassword,lightGreenPasswordsName[2],_work),
 
-                  (darkGreenPassword[0],_work),
-                  (darkGreenPassword[1],_university),
+                  (darkGreenPassword,darkGreenPasswordsName[0],_work),
+                  (darkGreenPassword,darkGreenPasswordsName[1],_university),
               };
             AddPasswordsToPasswordManager(passwords);
 
@@ -90,6 +95,42 @@ namespace UnitTestObligatorio1
             Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
         }
 
+        [TestMethod]
+        [TestCategory("GetPasswordOfSpecificColor")]
+        public void GetPasswordOfColorDarkGreen()
+        {
+            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.DarkGreen, _currentUser);
+            CollectionAssert.AreEquivalent(darkGreenPassword, actualPasswords);
+        }
+        [TestMethod]
+        [TestCategory("GetPasswordOfSpecificColor")]
+        public void GetPasswordOfColorLightGreen()
+        {
+            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.LightGreen, _currentUser);
+            CollectionAssert.AreEquivalent(lightGreenPassword, actualPasswords);
+        }
+        [TestMethod]
+        [TestCategory("GetPasswordOfSpecificColor")]
+        public void GetPasswordOfColorYellow()
+        {
+            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Yellow, _currentUser);
+            CollectionAssert.AreEquivalent(yellowPassword, actualPasswords);
+        }
+        [TestMethod]
+        [TestCategory("GetPasswordOfSpecificColor")]
+        public void GetPasswordOfColorOrange()
+        {
+            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Orange, _currentUser);
+            CollectionAssert.AreEquivalent(orangePassword, actualPasswords);
+        }
+        [TestMethod]
+        [TestCategory("GetPasswordOfSpecificColor")]
+        public void GetPasswordOfColorRed()
+        {
+            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Red, _currentUser);
+            CollectionAssert.AreEquivalent(redPassword, actualPasswords);
+        }
+
         private void AddCategoryToPasswordManager(ref Category category, string name)
         {
             category = new Category()
@@ -99,20 +140,21 @@ namespace UnitTestObligatorio1
             _currentUser.Categories.Add(category);
         }
 
-        private void AddPasswordsToPasswordManager(ValueTuple<string, Category>[] passwords)
+        private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)
         {
             for (int i = 0; i < passwords.Length; i++)
             {
                 Password newPassword = new Password
                 {
                     User = _currentUser,
-                    Category = passwords[i].Item2,
+                    Category = passwords[i].Item3,
                     Site = i + "ort.edu.uy",
                     Username = "23985" + i,
-                    Pass = passwords[i].Item1,
+                    Pass = passwords[i].Item2,
                     Notes = "No me roben la cuenta"
                 };
                 _passwordManager.CreatePassword(newPassword);
+                passwords[i].Item1.Add(newPassword);
             }
         }
 

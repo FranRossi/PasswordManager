@@ -114,5 +114,11 @@ namespace Obligatorio1_DA1.Domain
             }
             return report;
         }
+
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor color, User currentUser)
+        {
+            List<Password> passwords = this.GetPasswords(currentUser).FindAll(pass => pass.PasswordStrength == color);
+            return passwords;
+        }
     }
 }
