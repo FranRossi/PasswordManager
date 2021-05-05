@@ -40,14 +40,14 @@ namespace Presentation
             this.btnActivateModification = new System.Windows.Forms.Button();
             this.lstCategories = new System.Windows.Forms.ListBox();
             this.lblList = new System.Windows.Forms.Label();
-            this.pnlModifyCategory = new System.Windows.Forms.Panel();
-            this.Modificar = new System.Windows.Forms.Button();
+            this.pnlCategoryModification = new System.Windows.Forms.Panel();
+            this.btnModify = new System.Windows.Forms.Button();
             this.txtNameModify = new System.Windows.Forms.TextBox();
             this.lblNameModifyPassword = new System.Windows.Forms.Label();
             this.lblModifyCategory = new System.Windows.Forms.Label();
             this.pnlCategoryInsertion.SuspendLayout();
             this.pnlCategoryList.SuspendLayout();
-            this.pnlModifyCategory.SuspendLayout();
+            this.pnlCategoryModification.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCategoryInsertion
@@ -137,6 +137,7 @@ namespace Presentation
             this.btnActivateModification.TabIndex = 6;
             this.btnActivateModification.Text = "Modificar";
             this.btnActivateModification.UseVisualStyleBackColor = true;
+            this.btnActivateModification.Click += new System.EventHandler(this.btnActivateModification_Click);
             // 
             // lstCategories
             // 
@@ -145,6 +146,7 @@ namespace Presentation
             this.lstCategories.Name = "lstCategories";
             this.lstCategories.Size = new System.Drawing.Size(453, 199);
             this.lstCategories.TabIndex = 5;
+            this.lstCategories.SelectedIndexChanged += new System.EventHandler(this.lstCategories_SelectedIndexChanged);
             // 
             // lblList
             // 
@@ -157,26 +159,27 @@ namespace Presentation
             this.lblList.TabIndex = 4;
             this.lblList.Text = "Listado de categorias";
             // 
-            // pnlModifyCategory
+            // pnlCategoryModification
             // 
-            this.pnlModifyCategory.Controls.Add(this.Modificar);
-            this.pnlModifyCategory.Controls.Add(this.txtNameModify);
-            this.pnlModifyCategory.Controls.Add(this.lblNameModifyPassword);
-            this.pnlModifyCategory.Controls.Add(this.lblModifyCategory);
-            this.pnlModifyCategory.Location = new System.Drawing.Point(4, 201);
-            this.pnlModifyCategory.Name = "pnlModifyCategory";
-            this.pnlModifyCategory.Size = new System.Drawing.Size(311, 193);
-            this.pnlModifyCategory.TabIndex = 3;
-            this.pnlModifyCategory.Visible = false;
+            this.pnlCategoryModification.Controls.Add(this.btnModify);
+            this.pnlCategoryModification.Controls.Add(this.txtNameModify);
+            this.pnlCategoryModification.Controls.Add(this.lblNameModifyPassword);
+            this.pnlCategoryModification.Controls.Add(this.lblModifyCategory);
+            this.pnlCategoryModification.Location = new System.Drawing.Point(4, 201);
+            this.pnlCategoryModification.Name = "pnlCategoryModification";
+            this.pnlCategoryModification.Size = new System.Drawing.Size(311, 193);
+            this.pnlCategoryModification.TabIndex = 3;
+            this.pnlCategoryModification.Visible = false;
             // 
-            // Modificar
+            // btnModify
             // 
-            this.Modificar.Location = new System.Drawing.Point(205, 121);
-            this.Modificar.Name = "Modificar";
-            this.Modificar.Size = new System.Drawing.Size(75, 23);
-            this.Modificar.TabIndex = 5;
-            this.Modificar.Text = "Modificar";
-            this.Modificar.UseVisualStyleBackColor = true;
+            this.btnModify.Location = new System.Drawing.Point(205, 121);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(75, 23);
+            this.btnModify.TabIndex = 5;
+            this.btnModify.Text = "Modificar";
+            this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // txtNameModify
             // 
@@ -209,7 +212,7 @@ namespace Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pnlModifyCategory);
+            this.Controls.Add(this.pnlCategoryModification);
             this.Controls.Add(this.pnlCategoryList);
             this.Controls.Add(this.pnlCategoryInsertion);
             this.Name = "Categories";
@@ -218,8 +221,8 @@ namespace Presentation
             this.pnlCategoryInsertion.PerformLayout();
             this.pnlCategoryList.ResumeLayout(false);
             this.pnlCategoryList.PerformLayout();
-            this.pnlModifyCategory.ResumeLayout(false);
-            this.pnlModifyCategory.PerformLayout();
+            this.pnlCategoryModification.ResumeLayout(false);
+            this.pnlCategoryModification.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -237,8 +240,8 @@ namespace Presentation
         private System.Windows.Forms.Button btnActivateModification;
         private System.Windows.Forms.ListBox lstCategories;
         private System.Windows.Forms.Label lblList;
-        private System.Windows.Forms.Panel pnlModifyCategory;
-        private System.Windows.Forms.Button Modificar;
+        private System.Windows.Forms.Panel pnlCategoryModification;
+        private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.TextBox txtNameModify;
         private System.Windows.Forms.Label lblNameModifyPassword;
         private System.Windows.Forms.Label lblModifyCategory;
