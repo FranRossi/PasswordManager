@@ -14,9 +14,11 @@ namespace Presentation
     public partial class PasswordList : UserControl
     {
         private PasswordManager _myPasswordManager;
-        public PasswordList()
+        public PasswordList(PasswordManager pPasswordManager)
         {
             InitializeComponent();
+            _myPasswordManager = pPasswordManager;
+            LoadTblCreditCard();
         }
 
         private void LoadTblCreditCard()
@@ -25,7 +27,29 @@ namespace Presentation
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
-            //FormatCreditCardListOnTable();
+            FormatPasswordListOnTable();
+        }
+
+        private void FormatPasswordListOnTable()
+        {
+            foreach (DataGridViewColumn column in tblPassword.Columns)
+            {
+                switch (column.Name)
+                {
+                    case "Site":
+                        column.HeaderText = "Sitio";
+                        break;
+                    case "username":
+                        column.HeaderText = "Nombre de usuario";
+                        break;
+                    case "Category":
+                        column.HeaderText = "Categoria";
+                        break;
+                    default:
+                        column.Visible = false;
+                        break;
+                }
+            }
         }
 
     }
