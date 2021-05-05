@@ -31,22 +31,22 @@ namespace Presentation
         {
             this.pnlCreditCard = new System.Windows.Forms.Panel();
             this.gpbCreditCard = new System.Windows.Forms.GroupBox();
-            this.lblCreditCard = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.cbCategory = new System.Windows.Forms.ComboBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblType = new System.Windows.Forms.Label();
-            this.txtType = new System.Windows.Forms.TextBox();
-            this.lblNumber = new System.Windows.Forms.Label();
-            this.txtNumber = new System.Windows.Forms.TextBox();
-            this.lblSecureCode = new System.Windows.Forms.Label();
-            this.txtSecureCode = new System.Windows.Forms.TextBox();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.lblNotes = new System.Windows.Forms.Label();
             this.lblExpirationDate = new System.Windows.Forms.Label();
             this.txtExpirationDate = new System.Windows.Forms.TextBox();
-            this.lblNotes = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnAccept = new System.Windows.Forms.Button();
+            this.lblSecureCode = new System.Windows.Forms.Label();
+            this.txtSecureCode = new System.Windows.Forms.TextBox();
+            this.lblNumber = new System.Windows.Forms.Label();
+            this.txtNumber = new System.Windows.Forms.TextBox();
+            this.lblType = new System.Windows.Forms.Label();
+            this.txtType = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.lblCreditCard = new System.Windows.Forms.Label();
             this.pnlCreditCard.SuspendLayout();
             this.gpbCreditCard.SuspendLayout();
             this.SuspendLayout();
@@ -84,95 +84,32 @@ namespace Presentation
             this.gpbCreditCard.TabIndex = 1;
             this.gpbCreditCard.TabStop = false;
             // 
-            // lblCreditCard
+            // btnAccept
             // 
-            this.lblCreditCard.AutoSize = true;
-            this.lblCreditCard.Location = new System.Drawing.Point(21, 18);
-            this.lblCreditCard.Name = "lblCreditCard";
-            this.lblCreditCard.Size = new System.Drawing.Size(58, 20);
-            this.lblCreditCard.TabIndex = 0;
-            this.lblCreditCard.Text = "Tarjeta";
+            this.btnAccept.Location = new System.Drawing.Point(310, 462);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(105, 41);
+            this.btnAccept.TabIndex = 15;
+            this.btnAccept.Text = "Aceptar";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
-            // lblCategory
+            // richTextBox1
             // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(39, 43);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(78, 20);
-            this.lblCategory.TabIndex = 0;
-            this.lblCategory.Text = "Categoría";
+            this.richTextBox1.Location = new System.Drawing.Point(183, 371);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(203, 73);
+            this.richTextBox1.TabIndex = 14;
+            this.richTextBox1.Text = "";
             // 
-            // cbCategory
+            // lblNotes
             // 
-            this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(183, 43);
-            this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(203, 28);
-            this.cbCategory.TabIndex = 1;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(183, 91);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(203, 26);
-            this.txtName.TabIndex = 2;
-            // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(38, 91);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(65, 20);
-            this.lblName.TabIndex = 3;
-            this.lblName.Text = "Nombre";
-            // 
-            // lblType
-            // 
-            this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(38, 142);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(39, 20);
-            this.lblType.TabIndex = 5;
-            this.lblType.Text = "Tipo";
-            // 
-            // txtType
-            // 
-            this.txtType.Location = new System.Drawing.Point(183, 142);
-            this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(203, 26);
-            this.txtType.TabIndex = 4;
-            // 
-            // lblNumber
-            // 
-            this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(38, 197);
-            this.lblNumber.Name = "lblNumber";
-            this.lblNumber.Size = new System.Drawing.Size(65, 20);
-            this.lblNumber.TabIndex = 7;
-            this.lblNumber.Text = "Número";
-            // 
-            // txtNumber
-            // 
-            this.txtNumber.Location = new System.Drawing.Point(183, 197);
-            this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(203, 26);
-            this.txtNumber.TabIndex = 6;
-            // 
-            // lblSecureCode
-            // 
-            this.lblSecureCode.AutoSize = true;
-            this.lblSecureCode.Location = new System.Drawing.Point(38, 250);
-            this.lblSecureCode.Name = "lblSecureCode";
-            this.lblSecureCode.Size = new System.Drawing.Size(59, 20);
-            this.lblSecureCode.TabIndex = 9;
-            this.lblSecureCode.Text = "Código";
-            // 
-            // txtSecureCode
-            // 
-            this.txtSecureCode.Location = new System.Drawing.Point(183, 250);
-            this.txtSecureCode.Name = "txtSecureCode";
-            this.txtSecureCode.Size = new System.Drawing.Size(203, 26);
-            this.txtSecureCode.TabIndex = 8;
+            this.lblNotes.AutoSize = true;
+            this.lblNotes.Location = new System.Drawing.Point(39, 371);
+            this.lblNotes.Name = "lblNotes";
+            this.lblNotes.Size = new System.Drawing.Size(51, 20);
+            this.lblNotes.TabIndex = 13;
+            this.lblNotes.Text = "Notas";
             // 
             // lblExpirationDate
             // 
@@ -190,31 +127,95 @@ namespace Presentation
             this.txtExpirationDate.Size = new System.Drawing.Size(203, 26);
             this.txtExpirationDate.TabIndex = 10;
             // 
-            // lblNotes
+            // lblSecureCode
             // 
-            this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(39, 371);
-            this.lblNotes.Name = "lblNotes";
-            this.lblNotes.Size = new System.Drawing.Size(51, 20);
-            this.lblNotes.TabIndex = 13;
-            this.lblNotes.Text = "Notas";
+            this.lblSecureCode.AutoSize = true;
+            this.lblSecureCode.Location = new System.Drawing.Point(38, 250);
+            this.lblSecureCode.Name = "lblSecureCode";
+            this.lblSecureCode.Size = new System.Drawing.Size(59, 20);
+            this.lblSecureCode.TabIndex = 9;
+            this.lblSecureCode.Text = "Código";
             // 
-            // richTextBox1
+            // txtSecureCode
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(183, 371);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(203, 73);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "";
+            this.txtSecureCode.Location = new System.Drawing.Point(183, 250);
+            this.txtSecureCode.Name = "txtSecureCode";
+            this.txtSecureCode.Size = new System.Drawing.Size(203, 26);
+            this.txtSecureCode.TabIndex = 8;
             // 
-            // btnAccept
+            // lblNumber
             // 
-            this.btnAccept.Location = new System.Drawing.Point(310, 462);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(105, 41);
-            this.btnAccept.TabIndex = 15;
-            this.btnAccept.Text = "Aceptar";
-            this.btnAccept.UseVisualStyleBackColor = true;
+            this.lblNumber.AutoSize = true;
+            this.lblNumber.Location = new System.Drawing.Point(38, 197);
+            this.lblNumber.Name = "lblNumber";
+            this.lblNumber.Size = new System.Drawing.Size(65, 20);
+            this.lblNumber.TabIndex = 7;
+            this.lblNumber.Text = "Número";
+            // 
+            // txtNumber
+            // 
+            this.txtNumber.Location = new System.Drawing.Point(183, 197);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(203, 26);
+            this.txtNumber.TabIndex = 6;
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(38, 142);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(39, 20);
+            this.lblType.TabIndex = 5;
+            this.lblType.Text = "Tipo";
+            // 
+            // txtType
+            // 
+            this.txtType.Location = new System.Drawing.Point(183, 142);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(203, 26);
+            this.txtType.TabIndex = 4;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(38, 91);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(65, 20);
+            this.lblName.TabIndex = 3;
+            this.lblName.Text = "Nombre";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(183, 91);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(203, 26);
+            this.txtName.TabIndex = 2;
+            // 
+            // cbCategory
+            // 
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(183, 43);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(203, 28);
+            this.cbCategory.TabIndex = 1;
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(39, 43);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(78, 20);
+            this.lblCategory.TabIndex = 0;
+            this.lblCategory.Text = "Categoría";
+            // 
+            // lblCreditCard
+            // 
+            this.lblCreditCard.AutoSize = true;
+            this.lblCreditCard.Location = new System.Drawing.Point(21, 18);
+            this.lblCreditCard.Name = "lblCreditCard";
+            this.lblCreditCard.Size = new System.Drawing.Size(58, 20);
+            this.lblCreditCard.TabIndex = 0;
+            this.lblCreditCard.Text = "Tarjeta";
             // 
             // CreateCreditCard
             // 
