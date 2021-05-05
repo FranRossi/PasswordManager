@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Obligatorio1_DA1.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ namespace Obligatorio1_DA1.Utilities
 {
     public struct passwordReportByCategoryAndColor
     {
-        // public Category cateogry { get; set}
-        //public double Y { get; }
+        public Category Category { get; set; }
+        public int Quantity { get; set; }
+        public PasswordStrengthColor Color { get; set; }
+
     }
 }

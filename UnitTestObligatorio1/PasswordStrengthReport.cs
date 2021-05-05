@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    class PasswordStrengthReport
+    public class PasswordStrengthReport
     {
         private string _itemDataBreach;
         private PasswordManager _passwordManager;
@@ -37,44 +37,53 @@ namespace UnitTestObligatorio1
                 Pass = "HolaSoyGonzalo123"
             };
 
-            _personal = new Category()
-            {
-                Name = "Personal"
-            };
-            _currentUser.Categories.Add(_personal);
+            AddCategoryToPasswordManager(ref _personal, "Personal");
+            AddCategoryToPasswordManager(ref _work, "Work");
+            AddCategoryToPasswordManager(ref _university, "University");
+            AddCategoryToPasswordManager(ref _family, "Family");
 
-            _work = new Category()
-            {
-                Name = "Work"
-            };
-            _currentUser.Categories.Add(_work);
-
-            _university = new Category()
-            {
-                Name = "University"
-            };
-            _currentUser.Categories.Add(_university);
-
-            _family = new Category()
-            {
-                Name = "Family"
-            };
-            _currentUser.Categories.Add(_family);
-
-        }
-
-        [TestMethod]
-        public void GetNumberOfPasswordByStrenghtColorAndCategory()
-        {
             ValueTuple<string, Category>[] passwords = new (string pass, Category category)[]
               {
                   (redPassword[0] ,_family),
                   (redPassword[1],_family),
-                  (redPassword[2],_family)
+                  (redPassword[2],_family),
+
+                  (yellowPassword[0],_family),
+                  (yellowPassword[1],_family),
+                  (yellowPassword[2],_university),
+
+                  (lightGreenPassword[0],_family),
+                  (lightGreenPassword[1],_university),
+                  (lightGreenPassword[2],_work),
+
+                  (darkGreenPassword[0],_work),
+                  (darkGreenPassword[1],_university),
               };
             AddPasswordsToPasswordManager(passwords);
+
+        }
+
+
+        [DataRow(PasswordStrengthColor.Red, "Family", 3)]
+        [DataRow(PasswordStrengthColor.Red, "Work", 3)]
+        [DataRow(PasswordStrengthColor.LightGreen, "Family", 1)]
+        [DataRow(PasswordStrengthColor.Yellow, "Family", 2)]
+        [DataRow(PasswordStrengthColor.Yellow, "University", 1)]
+        [DataRow(PasswordStrengthColor.DarkGreen, "Family", 0)]
+        [DataTestMethod]
+        public void GetNumberOfPasswordByStrenghtColorAndCategory(PasswordStrengthColor color, string category, int quantity)
+        {
             List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
-            report.First
+            var redEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
+            Assert.IsTrue(redEntry.Quantity == quantity);
+        }
+        private void AddCategoryToPasswordManager(ref Category category, string name)
+        {
+            category = new Category()
+            {
+                Name = name
+            };
+            _currentUser.Categories.Add(category);
         }
 
         private void AddPasswordsToPasswordManager(ValueTuple<string, Category>[] passwords)
