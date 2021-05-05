@@ -99,5 +99,10 @@ namespace Obligatorio1_DA1.Domain
             }
             return report;
         }
+
+        public List<passwordReportByColor> GetPasswordReportColor(User currentUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

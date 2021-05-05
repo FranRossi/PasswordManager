@@ -12,7 +12,6 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class PasswordStrengthReport
     {
-        private string _itemDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
         private String[] redPassword = { "23985023", "abcde876", "-d45023" };
@@ -74,12 +73,23 @@ namespace UnitTestObligatorio1
         public void GetNumberOfPasswordByStrenghtColorAndCategory(PasswordStrengthColor color, string category, int quantity)
         {
             List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor(_currentUser);
-            var redEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
-            Assert.IsTrue(redEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
+            var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
+            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
         }
 
-        /*
-        */
+        [DataRow(PasswordStrengthColor.DarkGreen, 3)]
+        [DataRow(PasswordStrengthColor.LightGreen, 3)]
+        [DataRow(PasswordStrengthColor.Orange, 0)]
+        [DataRow(PasswordStrengthColor.Red, 3)]
+        [DataRow(PasswordStrengthColor.Yellow, 3)]
+        [DataTestMethod]
+        public void GetNumberOfPasswordByStrenghtColor(PasswordStrengthColor color, int quantity)
+        {
+            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportColor(_currentUser);
+            var redEntry = report.Find(entry => entry.Color == color);
+            Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
+        }
+
         private void AddCategoryToPasswordManager(ref Category category, string name)
         {
             category = new Category()

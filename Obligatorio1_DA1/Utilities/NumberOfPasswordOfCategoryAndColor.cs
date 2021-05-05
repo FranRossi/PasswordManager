@@ -14,4 +14,11 @@ namespace Obligatorio1_DA1.Utilities
         public PasswordStrengthColor Color { get; set; }
 
     }
+
+    public struct passwordReportByColor
+    {
+        public int Quantity { get; set; }
+        public PasswordStrengthColor Color { get; set; }
+
+    }
 }
