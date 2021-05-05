@@ -42,7 +42,9 @@ namespace Presentation
 
         private void tsmiDataBreaches_Click(object sender, EventArgs e)
         {
-
+            UserControl dataBreaches = new DataBreach(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(dataBreaches);
         }
 
         private void tsmiPasswordStrength_Click(object sender, EventArgs e)
