@@ -65,11 +65,17 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordStrength.cs">
+    <Compile Include="PasswordStrengthWindow\PasswordStrength.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordStrength.Designer.cs">
+    <Compile Include="PasswordStrengthWindow\PasswordStrength.Designer.cs">
       <DependentUpon>PasswordStrength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordStrengthWindow\PasswordStrengthChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PasswordStrengthWindow\PasswordStrengthChart.Designer.cs">
+      <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,8 +94,11 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordStrength.resx">
+    <EmbeddedResource Include="PasswordStrengthWindow\PasswordStrength.resx">
       <DependentUpon>PasswordStrength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordStrengthWindow\PasswordStrengthChart.resx">
+      <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
