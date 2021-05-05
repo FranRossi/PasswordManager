@@ -18,7 +18,6 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            pruebasParaBorrar();
             LoadTblCreditCard();
         }
 
@@ -29,45 +28,6 @@ namespace Presentation
             tblCreditCards.Rows.Clear();
             tblCreditCards.DataSource = creditCards;
             FormatCreditCardListOnTable();
-        }
-
-        private void pruebasParaBorrar()
-        {
-            Category _category = new Category()
-            {
-                Name = "Personal"
-            };
-            Category _category2 = new Category()
-            {
-                Name = "Work"
-            };
-            _myPasswordManager.CurrentUser.Categories.Add(_category);
-            _myPasswordManager.CurrentUser.Categories.Add(_category2);
-            CreditCard _card = new CreditCard
-            {
-                User = _myPasswordManager.CurrentUser,
-                Category = _category,
-                Name = "Visa Gold",
-                Type = "Visa",
-                Number = "2354678713003498",
-                SecureCode = "189",
-                ExpirationDate = "10/21",
-                Notes = "Límite 400k UYU"
-            };
-            CreditCard _card2 = new CreditCard
-            {
-                User = _myPasswordManager.CurrentUser,
-                Category = _category2,
-                Name = "MasterCard Black",
-                Type = "Master",
-                Number = "2354678713001111",
-                SecureCode = "111",
-                ExpirationDate = "02/30",
-                Notes = "Límite 400 shenn UYU"
-            };
-
-            _myPasswordManager.CreateCreditCard(_card);
-            _myPasswordManager.CreateCreditCard(_card2);
         }
 
         private void FormatCreditCardListOnTable()
