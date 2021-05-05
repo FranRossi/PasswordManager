@@ -65,7 +65,7 @@ namespace UnitTestObligatorio1
 
 
         [DataRow(PasswordStrengthColor.Red, "Family", 3)]
-        [DataRow(PasswordStrengthColor.Red, "Work", 3)]
+        [DataRow(PasswordStrengthColor.Red, "Work", 0)]
         [DataRow(PasswordStrengthColor.LightGreen, "Family", 1)]
         [DataRow(PasswordStrengthColor.Yellow, "Family", 2)]
         [DataRow(PasswordStrengthColor.Yellow, "University", 1)]
@@ -73,10 +73,13 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void GetNumberOfPasswordByStrenghtColorAndCategory(PasswordStrengthColor color, string category, int quantity)
         {
-            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor(_currentUser);
             var redEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
-            Assert.IsTrue(redEntry.Quantity == quantity);
+            Assert.IsTrue(redEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
         }
+
+        /*
+        */
         private void AddCategoryToPasswordManager(ref Category category, string name)
         {
             category = new Category()

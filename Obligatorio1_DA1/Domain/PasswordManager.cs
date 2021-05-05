@@ -80,9 +80,24 @@ namespace Obligatorio1_DA1.Domain
             return breachedItems;
         }
 
-        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor(User currentUser)
         {
-            throw new NotImplementedException();
+            List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
+
+            foreach (Category category in currentUser.Categories)
+            {
+                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                {
+                    report.Add(new passwordReportByCategoryAndColor
+                    {
+                        Category = category,
+                        Color = color,
+                        Quantity = this.GetPasswords(currentUser).Count(pass => pass.Category == category && pass.PasswordStrength == color)
+                    }
+                    );
+                }
+            }
+            return report;
         }
     }
 }
