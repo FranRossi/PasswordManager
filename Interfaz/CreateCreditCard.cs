@@ -55,21 +55,10 @@ namespace Presentation
             {
                 try
                 {
-                    _myPasswordManager.DeleteCreditCard(_myCreditCard);
-                    _myCreditCard = new CreditCard
-                    {
-                        User = _myPasswordManager.CurrentUser,
-                        Category = (Category)cbCategory.SelectedItem,
-                        Name = txtName.Text,
-                        Type = txtType.Text,
-                        Number = txtNumber.Text,
-                        SecureCode = txtSecureCode.Text,
-                        ExpirationDate = txtExpirationDate.Text,
-                        Notes = txtNotes.Text,
-                    };
-                    _myPasswordManager.CreateCreditCard(_myCreditCard);
-                    CloseForm();
-
+                    if (_myCreditCard == null)
+                        CreateNewCreditCard();
+                    else
+                        ModifyCreditCard();
                 }
                 catch (ValidationException exception)
                 {
@@ -78,6 +67,36 @@ namespace Presentation
             }
             else
                 lblError.Text = "Debe seleccionar una categoría";
+        }
+
+        private void ModifyCreditCard()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CreateNewCreditCard()
+        {
+            CreditCard newCreditCard = CreateCreditCardObject();
+            _myPasswordManager.CreateCreditCard(newCreditCard);
+            CloseForm();
+
+        }
+
+        private CreditCard CreateCreditCardObject()
+        {
+            CreditCard newCreditCard = new CreditCard
+            {
+                User = _myPasswordManager.CurrentUser,
+                Category = (Category)cbCategory.SelectedItem,
+                Name = txtName.Text,
+                Type = txtType.Text,
+                Number = txtNumber.Text,
+                SecureCode = txtSecureCode.Text,
+                ExpirationDate = txtExpirationDate.Text,
+                Notes = txtNotes.Text,
+            };
+
+            return newCreditCard;
         }
 
         private void CloseForm()
