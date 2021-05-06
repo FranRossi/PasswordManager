@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Exceptions;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,19 @@ namespace Obligatorio1_DA1.Domain
     {
 
         private Category _category;
+        private string notes;
 
         public User User { get; set; }
-        public string Notes { get; set; }
+        public string Notes
+        {
+            get => notes;
+            set
+            {
+                ValidateNotes(value);
+                notes = value;
+            }
 
+        }
 
         public Category Category
         {
@@ -26,6 +36,14 @@ namespace Obligatorio1_DA1.Domain
                 this._category = value;
             }
 
+        }
+
+        private void ValidateNotes(string value)
+        {
+            if (value == null)
+                return;
+            if (!Validator.MaxLengthOfString(value, 250))
+                throw new NotesTooLongException();
         }
     }
 }

@@ -65,6 +65,7 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
+
         public string Pass
         {
             get => pass;
@@ -83,15 +84,6 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordTooShortException();
             if (!Validator.MaxLengthOfString(value, 25))
                 throw new PasswordTooLongException();
-        }
-
-
-        private void ValidateNotes(string value)
-        {
-            if (value == null)
-                return;
-            if (!Validator.MaxLengthOfString(value, 250))
-                throw new NotesTooLongException();
         }
 
         public static string GenerateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
