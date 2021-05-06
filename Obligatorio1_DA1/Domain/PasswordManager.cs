@@ -156,5 +156,10 @@ namespace Obligatorio1_DA1.Domain
         {
             this._creditCards.Remove(card);
         }
+
+        public void ModifyCreditCard(CreditCard card, CreditCard card2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
