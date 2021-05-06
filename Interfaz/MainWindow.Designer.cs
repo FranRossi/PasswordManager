@@ -49,7 +49,7 @@ namespace Presentation
             // 
             this.pnlMainScreen.Controls.Add(this.menuStrip1);
             this.pnlMainScreen.Location = new System.Drawing.Point(11, 11);
-            this.pnlMainScreen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainScreen.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainScreen.Name = "pnlMainScreen";
             this.pnlMainScreen.Size = new System.Drawing.Size(780, 399);
             this.pnlMainScreen.TabIndex = 2;
@@ -116,7 +116,7 @@ namespace Presentation
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(632, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(6, 6);
             this.flowLayoutPanel1.TabIndex = 3;
@@ -146,7 +146,7 @@ namespace Presentation
             this.Controls.Add(this.pnlMainScreen);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
             this.Text = "PasswordManager";
             this.pnlMainScreen.ResumeLayout(false);

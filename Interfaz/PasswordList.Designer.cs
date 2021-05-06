@@ -62,6 +62,7 @@ namespace Presentation
             this.tblPassword.Name = "tblPassword";
             this.tblPassword.ReadOnly = true;
             this.tblPassword.RowHeadersVisible = false;
+            this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblPassword.Size = new System.Drawing.Size(753, 273);
             this.tblPassword.TabIndex = 6;
             // 
