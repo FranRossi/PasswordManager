@@ -63,7 +63,7 @@ namespace Presentation
             // 
             // btnDeleteCreditCard
             // 
-            this.btnDeleteCreditCard.Location = new System.Drawing.Point(765, 501);
+            this.btnDeleteCreditCard.Location = new System.Drawing.Point(885, 501);
             this.btnDeleteCreditCard.Name = "btnDeleteCreditCard";
             this.btnDeleteCreditCard.Size = new System.Drawing.Size(85, 42);
             this.btnDeleteCreditCard.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace Presentation
             // 
             // btnModifiesCreditCard
             // 
-            this.btnModifiesCreditCard.Location = new System.Drawing.Point(872, 501);
+            this.btnModifiesCreditCard.Location = new System.Drawing.Point(772, 501);
             this.btnModifiesCreditCard.Name = "btnModifiesCreditCard";
             this.btnModifiesCreditCard.Size = new System.Drawing.Size(85, 42);
             this.btnModifiesCreditCard.TabIndex = 3;
