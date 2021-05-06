@@ -408,6 +408,12 @@ namespace UnitTestObligatorio1
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
 
         }
+
+        [TestMethod]
+        public void GetSharedPasswordUser()
+        {
+
+        }
     }
 
 

@@ -101,11 +101,11 @@
     <Compile Include="PasswordStrengthUserControls\PasswordStrengthChart.Designer.cs">
       <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordList.cs">
+    <Compile Include="SharedPasswordList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordList.Designer.cs">
-      <DependentUpon>PasswordList.cs</DependentUpon>
+    <Compile Include="SharedPasswordList.Designer.cs">
+      <DependentUpon>SharedPasswordList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,8 +151,8 @@
     <EmbeddedResource Include="PasswordStrengthUserControls\PasswordStrengthChart.resx">
       <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordList.resx">
-      <DependentUpon>PasswordList.cs</DependentUpon>
+    <EmbeddedResource Include="SharedPasswordList.resx">
+      <DependentUpon>SharedPasswordList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
