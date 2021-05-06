@@ -29,6 +29,7 @@ namespace Presentation
             tblCreditCards.DataSource = creditCards;
             FormatCreditCardListOnTable();
         }
+
         private void FormatCreditCardListOnTable()
         {
             foreach (DataGridViewColumn column in tblCreditCards.Columns)
@@ -60,7 +61,14 @@ namespace Presentation
 
         private void btnAddsCreditCard_Click(object sender, EventArgs e)
         {
+            Form createCreditCard = new CreateCreditCard(_myPasswordManager);
+            createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
+            createCreditCard.ShowDialog();
+        }
 
+        private void RefreshForm(object sender, FormClosingEventArgs e)
+        {
+            LoadTblCreditCard();
         }
 
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)

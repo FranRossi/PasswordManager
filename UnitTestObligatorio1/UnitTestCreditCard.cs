@@ -43,6 +43,7 @@ namespace UnitTestObligatorio1
                     ExpirationDate = "10/21",
                     Notes = "Límite 400k UYU"
                 };
+                _passwordManager.CreateUser(_user);
             }
             catch (Exception exception)
             {
@@ -186,6 +187,55 @@ namespace UnitTestObligatorio1
             CollectionAssert.DoesNotContain(creditCards, this._card);
         }
 
+        [TestMethod]
+        public void GetCreditCardsOnlyFromCurrentUser()
+        {
+            User user = new User()
+            {
+                Name = "Felipe",
+                Pass = "12345",
+            };
+            user.Categories.Add(this._category);
+            CreditCard _card2 = new CreditCard
+            {
+                User = user,
+                Category = this._category,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.CreateCreditCard(_card2);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.DoesNotContain(creditCards, _card2);
+        }
+
+        [TestMethod]
+        public void GetCreditCardsRefferingToSameUser()
+        {
+            User user = new User()
+            {
+                Name = "Gonzalo",
+                Pass = "HolaSoyGonzalo123",
+            };
+            user.Categories.Add(this._category);
+            CreditCard _card2 = new CreditCard
+            {
+                User = user,
+                Category = this._category,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.CreateCreditCard(_card2);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.Contains(creditCards, _card2);
+        }
     }
 
 

@@ -8,7 +8,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
-        private User _currentUser;
+        public User CurrentUser { get; private set; }
         private List<User> _users;
         private List<Password> _passwords;
         private List<CreditCard> _creditCards;
@@ -25,7 +25,7 @@ namespace Obligatorio1_DA1.Domain
             if (_users.Exists(user => user.Name == newUser.Name))
                 throw new UsernameAlreadyTakenException();
             _users.Add(newUser);
-            _currentUser = newUser;
+            CurrentUser = newUser;
         }
 
         public void Login(string name, string password)
@@ -34,7 +34,7 @@ namespace Obligatorio1_DA1.Domain
                 if (user.Name == name)
                     if (user.Pass == password)
                     {
-                        _currentUser = user;
+                        CurrentUser = user;
                         return;
                     }
                     else
@@ -44,7 +44,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return this._currentUser.Categories;
+            return this.CurrentUser.Categories;
         }
 
         public void CreatePassword(Password password)
@@ -54,9 +54,9 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateCategoryOnCurrentUser(Category category)
         {
-            if (this._currentUser.Categories.Contains(category))
+            if (this.CurrentUser.Categories.Contains(category))
                 throw new CategoryAlreadyAddedException();
-            this._currentUser.Categories.Add(category);
+            this.CurrentUser.Categories.Add(category);
         }
 
         public void CreateCreditCard(CreditCard creditCard)
@@ -87,11 +87,11 @@ namespace Obligatorio1_DA1.Domain
             {
                 foreach (Password pass in _passwords)
                     //Redefinir equals de user
-                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == _currentUser.Name)
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCards)
                     //aca tmb
-                    if (card.Number == splittedDataBreach[i] && card.User.Name == _currentUser.Name)
+                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
                         breachedItems.Add(card);
             }
             return breachedItems;
@@ -99,7 +99,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
         {
-            foreach (Category categoryIterator in _currentUser.Categories)
+            foreach (Category categoryIterator in CurrentUser.Categories)
             {
                 if (categoryIterator.Equals(oldCategory))
                     categoryIterator.Name = newCategory.Name;
@@ -108,7 +108,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<CreditCard> GetCreditCards()
         {
-            return this._creditCards;
+            return this._creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
         }
 
         public void DeleteCreditCard(CreditCard card)

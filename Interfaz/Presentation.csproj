@@ -52,6 +52,12 @@
     <Compile Include="Categories.Designer.cs">
       <DependentUpon>Categories.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateCreditCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCreditCard.Designer.cs">
+      <DependentUpon>CreateCreditCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Credentials.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="Categories.resx">
       <DependentUpon>Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCreditCard.resx">
+      <DependentUpon>CreateCreditCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Credentials.resx">
       <DependentUpon>Credentials.cs</DependentUpon>
