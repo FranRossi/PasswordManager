@@ -30,11 +30,23 @@ namespace Presentation
             _myPasswordManager = pPasswordManager;
             _myCreditCard = pCreditCard;
             LoadComboBoxCategory();
+            LoadFromCreditCard();
         }
+
 
         private void LoadComboBoxCategory()
         {
             cbCategory.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
+        }
+
+        private void LoadFromCreditCard()
+        {
+            txtName.Text = _myCreditCard.Name;
+            txtType.Text = _myCreditCard.Type;
+            txtNumber.Text = _myCreditCard.Number;
+            txtSecureCode.Text = _myCreditCard.SecureCode;
+            txtExpirationDate.Text = _myCreditCard.ExpirationDate;
+            txtNotes.Text = _myCreditCard.Notes;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
