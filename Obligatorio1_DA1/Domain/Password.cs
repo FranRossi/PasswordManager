@@ -260,6 +260,10 @@ namespace Obligatorio1_DA1.Domain
 
         public List<User> GetUsersSharedWith()
         {
+            if (this.ShareWith == null)
+            {
+                return new List<User>();
+            }
             return this.ShareWith;
         }
     }
