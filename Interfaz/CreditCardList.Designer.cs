@@ -34,6 +34,7 @@ namespace Presentation
             this.btnDeleteCreditCard = new System.Windows.Forms.Button();
             this.btnModifiesCreditCard = new System.Windows.Forms.Button();
             this.lblTIitle = new System.Windows.Forms.Label();
+            this.lblMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,10 +94,19 @@ namespace Presentation
             this.lblTIitle.TabIndex = 4;
             this.lblTIitle.Text = "Tarjetas";
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(53, 501);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 20);
+            this.lblMessage.TabIndex = 5;
+            // 
             // CreditCardList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblTIitle);
             this.Controls.Add(this.btnModifiesCreditCard);
             this.Controls.Add(this.btnDeleteCreditCard);
@@ -117,5 +127,6 @@ namespace Presentation
         private System.Windows.Forms.Button btnDeleteCreditCard;
         private System.Windows.Forms.Button btnModifiesCreditCard;
         private System.Windows.Forms.Label lblTIitle;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

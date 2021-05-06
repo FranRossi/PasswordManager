@@ -14,6 +14,7 @@ namespace Presentation
     public partial class CreditCardList : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private CreditCard _selectedCreditCard;
         public CreditCardList(PasswordManager pPasswordManager)
         {
             InitializeComponent();
@@ -73,7 +74,7 @@ namespace Presentation
 
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)
         {
-            CreditCard creditCardRow = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
+            UpdateSelectedPassword();
             _myPasswordManager.DeleteCreditCard(creditCardRow);
             LoadTblCreditCard();
         }
@@ -84,6 +85,21 @@ namespace Presentation
             Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, creditCardRow);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
             createCreditCard.ShowDialog();
+        }
+
+        private void UpdateSelectedPassword()
+        {
+            if (tblCreditCards.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedCreditCard = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
+                }
+                catch (FormatException exception)
+                {
+                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                }
+            }
         }
 
     }
