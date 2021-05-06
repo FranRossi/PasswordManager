@@ -82,5 +82,17 @@ namespace Presentation
                 }
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            Form createPassword = new CreatePassword(_myPasswordManager);
+            createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
+            createPassword.ShowDialog();
+        }
+
+        private void RefreshForm(object sender, FormClosingEventArgs e)
+        {
+            LoadTblPassword();
+        }
     }
 }
