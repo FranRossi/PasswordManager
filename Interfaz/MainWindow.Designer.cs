@@ -39,16 +39,15 @@ namespace Presentation
             this.tsmiDataBreaches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPasswordStrength = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pnlMainScreen.SuspendLayout();
+            this.pnlMenu = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMainScreen
             // 
-            this.pnlMainScreen.Controls.Add(this.menuStrip1);
-            this.pnlMainScreen.Location = new System.Drawing.Point(11, 11);
+            this.pnlMainScreen.Location = new System.Drawing.Point(6, 26);
             this.pnlMainScreen.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainScreen.Name = "pnlMainScreen";
             this.pnlMainScreen.Size = new System.Drawing.Size(780, 399);
@@ -62,7 +61,7 @@ namespace Presentation
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(780, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(777, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -121,40 +120,37 @@ namespace Presentation
             this.flowLayoutPanel1.Size = new System.Drawing.Size(6, 6);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
-            // menuStrip2
-            // 
-            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip2.Size = new System.Drawing.Size(802, 24);
-            this.menuStrip2.TabIndex = 4;
-            this.menuStrip2.Text = "menuStrip2";
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // pnlMenu
+            // 
+            this.pnlMenu.Controls.Add(this.menuStrip1);
+            this.pnlMenu.Location = new System.Drawing.Point(11, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(777, 26);
+            this.pnlMenu.TabIndex = 5;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 421);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(802, 436);
             this.Controls.Add(this.pnlMainScreen);
-            this.Controls.Add(this.menuStrip2);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.pnlMenu);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
             this.Text = "PasswordManager";
-            this.pnlMainScreen.ResumeLayout(false);
-            this.pnlMainScreen.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnlMenu.ResumeLayout(false);
+            this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -168,7 +164,7 @@ namespace Presentation
         private System.Windows.Forms.ToolStripMenuItem tsmiDataBreaches;
         private System.Windows.Forms.ToolStripMenuItem tsmiPasswordStrength;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Panel pnlMenu;
     }
 }
