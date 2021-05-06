@@ -62,8 +62,7 @@ namespace Presentation
 
         private void LoadTblSharedWith(Password selectedPassword)
         {
-            //List<User> users = _myPasswordManager.get;
-            List<User> users = null;
+            List<User> users = selectedPassword.GetUsersSharedWith();
             tblSharedWith.DataSource = null;
             tblSharedWith.Rows.Clear();
             tblSharedWith.DataSource = users;
