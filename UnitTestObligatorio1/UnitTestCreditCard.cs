@@ -27,12 +27,14 @@ namespace UnitTestObligatorio1
                     Name = "Gonzalo",
                     Pass = "HolaSoyGonzalo123"
                 };
+
+                _passwordManager.CreateUser(_user);
                 _category = new Category()
                 {
                     Name = "Personal"
                 };
-                _user.Categories.Add(_category);
-                this._card = new CreditCard
+                _passwordManager.CreateCategoryOnCurrentUser(_category);
+                _card = new CreditCard
                 {
                     User = _user,
                     Category = _category,
@@ -43,7 +45,7 @@ namespace UnitTestObligatorio1
                     ExpirationDate = "10/21",
                     Notes = "Límite 400k UYU"
                 };
-                _passwordManager.CreateUser(_user);
+                _passwordManager.CreateCreditCard(_card);
             }
             catch (Exception exception)
             {
@@ -270,15 +272,9 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyCreditCard()
         {
-            User user = new User()
-            {
-                Name = "Gonzalo",
-                Pass = "HolaSoyGonzalo123",
-            };
-            user.Categories.Add(this._category);
             CreditCard _card2 = new CreditCard
             {
-                User = user,
+                User = _passwordManager.CurrentUser,
                 Category = this._category,
                 Name = "MasterCard Black",
                 Type = "Master",
@@ -287,7 +283,7 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
-            this._passwordManager.ModifyCreditCard(this._card, _card2);
+            this._passwordManager.ModifyCreditCardOnCurrentUser(this._card, _card2);
             List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
             CollectionAssert.Contains(creditCards, _card2);
         }

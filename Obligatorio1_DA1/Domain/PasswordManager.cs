@@ -157,9 +157,21 @@ namespace Obligatorio1_DA1.Domain
             this._creditCards.Remove(card);
         }
 
-        public void ModifyCreditCard(CreditCard card, CreditCard card2)
+        public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
-            throw new NotImplementedException();
+            foreach (CreditCard creditCardIterator in this.GetCreditCards())
+            {
+                if (creditCardIterator.Equals(oldCreditCard))
+                {
+                    creditCardIterator.Category = newCreditCard.Category;
+                    creditCardIterator.Notes = newCreditCard.Notes;
+                    creditCardIterator.Name = newCreditCard.Name;
+                    creditCardIterator.Number = newCreditCard.Number;
+                    creditCardIterator.SecureCode = newCreditCard.SecureCode;
+                    creditCardIterator.ExpirationDate = newCreditCard.ExpirationDate;
+                    creditCardIterator.Type = newCreditCard.Type;
+                }
+            }
         }
     }
 }

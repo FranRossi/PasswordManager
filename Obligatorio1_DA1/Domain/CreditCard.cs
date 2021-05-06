@@ -63,6 +63,20 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
+        public override bool Equals(object obj)
+        {
+            CreditCard creditCardToCompare;
+            try
+            {
+                creditCardToCompare = (CreditCard)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return creditCardToCompare.Number == this.Number;
+        }
+
 
     }
 }
