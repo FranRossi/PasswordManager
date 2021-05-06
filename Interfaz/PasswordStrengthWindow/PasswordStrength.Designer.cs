@@ -52,7 +52,9 @@ namespace Presentation
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
             this.btmShowChart = new System.Windows.Forms.Button();
+            this.lblNoPassword = new System.Windows.Forms.Label();
             this.tlpColorTable.SuspendLayout();
+            this.pnlChartList.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpColorTable
@@ -94,8 +96,8 @@ namespace Presentation
             // 
             // lblQuantity
             // 
-            this.lblQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.BackColor = System.Drawing.SystemColors.Control;
@@ -111,8 +113,8 @@ namespace Presentation
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Control;
@@ -127,8 +129,8 @@ namespace Presentation
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
@@ -143,8 +145,8 @@ namespace Presentation
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.Control;
@@ -159,8 +161,8 @@ namespace Presentation
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.Control;
@@ -175,8 +177,8 @@ namespace Presentation
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.Control;
@@ -191,8 +193,8 @@ namespace Presentation
             // 
             // lblRedQuantity
             // 
-            this.lblRedQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblRedQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRedQuantity.AutoSize = true;
             this.lblRedQuantity.BackColor = System.Drawing.SystemColors.Control;
@@ -207,8 +209,8 @@ namespace Presentation
             // 
             // lblYellowQuantity
             // 
-            this.lblYellowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblYellowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblYellowQuantity.AutoSize = true;
             this.lblYellowQuantity.BackColor = System.Drawing.SystemColors.Control;
@@ -223,8 +225,8 @@ namespace Presentation
             // 
             // lblLightGreenQuantity
             // 
-            this.lblLightGreenQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblLightGreenQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLightGreenQuantity.AutoSize = true;
             this.lblLightGreenQuantity.BackColor = System.Drawing.SystemColors.Control;
@@ -239,8 +241,8 @@ namespace Presentation
             // 
             // lblDarkGreenQuantity
             // 
-            this.lblDarkGreenQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblDarkGreenQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDarkGreenQuantity.AutoSize = true;
             this.lblDarkGreenQuantity.BackColor = System.Drawing.SystemColors.Control;
@@ -255,8 +257,8 @@ namespace Presentation
             // 
             // lblOrangeQuantity
             // 
-            this.lblOrangeQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblOrangeQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOrangeQuantity.AutoSize = true;
             this.lblOrangeQuantity.BackColor = System.Drawing.SystemColors.Control;
@@ -283,8 +285,8 @@ namespace Presentation
             // 
             // lblGroup
             // 
-            this.lblGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lblGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGroup.BackColor = System.Drawing.SystemColors.Control;
             this.lblGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -347,6 +349,7 @@ namespace Presentation
             // 
             // pnlChartList
             // 
+            this.pnlChartList.Controls.Add(this.lblNoPassword);
             this.pnlChartList.Location = new System.Drawing.Point(317, 61);
             this.pnlChartList.Name = "pnlChartList";
             this.pnlChartList.Size = new System.Drawing.Size(445, 314);
@@ -378,6 +381,20 @@ namespace Presentation
             this.btmShowChart.UseVisualStyleBackColor = true;
             this.btmShowChart.Click += new System.EventHandler(this.btmShowChart_Click);
             // 
+            // lblNoPassword
+            // 
+            this.lblNoPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNoPassword.AutoSize = true;
+            this.lblNoPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblNoPassword.Location = new System.Drawing.Point(102, 124);
+            this.lblNoPassword.Name = "lblNoPassword";
+            this.lblNoPassword.Size = new System.Drawing.Size(254, 18);
+            this.lblNoPassword.TabIndex = 0;
+            this.lblNoPassword.Text = "No tienes constraseñas para mostrar";
+            this.lblNoPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // PasswordStrength
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +408,8 @@ namespace Presentation
             this.Size = new System.Drawing.Size(780, 399);
             this.tlpColorTable.ResumeLayout(false);
             this.tlpColorTable.PerformLayout();
+            this.pnlChartList.ResumeLayout(false);
+            this.pnlChartList.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,5 +438,6 @@ namespace Presentation
         private System.Windows.Forms.Button btnShowPasswordsYellow;
         private System.Windows.Forms.Button btnShowPasswordsLightGreen;
         private System.Windows.Forms.Button btnShowPasswordsDarkGreen;
+        private System.Windows.Forms.Label lblNoPassword;
     }
 }
