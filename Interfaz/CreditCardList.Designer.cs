@@ -89,9 +89,9 @@ namespace Presentation
             this.lblTIitle.Location = new System.Drawing.Point(51, 38);
             this.lblTIitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTIitle.Name = "lblTIitle";
-            this.lblTIitle.Size = new System.Drawing.Size(266, 36);
+            this.lblTIitle.Size = new System.Drawing.Size(121, 36);
             this.lblTIitle.TabIndex = 4;
-            this.lblTIitle.Text = "Tarjetas de Crédito";
+            this.lblTIitle.Text = "Tarjetas";
             // 
             // CreditCardList
             // 
