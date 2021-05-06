@@ -126,6 +126,7 @@ namespace Presentation
             this.btnGenerate.TabIndex = 24;
             this.btnGenerate.Text = "Generar";
             this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // cbSymbol
             // 

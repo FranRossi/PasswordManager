@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -56,6 +58,23 @@ namespace Presentation
         private void CloseForm()
         {
             this.Close();
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            int passwordLength = decimal.ToInt32(nudLength.Value);
+            bool hasUppercase = cbUppercase.Checked;
+            bool hasLowercase = cbLowercase.Checked;
+            bool hasDigit = cbDigit.Checked;
+            bool hasSymbol = cbSymbol.Checked;
+            try
+            {
+                txtPassword.Text = Password.GenerateRandomPassword(passwordLength, hasUppercase, hasLowercase, hasDigit, hasSymbol);
+            }
+            catch (ValidationException exception)
+            {
+                lblMessage.Text = exception.Message;
+            }
         }
     }
 }
