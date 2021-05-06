@@ -31,8 +31,9 @@ namespace Presentation
             InitializeComponent();
             this.SetColorsLabelsAndButtons();
             this.SetColorQuantities();
-            this.LoadChart();
 
+            this.LoadChart();
+            if (this.chartPanel != null)
         }
 
 
@@ -62,13 +63,13 @@ namespace Presentation
             if (enoughtPasswordToShow)
             {
                 this.chartPanel = new PasswordStrengthChart(report);
-                this.RenderChart();
+                this.ShowChart();
             }
             else
                 btmShowChart.Enabled = false;
         }
 
-        private void RenderChart()
+        private void ShowChart()
         {
             pnlChartList.Controls.Clear();
             pnlChartList.Controls.Add(this.chartPanel);
@@ -84,7 +85,7 @@ namespace Presentation
 
         private void btmShowChart_Click(object sender, EventArgs e)
         {
-            this.RenderChart();
+            this.ShowChart();
         }
 
         private void btmShowPasswordsRed_Click(object sender, EventArgs e)

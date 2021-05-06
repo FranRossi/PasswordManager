@@ -65,22 +65,22 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordStrengthWindow\PasswordListOfStrenghtColor.cs">
+    <Compile Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordStrengthWindow\PasswordListOfStrenghtColor.Designer.cs">
-      <DependentUpon>PasswordListOfStrenghtColor.cs</DependentUpon>
+    <Compile Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.Designer.cs">
+      <DependentUpon>PasswordListOfStrengthColor.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordStrengthWindow\PasswordStrength.cs">
+    <Compile Include="PasswordStrengthUserControls\PasswordStrength.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordStrengthWindow\PasswordStrength.Designer.cs">
+    <Compile Include="PasswordStrengthUserControls\PasswordStrength.Designer.cs">
       <DependentUpon>PasswordStrength.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordStrengthWindow\PasswordStrengthChart.cs">
+    <Compile Include="PasswordStrengthUserControls\PasswordStrengthChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordStrengthWindow\PasswordStrengthChart.Designer.cs">
+    <Compile Include="PasswordStrengthUserControls\PasswordStrengthChart.Designer.cs">
       <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -100,13 +100,13 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordStrengthWindow\PasswordListOfStrenghtColor.resx">
-      <DependentUpon>PasswordListOfStrenghtColor.cs</DependentUpon>
+    <EmbeddedResource Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.resx">
+      <DependentUpon>PasswordListOfStrengthColor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordStrengthWindow\PasswordStrength.resx">
+    <EmbeddedResource Include="PasswordStrengthUserControls\PasswordStrength.resx">
       <DependentUpon>PasswordStrength.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordStrengthWindow\PasswordStrengthChart.resx">
+    <EmbeddedResource Include="PasswordStrengthUserControls\PasswordStrengthChart.resx">
       <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
