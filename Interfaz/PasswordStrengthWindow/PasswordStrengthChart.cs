@@ -37,11 +37,11 @@ namespace Presentation.PasswordStrengthWindow
         private void SetPresentationColor()
         {
             presentationColor = new Dictionary<PasswordStrengthColor, Color>();
-            presentationColor.Add(PasswordStrengthColor.DarkGreen, Color.DarkGreen);
-            presentationColor.Add(PasswordStrengthColor.LightGreen, Color.LightGreen);
-            presentationColor.Add(PasswordStrengthColor.Yellow, Color.Yellow);
-            presentationColor.Add(PasswordStrengthColor.Orange, Color.Orange);
-            presentationColor.Add(PasswordStrengthColor.Red, Color.Red);
+            presentationColor.Add(PasswordStrengthColor.DarkGreen, Color.FromArgb(85, 130, 61));
+            presentationColor.Add(PasswordStrengthColor.LightGreen, Color.FromArgb(148, 208, 94));
+            presentationColor.Add(PasswordStrengthColor.Yellow, Color.FromArgb(255, 254, 68));
+            presentationColor.Add(PasswordStrengthColor.Orange, Color.FromArgb(241, 121, 58));
+            presentationColor.Add(PasswordStrengthColor.Red, Color.FromArgb(195, 0, 4));
         }
     }
 }
