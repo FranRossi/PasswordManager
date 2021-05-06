@@ -25,8 +25,6 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
-
-
         public string Site
         {
             get => site;
@@ -67,7 +65,6 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
-
         public string Pass
         {
             get => pass;
@@ -88,16 +85,6 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordTooLongException();
         }
 
-        public string Notes
-        {
-            get => notes;
-            set
-            {
-                ValidateNotes(value);
-                notes = value;
-            }
-
-        }
 
         private void ValidateNotes(string value)
         {
