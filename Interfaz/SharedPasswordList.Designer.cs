@@ -36,7 +36,7 @@ namespace Presentation
             this.btnSharedPasswords = new System.Windows.Forms.Button();
             this.tblSharedWith = new System.Windows.Forms.DataGridView();
             this.lblSharedWith = new System.Windows.Forms.Label();
-            this.cbUsers = new System.Windows.Forms.ComboBox();
+            this.cbUsersNotSharedWith = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
@@ -47,15 +47,19 @@ namespace Presentation
             // 
             this.tblPassword.AllowUserToAddRows = false;
             this.tblPassword.AllowUserToDeleteRows = false;
+            this.tblPassword.AllowUserToResizeColumns = false;
+            this.tblPassword.AllowUserToResizeRows = false;
             this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblPassword.Location = new System.Drawing.Point(32, 82);
+            this.tblPassword.MultiSelect = false;
             this.tblPassword.Name = "tblPassword";
             this.tblPassword.ReadOnly = true;
             this.tblPassword.RowHeadersVisible = false;
             this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblPassword.Size = new System.Drawing.Size(437, 182);
             this.tblPassword.TabIndex = 6;
+            this.tblPassword.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblPassword_CellClick);
             // 
             // lblPassword
             // 
@@ -98,9 +102,12 @@ namespace Presentation
             // 
             this.tblSharedWith.AllowUserToAddRows = false;
             this.tblSharedWith.AllowUserToDeleteRows = false;
+            this.tblSharedWith.AllowUserToResizeColumns = false;
+            this.tblSharedWith.AllowUserToResizeRows = false;
             this.tblSharedWith.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblSharedWith.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblSharedWith.Location = new System.Drawing.Point(565, 82);
+            this.tblSharedWith.MultiSelect = false;
             this.tblSharedWith.Name = "tblSharedWith";
             this.tblSharedWith.ReadOnly = true;
             this.tblSharedWith.RowHeadersVisible = false;
@@ -118,13 +125,13 @@ namespace Presentation
             this.lblSharedWith.TabIndex = 8;
             this.lblSharedWith.Text = "Compartida con";
             // 
-            // cbUsers
+            // cbUsersNotSharedWith
             // 
-            this.cbUsers.FormattingEnabled = true;
-            this.cbUsers.Location = new System.Drawing.Point(149, 293);
-            this.cbUsers.Name = "cbUsers";
-            this.cbUsers.Size = new System.Drawing.Size(121, 21);
-            this.cbUsers.TabIndex = 9;
+            this.cbUsersNotSharedWith.FormattingEnabled = true;
+            this.cbUsersNotSharedWith.Location = new System.Drawing.Point(149, 293);
+            this.cbUsersNotSharedWith.Name = "cbUsersNotSharedWith";
+            this.cbUsersNotSharedWith.Size = new System.Drawing.Size(121, 21);
+            this.cbUsersNotSharedWith.TabIndex = 9;
             // 
             // label2
             // 
@@ -151,7 +158,7 @@ namespace Presentation
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbUsers);
+            this.Controls.Add(this.cbUsersNotSharedWith);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnShare);
             this.Controls.Add(this.btnSharedPasswords);
@@ -176,7 +183,7 @@ namespace Presentation
         private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.Button btnSharedPasswords;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbUsers;
+        private System.Windows.Forms.ComboBox cbUsersNotSharedWith;
         private System.Windows.Forms.Label lblSharedWith;
         private System.Windows.Forms.DataGridView tblSharedWith;
         private System.Windows.Forms.Label lblTitle;

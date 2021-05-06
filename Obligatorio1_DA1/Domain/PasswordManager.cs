@@ -71,7 +71,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Password> GetSharedPasswords(User user)
         {
-            return this._passwords.Where(pass => pass.ShareWith.Contains(user)).ToList();
+            return this._passwords.Where(pass => pass.GetUsersSharedWith().Contains(user)).ToList();
         }
 
         public void DeletePassword(Password password)

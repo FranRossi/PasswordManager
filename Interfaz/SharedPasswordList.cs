@@ -53,11 +53,16 @@ namespace Presentation
                 }
             }
         }
-
-        private void tblPassword_SelectionChanged(object sender, EventArgs e)
+        private void tblPassword_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
             LoadTblSharedWith(selectedPassword);
+            LoadcbUsersNotSharedWith(selectedPassword);
+        }
+
+        private void LoadcbUsersNotSharedWith(Password selectedPassword)
+        {
+            throw new NotImplementedException();
         }
 
         private void LoadTblSharedWith(Password selectedPassword)
@@ -67,12 +72,26 @@ namespace Presentation
             tblSharedWith.Rows.Clear();
             tblSharedWith.DataSource = users;
             FormatSharedListOnTable();
+            tblSharedWith.CurrentCell = null;
         }
 
         private void FormatSharedListOnTable()
         {
-            tblSharedWith.Columns[0].HeaderText = "Usuario";
+
+            foreach (DataGridViewColumn column in tblSharedWith.Columns)
+            {
+                switch (column.Name)
+                {
+                    case "Name":
+                        column.HeaderText = "Nombre";
+                        break;
+                    default:
+                        column.Visible = false;
+                        break;
+                }
+            }
         }
+
 
 
         /*        private void btnDelete_Click(object sender, EventArgs e)
