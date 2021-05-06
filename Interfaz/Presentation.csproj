@@ -59,6 +59,12 @@
     <Compile Include="CreateCreditCard.Designer.cs">
       <DependentUpon>CreateCreditCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreatePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreatePassword.Designer.cs">
+      <DependentUpon>CreatePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Credentials.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCreditCard.resx">
       <DependentUpon>CreateCreditCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreatePassword.resx">
+      <DependentUpon>CreatePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Credentials.resx">
       <DependentUpon>Credentials.cs</DependentUpon>
