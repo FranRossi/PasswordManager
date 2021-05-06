@@ -331,8 +331,10 @@ namespace UnitTestObligatorio1
                 Name = "Lucía",
                 Pass = "lu2000@1"
             };
-            userShareFrom.Categories.Add(category);
-
+            this._passwordManager.CreateUser(userShareTo);
+            this._passwordManager.CreateCategoryOnCurrentUser(category);
+            //userShareFrom.Categories.Add(category);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password ort = new Password
             {
                 User = userShareFrom,
@@ -369,8 +371,8 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(amazon);
             expectedPasswords.Add(amazon);
             amazon.ShareWithUser(userShareTo);
-
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
 
         }
