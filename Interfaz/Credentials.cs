@@ -19,7 +19,7 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         public Credentials(PasswordManager pPasswordManager)
         {
-            //TestData testData = new TestData(pPasswordManager);
+            TestData testData = new TestData(pPasswordManager);
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
         }

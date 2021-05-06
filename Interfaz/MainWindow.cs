@@ -14,7 +14,6 @@ namespace Presentation
     public partial class MainWindow : Form
     {
         private PasswordManager _myPasswordManager;
-        private UserControl _menu;
         public MainWindow(PasswordManager pPasswordManager)
         {
             InitializeComponent();
