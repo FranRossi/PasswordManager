@@ -66,7 +66,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Password> GetPasswords()
         {
-            return this._passwords.Where(pass => pass.User == _currentUser).ToList();
+            return this._passwords.Where(pass => pass.User == CurrentUser).ToList();
         }
 
         public List<Password> GetSharedPasswords(User user)
