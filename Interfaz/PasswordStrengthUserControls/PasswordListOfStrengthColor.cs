@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Presentation.PasswordStrengthWindow
 {
-    public partial class PasswordListOfStrenghtColor : UserControl
+    public partial class PasswordListOfStrengthColor : UserControl
     {
-        public PasswordListOfStrenghtColor(List<Password> passwords)
+        public PasswordListOfStrengthColor(List<Password> passwords)
         {
             InitializeComponent();
             LoadPasswords(passwords);

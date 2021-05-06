@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation.PasswordStrengthWindow
 {
-    partial class PasswordListOfStrenghtColor
+    partial class PasswordListOfStrengthColor
     {
         /// <summary> 
         /// Required designer variable.
