@@ -27,6 +27,7 @@ namespace Presentation.PasswordStrengthWindow
             {
                 this.chartPasswordStrength.Series.Add(color.ToString());
                 this.chartPasswordStrength.Series[color.ToString()].Color = this.presentationColor[color];
+                this.chartPasswordStrength.Series[color.ToString()].IsVisibleInLegend = false;
             }
 
             foreach (passwordReportByCategoryAndColor entry in chartData)
