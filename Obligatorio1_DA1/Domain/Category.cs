@@ -24,5 +24,24 @@ namespace Obligatorio1_DA1.Domain
             if (!Validator.MaxLengthOfString(value, 15))
                 throw new CategoryTooLongException();
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Category categoryToCompare;
+            try
+            {
+                categoryToCompare = (Category)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return categoryToCompare.Name == this.Name;
+        }
     }
 }

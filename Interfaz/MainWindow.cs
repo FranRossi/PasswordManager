@@ -23,22 +23,30 @@ namespace Presentation
 
         private void tsmiPasswords_Click(object sender, EventArgs e)
         {
-
+            UserControl passsworList = new PasswordList(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(passsworList);
         }
 
         private void tsmiCreditCards_Click(object sender, EventArgs e)
         {
-
+            UserControl creditCardList = new CreditCardList(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(creditCardList);
         }
 
         private void tsmiCategories_Click(object sender, EventArgs e)
         {
-
+            UserControl categories = new Categories(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(categories);
         }
 
         private void tsmiDataBreaches_Click(object sender, EventArgs e)
         {
-
+            UserControl dataBreaches = new DataBreach(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(dataBreaches);
         }
 
         private void tsmiPasswordStrength_Click(object sender, EventArgs e)

@@ -45,7 +45,8 @@ namespace Presentation
             string masterPassword = txtMasterPassword.Text;
             try
             {
-                _myPasswordManager.CreateUser(userName, masterPassword);
+                User newUser = new User(userName, masterPassword);
+                _myPasswordManager.CreateUser(newUser);
                 ShowMainScreen();
             }
             catch (ValidationException exception)

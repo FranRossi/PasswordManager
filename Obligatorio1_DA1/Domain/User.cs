@@ -68,5 +68,19 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordInvalidCharactersException();
         }
 
+        public override bool Equals(object obj)
+        {
+            User userToCompare;
+            try
+            {
+                userToCompare = (User)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return userToCompare.Name == this.Name;
+        }
+
     }
 }

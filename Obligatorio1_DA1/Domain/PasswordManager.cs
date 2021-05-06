@@ -8,7 +8,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
-        public User _currentUser;
+        public User CurrentUser { get; private set; }
         private List<User> _users;
         private List<Password> _passwords;
         private List<CreditCard> _creditCards;
@@ -20,13 +20,12 @@ namespace Obligatorio1_DA1.Domain
             _creditCards = new List<CreditCard>();
         }
 
-        public void CreateUser(string name, string password)
+        public void CreateUser(User newUser)
         {
-            User newUser = new User(name, password);
-            if (_users.Exists(user => user.Name == name))
+            if (_users.Exists(user => user.Name == newUser.Name))
                 throw new UsernameAlreadyTakenException();
             _users.Add(newUser);
-            _currentUser = newUser;
+            CurrentUser = newUser;
         }
 
         public void Login(string name, string password)
@@ -35,7 +34,7 @@ namespace Obligatorio1_DA1.Domain
                 if (user.Name == name)
                     if (user.Pass == password)
                     {
-                        _currentUser = user;
+                        CurrentUser = user;
                         return;
                     }
                     else
@@ -45,18 +44,19 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return this._currentUser.Categories;
+            return this.CurrentUser.Categories;
         }
 
         public void CreatePassword(Password password)
         {
             this._passwords.Add(password);
         }
+      
         public void CreateCategoryOnCurrentUser(Category category)
         {
-            if (this._currentUser.Categories.Contains(category))
-                throw new Exception();
-            this._currentUser.Categories.Add(category);
+            if (this.CurrentUser.Categories.Contains(category))
+                throw new CategoryAlreadyAddedException();
+            this.CurrentUser.Categories.Add(category);
         }
 
         public void CreateCreditCard(CreditCard creditCard)
@@ -66,7 +66,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Password> GetPasswords()
         {
-            return this._passwords.Where(pass => pass.User == _currentUser).ToList();
+            return this._passwords.Where(pass => pass.User == CurrentUser).ToList();
         }
 
         public List<Password> GetSharedPasswords(User user)
@@ -79,22 +79,24 @@ namespace Obligatorio1_DA1.Domain
             this._passwords.Remove(password);
         }
 
-        public List<Item> GetBreachedItems(string dataBreach, User currentUser)
+        public List<Item> GetBreachedItems(string dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
             string[] splittedDataBreach = dataBreach.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
-                    if (pass.Pass == splittedDataBreach[i] && pass.User == currentUser)
+                    //Redefinir equals de user
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCards)
-                    if (card.Number == splittedDataBreach[i] && card.User == currentUser)
+                    //aca tmb
+                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
                         breachedItems.Add(card);
             }
             return breachedItems;
         }
-
+      
         public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
             List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
@@ -134,6 +136,24 @@ namespace Obligatorio1_DA1.Domain
         {
             List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color);
             return passwords;
+          
+        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
+        {
+            foreach (Category categoryIterator in CurrentUser.Categories)
+            {
+                if (categoryIterator.Equals(oldCategory))
+                    categoryIterator.Name = newCategory.Name;
+            }
+        }
+
+        public List<CreditCard> GetCreditCards()
+        {
+            return this._creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
+        }
+
+        public void DeleteCreditCard(CreditCard card)
+        {
+            this._creditCards.Remove(card);
         }
     }
 }

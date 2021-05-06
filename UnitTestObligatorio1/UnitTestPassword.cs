@@ -43,6 +43,7 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
+                _passwordManager.CreateUser(_user);
             }
             catch (Exception ex)
             {
@@ -55,7 +56,7 @@ namespace UnitTestObligatorio1
         public void GetUserPasswords()
         {
             this._passwordManager.CreatePassword(this._password);
-            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.Contains(userPasswords, this._password);
         }
 
@@ -63,7 +64,7 @@ namespace UnitTestObligatorio1
         {
             this._passwordManager.CreatePassword(this._password);
             this._passwordManager.DeletePassword(this._password);
-            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, this._password);
         }
 
@@ -91,7 +92,7 @@ namespace UnitTestObligatorio1
 
             this._passwordManager.CreatePassword(this._password);
             this._passwordManager.CreatePassword(differentPassword);
-            List<Password> userPasswords = this._passwordManager.GetPasswords(this._user);
+            List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
 

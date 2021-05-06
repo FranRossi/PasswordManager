@@ -18,6 +18,10 @@ namespace Obligatorio1_DA1.Domain
                 number = value;
             }
         }
+        public string SecretNumber
+        {
+            get => ShowOnly4LastDigits();
+        }
         public string SecureCode { get; set; }
         public string ExpirationDate { get; set; }
 

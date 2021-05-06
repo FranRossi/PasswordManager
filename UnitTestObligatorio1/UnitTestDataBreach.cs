@@ -29,6 +29,7 @@ namespace UnitTestObligatorio1
                 Name = "Gonzalo",
                 Pass = "HolaSoyGonzalo123"
             };
+            _passwordManager.CreateUser(_currentUser);
         }
 
         [TestMethod]
@@ -36,7 +37,7 @@ namespace UnitTestObligatorio1
         {
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            List<Item> breachResult = _passwordManager.GetBreachedItems(_passwordDataBreach, _currentUser);
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_passwordDataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
         }
 
@@ -45,7 +46,7 @@ namespace UnitTestObligatorio1
         {
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
-            List<Item> breachResult = _passwordManager.GetBreachedItems(_credtiCardDataBreach, _currentUser);
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_credtiCardDataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedCardList);
         }
 
@@ -56,7 +57,7 @@ namespace UnitTestObligatorio1
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
             breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
-            List<Item> breachResult = _passwordManager.GetBreachedItems(_itemDataBreach, _currentUser);
+            List<Item> breachResult = _passwordManager.GetBreachedItems(_itemDataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedItems);
         }
 
