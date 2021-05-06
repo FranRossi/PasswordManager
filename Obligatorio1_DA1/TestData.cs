@@ -65,7 +65,7 @@ namespace Obligatorio1_DA1
             this._passwordManager.Login(userName, userName);
             Password newPassword = new Password
             {
-                User = this._passwordManager._currentUser,
+                User = this._passwordManager.CurrentUser,
                 Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
                 Site = "ort.edu.uy/" + this._random.Next(1, 100),
                 Username = "23985" + this._random.Next(1, 10),
@@ -87,10 +87,10 @@ namespace Obligatorio1_DA1
 
         private void CreateUsers()
         {
-            this._passwordManager.CreateUser("Juana", "Juana");
-            this._passwordManager.CreateUser("Pablo", "Pablo");
-            this._passwordManager.CreateUser("Mario", "Mario");
-            this._passwordManager.CreateUser("Laura", "Laura");
+            this._passwordManager.CreateUser(new User("Juana", "Juana"));
+            this._passwordManager.CreateUser(new User("Pablo", "Pablo"));
+            this._passwordManager.CreateUser(new User("Mario", "Mario"));
+            this._passwordManager.CreateUser(new User("Laura", "Laura"));
         }
 
     }

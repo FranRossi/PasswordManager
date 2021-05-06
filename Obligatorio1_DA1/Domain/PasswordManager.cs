@@ -51,7 +51,7 @@ namespace Obligatorio1_DA1.Domain
         {
             this._passwords.Add(password);
         }
-      
+
         public void CreateCategoryOnCurrentUser(Category category)
         {
             if (this.CurrentUser.Categories.Contains(category))
@@ -96,12 +96,12 @@ namespace Obligatorio1_DA1.Domain
             }
             return breachedItems;
         }
-      
+
         public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
             List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
 
-            foreach (Category category in _currentUser.Categories)
+            foreach (Category category in GetCategoriesFromCurrentUser())
             {
                 foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
                 {
@@ -136,7 +136,8 @@ namespace Obligatorio1_DA1.Domain
         {
             List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color);
             return passwords;
-          
+        }
+
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
         {
             foreach (Category categoryIterator in CurrentUser.Categories)

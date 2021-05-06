@@ -39,7 +39,9 @@ namespace UnitTestObligatorio1
             {
                 Name = "Gonzalo",
                 Pass = "HolaSoyGonzalo123"
+
             };
+            _passwordManager.CreateUser(_currentUser);
 
             AddCategoryToPasswordManager(ref _personal, "Personal");
             AddCategoryToPasswordManager(ref _work, "Work");
@@ -137,7 +139,7 @@ namespace UnitTestObligatorio1
             {
                 Name = name
             };
-            _currentUser.Categories.Add(category);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
         }
 
         private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)

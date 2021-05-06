@@ -31,9 +31,7 @@ namespace Presentation
             InitializeComponent();
             this.SetColorsLabelsAndButtons();
             this.SetColorQuantities();
-
             this.LoadChart();
-            if (this.chartPanel != null)
         }
 
 
