@@ -13,33 +13,42 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
+
+    struct colorComponent
+    {
+        public PasswordStrengthColor Color { get; set; }
+        public Label Label { get; set; }
+        public Button Button { get; set; }
+    }
     public partial class PasswordStrength : UserControl
     {
         private PasswordManager _passwordManager;
         private PasswordStrengthChart chartPanel;
+        private List<colorComponent> colorCmp;
         public PasswordStrength(PasswordManager passwordManager)
         {
             this._passwordManager = passwordManager;
             InitializeComponent();
-            this.ShowChart();
+            this.SetColorsLabelsAndButtons();
             this.SetColorQuantities();
+            this.ShowChart();
+
         }
+
 
         private void SetColorQuantities()
         {
-            Dictionary<PasswordStrengthColor, Label> labelOfColor = new Dictionary<PasswordStrengthColor, Label>();
-            labelOfColor.Add(PasswordStrengthColor.DarkGreen, lblDarkGreenQuantity);
-            labelOfColor.Add(PasswordStrengthColor.LightGreen, lblLightGreenQuantity);
-            labelOfColor.Add(PasswordStrengthColor.Yellow, lblYellowQuantity);
-            labelOfColor.Add(PasswordStrengthColor.Orange, lblOrangeQuantity);
-            labelOfColor.Add(PasswordStrengthColor.Red, lblRedQuantity);
-
-
             List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor(null);
             foreach (passwordReportByColor entry in report)
             {
-                Label lbl = labelOfColor[entry.Color];
-                lbl.Text = entry.Quantity.ToString();
+                colorComponent cmp = colorCmp.Find(component => component.Color == entry.Color);
+                int quantity = entry.Quantity;
+                cmp.Label.Text = quantity.ToString();
+                if (quantity == 0)
+                    cmp.Button.Enabled = false;
+
+
+
             }
         }
 
@@ -47,7 +56,7 @@ namespace Presentation
         {
             if (this.chartPanel == null)
             {
-                this.chartPanel = new PasswordStrengthChart(new List<Obligatorio1_DA1.Utilities.passwordReportByCategoryAndColor>());
+                this.chartPanel = new PasswordStrengthChart(this._passwordManager.GetPasswordReportByCategoryAndColor(null));
             }
             pnlChartList.Controls.Clear();
             pnlChartList.Controls.Add(chartPanel);
@@ -89,6 +98,17 @@ namespace Presentation
         private void btmShowPasswordsDarkGreen_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.DarkGreen);
+        }
+        private void SetColorsLabelsAndButtons()
+        {
+            this.colorCmp = new List<colorComponent>
+            {
+                new colorComponent{Color = PasswordStrengthColor.DarkGreen, Label = lblDarkGreenQuantity, Button = btnShowPasswordsDarkGreen },
+                new colorComponent{Color = PasswordStrengthColor.LightGreen, Label = lblLightGreenQuantity, Button = btnShowPasswordsLightGreen },
+                new colorComponent{Color = PasswordStrengthColor.Yellow, Label = lblYellowQuantity, Button = btnShowPasswordsYellow },
+                new colorComponent{Color = PasswordStrengthColor.Orange, Label = lblOrangeQuantity, Button = btnShowPasswordsOrange },
+                new colorComponent{Color = PasswordStrengthColor.Red, Label = lblRedQuantity, Button = btnShowPasswordsRed },
+        };
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Presentation.PasswordStrengthWindow
         private void InitializeComponent()
         {
             this.tblPassword = new System.Windows.Forms.DataGridView();
+            this.btmModify = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,10 +45,21 @@ namespace Presentation.PasswordStrengthWindow
             this.tblPassword.Size = new System.Drawing.Size(463, 253);
             this.tblPassword.TabIndex = 0;
             // 
+            // btmModify
+            // 
+            this.btmModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btmModify.Location = new System.Drawing.Point(300, 268);
+            this.btmModify.Name = "btmModify";
+            this.btmModify.Size = new System.Drawing.Size(138, 28);
+            this.btmModify.TabIndex = 4;
+            this.btmModify.Text = "Modificar";
+            this.btmModify.UseVisualStyleBackColor = true;
+            // 
             // PasswordListOfStrenghtColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btmModify);
             this.Controls.Add(this.tblPassword);
             this.Name = "PasswordListOfStrenghtColor";
             this.Size = new System.Drawing.Size(463, 314);
@@ -59,5 +71,6 @@ namespace Presentation.PasswordStrengthWindow
         #endregion
 
         private System.Windows.Forms.DataGridView tblPassword;
+        private System.Windows.Forms.Button btmModify;
     }
 }

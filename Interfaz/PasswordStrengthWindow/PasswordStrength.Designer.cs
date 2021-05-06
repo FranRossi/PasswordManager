@@ -42,12 +42,12 @@ namespace Presentation
             this.lblLightGreenQuantity = new System.Windows.Forms.Label();
             this.lblDarkGreenQuantity = new System.Windows.Forms.Label();
             this.lblOrangeQuantity = new System.Windows.Forms.Label();
-            this.btmShowPasswordsRed = new System.Windows.Forms.Button();
+            this.btnShowPasswordsRed = new System.Windows.Forms.Button();
             this.lblGroup = new System.Windows.Forms.Label();
-            this.btmShowPasswordsOrange = new System.Windows.Forms.Button();
-            this.btmShowPasswordsYellow = new System.Windows.Forms.Button();
-            this.btmShowPasswordsLightGreen = new System.Windows.Forms.Button();
-            this.btmShowPasswordsDarkGreen = new System.Windows.Forms.Button();
+            this.btnShowPasswordsOrange = new System.Windows.Forms.Button();
+            this.btnShowPasswordsYellow = new System.Windows.Forms.Button();
+            this.btnShowPasswordsLightGreen = new System.Windows.Forms.Button();
+            this.btnShowPasswordsDarkGreen = new System.Windows.Forms.Button();
             this.pnlChartList = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
@@ -73,12 +73,12 @@ namespace Presentation
             this.tlpColorTable.Controls.Add(this.lblLightGreenQuantity, 1, 4);
             this.tlpColorTable.Controls.Add(this.lblDarkGreenQuantity, 1, 5);
             this.tlpColorTable.Controls.Add(this.lblOrangeQuantity, 1, 2);
-            this.tlpColorTable.Controls.Add(this.btmShowPasswordsRed, 2, 1);
+            this.tlpColorTable.Controls.Add(this.btnShowPasswordsRed, 2, 1);
             this.tlpColorTable.Controls.Add(this.lblGroup, 0, 0);
-            this.tlpColorTable.Controls.Add(this.btmShowPasswordsOrange, 2, 2);
-            this.tlpColorTable.Controls.Add(this.btmShowPasswordsYellow, 2, 3);
-            this.tlpColorTable.Controls.Add(this.btmShowPasswordsLightGreen, 2, 4);
-            this.tlpColorTable.Controls.Add(this.btmShowPasswordsDarkGreen, 2, 5);
+            this.tlpColorTable.Controls.Add(this.btnShowPasswordsOrange, 2, 2);
+            this.tlpColorTable.Controls.Add(this.btnShowPasswordsYellow, 2, 3);
+            this.tlpColorTable.Controls.Add(this.btnShowPasswordsLightGreen, 2, 4);
+            this.tlpColorTable.Controls.Add(this.btnShowPasswordsDarkGreen, 2, 5);
             this.tlpColorTable.Location = new System.Drawing.Point(19, 61);
             this.tlpColorTable.Name = "tlpColorTable";
             this.tlpColorTable.RowCount = 6;
@@ -269,17 +269,17 @@ namespace Presentation
             this.lblOrangeQuantity.Text = "2";
             this.lblOrangeQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btmShowPasswordsRed
+            // btnShowPasswordsRed
             // 
-            this.btmShowPasswordsRed.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btmShowPasswordsRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowPasswordsRed.Location = new System.Drawing.Point(186, 50);
-            this.btmShowPasswordsRed.Name = "btmShowPasswordsRed";
-            this.btmShowPasswordsRed.Size = new System.Drawing.Size(73, 23);
-            this.btmShowPasswordsRed.TabIndex = 10;
-            this.btmShowPasswordsRed.Text = "Ver";
-            this.btmShowPasswordsRed.UseVisualStyleBackColor = true;
-            this.btmShowPasswordsRed.Click += new System.EventHandler(this.btmShowPasswordsRed_Click);
+            this.btnShowPasswordsRed.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnShowPasswordsRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPasswordsRed.Location = new System.Drawing.Point(186, 46);
+            this.btnShowPasswordsRed.Name = "btnShowPasswordsRed";
+            this.btnShowPasswordsRed.Size = new System.Drawing.Size(73, 32);
+            this.btnShowPasswordsRed.TabIndex = 10;
+            this.btnShowPasswordsRed.Text = "Ver";
+            this.btnShowPasswordsRed.UseVisualStyleBackColor = true;
+            this.btnShowPasswordsRed.Click += new System.EventHandler(this.btmShowPasswordsRed_Click);
             // 
             // lblGroup
             // 
@@ -297,53 +297,53 @@ namespace Presentation
             this.lblGroup.Text = "Grupo";
             this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btmShowPasswordsOrange
+            // btnShowPasswordsOrange
             // 
-            this.btmShowPasswordsOrange.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btmShowPasswordsOrange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowPasswordsOrange.Location = new System.Drawing.Point(186, 91);
-            this.btmShowPasswordsOrange.Name = "btmShowPasswordsOrange";
-            this.btmShowPasswordsOrange.Size = new System.Drawing.Size(73, 23);
-            this.btmShowPasswordsOrange.TabIndex = 14;
-            this.btmShowPasswordsOrange.Text = "Ver";
-            this.btmShowPasswordsOrange.UseVisualStyleBackColor = true;
-            this.btmShowPasswordsOrange.Click += new System.EventHandler(this.btmShowPasswordsOrange_Click);
+            this.btnShowPasswordsOrange.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnShowPasswordsOrange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPasswordsOrange.Location = new System.Drawing.Point(186, 87);
+            this.btnShowPasswordsOrange.Name = "btnShowPasswordsOrange";
+            this.btnShowPasswordsOrange.Size = new System.Drawing.Size(73, 32);
+            this.btnShowPasswordsOrange.TabIndex = 14;
+            this.btnShowPasswordsOrange.Text = "Ver";
+            this.btnShowPasswordsOrange.UseVisualStyleBackColor = true;
+            this.btnShowPasswordsOrange.Click += new System.EventHandler(this.btmShowPasswordsOrange_Click);
             // 
-            // btmShowPasswordsYellow
+            // btnShowPasswordsYellow
             // 
-            this.btmShowPasswordsYellow.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btmShowPasswordsYellow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowPasswordsYellow.Location = new System.Drawing.Point(186, 132);
-            this.btmShowPasswordsYellow.Name = "btmShowPasswordsYellow";
-            this.btmShowPasswordsYellow.Size = new System.Drawing.Size(73, 23);
-            this.btmShowPasswordsYellow.TabIndex = 15;
-            this.btmShowPasswordsYellow.Text = "Ver";
-            this.btmShowPasswordsYellow.UseVisualStyleBackColor = true;
-            this.btmShowPasswordsYellow.Click += new System.EventHandler(this.btmShowPasswordsYellow_Click);
+            this.btnShowPasswordsYellow.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnShowPasswordsYellow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPasswordsYellow.Location = new System.Drawing.Point(186, 128);
+            this.btnShowPasswordsYellow.Name = "btnShowPasswordsYellow";
+            this.btnShowPasswordsYellow.Size = new System.Drawing.Size(73, 32);
+            this.btnShowPasswordsYellow.TabIndex = 15;
+            this.btnShowPasswordsYellow.Text = "Ver";
+            this.btnShowPasswordsYellow.UseVisualStyleBackColor = true;
+            this.btnShowPasswordsYellow.Click += new System.EventHandler(this.btmShowPasswordsYellow_Click);
             // 
-            // btmShowPasswordsLightGreen
+            // btnShowPasswordsLightGreen
             // 
-            this.btmShowPasswordsLightGreen.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btmShowPasswordsLightGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowPasswordsLightGreen.Location = new System.Drawing.Point(186, 173);
-            this.btmShowPasswordsLightGreen.Name = "btmShowPasswordsLightGreen";
-            this.btmShowPasswordsLightGreen.Size = new System.Drawing.Size(73, 23);
-            this.btmShowPasswordsLightGreen.TabIndex = 16;
-            this.btmShowPasswordsLightGreen.Text = "Ver";
-            this.btmShowPasswordsLightGreen.UseVisualStyleBackColor = true;
-            this.btmShowPasswordsLightGreen.Click += new System.EventHandler(this.btmShowPasswordsLightGreen_Click);
+            this.btnShowPasswordsLightGreen.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnShowPasswordsLightGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPasswordsLightGreen.Location = new System.Drawing.Point(186, 169);
+            this.btnShowPasswordsLightGreen.Name = "btnShowPasswordsLightGreen";
+            this.btnShowPasswordsLightGreen.Size = new System.Drawing.Size(73, 32);
+            this.btnShowPasswordsLightGreen.TabIndex = 16;
+            this.btnShowPasswordsLightGreen.Text = "Ver";
+            this.btnShowPasswordsLightGreen.UseVisualStyleBackColor = true;
+            this.btnShowPasswordsLightGreen.Click += new System.EventHandler(this.btmShowPasswordsLightGreen_Click);
             // 
-            // btmShowPasswordsDarkGreen
+            // btnShowPasswordsDarkGreen
             // 
-            this.btmShowPasswordsDarkGreen.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btmShowPasswordsDarkGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowPasswordsDarkGreen.Location = new System.Drawing.Point(186, 217);
-            this.btmShowPasswordsDarkGreen.Name = "btmShowPasswordsDarkGreen";
-            this.btmShowPasswordsDarkGreen.Size = new System.Drawing.Size(73, 23);
-            this.btmShowPasswordsDarkGreen.TabIndex = 17;
-            this.btmShowPasswordsDarkGreen.Text = "Ver";
-            this.btmShowPasswordsDarkGreen.UseVisualStyleBackColor = true;
-            this.btmShowPasswordsDarkGreen.Click += new System.EventHandler(this.btmShowPasswordsDarkGreen_Click);
+            this.btnShowPasswordsDarkGreen.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnShowPasswordsDarkGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPasswordsDarkGreen.Location = new System.Drawing.Point(186, 213);
+            this.btnShowPasswordsDarkGreen.Name = "btnShowPasswordsDarkGreen";
+            this.btnShowPasswordsDarkGreen.Size = new System.Drawing.Size(73, 32);
+            this.btnShowPasswordsDarkGreen.TabIndex = 17;
+            this.btnShowPasswordsDarkGreen.Text = "Ver";
+            this.btnShowPasswordsDarkGreen.UseVisualStyleBackColor = true;
+            this.btnShowPasswordsDarkGreen.Click += new System.EventHandler(this.btmShowPasswordsDarkGreen_Click);
             // 
             // pnlChartList
             // 
@@ -409,15 +409,15 @@ namespace Presentation
         private System.Windows.Forms.Label lblDarkGreenQuantity;
         private System.Windows.Forms.Label lblLightGreenQuantity;
         private System.Windows.Forms.Label lblYellowQuantity;
-        private System.Windows.Forms.Button btmShowPasswordsRed;
+        private System.Windows.Forms.Button btnShowPasswordsRed;
         private System.Windows.Forms.Label lblRedQuantity;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblOrangeQuantity;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btmShowChart;
-        private System.Windows.Forms.Button btmShowPasswordsOrange;
-        private System.Windows.Forms.Button btmShowPasswordsYellow;
-        private System.Windows.Forms.Button btmShowPasswordsLightGreen;
-        private System.Windows.Forms.Button btmShowPasswordsDarkGreen;
+        private System.Windows.Forms.Button btnShowPasswordsOrange;
+        private System.Windows.Forms.Button btnShowPasswordsYellow;
+        private System.Windows.Forms.Button btnShowPasswordsLightGreen;
+        private System.Windows.Forms.Button btnShowPasswordsDarkGreen;
     }
 }
