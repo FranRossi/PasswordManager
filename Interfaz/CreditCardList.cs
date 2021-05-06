@@ -75,16 +75,33 @@ namespace Presentation
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedPassword();
-            _myPasswordManager.DeleteCreditCard(creditCardRow);
-            LoadTblCreditCard();
+            if (_selectedCreditCard != null)
+            {
+                _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
+                this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
+                LoadTblCreditCard();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+            }
+
         }
 
         private void btnModifiesCreditCard_Click(object sender, EventArgs e)
         {
-            CreditCard creditCardRow = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
-            Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, creditCardRow);
-            createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
-            createCreditCard.ShowDialog();
+            UpdateSelectedPassword();
+            if (_selectedCreditCard != null)
+            {
+                Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, _selectedCreditCard);
+                createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createCreditCard.ShowDialog();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+            }
+
         }
 
         private void UpdateSelectedPassword()
@@ -97,7 +114,7 @@ namespace Presentation
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                    this.lblMessage.Text = "Error al seleccionar la tarjeta.";
                 }
             }
         }
