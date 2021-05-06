@@ -15,7 +15,7 @@ namespace Presentation
     public partial class CreateCreditCard : Form
     {
         private PasswordManager _myPasswordManager;
-        private CreditCard _myCreditCard;
+        private CreditCard _myCreditCardToModify;
 
         public CreateCreditCard(PasswordManager pPasswordManager)
         {
@@ -28,7 +28,7 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            _myCreditCard = pCreditCard;
+            _myCreditCardToModify = pCreditCard;
             LoadComboBoxCategory();
             LoadFromCreditCard();
         }
@@ -41,12 +41,12 @@ namespace Presentation
 
         private void LoadFromCreditCard()
         {
-            txtName.Text = _myCreditCard.Name;
-            txtType.Text = _myCreditCard.Type;
-            txtNumber.Text = _myCreditCard.Number;
-            txtSecureCode.Text = _myCreditCard.SecureCode;
-            txtExpirationDate.Text = _myCreditCard.ExpirationDate;
-            txtNotes.Text = _myCreditCard.Notes;
+            txtName.Text = _myCreditCardToModify.Name;
+            txtType.Text = _myCreditCardToModify.Type;
+            txtNumber.Text = _myCreditCardToModify.Number;
+            txtSecureCode.Text = _myCreditCardToModify.SecureCode;
+            txtExpirationDate.Text = _myCreditCardToModify.ExpirationDate;
+            txtNotes.Text = _myCreditCardToModify.Notes;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -55,10 +55,11 @@ namespace Presentation
             {
                 try
                 {
-                    if (_myCreditCard == null)
-                        CreateNewCreditCard();
+                    CreditCard newCreditCard = CreateCreditCardObjectFormFields();
+                    if (_myCreditCardToModify == null)
+                        CreateNewCreditCard(newCreditCard);
                     else
-                        ModifyCreditCard();
+                        ModifyCreditCard(newCreditCard);
                 }
                 catch (ValidationException exception)
                 {
@@ -69,20 +70,20 @@ namespace Presentation
                 lblError.Text = "Debe seleccionar una categoría";
         }
 
-        private void ModifyCreditCard()
+        private void ModifyCreditCard(CreditCard newCreditCard)
         {
-
+            _myPasswordManager.ModifyCreditCardOnCurrentUser(_myCreditCardToModify, newCreditCard);
         }
 
-        private void CreateNewCreditCard()
+        private void CreateNewCreditCard(CreditCard newCreditCard)
         {
-            CreditCard newCreditCard = CreateCreditCardObject();
+
             _myPasswordManager.CreateCreditCard(newCreditCard);
             CloseForm();
 
         }
 
-        private CreditCard CreateCreditCardObject()
+        private CreditCard CreateCreditCardObjectFormFields()
         {
             CreditCard newCreditCard = new CreditCard
             {
