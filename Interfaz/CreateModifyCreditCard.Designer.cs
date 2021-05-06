@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation
 {
-    partial class CreateCreditCard
+    partial class CreateModifyCreditCard
     {
         /// <summary>
         /// Required designer variable.

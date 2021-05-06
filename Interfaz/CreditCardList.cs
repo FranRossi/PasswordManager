@@ -61,7 +61,7 @@ namespace Presentation
 
         private void btnAddsCreditCard_Click(object sender, EventArgs e)
         {
-            Form createCreditCard = new CreateCreditCard(_myPasswordManager);
+            Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
             createCreditCard.ShowDialog();
         }
@@ -81,7 +81,7 @@ namespace Presentation
         private void btnModifiesCreditCard_Click(object sender, EventArgs e)
         {
             CreditCard creditCardRow = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
-            Form createCreditCard = new CreateCreditCard(_myPasswordManager, creditCardRow);
+            Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, creditCardRow);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
             createCreditCard.ShowDialog();
         }

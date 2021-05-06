@@ -12,19 +12,19 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class CreateCreditCard : Form
+    public partial class CreateModifyCreditCard : Form
     {
         private PasswordManager _myPasswordManager;
         private CreditCard _myCreditCardToModify;
 
-        public CreateCreditCard(PasswordManager pPasswordManager)
+        public CreateModifyCreditCard(PasswordManager pPasswordManager)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
             LoadComboBoxCategory();
         }
 
-        public CreateCreditCard(PasswordManager pPasswordManager, CreditCard pCreditCard)
+        public CreateModifyCreditCard(PasswordManager pPasswordManager, CreditCard pCreditCard)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
