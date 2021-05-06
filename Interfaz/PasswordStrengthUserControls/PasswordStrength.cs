@@ -31,7 +31,7 @@ namespace Presentation
             InitializeComponent();
             this.SetColorsLabelsAndButtons();
             this.SetColorQuantities();
-            this.ShowChart();
+            this.LoadChart();
 
         }
 
@@ -52,27 +52,28 @@ namespace Presentation
             }
         }
 
-        private void ShowChart()
+
+        private void LoadChart()
         {
-            bool enoughtPasswordToShow = true;
-            if (this.chartPanel == null)
-            {
-                List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
-                if (report.Count() > 0)
-                    this.chartPanel = new PasswordStrengthChart(report);
-                else
-                    enoughtPasswordToShow = false;
-            }
+            bool enoughtPasswordToShow;
+            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            enoughtPasswordToShow = (report.Count() > 0);
+
             if (enoughtPasswordToShow)
             {
-                pnlChartList.Controls.Clear();
-                pnlChartList.Controls.Add(chartPanel);
+                this.chartPanel = new PasswordStrengthChart(report);
+                this.RenderChart();
             }
             else
-            {
                 btmShowChart.Enabled = false;
-            }
         }
+
+        private void RenderChart()
+        {
+            pnlChartList.Controls.Clear();
+            pnlChartList.Controls.Add(this.chartPanel);
+        }
+
         private void ShowPasswordList(PasswordStrengthColor color)
         {
             pnlChartList.Controls.Clear();
@@ -83,7 +84,7 @@ namespace Presentation
 
         private void btmShowChart_Click(object sender, EventArgs e)
         {
-            this.ShowChart();
+            this.RenderChart();
         }
 
         private void btmShowPasswordsRed_Click(object sender, EventArgs e)
