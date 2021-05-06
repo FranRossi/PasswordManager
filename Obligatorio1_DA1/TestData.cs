@@ -58,6 +58,18 @@ namespace Obligatorio1_DA1
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Facultad");
 
 
+            this.CreateNCreditCardsForUser("Juana", "Personal");
+
+        }
+
+        private void CreateNCreditCardsForUser(string userName, string category)
+        {
+            this._passwordManager.Login(userName, userName);
+
+            for (int i = 0; i < _random.Next(1, 4); i++)
+            {
+                CreateCreditCardsForCurrentUser(category, userName);
+            }
         }
 
         private void CreatePasswordOnlyPassNameAndCategory(string userName, string password, string category)
@@ -93,7 +105,7 @@ namespace Obligatorio1_DA1
             this._passwordManager.CreateUser(new User("Laura", "Laura"));
         }
 
-        private void CreateCreditCardsForJuana(string category, string userName)
+        private void CreateCreditCardsForCurrentUser(string category, string userName)
         {
             this._passwordManager.Login(userName, userName);
             CreditCard newCreditCard = new CreditCard
@@ -115,7 +127,7 @@ namespace Obligatorio1_DA1
             const long min = 1000000000000000;
             const long max = 9999999999999999;
             long randomLong = 1000000000000000 + (long)(_random.NextDouble() * (max - min)); ;
-            return randomLong
+            return randomLong;
         }
 
     }

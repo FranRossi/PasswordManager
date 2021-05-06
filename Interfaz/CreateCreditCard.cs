@@ -60,6 +60,8 @@ namespace Presentation
                         CreateNewCreditCard(newCreditCard);
                     else
                         ModifyCreditCard(newCreditCard);
+
+                    CloseForm();
                 }
                 catch (ValidationException exception)
                 {
@@ -77,10 +79,7 @@ namespace Presentation
 
         private void CreateNewCreditCard(CreditCard newCreditCard)
         {
-
             _myPasswordManager.CreateCreditCard(newCreditCard);
-            CloseForm();
-
         }
 
         private CreditCard CreateCreditCardObjectFormFields()
