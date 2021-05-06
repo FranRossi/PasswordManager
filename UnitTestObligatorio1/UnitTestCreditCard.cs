@@ -188,6 +188,36 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void DeleteACreditCardNotInPasswordManager()
+        {
+            try
+            {
+                User user = new User()
+                {
+                    Name = "Felipe",
+                    Pass = "12345",
+                };
+                user.Categories.Add(this._category);
+                CreditCard _card2 = new CreditCard
+                {
+                    User = user,
+                    Category = this._category,
+                    Name = "MasterCard Black",
+                    Type = "Master",
+                    Number = "2354678713001111",
+                    SecureCode = "111",
+                    ExpirationDate = "02/30",
+                    Notes = "Límite 400 shenn UYU"
+                };
+                this._passwordManager.DeleteCreditCard(_card2);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Expected no exception, but got: " + ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void GetCreditCardsOnlyFromCurrentUser()
         {
             User user = new User()
