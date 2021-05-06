@@ -33,6 +33,7 @@ namespace Presentation
             this.btnAddsCreditCard = new System.Windows.Forms.Button();
             this.btnDeleteCreditCard = new System.Windows.Forms.Button();
             this.btnModifiesCreditCard = new System.Windows.Forms.Button();
+            this.lblTIitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +44,7 @@ namespace Presentation
             this.tblCreditCards.AllowUserToOrderColumns = true;
             this.tblCreditCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblCreditCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblCreditCards.Location = new System.Drawing.Point(57, 99);
+            this.tblCreditCards.Location = new System.Drawing.Point(57, 137);
             this.tblCreditCards.MultiSelect = false;
             this.tblCreditCards.Name = "tblCreditCards";
             this.tblCreditCards.RowHeadersWidth = 62;
@@ -81,10 +82,22 @@ namespace Presentation
             this.btnModifiesCreditCard.UseVisualStyleBackColor = true;
             this.btnModifiesCreditCard.Click += new System.EventHandler(this.btnModifiesCreditCard_Click);
             // 
+            // lblTIitle
+            // 
+            this.lblTIitle.AutoSize = true;
+            this.lblTIitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblTIitle.Location = new System.Drawing.Point(51, 38);
+            this.lblTIitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTIitle.Name = "lblTIitle";
+            this.lblTIitle.Size = new System.Drawing.Size(266, 36);
+            this.lblTIitle.TabIndex = 4;
+            this.lblTIitle.Text = "Tarjetas de Crédito";
+            // 
             // CreditCardList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTIitle);
             this.Controls.Add(this.btnModifiesCreditCard);
             this.Controls.Add(this.btnDeleteCreditCard);
             this.Controls.Add(this.btnAddsCreditCard);
@@ -93,6 +106,7 @@ namespace Presentation
             this.Size = new System.Drawing.Size(1110, 623);
             ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -102,5 +116,6 @@ namespace Presentation
         private System.Windows.Forms.Button btnAddsCreditCard;
         private System.Windows.Forms.Button btnDeleteCreditCard;
         private System.Windows.Forms.Button btnModifiesCreditCard;
+        private System.Windows.Forms.Label lblTIitle;
     }
 }
