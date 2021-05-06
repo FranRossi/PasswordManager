@@ -24,6 +24,14 @@ namespace Presentation
             LoadComboBoxCategory();
         }
 
+        public CreateCreditCard(PasswordManager pPasswordManager, CreditCard pCreditCard)
+        {
+            InitializeComponent();
+            _myPasswordManager = pPasswordManager;
+            _myCreditCard = pCreditCard;
+            LoadComboBoxCategory();
+        }
+
         private void LoadComboBoxCategory()
         {
             cbCategory.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
