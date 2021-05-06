@@ -55,6 +55,7 @@ namespace Presentation
             {
                 try
                 {
+
                     _myCreditCard = new CreditCard
                     {
                         User = _myPasswordManager.CurrentUser,
@@ -86,10 +87,7 @@ namespace Presentation
         private Boolean CategoryIsSelectedComboBox()
 
         {
-            if (cbCategory.SelectedItem == null)
-                return false;
-
-            return true;
+            return cbCategory.SelectedItem != null;
         }
     }
 }
