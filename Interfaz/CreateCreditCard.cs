@@ -15,6 +15,8 @@ namespace Presentation
     public partial class CreateCreditCard : Form
     {
         private PasswordManager _myPasswordManager;
+        private CreditCard _myCreditCard;
+
         public CreateCreditCard(PasswordManager pPasswordManager)
         {
             InitializeComponent();
