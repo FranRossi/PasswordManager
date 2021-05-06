@@ -54,12 +54,24 @@ namespace Presentation
 
         private void ShowChart()
         {
+            bool enoughtPasswordToShow = true;
             if (this.chartPanel == null)
             {
-                this.chartPanel = new PasswordStrengthChart(this._passwordManager.GetPasswordReportByCategoryAndColor());
+                List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+                if (report.Count() > 0)
+                    this.chartPanel = new PasswordStrengthChart(report);
+                else
+                    enoughtPasswordToShow = false;
             }
-            pnlChartList.Controls.Clear();
-            pnlChartList.Controls.Add(chartPanel);
+            if (enoughtPasswordToShow)
+            {
+                pnlChartList.Controls.Clear();
+                pnlChartList.Controls.Add(chartPanel);
+            }
+            else
+            {
+                btmShowChart.Enabled = false;
+            }
         }
         private void ShowPasswordList(PasswordStrengthColor color)
         {
