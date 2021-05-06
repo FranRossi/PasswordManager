@@ -99,7 +99,7 @@ namespace UnitTestObligatorio1
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorDarkGreen()
         {
-            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.DarkGreen, _currentUser);
+            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.DarkGreen);
             CollectionAssert.AreEquivalent(darkGreenPassword, actualPasswords);
         }
         [TestMethod]

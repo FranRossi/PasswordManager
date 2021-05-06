@@ -64,7 +64,7 @@ namespace Presentation
         private void ShowPasswordList(PasswordStrengthColor color)
         {
             pnlChartList.Controls.Clear();
-            List<Password> password = this._passwordManager.GetPasswordsByColor(color, null);
+            List<Password> password = this._passwordManager.GetPasswordsByColor(color);
             UserControl passwordList = new PasswordListOfStrenghtColor(password);
             pnlChartList.Controls.Add(passwordList);
         }

@@ -12,50 +12,50 @@ namespace Obligatorio1_DA1
         private PasswordManager _passwordManager;
         private Random _random;
 
-        private User juan;
-        private User pepe;
+        private User Juana;
+        private User Pablo;
         private User mario;
         private User laura;
-        TestData(PasswordManager passwordManager)
+        public TestData(PasswordManager passwordManager)
         {
             this._passwordManager = passwordManager;
             this._random = new Random();
             this.CreateUsers();
 
-            this.CreateCategories("Juan", new string[] { "Personal", "Trabajo", "Facultad" });
-            this.CreateCategories("Pepe", new string[] { "Trabajo", "Facultad" });
+            this.CreateCategories("Juana", new string[] { "Personal", "Trabajo", "Facultad" });
+            this.CreateCategories("Pablo", new string[] { "Trabajo", "Facultad" });
             this.CreateCategories("Mario", new string[] { "Personal" });
             this.CreateCategories("Laura", new string[] { "Personal", "Facultad" });
 
             //red
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "23985023", "Personal");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "abcde876", "Personal");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "sAT4-@", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcde876", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "sAT4-@", "Personal");
             //yellow
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "14893470823575754543", "Personal");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "nethiseanthneaa", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "14893470823575754543", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "nethiseanthneaa", "Personal");
             //darkGreen
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "#stsrtARSRT2332", "Personal");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "3#@rstaAaartsaa", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Personal");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "3#@rstaAaartsaa", "Personal");
 
             //red
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "23985023", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Trabajo");
             //orange
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "239850232", "Trabajo");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "abcst333de8762", "Trabajo");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "-d4502-s--ss-3", "Trabajo");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "sT4-@234a", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "239850232", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcst333de8762", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "-d4502-s--ss-3", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "sT4-@234a", "Trabajo");
             //lightGreen
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "#AAHTNrtsrHRIISH", "Trabajo");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "148srtarst#$#@$5754543", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#AAHTNrtsrHRIISH", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "148srtarst#$#@$5754543", "Trabajo");
 
             //red
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "23985023", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Facultad");
             //orange
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "239850232", "Facultad");
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "abcst333de8762", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "239850232", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcst333de8762", "Facultad");
             //darkGreen
-            this.CreatePasswordOnlyPassNameAndCategory("Juan", "#stsrtARSRT2332", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Facultad");
 
 
         }
@@ -72,6 +72,7 @@ namespace Obligatorio1_DA1
                 Pass = password,
                 Notes = "Numero aleatorio: " + this._random.Next(1, 10)
             };
+            this._passwordManager.CreatePassword(newPassword);
         }
 
         private void CreateCategories(string userName, string[] categoriesName)
@@ -86,8 +87,8 @@ namespace Obligatorio1_DA1
 
         private void CreateUsers()
         {
-            this._passwordManager.CreateUser("Juan", "Juan");
-            this._passwordManager.CreateUser("Pepe", "Pepe");
+            this._passwordManager.CreateUser("Juana", "Juana");
+            this._passwordManager.CreateUser("Pablo", "Pablo");
             this._passwordManager.CreateUser("Mario", "Mario");
             this._passwordManager.CreateUser("Laura", "Laura");
         }

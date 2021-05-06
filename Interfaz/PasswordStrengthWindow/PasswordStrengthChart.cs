@@ -31,7 +31,7 @@ namespace Presentation.PasswordStrengthWindow
 
             foreach (passwordReportByCategoryAndColor entry in chartData)
             {
-                this.chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category, entry.Quantity);
+                this.chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
             }
         }
         private void SetPresentationColor()
