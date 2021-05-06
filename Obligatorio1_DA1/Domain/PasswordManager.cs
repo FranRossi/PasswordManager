@@ -8,7 +8,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
-        private User _currentUser;
+        public User _currentUser;
         private List<User> _users;
         private List<Password> _passwords;
         private List<CreditCard> _creditCards;
