@@ -43,7 +43,7 @@ namespace Presentation
             {
                 try
                 {
-                    CreditCard newCreditCard = new CreditCard
+                    _myCreditCard = new CreditCard
                     {
                         User = _myPasswordManager.CurrentUser,
                         Category = (Category)cbCategory.SelectedItem,
@@ -54,7 +54,7 @@ namespace Presentation
                         ExpirationDate = txtExpirationDate.Text,
                         Notes = txtNotes.Text,
                     };
-                    _myPasswordManager.CreateCreditCard(newCreditCard);
+                    _myPasswordManager.CreateCreditCard(_myCreditCard);
                     CloseForm();
 
                 }
