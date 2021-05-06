@@ -1,4 +1,5 @@
-﻿using Obligatorio1_DA1.Domain;
+﻿using Obligatorio1_DA1;
+using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         public Credentials(PasswordManager pPasswordManager)
         {
+            //TestData testData = new TestData(pPasswordManager);
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
         }

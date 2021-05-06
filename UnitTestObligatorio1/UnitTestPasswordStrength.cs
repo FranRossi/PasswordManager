@@ -148,7 +148,6 @@ namespace UnitTestObligatorio1
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
-
     }
 }
 

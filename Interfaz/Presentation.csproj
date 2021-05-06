@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,6 +83,24 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.Designer.cs">
+      <DependentUpon>PasswordListOfStrengthColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordStrengthUserControls\PasswordStrength.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PasswordStrengthUserControls\PasswordStrength.Designer.cs">
+      <DependentUpon>PasswordStrength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordStrengthUserControls\PasswordStrengthChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PasswordStrengthUserControls\PasswordStrengthChart.Designer.cs">
+      <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="PasswordList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,6 +141,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.resx">
+      <DependentUpon>PasswordListOfStrengthColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordStrengthUserControls\PasswordStrength.resx">
+      <DependentUpon>PasswordStrength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordStrengthUserControls\PasswordStrengthChart.resx">
+      <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasswordList.resx">
       <DependentUpon>PasswordList.cs</DependentUpon>

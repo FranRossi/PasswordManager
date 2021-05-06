@@ -51,7 +51,7 @@ namespace Obligatorio1_DA1.Domain
         {
             this._passwords.Add(password);
         }
-
+      
         public void CreateCategoryOnCurrentUser(Category category)
         {
             if (this.CurrentUser.Categories.Contains(category))
@@ -96,7 +96,47 @@ namespace Obligatorio1_DA1.Domain
             }
             return breachedItems;
         }
+      
+        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        {
+            List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
 
+            foreach (Category category in _currentUser.Categories)
+            {
+                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                {
+                    report.Add(new passwordReportByCategoryAndColor
+                    {
+                        Category = category,
+                        Color = color,
+                        Quantity = this.GetPasswords().Count(pass => pass.Category == category && pass.PasswordStrength == color)
+                    }
+                    );
+                }
+            }
+            return report;
+        }
+
+        public List<passwordReportByColor> GetPasswordReportByColor()
+        {
+            List<passwordReportByColor> report = new List<passwordReportByColor>();
+            foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+            {
+                report.Add(new passwordReportByColor
+                {
+                    Color = color,
+                    Quantity = this.GetPasswords().Count(pass => pass.PasswordStrength == color)
+                }
+                );
+            }
+            return report;
+        }
+
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
+        {
+            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color);
+            return passwords;
+          
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
         {
             foreach (Category categoryIterator in CurrentUser.Categories)
