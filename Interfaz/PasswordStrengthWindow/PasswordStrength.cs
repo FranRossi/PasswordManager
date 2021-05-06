@@ -38,7 +38,7 @@ namespace Presentation
 
         private void SetColorQuantities()
         {
-            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor(null);
+            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
             foreach (passwordReportByColor entry in report)
             {
                 colorComponent cmp = colorCmp.Find(component => component.Color == entry.Color);
@@ -56,7 +56,7 @@ namespace Presentation
         {
             if (this.chartPanel == null)
             {
-                this.chartPanel = new PasswordStrengthChart(this._passwordManager.GetPasswordReportByCategoryAndColor(null));
+                this.chartPanel = new PasswordStrengthChart(this._passwordManager.GetPasswordReportByCategoryAndColor());
             }
             pnlChartList.Controls.Clear();
             pnlChartList.Controls.Add(chartPanel);

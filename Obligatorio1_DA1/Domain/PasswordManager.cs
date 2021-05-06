@@ -8,6 +8,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class PasswordManager
     {
+        private User _currentUser;
         private List<User> _users;
         private List<Password> _passwords;
         private List<CreditCard> _creditCards;
@@ -24,8 +25,8 @@ namespace Obligatorio1_DA1.Domain
             User newUser = new User(name, password);
             if (_users.Exists(user => user.Name == name))
                 throw new UsernameAlreadyTakenException();
-
             _users.Add(newUser);
+            _currentUser = newUser;
         }
 
         public void Login(string name, string password)
@@ -33,7 +34,10 @@ namespace Obligatorio1_DA1.Domain
             foreach (User user in _users)
                 if (user.Name == name)
                     if (user.Pass == password)
+                    {
+                        _currentUser = user;
                         return;
+                    }
                     else
                         throw new LogInException();
             throw new LogInException();
@@ -49,9 +53,9 @@ namespace Obligatorio1_DA1.Domain
             this._creditCards.Add(creditCard);
         }
 
-        public List<Password> GetPasswords(User user)
+        public List<Password> GetPasswords()
         {
-            return this._passwords.Where(pass => pass.User == user).ToList();
+            return this._passwords.Where(pass => pass.User == _currentUser).ToList();
         }
 
         public List<Password> GetSharedPasswords(User user)
@@ -80,11 +84,11 @@ namespace Obligatorio1_DA1.Domain
             return breachedItems;
         }
 
-        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor(User currentUser)
+        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
             List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
 
-            foreach (Category category in currentUser.Categories)
+            foreach (Category category in _currentUser.Categories)
             {
                 foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
                 {
@@ -92,7 +96,7 @@ namespace Obligatorio1_DA1.Domain
                     {
                         Category = category,
                         Color = color,
-                        Quantity = this.GetPasswords(currentUser).Count(pass => pass.Category == category && pass.PasswordStrength == color)
+                        Quantity = this.GetPasswords().Count(pass => pass.Category == category && pass.PasswordStrength == color)
                     }
                     );
                 }
@@ -100,7 +104,7 @@ namespace Obligatorio1_DA1.Domain
             return report;
         }
 
-        public List<passwordReportByColor> GetPasswordReportByColor(User currentUser)
+        public List<passwordReportByColor> GetPasswordReportByColor()
         {
             List<passwordReportByColor> report = new List<passwordReportByColor>();
             foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
@@ -108,16 +112,16 @@ namespace Obligatorio1_DA1.Domain
                 report.Add(new passwordReportByColor
                 {
                     Color = color,
-                    Quantity = this.GetPasswords(currentUser).Count(pass => pass.PasswordStrength == color)
+                    Quantity = this.GetPasswords().Count(pass => pass.PasswordStrength == color)
                 }
                 );
             }
             return report;
         }
 
-        public List<Password> GetPasswordsByColor(PasswordStrengthColor color, User currentUser)
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = this.GetPasswords(currentUser).FindAll(pass => pass.PasswordStrength == color);
+            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color);
             return passwords;
         }
     }
