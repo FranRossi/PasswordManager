@@ -55,7 +55,7 @@ namespace Presentation
             {
                 try
                 {
-
+                    _myPasswordManager.DeleteCreditCard(_myCreditCard);
                     _myCreditCard = new CreditCard
                     {
                         User = _myPasswordManager.CurrentUser,
@@ -84,8 +84,8 @@ namespace Presentation
         {
             this.Close();
         }
-        private Boolean CategoryIsSelectedComboBox()
 
+        private Boolean CategoryIsSelectedComboBox()
         {
             return cbCategory.SelectedItem != null;
         }
