@@ -78,5 +78,12 @@ namespace Presentation
             LoadTblCreditCard();
         }
 
+        private void btnModifiesCreditCard_Click(object sender, EventArgs e)
+        {
+            CreditCard creditCardRow = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
+            Form createCreditCard = new CreateCreditCard(_myPasswordManager, creditCardRow);
+            createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
+            createCreditCard.ShowDialog();
+        }
     }
 }

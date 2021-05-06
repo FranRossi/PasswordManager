@@ -79,6 +79,7 @@ namespace Presentation
             this.btnModifiesCreditCard.TabIndex = 3;
             this.btnModifiesCreditCard.Text = "Modificar";
             this.btnModifiesCreditCard.UseVisualStyleBackColor = true;
+            this.btnModifiesCreditCard.Click += new System.EventHandler(this.btnModifiesCreditCard_Click);
             // 
             // CreditCardList
             // 
