@@ -19,10 +19,10 @@ namespace Presentation
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            LoadTblCreditCard();
+            LoadTblPassword();
         }
 
-        private void LoadTblCreditCard()
+        private void LoadTblPassword()
         {
             List<Password> passwords = _myPasswordManager.GetPasswords();
             tblPassword.DataSource = null;
@@ -55,18 +55,31 @@ namespace Presentation
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            UpdateSelectedPassword();
+            if (_selectedPassword != null)
+            {
+                _myPasswordManager.DeletePassword(_selectedPassword);
+                this.lblMessage.Text = "Contraseña eliminada exitosamente.";
+                LoadTblPassword();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+            }
         }
 
-        private void tblPassword_SelectionChanged(object sender, EventArgs e)
+        private void UpdateSelectedPassword()
         {
-            try
+            if (tblPassword.SelectedCells.Count > 0)
             {
-                _selectedPassword = (Password)tblPassword.SelectedRows[0].DataBoundItem;
-            }
-            catch (FormatException exception)
-            {
-                this.lblMessage.Text = "Error al seleccionar la categoria.";
+                try
+                {
+                    _selectedPassword = (Password)tblPassword.SelectedCells[0].OwningRow.DataBoundItem;
+                }
+                catch (FormatException exception)
+                {
+                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                }
             }
         }
     }

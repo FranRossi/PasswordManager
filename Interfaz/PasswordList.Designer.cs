@@ -32,11 +32,12 @@ namespace Presentation
             this.pnlList = new System.Windows.Forms.Panel();
             this.tblPassword = new System.Windows.Forms.DataGridView();
             this.lblTIitle = new System.Windows.Forms.Label();
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.btnSharedPasswords = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnModify = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSharedPasswords = new System.Windows.Forms.Button();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.pnlButtons = new System.Windows.Forms.Panel();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
             this.pnlButtons.SuspendLayout();
@@ -63,7 +64,6 @@ namespace Presentation
             this.tblPassword.RowHeadersVisible = false;
             this.tblPassword.Size = new System.Drawing.Size(753, 273);
             this.tblPassword.TabIndex = 6;
-            this.tblPassword.SelectionChanged += new System.EventHandler(this.tblPassword_SelectionChanged);
             // 
             // lblTIitle
             // 
@@ -75,34 +75,15 @@ namespace Presentation
             this.lblTIitle.TabIndex = 0;
             this.lblTIitle.Text = "Contraseñas";
             // 
-            // pnlButtons
+            // btnDelete
             // 
-            this.pnlButtons.Controls.Add(this.btnSharedPasswords);
-            this.pnlButtons.Controls.Add(this.btnAdd);
-            this.pnlButtons.Controls.Add(this.btnModify);
-            this.pnlButtons.Controls.Add(this.btnDelete);
-            this.pnlButtons.Location = new System.Drawing.Point(4, 352);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(773, 44);
-            this.pnlButtons.TabIndex = 1;
-            // 
-            // btnSharedPasswords
-            // 
-            this.btnSharedPasswords.Location = new System.Drawing.Point(347, 11);
-            this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(136, 23);
-            this.btnSharedPasswords.TabIndex = 3;
-            this.btnSharedPasswords.Text = "Contraseñas compartidas";
-            this.btnSharedPasswords.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(501, 11);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Agregar";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(686, 11);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "Eliminar";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnModify
             // 
@@ -113,15 +94,43 @@ namespace Presentation
             this.btnModify.Text = "Modificar";
             this.btnModify.UseVisualStyleBackColor = true;
             // 
-            // btnDelete
+            // btnAdd
             // 
-            this.btnDelete.Location = new System.Drawing.Point(686, 11);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 0;
-            this.btnDelete.Text = "Eliminar";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnAdd.Location = new System.Drawing.Point(501, 11);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "Agregar";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnSharedPasswords
+            // 
+            this.btnSharedPasswords.Location = new System.Drawing.Point(347, 11);
+            this.btnSharedPasswords.Name = "btnSharedPasswords";
+            this.btnSharedPasswords.Size = new System.Drawing.Size(136, 23);
+            this.btnSharedPasswords.TabIndex = 3;
+            this.btnSharedPasswords.Text = "Contraseñas compartidas";
+            this.btnSharedPasswords.UseVisualStyleBackColor = true;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(8, 20);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblMessage.TabIndex = 4;
+            // 
+            // pnlButtons
+            // 
+            this.pnlButtons.Controls.Add(this.lblMessage);
+            this.pnlButtons.Controls.Add(this.btnSharedPasswords);
+            this.pnlButtons.Controls.Add(this.btnAdd);
+            this.pnlButtons.Controls.Add(this.btnModify);
+            this.pnlButtons.Controls.Add(this.btnDelete);
+            this.pnlButtons.Location = new System.Drawing.Point(4, 352);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(773, 44);
+            this.pnlButtons.TabIndex = 1;
             // 
             // PasswordList
             // 
@@ -135,6 +144,7 @@ namespace Presentation
             this.pnlList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).EndInit();
             this.pnlButtons.ResumeLayout(false);
+            this.pnlButtons.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -143,11 +153,12 @@ namespace Presentation
 
         private System.Windows.Forms.Panel pnlList;
         private System.Windows.Forms.Label lblTIitle;
-        private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.DataGridView tblPassword;
-        private System.Windows.Forms.Button btnSharedPasswords;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnModify;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSharedPasswords;
+        private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Panel pnlButtons;
     }
 }
