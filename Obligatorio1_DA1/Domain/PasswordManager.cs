@@ -43,9 +43,20 @@ namespace Obligatorio1_DA1.Domain
             throw new LogInException();
         }
 
+        public List<Category> GetCategoriesFromCurrentUser()
+        {
+            return this._currentUser.Categories;
+        }
+
         public void CreatePassword(Password password)
         {
             this._passwords.Add(password);
+        }
+        public void CreateCategoryOnCurrentUser(Category category)
+        {
+            if (this._currentUser.Categories.Contains(category))
+                throw new Exception();
+            this._currentUser.Categories.Add(category);
         }
 
         public void CreateCreditCard(CreditCard creditCard)
