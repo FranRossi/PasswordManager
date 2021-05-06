@@ -14,14 +14,15 @@ namespace Presentation
     public partial class PasswordList : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private Password _selectedPassword;
         public PasswordList(PasswordManager pPasswordManager)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            LoadTblCreditCard();
+            LoadTblPassword();
         }
 
-        private void LoadTblCreditCard()
+        private void LoadTblPassword()
         {
             List<Password> passwords = _myPasswordManager.GetPasswords();
             tblPassword.DataSource = null;
@@ -39,7 +40,7 @@ namespace Presentation
                     case "Site":
                         column.HeaderText = "Sitio";
                         break;
-                    case "username":
+                    case "Username":
                         column.HeaderText = "Nombre de usuario";
                         break;
                     case "Category":
@@ -52,5 +53,34 @@ namespace Presentation
             }
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedPassword();
+            if (_selectedPassword != null)
+            {
+                _myPasswordManager.DeletePassword(_selectedPassword);
+                this.lblMessage.Text = "Contraseña eliminada exitosamente.";
+                LoadTblPassword();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+            }
+        }
+
+        private void UpdateSelectedPassword()
+        {
+            if (tblPassword.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedPassword = (Password)tblPassword.SelectedCells[0].OwningRow.DataBoundItem;
+                }
+                catch (FormatException exception)
+                {
+                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                }
+            }
+        }
     }
 }
