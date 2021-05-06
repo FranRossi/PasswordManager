@@ -14,6 +14,7 @@ namespace Presentation
     public partial class PasswordList : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private Password _selectedPassword;
         public PasswordList(PasswordManager pPasswordManager)
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace Presentation
                     case "Site":
                         column.HeaderText = "Sitio";
                         break;
-                    case "username":
+                    case "Username":
                         column.HeaderText = "Nombre de usuario";
                         break;
                     case "Category":
@@ -52,5 +53,21 @@ namespace Presentation
             }
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tblPassword_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _selectedPassword = (Password)tblPassword.SelectedRows[0].DataBoundItem;
+            }
+            catch (FormatException exception)
+            {
+                this.lblMessage.Text = "Error al seleccionar la categoria.";
+            }
+        }
     }
 }

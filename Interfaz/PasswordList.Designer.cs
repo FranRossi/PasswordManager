@@ -30,16 +30,16 @@ namespace Presentation
         private void InitializeComponent()
         {
             this.pnlList = new System.Windows.Forms.Panel();
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.lblTIitle = new System.Windows.Forms.Label();
             this.tblPassword = new System.Windows.Forms.DataGridView();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnModify = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.lblTIitle = new System.Windows.Forms.Label();
+            this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnSharedPasswords = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnModify = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.pnlList.SuspendLayout();
-            this.pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
+            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlList
@@ -50,27 +50,6 @@ namespace Presentation
             this.pnlList.Name = "pnlList";
             this.pnlList.Size = new System.Drawing.Size(773, 341);
             this.pnlList.TabIndex = 0;
-            // 
-            // pnlButtons
-            // 
-            this.pnlButtons.Controls.Add(this.btnSharedPasswords);
-            this.pnlButtons.Controls.Add(this.btnAdd);
-            this.pnlButtons.Controls.Add(this.btnModify);
-            this.pnlButtons.Controls.Add(this.btnDelete);
-            this.pnlButtons.Location = new System.Drawing.Point(4, 352);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(773, 44);
-            this.pnlButtons.TabIndex = 1;
-            // 
-            // lblTIitle
-            // 
-            this.lblTIitle.AutoSize = true;
-            this.lblTIitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.lblTIitle.Location = new System.Drawing.Point(3, 14);
-            this.lblTIitle.Name = "lblTIitle";
-            this.lblTIitle.Size = new System.Drawing.Size(124, 25);
-            this.lblTIitle.TabIndex = 0;
-            this.lblTIitle.Text = "Contraseñas";
             // 
             // tblPassword
             // 
@@ -84,24 +63,37 @@ namespace Presentation
             this.tblPassword.RowHeadersVisible = false;
             this.tblPassword.Size = new System.Drawing.Size(753, 273);
             this.tblPassword.TabIndex = 6;
+            this.tblPassword.SelectionChanged += new System.EventHandler(this.tblPassword_SelectionChanged);
             // 
-            // btnDelete
+            // lblTIitle
             // 
-            this.btnDelete.Location = new System.Drawing.Point(686, 11);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 0;
-            this.btnDelete.Text = "Eliminar";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.lblTIitle.AutoSize = true;
+            this.lblTIitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblTIitle.Location = new System.Drawing.Point(3, 14);
+            this.lblTIitle.Name = "lblTIitle";
+            this.lblTIitle.Size = new System.Drawing.Size(124, 25);
+            this.lblTIitle.TabIndex = 0;
+            this.lblTIitle.Text = "Contraseñas";
             // 
-            // btnModify
+            // pnlButtons
             // 
-            this.btnModify.Location = new System.Drawing.Point(591, 11);
-            this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(75, 23);
-            this.btnModify.TabIndex = 1;
-            this.btnModify.Text = "Modificar";
-            this.btnModify.UseVisualStyleBackColor = true;
+            this.pnlButtons.Controls.Add(this.btnSharedPasswords);
+            this.pnlButtons.Controls.Add(this.btnAdd);
+            this.pnlButtons.Controls.Add(this.btnModify);
+            this.pnlButtons.Controls.Add(this.btnDelete);
+            this.pnlButtons.Location = new System.Drawing.Point(4, 352);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(773, 44);
+            this.pnlButtons.TabIndex = 1;
+            // 
+            // btnSharedPasswords
+            // 
+            this.btnSharedPasswords.Location = new System.Drawing.Point(347, 11);
+            this.btnSharedPasswords.Name = "btnSharedPasswords";
+            this.btnSharedPasswords.Size = new System.Drawing.Size(136, 23);
+            this.btnSharedPasswords.TabIndex = 3;
+            this.btnSharedPasswords.Text = "Contraseñas compartidas";
+            this.btnSharedPasswords.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
@@ -112,14 +104,24 @@ namespace Presentation
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
-            // btnSharedPasswords
+            // btnModify
             // 
-            this.btnSharedPasswords.Location = new System.Drawing.Point(347, 11);
-            this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(136, 23);
-            this.btnSharedPasswords.TabIndex = 3;
-            this.btnSharedPasswords.Text = "Contraseñas compartidas";
-            this.btnSharedPasswords.UseVisualStyleBackColor = true;
+            this.btnModify.Location = new System.Drawing.Point(591, 11);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(75, 23);
+            this.btnModify.TabIndex = 1;
+            this.btnModify.Text = "Modificar";
+            this.btnModify.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(686, 11);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "Eliminar";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // PasswordList
             // 
@@ -131,8 +133,8 @@ namespace Presentation
             this.Size = new System.Drawing.Size(780, 399);
             this.pnlList.ResumeLayout(false);
             this.pnlList.PerformLayout();
-            this.pnlButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).EndInit();
+            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
