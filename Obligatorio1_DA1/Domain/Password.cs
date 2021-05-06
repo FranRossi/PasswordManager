@@ -246,6 +246,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void ShareWithUser(User userShareWith)
         {
+            // TODO why this if? can userShareWIth be null?
             if (this.ShareWith == null)
             {
                 this.ShareWith = new List<User>();
@@ -257,6 +258,10 @@ namespace Obligatorio1_DA1.Domain
             this.ShareWith.Add(userShareWith);
         }
 
+        public List<User> GetUsersSharedWith()
+        {
+            return this.ShareWith;
+        }
     }
 
 
