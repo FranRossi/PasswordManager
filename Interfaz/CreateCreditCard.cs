@@ -71,7 +71,7 @@ namespace Presentation
 
         private void ModifyCreditCard()
         {
-            throw new NotImplementedException();
+
         }
 
         private void CreateNewCreditCard()
