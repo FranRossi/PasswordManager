@@ -89,6 +89,12 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordsSharedWithMe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PasswordsSharedWithMe.Designer.cs">
+      <DependentUpon>PasswordsSharedWithMe.cs</DependentUpon>
+    </Compile>
     <Compile Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordsSharedWithMe.resx">
+      <DependentUpon>PasswordsSharedWithMe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.resx">
       <DependentUpon>PasswordListOfStrengthColor.cs</DependentUpon>

@@ -11,18 +11,19 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class PasswordsSharedWithMe : Form
+    public partial class PasswordsSharedWithMe : UserControl
     {
         private PasswordManager _myPasswordManager;
         public PasswordsSharedWithMe(PasswordManager pPasswordManager)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
+            LoadTblPassword();
         }
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = _myPasswordManager.GetPasswords();
+            List<Password> passwords = _myPasswordManager.GetSharedPasswordsWithCurrentUser();
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
@@ -40,6 +41,9 @@ namespace Presentation
                         break;
                     case "Username":
                         column.HeaderText = "Nombre de usuario";
+                        break;
+                    case "CategorySharedWithMe":
+                        column.HeaderText = "Categoria";
                         break;
                     default:
                         column.Visible = false;

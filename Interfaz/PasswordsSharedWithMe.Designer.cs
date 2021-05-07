@@ -44,7 +44,7 @@ namespace Presentation
             this.pnlList.Controls.Add(this.lblTIitle);
             this.pnlList.Location = new System.Drawing.Point(3, 2);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(679, 406);
+            this.pnlList.Size = new System.Drawing.Size(780, 399);
             this.pnlList.TabIndex = 1;
             // 
             // tblPassword
@@ -59,8 +59,9 @@ namespace Presentation
             this.tblPassword.Name = "tblPassword";
             this.tblPassword.ReadOnly = true;
             this.tblPassword.RowHeadersVisible = false;
+            this.tblPassword.RowTemplate.DefaultCellStyle.NullValue = "Compartida conmigo";
             this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblPassword.Size = new System.Drawing.Size(660, 343);
+            this.tblPassword.Size = new System.Drawing.Size(768, 343);
             this.tblPassword.TabIndex = 6;
             // 
             // lblTIitle
@@ -75,8 +76,8 @@ namespace Presentation
             // 
             // CategorySharedWithMe
             // 
-            this.CategorySharedWithMe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.NullValue = "Compartida Conmigo";
+            this.CategorySharedWithMe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.NullValue = "Compartida conmigo";
             this.CategorySharedWithMe.DefaultCellStyle = dataGridViewCellStyle1;
             this.CategorySharedWithMe.HeaderText = "Categoria";
             this.CategorySharedWithMe.Name = "CategorySharedWithMe";
@@ -86,10 +87,9 @@ namespace Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 411);
             this.Controls.Add(this.pnlList);
             this.Name = "PasswordsSharedWithMe";
-            this.Text = "Contraseñas compartidas";
+            this.Size = new System.Drawing.Size(790, 411);
             this.pnlList.ResumeLayout(false);
             this.pnlList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).EndInit();
