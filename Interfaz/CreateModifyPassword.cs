@@ -47,14 +47,11 @@ namespace Presentation
             {
                 try
                 {
-                    CreditCard newPassword = CreatePasswordObjectFormFields();
+                    Password newPassword = CreatePasswordObjectFormFields();
                     if (_myPasswordToModify == null)
                         CreateNewPassword(newPassword);
                     else
-                        ModifyCreditCard(newPassword);
-
-                    CloseForm();
-
+                        ModifyPassword(newPassword);
 
                     CloseForm();
 
@@ -66,6 +63,11 @@ namespace Presentation
             }
             else
                 lblError.Text = "Debe seleccionar una categoría";
+        }
+
+        private void ModifyPassword(Password newPassword)
+        {
+            throw new NotImplementedException();
         }
 
         private void CreateNewPassword(Password newPassword)
