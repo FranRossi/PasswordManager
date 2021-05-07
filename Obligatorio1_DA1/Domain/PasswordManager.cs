@@ -42,14 +42,10 @@ namespace Obligatorio1_DA1.Domain
             throw new LogInException();
         }
 
+
         public List<Category> GetCategoriesFromCurrentUser()
         {
             return this.CurrentUser.Categories;
-        }
-
-        public void CreatePassword(Password password)
-        {
-            this._passwords.Add(password);
         }
 
         public void CreateCategoryOnCurrentUser(Category category)
@@ -59,9 +55,18 @@ namespace Obligatorio1_DA1.Domain
             this.CurrentUser.Categories.Add(category);
         }
 
-        public void CreateCreditCard(CreditCard creditCard)
+        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
         {
-            this._creditCards.Add(creditCard);
+            foreach (Category categoryIterator in CurrentUser.Categories)
+            {
+                if (categoryIterator.Equals(oldCategory))
+                    categoryIterator.Name = newCategory.Name;
+            }
+        }
+
+        public void CreatePassword(Password password)
+        {
+            this._passwords.Add(password);
         }
 
         public List<Password> GetPasswords()
@@ -77,24 +82,6 @@ namespace Obligatorio1_DA1.Domain
         public void DeletePassword(Password password)
         {
             this._passwords.Remove(password);
-        }
-
-        public List<Item> GetBreachedItems(string dataBreach)
-        {
-            List<Item> breachedItems = new List<Item>();
-            string[] splittedDataBreach = dataBreach.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            for (int i = 0; i < splittedDataBreach.Length; i++)
-            {
-                foreach (Password pass in _passwords)
-                    //Redefinir equals de user
-                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
-                        breachedItems.Add(pass);
-                foreach (CreditCard card in _creditCards)
-                    //aca tmb
-                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
-                        breachedItems.Add(card);
-            }
-            return breachedItems;
         }
 
         public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
@@ -138,13 +125,11 @@ namespace Obligatorio1_DA1.Domain
             return passwords;
         }
 
-        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
+
+
+        public void CreateCreditCard(CreditCard creditCard)
         {
-            foreach (Category categoryIterator in CurrentUser.Categories)
-            {
-                if (categoryIterator.Equals(oldCategory))
-                    categoryIterator.Name = newCategory.Name;
-            }
+            this._creditCards.Add(creditCard);
         }
 
         public List<CreditCard> GetCreditCards()
@@ -172,6 +157,25 @@ namespace Obligatorio1_DA1.Domain
                     creditCardIterator.Type = newCreditCard.Type;
                 }
             }
+        }
+
+
+        public List<Item> GetBreachedItems(string dataBreach)
+        {
+            List<Item> breachedItems = new List<Item>();
+            string[] splittedDataBreach = dataBreach.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            for (int i = 0; i < splittedDataBreach.Length; i++)
+            {
+                foreach (Password pass in _passwords)
+                    //Redefinir equals de user
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
+                        breachedItems.Add(pass);
+                foreach (CreditCard card in _creditCards)
+                    //aca tmb
+                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
+                        breachedItems.Add(card);
+            }
+            return breachedItems;
         }
     }
 }

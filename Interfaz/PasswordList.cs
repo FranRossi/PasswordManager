@@ -85,7 +85,7 @@ namespace Presentation
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form createPassword = new CreatePassword(_myPasswordManager);
+            Form createPassword = new CreateModifyPassword(_myPasswordManager);
             createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
             createPassword.ShowDialog();
         }
@@ -100,7 +100,7 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                Form createCreditCard = new CreatePassword(_myPasswordManager, _selectedPassword);
+                Form createCreditCard = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
                 createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
                 createCreditCard.ShowDialog();
             }
