@@ -44,6 +44,7 @@ namespace UnitTestObligatorio1
                     Notes = "No me roben la cuenta"
                 };
                 _passwordManager.CreateUser(_user);
+                _passwordManager.CreatePassword(_password);
             }
             catch (Exception ex)
             {
@@ -440,6 +441,7 @@ namespace UnitTestObligatorio1
             List<Password> passwords = this._passwordManager.GetPasswords();
             CollectionAssert.Contains(passwords, newPassword);
         }
+
     }
 
 

@@ -85,6 +85,21 @@ namespace Obligatorio1_DA1.Domain
             this._passwords.Remove(password);
         }
 
+        public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
+        {
+            foreach (Password passwordIterator in this.GetPasswords())
+            {
+                if (passwordIterator.Equals(oldPassword))
+                {
+                    passwordIterator.Username = newPassword.Username;
+                    passwordIterator.Pass = newPassword.Pass;
+                    passwordIterator.Category = newPassword.Category;
+                    passwordIterator.Site = newPassword.Site;
+                    passwordIterator.Notes = newPassword.Notes;
+                }
+            }
+        }
+
         public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
             List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
@@ -178,5 +193,7 @@ namespace Obligatorio1_DA1.Domain
             }
             return breachedItems;
         }
+
+
     }
 }

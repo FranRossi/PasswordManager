@@ -236,6 +236,29 @@ namespace Obligatorio1_DA1.Domain
             this.ShareWith.Add(userShareWith);
         }
 
+
+        public override bool Equals(object obj)
+        {
+            Password passwordToCompare;
+            try
+            {
+                passwordToCompare = (Password)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return CheckEqualityofPassword(passwordToCompare, this);
+        }
+
+        private bool CheckEqualityofPassword(Password passwordToCompare, Password password)
+        {
+            bool passAreEqual = passwordToCompare.Pass == password.Pass;
+            bool userNameAreEqual = passwordToCompare.Username == password.Username;
+            bool siteAreEqual = passwordToCompare.Site == password.Site;
+
+            return (passAreEqual && userNameAreEqual && siteAreEqual);
+        }
     }
 
 
