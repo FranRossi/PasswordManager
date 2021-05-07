@@ -86,8 +86,8 @@ namespace UnitTestObligatorio1
             {
                 User = differentUser,
                 Category = categoryPersonal,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "www.google.com",
+                Username = "123456",
                 Pass = "239850Ort2019"
             };
 
@@ -279,7 +279,7 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "ort.edu.uy",
+                Site = "www.google.com",
                 Username = "239850",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
@@ -289,7 +289,6 @@ namespace UnitTestObligatorio1
             this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.Contains(sharedWithUser, passwordToShare);
-
         }
 
 
@@ -350,8 +349,8 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "www.google.com",
+                Username = "123456",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
@@ -363,7 +362,7 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "trello.com",
+                Site = "miami.com",
                 Username = "josesito",
                 Pass = "239850Jose2019"
             };
@@ -414,8 +413,8 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "www.google.com",
+                Username = "123456",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
