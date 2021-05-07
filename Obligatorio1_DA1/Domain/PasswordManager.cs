@@ -156,5 +156,12 @@ namespace Obligatorio1_DA1.Domain
         {
             this._creditCards.Remove(card);
         }
+
+        public List<User> GetUsersPassNotSharedWith(Password password)
+        {
+            List<User> usersNotShareWith = this._users.Except(password.GetUsersSharedWith()).ToList();
+            usersNotShareWith.Remove(CurrentUser);
+            return usersNotShareWith;
+        }
     }
 }
