@@ -28,7 +28,6 @@ namespace Presentation
         private void setSelectedPassoword()
         {
             tblPassword.ClearSelection();
-            lblPassword.Text = _selectedPassword.Site;
             foreach (DataGridViewRow row in tblPassword.Rows)
             {
                 Password pass = (Password)row.DataBoundItem;
