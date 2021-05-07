@@ -67,7 +67,7 @@ namespace Presentation
 
         private void ModifyPassword(Password newPassword)
         {
-            throw new NotImplementedException();
+            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify, newPassword);
         }
 
         private void CreateNewPassword(Password newPassword)
