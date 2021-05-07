@@ -28,7 +28,8 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateNumber(string number)
         {
-            if (!Validator.StringIsExactlyThisLong(16, number))
+            const int creditCardCorrectLength = 16;
+            if (!Validator.StringIsExactlyThisLong(creditCardCorrectLength, number))
                 throw new NumberCardLengthIncorrect();
             if (!Validator.NumberCardOnlyDigits(number))
                 throw new NumberCardInvalidCharacters();
@@ -42,7 +43,8 @@ namespace Obligatorio1_DA1.Domain
 
         private string ConvertCardNumberIntoSecretNumber(string numberCard)
         {
-            string secretNumber = numberCard.Substring(14);
+            const int creditCardLast4DigitsPosition = 14;
+            string secretNumber = numberCard.Substring(creditCardLast4DigitsPosition);
             return secretNumber.Insert(0, "XXXX XXXX XXXX");
         }
 
@@ -61,6 +63,20 @@ namespace Obligatorio1_DA1.Domain
             }
             return numberCardWithoutSpaces;
 
+        }
+
+        public override bool Equals(object obj)
+        {
+            CreditCard creditCardToCompare;
+            try
+            {
+                creditCardToCompare = (CreditCard)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return creditCardToCompare.Number == this.Number;
         }
 
 

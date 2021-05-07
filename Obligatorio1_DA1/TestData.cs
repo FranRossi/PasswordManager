@@ -58,6 +58,18 @@ namespace Obligatorio1_DA1
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Facultad");
 
 
+            this.CreateNCreditCardsForUser("Juana", "Personal");
+
+        }
+
+        private void CreateNCreditCardsForUser(string userName, string category)
+        {
+            this._passwordManager.Login(userName, userName);
+
+            for (int i = 0; i < _random.Next(1, 4); i++)
+            {
+                CreateCreditCardsForCurrentUser(category, userName);
+            }
         }
 
         private void CreatePasswordOnlyPassNameAndCategory(string userName, string password, string category)
@@ -91,6 +103,31 @@ namespace Obligatorio1_DA1
             this._passwordManager.CreateUser(new User("Pablo", "Pablo"));
             this._passwordManager.CreateUser(new User("Mario", "Mario"));
             this._passwordManager.CreateUser(new User("Laura", "Laura"));
+        }
+
+        private void CreateCreditCardsForCurrentUser(string category, string userName)
+        {
+            this._passwordManager.Login(userName, userName);
+            CreditCard newCreditCard = new CreditCard
+            {
+                User = _passwordManager.CurrentUser,
+                Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = RandomCreditCardNumber().ToString(),
+                SecureCode = this._random.Next(100, 999).ToString(),
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.CreateCreditCard(newCreditCard);
+        }
+
+        private long RandomCreditCardNumber()
+        {
+            const long min = 1000000000000000;
+            const long max = 9999999999999999;
+            long randomLong = 1000000000000000 + (long)(_random.NextDouble() * (max - min)); ;
+            return randomLong;
         }
 
     }

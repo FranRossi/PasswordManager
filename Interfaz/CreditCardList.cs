@@ -14,6 +14,7 @@ namespace Presentation
     public partial class CreditCardList : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private CreditCard _selectedCreditCard;
         public CreditCardList(PasswordManager pPasswordManager)
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace Presentation
 
         private void btnAddsCreditCard_Click(object sender, EventArgs e)
         {
-            Form createCreditCard = new CreateCreditCard(_myPasswordManager);
+            Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
             createCreditCard.ShowDialog();
         }
@@ -73,9 +74,49 @@ namespace Presentation
 
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)
         {
-            CreditCard creditCardRow = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
-            _myPasswordManager.DeleteCreditCard(creditCardRow);
-            LoadTblCreditCard();
+            UpdateSelectedPassword();
+            if (_selectedCreditCard != null)
+            {
+                _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
+                this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
+                LoadTblCreditCard();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+            }
+
+        }
+
+        private void btnModifiesCreditCard_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedPassword();
+            if (_selectedCreditCard != null)
+            {
+                Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, _selectedCreditCard);
+                createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createCreditCard.ShowDialog();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+            }
+
+        }
+
+        private void UpdateSelectedPassword()
+        {
+            if (tblCreditCards.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedCreditCard = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
+                }
+                catch (FormatException exception)
+                {
+                    this.lblMessage.Text = "Error al seleccionar la tarjeta.";
+                }
+            }
         }
 
     }

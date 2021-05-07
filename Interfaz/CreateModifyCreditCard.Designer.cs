@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation
 {
-    partial class CreateCreditCard
+    partial class CreateModifyCreditCard
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@ namespace Presentation
         {
             this.pnlCreditCard = new System.Windows.Forms.Panel();
             this.gpbCreditCard = new System.Windows.Forms.GroupBox();
+            this.lblError = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
             this.txtNotes = new System.Windows.Forms.RichTextBox();
             this.lblNotes = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@ namespace Presentation
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblCreditCard = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
             this.pnlCreditCard.SuspendLayout();
             this.gpbCreditCard.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +85,14 @@ namespace Presentation
             this.gpbCreditCard.Size = new System.Drawing.Size(433, 518);
             this.gpbCreditCard.TabIndex = 1;
             this.gpbCreditCard.TabStop = false;
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Location = new System.Drawing.Point(28, 468);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 20);
+            this.lblError.TabIndex = 16;
             // 
             // btnAccept
             // 
@@ -218,14 +226,6 @@ namespace Presentation
             this.lblCreditCard.Size = new System.Drawing.Size(58, 20);
             this.lblCreditCard.TabIndex = 0;
             this.lblCreditCard.Text = "Tarjeta";
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(28, 468);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 20);
-            this.lblError.TabIndex = 16;
             // 
             // CreateCreditCard
             // 
