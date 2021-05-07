@@ -714,6 +714,40 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
+        [TestMethod]
+        public void UnSharePassword()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            passwordToShare.UnShareWithUser(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+        }
+
     }
 
 

@@ -266,6 +266,11 @@ namespace Obligatorio1_DA1.Domain
             }
             return this.SharedWith;
         }
+
+        public void UnShareWithUser(User userRemoveShare)
+        {
+            this.SharedWith.Remove(userRemoveShare);
+        }
     }
 
 
