@@ -472,6 +472,35 @@ namespace UnitTestObligatorio1
         }
 
 
+        [TestMethod]
+        [ExpectedException(typeof(PasswordNotBelongToCurrentUser))]
+        public void ModifyPasswordFromAnotherUser()
+        {
+            User newUser = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category newCategory = new Category()
+            {
+                Name = "NewCategory"
+            };
+            this._passwordManager.CreateUser(newUser);
+            this._passwordManager.CreateCategoryOnCurrentUser(newCategory);
+            Password newPassword = new Password
+            {
+                User = newUser,
+                Category = newCategory,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+            List<Password> passwords = this._passwordManager.GetPasswords();
+            CollectionAssert.Contains(passwords, newPassword);
+        }
+
     }
 
 
