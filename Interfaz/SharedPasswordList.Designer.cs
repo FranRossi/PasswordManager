@@ -59,7 +59,7 @@ namespace Presentation
             this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblPassword.Size = new System.Drawing.Size(437, 182);
             this.tblPassword.TabIndex = 6;
-            this.tblPassword.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblPassword_CellClick);
+            this.tblPassword.SelectionChanged += new System.EventHandler(this.tblPassword_SelectionChanged);
             // 
             // lblPassword
             // 
@@ -79,6 +79,7 @@ namespace Presentation
             this.btnUnShare.TabIndex = 0;
             this.btnUnShare.Text = "Descompartir";
             this.btnUnShare.UseVisualStyleBackColor = true;
+            this.btnUnShare.Click += new System.EventHandler(this.btnUnShare_Click);
             // 
             // btnShare
             // 
@@ -88,6 +89,7 @@ namespace Presentation
             this.btnShare.TabIndex = 2;
             this.btnShare.Text = "Compartir";
             this.btnShare.UseVisualStyleBackColor = true;
+            this.btnShare.Click += new System.EventHandler(this.btnShare_Click);
             // 
             // btnSharedPasswords
             // 
@@ -114,6 +116,7 @@ namespace Presentation
             this.tblSharedWith.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblSharedWith.Size = new System.Drawing.Size(158, 182);
             this.tblSharedWith.TabIndex = 7;
+            this.tblSharedWith.SelectionChanged += new System.EventHandler(this.tblSharedWith_SelectionChanged);
             // 
             // lblSharedWith
             // 
@@ -127,6 +130,7 @@ namespace Presentation
             // 
             // cbUsersNotSharedWith
             // 
+            this.cbUsersNotSharedWith.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUsersNotSharedWith.FormattingEnabled = true;
             this.cbUsersNotSharedWith.Location = new System.Drawing.Point(149, 293);
             this.cbUsersNotSharedWith.Name = "cbUsersNotSharedWith";
@@ -183,9 +187,9 @@ namespace Presentation
         private System.Windows.Forms.Button btnShare;
         private System.Windows.Forms.Button btnSharedPasswords;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbUsersNotSharedWith;
         private System.Windows.Forms.Label lblSharedWith;
         private System.Windows.Forms.DataGridView tblSharedWith;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.ComboBox cbUsersNotSharedWith;
     }
 }

@@ -15,6 +15,7 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
+        private List<User> usersNotSharedWith;
         public SharedPasswordList(PasswordManager pPasswordManager)
         {
             InitializeComponent();
@@ -53,16 +54,29 @@ namespace Presentation
                 }
             }
         }
-        private void tblPassword_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-            LoadTblSharedWith(selectedPassword);
-            LoadcbUsersNotSharedWith(selectedPassword);
-        }
 
         private void LoadcbUsersNotSharedWith(Password selectedPassword)
         {
-            throw new NotImplementedException();
+            cbUsersNotSharedWith.Items.Clear();
+            usersNotSharedWith = this._myPasswordManager.GetUsersPassNotSharedWith(selectedPassword);
+            if (usersNotSharedWith.Count == 0)
+            {
+                cbUsersNotSharedWith.Enabled = false;
+                btnShare.Enabled = false;
+            }
+            else
+                ShowcbUsersNotSharedWith(usersNotSharedWith);
+        }
+
+        private void ShowcbUsersNotSharedWith(List<User> usersNotSharedWith)
+        {
+            cbUsersNotSharedWith.Enabled = true;
+            btnShare.Enabled = true;
+            foreach (User user in usersNotSharedWith)
+            {
+                cbUsersNotSharedWith.Items.Add(user.ToString());
+            }
+            cbUsersNotSharedWith.SelectedItem = cbUsersNotSharedWith.Items[0];
         }
 
         private void LoadTblSharedWith(Password selectedPassword)
@@ -73,6 +87,7 @@ namespace Presentation
             tblSharedWith.DataSource = users;
             FormatSharedListOnTable();
             tblSharedWith.CurrentCell = null;
+            btnUnShare.Enabled = false;
         }
 
         private void FormatSharedListOnTable()
@@ -90,6 +105,35 @@ namespace Presentation
                         break;
                 }
             }
+        }
+
+        private void tblPassword_SelectionChanged(object sender, EventArgs e)
+        {
+            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
+            LoadTblSharedWith(selectedPassword);
+            LoadcbUsersNotSharedWith(selectedPassword);
+        }
+
+        private void btnShare_Click(object sender, EventArgs e)
+        {
+            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
+            int index = cbUsersNotSharedWith.SelectedIndex;
+            User selectedUser = usersNotSharedWith.ElementAt(index);
+            selectedPassword.ShareWithUser(selectedUser);
+            LoadcbUsersNotSharedWith(selectedPassword);
+            LoadTblSharedWith(selectedPassword);
+        }
+
+        private void btnUnShare_Click(object sender, EventArgs e)
+        {
+            User user = (User)tblSharedWith.CurrentRow.DataBoundItem;
+            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
+
+        }
+
+        private void tblSharedWith_SelectionChanged(object sender, EventArgs e)
+        {
+            btnUnShare.Enabled = true;
         }
 
 
