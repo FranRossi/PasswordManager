@@ -47,9 +47,10 @@ namespace Presentation
             // 
             this.pnlList.Controls.Add(this.tblPassword);
             this.pnlList.Controls.Add(this.lblTIitle);
-            this.pnlList.Location = new System.Drawing.Point(4, 4);
+            this.pnlList.Location = new System.Drawing.Point(6, 6);
+            this.pnlList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(773, 341);
+            this.pnlList.Size = new System.Drawing.Size(1160, 525);
             this.pnlList.TabIndex = 0;
             // 
             // tblPassword
@@ -58,29 +59,33 @@ namespace Presentation
             this.tblPassword.AllowUserToDeleteRows = false;
             this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblPassword.Location = new System.Drawing.Point(8, 55);
+            this.tblPassword.Location = new System.Drawing.Point(12, 85);
+            this.tblPassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tblPassword.Name = "tblPassword";
             this.tblPassword.ReadOnly = true;
             this.tblPassword.RowHeadersVisible = false;
+            this.tblPassword.RowHeadersWidth = 62;
             this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblPassword.Size = new System.Drawing.Size(753, 273);
+            this.tblPassword.Size = new System.Drawing.Size(1130, 420);
             this.tblPassword.TabIndex = 6;
             // 
             // lblTIitle
             // 
             this.lblTIitle.AutoSize = true;
             this.lblTIitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.lblTIitle.Location = new System.Drawing.Point(3, 14);
+            this.lblTIitle.Location = new System.Drawing.Point(4, 22);
+            this.lblTIitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTIitle.Name = "lblTIitle";
-            this.lblTIitle.Size = new System.Drawing.Size(124, 25);
+            this.lblTIitle.Size = new System.Drawing.Size(183, 36);
             this.lblTIitle.TabIndex = 0;
             this.lblTIitle.Text = "Contraseñas";
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(686, 11);
+            this.btnDelete.Location = new System.Drawing.Point(1029, 17);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(112, 35);
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Text = "Eliminar";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -88,18 +93,21 @@ namespace Presentation
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(591, 11);
+            this.btnModify.Location = new System.Drawing.Point(886, 17);
+            this.btnModify.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(75, 23);
+            this.btnModify.Size = new System.Drawing.Size(112, 35);
             this.btnModify.TabIndex = 1;
             this.btnModify.Text = "Modificar";
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(501, 11);
+            this.btnAdd.Location = new System.Drawing.Point(752, 17);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(112, 35);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -107,9 +115,10 @@ namespace Presentation
             // 
             // btnSharedPasswords
             // 
-            this.btnSharedPasswords.Location = new System.Drawing.Point(347, 11);
+            this.btnSharedPasswords.Location = new System.Drawing.Point(520, 17);
+            this.btnSharedPasswords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(136, 23);
+            this.btnSharedPasswords.Size = new System.Drawing.Size(204, 35);
             this.btnSharedPasswords.TabIndex = 3;
             this.btnSharedPasswords.Text = "Contraseñas compartidas";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
@@ -117,9 +126,10 @@ namespace Presentation
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(8, 20);
+            this.lblMessage.Location = new System.Drawing.Point(12, 31);
+            this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblMessage.Size = new System.Drawing.Size(0, 20);
             this.lblMessage.TabIndex = 4;
             // 
             // pnlButtons
@@ -129,19 +139,21 @@ namespace Presentation
             this.pnlButtons.Controls.Add(this.btnAdd);
             this.pnlButtons.Controls.Add(this.btnModify);
             this.pnlButtons.Controls.Add(this.btnDelete);
-            this.pnlButtons.Location = new System.Drawing.Point(4, 352);
+            this.pnlButtons.Location = new System.Drawing.Point(6, 542);
+            this.pnlButtons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(773, 44);
+            this.pnlButtons.Size = new System.Drawing.Size(1160, 68);
             this.pnlButtons.TabIndex = 1;
             // 
             // PasswordList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.pnlList);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PasswordList";
-            this.Size = new System.Drawing.Size(780, 399);
+            this.Size = new System.Drawing.Size(1170, 614);
             this.pnlList.ResumeLayout(false);
             this.pnlList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).EndInit();

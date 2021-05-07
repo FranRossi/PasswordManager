@@ -95,5 +95,19 @@ namespace Presentation
             LoadTblPassword();
         }
 
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedPassword();
+            if (_selectedPassword != null)
+            {
+                Form createCreditCard = new CreatePassword(_myPasswordManager, _selectedPassword);
+                createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createCreditCard.ShowDialog();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+            }
+        }
     }
 }
