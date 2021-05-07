@@ -54,5 +54,12 @@ namespace Presentation
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(passwordStrength);
         }
+
+        private void tsmiSharedWithMe_Click(object sender, EventArgs e)
+        {
+            UserControl passwordSharedWithMe = new PasswordsSharedWithMe(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(passwordSharedWithMe);
+        }
     }
 }

@@ -41,6 +41,7 @@ namespace Presentation
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.tsmiSharedWithMe = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +73,8 @@ namespace Presentation
             this.tsmiCreditCards,
             this.tsmiCategories,
             this.tsmiDataBreaches,
-            this.tsmiPasswordStrength});
+            this.tsmiPasswordStrength,
+            this.tsmiSharedWithMe});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -80,35 +82,35 @@ namespace Presentation
             // tsmiPasswords
             // 
             this.tsmiPasswords.Name = "tsmiPasswords";
-            this.tsmiPasswords.Size = new System.Drawing.Size(205, 22);
+            this.tsmiPasswords.Size = new System.Drawing.Size(259, 22);
             this.tsmiPasswords.Text = "Contraseñas";
             this.tsmiPasswords.Click += new System.EventHandler(this.tsmiPasswords_Click);
             // 
             // tsmiCreditCards
             // 
             this.tsmiCreditCards.Name = "tsmiCreditCards";
-            this.tsmiCreditCards.Size = new System.Drawing.Size(205, 22);
+            this.tsmiCreditCards.Size = new System.Drawing.Size(259, 22);
             this.tsmiCreditCards.Text = "Tarjetas";
             this.tsmiCreditCards.Click += new System.EventHandler(this.tsmiCreditCards_Click);
             // 
             // tsmiCategories
             // 
             this.tsmiCategories.Name = "tsmiCategories";
-            this.tsmiCategories.Size = new System.Drawing.Size(205, 22);
+            this.tsmiCategories.Size = new System.Drawing.Size(259, 22);
             this.tsmiCategories.Text = "Categorias";
             this.tsmiCategories.Click += new System.EventHandler(this.tsmiCategories_Click);
             // 
             // tsmiDataBreaches
             // 
             this.tsmiDataBreaches.Name = "tsmiDataBreaches";
-            this.tsmiDataBreaches.Size = new System.Drawing.Size(205, 22);
+            this.tsmiDataBreaches.Size = new System.Drawing.Size(259, 22);
             this.tsmiDataBreaches.Text = "Data Breach";
             this.tsmiDataBreaches.Click += new System.EventHandler(this.tsmiDataBreaches_Click);
             // 
             // tsmiPasswordStrength
             // 
             this.tsmiPasswordStrength.Name = "tsmiPasswordStrength";
-            this.tsmiPasswordStrength.Size = new System.Drawing.Size(205, 22);
+            this.tsmiPasswordStrength.Size = new System.Drawing.Size(259, 22);
             this.tsmiPasswordStrength.Text = "Fortaleza de Contraseñas";
             this.tsmiPasswordStrength.Click += new System.EventHandler(this.tsmiPasswordStrength_Click);
             // 
@@ -133,6 +135,13 @@ namespace Presentation
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(777, 26);
             this.pnlMenu.TabIndex = 5;
+            // 
+            // tsmiSharedWithMe
+            // 
+            this.tsmiSharedWithMe.Name = "tsmiSharedWithMe";
+            this.tsmiSharedWithMe.Size = new System.Drawing.Size(259, 22);
+            this.tsmiSharedWithMe.Text = "Contraseñas compartidas conmigo";
+            this.tsmiSharedWithMe.Click += new System.EventHandler(this.tsmiSharedWithMe_Click);
             // 
             // MainWindow
             // 
@@ -166,5 +175,6 @@ namespace Presentation
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSharedWithMe;
     }
 }
