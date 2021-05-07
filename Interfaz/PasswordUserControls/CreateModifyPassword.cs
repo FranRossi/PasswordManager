@@ -58,11 +58,11 @@ namespace Presentation
                 }
                 catch (ValidationException exception)
                 {
-                    lblError.Text = exception.Message;
+                    lblMessage.Text = exception.Message;
                 }
             }
             else
-                lblError.Text = "Debe seleccionar una categoría";
+                lblMessage.Text = "Debe seleccionar una categoría";
         }
 
         private void ModifyPassword(Password newPassword)
