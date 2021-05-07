@@ -271,7 +271,6 @@ namespace UnitTestObligatorio1
                 Pass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-            //userShareFrom.Categories.Add(category);
             this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password passwordToShare = new Password
             {
@@ -306,7 +305,6 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreateUser(userShareFrom);
             this._passwordManager.CreateCategoryOnCurrentUser(category);
-            //userShareFrom.Categories.Add(category);
             this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password passwordToShare = new Password
             {
@@ -342,7 +340,6 @@ namespace UnitTestObligatorio1
                 Pass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-            //userShareFrom.Categories.Add(category);
             this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password ort = new Password
             {
@@ -405,8 +402,7 @@ namespace UnitTestObligatorio1
                 Pass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-
-            //userShareFrom.Categories.Add(category);
+            
             this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password passwordToShare = new Password
             {
