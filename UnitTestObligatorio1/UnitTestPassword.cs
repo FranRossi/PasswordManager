@@ -85,8 +85,8 @@ namespace UnitTestObligatorio1
             {
                 User = differentUser,
                 Category = categoryPersonal,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "trello.com",
+                Username = "juancito",
                 Pass = "239850Ort2019"
             };
 
@@ -406,7 +406,6 @@ namespace UnitTestObligatorio1
             this._passwordManager.DeletePassword(passwordToShare);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
-
         }
 
         [TestMethod]
@@ -658,6 +657,7 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
+
         public void GetNotSharedWithAllUsers()
         {
 
@@ -748,6 +748,109 @@ namespace UnitTestObligatorio1
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
         }
 
+        [TestMethod]
+        public void PasswordEqual()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsTrue(passA.Equals(passB));
+        }
+
+        [TestMethod]
+        public void PasswordEqualityDifferentSite()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com.uy",
+                Username = "Joseph",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsFalse(passA.Equals(passB));
+        }
+
+        [TestMethod]
+        public void PasswordEqualityDifferentUsername()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph1",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph2",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsFalse(passA.Equals(passB));
+        }
+
+        [TestMethod]
+        public void PasswordEqualityDifferentUsernameAndSite()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com.uy",
+                Username = "Joseph1",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph2",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsFalse(passA.Equals(passB));
+        }
     }
 
 

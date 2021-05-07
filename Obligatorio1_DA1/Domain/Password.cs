@@ -271,6 +271,13 @@ namespace Obligatorio1_DA1.Domain
         {
             this.SharedWith.Remove(userRemoveShare);
         }
+
+        public override bool Equals(object obj)
+        {
+            bool sameSite = this.Site == ((Password)obj).Site;
+            bool sameUsername = this.username == ((Password)obj).username;
+            return sameSite && sameUsername;
+        }
     }
 
 
