@@ -63,6 +63,7 @@
     <Compile Include="Exceptions\CategoryAlreadyAddedException.cs" />
     <Compile Include="Exceptions\PasswordInvalidCharactersException.cs" />
     <Compile Include="Exceptions\NameTooLongException.cs" />
+    <Compile Include="Exceptions\PasswordNotBelongToCurrentUser.cs" />
     <Compile Include="Exceptions\PasswordTooLongException.cs" />
     <Compile Include="Exceptions\NameTooShortException.cs" />
     <Compile Include="Exceptions\PasswordTooShortException.cs" />

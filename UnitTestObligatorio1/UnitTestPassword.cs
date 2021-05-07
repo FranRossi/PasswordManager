@@ -485,20 +485,17 @@ namespace UnitTestObligatorio1
             {
                 Name = "NewCategory"
             };
-            this._passwordManager.CreateUser(newUser);
-            this._passwordManager.CreateCategoryOnCurrentUser(newCategory);
+            newUser.Categories.Add(newCategory);
             Password newPassword = new Password
             {
                 User = newUser,
                 Category = newCategory,
                 Site = "ort.edu.uy",
-                Username = "123456",
+                Username = "239850",
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password"
             };
             this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
-            List<Password> passwords = this._passwordManager.GetPasswords();
-            CollectionAssert.Contains(passwords, newPassword);
         }
 
     }

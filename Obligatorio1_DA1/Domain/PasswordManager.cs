@@ -93,6 +93,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 if (passwordIterator.Equals(oldPassword))
                 {
+                    VerifyPasswordBelongToCurrentUser(newPassword);
                     passwordIterator.Username = newPassword.Username;
                     passwordIterator.Pass = newPassword.Pass;
                     passwordIterator.Category = newPassword.Category;
@@ -100,6 +101,12 @@ namespace Obligatorio1_DA1.Domain
                     passwordIterator.Notes = newPassword.Notes;
                 }
             }
+        }
+
+        private void VerifyPasswordBelongToCurrentUser(Password oldPassword)
+        {
+            if (!(oldPassword.User.Equals(this.CurrentUser)))
+                throw new PasswordNotBelongToCurrentUser();
         }
 
         private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
