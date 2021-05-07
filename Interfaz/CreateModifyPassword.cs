@@ -35,8 +35,10 @@ namespace Presentation
 
         private void LoadFromPassword()
         {
+            txtSite.Text = _myPasswordToModify.Site;
+            txtUserName.Text = _myPasswordToModify.Username;
+            txtPassword.Text = _myPasswordToModify.Pass;
             txtNotes.Text = _myPasswordToModify.Notes;
-            txtUser.Text = _myPasswordToModify.Username;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -50,7 +52,7 @@ namespace Presentation
                         User = _myPasswordManager.CurrentUser,
                         Category = (Category)cbCategory.SelectedItem,
                         Site = txtSite.Text,
-                        Username = txtUser.Text,
+                        Username = txtUserName.Text,
                         Pass = txtPassword.Text,
                         Notes = txtNotes.Text,
                     };
