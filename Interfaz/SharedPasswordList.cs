@@ -128,44 +128,13 @@ namespace Presentation
         {
             User user = (User)tblSharedWith.CurrentRow.DataBoundItem;
             Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-
+            // descompartir 
+            LoadTblSharedWith(selectedPassword);
         }
 
         private void tblSharedWith_SelectionChanged(object sender, EventArgs e)
         {
             btnUnShare.Enabled = true;
         }
-
-
-
-        /*        private void btnDelete_Click(object sender, EventArgs e)
-                {
-                    UpdateSelectedPassword();
-                    if (_selectedPassword != null)
-                    {
-                        _myPasswordManager.DeletePassword(_selectedPassword);
-                        this.lblMessage.Text = "Contraseña eliminada exitosamente.";
-                        LoadTblPassword();
-                    }
-                    else
-                    {
-                        this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
-                    }
-                }
-
-                private void UpdateSelectedPassword()
-                {
-                    if (tblPassword.SelectedCells.Count > 0)
-                    {
-                        try
-                        {
-                            _selectedPassword = (Password)tblPassword.SelectedCells[0].OwningRow.DataBoundItem;
-                        }
-                        catch (FormatException exception)
-                        {
-                            this.lblMessage.Text = "Error al seleccionar la contraseña.";
-                        }
-                    }
-                }*/
     }
 }
