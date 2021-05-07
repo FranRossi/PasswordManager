@@ -98,6 +98,7 @@ namespace UnitTestObligatorio1
             passwordManager.CreateUser(newUser);
         }
 
+        // TODO move test to another unitTest file
         [DataRow("MaritoBaracus")]
         [DataRow("Lucia")]
         [DataRow("Pepe Gonzales Segundo")]
