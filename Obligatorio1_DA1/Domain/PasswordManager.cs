@@ -87,6 +87,8 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
         {
+            VerifyExistenceOfPasswordOnPasswordList(newPassword);
+
             foreach (Password passwordIterator in this.GetPasswords())
             {
                 if (passwordIterator.Equals(oldPassword))
@@ -98,6 +100,12 @@ namespace Obligatorio1_DA1.Domain
                     passwordIterator.Notes = newPassword.Notes;
                 }
             }
+        }
+
+        private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
+        {
+            if (this._passwords.Contains(newPassword))
+                throw new PasswordAlreadyExists();
         }
 
         public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
