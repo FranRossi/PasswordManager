@@ -32,7 +32,7 @@ namespace Presentation
             this.tblCreditCards = new System.Windows.Forms.DataGridView();
             this.btnAddsCreditCard = new System.Windows.Forms.Button();
             this.btnDeleteCreditCard = new System.Windows.Forms.Button();
-            this.btnModifiesCreditCard = new System.Windows.Forms.Button();
+            this.btnModifyCreditCard = new System.Windows.Forms.Button();
             this.lblTIitle = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).BeginInit();
@@ -73,15 +73,15 @@ namespace Presentation
             this.btnDeleteCreditCard.UseVisualStyleBackColor = true;
             this.btnDeleteCreditCard.Click += new System.EventHandler(this.btnDeleteCreditCard_Click);
             // 
-            // btnModifiesCreditCard
+            // btnModifyCreditCard
             // 
-            this.btnModifiesCreditCard.Location = new System.Drawing.Point(772, 501);
-            this.btnModifiesCreditCard.Name = "btnModifiesCreditCard";
-            this.btnModifiesCreditCard.Size = new System.Drawing.Size(85, 42);
-            this.btnModifiesCreditCard.TabIndex = 3;
-            this.btnModifiesCreditCard.Text = "Modificar";
-            this.btnModifiesCreditCard.UseVisualStyleBackColor = true;
-            this.btnModifiesCreditCard.Click += new System.EventHandler(this.btnModifiesCreditCard_Click);
+            this.btnModifyCreditCard.Location = new System.Drawing.Point(772, 501);
+            this.btnModifyCreditCard.Name = "btnModifyCreditCard";
+            this.btnModifyCreditCard.Size = new System.Drawing.Size(85, 42);
+            this.btnModifyCreditCard.TabIndex = 3;
+            this.btnModifyCreditCard.Text = "Modificar";
+            this.btnModifyCreditCard.UseVisualStyleBackColor = true;
+            this.btnModifyCreditCard.Click += new System.EventHandler(this.btnModifiesCreditCard_Click);
             // 
             // lblTIitle
             // 
@@ -108,7 +108,7 @@ namespace Presentation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblTIitle);
-            this.Controls.Add(this.btnModifiesCreditCard);
+            this.Controls.Add(this.btnModifyCreditCard);
             this.Controls.Add(this.btnDeleteCreditCard);
             this.Controls.Add(this.btnAddsCreditCard);
             this.Controls.Add(this.tblCreditCards);
@@ -125,7 +125,7 @@ namespace Presentation
         private System.Windows.Forms.DataGridView tblCreditCards;
         private System.Windows.Forms.Button btnAddsCreditCard;
         private System.Windows.Forms.Button btnDeleteCreditCard;
-        private System.Windows.Forms.Button btnModifiesCreditCard;
+        private System.Windows.Forms.Button btnModifyCreditCard;
         private System.Windows.Forms.Label lblTIitle;
         private System.Windows.Forms.Label lblMessage;
     }
