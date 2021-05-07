@@ -56,6 +56,7 @@ namespace Presentation
             // 
             this.tblPassword.AllowUserToAddRows = false;
             this.tblPassword.AllowUserToDeleteRows = false;
+            this.tblPassword.AllowUserToResizeRows = false;
             this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblPassword.Location = new System.Drawing.Point(8, 55);
