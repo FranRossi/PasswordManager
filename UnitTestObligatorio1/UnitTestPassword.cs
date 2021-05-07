@@ -252,6 +252,7 @@ namespace UnitTestObligatorio1
             };
         }
 
+        [TestMethod]
         public void ShareOnePasswordWithAnotherUser()
         {
             User userShareFrom = new User()
@@ -313,6 +314,7 @@ namespace UnitTestObligatorio1
             passwordToShare.ShareWithUser(userShareFrom);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareFrom);
         }
+        [TestMethod]
         public void ShareManyPasswordsWithAnotherUser()
         {
             List<Password> expectedPasswords = new List<Password>();
@@ -374,7 +376,7 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
 
         }
-
+        [TestMethod]
         public void DeleteSharedPassword()
         {
             User userShareFrom = new User()
