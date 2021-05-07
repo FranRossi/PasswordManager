@@ -85,14 +85,21 @@ namespace Presentation
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form createPassword = new CreatePassword(_myPasswordManager);
-            createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
-            createPassword.ShowDialog();
+            /*   Form createPassword = new CreatePassword(_myPasswordManager);
+               createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
+               createPassword.ShowDialog();*/
         }
 
         private void RefreshForm(object sender, FormClosingEventArgs e)
         {
             LoadTblPassword();
+        }
+
+        private void btnSharedPasswords_Click(object sender, EventArgs e)
+        {
+            Panel parentPanel = (Panel)this.Parent;
+            MainWindow main = (MainWindow)parentPanel.Parent;
+            main.ShowSharedPasswordList(_selectedPassword);
         }
     }
 }

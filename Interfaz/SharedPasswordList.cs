@@ -16,13 +16,31 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
         private List<User> usersNotSharedWith;
-        public SharedPasswordList(PasswordManager pPasswordManager)
+        public SharedPasswordList(PasswordManager pPasswordManager, Password selectedPassword)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
+            _selectedPassword = selectedPassword;
             LoadTblPassword();
+            setSelectedPassoword();
         }
 
+        private void setSelectedPassoword()
+        {
+            foreach (DataGridViewRow row in tblPassword.Rows)
+            {
+                /*Password rowPassword = {
+                    User = row.
+                }
+                if ((Password)row).Equals(_selectedPassword))
+                */
+                /*            if (row.Index == 2)
+                            {
+                                row.Selected = true;
+                                return;
+                            }*/
+            }
+        }
 
         private void LoadTblPassword()
         {
@@ -128,13 +146,21 @@ namespace Presentation
         {
             User user = (User)tblSharedWith.CurrentRow.DataBoundItem;
             Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-            // descompartir 
+            selectedPassword.UnShareWithUser(user);
+            LoadcbUsersNotSharedWith(selectedPassword);
             LoadTblSharedWith(selectedPassword);
         }
 
         private void tblSharedWith_SelectionChanged(object sender, EventArgs e)
         {
             btnUnShare.Enabled = true;
+        }
+
+        private void btnSharedPasswords_Click(object sender, EventArgs e)
+        {
+            Panel parentPanel = (Panel)this.Parent;
+            MainWindow main = (MainWindow)parentPanel.Parent;
+            main.ShowPasswords();
         }
     }
 }

@@ -99,6 +99,7 @@ namespace Presentation
             this.btnSharedPasswords.TabIndex = 3;
             this.btnSharedPasswords.Text = "Volver a Lista de Constraseñas";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
+            this.btnSharedPasswords.Click += new System.EventHandler(this.btnSharedPasswords_Click);
             // 
             // tblSharedWith
             // 

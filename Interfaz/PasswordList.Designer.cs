@@ -113,6 +113,7 @@ namespace Presentation
             this.btnSharedPasswords.TabIndex = 3;
             this.btnSharedPasswords.Text = "Contraseñas compartidas";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
+            this.btnSharedPasswords.Click += new System.EventHandler(this.btnSharedPasswords_Click);
             // 
             // lblMessage
             // 
