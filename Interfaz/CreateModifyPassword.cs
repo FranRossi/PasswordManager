@@ -47,16 +47,15 @@ namespace Presentation
             {
                 try
                 {
-                    Password newPassword = new Password
-                    {
-                        User = _myPasswordManager.CurrentUser,
-                        Category = (Category)cbCategory.SelectedItem,
-                        Site = txtSite.Text,
-                        Username = txtUserName.Text,
-                        Pass = txtPassword.Text,
-                        Notes = txtNotes.Text,
-                    };
-                    _myPasswordManager.CreatePassword(newPassword);
+                    CreditCard newPassword = CreatePasswordObjectFormFields();
+                    if (_myPasswordToModify == null)
+                        CreateNewPassword(newPassword);
+                    else
+                        ModifyCreditCard(newPassword);
+
+                    CloseForm();
+
+
                     CloseForm();
 
                 }
@@ -67,6 +66,26 @@ namespace Presentation
             }
             else
                 lblError.Text = "Debe seleccionar una categoría";
+        }
+
+        private void CreateNewPassword(Password newPassword)
+        {
+            _myPasswordManager.CreatePassword(newPassword);
+        }
+
+        private Password CreatePasswordObjectFormFields()
+        {
+            Password newPassword = new Password
+            {
+                User = _myPasswordManager.CurrentUser,
+                Category = (Category)cbCategory.SelectedItem,
+                Site = txtSite.Text,
+                Username = txtUserName.Text,
+                Pass = txtPassword.Text,
+                Notes = txtNotes.Text,
+            };
+
+            return newPassword;
         }
 
         private void LoadComboBoxCategory()
