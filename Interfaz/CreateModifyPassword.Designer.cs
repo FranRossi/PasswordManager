@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation
 {
-    partial class CreatePassword
+    partial class CreateModifyPassword
     {
         /// <summary>
         /// Required designer variable.

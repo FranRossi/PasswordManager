@@ -12,14 +12,31 @@ using System.Windows.Forms;
 
 namespace Presentation
 {
-    public partial class CreatePassword : Form
+    public partial class CreateModifyPassword : Form
     {
         private PasswordManager _myPasswordManager;
-        public CreatePassword(PasswordManager pPasswordManager)
+        private Password _myPasswordToModify;
+
+        public CreateModifyPassword(PasswordManager pPasswordManager)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
             LoadComboBoxCategory();
+        }
+
+        public CreateModifyPassword(PasswordManager pPasswordManager, Password pCreditCard)
+        {
+            InitializeComponent();
+            _myPasswordManager = pPasswordManager;
+            _myPasswordToModify = pCreditCard;
+            LoadComboBoxCategory();
+            LoadFromPassword();
+        }
+
+        private void LoadFromPassword()
+        {
+            txtNotes.Text = _myPasswordToModify.Notes;
+            txtUser.Text = _myPasswordToModify.Username;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
