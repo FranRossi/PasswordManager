@@ -200,7 +200,7 @@ namespace UnitTestObligatorio1
                     Pass = "12345",
                 };
                 user.Categories.Add(this._category);
-                CreditCard _card2 = new CreditCard
+                CreditCard newCreditCard = new CreditCard
                 {
                     User = user,
                     Category = this._category,
@@ -211,7 +211,7 @@ namespace UnitTestObligatorio1
                     ExpirationDate = "02/30",
                     Notes = "Límite 400 shenn UYU"
                 };
-                this._passwordManager.DeleteCreditCard(_card2);
+                this._passwordManager.DeleteCreditCard(newCreditCard);
             }
             catch (Exception ex)
             {
