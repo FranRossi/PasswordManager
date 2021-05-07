@@ -56,6 +56,7 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\MissingFieldException.cs" />
     <Compile Include="Exceptions\InvalidItemCategoryException.cs" />
+    <Compile Include="Exceptions\PasswordAlreadyExists.cs" />
     <Compile Include="Exceptions\PasswordExceptions.cs" />
     <Compile Include="Exceptions\NumberCardInvalidCharacters.cs" />
     <Compile Include="Exceptions\NumberCardLengthIncorrect.cs" />

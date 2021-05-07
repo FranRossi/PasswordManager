@@ -444,6 +444,34 @@ namespace UnitTestObligatorio1
             CollectionAssert.Contains(passwords, newPassword);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(PasswordAlreadyExists))]
+        public void ModifyPasswordThatAlreadyExists()
+        {
+            Password passwordAlreadyOnPasswordManager = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es una nota"
+            };
+            _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
+
+            Password newPassword = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "EstoEsUnGIF",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+        }
+
+
     }
 
 

@@ -253,10 +253,11 @@ namespace Obligatorio1_DA1.Domain
 
         private bool CheckEqualityofPassword(Password passwordToCompare, Password password)
         {
+            bool userObjectAreEqual = passwordToCompare.User.Equals(password.User);
             bool userNameAreEqual = passwordToCompare.Username == password.Username;
             bool siteAreEqual = passwordToCompare.Site == password.Site;
 
-            return (userNameAreEqual && siteAreEqual);
+            return (userNameAreEqual && siteAreEqual && userObjectAreEqual);
         }
     }
 
