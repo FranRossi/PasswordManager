@@ -107,11 +107,11 @@ namespace Presentation
             // 
             // btnSharedPasswords
             // 
-            this.btnSharedPasswords.Location = new System.Drawing.Point(347, 11);
+            this.btnSharedPasswords.Location = new System.Drawing.Point(409, 11);
             this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(136, 23);
+            this.btnSharedPasswords.Size = new System.Drawing.Size(75, 23);
             this.btnSharedPasswords.TabIndex = 3;
-            this.btnSharedPasswords.Text = "Contraseñas compartidas";
+            this.btnSharedPasswords.Text = "Compartir";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
             this.btnSharedPasswords.Click += new System.EventHandler(this.btnSharedPasswords_Click);
             // 

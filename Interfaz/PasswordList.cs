@@ -99,6 +99,7 @@ namespace Presentation
         {
             Panel parentPanel = (Panel)this.Parent;
             MainWindow main = (MainWindow)parentPanel.Parent;
+            UpdateSelectedPassword();
             main.ShowSharedPasswordList(_selectedPassword);
         }
     }

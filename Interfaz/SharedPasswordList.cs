@@ -27,18 +27,16 @@ namespace Presentation
 
         private void setSelectedPassoword()
         {
+            tblPassword.ClearSelection();
+            lblPassword.Text = _selectedPassword.Site;
             foreach (DataGridViewRow row in tblPassword.Rows)
             {
-                /*Password rowPassword = {
-                    User = row.
+                Password pass = (Password)row.DataBoundItem;
+                if (pass.Equals(_selectedPassword))
+                {
+                    tblPassword.CurrentCell = row.Cells[1];
+                    return;
                 }
-                if ((Password)row).Equals(_selectedPassword))
-                */
-                /*            if (row.Index == 2)
-                            {
-                                row.Selected = true;
-                                return;
-                            }*/
             }
         }
 
@@ -127,9 +125,12 @@ namespace Presentation
 
         private void tblPassword_SelectionChanged(object sender, EventArgs e)
         {
-            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-            LoadTblSharedWith(selectedPassword);
-            LoadcbUsersNotSharedWith(selectedPassword);
+            if (tblPassword.CurrentRow != null)
+            {
+                Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
+                LoadTblSharedWith(selectedPassword);
+                LoadcbUsersNotSharedWith(selectedPassword);
+            }
         }
 
         private void btnShare_Click(object sender, EventArgs e)
