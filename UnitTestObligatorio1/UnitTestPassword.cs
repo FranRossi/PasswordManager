@@ -619,6 +619,33 @@ namespace UnitTestObligatorio1
             this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(PasswordAlreadyExistsException))]
+        public void CreatePasswordThatAlreadyExists()
+        {
+            Password passwordAlreadyOnPasswordManager = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es una nota"
+            };
+            _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
+
+            Password newPassword = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "EstoEsUnGIF",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.CreatePassword(newPassword);
+        }
+
 
 
 
@@ -931,6 +958,7 @@ namespace UnitTestObligatorio1
 
             Assert.IsFalse(passA.Equals(passB));
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
