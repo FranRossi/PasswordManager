@@ -248,10 +248,10 @@ namespace Obligatorio1_DA1.Domain
             {
                 return false;
             }
-            return CheckEqualityofPassword(passwordToCompare, this);
+            return CheckEqualityOfPassword(passwordToCompare, this);
         }
 
-        private bool CheckEqualityofPassword(Password passwordToCompare, Password password)
+        private bool CheckEqualityOfPassword(Password passwordToCompare, Password password)
         {
             bool userObjectAreEqual = passwordToCompare.User == password.User;
             bool userNameAreEqual = passwordToCompare.Username == password.Username;
