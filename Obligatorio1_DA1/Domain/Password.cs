@@ -190,37 +190,38 @@ namespace Obligatorio1_DA1.Domain
 
         private bool IsRedStrength(string pass)
         {
-            Regex regex = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex lengthBetween1And8Regex = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
+            return lengthBetween1And8Regex.IsMatch(pass);
         }
 
         private bool IsOrangeStrength(string pass)
         {
-            Regex regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex lengthBetween8And14Regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
+            return lengthBetween8And14Regex.IsMatch(pass);
         }
 
         private bool IsSymbol(char character)
         {
-            Regex regex = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isSymbolRegex = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
+            return isSymbolRegex.IsMatch(character.ToString());
         }
+
         private bool IsNumber(char character)
         {
-            Regex regex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isNumberRegex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
+            return isNumberRegex.IsMatch(character.ToString());
         }
 
         private bool IsUpperCase(char character)
         {
-            Regex regex = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isUpperCaseRegex = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
+            return isUpperCaseRegex.IsMatch(character.ToString());
         }
 
         private bool IsLowerCase(char character)
         {
-            Regex regex = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isLowerCaseRegex = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
+            return isLowerCaseRegex.IsMatch(character.ToString());
         }
 
         public void ShareWithUser(User userShareWith)
