@@ -21,8 +21,8 @@ namespace Obligatorio1_DA1.Utilities
 
         public static bool AsciiCharacterRangeForPassword(string text)
         {
-            Regex AllAsciiCharactersAcceptedInPasswordRegex = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
-            return AllAsciiCharactersAcceptedInPasswordRegex.IsMatch(text);
+            Regex AllCharactersAcceptedInPassword = new Regex(@"^[ -~]+$", RegexOptions.Compiled);
+            return AllCharactersAcceptedInPassword.IsMatch(text);
         }
 
         public static bool StringIsExactlyThisLong(int supposedLong, string text)
@@ -32,8 +32,8 @@ namespace Obligatorio1_DA1.Utilities
 
         public static bool NumberCardOnlyDigits(string cardNumber)
         {
-            Regex onlyNumbers16LengthRegex = new Regex(@"^[0-9]{16}", RegexOptions.Compiled);
-            return onlyNumbers16LengthRegex.IsMatch(cardNumber);
+            Regex onlyNumbers16Length = new Regex(@"^[0-9]{16}", RegexOptions.Compiled);
+            return onlyNumbers16Length.IsMatch(cardNumber);
         }
     }
 }
