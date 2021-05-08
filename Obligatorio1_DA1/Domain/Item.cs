@@ -31,7 +31,7 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 if (!this.User.Categories.Contains(value))
-                    throw new InvalidItemCategoryException();
+                    throw new ItemInvalidCategoryException();
                 this._category = value;
             }
 
@@ -44,6 +44,7 @@ namespace Obligatorio1_DA1.Domain
                 return;
             if (!Validator.MaxLengthOfString(value, Item.MaxNoteLength))
                 throw new NotesTooLongException();
+
         }
     }
 }

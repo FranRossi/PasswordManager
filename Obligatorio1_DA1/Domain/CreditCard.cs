@@ -33,7 +33,7 @@ namespace Obligatorio1_DA1.Domain
             if (!Validator.StringIsExactlyThisLong(CreditCard.creditCardLength, number))
                 throw new NumberCardLengthIncorrect();
             if (!Validator.NumberCardOnlyDigits(number))
-                throw new NumberCardInvalidCharacters();
+                throw new CreditCardNumberInvalidCharacters();
         }
 
         public string ShowOnly4LastDigits()

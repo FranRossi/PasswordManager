@@ -85,7 +85,7 @@ namespace Presentation
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form createPassword = new CreatePassword(_myPasswordManager);
+            Form createPassword = new CreateModifyPassword(_myPasswordManager);
             createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
             createPassword.ShowDialog();
         }
@@ -95,5 +95,28 @@ namespace Presentation
             LoadTblPassword();
         }
 
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedPassword();
+            if (_selectedPassword != null)
+            {
+                Form createCreditCard = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
+                createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createCreditCard.ShowDialog();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+            }
+        }
+
+
+        private void btnSharedPasswords_Click(object sender, EventArgs e)
+        {
+            Panel parentPanel = (Panel)this.Parent;
+            MainWindow main = (MainWindow)parentPanel.Parent;
+            UpdateSelectedPassword();
+            main.ShowSharedPasswordList(_selectedPassword);
+        }
     }
 }

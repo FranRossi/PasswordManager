@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using MissingFieldException = Obligatorio1_DA1.Exceptions.MissingFieldException;
 
 namespace Obligatorio1_DA1.Domain
 {
@@ -21,15 +20,18 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private List<User> _sharedWith;
+        
         public PasswordStrengthColor PasswordStrength { get; private set; }
-        public List<User> ShareWith
+        
+        private List<User> SharedWith
         {
             get => _sharedWith;
-            private set
+            set
             {
                 this._sharedWith = value;
             }
         }
+        
         public string Site
         {
             get => site;
@@ -40,6 +42,7 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
+        
         public string Username
         {
             get => username;
@@ -49,7 +52,7 @@ namespace Obligatorio1_DA1.Domain
                 username = value;
             }
         }
-
+        
         public string Pass
         {
             get => pass;
@@ -78,8 +81,8 @@ namespace Obligatorio1_DA1.Domain
                 throw new UsernameTooShortException();
             if (!Validator.MaxLengthOfString(username, Password.MaxUsernameLength))
                 throw new UsernameTooLongException();
-
         }
+        
         private void ValidatePass(string value)
         {
             if (!Validator.MinLengthOfString(value, Password.MinPasswordLength))
@@ -90,10 +93,12 @@ namespace Obligatorio1_DA1.Domain
 
         public static string GenerateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
-            if (length < 5 || length > 25)
-                throw new ArgumentException();
+            if (length > 25)
+                throw new PasswordGenerationTooLongException();
+            if (length < 5)
+                throw new PasswordGenerationTooShortException();
             if (!(uppercase || lowercase || digits || specialDigits))
-                throw new ArgumentException();
+                throw new PasswordGenerationNotSelectedCharacterTypesException();
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";
@@ -195,50 +200,90 @@ namespace Obligatorio1_DA1.Domain
 
         private bool IsRedStrength(string pass)
         {
-            Regex regex = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex lengthBetween1And8 = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
+            return lengthBetween1And8.IsMatch(pass);
         }
 
         private bool IsOrangeStrength(string pass)
         {
-            Regex regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex lengthBetween8And14 = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
+            return lengthBetween8And14.IsMatch(pass);
         }
 
         private bool IsSymbol(char character)
         {
-            Regex regex = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isSymbol = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
+            return isSymbol.IsMatch(character.ToString());
         }
+
         private bool IsNumber(char character)
         {
-            Regex regex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isNumber = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
+            return isNumber.IsMatch(character.ToString());
         }
 
         private bool IsUpperCase(char character)
         {
-            Regex regex = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isUpperCase = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
+            return isUpperCase.IsMatch(character.ToString());
         }
 
         private bool IsLowerCase(char character)
         {
-            Regex regex = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isLowerCase = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
+            return isLowerCase.IsMatch(character.ToString());
         }
 
         public void ShareWithUser(User userShareWith)
         {
-            if (this.ShareWith == null)
+            // TODO why this if? can userShareWIth be null?
+            if (this.SharedWith == null)
             {
-                this.ShareWith = new List<User>();
+                this.SharedWith = new List<User>();
             }
             if (this.User == userShareWith)
             {
                 throw new PasswordSharedWithSameUserException();
             }
-            this.ShareWith.Add(userShareWith);
+            this.SharedWith.Add(userShareWith);
+        }
+
+        public List<User> GetUsersSharedWith()
+        {
+            if (this.SharedWith == null)
+            {
+                return new List<User>();
+            }
+            return this.SharedWith;
+        }
+
+        public void UnShareWithUser(User userRemoveShare)
+        {
+            this.SharedWith.Remove(userRemoveShare);
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            Password passwordToCompare;
+            try
+            {
+                passwordToCompare = (Password)obj;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return CheckEqualityOfPassword(passwordToCompare, this);
+        }
+
+        private bool CheckEqualityOfPassword(Password passwordToCompare, Password password)
+        {
+            bool userObjectAreEqual = passwordToCompare.User == password.User;
+            bool userNameAreEqual = passwordToCompare.Username == password.Username;
+            bool siteAreEqual = passwordToCompare.Site == password.Site;
+
+            return (userNameAreEqual && siteAreEqual && userObjectAreEqual);
         }
     }
 

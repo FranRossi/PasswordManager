@@ -85,5 +85,11 @@ namespace Obligatorio1_DA1.Domain
             }
             return userToCompare.Name == this.Name;
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+      
     }
 }

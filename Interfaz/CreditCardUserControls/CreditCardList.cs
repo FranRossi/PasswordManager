@@ -74,7 +74,7 @@ namespace Presentation
 
         private void btnDeleteCreditCard_Click(object sender, EventArgs e)
         {
-            UpdateSelectedPassword();
+            UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
             {
                 _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
@@ -90,7 +90,7 @@ namespace Presentation
 
         private void btnModifiesCreditCard_Click(object sender, EventArgs e)
         {
-            UpdateSelectedPassword();
+            UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
             {
                 Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, _selectedCreditCard);
@@ -104,7 +104,7 @@ namespace Presentation
 
         }
 
-        private void UpdateSelectedPassword()
+        private void UpdateSelectedCreditCard()
         {
             if (tblCreditCards.SelectedCells.Count > 0)
             {
