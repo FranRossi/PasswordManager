@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class NameTooLongException : ValidationException
+    public class CategoryTooLongException : ValidationException
     {
-        public NameTooLongException()
+        public CategoryTooLongException()
         {
-            this.message = "El nomber ingresado es demasiado largo (max. 25 caracteres)";
+            this.message = "La categoria es demasiado larga (max. 15 caracteres). ";
         }
     }
 }

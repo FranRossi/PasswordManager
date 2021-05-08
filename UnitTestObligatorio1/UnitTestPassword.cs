@@ -123,14 +123,14 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(UsernameTooShortException))]
+        [ExpectedException(typeof(PasswordUsernameTooShortException))]
         public void CreateNewPasswordWithUsernameTooShort()
         {
             this._password.Username = "Tom";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(UsernameTooLongException))]
+        [ExpectedException(typeof(PasswordUsernameTooLongException))]
         public void CreateNewPasswordWithUsernameTooLong()
         {
             this._password.Username = "Hubert Blaine Wolfeschlegelsteinhausenbergerdorff ";
@@ -154,7 +154,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(SiteTooShortException))]
+        [ExpectedException(typeof(PasswordSiteTooShortException))]
         public void CreateNewPasswordSiteTooShort()
         {
             this._password.Site = "hi";
@@ -162,7 +162,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(SiteTooLongException))]
+        [ExpectedException(typeof(PasswordSiteTooLongException))]
         public void CreateNewSiteSiteTooLong()
         {
             this._password.Site = "htpps://wwww.harrywork.com/homepage/signup";
@@ -171,7 +171,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(NotesTooLongException))]
+        [ExpectedException(typeof(ItemNotesTooLongException))]
         public void CreateNewPasswordNotesTooLong()
         {
             this._password.Notes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
@@ -201,13 +201,32 @@ namespace UnitTestObligatorio1
             Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
 
-        [DataRow(4, true, false, false, false)]
         [DataRow(6, false, false, false, false)]
+        [DataRow(9, false, false, false, false)]
         [DataTestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "The password is too short or to long(min. 5 characters, max 25).")]
-        public void GenerateInvalidPassword
+        [ExpectedException(typeof(PasswordGenerationNotSelectedCharacterTypesException))]
+        public void GenerateInvalidNotTypesSelectedPassword
                (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        {
+            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+        }
+
+        [DataRow(4, true, false, false, false)]
+        [DataRow(2, true, true, false, true)]
+        [DataTestMethod]
+        [ExpectedException(typeof(PasswordGenerationTooShortException))]
+        public void GenerateInvalidTooShortPassword
+       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        {
+            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+        }
+
+        [DataRow(3434, true, false, false, false)]
+        [DataRow(26, true, true, false, true)]
+        [DataTestMethod]
+        [ExpectedException(typeof(PasswordGenerationTooLongException))]
+        public void GenerateInvalidTooLongPassword
+(int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
@@ -234,7 +253,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidItemCategoryException))]
+        [ExpectedException(typeof(ItemInvalidCategoryException))]
         public void CreateInvalidPasswordWrongCategory()
         {
             Category unusedCategory = new Category()
@@ -402,7 +421,7 @@ namespace UnitTestObligatorio1
                 Pass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-            
+
             this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password passwordToShare = new Password
             {

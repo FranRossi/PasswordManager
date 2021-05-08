@@ -30,9 +30,9 @@ namespace Obligatorio1_DA1.Domain
         {
             const int creditCardCorrectLength = 16;
             if (!Validator.StringIsExactlyThisLong(creditCardCorrectLength, number))
-                throw new NumberCardLengthIncorrect();
+                throw new CreditCardNumberLengthIncorrect();
             if (!Validator.NumberCardOnlyDigits(number))
-                throw new NumberCardInvalidCharacters();
+                throw new CreditCardNumberInvalidCharacters();
         }
 
         public string ShowOnly4LastDigits()
