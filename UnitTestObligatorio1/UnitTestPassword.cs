@@ -123,14 +123,14 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(UsernameTooShortException))]
+        [ExpectedException(typeof(PasswordUsernameTooShortException))]
         public void CreateNewPasswordWithUsernameTooShort()
         {
             this._password.Username = "Tom";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(UsernameTooLongException))]
+        [ExpectedException(typeof(PasswordUsernameTooLongException))]
         public void CreateNewPasswordWithUsernameTooLong()
         {
             this._password.Username = "Hubert Blaine Wolfeschlegelsteinhausenbergerdorff ";
@@ -154,7 +154,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(SiteTooShortException))]
+        [ExpectedException(typeof(PasswordSiteTooShortException))]
         public void CreateNewPasswordSiteTooShort()
         {
             this._password.Site = "hi";
@@ -162,7 +162,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(SiteTooLongException))]
+        [ExpectedException(typeof(PasswordSiteTooLongException))]
         public void CreateNewSiteSiteTooLong()
         {
             this._password.Site = "htpps://wwww.harrywork.com/homepage/signup";
@@ -171,7 +171,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(NotesTooLongException))]
+        [ExpectedException(typeof(ItemNotesTooLongException))]
         public void CreateNewPasswordNotesTooLong()
         {
             this._password.Notes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +

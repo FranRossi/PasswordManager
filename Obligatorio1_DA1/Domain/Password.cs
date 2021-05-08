@@ -39,9 +39,9 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateSite(string value)
         {
             if (!Validator.MinLengthOfString(value, 3))
-                throw new SiteTooShortException();
+                throw new PasswordSiteTooShortException();
             if (!Validator.MaxLengthOfString(value, 25))
-                throw new SiteTooLongException();
+                throw new PasswordSiteTooLongException();
         }
 
         public string Username
@@ -59,9 +59,9 @@ namespace Obligatorio1_DA1.Domain
             if (username == null)
                 throw new MissingFieldException("nombre de usuario");
             if (!Validator.MinLengthOfString(username, 5))
-                throw new UsernameTooShortException();
+                throw new PasswordUsernameTooShortException();
             if (!Validator.MaxLengthOfString(username, 25))
-                throw new UsernameTooLongException();
+                throw new PasswordUsernameTooLongException();
 
         }
 

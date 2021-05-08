@@ -43,7 +43,7 @@ namespace Obligatorio1_DA1.Domain
             if (value == null)
                 return;
             if (!Validator.MaxLengthOfString(value, 250))
-                throw new NotesTooLongException();
+                throw new ItemNotesTooLongException();
         }
     }
 }

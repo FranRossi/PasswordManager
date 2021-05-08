@@ -56,7 +56,6 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\MissingFieldException.cs" />
     <Compile Include="Exceptions\InvalidItemCategoryException.cs" />
-    <Compile Include="Exceptions\PasswordExceptions.cs" />
     <Compile Include="Exceptions\NumberCardInvalidCharacters.cs" />
     <Compile Include="Exceptions\NumberCardLengthIncorrect.cs" />
     <Compile Include="Exceptions\CategoryAlreadyAddedException.cs" />
@@ -70,6 +69,14 @@
     <Compile Include="Exceptions\PasswordTooShortException.cs" />
     <Compile Include="Exceptions\LogInException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyTakenException.cs" />
+    <Compile Include="Exceptions\PasswordUsernameTooShortException.cs" />
+    <Compile Include="Exceptions\PasswordUsernameTooLongException.cs" />
+    <Compile Include="Exceptions\PasswordSiteTooShortException.cs" />
+    <Compile Include="Exceptions\PasswordSiteTooLongException.cs" />
+    <Compile Include="Exceptions\CategoryTooShortException.cs" />
+    <Compile Include="Exceptions\CategoryTooLongException.cs" />
+    <Compile Include="Exceptions\ItemNotesTooLongException.cs" />
+    <Compile Include="Exceptions\PasswordSharedWithSameUserException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Domain\PasswordManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
