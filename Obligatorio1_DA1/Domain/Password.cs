@@ -188,37 +188,38 @@ namespace Obligatorio1_DA1.Domain
 
         private bool IsRedStrength(string pass)
         {
-            Regex regex = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex lengthBetween1And8 = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
+            return lengthBetween1And8.IsMatch(pass);
         }
 
         private bool IsOrangeStrength(string pass)
         {
-            Regex regex = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
-            return regex.IsMatch(pass);
+            Regex lengthBetween8And14 = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
+            return lengthBetween8And14.IsMatch(pass);
         }
 
         private bool IsSymbol(char character)
         {
-            Regex regex = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isSymbol = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
+            return isSymbol.IsMatch(character.ToString());
         }
+
         private bool IsNumber(char character)
         {
-            Regex regex = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isNumber = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
+            return isNumber.IsMatch(character.ToString());
         }
 
         private bool IsUpperCase(char character)
         {
-            Regex regex = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isUpperCase = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
+            return isUpperCase.IsMatch(character.ToString());
         }
 
         private bool IsLowerCase(char character)
         {
-            Regex regex = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
-            return regex.IsMatch(character.ToString());
+            Regex isLowerCase = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
+            return isLowerCase.IsMatch(character.ToString());
         }
 
         public void ShareWithUser(User userShareWith)
