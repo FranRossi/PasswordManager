@@ -67,6 +67,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
+            VerifyExistenceOfPasswordOnPasswordList(password);
             this._passwords.Add(password);
         }
 
