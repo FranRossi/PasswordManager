@@ -53,17 +53,17 @@
     <Compile Include="Categories.Designer.cs">
       <DependentUpon>Categories.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateModifyCreditCard.cs">
+    <Compile Include="CreditCardUserControls\CreateModifyCreditCard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateModifyCreditCard.Designer.cs">
+    <Compile Include="CreditCardUserControls\CreateModifyCreditCard.Designer.cs">
       <DependentUpon>CreateModifyCreditCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreatePassword.cs">
+    <Compile Include="PasswordUserControls\CreateModifyPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreatePassword.Designer.cs">
-      <DependentUpon>CreatePassword.cs</DependentUpon>
+    <Compile Include="PasswordUserControls\CreateModifyPassword.Designer.cs">
+      <DependentUpon>CreateModifyPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Credentials.cs">
       <SubType>UserControl</SubType>
@@ -89,10 +89,10 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordsSharedWithMe.cs">
+    <Compile Include="PasswordUserControls\PasswordsSharedWithMe.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordsSharedWithMe.Designer.cs">
+    <Compile Include="PasswordUserControls\PasswordsSharedWithMe.Designer.cs">
       <DependentUpon>PasswordsSharedWithMe.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.cs">
@@ -113,34 +113,28 @@
     <Compile Include="PasswordStrengthUserControls\PasswordStrengthChart.Designer.cs">
       <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="PasswordList.cs">
+    <Compile Include="PasswordUserControls\PasswordList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PasswordList.Designer.cs">
+    <Compile Include="PasswordUserControls\PasswordList.Designer.cs">
       <DependentUpon>PasswordList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainScreen.cs">
+    <Compile Include="CreditCardUserControls\CreditCardList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainScreen.Designer.cs">
-      <DependentUpon>MainScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CreditCardList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CreditCardList.Designer.cs">
+    <Compile Include="CreditCardUserControls\CreditCardList.Designer.cs">
       <DependentUpon>CreditCardList.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Categories.resx">
       <DependentUpon>Categories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateModifyCreditCard.resx">
+    <EmbeddedResource Include="CreditCardUserControls\CreateModifyCreditCard.resx">
       <DependentUpon>CreateModifyCreditCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreatePassword.resx">
-      <DependentUpon>CreatePassword.cs</DependentUpon>
+    <EmbeddedResource Include="PasswordUserControls\CreateModifyPassword.resx">
+      <DependentUpon>CreateModifyPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Credentials.resx">
       <DependentUpon>Credentials.cs</DependentUpon>
@@ -151,13 +145,13 @@
     <EmbeddedResource Include="DataBreach.resx">
       <DependentUpon>DataBreach.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreditCardList.resx">
+    <EmbeddedResource Include="CreditCardUserControls\CreditCardList.resx">
       <DependentUpon>CreditCardList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordsSharedWithMe.resx">
+    <EmbeddedResource Include="PasswordUserControls\PasswordsSharedWithMe.resx">
       <DependentUpon>PasswordsSharedWithMe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PasswordStrengthUserControls\PasswordListOfStrengthColor.resx">
@@ -169,7 +163,7 @@
     <EmbeddedResource Include="PasswordStrengthUserControls\PasswordStrengthChart.resx">
       <DependentUpon>PasswordStrengthChart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordList.resx">
+    <EmbeddedResource Include="PasswordUserControls\PasswordList.resx">
       <DependentUpon>PasswordList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -182,9 +176,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>MainScreen.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\DataSources\Obligatorio1_DA1.Domain.Item.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

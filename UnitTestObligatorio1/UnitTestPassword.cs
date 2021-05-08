@@ -44,6 +44,7 @@ namespace UnitTestObligatorio1
                     Notes = "No me roben la cuenta"
                 };
                 _passwordManager.CreateUser(_user);
+                _passwordManager.CreatePassword(_password);
             }
             catch (Exception ex)
             {
@@ -85,8 +86,8 @@ namespace UnitTestObligatorio1
             {
                 User = differentUser,
                 Category = categoryPersonal,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "www.google.com",
+                Username = "123456",
                 Pass = "239850Ort2019"
             };
 
@@ -211,6 +212,7 @@ namespace UnitTestObligatorio1
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
 
+
         [DataRow(4, true, false, false, false)]
         [DataRow(2, true, true, false, true)]
         [DataTestMethod]
@@ -271,6 +273,7 @@ namespace UnitTestObligatorio1
             };
         }
 
+        [TestMethod]
         public void ShareOnePasswordWithAnotherUser()
         {
             User userShareFrom = new User()
@@ -295,7 +298,7 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "ort.edu.uy",
+                Site = "www.google.com",
                 Username = "239850",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
@@ -305,7 +308,6 @@ namespace UnitTestObligatorio1
             this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.Contains(sharedWithUser, passwordToShare);
-
         }
 
 
@@ -338,6 +340,8 @@ namespace UnitTestObligatorio1
             passwordToShare.ShareWithUser(userShareFrom);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
         }
+
+        [TestMethod]
         public void ShareManyPasswordsWithAnotherUser()
         {
             List<Password> expectedPasswords = new List<Password>();
@@ -364,8 +368,8 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "www.google.com",
+                Username = "123456",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
@@ -377,7 +381,7 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "trello.com",
+                Site = "miami.com",
                 Username = "josesito",
                 Pass = "239850Jose2019"
             };
@@ -402,6 +406,7 @@ namespace UnitTestObligatorio1
 
         }
 
+        [TestMethod]
         public void DeleteSharedPassword()
         {
             User userShareFrom = new User()
@@ -427,8 +432,8 @@ namespace UnitTestObligatorio1
             {
                 User = userShareFrom,
                 Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "www.google.com",
+                Username = "123456",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
@@ -438,8 +443,80 @@ namespace UnitTestObligatorio1
             this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
-
         }
+
+
+        [TestMethod]
+        public void ModifyPassword()
+        {
+            Password newPassword = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+            List<Password> passwords = this._passwordManager.GetPasswords();
+            CollectionAssert.Contains(passwords, newPassword);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(PasswordAlreadyExists))]
+        public void ModifyPasswordThatAlreadyExists()
+        {
+            Password passwordAlreadyOnPasswordManager = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es una nota"
+            };
+            _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
+
+            Password newPassword = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "EstoEsUnGIF",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(PasswordNotBelongToCurrentUser))]
+        public void ModifyPasswordFromAnotherUser()
+        {
+            User newUser = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category newCategory = new Category()
+            {
+                Name = "NewCategory"
+            };
+            newUser.Categories.Add(newCategory);
+            Password newPassword = new Password
+            {
+                User = newUser,
+                Category = newCategory,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+        }
+
     }
 
 
