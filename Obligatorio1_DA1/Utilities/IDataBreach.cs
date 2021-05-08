@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Utilities
 {
-    interface IDataBreach<T>
+    public interface IDataBreach<T>
     {
-        string ConvertToDataBreachString(T data);
+        T Data { set; }
+        string GetToDataBreachString();
     }
 }

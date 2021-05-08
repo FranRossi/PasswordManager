@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ namespace UnitTestObligatorio1
     public class UnitTestDataBreach
     {
         private string _passwordDataBreach;
-        private string _credtiCardDataBreach;
+        private string _creditCardDataBreach;
         private string _itemDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
@@ -21,7 +22,7 @@ namespace UnitTestObligatorio1
         public void TestInitialize()
         {
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
-            _credtiCardDataBreach = CreateDataBreachString(_breachedCreditCards);
+            _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
             _passwordManager = new PasswordManager();
             _currentUser = new User()
@@ -37,7 +38,10 @@ namespace UnitTestObligatorio1
         {
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            IDataBreach dataBreach = new DataBreachFromString(_passwordDataBreach);
+            IDataBreach<string> dataBreach = new DataBreachFromString()
+            {
+                Data = _passwordDataBreach
+            };
             List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
         }
@@ -47,7 +51,10 @@ namespace UnitTestObligatorio1
         {
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
-            IDataBreach dataBreach = new DataBreachFromString(_credtiCardDataBreach);
+            IDataBreach<string> dataBreach = new DataBreachFromString()
+            {
+                Data = _creditCardDataBreach
+            };
             List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedCardList);
         }
@@ -59,7 +66,10 @@ namespace UnitTestObligatorio1
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
             breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
-            IDataBreach dataBreach = new DataBreachFromString(_credtiCardDataBreach);
+            IDataBreach<string> dataBreach = new DataBreachFromString()
+            {
+                Data = _itemDataBreach
+            };
             List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedItems);
         }

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Utilities
 {
-    class DataBreachFromString : IDataBreach<string>
+    public class DataBreachFromString : IDataBreach<string>
     {
-        public string ConvertToDataBreachString(string data)
+        public string Data { set; private get; }
+
+        public string GetToDataBreachString()
         {
-            throw new NotImplementedException();
+            return this.Data;
         }
     }
 }

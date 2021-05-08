@@ -198,10 +198,11 @@ namespace Obligatorio1_DA1.Domain
         }
 
 
-        public List<Item> GetBreachedItems(string dataBreach)
+        public List<Item> GetBreachedItems<T>(IDataBreach<T> dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
-            string[] splittedDataBreach = dataBreach.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            string dataBreachString = dataBreach.GetToDataBreachString();
+            string[] splittedDataBreach = dataBreachString.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
