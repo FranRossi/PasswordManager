@@ -464,7 +464,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(PasswordAlreadyExists))]
+        [ExpectedException(typeof(PasswordAlreadyExistsException))]
         public void ModifyPasswordThatAlreadyExists()
         {
             Password passwordAlreadyOnPasswordManager = new Password
@@ -492,7 +492,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(PasswordNotBelongToCurrentUser))]
+        [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
         public void ModifyPasswordFromAnotherUser()
         {
             User newUser = new User()

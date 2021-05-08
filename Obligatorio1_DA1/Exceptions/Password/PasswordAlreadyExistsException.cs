@@ -2,9 +2,9 @@
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class PasswordAlreadyExists : ValidationException
+    public class PasswordAlreadyExistsException : ValidationException
     {
-        public PasswordAlreadyExists()
+        public PasswordAlreadyExistsException()
         {
             this.message = "La contraseña ya existe en el sistema.";
         }

@@ -1,8 +1,8 @@
 ﻿namespace Obligatorio1_DA1.Exceptions
 {
-    public class PasswordNotBelongToCurrentUser : ValidationException
+    public class PasswordNotBelongToCurrentUserException : ValidationException
     {
-        public PasswordNotBelongToCurrentUser()
+        public PasswordNotBelongToCurrentUserException()
         {
             this.message = "Esta contraseña no pertenece al Usuario que esta logeado";
         }
