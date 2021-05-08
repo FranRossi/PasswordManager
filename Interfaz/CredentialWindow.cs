@@ -18,8 +18,19 @@ namespace Presentation
 
         public CredentialWindow()
         {
-            InitializeComponent();
             _myPasswordManager = new PasswordManager();
+            LoadWindow();
+        }
+
+        public CredentialWindow(PasswordManager passwordManager)
+        {
+            _myPasswordManager = passwordManager;
+            LoadWindow();
+        }
+
+        private void LoadWindow()
+        {
+            InitializeComponent();
             _credentials = new Credentials(_myPasswordManager);
             this.pnlCredentials.Controls.Add(_credentials);
         }

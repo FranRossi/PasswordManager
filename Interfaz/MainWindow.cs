@@ -16,6 +16,7 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         public MainWindow(PasswordManager pPasswordManager)
         {
+
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
         }
@@ -72,6 +73,13 @@ namespace Presentation
             UserControl passwordSharedWithMe = new PasswordsSharedWithMe(_myPasswordManager);
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(passwordSharedWithMe);
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form logOut = new LogOutWindow(_myPasswordManager, e);
+            var resonse = logOut.ShowDialog();
+
         }
     }
 }
