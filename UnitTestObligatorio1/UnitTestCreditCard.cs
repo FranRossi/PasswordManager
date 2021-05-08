@@ -365,8 +365,8 @@ namespace UnitTestObligatorio1
             newUser.Categories.Add(newCategory);
             CreditCard newCreditCard = new CreditCard
             {
-                User = _passwordManager.CurrentUser,
-                Category = this._category,
+                User = newUser,
+                Category = newCategory,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
