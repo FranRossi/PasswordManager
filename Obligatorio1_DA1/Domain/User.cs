@@ -7,6 +7,11 @@ namespace Obligatorio1_DA1.Domain
 {
     public class User
     {
+        public const int MaxNameLength = 25;
+        public const int MinNameLength = 5;
+        public const int MaxPasswordLength = 25;
+        public const int MinPasswordLength = 5;
+
         private string pass;
         private string name;
         private List<Category> categories;
@@ -28,7 +33,6 @@ namespace Obligatorio1_DA1.Domain
                 pass = value;
             }
         }
-
         public List<Category> Categories
         {
             get => categories;
@@ -52,17 +56,17 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateName(string name)
         {
-            if (!Validator.MinLengthOfString(name, 5))
+            if (!Validator.MinLengthOfString(name, User.MinNameLength))
                 throw new NameTooShortException();
-            if (!Validator.MaxLengthOfString(name, 25))
+            if (!Validator.MaxLengthOfString(name, User.MaxNameLength))
                 throw new NameTooLongException();
         }
 
         private void ValidatePassword(string pass)
         {
-            if (!Validator.MinLengthOfString(pass, 5))
+            if (!Validator.MinLengthOfString(pass, User.MinPasswordLength))
                 throw new PasswordTooShortException();
-            if (!Validator.MaxLengthOfString(pass, 25))
+            if (!Validator.MaxLengthOfString(pass, User.MaxPasswordLength))
                 throw new PasswordTooLongException();
             if (!Validator.AsciiCharacterRangeForPassword(pass))
                 throw new PasswordInvalidCharactersException();
@@ -81,6 +85,5 @@ namespace Obligatorio1_DA1.Domain
             }
             return userToCompare.Name == this.Name;
         }
-
     }
 }
