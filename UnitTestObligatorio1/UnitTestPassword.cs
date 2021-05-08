@@ -61,9 +61,9 @@ namespace UnitTestObligatorio1
             CollectionAssert.Contains(userPasswords, this._password);
         }
 
+        [TestMethod]
         public void DeletePassword()
         {
-            this._passwordManager.CreatePassword(this._password);
             this._passwordManager.DeletePassword(this._password);
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, this._password);
@@ -96,10 +96,6 @@ namespace UnitTestObligatorio1
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
-
-
-
-
 
         [TestMethod]
         public void CreateNewPasswordWithoutNotes()
@@ -228,11 +224,12 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationTooLongException))]
         public void GenerateInvalidTooLongPassword
-(int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
 
+        [TestMethod]
         public void CreateValidPassword()
         {
             try
@@ -405,6 +402,7 @@ namespace UnitTestObligatorio1
 
         }
 
+        [TestMethod]
         public void DeleteSharedPassword()
         {
             User userShareFrom = new User()
@@ -739,7 +737,7 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
-
+        [TestMethod]
         public void GetNotSharedWithAllUsers()
         {
 
@@ -826,7 +824,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareTo);
             passwordToShare.UnShareWithUser(userShareTo);
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
         }
 
@@ -933,6 +931,7 @@ namespace UnitTestObligatorio1
 
             Assert.IsFalse(passA.Equals(passB));
         }
+
         [TestMethod]
         [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
         public void ModifyPasswordFromAnotherUser()

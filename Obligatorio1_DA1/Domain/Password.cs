@@ -20,9 +20,9 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private List<User> _sharedWith;
-        
+
         public PasswordStrengthColor PasswordStrength { get; private set; }
-        
+
         private List<User> SharedWith
         {
             get => _sharedWith;
@@ -31,7 +31,7 @@ namespace Obligatorio1_DA1.Domain
                 this._sharedWith = value;
             }
         }
-        
+
         public string Site
         {
             get => site;
@@ -42,7 +42,7 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-        
+
         public string Username
         {
             get => username;
@@ -52,7 +52,7 @@ namespace Obligatorio1_DA1.Domain
                 username = value;
             }
         }
-        
+
         public string Pass
         {
             get => pass;
@@ -68,21 +68,19 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateSite(string value)
         {
             if (!Validator.MinLengthOfString(value, Password.MinSiteLength))
-                throw new SiteTooShortException();
+                throw new PasswordSiteTooShortException();
             if (!Validator.MaxLengthOfString(value, Password.MaxSiteLength))
-                throw new SiteTooLongException();
+                throw new PasswordSiteTooLongException();
         }
 
         private void ValidateUsername(string username)
         {
-            if (username == null)
-                throw new MissingFieldException("nombre de usuario");
             if (!Validator.MinLengthOfString(username, Password.MinUsernameLength))
-                throw new UsernameTooShortException();
+                throw new PasswordUsernameTooShortException();
             if (!Validator.MaxLengthOfString(username, Password.MaxUsernameLength))
-                throw new UsernameTooLongException();
+                throw new PasswordUsernameTooLongException();
         }
-        
+
         private void ValidatePass(string value)
         {
             if (!Validator.MinLengthOfString(value, Password.MinPasswordLength))

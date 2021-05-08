@@ -31,7 +31,7 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateNumber(string number)
         {
             if (!Validator.StringIsExactlyThisLong(CreditCard.creditCardLength, number))
-                throw new NumberCardLengthIncorrect();
+                throw new CreditCardNumberLengthIncorrect();
             if (!Validator.NumberCardOnlyDigits(number))
                 throw new CreditCardNumberInvalidCharacters();
         }

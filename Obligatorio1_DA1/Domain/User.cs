@@ -57,9 +57,9 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateName(string name)
         {
             if (!Validator.MinLengthOfString(name, User.MinNameLength))
-                throw new NameTooShortException();
+                throw new UserNameTooShortException();
             if (!Validator.MaxLengthOfString(name, User.MaxNameLength))
-                throw new NameTooLongException();
+                throw new UserNameTooLongException();
         }
 
         private void ValidatePassword(string pass)
@@ -90,6 +90,6 @@ namespace Obligatorio1_DA1.Domain
         {
             return this.Name;
         }
-      
+
     }
 }
