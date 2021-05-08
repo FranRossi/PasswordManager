@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class NameTooShortException : ValidationException
+    public class CategoryTooShortException : ValidationException
     {
-        public NameTooShortException()
+        public CategoryTooShortException()
         {
-            this.message = "El nombre ingresado es demasiado corto (min. 5 caracteres).";
+            this.message = "La categoria es demasiado corta (min. 3 caracteres). ";
         }
     }
 }

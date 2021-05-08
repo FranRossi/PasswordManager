@@ -53,9 +53,9 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateName(string name)
         {
             if (!Validator.MinLengthOfString(name, 5))
-                throw new NameTooShortException();
+                throw new UserNameTooShortException();
             if (!Validator.MaxLengthOfString(name, 25))
-                throw new NameTooLongException();
+                throw new UserNameTooLongException();
         }
 
         private void ValidatePassword(string pass)
