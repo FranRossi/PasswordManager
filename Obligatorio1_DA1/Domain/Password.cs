@@ -91,7 +91,7 @@ namespace Obligatorio1_DA1.Domain
             if (length < 5 || length > 25)
                 throw new ArgumentException();
             if (!(uppercase || lowercase || digits || specialDigits))
-                throw new ArgumentException();
+                throw new PasswordGenerationNotSelectedCharacterTypes();
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";

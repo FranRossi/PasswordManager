@@ -201,13 +201,32 @@ namespace UnitTestObligatorio1
             Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
 
-        [DataRow(4, true, false, false, false)]
         [DataRow(6, false, false, false, false)]
+        [DataRow(9, false, false, false, false)]
         [DataTestMethod]
-        [ExpectedException(typeof(ArgumentException),
-            "The password is too short or to long(min. 5 characters, max 25).")]
-        public void GenerateInvalidPassword
-               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        [ExpectedException(typeof(PasswordGenerationNotSelectedCharacterTypes))]
+        public void GenerateInvalidNotTypesSelectedPassword
+               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
+        {
+            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+        }
+
+        [DataRow(4, true, false, false, false)]
+        [DataRow(2, true, true, false, true)]
+        [DataTestMethod]
+        [ExpectedException(typeof(PasswordGenerationShort))]
+        public void GenerateInvalidTooShortPassword
+       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
+        {
+            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+        }
+
+        [DataRow(4, true, false, false, false)]
+        [DataRow(2, true, true, false, true)]
+        [DataTestMethod]
+        [ExpectedException(typeof(PasswordGenerationTooLong))]
+        public void GenerateInvalidTooLongPassword
+       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
@@ -402,7 +421,7 @@ namespace UnitTestObligatorio1
                 Pass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-            
+
             this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
             Password passwordToShare = new Password
             {

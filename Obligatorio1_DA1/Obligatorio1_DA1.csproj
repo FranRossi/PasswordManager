@@ -60,6 +60,7 @@
     <Compile Include="Exceptions\NumberCardInvalidCharacters.cs" />
     <Compile Include="Exceptions\NumberCardLengthIncorrect.cs" />
     <Compile Include="Exceptions\CategoryAlreadyAddedException.cs" />
+    <Compile Include="Exceptions\PasswordGenerationNotSelectedCharacterTypes.cs" />
     <Compile Include="Exceptions\PasswordInvalidCharactersException.cs" />
     <Compile Include="Exceptions\NameTooLongException.cs" />
     <Compile Include="Exceptions\PasswordTooLongException.cs" />

@@ -13,6 +13,7 @@ namespace Obligatorio1_DA1.Exceptions
             this.message = "El nombre de usuario ingresado es demasiado corto (min. 5 caracteres). ";
         }
     }
+
     public class UsernameTooLongException : ValidationException
     {
         public UsernameTooLongException()
@@ -35,7 +36,6 @@ namespace Obligatorio1_DA1.Exceptions
             this.message = "El sitio es demasiado largo (max. 25 caracteres). ";
         }
     }
-
 
     public class CategoryTooShortException : ValidationException
     {
