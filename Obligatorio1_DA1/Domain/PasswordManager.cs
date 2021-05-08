@@ -183,6 +183,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
+            VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
                 if (creditCardIterator.Equals(oldCreditCard))
@@ -198,6 +199,11 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+        private void VerifyExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
+        {
+            if (this._creditCards.Contains(newCreditCard))
+                throw new CreditCardAlreadyExistsException();
+        }
 
         public List<Item> GetBreachedItems(string dataBreach)
         {
