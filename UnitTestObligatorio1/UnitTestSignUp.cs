@@ -97,5 +97,19 @@ namespace UnitTestObligatorio1
             User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");
             passwordManager.CreateUser(newUser);
         }
+
+        // TODO move test to another unitTest file
+        [DataRow("MaritoBaracus")]
+        [DataRow("Lucia")]
+        [DataRow("Pepe Gonzales Segundo")]
+        [DataTestMethod]
+        public void UserToString(string name)
+        {
+            User newUser = new User(name, "password");
+            string actualName = newUser.ToString();
+            string expectedName = name;
+            StringAssert.Equals(expectedName, actualName);
+        }
+
     }
 }

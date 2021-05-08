@@ -15,10 +15,10 @@ namespace Obligatorio1_DA1.Domain
         private string notes;
         private List<User> _sharedWith;
         public PasswordStrengthColor PasswordStrength { get; private set; }
-        public List<User> ShareWith
+        private List<User> SharedWith
         {
             get => _sharedWith;
-            private set
+            set
             {
                 this._sharedWith = value;
             }
@@ -224,15 +224,30 @@ namespace Obligatorio1_DA1.Domain
 
         public void ShareWithUser(User userShareWith)
         {
-            if (this.ShareWith == null)
+            // TODO why this if? can userShareWIth be null?
+            if (this.SharedWith == null)
             {
-                this.ShareWith = new List<User>();
+                this.SharedWith = new List<User>();
             }
             if (this.User == userShareWith)
             {
                 throw new PasswordSharedWithSameUserException();
             }
-            this.ShareWith.Add(userShareWith);
+            this.SharedWith.Add(userShareWith);
+        }
+
+        public List<User> GetUsersSharedWith()
+        {
+            if (this.SharedWith == null)
+            {
+                return new List<User>();
+            }
+            return this.SharedWith;
+        }
+
+        public void UnShareWithUser(User userRemoveShare)
+        {
+            this.SharedWith.Remove(userRemoveShare);
         }
 
 

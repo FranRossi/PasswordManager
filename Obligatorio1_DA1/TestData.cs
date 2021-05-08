@@ -1,9 +1,6 @@
 ﻿using Obligatorio1_DA1.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1
 {
@@ -12,8 +9,8 @@ namespace Obligatorio1_DA1
         private PasswordManager _passwordManager;
         private Random _random;
 
-        private User Juana;
-        private User Pablo;
+        private User juana;
+        private User pablo;
         private User mario;
         private User laura;
         public TestData(PasswordManager passwordManager)
@@ -27,6 +24,31 @@ namespace Obligatorio1_DA1
             this.CreateCategories("Mario", new string[] { "Personal" });
             this.CreateCategories("Laura", new string[] { "Personal", "Facultad" });
 
+            this.CreatePasswordWithColorJuana();
+
+            this.ShareJuanaPasswors();
+
+
+
+        }
+
+        private void ShareJuanaPasswors()
+        {
+            this._passwordManager.Login("Juana", "Juana");
+            List<Password> passwords = this._passwordManager.GetPasswords();
+            passwords[0].ShareWithUser(this.pablo);
+            passwords[0].ShareWithUser(this.mario);
+            passwords[0].ShareWithUser(this.laura);
+
+            passwords[1].ShareWithUser(this.mario);
+            passwords[1].ShareWithUser(this.laura);
+
+            passwords[3].ShareWithUser(this.mario);
+
+        }
+
+        private void CreatePasswordWithColorJuana()
+        {
             //red
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Personal");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcde876", "Personal");
@@ -99,10 +121,14 @@ namespace Obligatorio1_DA1
 
         private void CreateUsers()
         {
-            this._passwordManager.CreateUser(new User("Juana", "Juana"));
-            this._passwordManager.CreateUser(new User("Pablo", "Pablo"));
-            this._passwordManager.CreateUser(new User("Mario", "Mario"));
-            this._passwordManager.CreateUser(new User("Laura", "Laura"));
+            this.juana = new User("Juana", "Juana");
+            this.pablo = new User("Pablo", "Pablo");
+            this.mario = new User("Mario", "Mario");
+            this.laura = new User("Laura", "Laura");
+            this._passwordManager.CreateUser(juana);
+            this._passwordManager.CreateUser(pablo);
+            this._passwordManager.CreateUser(mario);
+            this._passwordManager.CreateUser(laura);
         }
 
         private void CreateCreditCardsForCurrentUser(string category, string userName)

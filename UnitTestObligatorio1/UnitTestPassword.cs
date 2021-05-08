@@ -340,7 +340,6 @@ namespace UnitTestObligatorio1
             passwordToShare.ShareWithUser(userShareFrom);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
         }
-
         [TestMethod]
         public void ShareManyPasswordsWithAnotherUser()
         {
@@ -406,7 +405,6 @@ namespace UnitTestObligatorio1
 
         }
 
-        [TestMethod]
         public void DeleteSharedPassword()
         {
             User userShareFrom = new User()
@@ -443,6 +441,139 @@ namespace UnitTestObligatorio1
             this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+        }
+
+        [TestMethod]
+        public void GetSharedPasswordUser()
+        {
+            List<User> expectedUser = new List<User>();
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+
+            Password pass = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+
+            this._passwordManager.CreateUser(userShareTo);
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreatePassword(pass);
+            pass.ShareWithUser(userShareTo);
+            expectedUser.Add(userShareTo);
+
+
+            List<User> usersSharedWith = pass.GetUsersSharedWith();
+            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+        }
+
+        [TestMethod]
+        public void GetSharedPasswordUsersMultipleUsers()
+        {
+            List<User> expectedUser = new List<User>();
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User lucia = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            User pablo = new User()
+            {
+                Name = "Pablo",
+                Pass = "pa1230@1"
+            };
+            User juana = new User()
+            {
+                Name = "Juana",
+                Pass = "juana0@1"
+            };
+
+            userShareFrom.Categories.Add(category);
+
+            Password pass = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+
+            this._passwordManager.CreateUser(lucia);
+            this._passwordManager.CreateUser(pablo);
+            this._passwordManager.CreateUser(juana);
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreatePassword(pass);
+            pass.ShareWithUser(lucia);
+            pass.ShareWithUser(pablo);
+            pass.ShareWithUser(juana);
+            expectedUser.Add(lucia);
+            expectedUser.Add(pablo);
+            expectedUser.Add(juana);
+
+
+            List<User> usersSharedWith = pass.GetUsersSharedWith();
+            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+        }
+
+        [TestMethod]
+        public void GetSharedPasswordNotShared()
+        {
+            List<User> expectedUser = new List<User>();
+            User user = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            user.Categories.Add(category);
+
+            Password pass = new Password
+            {
+                User = user,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+
+            this._passwordManager.CreateUser(user);
+            this._passwordManager.CreatePassword(pass);
+
+            List<User> usersSharedWith = pass.GetUsersSharedWith();
+            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
 
@@ -491,6 +622,317 @@ namespace UnitTestObligatorio1
         }
 
 
+
+
+        [TestMethod]
+        public void GetNotSharedWithUser()
+        {
+            List<User> expectedUser = new List<User>();
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareWith = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            User pablo = new User()
+            {
+                Name = "Pablo",
+                Pass = "pa1230@1"
+            };
+            User juana = new User()
+            {
+                Name = "Juana",
+                Pass = "juana0@1"
+            };
+
+            userShareFrom.Categories.Add(category);
+
+            Password pass = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+
+            this._passwordManager.CreateUser(userShareWith);
+            this._passwordManager.CreateUser(pablo);
+            this._passwordManager.CreateUser(juana);
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreatePassword(pass);
+            pass.ShareWithUser(userShareWith);
+            expectedUser.Add(pablo);
+            expectedUser.Add(juana);
+            expectedUser.Add(this._user);
+
+
+            List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
+            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+        }
+
+
+        [TestMethod]
+        public void GetNotSharedWithAnyUser()
+        {
+            List<User> expectedUser = new List<User>();
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User lucia = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            User pablo = new User()
+            {
+                Name = "Pablo",
+                Pass = "pa1230@1"
+            };
+            User juana = new User()
+            {
+                Name = "Juana",
+                Pass = "juana0@1"
+            };
+
+            userShareFrom.Categories.Add(category);
+
+            Password pass = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+
+            this._passwordManager.CreateUser(lucia);
+            this._passwordManager.CreateUser(pablo);
+            this._passwordManager.CreateUser(juana);
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreatePassword(pass);
+            expectedUser.Add(lucia);
+            expectedUser.Add(pablo);
+            expectedUser.Add(juana);
+            expectedUser.Add(this._user);
+
+
+            List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
+            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+        }
+
+
+        public void GetNotSharedWithAllUsers()
+        {
+
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User lucia = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            User pablo = new User()
+            {
+                Name = "Pablo",
+                Pass = "pa1230@1"
+            };
+            User juana = new User()
+            {
+                Name = "Juana",
+                Pass = "juana0@1"
+            };
+
+            userShareFrom.Categories.Add(category);
+
+            Password pass = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+
+            this._passwordManager.CreateUser(lucia);
+            this._passwordManager.CreateUser(pablo);
+            this._passwordManager.CreateUser(juana);
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreatePassword(pass);
+            pass.ShareWithUser(lucia);
+            pass.ShareWithUser(pablo);
+            pass.ShareWithUser(juana);
+            pass.ShareWithUser(this._user);
+
+
+            List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
+            List<User> expectedUser = new List<User>();
+            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+        }
+
+        [TestMethod]
+        public void UnSharePassword()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                Pass = "lu2000@1"
+            };
+            userShareFrom.Categories.Add(category);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            passwordToShare.UnShareWithUser(userShareTo);
+            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswords(userShareTo);
+            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+        }
+
+        [TestMethod]
+        public void PasswordEqual()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsTrue(passA.Equals(passB));
+        }
+
+        [TestMethod]
+        public void PasswordEqualityDifferentSite()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com.uy",
+                Username = "Joseph",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsFalse(passA.Equals(passB));
+        }
+
+        [TestMethod]
+        public void PasswordEqualityDifferentUsername()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph1",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph2",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsFalse(passA.Equals(passB));
+        }
+
+        [TestMethod]
+        public void PasswordEqualityDifferentUsernameAndSite()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com.uy",
+                Username = "Joseph1",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Password passB = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com",
+                Username = "Joseph2",
+                Pass = "joshpeh2",
+                Notes = "Second password"
+            };
+
+            Assert.IsFalse(passA.Equals(passB));
+        }
         [TestMethod]
         [ExpectedException(typeof(PasswordNotBelongToCurrentUser))]
         public void ModifyPasswordFromAnotherUser()

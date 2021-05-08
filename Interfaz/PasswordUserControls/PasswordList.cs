@@ -109,5 +109,14 @@ namespace Presentation
                 this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
             }
         }
+
+
+        private void btnSharedPasswords_Click(object sender, EventArgs e)
+        {
+            Panel parentPanel = (Panel)this.Parent;
+            MainWindow main = (MainWindow)parentPanel.Parent;
+            UpdateSelectedPassword();
+            main.ShowSharedPasswordList(_selectedPassword);
+        }
     }
 }

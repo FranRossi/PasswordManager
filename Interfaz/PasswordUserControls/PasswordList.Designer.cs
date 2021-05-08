@@ -57,6 +57,7 @@ namespace Presentation
             // 
             this.tblPassword.AllowUserToAddRows = false;
             this.tblPassword.AllowUserToDeleteRows = false;
+            this.tblPassword.AllowUserToResizeRows = false;
             this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblPassword.Location = new System.Drawing.Point(12, 85);
@@ -115,13 +116,13 @@ namespace Presentation
             // 
             // btnSharedPasswords
             // 
-            this.btnSharedPasswords.Location = new System.Drawing.Point(520, 17);
-            this.btnSharedPasswords.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSharedPasswords.Location = new System.Drawing.Point(409, 11);
             this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(204, 35);
+            this.btnSharedPasswords.Size = new System.Drawing.Size(75, 23);
             this.btnSharedPasswords.TabIndex = 3;
-            this.btnSharedPasswords.Text = "Contraseñas compartidas";
+            this.btnSharedPasswords.Text = "Compartir";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
+            this.btnSharedPasswords.Click += new System.EventHandler(this.btnSharedPasswords_Click);
             // 
             // lblMessage
             // 

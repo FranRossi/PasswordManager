@@ -22,9 +22,7 @@ namespace Presentation
 
         private void tsmiPasswords_Click(object sender, EventArgs e)
         {
-            UserControl passsworList = new PasswordList(_myPasswordManager);
-            pnlMainScreen.Controls.Clear();
-            pnlMainScreen.Controls.Add(passsworList);
+            ShowPasswords();
         }
 
         private void tsmiCreditCards_Click(object sender, EventArgs e)
@@ -53,6 +51,20 @@ namespace Presentation
             UserControl passwordStrength = new PasswordStrength(_myPasswordManager);
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(passwordStrength);
+        }
+
+        public void ShowSharedPasswordList(Password selectedPassword)
+        {
+            UserControl sharedPasssworList = new SharedPasswordList(_myPasswordManager, selectedPassword);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(sharedPasssworList);
+        }
+
+        public void ShowPasswords()
+        {
+            UserControl passsworList = new PasswordList(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(passsworList);
         }
 
         private void tsmiSharedWithMe_Click(object sender, EventArgs e)
