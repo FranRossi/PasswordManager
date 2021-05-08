@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using MissingFieldException = Obligatorio1_DA1.Exceptions.MissingFieldException;
 
 namespace Obligatorio1_DA1.Domain
 {
@@ -56,13 +55,10 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateUsername(string username)
         {
-            if (username == null)
-                throw new MissingFieldException("nombre de usuario");
             if (!Validator.MinLengthOfString(username, 5))
                 throw new PasswordUsernameTooShortException();
             if (!Validator.MaxLengthOfString(username, 25))
                 throw new PasswordUsernameTooLongException();
-
         }
 
 

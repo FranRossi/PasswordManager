@@ -75,7 +75,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        [ExpectedException(typeof(NameTooShortException))]
+        [ExpectedException(typeof(UserNameTooShortException))]
         public void createUserEmptyName()
         {
             User newUser = new User("", "password");
@@ -83,7 +83,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NameTooShortException))]
+        [ExpectedException(typeof(UserNameTooShortException))]
         public void createUserNameTooShort()
         {
             User newUser = new User("Khea", " ");
@@ -91,7 +91,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NameTooLongException))]
+        [ExpectedException(typeof(UserNameTooLongException))]
         public void createUserNameTooLong()
         {
             User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");

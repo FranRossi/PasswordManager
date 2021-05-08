@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class NameTooLongException : ValidationException
+    public class UserNameTooLongException : ValidationException
     {
-        public NameTooLongException()
+        public UserNameTooLongException()
         {
             this.message = "El nomber ingresado es demasiado largo (max. 25 caracteres)";
         }

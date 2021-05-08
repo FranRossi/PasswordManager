@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-
-    public class InvalidItemCategoryException : ValidationException
+    public class ItemInvalidCategoryException : ValidationException
     {
-        public InvalidItemCategoryException()
+        public ItemInvalidCategoryException()
         {
             this.message = "El usuario no tiene la categoria seleccionada para la contraseña.";
         }

@@ -253,7 +253,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidItemCategoryException))]
+        [ExpectedException(typeof(ItemInvalidCategoryException))]
         public void CreateInvalidPasswordWrongCategory()
         {
             Category unusedCategory = new Category()
