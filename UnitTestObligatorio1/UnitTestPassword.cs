@@ -204,9 +204,9 @@ namespace UnitTestObligatorio1
         [DataRow(6, false, false, false, false)]
         [DataRow(9, false, false, false, false)]
         [DataTestMethod]
-        [ExpectedException(typeof(PasswordGenerationNotSelectedCharacterTypes))]
+        [ExpectedException(typeof(PasswordGenerationNotSelectedCharacterTypesException))]
         public void GenerateInvalidNotTypesSelectedPassword
-               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
+               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
@@ -214,19 +214,19 @@ namespace UnitTestObligatorio1
         [DataRow(4, true, false, false, false)]
         [DataRow(2, true, true, false, true)]
         [DataTestMethod]
-        [ExpectedException(typeof(PasswordGenerationShort))]
+        [ExpectedException(typeof(PasswordGenerationTooShortException))]
         public void GenerateInvalidTooShortPassword
-       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
+       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
 
-        [DataRow(4, true, false, false, false)]
-        [DataRow(2, true, true, false, true)]
+        [DataRow(3434, true, false, false, false)]
+        [DataRow(26, true, true, false, true)]
         [DataTestMethod]
-        [ExpectedException(typeof(PasswordGenerationTooLong))]
+        [ExpectedException(typeof(PasswordGenerationTooLongException))]
         public void GenerateInvalidTooLongPassword
-(int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
+(int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }

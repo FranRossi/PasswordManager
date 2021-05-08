@@ -88,10 +88,12 @@ namespace Obligatorio1_DA1.Domain
 
         public static string GenerateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
         {
-            if (length < 5 || length > 25)
-                throw new ArgumentException();
+            if (length > 25)
+                throw new PasswordGenerationTooLongException();
+            if (length < 5)
+                throw new PasswordGenerationTooShortException();
             if (!(uppercase || lowercase || digits || specialDigits))
-                throw new PasswordGenerationNotSelectedCharacterTypes();
+                throw new PasswordGenerationNotSelectedCharacterTypesException();
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";
