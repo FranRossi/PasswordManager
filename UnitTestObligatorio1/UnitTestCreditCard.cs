@@ -176,7 +176,6 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCreditCards()
         {
-            this._passwordManager.CreateCreditCard(this._card);
             List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
             CollectionAssert.Contains(creditCards, this._card);
         }
