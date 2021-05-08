@@ -226,7 +226,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationTooLong))]
         public void GenerateInvalidTooLongPassword
-       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
+(int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, Exception exceptionType)
         {
             string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
         }
