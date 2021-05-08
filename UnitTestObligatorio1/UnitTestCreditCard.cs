@@ -316,7 +316,7 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
-            this._passwordManager.ModifyPasswordOnCurrentUser(this._card, newCreditCard);
+            this._passwordManager.ModifyCreditCardOnCurrentUser(this._card, newCreditCard);
         }
 
 
