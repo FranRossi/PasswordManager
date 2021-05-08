@@ -9,12 +9,20 @@ namespace Obligatorio1_DA1.Domain
 {
     public class Password : Item
     {
+        public const int MaxSiteLength = 25;
+        public const int MinSiteLength = 3;
+        public const int MaxUsernameLength = 25;
+        public const int MinUsernameLength = 5;
+        public const int MaxPasswordLength = 25;
+        public const int MinPasswordLength = 5;
+
         private string site;
         private string username;
         private string pass;
-        private string notes;
         private List<User> _sharedWith;
+        
         public PasswordStrengthColor PasswordStrength { get; private set; }
+        
         private List<User> SharedWith
         {
             get => _sharedWith;
@@ -23,7 +31,7 @@ namespace Obligatorio1_DA1.Domain
                 this._sharedWith = value;
             }
         }
-
+        
         public string Site
         {
             get => site;
@@ -34,15 +42,7 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-
-        private void ValidateSite(string value)
-        {
-            if (!Validator.MinLengthOfString(value, 3))
-                throw new PasswordSiteTooShortException();
-            if (!Validator.MaxLengthOfString(value, 25))
-                throw new PasswordSiteTooLongException();
-        }
-
+        
         public string Username
         {
             get => username;
@@ -52,16 +52,7 @@ namespace Obligatorio1_DA1.Domain
                 username = value;
             }
         }
-
-        private void ValidateUsername(string username)
-        {
-            if (!Validator.MinLengthOfString(username, 5))
-                throw new PasswordUsernameTooShortException();
-            if (!Validator.MaxLengthOfString(username, 25))
-                throw new PasswordUsernameTooLongException();
-        }
-
-
+        
         public string Pass
         {
             get => pass;
@@ -74,11 +65,29 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
+        private void ValidateSite(string value)
+        {
+            if (!Validator.MinLengthOfString(value, Password.MinSiteLength))
+                throw new SiteTooShortException();
+            if (!Validator.MaxLengthOfString(value, Password.MaxSiteLength))
+                throw new SiteTooLongException();
+        }
+
+        private void ValidateUsername(string username)
+        {
+            if (username == null)
+                throw new MissingFieldException("nombre de usuario");
+            if (!Validator.MinLengthOfString(username, Password.MinUsernameLength))
+                throw new UsernameTooShortException();
+            if (!Validator.MaxLengthOfString(username, Password.MaxUsernameLength))
+                throw new UsernameTooLongException();
+        }
+        
         private void ValidatePass(string value)
         {
-            if (!Validator.MinLengthOfString(value, 5))
+            if (!Validator.MinLengthOfString(value, Password.MinPasswordLength))
                 throw new PasswordTooShortException();
-            if (!Validator.MaxLengthOfString(value, 25))
+            if (!Validator.MaxLengthOfString(value, Password.MaxPasswordLength))
                 throw new PasswordTooLongException();
         }
 
@@ -118,12 +127,14 @@ namespace Obligatorio1_DA1.Domain
 
             return pass;
         }
+
         private static void AddRandomCharFromSubSet(ref string word, string subSet, Random random, List<char> mainSet)
         {
             List<char> newValidChars = subSet.ToList();
             AddRandomChar(ref word, newValidChars, random);
             mainSet.AddRange(newValidChars);
         }
+
         private static void AddRandomChar(ref string word, List<char> validChars, Random random)
         {
             char randomChar = validChars[random.Next(0, validChars.Count - 1)];
@@ -145,7 +156,8 @@ namespace Obligatorio1_DA1.Domain
             bool hasUpperCase, hasLowerCase, hasNumber, hasSymbol;
             hasUpperCase = hasLowerCase = hasNumber = hasSymbol = false;
             int typeCount = 0;
-            for (int i = 0; i < pass.Length && typeCount < 4; i++)
+            int maxTypeCount = 4;
+            for (int i = 0; i < pass.Length && typeCount < maxTypeCount; i++)
             {
                 if (IsLowerCase(pass.ElementAt(i)) && !hasLowerCase)
                 {

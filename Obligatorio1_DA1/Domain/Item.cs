@@ -10,10 +10,10 @@ namespace Obligatorio1_DA1.Domain
 {
     public abstract class Item
     {
+        public const int MaxNoteLength = 250;
 
         private Category _category;
         private string notes;
-
         public User User { get; set; }
         public string Notes
         {
@@ -25,7 +25,6 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-
         public Category Category
         {
             get => _category;
@@ -38,12 +37,14 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
+
         private void ValidateNotes(string value)
         {
             if (value == null)
                 return;
-            if (!Validator.MaxLengthOfString(value, 250))
-                throw new ItemNotesTooLongException();
+            if (!Validator.MaxLengthOfString(value, Item.MaxNoteLength))
+                throw new NotesTooLongException();
+
         }
     }
 }

@@ -6,6 +6,9 @@ namespace Obligatorio1_DA1.Domain
 {
     public class Category
     {
+        public const int MinNameLength = 3;
+        public const int MaxNameLength = 15;
+
         private string _name;
         public string Name
         {
@@ -17,11 +20,12 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+
         private void ValidateName(string value)
         {
-            if (!Validator.MinLengthOfString(value, 3))
+            if (!Validator.MinLengthOfString(value, Category.MinNameLength))
                 throw new CategoryTooShortException();
-            if (!Validator.MaxLengthOfString(value, 15))
+            if (!Validator.MaxLengthOfString(value, Category.MaxNameLength))
                 throw new CategoryTooLongException();
         }
 
