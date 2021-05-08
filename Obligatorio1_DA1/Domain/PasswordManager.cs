@@ -106,13 +106,13 @@ namespace Obligatorio1_DA1.Domain
         private void VerifyPasswordBelongToCurrentUser(Password oldPassword)
         {
             if (!(oldPassword.User.Equals(this.CurrentUser)))
-                throw new PasswordNotBelongToCurrentUser();
+                throw new PasswordNotBelongToCurrentUserException();
         }
 
         private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
         {
             if (this._passwords.Contains(newPassword))
-                throw new PasswordAlreadyExists();
+                throw new PasswordAlreadyExistsException();
         }
 
         public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()

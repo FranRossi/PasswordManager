@@ -60,6 +60,8 @@
     <Compile Include="Exceptions\Category\CategoryAlreadyAddedException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationNotSelectedCharacterTypesException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooShortException.cs" />
+    <Compile Include="Exceptions\Password\PasswordAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\Password\PasswordNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Password\PasswordInvalidCharactersException.cs" />
     <Compile Include="Exceptions\User\UserNameTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooLongException.cs" />
