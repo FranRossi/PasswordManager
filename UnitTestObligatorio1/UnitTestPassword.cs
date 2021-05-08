@@ -56,7 +56,6 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetUserPasswords()
         {
-            this._passwordManager.CreatePassword(this._password);
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.Contains(userPasswords, this._password);
         }
@@ -91,7 +90,6 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019"
             };
 
-            this._passwordManager.CreatePassword(this._password);
             this._passwordManager.CreatePassword(differentPassword);
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
@@ -238,8 +236,8 @@ namespace UnitTestObligatorio1
                 {
                     User = _user,
                     Category = _category,
-                    Site = "ort.edu.uy",
-                    Username = "239850",
+                    Site = "example.com",
+                    Username = "123456",
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
