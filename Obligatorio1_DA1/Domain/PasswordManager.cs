@@ -100,6 +100,7 @@ namespace Obligatorio1_DA1.Domain
                     passwordIterator.Category = newPassword.Category;
                     passwordIterator.Site = newPassword.Site;
                     passwordIterator.Notes = newPassword.Notes;
+                    passwordIterator.LastModification = newPassword.LastModification;
                 }
             }
         }

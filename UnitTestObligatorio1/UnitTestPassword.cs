@@ -1015,7 +1015,7 @@ namespace UnitTestObligatorio1
                 LastModification = new DateTime(2021, 5, 8)
             };
             this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
-            Assert.AreNotEqual(this._password.LastModification, newPassword.LastModification);
+            Assert.AreEqual(this._password.LastModification, newPassword.LastModification);
         }
 
     }
