@@ -998,7 +998,24 @@ namespace UnitTestObligatorio1
                 Notes = "Esta es la nueva password",
             };
 
-            Assert.AreEqual(newPassword.LastModification, System.DateTime.Today);
+            Assert.AreEqual(newPassword.LastModification, DateTime.Today);
+        }
+
+        [TestMethod]
+        public void VerifyLastModificationPasswrodChanges()
+        {
+            Password newPassword = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "123456",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password",
+                LastModification = new DateTime(2021, 5, 8)
+            };
+            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+            Assert.AreNotEqual(this._password.LastModification, newPassword.LastModification);
         }
 
     }
