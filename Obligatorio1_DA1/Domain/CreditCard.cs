@@ -11,10 +11,12 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxUsernameLength = 25;
         public const int MinTypeLength = 3;
         public const int MaxTypeLength = 25;
+        public const int SecureCodeLength = 3;
 
         private string number;
         private string name;
         private string type;
+        private string secureCode;
         public string Name
         {
             get => name;
@@ -46,7 +48,15 @@ namespace Obligatorio1_DA1.Domain
         {
             get => ShowOnly4LastDigits();
         }
-        public string SecureCode { get; set; }
+        public string SecureCode
+        {
+            get => secureCode;
+            set
+            {
+                ValidateSecureCode(value);
+                secureCode = value;
+            }
+        }
         public string ExpirationDate { get; set; }
 
 
@@ -72,6 +82,12 @@ namespace Obligatorio1_DA1.Domain
                 throw new CreditCardTypeTooShortException();
             if (!Validator.MaxLengthOfString(type, CreditCard.MaxTypeLength))
                 throw new CreditCardTypeTooLongException();
+        }
+
+        private void ValidateSecureCode(string secureCode)
+        {
+            if (!Validator.StringIsExactlyThisLong(CreditCard.SecureCodeLength, secureCode))
+                throw new CreditCardSecureCodeWrongSizeException();
         }
 
         public string ShowOnly4LastDigits()

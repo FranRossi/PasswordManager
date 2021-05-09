@@ -448,6 +448,17 @@ namespace UnitTestObligatorio1
             this._card.SecureCode = text;
         }
 
+        [DataRow("3243")]
+        [DataRow("23")]
+        [DataRow("")]
+        [DataRow("343442323342342")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardSecureCodeWrongSizeException))]
+        public void SeInvalidSecureCodeOnCardWrongSize(string text)
+        {
+            this._card.SecureCode = text;
+        }
+
     }
 
 
