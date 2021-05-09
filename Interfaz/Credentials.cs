@@ -58,10 +58,11 @@ namespace Presentation
         private void ShowMainScreen()
         {
             Form currentForm = this.FindForm();
-            currentForm.Hide();
+            //currentForm.Hide();
             Form mainForm = new MainWindow(_myPasswordManager);
-            mainForm.Closed += (s, args) => currentForm.Close();
+            //mainForm.Closed += (s, args) => currentForm.Close();
             mainForm.Show();
+            currentForm.Close();
         }
 
 

@@ -25,7 +25,7 @@ namespace Presentation
         public CredentialWindow(PasswordManager passwordManager)
         {
             _myPasswordManager = passwordManager;
-            LoadWindow();
+            _credentials.Show();
         }
 
         private void LoadWindow()

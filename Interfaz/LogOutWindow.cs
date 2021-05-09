@@ -31,10 +31,18 @@ namespace Presentation
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            _mainWindowsClosingEvent.Cancel = false;
+            //_mainWindowsClosingEvent.Cancel = false;
             Form cw = new CredentialWindow(_myPasswordManager);
             cw.Show();
             this.Close();
+
+
+            /*
+                        Form currentForm = this.FindForm();
+                        currentForm.Hide();
+                        Form mainForm = new MainWindow(_myPasswordManager);
+                        mainForm.Closed += (s, args) => currentForm.Close();
+                        mainForm.Show();*/
         }
     }
 }
