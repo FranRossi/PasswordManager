@@ -1,6 +1,7 @@
 ﻿using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Obligatorio1_DA1.Domain
 {
@@ -17,6 +18,7 @@ namespace Obligatorio1_DA1.Domain
         private string name;
         private string type;
         private string secureCode;
+        private string expirationDate;
         public string Name
         {
             get => name;
@@ -57,7 +59,16 @@ namespace Obligatorio1_DA1.Domain
                 secureCode = value;
             }
         }
-        public string ExpirationDate { get; set; }
+        public string ExpirationDate
+        {
+            get => expirationDate;
+            set
+            {
+                ValidateExpirationDate(value);
+                expirationDate = value;
+            }
+
+        }
 
 
         private void ValidateNumber(string number)
@@ -90,6 +101,18 @@ namespace Obligatorio1_DA1.Domain
                 throw new CreditCardSecureCodeWrongSizeException();
             if (!Validator.OnlyDigits(secureCode))
                 throw new CreditCardSecureCodeInvalidCharactersException();
+        }
+
+        private void ValidateExpirationDate(string expirationDate)
+        {
+            if (!ValidateMonthExpirationDate(expirationDate))
+                throw new CreditCardExpirationDateInvalidMonthException();
+        }
+
+        private bool ValidateMonthExpirationDate(string expirationDate)
+        {
+            Regex validMonth = new Regex(@"^(?:0[1-9])|(?:1[0-2])", RegexOptions.Compiled);
+            return validMonth.IsMatch(expirationDate);
         }
 
         public string ShowOnly4LastDigits()

@@ -54,6 +54,7 @@
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidMonthException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeInvalidCharactersException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeWrongSizeException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNameTooLongException.cs" />

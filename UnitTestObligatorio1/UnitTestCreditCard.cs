@@ -487,8 +487,8 @@ namespace UnitTestObligatorio1
         [DataRow("18/23")]
         [DataRow("30/43")]
         [DataTestMethod]
-        [ExpectedException(typeof(CreditCardSecureCodeInvalidMonthException))]
-        public void SeInvalidSecureCodeOnCardInvalidMonth(string text)
+        [ExpectedException(typeof(CreditCardExpirationDateInvalidMonthException))]
+        public void SeInvalidExpirationDateOnCardInvalidMonth(string text)
         {
             this._card.ExpirationDate = text;
         }
