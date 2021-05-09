@@ -54,6 +54,7 @@
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNameTooShortException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardAlreadyExistsException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Item\ItemInvalidCategoryException.cs" />

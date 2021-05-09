@@ -7,9 +7,19 @@ namespace Obligatorio1_DA1.Domain
     public class CreditCard : Item
     {
         public const int creditCardLength = 16;
+        public const int MinUsernameLength = 3;
 
         private string number;
-        public string Name { get; set; }
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                ValidateName(value);
+                name = value;
+            }
+        }
         public string Type { get; set; }
         public string Number
         {
@@ -34,6 +44,12 @@ namespace Obligatorio1_DA1.Domain
                 throw new CreditCardNumberLengthIncorrect();
             if (!Validator.NumberCardOnlyDigits(number))
                 throw new CreditCardNumberInvalidCharacters();
+        }
+
+        private void ValidateName(string name)
+        {
+            if (!Validator.MinLengthOfString(name, CreditCard.MinUsernameLength))
+                throw new CreditCardNameTooShortException();
         }
 
         public string ShowOnly4LastDigits()
