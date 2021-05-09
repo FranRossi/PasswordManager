@@ -4,7 +4,7 @@
     {
         public PasswordNotBelongToCurrentUserException()
         {
-            this.message = "Esta contraseña no pertenece al Usuario que esta logeado";
+            this.message = "Esta contraseña no pertenece al Usuario que esta logeado sesión";
         }
     }
 }

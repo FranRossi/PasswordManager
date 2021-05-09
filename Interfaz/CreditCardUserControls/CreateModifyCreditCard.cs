@@ -74,14 +74,8 @@ namespace Presentation
 
         private void ModifyCreditCard(CreditCard newCreditCard)
         {
-            try
-            {
-                _myPasswordManager.ModifyCreditCardOnCurrentUser(_myCreditCardToModify, newCreditCard);
-            }
-            catch (PasswordAlreadyExistsException exception)
-            {
-                lblError.Text = "Error: Este Usuario ya tiene una contraseña para este Sitio en el Sistema";
-            }
+            _myPasswordManager.ModifyCreditCardOnCurrentUser(_myCreditCardToModify, newCreditCard);
+
         }
 
         private void CreateNewCreditCard(CreditCard newCreditCard)

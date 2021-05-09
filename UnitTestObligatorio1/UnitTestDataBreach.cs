@@ -165,7 +165,7 @@ namespace UnitTestObligatorio1
                 Category = category,
                 Name = "Visa Gold",
                 Type = "Visa",
-                Number = "2354231413003498",
+                Number = "2354231413001234",
                 SecureCode = "189",
                 ExpirationDate = "10/21",
                 Notes = "Tra­mite 400k UYU"

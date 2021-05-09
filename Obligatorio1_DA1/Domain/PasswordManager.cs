@@ -67,6 +67,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
+            VerifyExistenceOfPasswordOnPasswordList(password);
             this._passwords.Add(password);
         }
 
@@ -103,9 +104,9 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
-        private void VerifyPasswordBelongToCurrentUser(Password oldPassword)
+        private void VerifyPasswordBelongToCurrentUser(Password newPassword)
         {
-            if (!(oldPassword.User.Equals(this.CurrentUser)))
+            if (!(newPassword.User.Equals(this.CurrentUser)))
                 throw new PasswordNotBelongToCurrentUserException();
         }
 
@@ -160,6 +161,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateCreditCard(CreditCard creditCard)
         {
+            VerifyExistenceOfCreditCardOnCreditCardList(creditCard);
             this._creditCards.Add(creditCard);
         }
 
@@ -182,10 +184,12 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
+            VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
                 if (creditCardIterator.Equals(oldCreditCard))
                 {
+                    VerifyCreditCardBelongToCurrentUser(newCreditCard);
                     creditCardIterator.Category = newCreditCard.Category;
                     creditCardIterator.Notes = newCreditCard.Notes;
                     creditCardIterator.Name = newCreditCard.Name;
@@ -197,6 +201,17 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+        private void VerifyCreditCardBelongToCurrentUser(CreditCard newCreditCard)
+        {
+            if (!(newCreditCard.User.Equals(this.CurrentUser)))
+                throw new CreditCardNotBelongToCurrentUserException();
+        }
+
+        private void VerifyExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
+        {
+            if (this._creditCards.Contains(newCreditCard))
+                throw new CreditCardAlreadyExistsException();
+        }
 
         public List<Item> GetBreachedItems(string dataBreach)
         {
