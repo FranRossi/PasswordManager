@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,11 +24,33 @@ namespace Presentation.PasswordUserControls
 
         private void LoadInformation()
         {
-            lblCategoryContent.Text = _password.Category.ToString();
-            lblSiteContent.Text = _password.Site;
-            lblUserContent.Text = _password.Username;
-            lblPasswordContent.Text = _password.Pass;
-            lblNotesContent.Text = _password.Notes;
+            txtCategory.Text = _password.Category.ToString();
+            txtSite.Text = _password.Site;
+            txtUser.Text = _password.Username;
+            txtNotes.Text = _password.Notes;
+
+            txtPassword.Text = _password.Pass;
+            ShowPassField();
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            ShowPassField();
+        }
+
+        private async void ShowPassField()
+        {
+            txtPassword.PasswordChar = '\0';
+            btnShow.Enabled = false;
+
+            await Task.Delay(TimeSpan.FromSeconds(3));
+            HidePassField();
+        }
+
+        private void HidePassField()
+        {
+            txtPassword.PasswordChar = '*';
+            btnShow.Enabled = true;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)

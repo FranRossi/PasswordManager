@@ -31,20 +31,19 @@ namespace Presentation.PasswordUserControls
         {
             this.pnlPassword = new System.Windows.Forms.Panel();
             this.gpbPassword = new System.Windows.Forms.GroupBox();
-            this.lblNotesContent = new System.Windows.Forms.Label();
-            this.lblPasswordContent = new System.Windows.Forms.Label();
-            this.lblUserContent = new System.Windows.Forms.Label();
-            this.lblSiteContent = new System.Windows.Forms.Label();
-            this.lblCategoryContent = new System.Windows.Forms.Label();
+            this.btnShow = new System.Windows.Forms.Button();
+            this.txtNotes = new System.Windows.Forms.TextBox();
+            this.txtCategory = new System.Windows.Forms.TextBox();
+            this.txtSite = new System.Windows.Forms.TextBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblMessage = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
+            this.btnAccept = new System.Windows.Forms.Button();
             this.lblNotes = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblSite = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.btnAccept = new System.Windows.Forms.Button();
             this.pnlPassword.SuspendLayout();
             this.gpbPassword.SuspendLayout();
             this.SuspendLayout();
@@ -62,14 +61,13 @@ namespace Presentation.PasswordUserControls
             // gpbPassword
             // 
             this.gpbPassword.BackColor = System.Drawing.SystemColors.Menu;
-            this.gpbPassword.Controls.Add(this.lblNotesContent);
-            this.gpbPassword.Controls.Add(this.lblPasswordContent);
-            this.gpbPassword.Controls.Add(this.lblUserContent);
-            this.gpbPassword.Controls.Add(this.lblSiteContent);
-            this.gpbPassword.Controls.Add(this.lblCategoryContent);
+            this.gpbPassword.Controls.Add(this.btnShow);
+            this.gpbPassword.Controls.Add(this.txtNotes);
+            this.gpbPassword.Controls.Add(this.txtCategory);
+            this.gpbPassword.Controls.Add(this.txtSite);
+            this.gpbPassword.Controls.Add(this.txtUser);
+            this.gpbPassword.Controls.Add(this.txtPassword);
             this.gpbPassword.Controls.Add(this.label1);
-            this.gpbPassword.Controls.Add(this.lblMessage);
-            this.gpbPassword.Controls.Add(this.lblError);
             this.gpbPassword.Controls.Add(this.btnAccept);
             this.gpbPassword.Controls.Add(this.lblNotes);
             this.gpbPassword.Controls.Add(this.lblUser);
@@ -83,53 +81,69 @@ namespace Presentation.PasswordUserControls
             this.gpbPassword.TabIndex = 1;
             this.gpbPassword.TabStop = false;
             // 
-            // lblNotesContent
+            // btnShow
             // 
-            this.lblNotesContent.AutoSize = true;
-            this.lblNotesContent.Location = new System.Drawing.Point(94, 155);
-            this.lblNotesContent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblNotesContent.Name = "lblNotesContent";
-            this.lblNotesContent.Size = new System.Drawing.Size(0, 13);
-            this.lblNotesContent.TabIndex = 23;
+            this.btnShow.Location = new System.Drawing.Point(233, 115);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(51, 23);
+            this.btnShow.TabIndex = 29;
+            this.btnShow.Text = "Mostrar";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
-            // lblPasswordContent
+            // txtNotes
             // 
-            this.lblPasswordContent.AutoSize = true;
-            this.lblPasswordContent.Location = new System.Drawing.Point(94, 120);
-            this.lblPasswordContent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPasswordContent.Name = "lblPasswordContent";
-            this.lblPasswordContent.Size = new System.Drawing.Size(43, 13);
-            this.lblPasswordContent.TabIndex = 22;
-            this.lblPasswordContent.Text = "*********";
+            this.txtNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNotes.Location = new System.Drawing.Point(97, 160);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.ReadOnly = true;
+            this.txtNotes.Size = new System.Drawing.Size(187, 63);
+            this.txtNotes.TabIndex = 28;
             // 
-            // lblUserContent
+            // txtCategory
             // 
-            this.lblUserContent.AutoSize = true;
-            this.lblUserContent.Location = new System.Drawing.Point(94, 82);
-            this.lblUserContent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblUserContent.Name = "lblUserContent";
-            this.lblUserContent.Size = new System.Drawing.Size(88, 13);
-            this.lblUserContent.TabIndex = 21;
-            this.lblUserContent.Text = "User Placeholder";
+            this.txtCategory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCategory.Location = new System.Drawing.Point(97, 18);
+            this.txtCategory.Multiline = true;
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.ReadOnly = true;
+            this.txtCategory.Size = new System.Drawing.Size(187, 25);
+            this.txtCategory.TabIndex = 27;
+            this.txtCategory.Text = "Category Placeholder";
             // 
-            // lblSiteContent
+            // txtSite
             // 
-            this.lblSiteContent.AutoSize = true;
-            this.lblSiteContent.Location = new System.Drawing.Point(94, 49);
-            this.lblSiteContent.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblSiteContent.Name = "lblSiteContent";
-            this.lblSiteContent.Size = new System.Drawing.Size(84, 13);
-            this.lblSiteContent.TabIndex = 20;
-            this.lblSiteContent.Text = "Site Placeholder";
+            this.txtSite.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSite.Location = new System.Drawing.Point(97, 49);
+            this.txtSite.Multiline = true;
+            this.txtSite.Name = "txtSite";
+            this.txtSite.ReadOnly = true;
+            this.txtSite.Size = new System.Drawing.Size(187, 34);
+            this.txtSite.TabIndex = 26;
+            this.txtSite.Text = "Site Placeholder";
             // 
-            // lblCategoryContent
+            // txtUser
             // 
-            this.lblCategoryContent.AutoSize = true;
-            this.lblCategoryContent.Location = new System.Drawing.Point(94, 19);
-            this.lblCategoryContent.Name = "lblCategoryContent";
-            this.lblCategoryContent.Size = new System.Drawing.Size(108, 13);
-            this.lblCategoryContent.TabIndex = 19;
-            this.lblCategoryContent.Text = "Category Placeholder";
+            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUser.Location = new System.Drawing.Point(97, 82);
+            this.txtUser.Multiline = true;
+            this.txtUser.Name = "txtUser";
+            this.txtUser.ReadOnly = true;
+            this.txtUser.Size = new System.Drawing.Size(173, 27);
+            this.txtUser.TabIndex = 25;
+            this.txtUser.Text = "User Placeholder";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.Location = new System.Drawing.Point(97, 120);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.ReadOnly = true;
+            this.txtPassword.Size = new System.Drawing.Size(130, 34);
+            this.txtPassword.TabIndex = 24;
+            this.txtPassword.Text = "Password Placeholder";
             // 
             // label1
             // 
@@ -141,27 +155,21 @@ namespace Presentation.PasswordUserControls
             this.label1.TabIndex = 9;
             this.label1.Text = "Contraseña:";
             // 
-            // lblMessage
+            // btnAccept
             // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(11, 403);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 13);
-            this.lblMessage.TabIndex = 18;
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(19, 317);
-            this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 13);
-            this.lblError.TabIndex = 16;
+            this.btnAccept.Location = new System.Drawing.Point(215, 228);
+            this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(70, 27);
+            this.btnAccept.TabIndex = 15;
+            this.btnAccept.Text = "Aceptar";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // lblNotes
             // 
             this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(9, 155);
+            this.lblNotes.Location = new System.Drawing.Point(9, 160);
             this.lblNotes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(38, 13);
@@ -208,17 +216,6 @@ namespace Presentation.PasswordUserControls
             this.lblPassword.TabIndex = 0;
             this.lblPassword.Text = "Contraseña";
             // 
-            // btnAccept
-            // 
-            this.btnAccept.Location = new System.Drawing.Point(215, 228);
-            this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(70, 27);
-            this.btnAccept.TabIndex = 15;
-            this.btnAccept.Text = "Aceptar";
-            this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
             // ShowPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,7 +223,7 @@ namespace Presentation.PasswordUserControls
             this.ClientSize = new System.Drawing.Size(344, 350);
             this.Controls.Add(this.pnlPassword);
             this.Name = "ShowPassword";
-            this.Text = "ShowPassword";
+            this.Text = "Password Manager";
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();
             this.gpbPassword.ResumeLayout(false);
@@ -240,18 +237,17 @@ namespace Presentation.PasswordUserControls
         private System.Windows.Forms.Panel pnlPassword;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.GroupBox gpbPassword;
-        private System.Windows.Forms.Label lblNotesContent;
-        private System.Windows.Forms.Label lblPasswordContent;
-        private System.Windows.Forms.Label lblUserContent;
-        private System.Windows.Forms.Label lblSiteContent;
-        private System.Windows.Forms.Label lblCategoryContent;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblMessage;
-        private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label lblNotes;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblSite;
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.TextBox txtCategory;
+        private System.Windows.Forms.TextBox txtSite;
+        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.Button btnShow;
     }
 }
