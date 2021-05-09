@@ -46,6 +46,9 @@ namespace Presentation
                     case "Category":
                         column.HeaderText = "Categoria";
                         break;
+                    case "Pass":
+                        column.HeaderText = "Constraseña";
+                        break;
                     default:
                         column.Visible = false;
                         break;
@@ -117,6 +120,17 @@ namespace Presentation
             MainWindow main = (MainWindow)parentPanel.Parent;
             UpdateSelectedPassword();
             main.ShowSharedPasswordList(_selectedPassword);
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedPassword();
+            tblPassword.SelectedRows[0].Cells[2].Value = "*****";
+
+        }
+
+        private void ShowPassword()
+        {
         }
     }
 }
