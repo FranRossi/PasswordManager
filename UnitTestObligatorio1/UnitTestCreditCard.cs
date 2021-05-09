@@ -388,7 +388,27 @@ namespace UnitTestObligatorio1
             this._card.Name = text;
         }
 
+        [DataRow("AB")]
+        [DataRow("A ")]
+        [DataRow("")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardNameTooShort))]
+        public void SeInvalidNameOnCardTooShort(string text)
+        {
+            this._card.Name = "Banco Santander";
+        }
 
+        [DataRow("AB")]
+        [DataRow("Abcdefghijklmnopqrstuvwxyz")]
+        [DataRow("Abcdefghijk lmnopqrstuvwxy")]
+        [DataRow("A ")]
+        [DataRow("")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardNameTooShort))]
+        public void SeInvalidNameOnCardTooShort(string text)
+        {
+            this._card.Name = "Banco Santander";
+        }
 
     }
 
