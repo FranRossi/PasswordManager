@@ -201,7 +201,7 @@ namespace Obligatorio1_DA1.Domain
         public List<Item> GetBreachedItems<T>(IDataBreach<T> dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
-            string dataBreachString = dataBreach.GetToDataBreachString();
+            string dataBreachString = dataBreach.GetDataBreachString();
             string[] splittedDataBreach = dataBreachString.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {

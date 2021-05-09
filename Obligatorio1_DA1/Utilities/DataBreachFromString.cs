@@ -10,7 +10,7 @@ namespace Obligatorio1_DA1.Utilities
     {
         public string Data { set; private get; }
 
-        public string GetToDataBreachString()
+        public string GetDataBreachString()
         {
             return this.Data;
         }
