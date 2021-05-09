@@ -47,7 +47,6 @@ namespace Presentation
             {
                 User newUser = new User(userName, masterPassword);
                 _myPasswordManager.CreateUser(newUser);
-                CleanTextBoxes();
                 ShowMainScreen();
             }
             catch (ValidationException exception)
@@ -64,6 +63,7 @@ namespace Presentation
 
         private void ShowMainScreen()
         {
+            CleanTextBoxes();
             Form currentForm = this.FindForm();
             currentForm.Hide();
             Form mainForm = new MainWindow(_myPasswordManager);
