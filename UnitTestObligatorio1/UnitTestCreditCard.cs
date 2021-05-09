@@ -472,15 +472,26 @@ namespace UnitTestObligatorio1
 
         [DataRow("12/24")]
         [DataRow("11/44")]
-        [DataRow("31/43")]
-        [DataRow("18/23")]
-        [DataRow("30/43")]
+        [DataRow("01/43")]
+        [DataRow("02/23")]
+        [DataRow("09/43")]
         [DataTestMethod]
         public void SetValidExpirationDateOnCard(string text)
         {
             this._card.ExpirationDate = text;
         }
 
+        [DataRow("00/24")]
+        [DataRow("71/44")]
+        [DataRow("31/43")]
+        [DataRow("18/23")]
+        [DataRow("30/43")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardSecureCodeInvalidMonthException))]
+        public void SeInvalidSecureCodeOnCardInvalidMonth(string text)
+        {
+            this._card.ExpirationDate = text;
+        }
     }
 
 
