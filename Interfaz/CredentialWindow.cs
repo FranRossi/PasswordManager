@@ -22,12 +22,6 @@ namespace Presentation
             LoadWindow();
         }
 
-        public CredentialWindow(PasswordManager passwordManager)
-        {
-            _myPasswordManager = passwordManager;
-            _credentials.Show();
-        }
-
         private void LoadWindow()
         {
             InitializeComponent();
