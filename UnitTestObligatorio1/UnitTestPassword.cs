@@ -984,6 +984,23 @@ namespace UnitTestObligatorio1
             this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
         }
 
+
+        [TestMethod]
+        public void VerifyLasrModificationPassword()
+        {
+            Password newPassword = new Password
+            {
+                User = this._user,
+                Category = this._category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password"
+            };
+
+            Assert.AreEqual(newPassword.LastModification, System.DateTime.Today);
+        }
+
     }
 
 
