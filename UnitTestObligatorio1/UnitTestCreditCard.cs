@@ -459,6 +459,17 @@ namespace UnitTestObligatorio1
             this._card.SecureCode = text;
         }
 
+        [DataRow("3rr")]
+        [DataRow("23s")]
+        [DataRow("s2s")]
+        [DataRow("@34")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardSecureCodeInvalidCharactersException))]
+        public void SeInvalidSecureCodeOnCardInvalidCharacters(string text)
+        {
+            this._card.SecureCode = text;
+        }
+
     }
 
 
