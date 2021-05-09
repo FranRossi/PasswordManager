@@ -10,6 +10,7 @@ namespace Obligatorio1_DA1.Domain
         public const int MinUsernameLength = 3;
         public const int MaxUsernameLength = 25;
         public const int MinTypeLength = 3;
+        public const int MaxTypeLength = 25;
 
         private string number;
         private string name;
@@ -69,6 +70,8 @@ namespace Obligatorio1_DA1.Domain
         {
             if (!Validator.MinLengthOfString(type, CreditCard.MinTypeLength))
                 throw new CreditCardTypeTooShortException();
+            if (!Validator.MaxLengthOfString(type, CreditCard.MaxTypeLength))
+                throw new CreditCardTypeTooLongException();
         }
 
         public string ShowOnly4LastDigits()

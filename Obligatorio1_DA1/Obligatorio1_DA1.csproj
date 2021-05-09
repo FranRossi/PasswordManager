@@ -55,6 +55,7 @@
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNameTooLongException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardTypeTooLongException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardTypeTooShortException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNameTooShortException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardAlreadyExistsException.cs" />
