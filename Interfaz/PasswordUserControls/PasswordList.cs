@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Presentation.PasswordUserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,9 +46,6 @@ namespace Presentation
                         break;
                     case "Category":
                         column.HeaderText = "Categoria";
-                        break;
-                    case "Pass":
-                        column.HeaderText = "Constraseña";
                         break;
                     default:
                         column.Visible = false;
@@ -103,9 +101,9 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                Form createCreditCard = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
-                createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
-                createCreditCard.ShowDialog();
+                Form createPassword = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
+                createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createPassword.ShowDialog();
             }
             else
             {
@@ -125,12 +123,16 @@ namespace Presentation
         private void btnShow_Click(object sender, EventArgs e)
         {
             UpdateSelectedPassword();
-            tblPassword.SelectedRows[0].Cells[2].Value = "*****";
-
+            if (_selectedPassword != null)
+            {
+                Form showPassord = new ShowPassword(_selectedPassword);
+                showPassord.ShowDialog();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea mostrar.";
+            }
         }
 
-        private void ShowPassword()
-        {
-        }
     }
 }
