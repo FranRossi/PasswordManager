@@ -84,6 +84,8 @@
     <Compile Include="Domain\PasswordManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData.cs" />
+    <Compile Include="Utilities\DataBreachFromString.cs" />
+    <Compile Include="Utilities\IDataBreach.cs" />
     <Compile Include="Utilities\passwordStrengthReport.cs" />
     <Compile Include="Utilities\PasswordStrengthColor.cs" />
     <Compile Include="Utilities\Validator.cs" />
