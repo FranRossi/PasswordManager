@@ -377,11 +377,18 @@ namespace UnitTestObligatorio1
             this._passwordManager.ModifyCreditCardOnCurrentUser(this._card, newCreditCard);
         }
 
-        [TestMethod]
-        public void SetValidNameOnCard()
+        [DataRow("ABC")]
+        [DataRow("Abcdefghijklmnopqrstuvwxy")]
+        [DataRow("Abcdefghijk lmnopqrstuvwx")]
+        [DataRow("A B")]
+        [DataRow("Banco Santander")]
+        [DataTestMethod]
+        public void SetValidNameOnCard(string text)
         {
-            this._card.Name = "Banco Santander";
+            this._card.Name = text;
         }
+
+
 
     }
 
