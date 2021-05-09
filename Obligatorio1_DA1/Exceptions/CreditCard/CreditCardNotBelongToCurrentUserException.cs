@@ -5,7 +5,7 @@
     {
         public CreditCardNotBelongToCurrentUserException()
         {
-            this.message = "Esta tarjeta de crédito/débito no pertenece al Usuario que esta logeado";
+            this.message = "Esta tarjeta de crédito no pertenece al usuario que esta logeado";
         }
     }
 }
