@@ -6,7 +6,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class CreditCard : Item
     {
-        public const int creditCardLength = 16;
+        public const int CreditCardLength = 16;
         public const int MinUsernameLength = 3;
         public const int MaxUsernameLength = 25;
         public const int MinTypeLength = 3;
@@ -52,7 +52,7 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateNumber(string number)
         {
-            if (!Validator.StringIsExactlyThisLong(CreditCard.creditCardLength, number))
+            if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, number))
                 throw new CreditCardNumberLengthIncorrect();
             if (!Validator.NumberCardOnlyDigits(number))
                 throw new CreditCardNumberInvalidCharacters();

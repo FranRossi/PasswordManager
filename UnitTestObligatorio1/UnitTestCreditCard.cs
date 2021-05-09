@@ -437,6 +437,17 @@ namespace UnitTestObligatorio1
             this._card.Type = text;
         }
 
+        [DataRow("124")]
+        [DataRow("434")]
+        [DataRow("333")]
+        [DataRow("983")]
+        [DataRow("343")]
+        [DataTestMethod]
+        public void SetValidSecureCodeOnCard(string text)
+        {
+            this._card.SecureCode = text;
+        }
+
     }
 
 
