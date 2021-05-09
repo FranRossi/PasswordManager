@@ -428,6 +428,15 @@ namespace UnitTestObligatorio1
             this._card.Type = text;
         }
 
+        [DataRow("Abcdefghijklmnopqrstuvwxyz")]
+        [DataRow("Abcdefghijk lmnopqrstuvwxy")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardTypeTooLongException))]
+        public void SeInvalidTypeOnCardTooLong(string text)
+        {
+            this._card.Type = text;
+        }
+
     }
 
 
