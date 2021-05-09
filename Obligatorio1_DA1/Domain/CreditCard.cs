@@ -105,6 +105,8 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateExpirationDate(string expirationDate)
         {
+            if (!ValidateFormatExpirationDate(expirationDate))
+                throw new CreditCardExpirationDateInvalidFormatException();
             if (!ValidateMonthExpirationDate(expirationDate))
                 throw new CreditCardExpirationDateInvalidMonthException();
         }
@@ -112,6 +114,12 @@ namespace Obligatorio1_DA1.Domain
         private bool ValidateMonthExpirationDate(string expirationDate)
         {
             Regex validMonth = new Regex(@"^(?:0[1-9])|(?:1[0-2])", RegexOptions.Compiled);
+            return validMonth.IsMatch(expirationDate);
+        }
+
+        private bool ValidateFormatExpirationDate(string expirationDate)
+        {
+            Regex validMonth = new Regex(@"^[0-9]{2}/[0-9]{2}$", RegexOptions.Compiled);
             return validMonth.IsMatch(expirationDate);
         }
 
