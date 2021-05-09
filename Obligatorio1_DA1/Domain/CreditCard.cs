@@ -64,7 +64,7 @@ namespace Obligatorio1_DA1.Domain
         {
             if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, number))
                 throw new CreditCardNumberLengthIncorrect();
-            if (!Validator.NumberCardOnlyDigits(number))
+            if (!Validator.OnlyDigits(number))
                 throw new CreditCardNumberInvalidCharacters();
         }
 
@@ -88,6 +88,8 @@ namespace Obligatorio1_DA1.Domain
         {
             if (!Validator.StringIsExactlyThisLong(CreditCard.SecureCodeLength, secureCode))
                 throw new CreditCardSecureCodeWrongSizeException();
+            if (!Validator.OnlyDigits(secureCode))
+                throw new CreditCardSecureCodeInvalidCharactersException();
         }
 
         public string ShowOnly4LastDigits()
