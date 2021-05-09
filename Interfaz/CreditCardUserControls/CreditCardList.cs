@@ -25,15 +25,15 @@ namespace Presentation
         private void LoadTblCreditCard()
         {
             List<CreditCard> creditCards = _myPasswordManager.GetCreditCards();
-            tblCreditCards.DataSource = null;
-            tblCreditCards.Rows.Clear();
-            tblCreditCards.DataSource = creditCards;
+            tblCreditCard.DataSource = null;
+            tblCreditCard.Rows.Clear();
+            tblCreditCard.DataSource = creditCards;
             FormatCreditCardListOnTable();
         }
 
         private void FormatCreditCardListOnTable()
         {
-            foreach (DataGridViewColumn column in tblCreditCards.Columns)
+            foreach (DataGridViewColumn column in tblCreditCard.Columns)
             {
                 switch (column.Name)
                 {
@@ -59,8 +59,7 @@ namespace Presentation
             }
         }
 
-
-        private void btnAddsCreditCard_Click(object sender, EventArgs e)
+        private void btnAddCreditCard_Click(object sender, EventArgs e)
         {
             Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
@@ -88,7 +87,7 @@ namespace Presentation
 
         }
 
-        private void btnModifiesCreditCard_Click(object sender, EventArgs e)
+        private void btnModifyCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
@@ -106,11 +105,11 @@ namespace Presentation
 
         private void UpdateSelectedCreditCard()
         {
-            if (tblCreditCards.SelectedCells.Count > 0)
+            if (tblCreditCard.SelectedCells.Count > 0)
             {
                 try
                 {
-                    _selectedCreditCard = (CreditCard)tblCreditCards.CurrentRow.DataBoundItem;
+                    _selectedCreditCard = (CreditCard)tblCreditCard.CurrentRow.DataBoundItem;
                 }
                 catch (FormatException exception)
                 {
@@ -118,6 +117,5 @@ namespace Presentation
                 }
             }
         }
-
     }
 }
