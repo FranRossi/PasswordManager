@@ -20,29 +20,31 @@ namespace Presentation
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
             _mainWindowsClosingEvent = mainWindowsClosingEvent;
-            _mainWindowsClosingEvent.Cancel = true;
+
+            // in case the User closes the Window with the "X"
+            KeepMainWindowOpen();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            _mainWindowsClosingEvent.Cancel = false;
-            this.Close();
+            CloseMainWindow();
+            System.Environment.Exit(0);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            //_mainWindowsClosingEvent.Cancel = false;
-            Form cw = new CredentialWindow(_myPasswordManager);
-            cw.Show();
+            CloseMainWindow();
             this.Close();
+        }
 
+        void KeepMainWindowOpen()
+        {
+            _mainWindowsClosingEvent.Cancel = true;
+        }
 
-            /*
-                        Form currentForm = this.FindForm();
-                        currentForm.Hide();
-                        Form mainForm = new MainWindow(_myPasswordManager);
-                        mainForm.Closed += (s, args) => currentForm.Close();
-                        mainForm.Show();*/
+        void CloseMainWindow()
+        {
+            _mainWindowsClosingEvent.Cancel = false;
         }
     }
 }
