@@ -418,6 +418,16 @@ namespace UnitTestObligatorio1
             this._card.Type = text;
         }
 
+        [DataRow("AB")]
+        [DataRow("A ")]
+        [DataRow("")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardTypeTooShortException))]
+        public void SeInvalidTypeOnCardTooShort(string text)
+        {
+            this._card.Name = text;
+        }
+
     }
 
 
