@@ -986,7 +986,7 @@ namespace UnitTestObligatorio1
 
 
         [TestMethod]
-        public void VerifyLasrModificationPassword()
+        public void VerifyLastModificationPassword()
         {
             Password newPassword = new Password
             {
@@ -995,7 +995,7 @@ namespace UnitTestObligatorio1
                 Site = "ort.edu.uy",
                 Username = "239850",
                 Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password"
+                Notes = "Esta es la nueva password",
             };
 
             Assert.AreEqual(newPassword.LastModification, System.DateTime.Today);

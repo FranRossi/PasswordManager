@@ -20,6 +20,12 @@ namespace Obligatorio1_DA1.Domain
         private string username;
         private string pass;
         private List<User> _sharedWith;
+        private DateTime _lastModification;
+
+        public Password()
+        {
+            LastModification = DateTime.Today;
+        }
 
         public PasswordStrengthColor PasswordStrength { get; private set; }
 
@@ -63,6 +69,15 @@ namespace Obligatorio1_DA1.Domain
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
 
+        }
+
+        public DateTime LastModification
+        {
+            get => _lastModification;
+            private set
+            {
+                _lastModification = value;
+            }
         }
 
         private void ValidateSite(string value)
