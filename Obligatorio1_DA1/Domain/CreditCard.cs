@@ -9,9 +9,11 @@ namespace Obligatorio1_DA1.Domain
         public const int creditCardLength = 16;
         public const int MinUsernameLength = 3;
         public const int MaxUsernameLength = 25;
+        public const int MinTypeLength = 3;
 
         private string number;
         private string name;
+        private string type;
         public string Name
         {
             get => name;
@@ -21,7 +23,15 @@ namespace Obligatorio1_DA1.Domain
                 name = value;
             }
         }
-        public string Type { get; set; }
+        public string Type
+        {
+            get => type;
+            set
+            {
+                ValidateType(value);
+                type = value;
+            }
+        }
         public string Number
         {
             get => number;
@@ -53,6 +63,12 @@ namespace Obligatorio1_DA1.Domain
                 throw new CreditCardNameTooShortException();
             if (!Validator.MaxLengthOfString(name, CreditCard.MaxUsernameLength))
                 throw new CreditCardNameTooLongException();
+        }
+
+        private void ValidateType(string type)
+        {
+            if (!Validator.MinLengthOfString(type, CreditCard.MinTypeLength))
+                throw new CreditCardTypeTooShortException();
         }
 
         public string ShowOnly4LastDigits()

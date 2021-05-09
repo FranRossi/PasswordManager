@@ -425,7 +425,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardTypeTooShortException))]
         public void SeInvalidTypeOnCardTooShort(string text)
         {
-            this._card.Name = text;
+            this._card.Type = text;
         }
 
     }
