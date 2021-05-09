@@ -407,6 +407,17 @@ namespace UnitTestObligatorio1
             this._card.Name = text;
         }
 
+        [DataRow("ABC")]
+        [DataRow("Abcdefghijklmnopqrstuvwxy")]
+        [DataRow("Abcdefghijk lmnopqrstuvwx")]
+        [DataRow("A B")]
+        [DataRow("Banco Santander")]
+        [DataTestMethod]
+        public void SetValidTypeOnCard(string text)
+        {
+            this._card.Type = text;
+        }
+
     }
 
 
