@@ -283,7 +283,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 passwordToCompare = (Password)obj;
             }
-            catch (Exception e)
+            catch (InvalidCastException e)
             {
                 return false;
             }
