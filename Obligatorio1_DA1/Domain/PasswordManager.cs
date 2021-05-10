@@ -163,7 +163,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateCreditCard(CreditCard creditCard)
         {
-            VerifyExistenceOfCreditCardOnCreditCardList(creditCard);
+            VerifyNonExistenceOfCreditCardOnCreditCardList(creditCard);
             this._creditCards.Add(creditCard);
         }
 
@@ -186,7 +186,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
-            VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
+            VerifyNonExistenceOfCreditCardOnCreditCardList(newCreditCard);
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
                 if (creditCardIterator.Equals(oldCreditCard))
@@ -209,7 +209,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new CreditCardNotBelongToCurrentUserException();
         }
 
-        private void VerifyExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
+        private void VerifyNonExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
         {
             if (this._creditCards.Contains(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
