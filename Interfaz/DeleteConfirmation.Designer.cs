@@ -30,17 +30,17 @@ namespace Presentation
         private void InitializeComponent()
         {
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.chPopUp = new System.Windows.Forms.CheckBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblConfirmationMessage = new System.Windows.Forms.Label();
-            this.çhPopUp = new System.Windows.Forms.CheckBox();
             this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pnlButtons.Controls.Add(this.çhPopUp);
+            this.pnlButtons.Controls.Add(this.chPopUp);
             this.pnlButtons.Controls.Add(this.btnAccept);
             this.pnlButtons.Controls.Add(this.btnCancel);
             this.pnlButtons.Location = new System.Drawing.Point(2, 165);
@@ -48,6 +48,17 @@ namespace Presentation
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(615, 73);
             this.pnlButtons.TabIndex = 2;
+            // 
+            // chPopUp
+            // 
+            this.chPopUp.AutoSize = true;
+            this.chPopUp.Location = new System.Drawing.Point(10, 29);
+            this.chPopUp.Name = "chPopUp";
+            this.chPopUp.Size = new System.Drawing.Size(269, 24);
+            this.chPopUp.TabIndex = 2;
+            this.chPopUp.Text = "No volver a mostrar este mensaje";
+            this.chPopUp.UseVisualStyleBackColor = true;
+            this.chPopUp.CheckedChanged += new System.EventHandler(this.chPopUp_CheckedChanged);
             // 
             // btnAccept
             // 
@@ -84,17 +95,6 @@ namespace Presentation
             this.lblConfirmationMessage.TabIndex = 3;
             this.lblConfirmationMessage.Text = "¿Confirmas la eliminación del objeto?";
             // 
-            // çhPopUp
-            // 
-            this.çhPopUp.AutoSize = true;
-            this.çhPopUp.Location = new System.Drawing.Point(10, 29);
-            this.çhPopUp.Name = "çhPopUp";
-            this.çhPopUp.Size = new System.Drawing.Size(269, 24);
-            this.çhPopUp.TabIndex = 2;
-            this.çhPopUp.Text = "No volver a mostrar este mensaje";
-            this.çhPopUp.UseVisualStyleBackColor = true;
-            this.çhPopUp.CheckedChanged += new System.EventHandler(this.çhPopUp_CheckedChanged);
-            // 
             // DeleteConfirmation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -118,6 +118,6 @@ namespace Presentation
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblConfirmationMessage;
-        private System.Windows.Forms.CheckBox çhPopUp;
+        private System.Windows.Forms.CheckBox chPopUp;
     }
 }

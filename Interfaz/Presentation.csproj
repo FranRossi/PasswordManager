@@ -59,6 +59,12 @@
     <Compile Include="CreditCardUserControls\CreateModifyCreditCard.Designer.cs">
       <DependentUpon>CreateModifyCreditCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeleteConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteConfirmation.Designer.cs">
+      <DependentUpon>DeleteConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogOutWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreditCardUserControls\CreateModifyCreditCard.resx">
       <DependentUpon>CreateModifyCreditCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteConfirmation.resx">
+      <DependentUpon>DeleteConfirmation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogOutWindow.resx">
       <DependentUpon>LogOutWindow.cs</DependentUpon>

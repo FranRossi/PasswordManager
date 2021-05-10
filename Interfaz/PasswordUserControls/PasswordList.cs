@@ -62,14 +62,29 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                _myPasswordManager.DeletePassword(_selectedPassword);
-                this.lblMessage.Text = "Contraseña eliminada exitosamente.";
-                LoadTblPassword();
+
+                if (ShowConfirmationPopUp())
+                {
+                    _myPasswordManager.DeletePassword(_selectedPassword);
+                    this.lblMessage.Text = "Contraseña eliminada exitosamente.";
+                    LoadTblPassword();
+                }
             }
             else
             {
                 this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
             }
+        }
+
+        private bool ShowConfirmationPopUp()
+        {
+            if (!Properties.Settings.Default.DontShow)
+            {
+                Form DeleteConfirmationPopUp = new DeleteConfirmation();
+                DeleteConfirmationPopUp.ShowDialog();
+                return DeleteConfirmationPopUp.DialogResult == DialogResult.OK;
+            }
+            return false;
         }
 
         private void UpdateSelectedPassword()
