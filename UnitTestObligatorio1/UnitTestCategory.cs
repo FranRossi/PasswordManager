@@ -88,5 +88,27 @@ namespace UnitTestObligatorio1
             _passwordManager.CreateCategoryOnCurrentUser(repeatedCategory);
         }
 
+        [DataRow("Trabajo", "Trabajo")]
+        [DataRow("trabajo", "trabajo")]
+        [DataRow("TRABAJO", "TRABAJO")]
+        [DataRow("TRABAJO", "trabajo")]
+        [DataRow("TRABAJO", "Trabajo")]
+        [DataRow("Trabajo", "trabajo")]
+        [DataTestMethod]
+        public void CategoryEqual(string name1, string name2)
+        {
+            Category category1 = new Category()
+            {
+                Name = name1
+            };
+
+            Category category2 = new Category()
+            {
+                Name = name2
+            };
+
+            Assert.IsTrue(category1.Equals(category2));
+        }
+
     }
 }
