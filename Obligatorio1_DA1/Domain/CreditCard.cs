@@ -74,9 +74,9 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateNumber(string number)
         {
             if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, number))
-                throw new CreditCardNumberLengthIncorrectException();
+                throw new CreditCardNumberLengthIncorrect();
             if (!Validator.OnlyDigits(number))
-                throw new CreditCardNumberInvalidCharactersException();
+                throw new CreditCardNumberInvalidCharacters();
         }
 
         private void ValidateName(string name)
