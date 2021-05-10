@@ -43,9 +43,9 @@ namespace Presentation
         {
             txtName.Text = _myCreditCardToModify.Name;
             txtType.Text = _myCreditCardToModify.Type;
-            txtNumber.Text = _myCreditCardToModify.Number;
-            txtSecureCode.Text = _myCreditCardToModify.SecureCode;
-            txtExpirationDate.Text = _myCreditCardToModify.ExpirationDate;
+            mtxtNumber.Text = _myCreditCardToModify.Number;
+            mtxtSecureCode.Text = _myCreditCardToModify.SecureCode;
+            mtxtExpirationDate.Text = _myCreditCardToModify.ExpirationDate;
             txtNotes.Text = _myCreditCardToModify.Notes;
         }
 
@@ -91,9 +91,9 @@ namespace Presentation
                 Category = (Category)cbCategory.SelectedItem,
                 Name = txtName.Text,
                 Type = txtType.Text,
-                Number = txtNumber.Text,
-                SecureCode = txtSecureCode.Text,
-                ExpirationDate = txtExpirationDate.Text,
+                Number = mtxtNumber.Text,
+                SecureCode = mtxtSecureCode.Text,
+                ExpirationDate = mtxtExpirationDate.Text,
                 Notes = txtNotes.Text,
             };
 
