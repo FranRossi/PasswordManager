@@ -14,5 +14,17 @@ Se establecen los siguientes estándares para trabajar en el respositorio:
 - Los commits empiezan con mayúscula
 
 
-### TODOOOOOOOOOOOOOOOOOOOOOOOOOO
+### TODOOOOO
 - No chequeamos por nulos porque usamos las propertries (ya lo hablamos con el profe)
+
+## Consiga de la letra
+- Diagramas de paquetes
+- Diagramas de clases
+- Justificación del diseño
+- Calidad del diseño
+- Informe de cobertura de los casos de prueba
+- Evidencia de pruebas
+- Claridad de ladocumentación
+- Organización de la documentación (debe tenerun orden lógico y un índice)
+- Completitud de la documentación
+- Prolijidad de la documentación
