@@ -67,7 +67,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
-            VerifyExistenceOfPasswordOnPasswordList(password);
+            VerifyNonExistenceOfPasswordOnPasswordList(password);
             VerifyPasswordBelongToCurrentUser(password);
             this._passwords.Add(password);
         }
@@ -89,7 +89,8 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
         {
-            VerifyExistenceOfPasswordOnPasswordList(newPassword);
+            if (!oldPassword.Equals(newPassword))
+                VerifyNonExistenceOfPasswordOnPasswordList(newPassword);
 
             foreach (Password passwordIterator in this.GetPasswords())
             {
@@ -112,7 +113,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordNotBelongToCurrentUserException();
         }
 
-        private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
+        private void VerifyNonExistenceOfPasswordOnPasswordList(Password newPassword)
         {
             if (this._passwords.Contains(newPassword))
                 throw new PasswordAlreadyExistsException();
@@ -186,7 +187,9 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
-            VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
+            if (!oldCreditCard.Equals(newCreditCard))
+                VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
+
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
                 if (creditCardIterator.Equals(oldCreditCard))

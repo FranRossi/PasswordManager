@@ -319,6 +319,38 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void ModifyOneFieldCreditCard()
+        {
+            CreditCard creditCardAlreadyInPasswordManager = new CreditCard
+            {
+                User = _passwordManager.CurrentUser,
+                Category = this._category,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            _passwordManager.CreateCreditCard(creditCardAlreadyInPasswordManager);
+
+            CreditCard newCreditCard = new CreditCard
+            {
+                User = _passwordManager.CurrentUser,
+                Category = this._category,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "123",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.ModifyCreditCardOnCurrentUser(creditCardAlreadyInPasswordManager, newCreditCard);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.Contains(creditCards, newCreditCard);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(CreditCardAlreadyExistsException))]
         public void CreateCreditCardThatAlreadyExists()
         {
