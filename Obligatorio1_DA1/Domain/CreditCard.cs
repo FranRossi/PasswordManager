@@ -161,7 +161,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 creditCardToCompare = (CreditCard)obj;
             }
-            catch (Exception e)
+            catch (InvalidCastException e)
             {
                 return false;
             }
