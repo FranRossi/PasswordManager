@@ -21,6 +21,7 @@ namespace Presentation
         {
             TestData testData = new TestData(pPasswordManager);
             InitializeComponent();
+            Properties.Settings.Default.Reset();
             _myPasswordManager = pPasswordManager;
         }
 
@@ -31,7 +32,6 @@ namespace Presentation
             try
             {
                 _myPasswordManager.Login(userName, masterPassword);
-                Properties.Settings.Default.Reset();
                 ShowMainScreen();
             }
             catch (LogInException exception)

@@ -62,7 +62,6 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-
                 if (ShowConfirmationPopUp())
                 {
                     _myPasswordManager.DeletePassword(_selectedPassword);
@@ -81,8 +80,9 @@ namespace Presentation
             if (!Properties.Settings.Default.DontShowAgainPopUp)
             {
                 Form DeleteConfirmationPopUp = new DeleteConfirmation();
-                DeleteConfirmationPopUp.ShowDialog();
-                return DeleteConfirmationPopUp.DialogResult == DialogResult.OK;
+                DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
+                DeleteConfirmationPopUp.Close();
+                return resultConfirmation == DialogResult.OK;
             }
             return true;
         }
