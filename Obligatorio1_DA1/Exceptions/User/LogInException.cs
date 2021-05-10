@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class LogInException : Exception
+    public class LogInException : ValidationException
     {
         private string message;
         public override string Message => this.message;
