@@ -110,5 +110,20 @@ namespace UnitTestObligatorio1
             Assert.IsTrue(category1.Equals(category2));
         }
 
+        [TestMethod]
+        public void CategoryNotEqual()
+        {
+            Category category1 = new Category()
+            {
+                Name = "Facultad"
+            };
+
+            Category category2 = new Category()
+            {
+                Name = "Trabajo"
+            };
+
+            Assert.IsFalse(category1.Equals(category2));
+        }
     }
 }
