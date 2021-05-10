@@ -346,6 +346,8 @@ namespace UnitTestObligatorio1
                 Notes = "Límite 400 shenn UYU"
             };
             this._passwordManager.ModifyCreditCardOnCurrentUser(creditCardAlreadyInPasswordManager, newCreditCard);
+            List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
+            CollectionAssert.Contains(creditCards, newCreditCard);
         }
 
         [TestMethod]
