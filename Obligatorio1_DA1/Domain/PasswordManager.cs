@@ -67,7 +67,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
-            VerifyExistenceOfPasswordOnPasswordList(password);
+            VerifyNonExistenceOfPasswordOnPasswordList(password);
             VerifyPasswordBelongToCurrentUser(password);
             this._passwords.Add(password);
         }
@@ -90,7 +90,7 @@ namespace Obligatorio1_DA1.Domain
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
         {
             if (!oldPassword.Equals(newPassword))
-                VerifyExistenceOfPasswordOnPasswordList(newPassword);
+                VerifyNonExistenceOfPasswordOnPasswordList(newPassword);
 
             foreach (Password passwordIterator in this.GetPasswords())
             {
@@ -113,7 +113,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordNotBelongToCurrentUserException();
         }
 
-        private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
+        private void VerifyNonExistenceOfPasswordOnPasswordList(Password newPassword)
         {
             if (this._passwords.Contains(newPassword))
                 throw new PasswordAlreadyExistsException();
