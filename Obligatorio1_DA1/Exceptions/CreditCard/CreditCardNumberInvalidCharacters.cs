@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class CreditCardNumberInvalidCharactersException : ValidationException
+    public class CreditCardNumberInvalidCharacters : ValidationException
     {
-        public CreditCardNumberInvalidCharactersException()
+        public CreditCardNumberInvalidCharacters()
         {
             this.message = "El número contiene caracteres inválidos. (Solo digitos separados por espacios)";
         }

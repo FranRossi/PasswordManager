@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class PasswordSharedWithSameUserException : ValidationException
+    public class PasswordSharedWithSameUserException : Exception
     {
         protected string message;
         public override string Message => this.message;

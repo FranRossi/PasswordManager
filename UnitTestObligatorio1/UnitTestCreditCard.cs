@@ -121,21 +121,21 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CreditCardNumberLengthIncorrectException))]
+        [ExpectedException(typeof(CreditCardNumberLengthIncorrect))]
         public void CreateInvalidCardNumberTooShort()
         {
             this._card.Number = "235467871";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CreditCardNumberInvalidCharactersException))]
+        [ExpectedException(typeof(CreditCardNumberInvalidCharacters))]
         public void CreateInvalidCardNumberWithWrongCharacters()
         {
             this._card.Number = "2s46f871/00r3498";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CreditCardNumberLengthIncorrectException))]
+        [ExpectedException(typeof(CreditCardNumberLengthIncorrect))]
         public void CreateInvalidCardNumberTooLong()
         {
             this._card.Number = "2354 6787 1300 3498 134/00r3498";
