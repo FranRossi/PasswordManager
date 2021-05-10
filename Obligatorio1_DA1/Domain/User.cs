@@ -79,7 +79,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 userToCompare = (User)obj;
             }
-            catch (Exception e)
+            catch (InvalidCastException e)
             {
                 return false;
             }

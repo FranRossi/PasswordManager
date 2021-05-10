@@ -41,11 +41,11 @@ namespace Obligatorio1_DA1.Domain
             {
                 categoryToCompare = (Category)obj;
             }
-            catch (Exception e)
+            catch (InvalidCastException e)
             {
                 return false;
             }
-            return categoryToCompare.Name == this.Name;
+            return categoryToCompare.Name.ToLower() == this.Name.ToLower();
         }
     }
 }

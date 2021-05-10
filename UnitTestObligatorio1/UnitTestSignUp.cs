@@ -76,7 +76,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(UserNameTooShortException))]
-        public void createUserEmptyName()
+        public void CreateUserEmptyName()
         {
             User newUser = new User("", "password");
             passwordManager.CreateUser(newUser);
@@ -84,7 +84,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(UserNameTooShortException))]
-        public void createUserNameTooShort()
+        public void CreateUserNameTooShort()
         {
             User newUser = new User("Khea", " ");
             passwordManager.CreateUser(newUser);
@@ -92,7 +92,7 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(UserNameTooLongException))]
-        public void createUserNameTooLong()
+        public void CreateUserNameTooLong()
         {
             User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");
             passwordManager.CreateUser(newUser);
@@ -111,5 +111,32 @@ namespace UnitTestObligatorio1
             StringAssert.Equals(expectedName, actualName);
         }
 
+
+
+        [TestMethod]
+        public void UserEqual()
+        {
+            User newUser1 = new User("Juancito", "hola123");
+            User newUser2 = new User("Juancito", "hola123");
+
+            Assert.IsTrue(newUser1.Equals(newUser2));
+        }
+
+        [TestMethod]
+        public void UserNotEqual()
+        {
+            User newUser1 = new User("Juancito", "hola123");
+            User newUser2 = new User("juancito", "hola123");
+
+            Assert.IsFalse(newUser1.Equals(newUser2));
+        }
+
+        [TestMethod]
+        public void UserNotEqualInvalidObject()
+        {
+            User newUser1 = new User("Juancito", "hola123");
+
+            Assert.IsFalse(newUser1.Equals(new object()));
+        }
     }
 }

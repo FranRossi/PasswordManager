@@ -283,7 +283,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 passwordToCompare = (Password)obj;
             }
-            catch (Exception e)
+            catch (InvalidCastException e)
             {
                 return false;
             }
@@ -293,8 +293,8 @@ namespace Obligatorio1_DA1.Domain
         private bool CheckEqualityOfPassword(Password passwordToCompare, Password password)
         {
             bool userObjectAreEqual = passwordToCompare.User == password.User;
-            bool userNameAreEqual = passwordToCompare.Username == password.Username;
-            bool siteAreEqual = passwordToCompare.Site == password.Site;
+            bool userNameAreEqual = passwordToCompare.Username.ToLower() == password.Username.ToLower();
+            bool siteAreEqual = passwordToCompare.Site.ToLower() == password.Site.ToLower();
 
             return (userNameAreEqual && siteAreEqual && userObjectAreEqual);
         }
