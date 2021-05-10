@@ -77,9 +77,9 @@ namespace Presentation
 
         private bool ShowConfirmationPopUp()
         {
-            if (!Properties.Settings.Default.DontShowAgainPopUp)
+            if (!Properties.Settings.Default.DontShowAgainPopUpPassword)
             {
-                Form DeleteConfirmationPopUp = new DeleteConfirmation("Constraseña");
+                Form DeleteConfirmationPopUp = new DeleteConfirmation("constraseña");
                 DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
                 DeleteConfirmationPopUp.Close();
                 return resultConfirmation == DialogResult.OK;

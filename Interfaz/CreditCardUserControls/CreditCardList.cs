@@ -92,9 +92,9 @@ namespace Presentation
 
         private bool ShowConfirmationPopUp()
         {
-            if (!Properties.Settings.Default.DontShowAgainPopUp)
+            if (!Properties.Settings.Default.DontShowAgainPopUpCreditCard)
             {
-                Form DeleteConfirmationPopUp = new DeleteConfirmation("Tarjeta");
+                Form DeleteConfirmationPopUp = new DeleteConfirmation("tarjeta");
                 DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
                 DeleteConfirmationPopUp.Close();
                 return resultConfirmation == DialogResult.OK;

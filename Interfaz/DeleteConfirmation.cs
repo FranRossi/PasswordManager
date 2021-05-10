@@ -12,10 +12,12 @@ namespace Presentation
 {
     public partial class DeleteConfirmation : Form
     {
+        private string _itemType;
         public DeleteConfirmation(string item)
         {
             InitializeComponent();
             this.lblConfirmationMessage.Text += item;
+            _itemType = item;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -30,7 +32,11 @@ namespace Presentation
 
         private void chPopUp_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DontShowAgainPopUp = this.chPopUp.Checked;
+            if (this._itemType == "tarjeta")
+                Properties.Settings.Default.DontShowAgainPopUpCreditCard = this.chPopUp.Checked;
+            else
+                Properties.Settings.Default.DontShowAgainPopUpPassword = this.chPopUp.Checked;
+
             Properties.Settings.Default.Save();
         }
     }
