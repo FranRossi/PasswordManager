@@ -111,25 +111,32 @@ namespace UnitTestObligatorio1
             StringAssert.Equals(expectedName, actualName);
         }
 
+
+
+        [TestMethod]
+        public void UserEqual()
+        {
+            User newUser1 = new User("Juancito", "hola123");
+            User newUser2 = new User("Juancito", "hola123");
+
+            Assert.IsTrue(newUser1.Equals(newUser2));
+        }
+
         [TestMethod]
         public void UserNotEqual()
         {
             User newUser1 = new User("Juancito", "hola123");
-
             User newUser2 = new User("juancito", "hola123");
 
             Assert.IsFalse(newUser1.Equals(newUser2));
         }
 
         [TestMethod]
-        public void UserEqual()
+        public void UserNotEqualInvalidObject()
         {
             User newUser1 = new User("Juancito", "hola123");
 
-            User newUser2 = new User("Juancito", "hola123");
-
-            Assert.IsTrue(newUser1.Equals(newUser2));
+            Assert.IsFalse(newUser1.Equals(new object()));
         }
-
     }
 }
