@@ -26,12 +26,24 @@ namespace Presentation.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DontShowAgainPopUp {
+        public bool DontShowAgainPopUpPassword {
             get {
-                return ((bool)(this["DontShowAgainPopUp"]));
+                return ((bool)(this["DontShowAgainPopUpPassword"]));
             }
             set {
-                this["DontShowAgainPopUp"] = value;
+                this["DontShowAgainPopUpPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DontShowAgainPopUpCreditCard {
+            get {
+                return ((bool)(this["DontShowAgainPopUpCreditCard"]));
+            }
+            set {
+                this["DontShowAgainPopUpCreditCard"] = value;
             }
         }
     }
