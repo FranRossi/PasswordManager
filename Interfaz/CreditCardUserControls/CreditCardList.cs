@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Presentation.CreditCardUserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +60,7 @@ namespace Presentation
             }
         }
 
-        private void btnAddCreditCard_Click(object sender, EventArgs e)
+        private void BtnAddCreditCard_Click(object sender, EventArgs e)
         {
             Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
@@ -71,7 +72,7 @@ namespace Presentation
             LoadTblCreditCard();
         }
 
-        private void btnDeleteCreditCard_Click(object sender, EventArgs e)
+        private void BtnDeleteCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
@@ -87,7 +88,7 @@ namespace Presentation
 
         }
 
-        private void btnModifyCreditCard_Click(object sender, EventArgs e)
+        private void BtnModifyCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
@@ -117,5 +118,20 @@ namespace Presentation
                 }
             }
         }
+
+        private void BtnShow_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedCreditCard();
+            if (_selectedCreditCard != null)
+            {
+                Form showPassord = new ShowCreditCard(_selectedCreditCard);
+                showPassord.ShowDialog();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea mostrar.";
+            }
+        }
+
     }
 }

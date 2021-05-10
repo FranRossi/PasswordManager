@@ -38,6 +38,7 @@ namespace Presentation
             this.btnAddCreditCard = new System.Windows.Forms.Button();
             this.btnModifyCreditCard = new System.Windows.Forms.Button();
             this.btnDeleteCreditCard = new System.Windows.Forms.Button();
+            this.btnShow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblCreditCard)).BeginInit();
             this.pnlList.SuspendLayout();
             this.pnlButtons.SuspendLayout();
@@ -90,6 +91,7 @@ namespace Presentation
             // 
             // pnlButtons
             // 
+            this.pnlButtons.Controls.Add(this.btnShow);
             this.pnlButtons.Controls.Add(this.label1);
             this.pnlButtons.Controls.Add(this.btnAddCreditCard);
             this.pnlButtons.Controls.Add(this.btnModifyCreditCard);
@@ -115,7 +117,7 @@ namespace Presentation
             this.btnAddCreditCard.TabIndex = 2;
             this.btnAddCreditCard.Text = "Agregar";
             this.btnAddCreditCard.UseVisualStyleBackColor = true;
-            this.btnAddCreditCard.Click += new System.EventHandler(this.btnAddCreditCard_Click);
+            this.btnAddCreditCard.Click += new System.EventHandler(this.BtnAddCreditCard_Click);
             // 
             // btnModifyCreditCard
             // 
@@ -125,7 +127,7 @@ namespace Presentation
             this.btnModifyCreditCard.TabIndex = 1;
             this.btnModifyCreditCard.Text = "Modificar";
             this.btnModifyCreditCard.UseVisualStyleBackColor = true;
-            this.btnModifyCreditCard.Click += new System.EventHandler(this.btnModifyCreditCard_Click);
+            this.btnModifyCreditCard.Click += new System.EventHandler(this.BtnModifyCreditCard_Click);
             // 
             // btnDeleteCreditCard
             // 
@@ -135,7 +137,17 @@ namespace Presentation
             this.btnDeleteCreditCard.TabIndex = 0;
             this.btnDeleteCreditCard.Text = "Eliminar";
             this.btnDeleteCreditCard.UseVisualStyleBackColor = true;
-            this.btnDeleteCreditCard.Click += new System.EventHandler(this.btnDeleteCreditCard_Click);
+            this.btnDeleteCreditCard.Click += new System.EventHandler(this.BtnDeleteCreditCard_Click);
+            // 
+            // btnShow
+            // 
+            this.btnShow.Location = new System.Drawing.Point(349, 11);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(75, 23);
+            this.btnShow.TabIndex = 5;
+            this.btnShow.Text = "Mostrar";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.BtnShow_Click);
             // 
             // CreditCardList
             // 
@@ -167,5 +179,6 @@ namespace Presentation
         private System.Windows.Forms.Button btnAddCreditCard;
         private System.Windows.Forms.Button btnModifyCreditCard;
         private System.Windows.Forms.Button btnDeleteCreditCard;
+        private System.Windows.Forms.Button btnShow;
     }
 }
