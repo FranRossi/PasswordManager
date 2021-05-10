@@ -62,10 +62,10 @@ namespace Presentation.PasswordStrengthWindow
             Form modifyPassowrd = new CreateModifyPassword(_passwordManager, _selectedPassword);
             modifyPassowrd.FormClosing += new FormClosingEventHandler(RefreshForm);
             modifyPassowrd.ShowDialog();
-            ReloadColorQuantities();
+            ReloadParentData();
         }
 
-        private void ReloadColorQuantities()
+        private void ReloadParentData()
         {
             Panel parentPanel = (Panel)this.Parent;
             PasswordStrength parentForm = (PasswordStrength)parentPanel.Parent;
