@@ -78,13 +78,13 @@ namespace Presentation
 
         private bool ShowConfirmationPopUp()
         {
-            if (!Properties.Settings.Default.DontShow)
+            if (!Properties.Settings.Default.DontShowAgainPopUp)
             {
                 Form DeleteConfirmationPopUp = new DeleteConfirmation();
                 DeleteConfirmationPopUp.ShowDialog();
                 return DeleteConfirmationPopUp.DialogResult == DialogResult.OK;
             }
-            return false;
+            return true;
         }
 
         private void UpdateSelectedPassword()

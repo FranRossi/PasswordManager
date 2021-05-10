@@ -34,7 +34,7 @@ namespace Presentation
 
         private void chPopUp_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DontShow = this.chPopUp.Checked;
+            Properties.Settings.Default.DontShowAgainPopUp = this.chPopUp.Checked;
             Properties.Settings.Default.Save();
         }
     }

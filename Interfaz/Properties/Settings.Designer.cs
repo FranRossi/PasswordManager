@@ -22,5 +22,17 @@ namespace Presentation.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DontShowAgainPopUp {
+            get {
+                return ((bool)(this["DontShowAgainPopUp"]));
+            }
+            set {
+                this["DontShowAgainPopUp"] = value;
+            }
+        }
     }
 }
