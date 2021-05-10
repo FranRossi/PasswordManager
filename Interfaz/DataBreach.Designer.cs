@@ -36,18 +36,21 @@ namespace Presentation
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblDataBreachResult = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tblDataBreachCreditCard = new System.Windows.Forms.DataGridView();
             this.lblCard = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
+            this.btnModifyPass = new System.Windows.Forms.Button();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.tblDataBreachPassword = new System.Windows.Forms.DataGridView();
+            this.tblDataBreachCreditCard = new System.Windows.Forms.DataGridView();
             this.pnlDataBreachText.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlDataBreachText
             // 
+            this.pnlDataBreachText.Controls.Add(this.lblMessage);
             this.pnlDataBreachText.Controls.Add(this.btnVerifyDataBreach);
             this.pnlDataBreachText.Controls.Add(this.txtDataBreach);
             this.pnlDataBreachText.Controls.Add(this.lblSubtitle);
@@ -69,16 +72,16 @@ namespace Presentation
             // 
             // txtDataBreach
             // 
-            this.txtDataBreach.Location = new System.Drawing.Point(7, 80);
+            this.txtDataBreach.Location = new System.Drawing.Point(7, 69);
             this.txtDataBreach.Multiline = true;
             this.txtDataBreach.Name = "txtDataBreach";
-            this.txtDataBreach.Size = new System.Drawing.Size(277, 245);
+            this.txtDataBreach.Size = new System.Drawing.Size(277, 256);
             this.txtDataBreach.TabIndex = 2;
             // 
             // lblSubtitle
             // 
             this.lblSubtitle.AutoSize = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(4, 63);
+            this.lblSubtitle.Location = new System.Drawing.Point(4, 53);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(80, 13);
             this.lblSubtitle.TabIndex = 1;
@@ -107,39 +110,20 @@ namespace Presentation
             // panel1
             // 
             this.panel1.Controls.Add(this.tblDataBreachCreditCard);
+            this.panel1.Controls.Add(this.tblDataBreachPassword);
+            this.panel1.Controls.Add(this.btnModifyPass);
             this.panel1.Controls.Add(this.lblCard);
             this.panel1.Controls.Add(this.lblPass);
-            this.panel1.Controls.Add(this.tblDataBreachPassword);
             this.panel1.Controls.Add(this.lblDataBreachResult);
             this.panel1.Location = new System.Drawing.Point(293, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 393);
             this.panel1.TabIndex = 1;
             // 
-            // tblDataBreachCreditCard
-            // 
-            this.tblDataBreachCreditCard.AllowUserToAddRows = false;
-            this.tblDataBreachCreditCard.AllowUserToDeleteRows = false;
-            this.tblDataBreachCreditCard.AllowUserToResizeColumns = false;
-            this.tblDataBreachCreditCard.AllowUserToResizeRows = false;
-            this.tblDataBreachCreditCard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.tblDataBreachCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblDataBreachCreditCard.Location = new System.Drawing.Point(3, 245);
-            this.tblDataBreachCreditCard.MultiSelect = false;
-            this.tblDataBreachCreditCard.Name = "tblDataBreachCreditCard";
-            this.tblDataBreachCreditCard.ReadOnly = true;
-            this.tblDataBreachCreditCard.RowHeadersVisible = false;
-            this.tblDataBreachCreditCard.ShowCellErrors = false;
-            this.tblDataBreachCreditCard.ShowCellToolTips = false;
-            this.tblDataBreachCreditCard.ShowEditingIcon = false;
-            this.tblDataBreachCreditCard.ShowRowErrors = false;
-            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(477, 126);
-            this.tblDataBreachCreditCard.TabIndex = 7;
-            // 
             // lblCard
             // 
             this.lblCard.AutoSize = true;
-            this.lblCard.Location = new System.Drawing.Point(0, 229);
+            this.lblCard.Location = new System.Drawing.Point(5, 229);
             this.lblCard.Name = "lblCard";
             this.lblCard.Size = new System.Drawing.Size(99, 13);
             this.lblCard.TabIndex = 6;
@@ -148,24 +132,62 @@ namespace Presentation
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(1, 63);
+            this.lblPass.Location = new System.Drawing.Point(5, 53);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(120, 13);
             this.lblPass.TabIndex = 4;
             this.lblPass.Text = "Contraseñas expuestas:";
             // 
+            // btnModifyPass
+            // 
+            this.btnModifyPass.Location = new System.Drawing.Point(402, 206);
+            this.btnModifyPass.Name = "btnModifyPass";
+            this.btnModifyPass.Size = new System.Drawing.Size(75, 23);
+            this.btnModifyPass.TabIndex = 8;
+            this.btnModifyPass.Text = "Modificar";
+            this.btnModifyPass.UseVisualStyleBackColor = true;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(7, 377);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblMessage.TabIndex = 4;
+            // 
             // tblDataBreachPassword
             // 
             this.tblDataBreachPassword.AllowUserToAddRows = false;
             this.tblDataBreachPassword.AllowUserToDeleteRows = false;
+            this.tblDataBreachPassword.AllowUserToResizeRows = false;
             this.tblDataBreachPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblDataBreachPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblDataBreachPassword.Location = new System.Drawing.Point(4, 80);
+            this.tblDataBreachPassword.Location = new System.Drawing.Point(8, 69);
+            this.tblDataBreachPassword.MultiSelect = false;
             this.tblDataBreachPassword.Name = "tblDataBreachPassword";
             this.tblDataBreachPassword.ReadOnly = true;
             this.tblDataBreachPassword.RowHeadersVisible = false;
-            this.tblDataBreachPassword.Size = new System.Drawing.Size(477, 131);
-            this.tblDataBreachPassword.TabIndex = 5;
+            this.tblDataBreachPassword.RowHeadersWidth = 62;
+            this.tblDataBreachPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tblDataBreachPassword.Size = new System.Drawing.Size(469, 128);
+            this.tblDataBreachPassword.TabIndex = 9;
+            // 
+            // tblDataBreachCreditCard
+            // 
+            this.tblDataBreachCreditCard.AllowUserToAddRows = false;
+            this.tblDataBreachCreditCard.AllowUserToDeleteRows = false;
+            this.tblDataBreachCreditCard.AllowUserToResizeRows = false;
+            this.tblDataBreachCreditCard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tblDataBreachCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblDataBreachCreditCard.Location = new System.Drawing.Point(8, 245);
+            this.tblDataBreachCreditCard.MultiSelect = false;
+            this.tblDataBreachCreditCard.Name = "tblDataBreachCreditCard";
+            this.tblDataBreachCreditCard.ReadOnly = true;
+            this.tblDataBreachCreditCard.RowHeadersVisible = false;
+            this.tblDataBreachCreditCard.RowHeadersWidth = 62;
+            this.tblDataBreachCreditCard.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(469, 128);
+            this.tblDataBreachCreditCard.TabIndex = 10;
             // 
             // DataBreach
             // 
@@ -179,8 +201,8 @@ namespace Presentation
             this.pnlDataBreachText.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,9 +216,11 @@ namespace Presentation
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblDataBreachResult;
-        private System.Windows.Forms.DataGridView tblDataBreachCreditCard;
         private System.Windows.Forms.Label lblCard;
         private System.Windows.Forms.Label lblPass;
+        private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Button btnModifyPass;
+        private System.Windows.Forms.DataGridView tblDataBreachCreditCard;
         private System.Windows.Forms.DataGridView tblDataBreachPassword;
     }
 }
