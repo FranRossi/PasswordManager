@@ -125,5 +125,16 @@ namespace UnitTestObligatorio1
 
             Assert.IsFalse(category1.Equals(category2));
         }
+
+        [TestMethod]
+        public void CategoryNotEqualInvalidObject()
+        {
+            Category category1 = new Category()
+            {
+                Name = "Facultad"
+            };
+
+            Assert.IsFalse(category1.Equals(new object()));
+        }
     }
 }
