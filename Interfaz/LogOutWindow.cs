@@ -46,5 +46,6 @@ namespace Presentation
         {
             _mainWindowsClosingEvent.Cancel = false;
         }
+
     }
 }

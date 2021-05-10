@@ -25,7 +25,7 @@ namespace UnitTestObligatorio1
                 _user = new User()
                 {
                     Name = "Gonzalo",
-                    Pass = "HolaSoyGonzalo123"
+                    MasterPass = "HolaSoyGonzalo123"
                 };
 
                 _passwordManager.CreateUser(_user);
@@ -60,7 +60,7 @@ namespace UnitTestObligatorio1
             this._user = new User()
             {
                 Name = "Mauricio",
-                Pass = "HolaSoyGonzalo123"
+                MasterPass = "HolaSoyGonzalo123"
             };
             this._category = new Category()
             {
@@ -121,21 +121,21 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CreditCardNumberLengthIncorrect))]
+        [ExpectedException(typeof(CreditCardNumberLengthIncorrectException))]
         public void CreateInvalidCardNumberTooShort()
         {
             this._card.Number = "235467871";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CreditCardNumberInvalidCharacters))]
+        [ExpectedException(typeof(CreditCardNumberInvalidCharactersException))]
         public void CreateInvalidCardNumberWithWrongCharacters()
         {
             this._card.Number = "2s46f871/00r3498";
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CreditCardNumberLengthIncorrect))]
+        [ExpectedException(typeof(CreditCardNumberLengthIncorrectException))]
         public void CreateInvalidCardNumberTooLong()
         {
             this._card.Number = "2354 6787 1300 3498 134/00r3498";
@@ -197,7 +197,7 @@ namespace UnitTestObligatorio1
                 User user = new User()
                 {
                     Name = "Felipe",
-                    Pass = "12345",
+                    MasterPass = "12345",
                 };
                 user.Categories.Add(this._category);
                 CreditCard newCreditCard = new CreditCard
@@ -225,7 +225,7 @@ namespace UnitTestObligatorio1
             User user = new User()
             {
                 Name = "Felipe",
-                Pass = "12345",
+                MasterPass = "12345",
             };
             this._passwordManager.CreateUser(user);
             this._passwordManager.CreateCategoryOnCurrentUser(this._category);
@@ -252,7 +252,7 @@ namespace UnitTestObligatorio1
             User user = new User()
             {
                 Name = "Gonzalo",
-                Pass = "HolaSoyGonzalo123",
+                MasterPass = "HolaSoyGonzalo123",
             };
             user.Categories.Add(this._category);
             CreditCard _card2 = new CreditCard
@@ -391,7 +391,7 @@ namespace UnitTestObligatorio1
             User newUser = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
             {
@@ -420,7 +420,7 @@ namespace UnitTestObligatorio1
             User newUser = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
             {

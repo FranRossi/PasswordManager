@@ -77,9 +77,12 @@ namespace Presentation
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
             {
-                _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
-                this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
-                LoadTblCreditCard();
+                if (ShowConfirmationPopUp())
+                {
+                    _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
+                    this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
+                    LoadTblCreditCard();
+                }
             }
             else
             {
@@ -88,6 +91,18 @@ namespace Presentation
 
         }
 
+        private bool ShowConfirmationPopUp()
+        {
+            if (!Properties.Settings.Default.DontShowAgainPopUpCreditCard)
+            {
+                Form DeleteConfirmationPopUp = new DeleteConfirmation("tarjeta");
+                DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
+                DeleteConfirmationPopUp.Close();
+                return resultConfirmation == DialogResult.OK;
+            }
+            return true;
+        }
+        
         private void BtnModifyCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();

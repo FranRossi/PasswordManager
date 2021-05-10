@@ -24,7 +24,7 @@ namespace UnitTestObligatorio1
                 _user = new User()
                 {
                     Name = "Gonzalo",
-                    Pass = "HolaSoyGonzalo123"
+                    MasterPass = "HolaSoyGonzalo123"
                 };
                 _category = new Category()
                 {

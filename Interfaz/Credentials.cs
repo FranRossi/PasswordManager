@@ -21,6 +21,7 @@ namespace Presentation
         {
             TestData testData = new TestData(pPasswordManager);
             InitializeComponent();
+            Properties.Settings.Default.Reset();
             _myPasswordManager = pPasswordManager;
         }
 
