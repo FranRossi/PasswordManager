@@ -36,7 +36,7 @@ namespace Presentation.CreditCardUserControls
         private async void ShowFullInformation()
         {
             txtCode.PasswordChar = '\0';
-            txtNumber.Text = _creditCard.Number;
+            txtNumber.Text = FormatCardNumber(_creditCard.Number);
             btnShow.Enabled = false;
 
             int secondsFullInformationIsShown = 30;
@@ -64,6 +64,15 @@ namespace Presentation.CreditCardUserControls
         private void btnShow_Click_1(object sender, EventArgs e)
         {
             ShowFullInformation();
+        }
+
+        private string FormatCardNumber(string number)
+        {
+            //1234 1234 1234 1234
+            number = number.Insert(4, " ");
+            number = number.Insert(9, " ");
+            number = number.Insert(14, " ");
+            return number;
         }
     }
 }
