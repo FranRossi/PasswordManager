@@ -377,6 +377,39 @@ namespace UnitTestObligatorio1
             this._passwordManager.ModifyCreditCardOnCurrentUser(this._card, newCreditCard);
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(CreditCardNotBelongToCurrentUserException))]
+        public void VerifyUserWhenCreatingCreditCard()
+        {
+            User newUser = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category newCategory = new Category()
+            {
+                Name = "NewCategory"
+            };
+            newUser.Categories.Add(newCategory);
+            CreditCard newCreditCard = new CreditCard
+            {
+                User = newUser,
+                Category = newCategory,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.CreateCreditCard(newCreditCard);
+        }
+
+
+
+
+
         [DataRow("ABC")]
         [DataRow("Abcdefghijklmnopqrstuvwxy")]
         [DataRow("Abcdefghijk lmnopqrstuvwx")]
