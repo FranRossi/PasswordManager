@@ -164,6 +164,7 @@ namespace Obligatorio1_DA1.Domain
         public void CreateCreditCard(CreditCard creditCard)
         {
             VerifyNonExistenceOfCreditCardOnCreditCardList(creditCard);
+            VerifyCreditCardBelongToCurrentUser(creditCard);
             this._creditCards.Add(creditCard);
         }
 
