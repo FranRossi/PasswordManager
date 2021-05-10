@@ -22,5 +22,29 @@ namespace Presentation.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DontShowAgainPopUpPassword {
+            get {
+                return ((bool)(this["DontShowAgainPopUpPassword"]));
+            }
+            set {
+                this["DontShowAgainPopUpPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DontShowAgainPopUpCreditCard {
+            get {
+                return ((bool)(this["DontShowAgainPopUpCreditCard"]));
+            }
+            set {
+                this["DontShowAgainPopUpCreditCard"] = value;
+            }
+        }
     }
 }
