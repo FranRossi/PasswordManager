@@ -16,6 +16,8 @@ namespace Presentation.PasswordStrengthWindow
     {
         private PasswordManager _passwordManager;
         private PasswordStrengthColor _color;
+        private Password _selectedPassword;
+
         public PasswordListOfStrengthColor(PasswordManager passwordManager, PasswordStrengthColor color)
         {
             InitializeComponent();
@@ -58,11 +60,18 @@ namespace Presentation.PasswordStrengthWindow
 
         private void btmModify_Click(object sender, EventArgs e)
         {
-            Password _selectedPassword = (Password)tblPassword.SelectedCells[0].OwningRow.DataBoundItem;
-            Form modifyPassowrd = new CreateModifyPassword(_passwordManager, _selectedPassword);
-            modifyPassowrd.FormClosing += new FormClosingEventHandler(RefreshForm);
-            modifyPassowrd.ShowDialog();
-            ReloadParentData();
+            UpdateSelectedPassword();
+            if (_selectedPassword != null)
+            {
+                Form createPassword = new CreateModifyPassword(_passwordManager, _selectedPassword);
+                createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createPassword.ShowDialog();
+                ReloadParentData();
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+            }
         }
 
         private void ReloadParentData()
@@ -75,6 +84,21 @@ namespace Presentation.PasswordStrengthWindow
         private void RefreshForm(object sender, FormClosingEventArgs e)
         {
             LoadPasswords();
+        }
+
+        private void UpdateSelectedPassword()
+        {
+            if (tblPassword.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedPassword = (Password)tblPassword.SelectedCells[0].OwningRow.DataBoundItem;
+                }
+                catch (FormatException exception)
+                {
+                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                }
+            }
         }
     }
 }
