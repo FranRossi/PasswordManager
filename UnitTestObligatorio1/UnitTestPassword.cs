@@ -846,7 +846,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            this._passwordManager.CreatePassword(passwordToShare);
+            this._passwordManager.GetPasswords().Add(passwordToShare);
             passwordToShare.ShareWithUser(userShareTo);
             passwordToShare.UnShareWithUser(userShareTo);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
