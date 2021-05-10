@@ -43,7 +43,8 @@ namespace Presentation.PasswordUserControls
             txtPassword.PasswordChar = '\0';
             btnShow.Enabled = false;
 
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            int secondsPasswordFieldIsShown = 30;
+            await Task.Delay(TimeSpan.FromSeconds(secondsPasswordFieldIsShown));
             HidePassField();
         }
 
