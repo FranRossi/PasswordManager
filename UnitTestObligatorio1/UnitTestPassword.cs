@@ -853,15 +853,20 @@ namespace UnitTestObligatorio1
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
         }
 
-        [TestMethod]
-        public void PasswordEqual()
+        [DataRow("work.com", "Joseph", "work.com", "Joseph")]
+        [DataRow("WORK.COM", "Joseph", "work.com", "Joseph")]
+        [DataRow("work.com", "JOSEPH", "work.com", "Joseph")]
+        [DataRow("WORK.COM", "JOSEPH", "work.com", "Joseph")]
+        [DataRow("wOrK.CoM", "JosEPH", "work.com", "Joseph")]
+        [DataTestMethod]
+        public void PasswordEqual(string site1, string username1, string site2, string username2)
         {
             Password passA = new Password
             {
                 User = _user,
                 Category = _category,
-                Site = "work.com",
-                Username = "Joseph",
+                Site = site1,
+                Username = username1,
                 Pass = "wwwjosph",
                 Notes = "First password"
             };
@@ -870,8 +875,8 @@ namespace UnitTestObligatorio1
             {
                 User = _user,
                 Category = _category,
-                Site = "work.com",
-                Username = "Joseph",
+                Site = site2,
+                Username = username2,
                 Pass = "joshpeh2",
                 Notes = "Second password"
             };
