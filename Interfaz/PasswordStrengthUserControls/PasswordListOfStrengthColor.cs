@@ -33,7 +33,6 @@ namespace Presentation.PasswordStrengthWindow
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
             FormatPasswordList();
-
         }
 
         private void FormatPasswordList()
