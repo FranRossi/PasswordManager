@@ -70,6 +70,7 @@ namespace Presentation
             this.tblCreditCard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblCreditCard.Location = new System.Drawing.Point(8, 55);
+            this.tblCreditCard.MultiSelect = false;
             this.tblCreditCard.Name = "tblCreditCard";
             this.tblCreditCard.ReadOnly = true;
             this.tblCreditCard.RowHeadersVisible = false;

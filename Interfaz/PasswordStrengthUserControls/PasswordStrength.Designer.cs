@@ -49,10 +49,10 @@ namespace Presentation
             this.btnShowPasswordsLightGreen = new System.Windows.Forms.Button();
             this.btnShowPasswordsDarkGreen = new System.Windows.Forms.Button();
             this.pnlChartList = new System.Windows.Forms.Panel();
+            this.lblNoPassword = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btmShowChart = new System.Windows.Forms.Button();
-            this.lblNoPassword = new System.Windows.Forms.Label();
+            this.btnShowChart = new System.Windows.Forms.Button();
             this.tlpColorTable.SuspendLayout();
             this.pnlChartList.SuspendLayout();
             this.SuspendLayout();
@@ -281,7 +281,7 @@ namespace Presentation
             this.btnShowPasswordsRed.TabIndex = 10;
             this.btnShowPasswordsRed.Text = "Ver";
             this.btnShowPasswordsRed.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsRed.Click += new System.EventHandler(this.btmShowPasswordsRed_Click);
+            this.btnShowPasswordsRed.Click += new System.EventHandler(this.btnShowPasswordsRed_Click);
             // 
             // lblGroup
             // 
@@ -309,7 +309,7 @@ namespace Presentation
             this.btnShowPasswordsOrange.TabIndex = 14;
             this.btnShowPasswordsOrange.Text = "Ver";
             this.btnShowPasswordsOrange.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsOrange.Click += new System.EventHandler(this.btmShowPasswordsOrange_Click);
+            this.btnShowPasswordsOrange.Click += new System.EventHandler(this.btnShowPasswordsOrange_Click);
             // 
             // btnShowPasswordsYellow
             // 
@@ -321,7 +321,7 @@ namespace Presentation
             this.btnShowPasswordsYellow.TabIndex = 15;
             this.btnShowPasswordsYellow.Text = "Ver";
             this.btnShowPasswordsYellow.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsYellow.Click += new System.EventHandler(this.btmShowPasswordsYellow_Click);
+            this.btnShowPasswordsYellow.Click += new System.EventHandler(this.btnShowPasswordsYellow_Click);
             // 
             // btnShowPasswordsLightGreen
             // 
@@ -333,7 +333,7 @@ namespace Presentation
             this.btnShowPasswordsLightGreen.TabIndex = 16;
             this.btnShowPasswordsLightGreen.Text = "Ver";
             this.btnShowPasswordsLightGreen.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsLightGreen.Click += new System.EventHandler(this.btmShowPasswordsLightGreen_Click);
+            this.btnShowPasswordsLightGreen.Click += new System.EventHandler(this.btnShowPasswordsLightGreen_Click);
             // 
             // btnShowPasswordsDarkGreen
             // 
@@ -345,7 +345,7 @@ namespace Presentation
             this.btnShowPasswordsDarkGreen.TabIndex = 17;
             this.btnShowPasswordsDarkGreen.Text = "Ver";
             this.btnShowPasswordsDarkGreen.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsDarkGreen.Click += new System.EventHandler(this.btmShowPasswordsDarkGreen_Click);
+            this.btnShowPasswordsDarkGreen.Click += new System.EventHandler(this.btnShowPasswordsDarkGreen_Click);
             // 
             // pnlChartList
             // 
@@ -354,6 +354,20 @@ namespace Presentation
             this.pnlChartList.Name = "pnlChartList";
             this.pnlChartList.Size = new System.Drawing.Size(445, 314);
             this.pnlChartList.TabIndex = 1;
+            // 
+            // lblNoPassword
+            // 
+            this.lblNoPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNoPassword.AutoSize = true;
+            this.lblNoPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.lblNoPassword.Location = new System.Drawing.Point(102, 124);
+            this.lblNoPassword.Name = "lblNoPassword";
+            this.lblNoPassword.Size = new System.Drawing.Size(254, 18);
+            this.lblNoPassword.TabIndex = 0;
+            this.lblNoPassword.Text = "No tienes constraseñas para mostrar";
+            this.lblNoPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // contextMenuStrip1
             // 
@@ -370,36 +384,22 @@ namespace Presentation
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "Reporte de Fortaleza de Constraseñas";
             // 
-            // btmShowChart
+            // btnShowChart
             // 
-            this.btmShowChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowChart.Location = new System.Drawing.Point(85, 333);
-            this.btmShowChart.Name = "btmShowChart";
-            this.btmShowChart.Size = new System.Drawing.Size(138, 28);
-            this.btmShowChart.TabIndex = 3;
-            this.btmShowChart.Text = "Mostrar gráfica";
-            this.btmShowChart.UseVisualStyleBackColor = true;
-            this.btmShowChart.Click += new System.EventHandler(this.btmShowChart_Click);
-            // 
-            // lblNoPassword
-            // 
-            this.lblNoPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNoPassword.AutoSize = true;
-            this.lblNoPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.lblNoPassword.Location = new System.Drawing.Point(102, 124);
-            this.lblNoPassword.Name = "lblNoPassword";
-            this.lblNoPassword.Size = new System.Drawing.Size(254, 18);
-            this.lblNoPassword.TabIndex = 0;
-            this.lblNoPassword.Text = "No tienes constraseñas para mostrar";
-            this.lblNoPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnShowChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowChart.Location = new System.Drawing.Point(85, 333);
+            this.btnShowChart.Name = "btnShowChart";
+            this.btnShowChart.Size = new System.Drawing.Size(138, 28);
+            this.btnShowChart.TabIndex = 3;
+            this.btnShowChart.Text = "Mostrar gráfica";
+            this.btnShowChart.UseVisualStyleBackColor = true;
+            this.btnShowChart.Click += new System.EventHandler(this.btnShowChart_Click);
             // 
             // PasswordStrength
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btmShowChart);
+            this.Controls.Add(this.btnShowChart);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tlpColorTable);
             this.Controls.Add(this.pnlChartList);
@@ -433,7 +433,7 @@ namespace Presentation
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblOrangeQuantity;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btmShowChart;
+        private System.Windows.Forms.Button btnShowChart;
         private System.Windows.Forms.Button btnShowPasswordsOrange;
         private System.Windows.Forms.Button btnShowPasswordsYellow;
         private System.Windows.Forms.Button btnShowPasswordsLightGreen;

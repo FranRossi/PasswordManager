@@ -30,12 +30,13 @@ namespace Presentation
             this._passwordManager = passwordManager;
             InitializeComponent();
             this.SetColorsLabelsAndButtons();
-            this.SetColorQuantities();
+            this.LoadColorQuantities();
             this.LoadChart();
+            this.ShowChart();
         }
 
 
-        private void SetColorQuantities()
+        private void LoadColorQuantities()
         {
             List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
             foreach (passwordReportByColor entry in report)
@@ -45,12 +46,17 @@ namespace Presentation
                 cmp.Label.Text = quantity.ToString();
                 if (quantity == 0)
                     cmp.Button.Enabled = false;
-
-
+                else
+                    cmp.Button.Enabled = true;
 
             }
         }
 
+        public void Reload()
+        {
+            LoadColorQuantities();
+            ReloadChart();
+        }
 
         private void LoadChart()
         {
@@ -61,53 +67,59 @@ namespace Presentation
             if (enoughtPasswordToShow)
             {
                 this.chartPanel = new PasswordStrengthChart(report);
-                this.ShowChart();
             }
             else
-                btmShowChart.Enabled = false;
+                btnShowChart.Enabled = false;
         }
 
+        private void ReloadChart()
+        {
+            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            this.chartPanel = new PasswordStrengthChart(report);
+        }
         private void ShowChart()
         {
             pnlChartList.Controls.Clear();
             pnlChartList.Controls.Add(this.chartPanel);
+            btnShowChart.Enabled = false;
         }
 
         private void ShowPasswordList(PasswordStrengthColor color)
         {
             pnlChartList.Controls.Clear();
-            List<Password> password = this._passwordManager.GetPasswordsByColor(color);
-            UserControl passwordList = new PasswordListOfStrengthColor(password);
+            UserControl passwordList = new PasswordListOfStrengthColor(_passwordManager, color);
             pnlChartList.Controls.Add(passwordList);
+            btnShowChart.Enabled = true;
         }
 
-        private void btmShowChart_Click(object sender, EventArgs e)
+        private void btnShowChart_Click(object sender, EventArgs e)
         {
+            this.ReloadChart();
             this.ShowChart();
         }
 
-        private void btmShowPasswordsRed_Click(object sender, EventArgs e)
+        private void btnShowPasswordsRed_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.Red);
         }
 
-        private void btmShowPasswordsOrange_Click(object sender, EventArgs e)
+        private void btnShowPasswordsOrange_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.Orange);
         }
 
 
-        private void btmShowPasswordsYellow_Click(object sender, EventArgs e)
+        private void btnShowPasswordsYellow_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.Yellow);
         }
 
-        private void btmShowPasswordsLightGreen_Click(object sender, EventArgs e)
+        private void btnShowPasswordsLightGreen_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.LightGreen);
         }
 
-        private void btmShowPasswordsDarkGreen_Click(object sender, EventArgs e)
+        private void btnShowPasswordsDarkGreen_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.DarkGreen);
         }

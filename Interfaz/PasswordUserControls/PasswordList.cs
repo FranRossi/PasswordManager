@@ -110,7 +110,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
             }
         }
 

@@ -34,6 +34,9 @@ namespace Presentation.PasswordStrengthWindow
             {
                 this.chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
             }
+            this.chartPasswordStrength.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            Color chartHorizontalLines = Color.FromArgb(218, 218, 218);
+            this.chartPasswordStrength.ChartAreas[0].AxisY.MajorGrid.LineColor = chartHorizontalLines;
         }
         private void SetPresentationColor()
         {
