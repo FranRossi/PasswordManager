@@ -76,15 +76,30 @@ namespace Presentation
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
             {
-                _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
-                this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
-                LoadTblCreditCard();
+                if (ShowConfirmationPopUp())
+                {
+                    _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
+                    this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
+                    LoadTblCreditCard();
+                }
             }
             else
             {
                 this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
             }
 
+        }
+
+        private bool ShowConfirmationPopUp()
+        {
+            if (!Properties.Settings.Default.DontShowAgainPopUp)
+            {
+                Form DeleteConfirmationPopUp = new DeleteConfirmation();
+                DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
+                DeleteConfirmationPopUp.Close();
+                return resultConfirmation == DialogResult.OK;
+            }
+            return true;
         }
 
         private void btnModifyCreditCard_Click(object sender, EventArgs e)
