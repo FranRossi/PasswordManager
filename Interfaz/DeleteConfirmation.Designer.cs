@@ -88,12 +88,12 @@ namespace Presentation
             // 
             this.lblConfirmationMessage.AutoSize = true;
             this.lblConfirmationMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.lblConfirmationMessage.Location = new System.Drawing.Point(118, 75);
+            this.lblConfirmationMessage.Location = new System.Drawing.Point(29, 73);
             this.lblConfirmationMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmationMessage.Name = "lblConfirmationMessage";
-            this.lblConfirmationMessage.Size = new System.Drawing.Size(283, 26);
+            this.lblConfirmationMessage.Size = new System.Drawing.Size(382, 26);
             this.lblConfirmationMessage.TabIndex = 3;
-            this.lblConfirmationMessage.Text = "Confirmar eliminación de la ";
+            this.lblConfirmationMessage.Text = "¿Estás seguro que quieres eliminar la ";
             // 
             // DeleteConfirmation
             // 
