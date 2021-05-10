@@ -130,7 +130,7 @@ namespace UnitTestObligatorio1
                 Pass = "Passoword223",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(newPassword);
+            _passwordManager.GetPasswords().Add(newPassword);
         }
 
         private List<Item> AddBreachedCreditCardsToPasswordManager()
