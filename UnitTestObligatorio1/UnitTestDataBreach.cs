@@ -170,10 +170,11 @@ namespace UnitTestObligatorio1
             };
             User otherUser = new User()
             {
-                Name = "Pedro",
-                Pass = "HolaSoyPedro123"
+                Name = "Javier",
+                Pass = "HolaSoyJavier123"
             };
-            otherUser.Categories.Add(category);
+            _passwordManager.CreateUser(otherUser);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
             CreditCard newCard = new CreditCard
             {
                 User = otherUser,
@@ -186,6 +187,7 @@ namespace UnitTestObligatorio1
                 Notes = "Tra­mite 400k UYU"
             };
             _passwordManager.CreateCreditCard(newCard);
+            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
 
