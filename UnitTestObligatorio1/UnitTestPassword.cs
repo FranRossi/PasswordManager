@@ -1018,6 +1018,33 @@ namespace UnitTestObligatorio1
             Assert.AreEqual(this._password.LastModification, newPassword.LastModification);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
+        public void VerifyUserWhenCreatingPassword()
+        {
+            User newUser = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category newCategory = new Category()
+            {
+                Name = "NewCategory"
+            };
+            newUser.Categories.Add(newCategory);
+            Password newPassword = new Password
+            {
+                User = newUser,
+                Category = newCategory,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.CreatePassword(newPassword);
+        }
+
+
     }
 
 
