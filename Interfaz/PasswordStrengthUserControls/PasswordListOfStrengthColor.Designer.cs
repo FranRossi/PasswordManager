@@ -38,10 +38,14 @@ namespace Presentation.PasswordStrengthWindow
             // 
             this.tblPassword.AllowUserToAddRows = false;
             this.tblPassword.AllowUserToDeleteRows = false;
+            this.tblPassword.AllowUserToResizeRows = false;
+            this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblPassword.Location = new System.Drawing.Point(0, 0);
+            this.tblPassword.MultiSelect = false;
             this.tblPassword.Name = "tblPassword";
             this.tblPassword.ReadOnly = true;
+            this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblPassword.Size = new System.Drawing.Size(463, 253);
             this.tblPassword.TabIndex = 0;
             // 
@@ -54,14 +58,15 @@ namespace Presentation.PasswordStrengthWindow
             this.btmModify.TabIndex = 4;
             this.btmModify.Text = "Modificar";
             this.btmModify.UseVisualStyleBackColor = true;
+            this.btmModify.Click += new System.EventHandler(this.btmModify_Click);
             // 
-            // PasswordListOfStrenghtColor
+            // PasswordListOfStrengthColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btmModify);
             this.Controls.Add(this.tblPassword);
-            this.Name = "PasswordListOfStrenghtColor";
+            this.Name = "PasswordListOfStrengthColor";
             this.Size = new System.Drawing.Size(463, 314);
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).EndInit();
             this.ResumeLayout(false);
