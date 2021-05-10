@@ -377,7 +377,134 @@ namespace UnitTestObligatorio1
             this._passwordManager.ModifyCreditCardOnCurrentUser(this._card, newCreditCard);
         }
 
+        [DataRow("ABC")]
+        [DataRow("Abcdefghijklmnopqrstuvwxy")]
+        [DataRow("Abcdefghijk lmnopqrstuvwx")]
+        [DataRow("A B")]
+        [DataRow("Banco Santander")]
+        [DataTestMethod]
+        public void SetValidNameOnCard(string text)
+        {
+            this._card.Name = text;
+        }
 
+        [DataRow("AB")]
+        [DataRow("A ")]
+        [DataRow("")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardNameTooShortException))]
+        public void SeInvalidNameOnCardTooShort(string text)
+        {
+            this._card.Name = text;
+        }
+
+        [DataRow("Abcdefghijklmnopqrstuvwxyz")]
+        [DataRow("Abcdefghijk lmnopqrstuvwxy")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardNameTooLongException))]
+        public void SeInvalidNameOnCardTooLong(string text)
+        {
+            this._card.Name = text;
+        }
+
+        [DataRow("ABC")]
+        [DataRow("Abcdefghijklmnopqrstuvwxy")]
+        [DataRow("Abcdefghijk lmnopqrstuvwx")]
+        [DataRow("A B")]
+        [DataRow("Banco Santander")]
+        [DataTestMethod]
+        public void SetValidTypeOnCard(string text)
+        {
+            this._card.Type = text;
+        }
+
+        [DataRow("AB")]
+        [DataRow("A ")]
+        [DataRow("")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardTypeTooShortException))]
+        public void SeInvalidTypeOnCardTooShort(string text)
+        {
+            this._card.Type = text;
+        }
+
+        [DataRow("Abcdefghijklmnopqrstuvwxyz")]
+        [DataRow("Abcdefghijk lmnopqrstuvwxy")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardTypeTooLongException))]
+        public void SeInvalidTypeOnCardTooLong(string text)
+        {
+            this._card.Type = text;
+        }
+
+        [DataRow("124")]
+        [DataRow("434")]
+        [DataRow("333")]
+        [DataRow("983")]
+        [DataRow("343")]
+        [DataTestMethod]
+        public void SetValidSecureCodeOnCard(string text)
+        {
+            this._card.SecureCode = text;
+        }
+
+        [DataRow("3243")]
+        [DataRow("23")]
+        [DataRow("")]
+        [DataRow("343442323342342")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardSecureCodeWrongSizeException))]
+        public void SeInvalidSecureCodeOnCardWrongSize(string text)
+        {
+            this._card.SecureCode = text;
+        }
+
+        [DataRow("3rr")]
+        [DataRow("23s")]
+        [DataRow("s2s")]
+        [DataRow("@34")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardSecureCodeInvalidCharactersException))]
+        public void SeInvalidSecureCodeOnCardInvalidCharacters(string text)
+        {
+            this._card.SecureCode = text;
+        }
+
+        [DataRow("12/24")]
+        [DataRow("11/44")]
+        [DataRow("01/43")]
+        [DataRow("02/23")]
+        [DataRow("09/43")]
+        [DataTestMethod]
+        public void SetValidExpirationDateOnCard(string text)
+        {
+            this._card.ExpirationDate = text;
+        }
+
+        [DataRow("00/24")]
+        [DataRow("71/44")]
+        [DataRow("31/43")]
+        [DataRow("18/23")]
+        [DataRow("30/43")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardExpirationDateInvalidMonthException))]
+        public void SetInvalidExpirationDateOnCardInvalidMonth(string text)
+        {
+            this._card.ExpirationDate = text;
+        }
+
+        [DataRow("aa/24")]
+        [DataRow("")]
+        [DataRow("0143")]
+        [DataRow("02.23")]
+        [DataRow("09@43")]
+        [DataRow("aa/bb")]
+        [DataTestMethod]
+        [ExpectedException(typeof(CreditCardExpirationDateInvalidFormatException))]
+        public void SetInvalidExpirationDateOnCardInvalidFormat(string text)
+        {
+            this._card.ExpirationDate = text;
+        }
     }
 
 

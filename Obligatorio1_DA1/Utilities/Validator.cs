@@ -30,10 +30,10 @@ namespace Obligatorio1_DA1.Utilities
             return text.Length == supposedLong;
         }
 
-        public static bool NumberCardOnlyDigits(string cardNumber)
+        public static bool OnlyDigits(string text)
         {
-            Regex onlyNumbers16Length = new Regex(@"^[0-9]{16}", RegexOptions.Compiled);
-            return onlyNumbers16Length.IsMatch(cardNumber);
+            Regex onlyDigits = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
+            return onlyDigits.IsMatch(text);
         }
     }
 }
