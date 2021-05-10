@@ -196,6 +196,7 @@ namespace Presentation
             // 
             // cbCategory
             // 
+            this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Location = new System.Drawing.Point(122, 25);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
