@@ -55,12 +55,19 @@ namespace Presentation
             }
         }
 
+        private void CleanTextBoxes()
+        {
+            txtUserName.Text = "";
+            txtMasterPassword.Text = "";
+        }
+
         private void ShowMainScreen()
         {
+            CleanTextBoxes();
             Form currentForm = this.FindForm();
             currentForm.Hide();
             Form mainForm = new MainWindow(_myPasswordManager);
-            mainForm.Closed += (s, args) => currentForm.Close();
+            mainForm.Closed += (s, args) => currentForm.Show();
             mainForm.Show();
         }
 

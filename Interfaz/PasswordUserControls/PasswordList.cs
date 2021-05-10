@@ -47,6 +47,9 @@ namespace Presentation
                     case "Category":
                         column.HeaderText = "Categoria";
                         break;
+                    case "LastModification":
+                        column.HeaderText = "Última Modificación";
+                        break;
                     default:
                         column.Visible = false;
                         break;

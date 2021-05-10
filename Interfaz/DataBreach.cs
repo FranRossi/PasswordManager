@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,11 @@ namespace Presentation
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
-            List<Item> breachResult = _myPasswordManager.GetBreachedItems(txtDataBreach.Text);
+            DataBreachFromString dataBreach = new DataBreachFromString()
+            {
+                Data = txtDataBreach.Text
+            };
+            List<Item> breachResult = _myPasswordManager.GetBreachedItems(dataBreach);
             List<Password> passwords = new List<Password>();
             List<CreditCard> creditCards = new List<CreditCard>();
             foreach (Item i in breachResult)
