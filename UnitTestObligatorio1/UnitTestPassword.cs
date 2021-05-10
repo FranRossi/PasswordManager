@@ -962,6 +962,22 @@ namespace UnitTestObligatorio1
             Assert.IsFalse(passA.Equals(passB));
         }
 
+        [TestMethod]
+        public void PasswordEqualityWithInvalidObject()
+        {
+            Password passA = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "work.com.uy",
+                Username = "Joseph1",
+                Pass = "wwwjosph",
+                Notes = "First password"
+            };
+
+            Assert.IsFalse(passA.Equals(new object()));
+        }
+
 
         [TestMethod]
         [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
