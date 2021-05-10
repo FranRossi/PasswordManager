@@ -115,7 +115,7 @@ namespace Presentation
             this.btnSharedPasswords.Location = new System.Drawing.Point(401, 11);
             this.btnSharedPasswords.Margin = new System.Windows.Forms.Padding(2);
             this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(68, 23);
+            this.btnSharedPasswords.Size = new System.Drawing.Size(75, 23);
             this.btnSharedPasswords.TabIndex = 3;
             this.btnSharedPasswords.Text = "Compartir";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
