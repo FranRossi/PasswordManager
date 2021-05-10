@@ -505,6 +505,12 @@ namespace UnitTestObligatorio1
         {
             this._card.ExpirationDate = text;
         }
+
+        [TestMethod]
+        public void CreditCardEqualityWithInvalidObject()
+        {
+            Assert.IsFalse(_card.Equals(new object()));
+        }
     }
 
 
