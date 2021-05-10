@@ -12,9 +12,10 @@ namespace Presentation
 {
     public partial class DeleteConfirmation : Form
     {
-        public DeleteConfirmation()
+        public DeleteConfirmation(string item)
         {
             InitializeComponent();
+            this.lblConfirmationMessage.Text += item;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)

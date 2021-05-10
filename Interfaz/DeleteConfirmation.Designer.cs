@@ -91,9 +91,9 @@ namespace Presentation
             this.lblConfirmationMessage.Location = new System.Drawing.Point(118, 75);
             this.lblConfirmationMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmationMessage.Name = "lblConfirmationMessage";
-            this.lblConfirmationMessage.Size = new System.Drawing.Size(375, 26);
+            this.lblConfirmationMessage.Size = new System.Drawing.Size(283, 26);
             this.lblConfirmationMessage.TabIndex = 3;
-            this.lblConfirmationMessage.Text = "¿Confirmas la eliminación del objeto?";
+            this.lblConfirmationMessage.Text = "Confirmar eliminación de la ";
             // 
             // DeleteConfirmation
             // 
