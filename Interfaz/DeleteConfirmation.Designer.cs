@@ -59,6 +59,7 @@ namespace Presentation
             this.btnAccept.TabIndex = 1;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // btnCancel
             // 
@@ -70,6 +71,7 @@ namespace Presentation
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblConfirmationMessage
             // 
@@ -91,6 +93,7 @@ namespace Presentation
             this.çhPopUp.TabIndex = 2;
             this.çhPopUp.Text = "No volver a mostrar este mensaje";
             this.çhPopUp.UseVisualStyleBackColor = true;
+            this.çhPopUp.CheckedChanged += new System.EventHandler(this.çhPopUp_CheckedChanged);
             // 
             // DeleteConfirmation
             // 
