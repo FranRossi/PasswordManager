@@ -57,20 +57,21 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateValidCreditCard()
         {
-            _user = new User()
+            this._user = new User()
             {
                 Name = "Mauricio",
                 Pass = "HolaSoyGonzalo123"
             };
-            _category = new Category()
+            this._category = new Category()
             {
                 Name = "Personal"
             };
-            _user.Categories.Add(_category);
+            this._passwordManager.CreateUser(this._user);
+            this._passwordManager.CreateCategoryOnCurrentUser(this._category);
             CreditCard creditCard = new CreditCard
             {
-                User = _user,
-                Category = _category,
+                User = this._user,
+                Category = this._category,
                 Name = "Visa Gold",
                 Type = "Visa",
                 Number = "7754678713003477",
@@ -79,7 +80,7 @@ namespace UnitTestObligatorio1
                 Notes = "Límite 400k UYU"
             };
 
-            _passwordManager.CreateCreditCard(creditCard);
+            this._passwordManager.CreateCreditCard(creditCard);
         }
 
 
@@ -226,7 +227,8 @@ namespace UnitTestObligatorio1
                 Name = "Felipe",
                 Pass = "12345",
             };
-            user.Categories.Add(this._category);
+            this._passwordManager.CreateUser(user);
+            this._passwordManager.CreateCategoryOnCurrentUser(this._category);
             CreditCard _card2 = new CreditCard
             {
                 User = user,
@@ -239,6 +241,7 @@ namespace UnitTestObligatorio1
                 Notes = "Límite 400 shenn UYU"
             };
             this._passwordManager.CreateCreditCard(_card2);
+            this._passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
             List<CreditCard> creditCards = this._passwordManager.GetCreditCards();
             CollectionAssert.DoesNotContain(creditCards, _card2);
         }
@@ -408,6 +411,36 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.ModifyCreditCardOnCurrentUser(this._card, newCreditCard);
         }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(CreditCardNotBelongToCurrentUserException))]
+        public void VerifyUserWhenCreatingCreditCard()
+        {
+            User newUser = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category newCategory = new Category()
+            {
+                Name = "NewCategory"
+            };
+            newUser.Categories.Add(newCategory);
+            CreditCard newCreditCard = new CreditCard
+            {
+                User = newUser,
+                Category = newCategory,
+                Name = "MasterCard Black",
+                Type = "Master",
+                Number = "2354678713001111",
+                SecureCode = "111",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 shenn UYU"
+            };
+            this._passwordManager.CreateCreditCard(newCreditCard);
+        }
+
 
         [DataRow("ABC")]
         [DataRow("Abcdefghijklmnopqrstuvwxy")]
