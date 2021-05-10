@@ -25,7 +25,7 @@ namespace UnitTestObligatorio1
                 _user = new User()
                 {
                     Name = "Gonzalo",
-                    Pass = "HolaSoyGonzalo123"
+                    MasterPass = "HolaSoyGonzalo123"
                 };
 
                 _passwordManager.CreateUser(_user);
@@ -60,7 +60,7 @@ namespace UnitTestObligatorio1
             this._user = new User()
             {
                 Name = "Mauricio",
-                Pass = "HolaSoyGonzalo123"
+                MasterPass = "HolaSoyGonzalo123"
             };
             this._category = new Category()
             {
@@ -197,7 +197,7 @@ namespace UnitTestObligatorio1
                 User user = new User()
                 {
                     Name = "Felipe",
-                    Pass = "12345",
+                    MasterPass = "12345",
                 };
                 user.Categories.Add(this._category);
                 CreditCard newCreditCard = new CreditCard
@@ -225,7 +225,7 @@ namespace UnitTestObligatorio1
             User user = new User()
             {
                 Name = "Felipe",
-                Pass = "12345",
+                MasterPass = "12345",
             };
             this._passwordManager.CreateUser(user);
             this._passwordManager.CreateCategoryOnCurrentUser(this._category);
@@ -252,7 +252,7 @@ namespace UnitTestObligatorio1
             User user = new User()
             {
                 Name = "Gonzalo",
-                Pass = "HolaSoyGonzalo123",
+                MasterPass = "HolaSoyGonzalo123",
             };
             user.Categories.Add(this._category);
             CreditCard _card2 = new CreditCard
@@ -391,7 +391,7 @@ namespace UnitTestObligatorio1
             User newUser = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
             {
@@ -420,7 +420,7 @@ namespace UnitTestObligatorio1
             User newUser = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
             {

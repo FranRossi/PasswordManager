@@ -32,7 +32,7 @@ namespace Obligatorio1_DA1.Domain
         {
             foreach (User user in _users)
                 if (user.Name == name)
-                    if (user.Pass == password)
+                    if (user.MasterPass == password)
                     {
                         CurrentUser = user;
                         return;

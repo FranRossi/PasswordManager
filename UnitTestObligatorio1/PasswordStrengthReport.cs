@@ -38,7 +38,7 @@ namespace UnitTestObligatorio1
             _currentUser = new User()
             {
                 Name = "Gonzalo",
-                Pass = "HolaSoyGonzalo123"
+                MasterPass = "HolaSoyGonzalo123"
 
             };
             _passwordManager.CreateUser(_currentUser);
