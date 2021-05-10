@@ -74,9 +74,9 @@ namespace Obligatorio1_DA1.Domain
         private void ValidateNumber(string number)
         {
             if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, number))
-                throw new CreditCardNumberLengthIncorrectException();
+                throw new CreditCardNumberIncorrectLengthException();
             if (!Validator.OnlyDigits(number))
-                throw new CreditCardNumberInvalidCharactersException();
+                throw new CreditCardNumberInvalidCharacterException();
         }
 
         private void ValidateName(string name)
@@ -100,7 +100,7 @@ namespace Obligatorio1_DA1.Domain
             if (!Validator.StringIsExactlyThisLong(CreditCard.SecureCodeLength, secureCode))
                 throw new CreditCardSecureCodeWrongSizeException();
             if (!Validator.OnlyDigits(secureCode))
-                throw new CreditCardSecureCodeInvalidCharactersException();
+                throw new CreditCardSecureCodeInvalidCharacterException();
         }
 
         private void ValidateExpirationDate(string expirationDate)

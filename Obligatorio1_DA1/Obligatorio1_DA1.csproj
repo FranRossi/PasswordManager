@@ -54,9 +54,11 @@
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNumberIncorrectLengthException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeInvalidCharacterException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNumberInvalidCharacterException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidFormatException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidMonthException.cs" />
-    <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeInvalidCharactersException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeWrongSizeException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNameTooLongException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardTypeTooLongException.cs" />
@@ -65,8 +67,6 @@
     <Compile Include="Exceptions\CreditCard\CreditCardAlreadyExistsException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Item\ItemInvalidCategoryException.cs" />
-    <Compile Include="Exceptions\CreditCard\CreditCardNumberInvalidCharacters.cs" />
-    <Compile Include="Exceptions\CreditCard\CreditCardNumberLengthIncorrect.cs" />
     <Compile Include="Exceptions\Category\CategoryAlreadyAddedException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationNotSelectedCharacterTypesException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooShortException.cs" />
