@@ -189,7 +189,7 @@ namespace Obligatorio1_DA1.Domain
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
             if (!oldCreditCard.Equals(newCreditCard))
-                VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
+                VerifyNonExistenceOfCreditCardOnCreditCardList(newCreditCard);
 
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
