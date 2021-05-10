@@ -120,7 +120,8 @@ namespace UnitTestObligatorio1
                 Name = "Pedro",
                 Pass = "HolaSoyPedro123"
             };
-            otherUser.Categories.Add(category);
+            _passwordManager.CreateUser(otherUser);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
             Password newPassword = new Password
             {
                 User = otherUser,
@@ -130,7 +131,8 @@ namespace UnitTestObligatorio1
                 Pass = "Passoword223",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.GetPasswords().Add(newPassword);
+            _passwordManager.CreatePassword(newPassword);
+            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
         private List<Item> AddBreachedCreditCardsToPasswordManager()

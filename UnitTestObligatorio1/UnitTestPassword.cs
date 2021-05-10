@@ -80,7 +80,8 @@ namespace UnitTestObligatorio1
             {
                 Name = "Personal"
             };
-            differentUser.Categories.Add(categoryPersonal);
+            _passwordManager.CreateUser(differentUser);
+            _passwordManager.CreateCategoryOnCurrentUser(categoryPersonal);
             Password differentPassword = new Password
             {
                 User = differentUser,
@@ -89,8 +90,8 @@ namespace UnitTestObligatorio1
                 Username = "123456",
                 Pass = "239850Ort2019"
             };
-
-            this._passwordManager.GetPasswords().Add(differentPassword);
+            _passwordManager.CreatePassword(differentPassword);
+            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
@@ -836,7 +837,8 @@ namespace UnitTestObligatorio1
                 Name = "Lucía",
                 Pass = "lu2000@1"
             };
-            userShareFrom.Categories.Add(category);
+            _passwordManager.CreateUser(userShareFrom);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
             Password passwordToShare = new Password
             {
                 User = userShareFrom,
@@ -846,7 +848,8 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            this._passwordManager.GetPasswords().Add(passwordToShare);
+            _passwordManager.CreatePassword(passwordToShare);
+            _passwordManager.Login("Santiago", "HolaSoySantiago1");
             passwordToShare.ShareWithUser(userShareTo);
             passwordToShare.UnShareWithUser(userShareTo);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
