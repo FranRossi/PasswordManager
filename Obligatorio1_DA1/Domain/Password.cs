@@ -136,7 +136,7 @@ namespace Obligatorio1_DA1.Domain
 
 
             while (pass.Length < length)
-                AddRandomChar(ref pass, validChars, random);
+                AddRandomCharAtRandomPosition(ref pass, validChars, random);
 
             return pass;
         }
@@ -144,15 +144,15 @@ namespace Obligatorio1_DA1.Domain
         private static void AddRandomCharFromSubSet(ref string word, string subSet, Random random, List<char> mainSet)
         {
             List<char> newValidChars = subSet.ToList();
-            AddRandomChar(ref word, newValidChars, random);
+            AddRandomCharAtRandomPosition(ref word, newValidChars, random);
             mainSet.AddRange(newValidChars);
         }
 
-        private static void AddRandomChar(ref string word, List<char> validChars, Random random)
+        private static void AddRandomCharAtRandomPosition(ref string word, List<char> validChars, Random random)
         {
             char randomChar = validChars[random.Next(0, validChars.Count - 1)];
             int index = random.Next(0, word.Length);
-            word = word.Insert(index, randomChar + "");
+            word = word.Substring(0, index) + randomChar + word.Substring(index);
         }
 
         private PasswordStrengthColor CalculatePasswordStrength(string pass)
