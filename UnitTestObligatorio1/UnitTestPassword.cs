@@ -27,7 +27,7 @@ namespace UnitTestObligatorio1
                 _user = new User()
                 {
                     Name = "Gonzalo",
-                    Pass = "HolaSoyGonzalo123"
+                    MasterPass = "HolaSoyGonzalo123"
                 };
                 _category = new Category()
                 {
@@ -74,7 +74,7 @@ namespace UnitTestObligatorio1
             User differentUser = new User()
             {
                 Name = "Juan Perez",
-                Pass = "juan123"
+                MasterPass = "juan123"
             };
             Category categoryPersonal = new Category()
             {
@@ -275,7 +275,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -286,10 +286,10 @@ namespace UnitTestObligatorio1
             User userShareTo = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
             Password passwordToShare = new Password
             {
                 User = userShareFrom,
@@ -301,7 +301,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareTo);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
+            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.Contains(sharedWithUser, passwordToShare);
         }
@@ -314,7 +314,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -322,7 +322,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreateUser(userShareFrom);
             this._passwordManager.CreateCategoryOnCurrentUser(category);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
             Password passwordToShare = new Password
             {
                 User = userShareFrom,
@@ -344,7 +344,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -355,10 +355,10 @@ namespace UnitTestObligatorio1
             User userShareTo = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
             Password ort = new Password
             {
                 User = userShareFrom,
@@ -395,7 +395,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(amazon);
             expectedPasswords.Add(amazon);
             amazon.ShareWithUser(userShareTo);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
+            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
 
@@ -407,7 +407,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -418,11 +418,11 @@ namespace UnitTestObligatorio1
             User userShareTo = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             this._passwordManager.CreateUser(userShareTo);
 
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.Pass);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
             Password passwordToShare = new Password
             {
                 User = userShareFrom,
@@ -435,7 +435,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareTo);
             this._passwordManager.DeletePassword(passwordToShare);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.Pass);
+            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
         }
@@ -448,7 +448,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -457,7 +457,7 @@ namespace UnitTestObligatorio1
             User userShareTo = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             userShareFrom.Categories.Add(category);
 
@@ -490,7 +490,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -499,17 +499,17 @@ namespace UnitTestObligatorio1
             User lucia = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             User pablo = new User()
             {
                 Name = "Pablo",
-                Pass = "pa1230@1"
+                MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
                 Name = "Juana",
-                Pass = "juana0@1"
+                MasterPass = "juana0@1"
             };
 
             userShareFrom.Categories.Add(category);
@@ -548,7 +548,7 @@ namespace UnitTestObligatorio1
             User user = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -686,7 +686,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -695,17 +695,17 @@ namespace UnitTestObligatorio1
             User userShareWith = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             User pablo = new User()
             {
                 Name = "Pablo",
-                Pass = "pa1230@1"
+                MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
                 Name = "Juana",
-                Pass = "juana0@1"
+                MasterPass = "juana0@1"
             };
 
             userShareFrom.Categories.Add(category);
@@ -744,7 +744,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -753,17 +753,17 @@ namespace UnitTestObligatorio1
             User lucia = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             User pablo = new User()
             {
                 Name = "Pablo",
-                Pass = "pa1230@1"
+                MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
                 Name = "Juana",
-                Pass = "juana0@1"
+                MasterPass = "juana0@1"
             };
 
             userShareFrom.Categories.Add(category);
@@ -800,7 +800,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -809,17 +809,17 @@ namespace UnitTestObligatorio1
             User lucia = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             User pablo = new User()
             {
                 Name = "Pablo",
-                Pass = "pa1230@1"
+                MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
                 Name = "Juana",
-                Pass = "juana0@1"
+                MasterPass = "juana0@1"
             };
 
             userShareFrom.Categories.Add(category);
@@ -856,7 +856,7 @@ namespace UnitTestObligatorio1
             User userShareFrom = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category category = new Category()
             {
@@ -865,7 +865,7 @@ namespace UnitTestObligatorio1
             User userShareTo = new User()
             {
                 Name = "Lucía",
-                Pass = "lu2000@1"
+                MasterPass = "lu2000@1"
             };
             _passwordManager.CreateUser(userShareFrom);
             _passwordManager.CreateCategoryOnCurrentUser(category);
@@ -1019,7 +1019,7 @@ namespace UnitTestObligatorio1
             User newUser = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
             {
@@ -1079,7 +1079,7 @@ namespace UnitTestObligatorio1
             User newUser = new User()
             {
                 Name = "Santiago",
-                Pass = "HolaSoySantiago1"
+                MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
             {

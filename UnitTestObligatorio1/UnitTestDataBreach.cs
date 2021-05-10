@@ -28,7 +28,7 @@ namespace UnitTestObligatorio1
             _currentUser = new User()
             {
                 Name = "Gonzalo",
-                Pass = "HolaSoyGonzalo123"
+                MasterPass = "HolaSoyGonzalo123"
             };
             _passwordManager.CreateUser(_currentUser);
         }
@@ -118,7 +118,7 @@ namespace UnitTestObligatorio1
             User otherUser = new User()
             {
                 Name = "Pedro",
-                Pass = "HolaSoyPedro123"
+                MasterPass = "HolaSoyPedro123"
             };
             _passwordManager.CreateUser(otherUser);
             _passwordManager.CreateCategoryOnCurrentUser(category);
@@ -171,7 +171,7 @@ namespace UnitTestObligatorio1
             User otherUser = new User()
             {
                 Name = "Javier",
-                Pass = "HolaSoyJavier123"
+                MasterPass = "HolaSoyJavier123"
             };
             _passwordManager.CreateUser(otherUser);
             _passwordManager.CreateCategoryOnCurrentUser(category);
