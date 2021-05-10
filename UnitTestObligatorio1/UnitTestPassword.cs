@@ -80,7 +80,8 @@ namespace UnitTestObligatorio1
             {
                 Name = "Personal"
             };
-            differentUser.Categories.Add(categoryPersonal);
+            _passwordManager.CreateUser(differentUser);
+            _passwordManager.CreateCategoryOnCurrentUser(categoryPersonal);
             Password differentPassword = new Password
             {
                 User = differentUser,
@@ -89,8 +90,8 @@ namespace UnitTestObligatorio1
                 Username = "123456",
                 Pass = "239850Ort2019"
             };
-
-            this._passwordManager.CreatePassword(differentPassword);
+            _passwordManager.CreatePassword(differentPassword);
+            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
@@ -836,7 +837,8 @@ namespace UnitTestObligatorio1
                 Name = "Lucía",
                 Pass = "lu2000@1"
             };
-            userShareFrom.Categories.Add(category);
+            _passwordManager.CreateUser(userShareFrom);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
             Password passwordToShare = new Password
             {
                 User = userShareFrom,
@@ -846,7 +848,8 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            this._passwordManager.CreatePassword(passwordToShare);
+            _passwordManager.CreatePassword(passwordToShare);
+            _passwordManager.Login("Santiago", "HolaSoySantiago1");
             passwordToShare.ShareWithUser(userShareTo);
             passwordToShare.UnShareWithUser(userShareTo);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
@@ -1017,6 +1020,33 @@ namespace UnitTestObligatorio1
             this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
             Assert.AreEqual(this._password.LastModification, newPassword.LastModification);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
+        public void VerifyUserWhenCreatingPassword()
+        {
+            User newUser = new User()
+            {
+                Name = "Santiago",
+                Pass = "HolaSoySantiago1"
+            };
+            Category newCategory = new Category()
+            {
+                Name = "NewCategory"
+            };
+            newUser.Categories.Add(newCategory);
+            Password newPassword = new Password
+            {
+                User = newUser,
+                Category = newCategory,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "1234560Ort2020",
+                Notes = "Esta es la nueva password"
+            };
+            this._passwordManager.CreatePassword(newPassword);
+        }
+
 
     }
 
