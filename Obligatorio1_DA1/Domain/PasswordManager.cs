@@ -226,12 +226,10 @@ namespace Obligatorio1_DA1.Domain
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
-                    //Redefinir equals de user
-                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCards)
-                    //aca tmb
-                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
+                    if (card.Number == splittedDataBreach[i] && card.User.Equals(CurrentUser))
                         breachedItems.Add(card);
             }
             return breachedItems;
