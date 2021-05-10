@@ -45,7 +45,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 return false;
             }
-            return categoryToCompare.Name == this.Name;
+            return categoryToCompare.Name.ToLower() == this.Name.ToLower();
         }
     }
 }
