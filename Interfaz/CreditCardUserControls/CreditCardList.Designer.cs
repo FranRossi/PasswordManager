@@ -57,7 +57,7 @@ namespace Presentation
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(35, 326);
+            this.lblMessage.Location = new System.Drawing.Point(8, 16);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
@@ -92,6 +92,7 @@ namespace Presentation
             // pnlButtons
             // 
             this.pnlButtons.Controls.Add(this.btnShow);
+            this.pnlButtons.Controls.Add(this.lblMessage);
             this.pnlButtons.Controls.Add(this.label1);
             this.pnlButtons.Controls.Add(this.btnAddCreditCard);
             this.pnlButtons.Controls.Add(this.btnModifyCreditCard);
@@ -154,7 +155,6 @@ namespace Presentation
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlButtons);
-            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.pnlList);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreditCardList";
@@ -165,7 +165,6 @@ namespace Presentation
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
