@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Exceptions
 {
-    public class PasswordSharedWithSameUserException : Exception
+    public class PasswordSharedWithSameUserException : ValidationException
     {
-        protected string message;
-        public override string Message => this.message;
-
         public PasswordSharedWithSameUserException()
         {
             this.message = "Un usuario no se puede compartir la contraseña a si mismo";
