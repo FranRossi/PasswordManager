@@ -271,6 +271,8 @@ namespace Presentation.CreditCardUserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 411);
             this.Controls.Add(this.pnlPassword);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ShowCreditCard";
             this.Text = "PasswordManager";
             this.pnlPassword.ResumeLayout(false);

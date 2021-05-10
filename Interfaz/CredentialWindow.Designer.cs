@@ -34,19 +34,22 @@ namespace Presentation
             // 
             // pnlCredentials
             // 
-            this.pnlCredentials.Location = new System.Drawing.Point(12, 12);
+            this.pnlCredentials.Location = new System.Drawing.Point(10, 10);
             this.pnlCredentials.Name = "pnlCredentials";
-            this.pnlCredentials.Size = new System.Drawing.Size(776, 426);
+            this.pnlCredentials.Size = new System.Drawing.Size(368, 275);
             this.pnlCredentials.TabIndex = 0;
             // 
             // CredentialWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(388, 294);
             this.Controls.Add(this.pnlCredentials);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CredentialWindow";
-            this.Text = "CredentialWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "PasswordManager";
             this.ResumeLayout(false);
 
         }

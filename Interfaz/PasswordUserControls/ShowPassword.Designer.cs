@@ -222,8 +222,10 @@ namespace Presentation.PasswordUserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 350);
             this.Controls.Add(this.pnlPassword);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ShowPassword";
-            this.Text = "Password Manager";
+            this.Text = "PasswordManager";
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();
             this.gpbPassword.ResumeLayout(false);
