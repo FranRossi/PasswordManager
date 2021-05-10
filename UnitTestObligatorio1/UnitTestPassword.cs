@@ -90,7 +90,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019"
             };
 
-            this._passwordManager.CreatePassword(differentPassword);
+            this._passwordManager.GetPasswords().Add(differentPassword);
             List<Password> userPasswords = this._passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
