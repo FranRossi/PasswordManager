@@ -67,7 +67,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
-            VerifyExistenceOfPasswordOnPasswordList(password);
+            VerifyNonExistenceOfPasswordOnPasswordList(password);
             VerifyPasswordBelongToCurrentUser(password);
             this._passwords.Add(password);
         }
@@ -89,7 +89,8 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
         {
-            VerifyExistenceOfPasswordOnPasswordList(newPassword);
+            if (!oldPassword.Equals(newPassword))
+                VerifyNonExistenceOfPasswordOnPasswordList(newPassword);
 
             foreach (Password passwordIterator in this.GetPasswords())
             {
@@ -112,7 +113,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordNotBelongToCurrentUserException();
         }
 
-        private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
+        private void VerifyNonExistenceOfPasswordOnPasswordList(Password newPassword)
         {
             if (this._passwords.Contains(newPassword))
                 throw new PasswordAlreadyExistsException();
@@ -187,7 +188,9 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
-            VerifyNonExistenceOfCreditCardOnCreditCardList(newCreditCard);
+            if (!oldCreditCard.Equals(newCreditCard))
+                VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
+
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
                 if (creditCardIterator.Equals(oldCreditCard))
@@ -224,12 +227,10 @@ namespace Obligatorio1_DA1.Domain
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
-                    //Redefinir equals de user
-                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCards)
-                    //aca tmb
-                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
+                    if (card.Number == splittedDataBreach[i] && card.User.Equals(CurrentUser))
                         breachedItems.Add(card);
             }
             return breachedItems;
