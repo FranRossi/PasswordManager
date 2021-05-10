@@ -12,3 +12,7 @@ Se establecen los siguientes estándares para trabajar en el respositorio:
 - El nombre de la rama feature es "feature-NombreDeLaRama". Se utiliza camelCase y la primera letra del nombre va con mayúscula.  
 - Los commits se escriben en presente
 - Los commits empiezan con mayúscula
+
+
+### TODOOOOOOOOOOOOOOOOOOOOOOOOOO
+- No chequeamos por nulos porque usamos las propertries (ya lo hablamos con el profe)
