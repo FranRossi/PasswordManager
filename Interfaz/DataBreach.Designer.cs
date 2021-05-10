@@ -146,6 +146,7 @@ namespace Presentation
             this.btnModifyPass.TabIndex = 8;
             this.btnModifyPass.Text = "Modificar";
             this.btnModifyPass.UseVisualStyleBackColor = true;
+            this.btnModifyPass.Click += new System.EventHandler(this.btnModifyPass_Click);
             // 
             // lblMessage
             // 
