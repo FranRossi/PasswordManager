@@ -89,7 +89,8 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
         {
-            VerifyExistenceOfPasswordOnPasswordList(newPassword);
+            if (!oldPassword.Equals(newPassword))
+                VerifyExistenceOfPasswordOnPasswordList(newPassword);
 
             foreach (Password passwordIterator in this.GetPasswords())
             {
