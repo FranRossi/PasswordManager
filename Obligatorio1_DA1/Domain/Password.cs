@@ -29,12 +29,15 @@ namespace Obligatorio1_DA1.Domain
 
         public PasswordStrengthColor PasswordStrength { get; private set; }
 
-        private List<User> SharedWith
+        public List<User> SharedWith
         {
-            get => _sharedWith;
-            set
+            get
             {
-                this._sharedWith = value;
+                if (this._sharedWith == null)
+                {
+                    this._sharedWith = new List<User>();
+                }
+                return this._sharedWith;
             }
         }
 
@@ -249,25 +252,11 @@ namespace Obligatorio1_DA1.Domain
 
         public void ShareWithUser(User userShareWith)
         {
-            // TODO why this if? can userShareWIth be null?
-            if (this.SharedWith == null)
-            {
-                this.SharedWith = new List<User>();
-            }
             if (this.User == userShareWith)
             {
                 throw new PasswordSharedWithSameUserException();
             }
             this.SharedWith.Add(userShareWith);
-        }
-
-        public List<User> GetUsersSharedWith()
-        {
-            if (this.SharedWith == null)
-            {
-                return new List<User>();
-            }
-            return this.SharedWith;
         }
 
         public void UnShareWithUser(User userRemoveShare)
