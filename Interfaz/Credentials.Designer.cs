@@ -69,7 +69,7 @@ namespace Presentation
             this.txtMasterPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtMasterPassword.Name = "txtMasterPassword";
             this.txtMasterPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtMasterPassword.TabIndex = 13;
+            this.txtMasterPassword.TabIndex = 1;
             // 
             // btnLogin
             // 
@@ -77,7 +77,7 @@ namespace Presentation
             this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(100, 36);
-            this.btnLogin.TabIndex = 9;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -98,7 +98,7 @@ namespace Presentation
             this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(100, 20);
-            this.txtUserName.TabIndex = 11;
+            this.txtUserName.TabIndex = 0;
             // 
             // btnSignUp
             // 
@@ -106,7 +106,7 @@ namespace Presentation
             this.btnSignUp.Margin = new System.Windows.Forms.Padding(2);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(100, 36);
-            this.btnSignUp.TabIndex = 10;
+            this.btnSignUp.TabIndex = 3;
             this.btnSignUp.Text = "Registrarse";
             this.btnSignUp.UseVisualStyleBackColor = true;
             this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);

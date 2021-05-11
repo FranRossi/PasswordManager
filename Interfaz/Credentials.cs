@@ -22,7 +22,6 @@ namespace Presentation
             InitializeComponent();
             Properties.Settings.Default.Reset();
             _myPasswordManager = passwordManager;
-            this.ActiveControl = txtUserName;
             TestData testData = new TestData(_myPasswordManager);
 
         }
