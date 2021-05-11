@@ -65,7 +65,7 @@ namespace Presentation
             this.pnlPassword.Location = new System.Drawing.Point(11, 11);
             this.pnlPassword.Margin = new System.Windows.Forms.Padding(2);
             this.pnlPassword.Name = "pnlPassword";
-            this.pnlPassword.Size = new System.Drawing.Size(346, 496);
+            this.pnlPassword.Size = new System.Drawing.Size(401, 496);
             this.pnlPassword.TabIndex = 2;
             // 
             // gpbCreditCard
@@ -83,11 +83,11 @@ namespace Presentation
             this.gpbCreditCard.Controls.Add(this.txtSite);
             this.gpbCreditCard.Controls.Add(this.cbCategory);
             this.gpbCreditCard.Controls.Add(this.lblCategory);
-            this.gpbCreditCard.Location = new System.Drawing.Point(17, 34);
+            this.gpbCreditCard.Location = new System.Drawing.Point(2, 34);
             this.gpbCreditCard.Margin = new System.Windows.Forms.Padding(2);
             this.gpbCreditCard.Name = "gpbCreditCard";
             this.gpbCreditCard.Padding = new System.Windows.Forms.Padding(2);
-            this.gpbCreditCard.Size = new System.Drawing.Size(315, 460);
+            this.gpbCreditCard.Size = new System.Drawing.Size(397, 460);
             this.gpbCreditCard.TabIndex = 1;
             this.gpbCreditCard.TabStop = false;
             // 
@@ -109,9 +109,9 @@ namespace Presentation
             this.groupBox1.Controls.Add(this.nudLength);
             this.groupBox1.Controls.Add(this.lblLength);
             this.groupBox1.Controls.Add(this.txtPassword);
-            this.groupBox1.Location = new System.Drawing.Point(88, 104);
+            this.groupBox1.Location = new System.Drawing.Point(115, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(182, 205);
+            this.groupBox1.Size = new System.Drawing.Size(252, 205);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -203,15 +203,15 @@ namespace Presentation
             this.txtPassword.Location = new System.Drawing.Point(17, 11);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(137, 20);
+            this.txtPassword.Size = new System.Drawing.Size(207, 20);
             this.txtPassword.TabIndex = 4;
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(195, 389);
+            this.btnAccept.Location = new System.Drawing.Point(222, 391);
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(70, 27);
+            this.btnAccept.Size = new System.Drawing.Size(140, 27);
             this.btnAccept.TabIndex = 12;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
@@ -219,17 +219,17 @@ namespace Presentation
             // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(105, 314);
+            this.txtNotes.Location = new System.Drawing.Point(132, 316);
             this.txtNotes.Margin = new System.Windows.Forms.Padding(2);
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(137, 64);
+            this.txtNotes.Size = new System.Drawing.Size(207, 64);
             this.txtNotes.TabIndex = 11;
             this.txtNotes.Text = "";
             // 
             // lblNotes
             // 
             this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(9, 317);
+            this.lblNotes.Location = new System.Drawing.Point(36, 319);
             this.lblNotes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(35, 13);
@@ -239,7 +239,7 @@ namespace Presentation
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(8, 118);
+            this.lblPass.Location = new System.Drawing.Point(35, 120);
             this.lblPass.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(61, 13);
@@ -249,7 +249,7 @@ namespace Presentation
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(8, 82);
+            this.lblUser.Location = new System.Drawing.Point(35, 84);
             this.lblUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(43, 13);
@@ -258,16 +258,16 @@ namespace Presentation
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(105, 79);
+            this.txtUserName.Location = new System.Drawing.Point(132, 81);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(137, 20);
+            this.txtUserName.Size = new System.Drawing.Size(207, 20);
             this.txtUserName.TabIndex = 2;
             // 
             // lblSite
             // 
             this.lblSite.AutoSize = true;
-            this.lblSite.Location = new System.Drawing.Point(8, 49);
+            this.lblSite.Location = new System.Drawing.Point(35, 51);
             this.lblSite.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSite.Name = "lblSite";
             this.lblSite.Size = new System.Drawing.Size(27, 13);
@@ -276,26 +276,26 @@ namespace Presentation
             // 
             // txtSite
             // 
-            this.txtSite.Location = new System.Drawing.Point(105, 46);
+            this.txtSite.Location = new System.Drawing.Point(132, 48);
             this.txtSite.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite.Name = "txtSite";
-            this.txtSite.Size = new System.Drawing.Size(137, 20);
+            this.txtSite.Size = new System.Drawing.Size(207, 20);
             this.txtSite.TabIndex = 1;
             // 
             // cbCategory
             // 
             this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(105, 15);
+            this.cbCategory.Location = new System.Drawing.Point(132, 17);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(2);
             this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(137, 21);
+            this.cbCategory.Size = new System.Drawing.Size(207, 21);
             this.cbCategory.TabIndex = 0;
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(9, 18);
+            this.lblCategory.Location = new System.Drawing.Point(36, 20);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(54, 13);
@@ -305,7 +305,7 @@ namespace Presentation
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(14, 12);
+            this.lblPassword.Location = new System.Drawing.Point(2, 10);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(61, 13);
@@ -316,7 +316,7 @@ namespace Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 518);
+            this.ClientSize = new System.Drawing.Size(423, 518);
             this.Controls.Add(this.pnlPassword);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
