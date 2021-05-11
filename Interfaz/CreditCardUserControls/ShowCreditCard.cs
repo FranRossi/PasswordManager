@@ -65,22 +65,5 @@ namespace Presentation.CreditCardUserControls
         {
             ShowFullInformation();
         }
-
-        private string FormatCardNumber(string number)
-        {
-            int[] spacesAt = { 4, 9, 14 };
-            int indexSpace = 0;
-            int numbersPerDivision = 4;
-            int numberCardLength = number.Length;
-            for (int i = 0; i < numberCardLength; i++)
-            {
-                if (i % numbersPerDivision == 0 && i != 0)
-                {
-                    number = number.Insert(spacesAt[indexSpace], " ");
-                    indexSpace++;
-                }
-            }
-            return number;
-        }
     }
 }
