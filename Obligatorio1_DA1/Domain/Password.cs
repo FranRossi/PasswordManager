@@ -106,12 +106,7 @@ namespace Obligatorio1_DA1.Domain
 
         public static string GenerateRandomPassword(PasswordGenerationOptions options)
         {
-            if (options.Length > Password.MaxPasswordLength)
-                throw new PasswordGenerationTooLongException();
-            if (options.Length < Password.MinPasswordLength)
-                throw new PasswordGenerationTooShortException();
-            if (!(options.Uppercase || options.Lowercase || options.Digits || options.SpecialDigits))
-                throw new PasswordGenerationNotSelectedCharacterTypesException();
+            ValidatePasswordGenerationOptions(options);
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";
@@ -124,13 +119,10 @@ namespace Obligatorio1_DA1.Domain
 
             if (options.Uppercase)
                 AddRandomCharFromSubSet(ref pass, uppercaseSet, random, validChars);
-
             if (options.Lowercase)
                 AddRandomCharFromSubSet(ref pass, lowercaseSet, random, validChars);
-
             if (options.Digits)
                 AddRandomCharFromSubSet(ref pass, digitsSet, random, validChars);
-
             if (options.SpecialDigits)
                 AddRandomCharFromSubSet(ref pass, specialDigitsSet, random, validChars);
 
@@ -138,6 +130,16 @@ namespace Obligatorio1_DA1.Domain
                 AddRandomChar(ref pass, validChars, random);
 
             return pass;
+        }
+
+        private static void ValidatePasswordGenerationOptions(PasswordGenerationOptions options)
+        {
+            if (options.Length > Password.MaxPasswordLength)
+                throw new PasswordGenerationTooLongException();
+            if (options.Length < Password.MinPasswordLength)
+                throw new PasswordGenerationTooShortException();
+            if (!(options.Uppercase || options.Lowercase || options.Digits || options.SpecialDigits))
+                throw new PasswordGenerationNotSelectedCharacterTypesException();
         }
 
         private static void AddRandomCharFromSubSet(ref string word, string subSet, Random random, List<char> mainSet)
