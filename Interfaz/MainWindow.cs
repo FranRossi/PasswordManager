@@ -77,7 +77,7 @@ namespace Presentation
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Form logOut = new LogOutWindow(_myPasswordManager, e);
+            Form logOut = new LogOutWindow(e);
             var resonse = logOut.ShowDialog();
 
         }

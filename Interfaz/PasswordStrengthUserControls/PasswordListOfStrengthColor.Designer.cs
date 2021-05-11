@@ -41,7 +41,7 @@ namespace Presentation.PasswordStrengthWindow
             this.btmModify.Location = new System.Drawing.Point(300, 268);
             this.btmModify.Name = "btmModify";
             this.btmModify.Size = new System.Drawing.Size(138, 28);
-            this.btmModify.TabIndex = 4;
+            this.btmModify.TabIndex = 0;
             this.btmModify.Text = "Modificar";
             this.btmModify.UseVisualStyleBackColor = true;
             this.btmModify.Click += new System.EventHandler(this.btmModify_Click);

@@ -58,7 +58,7 @@ namespace Presentation
             this.tblPassword.RowHeadersVisible = false;
             this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblPassword.Size = new System.Drawing.Size(437, 182);
-            this.tblPassword.TabIndex = 6;
+            this.tblPassword.TabIndex = 0;
             this.tblPassword.SelectionChanged += new System.EventHandler(this.tblPassword_SelectionChanged);
             // 
             // lblPassword
@@ -76,7 +76,7 @@ namespace Presentation
             this.btnUnShare.Location = new System.Drawing.Point(565, 320);
             this.btnUnShare.Name = "btnUnShare";
             this.btnUnShare.Size = new System.Drawing.Size(107, 23);
-            this.btnUnShare.TabIndex = 0;
+            this.btnUnShare.TabIndex = 4;
             this.btnUnShare.Text = "Descompartir";
             this.btnUnShare.UseVisualStyleBackColor = true;
             this.btnUnShare.Click += new System.EventHandler(this.btnUnShare_Click);
@@ -96,7 +96,7 @@ namespace Presentation
             this.btnSharedPasswords.Location = new System.Drawing.Point(564, 14);
             this.btnSharedPasswords.Name = "btnSharedPasswords";
             this.btnSharedPasswords.Size = new System.Drawing.Size(196, 23);
-            this.btnSharedPasswords.TabIndex = 3;
+            this.btnSharedPasswords.TabIndex = 5;
             this.btnSharedPasswords.Text = "Volver a Lista de Constraseñas";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
             this.btnSharedPasswords.Click += new System.EventHandler(this.btnSharedPasswords_Click);
@@ -116,7 +116,7 @@ namespace Presentation
             this.tblSharedWith.RowHeadersVisible = false;
             this.tblSharedWith.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblSharedWith.Size = new System.Drawing.Size(158, 182);
-            this.tblSharedWith.TabIndex = 7;
+            this.tblSharedWith.TabIndex = 3;
             this.tblSharedWith.SelectionChanged += new System.EventHandler(this.tblSharedWith_SelectionChanged);
             // 
             // lblSharedWith
@@ -136,7 +136,7 @@ namespace Presentation
             this.cbUsersNotSharedWith.Location = new System.Drawing.Point(149, 293);
             this.cbUsersNotSharedWith.Name = "cbUsersNotSharedWith";
             this.cbUsersNotSharedWith.Size = new System.Drawing.Size(121, 21);
-            this.cbUsersNotSharedWith.TabIndex = 9;
+            this.cbUsersNotSharedWith.TabIndex = 1;
             // 
             // label2
             // 

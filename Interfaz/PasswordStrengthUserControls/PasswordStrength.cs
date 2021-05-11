@@ -22,12 +22,12 @@ namespace Presentation
     }
     public partial class PasswordStrength : UserControl
     {
-        private PasswordManager _passwordManager;
+        private PasswordManager _myPasswordManager;
         private PasswordStrengthChart chartPanel;
         private List<colorComponent> colorCmp;
         public PasswordStrength(PasswordManager passwordManager)
         {
-            this._passwordManager = passwordManager;
+            this._myPasswordManager = passwordManager;
             InitializeComponent();
             this.SetColorsLabelsAndButtons();
             this.LoadColorQuantities();
@@ -38,7 +38,7 @@ namespace Presentation
 
         private void LoadColorQuantities()
         {
-            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
+            List<passwordReportByColor> report = this._myPasswordManager.GetPasswordReportByColor();
             foreach (passwordReportByColor entry in report)
             {
                 colorComponent cmp = colorCmp.Find(component => component.Color == entry.Color);
@@ -61,7 +61,7 @@ namespace Presentation
         private void LoadChart()
         {
             bool enoughtPasswordToShow;
-            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            List<passwordReportByCategoryAndColor> report = this._myPasswordManager.GetPasswordReportByCategoryAndColor();
             enoughtPasswordToShow = (report.Count() > 0);
 
             if (enoughtPasswordToShow)
@@ -74,7 +74,7 @@ namespace Presentation
 
         private void ReloadChart()
         {
-            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            List<passwordReportByCategoryAndColor> report = _myPasswordManager.GetPasswordReportByCategoryAndColor();
             this.chartPanel = new PasswordStrengthChart(report);
         }
         private void ShowChart()
@@ -87,7 +87,7 @@ namespace Presentation
         private void ShowPasswordList(PasswordStrengthColor color)
         {
             pnlChartList.Controls.Clear();
-            UserControl passwordList = new PasswordListOfStrengthColor(_passwordManager, color);
+            UserControl passwordList = new PasswordListOfStrengthColor(_myPasswordManager, color);
             pnlChartList.Controls.Add(passwordList);
             btnShowChart.Enabled = true;
         }

@@ -84,10 +84,10 @@ namespace Presentation
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(206, 158);
+            this.btnAdd.Location = new System.Drawing.Point(134, 156);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -97,7 +97,7 @@ namespace Presentation
             this.txtNameAdd.Location = new System.Drawing.Point(8, 120);
             this.txtNameAdd.Name = "txtNameAdd";
             this.txtNameAdd.Size = new System.Drawing.Size(201, 20);
-            this.txtNameAdd.TabIndex = 1;
+            this.txtNameAdd.TabIndex = 0;
             // 
             // lblTitle
             // 
@@ -134,7 +134,7 @@ namespace Presentation
             this.btnActivateModification.Location = new System.Drawing.Point(381, 278);
             this.btnActivateModification.Name = "btnActivateModification";
             this.btnActivateModification.Size = new System.Drawing.Size(75, 23);
-            this.btnActivateModification.TabIndex = 6;
+            this.btnActivateModification.TabIndex = 5;
             this.btnActivateModification.Text = "Modificar";
             this.btnActivateModification.UseVisualStyleBackColor = true;
             this.btnActivateModification.Click += new System.EventHandler(this.btnActivateModification_Click);
@@ -145,7 +145,7 @@ namespace Presentation
             this.lstCategories.Location = new System.Drawing.Point(3, 73);
             this.lstCategories.Name = "lstCategories";
             this.lstCategories.Size = new System.Drawing.Size(453, 199);
-            this.lstCategories.TabIndex = 5;
+            this.lstCategories.TabIndex = 4;
             this.lstCategories.SelectedIndexChanged += new System.EventHandler(this.lstCategories_SelectedIndexChanged);
             // 
             // lblList
@@ -173,10 +173,10 @@ namespace Presentation
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(205, 121);
+            this.btnModify.Location = new System.Drawing.Point(133, 115);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(75, 23);
-            this.btnModify.TabIndex = 5;
+            this.btnModify.TabIndex = 3;
             this.btnModify.Text = "Modificar";
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
@@ -186,7 +186,7 @@ namespace Presentation
             this.txtNameModify.Location = new System.Drawing.Point(7, 77);
             this.txtNameModify.Name = "txtNameModify";
             this.txtNameModify.Size = new System.Drawing.Size(201, 20);
-            this.txtNameModify.TabIndex = 5;
+            this.txtNameModify.TabIndex = 2;
             // 
             // lblNameModifyPassword
             // 

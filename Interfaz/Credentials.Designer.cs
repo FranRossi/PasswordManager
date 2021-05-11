@@ -45,7 +45,7 @@ namespace Presentation
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(148, 39);
+            this.lblTitle.Location = new System.Drawing.Point(29, 36);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(310, 24);
@@ -56,7 +56,7 @@ namespace Presentation
             // lblMasterPassword
             // 
             this.lblMasterPassword.AutoSize = true;
-            this.lblMasterPassword.Location = new System.Drawing.Point(176, 167);
+            this.lblMasterPassword.Location = new System.Drawing.Point(73, 145);
             this.lblMasterPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMasterPassword.Name = "lblMasterPassword";
             this.lblMasterPassword.Size = new System.Drawing.Size(102, 13);
@@ -65,19 +65,19 @@ namespace Presentation
             // 
             // txtMasterPassword
             // 
-            this.txtMasterPassword.Location = new System.Drawing.Point(294, 164);
+            this.txtMasterPassword.Location = new System.Drawing.Point(191, 142);
             this.txtMasterPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtMasterPassword.Name = "txtMasterPassword";
             this.txtMasterPassword.Size = new System.Drawing.Size(100, 20);
-            this.txtMasterPassword.TabIndex = 13;
+            this.txtMasterPassword.TabIndex = 1;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(179, 206);
+            this.btnLogin.Location = new System.Drawing.Point(75, 184);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(90, 36);
-            this.btnLogin.TabIndex = 9;
+            this.btnLogin.Size = new System.Drawing.Size(100, 36);
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -85,7 +85,7 @@ namespace Presentation
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(176, 112);
+            this.lblUserName.Location = new System.Drawing.Point(73, 90);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(96, 13);
@@ -94,19 +94,19 @@ namespace Presentation
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(294, 109);
+            this.txtUserName.Location = new System.Drawing.Point(191, 87);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(100, 20);
-            this.txtUserName.TabIndex = 11;
+            this.txtUserName.TabIndex = 0;
             // 
             // btnSignUp
             // 
-            this.btnSignUp.Location = new System.Drawing.Point(306, 206);
+            this.btnSignUp.Location = new System.Drawing.Point(191, 184);
             this.btnSignUp.Margin = new System.Windows.Forms.Padding(2);
             this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(88, 36);
-            this.btnSignUp.TabIndex = 10;
+            this.btnSignUp.Size = new System.Drawing.Size(100, 36);
+            this.btnSignUp.TabIndex = 3;
             this.btnSignUp.Text = "Registrarse";
             this.btnSignUp.UseVisualStyleBackColor = true;
             this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
@@ -114,7 +114,7 @@ namespace Presentation
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(176, 256);
+            this.lblMessage.Location = new System.Drawing.Point(30, 231);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
             this.lblMessage.TabIndex = 15;
@@ -137,7 +137,7 @@ namespace Presentation
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.btnSignUp);
             this.Name = "Credentials";
-            this.Size = new System.Drawing.Size(606, 371);
+            this.Size = new System.Drawing.Size(368, 275);
             this.ResumeLayout(false);
             this.PerformLayout();
 

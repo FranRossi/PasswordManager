@@ -102,7 +102,7 @@ namespace Presentation
             }
             return true;
         }
-        
+
         private void BtnModifyCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
@@ -114,7 +114,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea modificar.";
             }
 
         }

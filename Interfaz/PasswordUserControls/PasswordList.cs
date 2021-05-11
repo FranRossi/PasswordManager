@@ -132,10 +132,17 @@ namespace Presentation
 
         private void btnSharedPasswords_Click(object sender, EventArgs e)
         {
-            Panel parentPanel = (Panel)this.Parent;
-            MainWindow main = (MainWindow)parentPanel.Parent;
             UpdateSelectedPassword();
-            main.ShowSharedPasswordList(_selectedPassword);
+            if (_selectedPassword != null)
+            {
+                Panel parentPanel = (Panel)this.Parent;
+                MainWindow main = (MainWindow)parentPanel.Parent;
+                main.ShowSharedPasswordList(_selectedPassword);
+            }
+            else
+            {
+                this.lblMessage.Text = "Debe seleccionar la contraseña que desea compartir.";
+            }
         }
 
         private void btnShow_Click(object sender, EventArgs e)

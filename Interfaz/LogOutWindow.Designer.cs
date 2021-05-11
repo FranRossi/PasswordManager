@@ -39,10 +39,9 @@ namespace Presentation
             // btnLogOut
             // 
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnLogOut.Location = new System.Drawing.Point(386, 15);
-            this.btnLogOut.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLogOut.Location = new System.Drawing.Point(257, 10);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(177, 38);
+            this.btnLogOut.Size = new System.Drawing.Size(118, 25);
             this.btnLogOut.TabIndex = 0;
             this.btnLogOut.Text = "Cerrar Sesión";
             this.btnLogOut.UseVisualStyleBackColor = true;
@@ -53,19 +52,17 @@ namespace Presentation
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pnlButtons.Controls.Add(this.btnClose);
             this.pnlButtons.Controls.Add(this.btnLogOut);
-            this.pnlButtons.Location = new System.Drawing.Point(-3, 143);
-            this.pnlButtons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlButtons.Location = new System.Drawing.Point(-2, 93);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(578, 73);
+            this.pnlButtons.Size = new System.Drawing.Size(385, 47);
             this.pnlButtons.TabIndex = 1;
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnClose.Location = new System.Drawing.Point(255, 15);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Location = new System.Drawing.Point(170, 10);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(122, 38);
+            this.btnClose.Size = new System.Drawing.Size(81, 25);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Salir";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -75,23 +72,24 @@ namespace Presentation
             // 
             this.lblClosingConfirmationMessage.AutoSize = true;
             this.lblClosingConfirmationMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.lblClosingConfirmationMessage.Location = new System.Drawing.Point(45, 54);
-            this.lblClosingConfirmationMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblClosingConfirmationMessage.Location = new System.Drawing.Point(30, 35);
             this.lblClosingConfirmationMessage.Name = "lblClosingConfirmationMessage";
-            this.lblClosingConfirmationMessage.Size = new System.Drawing.Size(486, 26);
+            this.lblClosingConfirmationMessage.Size = new System.Drawing.Size(331, 18);
             this.lblClosingConfirmationMessage.TabIndex = 2;
             this.lblClosingConfirmationMessage.Text = "¿Quieres salir de la aplicación o cerrar la sesión?";
             // 
             // LogOutWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(578, 215);
+            this.ClientSize = new System.Drawing.Size(385, 140);
             this.Controls.Add(this.lblClosingConfirmationMessage);
             this.Controls.Add(this.pnlButtons);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LogOutWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Salir";
             this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
