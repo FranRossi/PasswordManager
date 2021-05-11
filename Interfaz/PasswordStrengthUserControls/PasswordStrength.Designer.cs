@@ -29,14 +29,13 @@ namespace Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tlpColorTable = new System.Windows.Forms.TableLayoutPanel();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblRed = new System.Windows.Forms.Label();
+            this.lblOrange = new System.Windows.Forms.Label();
+            this.lblYellow = new System.Windows.Forms.Label();
+            this.lblLightGreen = new System.Windows.Forms.Label();
+            this.lblDarkGreen = new System.Windows.Forms.Label();
             this.lblRedQuantity = new System.Windows.Forms.Label();
             this.lblYellowQuantity = new System.Windows.Forms.Label();
             this.lblLightGreenQuantity = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@ namespace Presentation
             this.btnShowPasswordsDarkGreen = new System.Windows.Forms.Button();
             this.pnlChartList = new System.Windows.Forms.Panel();
             this.lblNoPassword = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnShowChart = new System.Windows.Forms.Button();
             this.tlpColorTable.SuspendLayout();
@@ -65,11 +63,11 @@ namespace Presentation
             this.tlpColorTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.42446F));
             this.tlpColorTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.92806F));
             this.tlpColorTable.Controls.Add(this.lblQuantity, 1, 0);
-            this.tlpColorTable.Controls.Add(this.label1, 0, 1);
-            this.tlpColorTable.Controls.Add(this.label2, 0, 2);
-            this.tlpColorTable.Controls.Add(this.label3, 0, 3);
-            this.tlpColorTable.Controls.Add(this.label4, 0, 4);
-            this.tlpColorTable.Controls.Add(this.label9, 0, 5);
+            this.tlpColorTable.Controls.Add(this.lblRed, 0, 1);
+            this.tlpColorTable.Controls.Add(this.lblOrange, 0, 2);
+            this.tlpColorTable.Controls.Add(this.lblYellow, 0, 3);
+            this.tlpColorTable.Controls.Add(this.lblLightGreen, 0, 4);
+            this.tlpColorTable.Controls.Add(this.lblDarkGreen, 0, 5);
             this.tlpColorTable.Controls.Add(this.lblRedQuantity, 1, 1);
             this.tlpColorTable.Controls.Add(this.lblYellowQuantity, 1, 3);
             this.tlpColorTable.Controls.Add(this.lblLightGreenQuantity, 1, 4);
@@ -111,85 +109,85 @@ namespace Presentation
             this.lblQuantity.Text = "Cantidad de Contraseñas";
             this.lblQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // lblRed
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblRed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(4, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 40);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Rojo";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRed.AutoSize = true;
+            this.lblRed.BackColor = System.Drawing.SystemColors.Control;
+            this.lblRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblRed.Location = new System.Drawing.Point(4, 42);
+            this.lblRed.Name = "lblRed";
+            this.lblRed.Size = new System.Drawing.Size(105, 40);
+            this.lblRed.TabIndex = 2;
+            this.lblRed.Text = "Rojo";
+            this.lblRed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // lblOrange
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblOrange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(4, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 40);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Naranja";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOrange.AutoSize = true;
+            this.lblOrange.BackColor = System.Drawing.SystemColors.Control;
+            this.lblOrange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblOrange.Location = new System.Drawing.Point(4, 83);
+            this.lblOrange.Name = "lblOrange";
+            this.lblOrange.Size = new System.Drawing.Size(105, 40);
+            this.lblOrange.TabIndex = 3;
+            this.lblOrange.Text = "Naranja";
+            this.lblOrange.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // lblYellow
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblYellow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.Control;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(4, 124);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 40);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Amarillo";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblYellow.AutoSize = true;
+            this.lblYellow.BackColor = System.Drawing.SystemColors.Control;
+            this.lblYellow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYellow.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblYellow.Location = new System.Drawing.Point(4, 124);
+            this.lblYellow.Name = "lblYellow";
+            this.lblYellow.Size = new System.Drawing.Size(105, 40);
+            this.lblYellow.TabIndex = 4;
+            this.lblYellow.Text = "Amarillo";
+            this.lblYellow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // lblLightGreen
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblLightGreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(4, 165);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 40);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Verde Claro";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLightGreen.AutoSize = true;
+            this.lblLightGreen.BackColor = System.Drawing.SystemColors.Control;
+            this.lblLightGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLightGreen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblLightGreen.Location = new System.Drawing.Point(4, 165);
+            this.lblLightGreen.Name = "lblLightGreen";
+            this.lblLightGreen.Size = new System.Drawing.Size(105, 40);
+            this.lblLightGreen.TabIndex = 5;
+            this.lblLightGreen.Text = "Verde Claro";
+            this.lblLightGreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // lblDarkGreen
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblDarkGreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.SystemColors.Control;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(4, 206);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 46);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Verde Oscuro";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDarkGreen.AutoSize = true;
+            this.lblDarkGreen.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDarkGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDarkGreen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDarkGreen.Location = new System.Drawing.Point(4, 206);
+            this.lblDarkGreen.Name = "lblDarkGreen";
+            this.lblDarkGreen.Size = new System.Drawing.Size(105, 46);
+            this.lblDarkGreen.TabIndex = 12;
+            this.lblDarkGreen.Text = "Verde Oscuro";
+            this.lblDarkGreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblRedQuantity
             // 
@@ -369,11 +367,6 @@ namespace Presentation
             this.lblNoPassword.Text = "No tienes constraseñas para mostrar";
             this.lblNoPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
@@ -417,20 +410,19 @@ namespace Presentation
 
         #endregion
         private System.Windows.Forms.Panel pnlChartList;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.TableLayoutPanel tlpColorTable;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblRed;
+        private System.Windows.Forms.Label lblOrange;
+        private System.Windows.Forms.Label lblYellow;
+        private System.Windows.Forms.Label lblLightGreen;
         private System.Windows.Forms.Label lblDarkGreenQuantity;
         private System.Windows.Forms.Label lblLightGreenQuantity;
         private System.Windows.Forms.Label lblYellowQuantity;
         private System.Windows.Forms.Button btnShowPasswordsRed;
         private System.Windows.Forms.Label lblRedQuantity;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblDarkGreen;
         private System.Windows.Forms.Label lblOrangeQuantity;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnShowChart;

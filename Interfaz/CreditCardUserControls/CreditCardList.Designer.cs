@@ -35,7 +35,6 @@ namespace Presentation
             this.pnlList = new System.Windows.Forms.Panel();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnShow = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnAddCreditCard = new System.Windows.Forms.Button();
             this.btnModifyCreditCard = new System.Windows.Forms.Button();
             this.btnDeleteCreditCard = new System.Windows.Forms.Button();
@@ -93,7 +92,6 @@ namespace Presentation
             // 
             this.pnlButtons.Controls.Add(this.btnShow);
             this.pnlButtons.Controls.Add(this.lblMessage);
-            this.pnlButtons.Controls.Add(this.label1);
             this.pnlButtons.Controls.Add(this.btnAddCreditCard);
             this.pnlButtons.Controls.Add(this.btnModifyCreditCard);
             this.pnlButtons.Controls.Add(this.btnDeleteCreditCard);
@@ -111,14 +109,6 @@ namespace Presentation
             this.btnShow.Text = "Mostrar";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.BtnShow_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 4;
             // 
             // btnAddCreditCard
             // 
@@ -174,7 +164,6 @@ namespace Presentation
         private System.Windows.Forms.DataGridView tblCreditCard;
         private System.Windows.Forms.Panel pnlList;
         private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddCreditCard;
         private System.Windows.Forms.Button btnModifyCreditCard;
         private System.Windows.Forms.Button btnDeleteCreditCard;

@@ -19,10 +19,12 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         public Credentials(PasswordManager pPasswordManager)
         {
-            TestData testData = new TestData(pPasswordManager);
             InitializeComponent();
             Properties.Settings.Default.Reset();
             _myPasswordManager = pPasswordManager;
+            this.ActiveControl = txtUserName;
+            TestData testData = new TestData(_myPasswordManager);
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
