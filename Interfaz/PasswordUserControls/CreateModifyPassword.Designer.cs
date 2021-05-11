@@ -112,7 +112,7 @@ namespace Presentation
             this.groupBox1.Location = new System.Drawing.Point(88, 104);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(182, 205);
-            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
             // btnGenerate
@@ -121,7 +121,7 @@ namespace Presentation
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(70, 27);
-            this.btnGenerate.TabIndex = 24;
+            this.btnGenerate.TabIndex = 10;
             this.btnGenerate.Text = "Generar";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -132,7 +132,7 @@ namespace Presentation
             this.cbSymbol.Location = new System.Drawing.Point(17, 145);
             this.cbSymbol.Name = "cbSymbol";
             this.cbSymbol.Size = new System.Drawing.Size(132, 17);
-            this.cbSymbol.TabIndex = 23;
+            this.cbSymbol.TabIndex = 9;
             this.cbSymbol.Text = "Especiales (!,$,[,{,<,...)";
             this.cbSymbol.UseVisualStyleBackColor = true;
             // 
@@ -142,7 +142,7 @@ namespace Presentation
             this.cbDigit.Location = new System.Drawing.Point(17, 122);
             this.cbDigit.Name = "cbDigit";
             this.cbDigit.Size = new System.Drawing.Size(105, 17);
-            this.cbDigit.TabIndex = 22;
+            this.cbDigit.TabIndex = 8;
             this.cbDigit.Text = "Dígitos (1,2,3,...)";
             this.cbDigit.UseVisualStyleBackColor = true;
             // 
@@ -152,7 +152,7 @@ namespace Presentation
             this.cbLowercase.Location = new System.Drawing.Point(17, 99);
             this.cbLowercase.Name = "cbLowercase";
             this.cbLowercase.Size = new System.Drawing.Size(124, 17);
-            this.cbLowercase.TabIndex = 21;
+            this.cbLowercase.TabIndex = 7;
             this.cbLowercase.Text = "Minúsculas (a,b,c,...)";
             this.cbLowercase.UseVisualStyleBackColor = true;
             // 
@@ -162,7 +162,7 @@ namespace Presentation
             this.cbUppercase.Location = new System.Drawing.Point(17, 76);
             this.cbUppercase.Name = "cbUppercase";
             this.cbUppercase.Size = new System.Drawing.Size(130, 17);
-            this.cbUppercase.TabIndex = 20;
+            this.cbUppercase.TabIndex = 6;
             this.cbUppercase.Text = "Mayúsculas (A,B,C,...)";
             this.cbUppercase.UseVisualStyleBackColor = true;
             // 
@@ -181,7 +181,7 @@ namespace Presentation
             0});
             this.nudLength.Name = "nudLength";
             this.nudLength.Size = new System.Drawing.Size(100, 20);
-            this.nudLength.TabIndex = 19;
+            this.nudLength.TabIndex = 5;
             this.nudLength.Value = new decimal(new int[] {
             5,
             0,
@@ -204,7 +204,7 @@ namespace Presentation
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(137, 20);
-            this.txtPassword.TabIndex = 6;
+            this.txtPassword.TabIndex = 4;
             // 
             // btnAccept
             // 
@@ -212,7 +212,7 @@ namespace Presentation
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(70, 27);
-            this.btnAccept.TabIndex = 15;
+            this.btnAccept.TabIndex = 12;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -223,7 +223,7 @@ namespace Presentation
             this.txtNotes.Margin = new System.Windows.Forms.Padding(2);
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.Size = new System.Drawing.Size(137, 64);
-            this.txtNotes.TabIndex = 14;
+            this.txtNotes.TabIndex = 11;
             this.txtNotes.Text = "";
             // 
             // lblNotes
@@ -262,7 +262,7 @@ namespace Presentation
             this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(137, 20);
-            this.txtUserName.TabIndex = 4;
+            this.txtUserName.TabIndex = 2;
             // 
             // lblSite
             // 
@@ -280,7 +280,7 @@ namespace Presentation
             this.txtSite.Margin = new System.Windows.Forms.Padding(2);
             this.txtSite.Name = "txtSite";
             this.txtSite.Size = new System.Drawing.Size(137, 20);
-            this.txtSite.TabIndex = 2;
+            this.txtSite.TabIndex = 1;
             // 
             // cbCategory
             // 
@@ -290,7 +290,7 @@ namespace Presentation
             this.cbCategory.Margin = new System.Windows.Forms.Padding(2);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(137, 21);
-            this.cbCategory.TabIndex = 1;
+            this.cbCategory.TabIndex = 0;
             // 
             // lblCategory
             // 

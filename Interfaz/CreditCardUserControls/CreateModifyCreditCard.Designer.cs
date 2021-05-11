@@ -95,7 +95,7 @@ namespace Presentation
             this.mtxtNumber.Mask = "0000 0000 0000 0000";
             this.mtxtNumber.Name = "mtxtNumber";
             this.mtxtNumber.Size = new System.Drawing.Size(137, 20);
-            this.mtxtNumber.TabIndex = 19;
+            this.mtxtNumber.TabIndex = 3;
             this.mtxtNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtxtNumber.ValidatingType = typeof(int);
             // 
@@ -105,7 +105,7 @@ namespace Presentation
             this.mtxtSecureCode.Mask = "000";
             this.mtxtSecureCode.Name = "mtxtSecureCode";
             this.mtxtSecureCode.Size = new System.Drawing.Size(137, 20);
-            this.mtxtSecureCode.TabIndex = 18;
+            this.mtxtSecureCode.TabIndex = 4;
             this.mtxtSecureCode.ValidatingType = typeof(int);
             // 
             // mtxtExpirationDate
@@ -114,7 +114,7 @@ namespace Presentation
             this.mtxtExpirationDate.Mask = "00/00";
             this.mtxtExpirationDate.Name = "mtxtExpirationDate";
             this.mtxtExpirationDate.Size = new System.Drawing.Size(137, 20);
-            this.mtxtExpirationDate.TabIndex = 17;
+            this.mtxtExpirationDate.TabIndex = 5;
             this.mtxtExpirationDate.ValidatingType = typeof(System.DateTime);
             // 
             // lblError
@@ -132,7 +132,7 @@ namespace Presentation
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(70, 27);
-            this.btnAccept.TabIndex = 15;
+            this.btnAccept.TabIndex = 7;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -143,7 +143,7 @@ namespace Presentation
             this.txtNotes.Margin = new System.Windows.Forms.Padding(2);
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.Size = new System.Drawing.Size(137, 49);
-            this.txtNotes.TabIndex = 14;
+            this.txtNotes.TabIndex = 6;
             this.txtNotes.Text = "";
             // 
             // lblNotes
@@ -202,7 +202,7 @@ namespace Presentation
             this.txtType.Margin = new System.Windows.Forms.Padding(2);
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(137, 20);
-            this.txtType.TabIndex = 4;
+            this.txtType.TabIndex = 2;
             // 
             // lblName
             // 
@@ -220,7 +220,7 @@ namespace Presentation
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(137, 20);
-            this.txtName.TabIndex = 2;
+            this.txtName.TabIndex = 1;
             // 
             // cbCategory
             // 
@@ -230,7 +230,7 @@ namespace Presentation
             this.cbCategory.Margin = new System.Windows.Forms.Padding(2);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(137, 21);
-            this.cbCategory.TabIndex = 1;
+            this.cbCategory.TabIndex = 0;
             // 
             // lblCategory
             // 

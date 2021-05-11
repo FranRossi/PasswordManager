@@ -147,7 +147,7 @@ namespace Presentation
             this.btnShow.Location = new System.Drawing.Point(306, 11);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(75, 23);
-            this.btnShow.TabIndex = 5;
+            this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Mostrar ";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);

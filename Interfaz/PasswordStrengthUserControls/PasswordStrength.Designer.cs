@@ -276,7 +276,7 @@ namespace Presentation
             this.btnShowPasswordsRed.Location = new System.Drawing.Point(186, 46);
             this.btnShowPasswordsRed.Name = "btnShowPasswordsRed";
             this.btnShowPasswordsRed.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsRed.TabIndex = 10;
+            this.btnShowPasswordsRed.TabIndex = 0;
             this.btnShowPasswordsRed.Text = "Ver";
             this.btnShowPasswordsRed.UseVisualStyleBackColor = true;
             this.btnShowPasswordsRed.Click += new System.EventHandler(this.btnShowPasswordsRed_Click);
@@ -304,7 +304,7 @@ namespace Presentation
             this.btnShowPasswordsOrange.Location = new System.Drawing.Point(186, 87);
             this.btnShowPasswordsOrange.Name = "btnShowPasswordsOrange";
             this.btnShowPasswordsOrange.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsOrange.TabIndex = 14;
+            this.btnShowPasswordsOrange.TabIndex = 1;
             this.btnShowPasswordsOrange.Text = "Ver";
             this.btnShowPasswordsOrange.UseVisualStyleBackColor = true;
             this.btnShowPasswordsOrange.Click += new System.EventHandler(this.btnShowPasswordsOrange_Click);
@@ -316,7 +316,7 @@ namespace Presentation
             this.btnShowPasswordsYellow.Location = new System.Drawing.Point(186, 128);
             this.btnShowPasswordsYellow.Name = "btnShowPasswordsYellow";
             this.btnShowPasswordsYellow.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsYellow.TabIndex = 15;
+            this.btnShowPasswordsYellow.TabIndex = 2;
             this.btnShowPasswordsYellow.Text = "Ver";
             this.btnShowPasswordsYellow.UseVisualStyleBackColor = true;
             this.btnShowPasswordsYellow.Click += new System.EventHandler(this.btnShowPasswordsYellow_Click);
@@ -328,7 +328,7 @@ namespace Presentation
             this.btnShowPasswordsLightGreen.Location = new System.Drawing.Point(186, 169);
             this.btnShowPasswordsLightGreen.Name = "btnShowPasswordsLightGreen";
             this.btnShowPasswordsLightGreen.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsLightGreen.TabIndex = 16;
+            this.btnShowPasswordsLightGreen.TabIndex = 3;
             this.btnShowPasswordsLightGreen.Text = "Ver";
             this.btnShowPasswordsLightGreen.UseVisualStyleBackColor = true;
             this.btnShowPasswordsLightGreen.Click += new System.EventHandler(this.btnShowPasswordsLightGreen_Click);
@@ -340,7 +340,7 @@ namespace Presentation
             this.btnShowPasswordsDarkGreen.Location = new System.Drawing.Point(186, 213);
             this.btnShowPasswordsDarkGreen.Name = "btnShowPasswordsDarkGreen";
             this.btnShowPasswordsDarkGreen.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsDarkGreen.TabIndex = 17;
+            this.btnShowPasswordsDarkGreen.TabIndex = 4;
             this.btnShowPasswordsDarkGreen.Text = "Ver";
             this.btnShowPasswordsDarkGreen.UseVisualStyleBackColor = true;
             this.btnShowPasswordsDarkGreen.Click += new System.EventHandler(this.btnShowPasswordsDarkGreen_Click);
@@ -383,7 +383,7 @@ namespace Presentation
             this.btnShowChart.Location = new System.Drawing.Point(85, 333);
             this.btnShowChart.Name = "btnShowChart";
             this.btnShowChart.Size = new System.Drawing.Size(138, 28);
-            this.btnShowChart.TabIndex = 3;
+            this.btnShowChart.TabIndex = 5;
             this.btnShowChart.Text = "Mostrar gráfica";
             this.btnShowChart.UseVisualStyleBackColor = true;
             this.btnShowChart.Click += new System.EventHandler(this.btnShowChart_Click);

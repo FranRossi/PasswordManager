@@ -73,7 +73,7 @@ namespace Presentation
             this.btnVerifyDataBreach.Location = new System.Drawing.Point(209, 348);
             this.btnVerifyDataBreach.Name = "btnVerifyDataBreach";
             this.btnVerifyDataBreach.Size = new System.Drawing.Size(75, 23);
-            this.btnVerifyDataBreach.TabIndex = 3;
+            this.btnVerifyDataBreach.TabIndex = 1;
             this.btnVerifyDataBreach.Text = "Verificar";
             this.btnVerifyDataBreach.UseVisualStyleBackColor = true;
             this.btnVerifyDataBreach.Click += new System.EventHandler(this.btnVerifyDataBreach_Click);
@@ -84,7 +84,7 @@ namespace Presentation
             this.txtDataBreach.Multiline = true;
             this.txtDataBreach.Name = "txtDataBreach";
             this.txtDataBreach.Size = new System.Drawing.Size(277, 256);
-            this.txtDataBreach.TabIndex = 2;
+            this.txtDataBreach.TabIndex = 0;
             // 
             // lblSubtitle
             // 
@@ -143,7 +143,7 @@ namespace Presentation
             this.tblDataBreachCreditCard.RowHeadersWidth = 62;
             this.tblDataBreachCreditCard.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblDataBreachCreditCard.Size = new System.Drawing.Size(469, 128);
-            this.tblDataBreachCreditCard.TabIndex = 10;
+            this.tblDataBreachCreditCard.TabIndex = 4;
             // 
             // tblDataBreachPassword
             // 
@@ -160,14 +160,14 @@ namespace Presentation
             this.tblDataBreachPassword.RowHeadersWidth = 62;
             this.tblDataBreachPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tblDataBreachPassword.Size = new System.Drawing.Size(469, 128);
-            this.tblDataBreachPassword.TabIndex = 9;
+            this.tblDataBreachPassword.TabIndex = 2;
             // 
             // btnModifyPass
             // 
             this.btnModifyPass.Location = new System.Drawing.Point(402, 206);
             this.btnModifyPass.Name = "btnModifyPass";
             this.btnModifyPass.Size = new System.Drawing.Size(75, 23);
-            this.btnModifyPass.TabIndex = 8;
+            this.btnModifyPass.TabIndex = 3;
             this.btnModifyPass.Text = "Modificar";
             this.btnModifyPass.UseVisualStyleBackColor = true;
             this.btnModifyPass.Click += new System.EventHandler(this.btnModifyPass_Click);

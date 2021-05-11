@@ -136,7 +136,7 @@ namespace Presentation.CreditCardUserControls
             this.btnShow.Location = new System.Drawing.Point(233, 131);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(51, 23);
-            this.btnShow.TabIndex = 29;
+            this.btnShow.TabIndex = 1;
             this.btnShow.Text = "Mostrar";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click_1);
@@ -211,7 +211,7 @@ namespace Presentation.CreditCardUserControls
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(70, 27);
-            this.btnAccept.TabIndex = 15;
+            this.btnAccept.TabIndex = 0;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
