@@ -79,7 +79,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
-            return this._passwords.Where(pass => pass.GetUsersSharedWith().Contains(CurrentUser)).ToList();
+            return this._passwords.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
         }
 
         public void DeletePassword(Password password)
@@ -181,7 +181,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
-            List<User> usersNotShareWith = this._users.Except(password.GetUsersSharedWith()).ToList();
+            List<User> usersNotShareWith = this._users.Except(password.SharedWith).ToList();
             usersNotShareWith.Remove(CurrentUser);
             return usersNotShareWith;
         }
