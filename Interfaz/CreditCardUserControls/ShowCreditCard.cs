@@ -36,7 +36,7 @@ namespace Presentation.CreditCardUserControls
         private async void ShowFullInformation()
         {
             txtCode.PasswordChar = '\0';
-            txtNumber.Text = FormatCardNumber(_creditCard.Number);
+            mtxtNumber.Text = _creditCard.Number;
             btnShow.Enabled = false;
 
             int secondsFullInformationIsShown = 30;
@@ -46,7 +46,7 @@ namespace Presentation.CreditCardUserControls
 
         private void HideFullInformation()
         {
-            txtNumber.Text = _creditCard.SecretNumber;
+            mtxtNumber.Text = _creditCard.SecretNumber;
             txtCode.PasswordChar = '*';
             btnShow.Enabled = true;
         }
@@ -64,23 +64,6 @@ namespace Presentation.CreditCardUserControls
         private void btnShow_Click_1(object sender, EventArgs e)
         {
             ShowFullInformation();
-        }
-
-        private string FormatCardNumber(string number)
-        {
-            int[] spacesAt = { 4, 9, 14 };
-            int indexSpace = 0;
-            int numbersPerDivision = 4;
-            int numberCardLength = number.Length;
-            for (int i = 0; i < numberCardLength; i++)
-            {
-                if (i % numbersPerDivision == 0 && i != 0)
-                {
-                    number = number.Insert(spacesAt[indexSpace], " ");
-                    indexSpace++;
-                }
-            }
-            return number;
         }
     }
 }
