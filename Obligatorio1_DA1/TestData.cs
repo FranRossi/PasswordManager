@@ -8,7 +8,7 @@ namespace Obligatorio1_DA1
     {
         private PasswordManager _passwordManager;
         private Random _random;
-
+        private int _uniqueNumber;
         private User juana;
         private User pablo;
         private User mario;
@@ -17,6 +17,7 @@ namespace Obligatorio1_DA1
         {
             this._passwordManager = passwordManager;
             this._random = new Random();
+            _uniqueNumber = 10;
             this.CreateUsers();
 
             this.CreateCategories("Juana", new string[] { "Personal", "Trabajo", "Facultad" });
@@ -101,12 +102,13 @@ namespace Obligatorio1_DA1
             {
                 User = this._passwordManager.CurrentUser,
                 Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
-                Site = "ort.edu.uy/" + this._random.Next(1, 100),
-                Username = "23985" + this._random.Next(1, 10),
+                Site = "ort.edu.uy/" + this._uniqueNumber,
+                Username = "23985" + this._uniqueNumber,
                 Pass = password,
                 Notes = "Numero aleatorio: " + this._random.Next(1, 10)
             };
             this._passwordManager.CreatePassword(newPassword);
+            this._uniqueNumber++;
         }
 
         private void CreateCategories(string userName, string[] categoriesName)
@@ -140,19 +142,20 @@ namespace Obligatorio1_DA1
                 Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
                 Name = "MasterCard Black",
                 Type = "Master",
-                Number = RandomCreditCardNumber().ToString(),
-                SecureCode = this._random.Next(100, 999).ToString(),
+                Number = this._uniqueNumber + RandomCreditCardNumber().ToString(),
+                SecureCode = this._uniqueNumber + this._random.Next(0, 9).ToString(),
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
             this._passwordManager.CreateCreditCard(newCreditCard);
+            this._uniqueNumber++;
         }
 
         private long RandomCreditCardNumber()
         {
-            const long min = 1000000000000000;
-            const long max = 9999999999999999;
-            long randomLong = 1000000000000000 + (long)(_random.NextDouble() * (max - min)); ;
+            const long min = 10000000000000;
+            const long max = 99999999999999;
+            long randomLong = 10000000000000 + (long)(_random.NextDouble() * (max - min)); ;
             return randomLong;
         }
 
