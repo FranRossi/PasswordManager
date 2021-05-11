@@ -59,7 +59,7 @@ namespace Presentation
             this.pnlCreditCard.Location = new System.Drawing.Point(1, -3);
             this.pnlCreditCard.Margin = new System.Windows.Forms.Padding(2);
             this.pnlCreditCard.Name = "pnlCreditCard";
-            this.pnlCreditCard.Size = new System.Drawing.Size(314, 420);
+            this.pnlCreditCard.Size = new System.Drawing.Size(398, 420);
             this.pnlCreditCard.TabIndex = 0;
             // 
             // gpbCreditCard
@@ -81,46 +81,46 @@ namespace Presentation
             this.gpbCreditCard.Controls.Add(this.txtName);
             this.gpbCreditCard.Controls.Add(this.cbCategory);
             this.gpbCreditCard.Controls.Add(this.lblCategory);
-            this.gpbCreditCard.Location = new System.Drawing.Point(17, 34);
+            this.gpbCreditCard.Location = new System.Drawing.Point(13, 34);
             this.gpbCreditCard.Margin = new System.Windows.Forms.Padding(2);
             this.gpbCreditCard.Name = "gpbCreditCard";
             this.gpbCreditCard.Padding = new System.Windows.Forms.Padding(2);
-            this.gpbCreditCard.Size = new System.Drawing.Size(289, 373);
+            this.gpbCreditCard.Size = new System.Drawing.Size(383, 373);
             this.gpbCreditCard.TabIndex = 1;
             this.gpbCreditCard.TabStop = false;
             // 
             // mtxtNumber
             // 
-            this.mtxtNumber.Location = new System.Drawing.Point(122, 125);
+            this.mtxtNumber.Location = new System.Drawing.Point(136, 125);
             this.mtxtNumber.Mask = "0000 0000 0000 0000";
             this.mtxtNumber.Name = "mtxtNumber";
-            this.mtxtNumber.Size = new System.Drawing.Size(137, 20);
+            this.mtxtNumber.Size = new System.Drawing.Size(203, 20);
             this.mtxtNumber.TabIndex = 3;
             this.mtxtNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mtxtNumber.ValidatingType = typeof(int);
             // 
             // mtxtSecureCode
             // 
-            this.mtxtSecureCode.Location = new System.Drawing.Point(122, 159);
+            this.mtxtSecureCode.Location = new System.Drawing.Point(136, 159);
             this.mtxtSecureCode.Mask = "000";
             this.mtxtSecureCode.Name = "mtxtSecureCode";
-            this.mtxtSecureCode.Size = new System.Drawing.Size(137, 20);
+            this.mtxtSecureCode.Size = new System.Drawing.Size(203, 20);
             this.mtxtSecureCode.TabIndex = 4;
             this.mtxtSecureCode.ValidatingType = typeof(int);
             // 
             // mtxtExpirationDate
             // 
-            this.mtxtExpirationDate.Location = new System.Drawing.Point(122, 194);
+            this.mtxtExpirationDate.Location = new System.Drawing.Point(136, 194);
             this.mtxtExpirationDate.Mask = "00/00";
             this.mtxtExpirationDate.Name = "mtxtExpirationDate";
-            this.mtxtExpirationDate.Size = new System.Drawing.Size(137, 20);
+            this.mtxtExpirationDate.Size = new System.Drawing.Size(203, 20);
             this.mtxtExpirationDate.TabIndex = 5;
             this.mtxtExpirationDate.ValidatingType = typeof(System.DateTime);
             // 
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Location = new System.Drawing.Point(15, 336);
+            this.lblError.Location = new System.Drawing.Point(4, 335);
             this.lblError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 13);
@@ -128,10 +128,10 @@ namespace Presentation
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(189, 304);
+            this.btnAccept.Location = new System.Drawing.Point(203, 304);
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(70, 27);
+            this.btnAccept.Size = new System.Drawing.Size(136, 27);
             this.btnAccept.TabIndex = 7;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
@@ -139,17 +139,17 @@ namespace Presentation
             // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(122, 238);
+            this.txtNotes.Location = new System.Drawing.Point(136, 238);
             this.txtNotes.Margin = new System.Windows.Forms.Padding(2);
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(137, 49);
+            this.txtNotes.Size = new System.Drawing.Size(203, 49);
             this.txtNotes.TabIndex = 6;
             this.txtNotes.Text = "";
             // 
             // lblNotes
             // 
             this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(26, 241);
+            this.lblNotes.Location = new System.Drawing.Point(40, 241);
             this.lblNotes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(35, 13);
@@ -159,7 +159,7 @@ namespace Presentation
             // lblExpirationDate
             // 
             this.lblExpirationDate.AutoSize = true;
-            this.lblExpirationDate.Location = new System.Drawing.Point(25, 197);
+            this.lblExpirationDate.Location = new System.Drawing.Point(39, 197);
             this.lblExpirationDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExpirationDate.Name = "lblExpirationDate";
             this.lblExpirationDate.Size = new System.Drawing.Size(65, 13);
@@ -169,7 +169,7 @@ namespace Presentation
             // lblSecureCode
             // 
             this.lblSecureCode.AutoSize = true;
-            this.lblSecureCode.Location = new System.Drawing.Point(25, 162);
+            this.lblSecureCode.Location = new System.Drawing.Point(39, 162);
             this.lblSecureCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSecureCode.Name = "lblSecureCode";
             this.lblSecureCode.Size = new System.Drawing.Size(40, 13);
@@ -179,7 +179,7 @@ namespace Presentation
             // lblNumber
             // 
             this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(25, 128);
+            this.lblNumber.Location = new System.Drawing.Point(39, 128);
             this.lblNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumber.Name = "lblNumber";
             this.lblNumber.Size = new System.Drawing.Size(44, 13);
@@ -189,7 +189,7 @@ namespace Presentation
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(25, 92);
+            this.lblType.Location = new System.Drawing.Point(39, 92);
             this.lblType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(28, 13);
@@ -198,16 +198,16 @@ namespace Presentation
             // 
             // txtType
             // 
-            this.txtType.Location = new System.Drawing.Point(122, 89);
+            this.txtType.Location = new System.Drawing.Point(136, 89);
             this.txtType.Margin = new System.Windows.Forms.Padding(2);
             this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(137, 20);
+            this.txtType.Size = new System.Drawing.Size(203, 20);
             this.txtType.TabIndex = 2;
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(25, 59);
+            this.lblName.Location = new System.Drawing.Point(39, 59);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(44, 13);
@@ -216,26 +216,26 @@ namespace Presentation
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(122, 56);
+            this.txtName.Location = new System.Drawing.Point(136, 56);
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(137, 20);
+            this.txtName.Size = new System.Drawing.Size(203, 20);
             this.txtName.TabIndex = 1;
             // 
             // cbCategory
             // 
             this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(122, 25);
+            this.cbCategory.Location = new System.Drawing.Point(136, 25);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(2);
             this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(137, 21);
+            this.cbCategory.Size = new System.Drawing.Size(203, 21);
             this.cbCategory.TabIndex = 0;
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
-            this.lblCategory.Location = new System.Drawing.Point(26, 28);
+            this.lblCategory.Location = new System.Drawing.Point(40, 28);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(54, 13);
@@ -245,7 +245,7 @@ namespace Presentation
             // lblCreditCard
             // 
             this.lblCreditCard.AutoSize = true;
-            this.lblCreditCard.Location = new System.Drawing.Point(14, 12);
+            this.lblCreditCard.Location = new System.Drawing.Point(10, 12);
             this.lblCreditCard.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCreditCard.Name = "lblCreditCard";
             this.lblCreditCard.Size = new System.Drawing.Size(40, 13);
@@ -256,7 +256,7 @@ namespace Presentation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(319, 428);
+            this.ClientSize = new System.Drawing.Size(410, 422);
             this.Controls.Add(this.pnlCreditCard);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
