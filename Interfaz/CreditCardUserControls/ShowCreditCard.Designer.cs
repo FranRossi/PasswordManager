@@ -274,6 +274,7 @@ namespace Presentation.CreditCardUserControls
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "ShowCreditCard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordManager";
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();

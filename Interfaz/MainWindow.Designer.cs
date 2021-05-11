@@ -35,11 +35,11 @@ namespace Presentation
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPasswords = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSharedWithMe = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCreditCards = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCategories = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDataBreaches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPasswordStrength = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSharedWithMe = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlMainScreen.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -111,6 +111,13 @@ namespace Presentation
             this.tsmiPasswords.Text = "Contraseñas";
             this.tsmiPasswords.Click += new System.EventHandler(this.tsmiPasswords_Click);
             // 
+            // tsmiSharedWithMe
+            // 
+            this.tsmiSharedWithMe.Name = "tsmiSharedWithMe";
+            this.tsmiSharedWithMe.Size = new System.Drawing.Size(259, 22);
+            this.tsmiSharedWithMe.Text = "Contraseñas compartidas conmigo";
+            this.tsmiSharedWithMe.Click += new System.EventHandler(this.tsmiSharedWithMe_Click);
+            // 
             // tsmiCreditCards
             // 
             this.tsmiCreditCards.Name = "tsmiCreditCards";
@@ -139,13 +146,6 @@ namespace Presentation
             this.tsmiPasswordStrength.Text = "Fortaleza de Contraseñas";
             this.tsmiPasswordStrength.Click += new System.EventHandler(this.tsmiPasswordStrength_Click);
             // 
-            // tsmiSharedWithMe
-            // 
-            this.tsmiSharedWithMe.Name = "tsmiSharedWithMe";
-            this.tsmiSharedWithMe.Size = new System.Drawing.Size(259, 22);
-            this.tsmiSharedWithMe.Text = "Contraseñas compartidas conmigo";
-            this.tsmiSharedWithMe.Click += new System.EventHandler(this.tsmiSharedWithMe_Click);
-            // 
             // pnlMenu
             // 
             this.pnlMenu.Controls.Add(this.menuStrip1);
@@ -165,6 +165,7 @@ namespace Presentation
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordManager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.pnlMainScreen.ResumeLayout(false);

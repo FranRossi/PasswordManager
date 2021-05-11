@@ -52,7 +52,7 @@ namespace Presentation
             // 
             this.chPopUp.AutoSize = true;
             this.chPopUp.Location = new System.Drawing.Point(7, 19);
-            this.chPopUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chPopUp.Margin = new System.Windows.Forms.Padding(2);
             this.chPopUp.Name = "chPopUp";
             this.chPopUp.Size = new System.Drawing.Size(183, 17);
             this.chPopUp.TabIndex = 2;
@@ -101,9 +101,10 @@ namespace Presentation
             this.Controls.Add(this.lblConfirmationMessage);
             this.Controls.Add(this.pnlButtons);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "DeleteConfirmation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Confirmación";
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();

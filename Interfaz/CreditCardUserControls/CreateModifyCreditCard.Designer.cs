@@ -262,6 +262,7 @@ namespace Presentation
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "CreateModifyCreditCard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordManager";
             this.pnlCreditCard.ResumeLayout(false);
             this.pnlCreditCard.PerformLayout();
