@@ -80,13 +80,13 @@ namespace Presentation
                 if (ShowConfirmationPopUp())
                 {
                     _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
-                    this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
+                    lblMessage.Text = "Tarjeta eliminada exitosamente.";
                     LoadTblCreditCard();
                 }
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+                lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
             }
 
         }
@@ -114,7 +114,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea modificar.";
+                lblMessage.Text = "Debe seleccionar la tarjeta que desea modificar.";
             }
 
         }
@@ -129,7 +129,7 @@ namespace Presentation
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la tarjeta.";
+                    lblMessage.Text = "Error al seleccionar la tarjeta.";
                 }
             }
         }
@@ -144,7 +144,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea mostrar.";
+                lblMessage.Text = "Debe seleccionar la tarjeta que desea mostrar.";
             }
         }
 

@@ -33,11 +33,11 @@ namespace Obligatorio1_DA1.Domain
         {
             get
             {
-                if (this._sharedWith == null)
+                if (_sharedWith == null)
                 {
-                    this._sharedWith = new List<User>();
+                    _sharedWith = new List<User>();
                 }
-                return this._sharedWith;
+                return _sharedWith;
             }
         }
 

@@ -65,13 +65,13 @@ namespace Presentation
                 if (ShowConfirmationPopUp())
                 {
                     _myPasswordManager.DeletePassword(_selectedPassword);
-                    this.lblMessage.Text = "Contraseña eliminada exitosamente.";
+                    lblMessage.Text = "Contraseña eliminada exitosamente.";
                     LoadTblPassword();
                 }
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
             }
         }
 
@@ -97,7 +97,7 @@ namespace Presentation
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                    lblMessage.Text = "Error al seleccionar la contraseña.";
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
             }
         }
 
@@ -141,7 +141,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea compartir.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea compartir.";
             }
         }
 
@@ -155,7 +155,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea mostrar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea mostrar.";
             }
         }
 

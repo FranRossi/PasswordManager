@@ -16,23 +16,23 @@ namespace Presentation
         public DeleteConfirmation(string item)
         {
             InitializeComponent();
-            this.lblConfirmationMessage.Text += item;
+            lblConfirmationMessage.Text += item;
             _itemType = item;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
 
         private void chPopUp_CheckedChanged(object sender, EventArgs e)
         {
-            if (this._itemType == "tarjeta")
+            if (_itemType == "tarjeta")
                 Properties.Settings.Default.DontShowAgainPopUpCreditCard = this.chPopUp.Checked;
             else
                 Properties.Settings.Default.DontShowAgainPopUpPassword = this.chPopUp.Checked;

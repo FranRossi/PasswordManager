@@ -111,7 +111,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
             }
         }
 
@@ -125,7 +125,7 @@ namespace Presentation
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                    lblMessage.Text = "Error al seleccionar la contraseña.";
                 }
             }
         }

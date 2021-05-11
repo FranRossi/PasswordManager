@@ -25,8 +25,8 @@ namespace Presentation
 
         private void LoadCategoryList()
         {
-            this.lstCategories.DataSource = null;
-            this.lstCategories.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
+            lstCategories.DataSource = null;
+            lstCategories.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -39,26 +39,26 @@ namespace Presentation
                 };
                 _myPasswordManager.CreateCategoryOnCurrentUser(newCategory);
                 LoadCategoryList();
-                this.lblMessage.Text = "Categoria agregada correctamente";
-                this.txtNameAdd.Text = "";
+                lblMessage.Text = "Categoria agregada correctamente";
+                txtNameAdd.Text = "";
             }
             catch (ValidationException exception)
             {
-                this.lblMessage.Text = exception.Message;
+                lblMessage.Text = exception.Message;
             }
         }
 
         private void btnActivateModification_Click(object sender, EventArgs e)
         {
-            if (this._selectedCategory != null)
+            if (_selectedCategory != null)
             {
-                this.pnlCategoryModification.Visible = true;
-                this.lblMessage.Text = "";
-                this.btnActivateModification.Visible = false;
+                pnlCategoryModification.Visible = true;
+                lblMessage.Text = "";
+                btnActivateModification.Visible = false;
             }
             else
             {
-                this.lblMessage.Text = "Debe selecionar una categoria para modificar.";
+                lblMessage.Text = "Debe selecionar una categoria para modificar.";
             }
         }
 
@@ -67,12 +67,12 @@ namespace Presentation
             try
             {
                 _selectedCategory = (Category)lstCategories.SelectedItem;
-                if (this._selectedCategory != null)
-                    this.txtNameModify.Text = _selectedCategory.Name;
+                if (_selectedCategory != null)
+                    txtNameModify.Text = _selectedCategory.Name;
             }
             catch (FormatException exception)
             {
-                this.lblMessage.Text = "Error al seleccionar la categoria.";
+                lblMessage.Text = "Error al seleccionar la categoria.";
             }
         }
 
@@ -84,21 +84,21 @@ namespace Presentation
                 {
                     Category modifiedCategory = new Category
                     {
-                        Name = this.txtNameModify.Text
+                        Name = txtNameModify.Text
                     };
-                    _myPasswordManager.ModifyCategoryOnCurrentUser(this._selectedCategory, modifiedCategory);
-                    this.LoadCategoryList();
-                    this.lblMessage.Text = "Categoria modificada correctamente";
-                    this.txtNameModify.Text = "";
+                    _myPasswordManager.ModifyCategoryOnCurrentUser(_selectedCategory, modifiedCategory);
+                    LoadCategoryList();
+                    lblMessage.Text = "Categoria modificada correctamente";
+                    txtNameModify.Text = "";
                 }
                 catch (ValidationException exception)
                 {
-                    this.lblMessage.Text = exception.Message;
+                    lblMessage.Text = exception.Message;
                 }
             }
             else
             {
-                this.lblMessage.Text = "Debe selecionar una categoria para modificar.";
+                lblMessage.Text = "Debe selecionar una categoria para modificar.";
             }
         }
     }

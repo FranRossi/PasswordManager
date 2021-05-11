@@ -69,22 +69,22 @@ namespace Obligatorio1_DA1.Domain
         {
             VerifyNonExistenceOfPasswordOnPasswordList(password);
             VerifyPasswordBelongToCurrentUser(password);
-            this._passwords.Add(password);
+            _passwords.Add(password);
         }
 
         public List<Password> GetPasswords()
         {
-            return this._passwords.Where(pass => pass.User == CurrentUser).ToList();
+            return _passwords.Where(pass => pass.User == CurrentUser).ToList();
         }
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
-            return this._passwords.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
+            return _passwords.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
         }
 
         public void DeletePassword(Password password)
         {
-            this._passwords.Remove(password);
+            _passwords.Remove(password);
         }
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
@@ -115,7 +115,7 @@ namespace Obligatorio1_DA1.Domain
 
         private void VerifyNonExistenceOfPasswordOnPasswordList(Password newPassword)
         {
-            if (this._passwords.Contains(newPassword))
+            if (_passwords.Contains(newPassword))
                 throw new PasswordAlreadyExistsException();
         }
 
@@ -166,22 +166,22 @@ namespace Obligatorio1_DA1.Domain
         {
             VerifyNonExistenceOfCreditCardOnCreditCardList(creditCard);
             VerifyCreditCardBelongToCurrentUser(creditCard);
-            this._creditCards.Add(creditCard);
+            _creditCards.Add(creditCard);
         }
 
         public List<CreditCard> GetCreditCards()
         {
-            return this._creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
+            return _creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
         }
 
         public void DeleteCreditCard(CreditCard card)
         {
-            this._creditCards.Remove(card);
+            _creditCards.Remove(card);
         }
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
-            List<User> usersNotShareWith = this._users.Except(password.SharedWith).ToList();
+            List<User> usersNotShareWith = _users.Except(password.SharedWith).ToList();
             usersNotShareWith.Remove(CurrentUser);
             return usersNotShareWith;
         }
