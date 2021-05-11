@@ -40,7 +40,6 @@ namespace Presentation.CreditCardUserControls
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtType = new System.Windows.Forms.TextBox();
-            this.txtNumber = new System.Windows.Forms.TextBox();
             this.lblNumber = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
             this.lblNotes = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@ namespace Presentation.CreditCardUserControls
             this.lblName = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.mtxtNumber = new System.Windows.Forms.MaskedTextBox();
             this.pnlPassword.SuspendLayout();
             this.gpbPassword.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +65,7 @@ namespace Presentation.CreditCardUserControls
             // gpbPassword
             // 
             this.gpbPassword.BackColor = System.Drawing.SystemColors.Menu;
+            this.gpbPassword.Controls.Add(this.mtxtNumber);
             this.gpbPassword.Controls.Add(this.txtDate);
             this.gpbPassword.Controls.Add(this.lblDate);
             this.gpbPassword.Controls.Add(this.txtCode);
@@ -74,7 +75,6 @@ namespace Presentation.CreditCardUserControls
             this.gpbPassword.Controls.Add(this.txtCategory);
             this.gpbPassword.Controls.Add(this.txtName);
             this.gpbPassword.Controls.Add(this.txtType);
-            this.gpbPassword.Controls.Add(this.txtNumber);
             this.gpbPassword.Controls.Add(this.lblNumber);
             this.gpbPassword.Controls.Add(this.btnAccept);
             this.gpbPassword.Controls.Add(this.lblNotes);
@@ -133,7 +133,7 @@ namespace Presentation.CreditCardUserControls
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(233, 131);
+            this.btnShow.Location = new System.Drawing.Point(233, 139);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(51, 23);
             this.btnShow.TabIndex = 1;
@@ -183,17 +183,6 @@ namespace Presentation.CreditCardUserControls
             this.txtType.Size = new System.Drawing.Size(173, 27);
             this.txtType.TabIndex = 25;
             this.txtType.Text = "Type Placeholder";
-            // 
-            // txtNumber
-            // 
-            this.txtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumber.Location = new System.Drawing.Point(97, 120);
-            this.txtNumber.Multiline = true;
-            this.txtNumber.Name = "txtNumber";
-            this.txtNumber.ReadOnly = true;
-            this.txtNumber.Size = new System.Drawing.Size(130, 34);
-            this.txtNumber.TabIndex = 24;
-            this.txtNumber.Text = "Number Placeholder";
             // 
             // lblNumber
             // 
@@ -265,6 +254,19 @@ namespace Presentation.CreditCardUserControls
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Tarjeta";
             // 
+            // mtxtNumber
+            // 
+            this.mtxtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mtxtNumber.Location = new System.Drawing.Point(97, 120);
+            this.mtxtNumber.Mask = "AAAA AAAA AAAA AAAA";
+            this.mtxtNumber.Name = "mtxtNumber";
+            this.mtxtNumber.ReadOnly = true;
+            this.mtxtNumber.Size = new System.Drawing.Size(137, 13);
+            this.mtxtNumber.TabIndex = 34;
+            this.mtxtNumber.Text = "1111111111111111";
+            this.mtxtNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtxtNumber.ValidatingType = typeof(int);
+            // 
             // ShowCreditCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +299,6 @@ namespace Presentation.CreditCardUserControls
         private System.Windows.Forms.TextBox txtCategory;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtType;
-        private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Label lblNotes;
@@ -305,5 +306,6 @@ namespace Presentation.CreditCardUserControls
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.MaskedTextBox mtxtNumber;
     }
 }
