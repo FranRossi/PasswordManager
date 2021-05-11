@@ -5,7 +5,7 @@
     {
         public CreditCardSecureCodeWrongSizeException()
         {
-            this.message = "El codigo de la tarjeta debe ser de 3 dígitos.";
+            this.message = "El código de la tarjeta debe ser de 3 dígitos.";
         }
     }
 }
