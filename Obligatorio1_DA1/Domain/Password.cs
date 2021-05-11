@@ -104,13 +104,13 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordTooLongException();
         }
 
-        public static string GenerateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        public static string GenerateRandomPassword(PasswordGenerationOptions options)
         {
-            if (length > 25)
+            if (options.Length > Password.MaxPasswordLength)
                 throw new PasswordGenerationTooLongException();
-            if (length < 5)
+            if (options.Length < Password.MinPasswordLength)
                 throw new PasswordGenerationTooShortException();
-            if (!(uppercase || lowercase || digits || specialDigits))
+            if (!(options.Uppercase || options.Lowercase || options.Digits || options.SpecialDigits))
                 throw new PasswordGenerationNotSelectedCharacterTypesException();
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -122,20 +122,19 @@ namespace Obligatorio1_DA1.Domain
             string pass = "";
             Random random = new Random();
 
-            if (uppercase)
+            if (options.Uppercase)
                 AddRandomCharFromSubSet(ref pass, uppercaseSet, random, validChars);
 
-            if (lowercase)
+            if (options.Lowercase)
                 AddRandomCharFromSubSet(ref pass, lowercaseSet, random, validChars);
 
-            if (digits)
+            if (options.Digits)
                 AddRandomCharFromSubSet(ref pass, digitsSet, random, validChars);
 
-            if (specialDigits)
+            if (options.SpecialDigits)
                 AddRandomCharFromSubSet(ref pass, specialDigitsSet, random, validChars);
 
-
-            while (pass.Length < length)
+            while (pass.Length < options.Length)
                 AddRandomChar(ref pass, validChars, random);
 
             return pass;

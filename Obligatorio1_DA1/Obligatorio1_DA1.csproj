@@ -94,7 +94,7 @@
     <Compile Include="TestData.cs" />
     <Compile Include="Utilities\DataBreachFromString.cs" />
     <Compile Include="Utilities\IDataBreach.cs" />
-    <Compile Include="Utilities\passwordStrengthReport.cs" />
+    <Compile Include="Utilities\PasswordStrengthReport.cs" />
     <Compile Include="Utilities\PasswordStrengthColor.cs" />
     <Compile Include="Utilities\Validator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
