@@ -17,11 +17,11 @@ namespace Presentation
     {
 
         private PasswordManager _myPasswordManager;
-        public Credentials(PasswordManager pPasswordManager)
+        public Credentials(PasswordManager passwordManager)
         {
             InitializeComponent();
             Properties.Settings.Default.Reset();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             this.ActiveControl = txtUserName;
             TestData testData = new TestData(_myPasswordManager);
 

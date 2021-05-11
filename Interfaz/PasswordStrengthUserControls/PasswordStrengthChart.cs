@@ -25,18 +25,18 @@ namespace Presentation.PasswordStrengthWindow
         {
             foreach (PasswordStrengthColor color in (PasswordStrengthColor[])Enum.GetValues(typeof(PasswordStrengthColor)))
             {
-                this.chartPasswordStrength.Series.Add(color.ToString());
-                this.chartPasswordStrength.Series[color.ToString()].Color = this.presentationColor[color];
-                this.chartPasswordStrength.Series[color.ToString()].IsVisibleInLegend = false;
+                chartPasswordStrength.Series.Add(color.ToString());
+                chartPasswordStrength.Series[color.ToString()].Color = presentationColor[color];
+                chartPasswordStrength.Series[color.ToString()].IsVisibleInLegend = false;
             }
 
             foreach (passwordReportByCategoryAndColor entry in chartData)
             {
-                this.chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
+                chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
             }
-            this.chartPasswordStrength.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartPasswordStrength.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             Color chartHorizontalLines = Color.FromArgb(218, 218, 218);
-            this.chartPasswordStrength.ChartAreas[0].AxisY.MajorGrid.LineColor = chartHorizontalLines;
+            chartPasswordStrength.ChartAreas[0].AxisY.MajorGrid.LineColor = chartHorizontalLines;
         }
         private void SetPresentationColor()
         {

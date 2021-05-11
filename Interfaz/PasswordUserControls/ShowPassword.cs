@@ -14,22 +14,22 @@ namespace Presentation.PasswordUserControls
 {
     public partial class ShowPassword : Form
     {
-        private Password _password;
+        private Password _myPasswordToShow;
         public ShowPassword(Password password)
         {
             InitializeComponent();
-            _password = password;
+            _myPasswordToShow = password;
             LoadInformation();
         }
 
         private void LoadInformation()
         {
-            txtCategory.Text = _password.Category.ToString();
-            txtSite.Text = _password.Site;
-            txtUser.Text = _password.Username;
-            txtNotes.Text = _password.Notes;
+            txtCategory.Text = _myPasswordToShow.Category.ToString();
+            txtSite.Text = _myPasswordToShow.Site;
+            txtUser.Text = _myPasswordToShow.Username;
+            txtNotes.Text = _myPasswordToShow.Notes;
 
-            txtPassword.Text = _password.Pass;
+            txtPassword.Text = _myPasswordToShow.Pass;
             ShowPassField();
         }
 
