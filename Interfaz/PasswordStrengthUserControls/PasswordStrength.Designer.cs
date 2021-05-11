@@ -377,10 +377,10 @@ namespace Presentation
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblTitle.Location = new System.Drawing.Point(19, 15);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(603, 37);
+            this.lblTitle.Size = new System.Drawing.Size(347, 25);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "Reporte de Fortaleza de Constraseñas";
             // 

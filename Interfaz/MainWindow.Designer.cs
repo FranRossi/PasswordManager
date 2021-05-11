@@ -29,7 +29,6 @@ namespace Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlMainScreen = new System.Windows.Forms.Panel();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
@@ -41,8 +40,6 @@ namespace Presentation
             this.tsmiDataBreaches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPasswordStrength = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSharedWithMe = new System.Windows.Forms.ToolStripMenuItem();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlMainScreen.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -54,7 +51,7 @@ namespace Presentation
             this.pnlMainScreen.Controls.Add(this.lblWelcome);
             this.pnlMainScreen.Controls.Add(this.lblMessage);
             this.pnlMainScreen.Location = new System.Drawing.Point(6, 26);
-            this.pnlMainScreen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMainScreen.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMainScreen.Name = "pnlMainScreen";
             this.pnlMainScreen.Size = new System.Drawing.Size(780, 399);
             this.pnlMainScreen.TabIndex = 2;
@@ -98,11 +95,11 @@ namespace Presentation
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiPasswords,
+            this.tsmiSharedWithMe,
             this.tsmiCreditCards,
             this.tsmiCategories,
             this.tsmiDataBreaches,
-            this.tsmiPasswordStrength,
-            this.tsmiSharedWithMe});
+            this.tsmiPasswordStrength});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -149,20 +146,6 @@ namespace Presentation
             this.tsmiSharedWithMe.Text = "Contraseñas compartidas conmigo";
             this.tsmiSharedWithMe.Click += new System.EventHandler(this.tsmiSharedWithMe_Click);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(632, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(6, 6);
-            this.flowLayoutPanel1.TabIndex = 3;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // pnlMenu
             // 
             this.pnlMenu.Controls.Add(this.menuStrip1);
@@ -177,11 +160,10 @@ namespace Presentation
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 436);
             this.Controls.Add(this.pnlMainScreen);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pnlMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindow";
             this.Text = "PasswordManager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
@@ -204,8 +186,6 @@ namespace Presentation
         private System.Windows.Forms.ToolStripMenuItem tsmiCategories;
         private System.Windows.Forms.ToolStripMenuItem tsmiDataBreaches;
         private System.Windows.Forms.ToolStripMenuItem tsmiPasswordStrength;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.ToolStripMenuItem tsmiSharedWithMe;
         private System.Windows.Forms.Label lblWelcome;

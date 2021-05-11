@@ -84,7 +84,7 @@ namespace Presentation
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(206, 158);
+            this.btnAdd.Location = new System.Drawing.Point(134, 156);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 2;
@@ -173,7 +173,7 @@ namespace Presentation
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(205, 121);
+            this.btnModify.Location = new System.Drawing.Point(133, 115);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(75, 23);
             this.btnModify.TabIndex = 5;
