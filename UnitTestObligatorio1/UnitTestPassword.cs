@@ -190,9 +190,17 @@ namespace UnitTestObligatorio1
         [DataRow(20, true, true, true, true, "^[ -~]{20}$")]
         [DataTestMethod]
         public void GenerateValidPassword
-               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits, string regex)
+               (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits, string regex)
         {
-            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
             Regex regexToCheck = new Regex(regex);
             Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
@@ -202,9 +210,17 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationNotSelectedCharacterTypesException))]
         public void GenerateInvalidNotTypesSelectedPassword
-               (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+               (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
-            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
         }
 
 
@@ -213,9 +229,17 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationTooShortException))]
         public void GenerateInvalidTooShortPassword
-       (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+       (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
-            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
         }
 
         [DataRow(3434, true, false, false, false)]
@@ -223,9 +247,17 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationTooLongException))]
         public void GenerateInvalidTooLongPassword
-        (int length, Boolean upercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
-            string pass = Password.GenerateRandomPassword(length, upercase, lowercase, digits, specialDigits);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
         }
 
         [TestMethod]

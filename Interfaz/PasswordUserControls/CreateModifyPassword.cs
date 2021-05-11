@@ -1,5 +1,6 @@
 ﻿using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -109,7 +110,16 @@ namespace Presentation
             bool hasSymbol = cbSymbol.Checked;
             try
             {
-                txtPassword.Text = Password.GenerateRandomPassword(passwordLength, hasUppercase, hasLowercase, hasDigit, hasSymbol);
+                PasswordGenerationOptions options = new PasswordGenerationOptions
+                {
+                    Length = passwordLength,
+                    Uppercase = hasUppercase,
+                    Lowercase = hasLowercase,
+                    Digits = hasDigit,
+                    SpecialDigits = hasSymbol
+                };
+                string pass = Password.GenerateRandomPassword(options);
+                txtPassword.Text = Password.GenerateRandomPassword(options);
             }
             catch (ValidationException exception)
             {

@@ -79,7 +79,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void GetNumberOfPasswordByStrengthColorAndCategory(PasswordStrengthColor color, string category, int quantity)
         {
-            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
             var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
             Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
         }
@@ -92,7 +92,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void GetNumberOfPasswordByStrengthColor(PasswordStrengthColor color, int quantity)
         {
-            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
+            List<PasswordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
             var redEntry = report.Find(entry => entry.Color == color);
             Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
         }

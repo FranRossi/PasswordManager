@@ -105,7 +105,7 @@ namespace Presentation
             this.Close();
         }
 
-        private Boolean CategoryIsSelectedComboBox()
+        private bool CategoryIsSelectedComboBox()
         {
             return cbCategory.SelectedItem != null;
         }

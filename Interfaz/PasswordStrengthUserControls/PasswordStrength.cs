@@ -38,8 +38,8 @@ namespace Presentation
 
         private void LoadColorQuantities()
         {
-            List<passwordReportByColor> report = this._myPasswordManager.GetPasswordReportByColor();
-            foreach (passwordReportByColor entry in report)
+            List<PasswordReportByColor> report = this._myPasswordManager.GetPasswordReportByColor();
+            foreach (PasswordReportByColor entry in report)
             {
                 colorComponent cmp = colorCmp.Find(component => component.Color == entry.Color);
                 int quantity = entry.Quantity;
@@ -61,7 +61,7 @@ namespace Presentation
         private void LoadChart()
         {
             bool enoughtPasswordToShow;
-            List<passwordReportByCategoryAndColor> report = this._myPasswordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = this._myPasswordManager.GetPasswordReportByCategoryAndColor();
             enoughtPasswordToShow = (report.Count() > 0);
 
             if (enoughtPasswordToShow)
@@ -74,7 +74,7 @@ namespace Presentation
 
         private void ReloadChart()
         {
-            List<passwordReportByCategoryAndColor> report = _myPasswordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = _myPasswordManager.GetPasswordReportByCategoryAndColor();
             this.chartPanel = new PasswordStrengthChart(report);
         }
         private void ShowChart()
