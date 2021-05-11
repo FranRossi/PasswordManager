@@ -132,13 +132,13 @@ namespace Obligatorio1_DA1.Domain
             return pass;
         }
 
-        private static void ValidatePasswordGenerationOptions(PasswordGenerationOptions options)
+        private static void ValidatePasswordGenerationOptions(PasswordGenerationOptions selectedOptions)
         {
-            if (options.Length > Password.MaxPasswordLength)
+            if (selectedOptions.Length > Password.MaxPasswordLength)
                 throw new PasswordGenerationTooLongException();
-            if (options.Length < Password.MinPasswordLength)
+            if (selectedOptions.Length < Password.MinPasswordLength)
                 throw new PasswordGenerationTooShortException();
-            if (!(options.Uppercase || options.Lowercase || options.Digits || options.SpecialDigits))
+            if (!(selectedOptions.Uppercase || selectedOptions.Lowercase || selectedOptions.Digits || selectedOptions.SpecialDigits))
                 throw new PasswordGenerationNotSelectedCharacterTypesException();
         }
 
