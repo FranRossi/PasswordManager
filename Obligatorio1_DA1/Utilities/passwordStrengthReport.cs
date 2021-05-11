@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Utilities
 {
-    public struct passwordReportByCategoryAndColor
+    public struct PasswordReportByCategoryAndColor
     {
         public Category Category { get; set; }
         public int Quantity { get; set; }
@@ -15,7 +15,7 @@ namespace Obligatorio1_DA1.Utilities
 
     }
 
-    public struct passwordReportByColor
+    public struct PasswordReportByColor
     {
         public int Quantity { get; set; }
         public PasswordStrengthColor Color { get; set; }

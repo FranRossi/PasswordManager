@@ -119,15 +119,15 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordAlreadyExistsException();
         }
 
-        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
-            List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
+            List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
 
             foreach (Category category in GetCategoriesFromCurrentUser())
             {
                 foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
                 {
-                    report.Add(new passwordReportByCategoryAndColor
+                    report.Add(new PasswordReportByCategoryAndColor
                     {
                         Category = category,
                         Color = color,
@@ -139,12 +139,12 @@ namespace Obligatorio1_DA1.Domain
             return report;
         }
 
-        public List<passwordReportByColor> GetPasswordReportByColor()
+        public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            List<passwordReportByColor> report = new List<passwordReportByColor>();
+            List<PasswordReportByColor> report = new List<PasswordReportByColor>();
             foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
             {
-                report.Add(new passwordReportByColor
+                report.Add(new PasswordReportByColor
                 {
                     Color = color,
                     Quantity = this.GetPasswords().Count(pass => pass.PasswordStrength == color)
