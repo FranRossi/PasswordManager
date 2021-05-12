@@ -14,36 +14,36 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxTypeLength = 25;
         public const int SecureCodeLength = 3;
 
-        private string number;
-        private string name;
-        private string type;
-        private string secureCode;
-        private string expirationDate;
+        private string _number;
+        private string _name;
+        private string _type;
+        private string _secureCode;
+        private string _expirationDate;
         public string Name
         {
-            get => name;
+            get => _name;
             set
             {
                 ValidateName(value);
-                name = value;
+                _name = value;
             }
         }
         public string Type
         {
-            get => type;
+            get => _type;
             set
             {
                 ValidateType(value);
-                type = value;
+                _type = value;
             }
         }
         public string Number
         {
-            get => number;
+            get => _number;
             set
             {
                 ValidateNumber(value);
-                number = value;
+                _number = value;
             }
         }
         public string SecretNumber
@@ -52,20 +52,20 @@ namespace Obligatorio1_DA1.Domain
         }
         public string SecureCode
         {
-            get => secureCode;
+            get => _secureCode;
             set
             {
                 ValidateSecureCode(value);
-                secureCode = value;
+                _secureCode = value;
             }
         }
         public string ExpirationDate
         {
-            get => expirationDate;
+            get => _expirationDate;
             set
             {
                 ValidateExpirationDate(value);
-                expirationDate = value;
+                _expirationDate = value;
             }
 
         }
