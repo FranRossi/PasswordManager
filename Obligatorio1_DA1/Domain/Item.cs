@@ -32,7 +32,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 if (!this.User.Categories.Contains(value))
                     throw new ItemInvalidCategoryException();
-                this._category = value;
+                _category = value;
             }
 
         }

@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Presentation.CreditCardUserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +60,7 @@ namespace Presentation
             }
         }
 
-        private void btnAddCreditCard_Click(object sender, EventArgs e)
+        private void BtnAddCreditCard_Click(object sender, EventArgs e)
         {
             Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
@@ -71,23 +72,38 @@ namespace Presentation
             LoadTblCreditCard();
         }
 
-        private void btnDeleteCreditCard_Click(object sender, EventArgs e)
+        private void BtnDeleteCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
             {
-                _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
-                this.lblMessage.Text = "Tarjeta eliminada exitosamente.";
-                LoadTblCreditCard();
+                if (ShowConfirmationPopUp())
+                {
+                    _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
+                    lblMessage.Text = "Tarjeta eliminada exitosamente.";
+                    LoadTblCreditCard();
+                }
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+                lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
             }
 
         }
 
-        private void btnModifyCreditCard_Click(object sender, EventArgs e)
+        private bool ShowConfirmationPopUp()
+        {
+            if (!Properties.Settings.Default.DontShowAgainPopUpCreditCard)
+            {
+                Form DeleteConfirmationPopUp = new DeleteConfirmation("tarjeta");
+                DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
+                DeleteConfirmationPopUp.Close();
+                return resultConfirmation == DialogResult.OK;
+            }
+            return true;
+        }
+
+        private void BtnModifyCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
@@ -98,7 +114,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la tarjeta que desea eliminar.";
+                lblMessage.Text = "Debe seleccionar la tarjeta que desea modificar.";
             }
 
         }
@@ -113,9 +129,24 @@ namespace Presentation
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la tarjeta.";
+                    lblMessage.Text = "Error al seleccionar la tarjeta.";
                 }
             }
         }
+
+        private void BtnShow_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedCreditCard();
+            if (_selectedCreditCard != null)
+            {
+                Form showPassord = new ShowCreditCard(_selectedCreditCard);
+                showPassord.ShowDialog();
+            }
+            else
+            {
+                lblMessage.Text = "Debe seleccionar la tarjeta que desea mostrar.";
+            }
+        }
+
     }
 }

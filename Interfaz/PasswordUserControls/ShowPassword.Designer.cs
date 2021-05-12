@@ -86,7 +86,7 @@ namespace Presentation.PasswordUserControls
             this.btnShow.Location = new System.Drawing.Point(233, 115);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(51, 23);
-            this.btnShow.TabIndex = 29;
+            this.btnShow.TabIndex = 1;
             this.btnShow.Text = "Mostrar";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
@@ -161,7 +161,7 @@ namespace Presentation.PasswordUserControls
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(70, 27);
-            this.btnAccept.TabIndex = 15;
+            this.btnAccept.TabIndex = 0;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -222,8 +222,10 @@ namespace Presentation.PasswordUserControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 350);
             this.Controls.Add(this.pnlPassword);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ShowPassword";
-            this.Text = "Password Manager";
+            this.Text = "PasswordManager";
             this.pnlPassword.ResumeLayout(false);
             this.pnlPassword.PerformLayout();
             this.gpbPassword.ResumeLayout(false);

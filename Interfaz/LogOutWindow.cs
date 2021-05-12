@@ -13,12 +13,10 @@ namespace Presentation
 {
     public partial class LogOutWindow : Form
     {
-        private PasswordManager _myPasswordManager;
         private FormClosingEventArgs _mainWindowsClosingEvent;
-        public LogOutWindow(PasswordManager pPasswordManager, FormClosingEventArgs mainWindowsClosingEvent)
+        public LogOutWindow(FormClosingEventArgs mainWindowsClosingEvent)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
             _mainWindowsClosingEvent = mainWindowsClosingEvent;
 
             // in case the User closes the Window with the "X"
@@ -34,7 +32,7 @@ namespace Presentation
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             CloseMainWindow();
-            this.Close();
+            Close();
         }
 
         void KeepMainWindowOpen()
@@ -46,5 +44,6 @@ namespace Presentation
         {
             _mainWindowsClosingEvent.Cancel = false;
         }
+
     }
 }

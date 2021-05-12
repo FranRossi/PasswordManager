@@ -5,7 +5,7 @@
     {
         public CreditCardExpirationDateInvalidFormatException()
         {
-            this.message = "El formato de la fecha de expiración de la tarjeta es inválido, debería ser mes/año. (Ejemplo: 05/22).";
+            this.message = "El formato de fecha de expiración es inválido, debería ser mes/año.";
         }
     }
 }

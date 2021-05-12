@@ -34,7 +34,7 @@ namespace Presentation
             this.tblCreditCard = new System.Windows.Forms.DataGridView();
             this.pnlList = new System.Windows.Forms.Panel();
             this.pnlButtons = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnShow = new System.Windows.Forms.Button();
             this.btnAddCreditCard = new System.Windows.Forms.Button();
             this.btnModifyCreditCard = new System.Windows.Forms.Button();
             this.btnDeleteCreditCard = new System.Windows.Forms.Button();
@@ -56,7 +56,7 @@ namespace Presentation
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(35, 326);
+            this.lblMessage.Location = new System.Drawing.Point(8, 16);
             this.lblMessage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
@@ -70,6 +70,7 @@ namespace Presentation
             this.tblCreditCard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblCreditCard.Location = new System.Drawing.Point(8, 55);
+            this.tblCreditCard.MultiSelect = false;
             this.tblCreditCard.Name = "tblCreditCard";
             this.tblCreditCard.ReadOnly = true;
             this.tblCreditCard.RowHeadersVisible = false;
@@ -89,7 +90,8 @@ namespace Presentation
             // 
             // pnlButtons
             // 
-            this.pnlButtons.Controls.Add(this.label1);
+            this.pnlButtons.Controls.Add(this.btnShow);
+            this.pnlButtons.Controls.Add(this.lblMessage);
             this.pnlButtons.Controls.Add(this.btnAddCreditCard);
             this.pnlButtons.Controls.Add(this.btnModifyCreditCard);
             this.pnlButtons.Controls.Add(this.btnDeleteCreditCard);
@@ -98,13 +100,15 @@ namespace Presentation
             this.pnlButtons.Size = new System.Drawing.Size(773, 44);
             this.pnlButtons.TabIndex = 9;
             // 
-            // label1
+            // btnShow
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 4;
+            this.btnShow.Location = new System.Drawing.Point(409, 11);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(75, 23);
+            this.btnShow.TabIndex = 3;
+            this.btnShow.Text = "Mostrar";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.BtnShow_Click);
             // 
             // btnAddCreditCard
             // 
@@ -114,7 +118,7 @@ namespace Presentation
             this.btnAddCreditCard.TabIndex = 2;
             this.btnAddCreditCard.Text = "Agregar";
             this.btnAddCreditCard.UseVisualStyleBackColor = true;
-            this.btnAddCreditCard.Click += new System.EventHandler(this.btnAddCreditCard_Click);
+            this.btnAddCreditCard.Click += new System.EventHandler(this.BtnAddCreditCard_Click);
             // 
             // btnModifyCreditCard
             // 
@@ -124,7 +128,7 @@ namespace Presentation
             this.btnModifyCreditCard.TabIndex = 1;
             this.btnModifyCreditCard.Text = "Modificar";
             this.btnModifyCreditCard.UseVisualStyleBackColor = true;
-            this.btnModifyCreditCard.Click += new System.EventHandler(this.btnModifyCreditCard_Click);
+            this.btnModifyCreditCard.Click += new System.EventHandler(this.BtnModifyCreditCard_Click);
             // 
             // btnDeleteCreditCard
             // 
@@ -134,14 +138,13 @@ namespace Presentation
             this.btnDeleteCreditCard.TabIndex = 0;
             this.btnDeleteCreditCard.Text = "Eliminar";
             this.btnDeleteCreditCard.UseVisualStyleBackColor = true;
-            this.btnDeleteCreditCard.Click += new System.EventHandler(this.btnDeleteCreditCard_Click);
+            this.btnDeleteCreditCard.Click += new System.EventHandler(this.BtnDeleteCreditCard_Click);
             // 
             // CreditCardList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlButtons);
-            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.pnlList);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreditCardList";
@@ -152,7 +155,6 @@ namespace Presentation
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -162,9 +164,9 @@ namespace Presentation
         private System.Windows.Forms.DataGridView tblCreditCard;
         private System.Windows.Forms.Panel pnlList;
         private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddCreditCard;
         private System.Windows.Forms.Button btnModifyCreditCard;
         private System.Windows.Forms.Button btnDeleteCreditCard;
+        private System.Windows.Forms.Button btnShow;
     }
 }

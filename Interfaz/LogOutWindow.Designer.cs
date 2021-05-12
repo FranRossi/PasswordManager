@@ -54,7 +54,7 @@ namespace Presentation
             this.pnlButtons.Controls.Add(this.btnLogOut);
             this.pnlButtons.Location = new System.Drawing.Point(-2, 93);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(456, 49);
+            this.pnlButtons.Size = new System.Drawing.Size(385, 47);
             this.pnlButtons.TabIndex = 1;
             // 
             // btnClose
@@ -86,7 +86,10 @@ namespace Presentation
             this.ClientSize = new System.Drawing.Size(385, 140);
             this.Controls.Add(this.lblClosingConfirmationMessage);
             this.Controls.Add(this.pnlButtons);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "LogOutWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Salir";
             this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);

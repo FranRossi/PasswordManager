@@ -32,7 +32,7 @@ namespace Obligatorio1_DA1.Domain
         {
             foreach (User user in _users)
                 if (user.Name == name)
-                    if (user.Pass == password)
+                    if (user.MasterPass == password)
                     {
                         CurrentUser = user;
                         return;
@@ -67,28 +67,30 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreatePassword(Password password)
         {
-            VerifyExistenceOfPasswordOnPasswordList(password);
-            this._passwords.Add(password);
+            VerifyNonExistenceOfPasswordOnPasswordList(password);
+            VerifyPasswordBelongToCurrentUser(password);
+            _passwords.Add(password);
         }
 
         public List<Password> GetPasswords()
         {
-            return this._passwords.Where(pass => pass.User == CurrentUser).ToList();
+            return _passwords.Where(pass => pass.User == CurrentUser).ToList();
         }
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
-            return this._passwords.Where(pass => pass.GetUsersSharedWith().Contains(CurrentUser)).ToList();
+            return _passwords.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
         }
 
         public void DeletePassword(Password password)
         {
-            this._passwords.Remove(password);
+            _passwords.Remove(password);
         }
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
         {
-            VerifyExistenceOfPasswordOnPasswordList(newPassword);
+            if (!oldPassword.Equals(newPassword))
+                VerifyNonExistenceOfPasswordOnPasswordList(newPassword);
 
             foreach (Password passwordIterator in this.GetPasswords())
             {
@@ -111,21 +113,21 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordNotBelongToCurrentUserException();
         }
 
-        private void VerifyExistenceOfPasswordOnPasswordList(Password newPassword)
+        private void VerifyNonExistenceOfPasswordOnPasswordList(Password newPassword)
         {
-            if (this._passwords.Contains(newPassword))
+            if (_passwords.Contains(newPassword))
                 throw new PasswordAlreadyExistsException();
         }
 
-        public List<passwordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
-            List<passwordReportByCategoryAndColor> report = new List<passwordReportByCategoryAndColor>();
+            List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
 
             foreach (Category category in GetCategoriesFromCurrentUser())
             {
                 foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
                 {
-                    report.Add(new passwordReportByCategoryAndColor
+                    report.Add(new PasswordReportByCategoryAndColor
                     {
                         Category = category,
                         Color = color,
@@ -137,12 +139,12 @@ namespace Obligatorio1_DA1.Domain
             return report;
         }
 
-        public List<passwordReportByColor> GetPasswordReportByColor()
+        public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            List<passwordReportByColor> report = new List<passwordReportByColor>();
+            List<PasswordReportByColor> report = new List<PasswordReportByColor>();
             foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
             {
-                report.Add(new passwordReportByColor
+                report.Add(new PasswordReportByColor
                 {
                     Color = color,
                     Quantity = this.GetPasswords().Count(pass => pass.PasswordStrength == color)
@@ -162,30 +164,33 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateCreditCard(CreditCard creditCard)
         {
-            VerifyExistenceOfCreditCardOnCreditCardList(creditCard);
-            this._creditCards.Add(creditCard);
+            VerifyNonExistenceOfCreditCardOnCreditCardList(creditCard);
+            VerifyCreditCardBelongToCurrentUser(creditCard);
+            _creditCards.Add(creditCard);
         }
 
         public List<CreditCard> GetCreditCards()
         {
-            return this._creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
+            return _creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
         }
 
         public void DeleteCreditCard(CreditCard card)
         {
-            this._creditCards.Remove(card);
+            _creditCards.Remove(card);
         }
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
-            List<User> usersNotShareWith = this._users.Except(password.GetUsersSharedWith()).ToList();
+            List<User> usersNotShareWith = _users.Except(password.SharedWith).ToList();
             usersNotShareWith.Remove(CurrentUser);
             return usersNotShareWith;
         }
 
         public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
         {
-            VerifyExistenceOfCreditCardOnCreditCardList(newCreditCard);
+            if (!oldCreditCard.Equals(newCreditCard))
+                VerifyNonExistenceOfCreditCardOnCreditCardList(newCreditCard);
+
             foreach (CreditCard creditCardIterator in this.GetCreditCards())
             {
                 if (creditCardIterator.Equals(oldCreditCard))
@@ -208,7 +213,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new CreditCardNotBelongToCurrentUserException();
         }
 
-        private void VerifyExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
+        private void VerifyNonExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
         {
             if (this._creditCards.Contains(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
@@ -222,12 +227,10 @@ namespace Obligatorio1_DA1.Domain
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
                 foreach (Password pass in _passwords)
-                    //Redefinir equals de user
-                    if (pass.Pass == splittedDataBreach[i] && pass.User.Name == CurrentUser.Name)
+                    if (pass.Pass == splittedDataBreach[i] && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCards)
-                    //aca tmb
-                    if (card.Number == splittedDataBreach[i] && card.User.Name == CurrentUser.Name)
+                    if (card.Number == splittedDataBreach[i] && card.User.Equals(CurrentUser))
                         breachedItems.Add(card);
             }
             return breachedItems;

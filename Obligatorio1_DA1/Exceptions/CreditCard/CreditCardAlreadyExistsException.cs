@@ -5,7 +5,7 @@
     {
         public CreditCardAlreadyExistsException()
         {
-            this.message = "La tarjeta de crédito ya existe en el sistema.";
+            this.message = "La tarjeta ya existe en el sistema.";
         }
     }
 }

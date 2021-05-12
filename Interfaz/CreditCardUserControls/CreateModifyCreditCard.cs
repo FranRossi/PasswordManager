@@ -69,7 +69,7 @@ namespace Presentation
                 }
             }
             else
-                lblError.Text = "Debe seleccionar una categoría";
+                lblError.Text = "Debes seleccionar una categoría";
         }
 
         private void ModifyCreditCard(CreditCard newCreditCard)
@@ -105,7 +105,7 @@ namespace Presentation
             this.Close();
         }
 
-        private Boolean CategoryIsSelectedComboBox()
+        private bool CategoryIsSelectedComboBox()
         {
             return cbCategory.SelectedItem != null;
         }

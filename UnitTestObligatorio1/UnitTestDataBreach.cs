@@ -28,7 +28,7 @@ namespace UnitTestObligatorio1
             _currentUser = new User()
             {
                 Name = "Gonzalo",
-                Pass = "HolaSoyGonzalo123"
+                MasterPass = "HolaSoyGonzalo123"
             };
             _passwordManager.CreateUser(_currentUser);
         }
@@ -118,9 +118,10 @@ namespace UnitTestObligatorio1
             User otherUser = new User()
             {
                 Name = "Pedro",
-                Pass = "HolaSoyPedro123"
+                MasterPass = "HolaSoyPedro123"
             };
-            otherUser.Categories.Add(category);
+            _passwordManager.CreateUser(otherUser);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
             Password newPassword = new Password
             {
                 User = otherUser,
@@ -131,6 +132,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             _passwordManager.CreatePassword(newPassword);
+            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
         private List<Item> AddBreachedCreditCardsToPasswordManager()
@@ -168,10 +170,11 @@ namespace UnitTestObligatorio1
             };
             User otherUser = new User()
             {
-                Name = "Pedro",
-                Pass = "HolaSoyPedro123"
+                Name = "Javier",
+                MasterPass = "HolaSoyJavier123"
             };
-            otherUser.Categories.Add(category);
+            _passwordManager.CreateUser(otherUser);
+            _passwordManager.CreateCategoryOnCurrentUser(category);
             CreditCard newCard = new CreditCard
             {
                 User = otherUser,
@@ -184,6 +187,7 @@ namespace UnitTestObligatorio1
                 Notes = "Tra­mite 400k UYU"
             };
             _passwordManager.CreateCreditCard(newCard);
+            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
 

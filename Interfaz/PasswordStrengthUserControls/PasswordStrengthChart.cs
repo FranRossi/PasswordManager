@@ -14,26 +14,29 @@ namespace Presentation.PasswordStrengthWindow
     public partial class PasswordStrengthChart : UserControl
     {
         private Dictionary<PasswordStrengthColor, Color> presentationColor;
-        public PasswordStrengthChart(List<passwordReportByCategoryAndColor> chartData)
+        public PasswordStrengthChart(List<PasswordReportByCategoryAndColor> chartData)
         {
             InitializeComponent();
             SetPresentationColor();
             LoadChart(chartData);
         }
 
-        private void LoadChart(List<passwordReportByCategoryAndColor> chartData)
+        private void LoadChart(List<PasswordReportByCategoryAndColor> chartData)
         {
             foreach (PasswordStrengthColor color in (PasswordStrengthColor[])Enum.GetValues(typeof(PasswordStrengthColor)))
             {
-                this.chartPasswordStrength.Series.Add(color.ToString());
-                this.chartPasswordStrength.Series[color.ToString()].Color = this.presentationColor[color];
-                this.chartPasswordStrength.Series[color.ToString()].IsVisibleInLegend = false;
+                chartPasswordStrength.Series.Add(color.ToString());
+                chartPasswordStrength.Series[color.ToString()].Color = presentationColor[color];
+                chartPasswordStrength.Series[color.ToString()].IsVisibleInLegend = false;
             }
 
-            foreach (passwordReportByCategoryAndColor entry in chartData)
+            foreach (PasswordReportByCategoryAndColor entry in chartData)
             {
-                this.chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
+                chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
             }
+            chartPasswordStrength.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            Color chartHorizontalLines = Color.FromArgb(218, 218, 218);
+            chartPasswordStrength.ChartAreas[0].AxisY.MajorGrid.LineColor = chartHorizontalLines;
         }
         private void SetPresentationColor()
         {

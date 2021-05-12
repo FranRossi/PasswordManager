@@ -29,21 +29,11 @@ namespace Presentation.PasswordStrengthWindow
         /// </summary>
         private void InitializeComponent()
         {
-            this.tblPassword = new System.Windows.Forms.DataGridView();
             this.btmModify = new System.Windows.Forms.Button();
+            this.tblPassword = new System.Windows.Forms.DataGridView();
+            this.lblMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tblPassword
-            // 
-            this.tblPassword.AllowUserToAddRows = false;
-            this.tblPassword.AllowUserToDeleteRows = false;
-            this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblPassword.Location = new System.Drawing.Point(0, 0);
-            this.tblPassword.Name = "tblPassword";
-            this.tblPassword.ReadOnly = true;
-            this.tblPassword.Size = new System.Drawing.Size(463, 253);
-            this.tblPassword.TabIndex = 0;
             // 
             // btmModify
             // 
@@ -51,26 +41,54 @@ namespace Presentation.PasswordStrengthWindow
             this.btmModify.Location = new System.Drawing.Point(300, 268);
             this.btmModify.Name = "btmModify";
             this.btmModify.Size = new System.Drawing.Size(138, 28);
-            this.btmModify.TabIndex = 4;
+            this.btmModify.TabIndex = 0;
             this.btmModify.Text = "Modificar";
             this.btmModify.UseVisualStyleBackColor = true;
+            this.btmModify.Click += new System.EventHandler(this.btmModify_Click);
             // 
-            // PasswordListOfStrenghtColor
+            // tblPassword
+            // 
+            this.tblPassword.AllowUserToAddRows = false;
+            this.tblPassword.AllowUserToDeleteRows = false;
+            this.tblPassword.AllowUserToResizeRows = false;
+            this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblPassword.Location = new System.Drawing.Point(0, 0);
+            this.tblPassword.MultiSelect = false;
+            this.tblPassword.Name = "tblPassword";
+            this.tblPassword.ReadOnly = true;
+            this.tblPassword.RowHeadersVisible = false;
+            this.tblPassword.RowHeadersWidth = 62;
+            this.tblPassword.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tblPassword.Size = new System.Drawing.Size(460, 262);
+            this.tblPassword.TabIndex = 7;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(3, 283);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblMessage.TabIndex = 8;
+            // 
+            // PasswordListOfStrengthColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btmModify);
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.tblPassword);
-            this.Name = "PasswordListOfStrenghtColor";
+            this.Controls.Add(this.btmModify);
+            this.Name = "PasswordListOfStrengthColor";
             this.Size = new System.Drawing.Size(463, 314);
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView tblPassword;
         private System.Windows.Forms.Button btmModify;
+        private System.Windows.Forms.DataGridView tblPassword;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

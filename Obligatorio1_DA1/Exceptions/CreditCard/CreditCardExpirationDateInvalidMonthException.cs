@@ -5,7 +5,7 @@
     {
         public CreditCardExpirationDateInvalidMonthException()
         {
-            this.message = "El mes ingresado en la fecha de expiración de la tarjeta es inválido.";
+            this.message = "El mes ingresado en la fecha de expiración es inválido.";
         }
     }
 }

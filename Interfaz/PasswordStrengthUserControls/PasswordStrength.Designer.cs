@@ -29,14 +29,13 @@ namespace Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tlpColorTable = new System.Windows.Forms.TableLayoutPanel();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblRed = new System.Windows.Forms.Label();
+            this.lblOrange = new System.Windows.Forms.Label();
+            this.lblYellow = new System.Windows.Forms.Label();
+            this.lblLightGreen = new System.Windows.Forms.Label();
+            this.lblDarkGreen = new System.Windows.Forms.Label();
             this.lblRedQuantity = new System.Windows.Forms.Label();
             this.lblYellowQuantity = new System.Windows.Forms.Label();
             this.lblLightGreenQuantity = new System.Windows.Forms.Label();
@@ -49,10 +48,9 @@ namespace Presentation
             this.btnShowPasswordsLightGreen = new System.Windows.Forms.Button();
             this.btnShowPasswordsDarkGreen = new System.Windows.Forms.Button();
             this.pnlChartList = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btmShowChart = new System.Windows.Forms.Button();
             this.lblNoPassword = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.btnShowChart = new System.Windows.Forms.Button();
             this.tlpColorTable.SuspendLayout();
             this.pnlChartList.SuspendLayout();
             this.SuspendLayout();
@@ -65,11 +63,11 @@ namespace Presentation
             this.tlpColorTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.42446F));
             this.tlpColorTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.92806F));
             this.tlpColorTable.Controls.Add(this.lblQuantity, 1, 0);
-            this.tlpColorTable.Controls.Add(this.label1, 0, 1);
-            this.tlpColorTable.Controls.Add(this.label2, 0, 2);
-            this.tlpColorTable.Controls.Add(this.label3, 0, 3);
-            this.tlpColorTable.Controls.Add(this.label4, 0, 4);
-            this.tlpColorTable.Controls.Add(this.label9, 0, 5);
+            this.tlpColorTable.Controls.Add(this.lblRed, 0, 1);
+            this.tlpColorTable.Controls.Add(this.lblOrange, 0, 2);
+            this.tlpColorTable.Controls.Add(this.lblYellow, 0, 3);
+            this.tlpColorTable.Controls.Add(this.lblLightGreen, 0, 4);
+            this.tlpColorTable.Controls.Add(this.lblDarkGreen, 0, 5);
             this.tlpColorTable.Controls.Add(this.lblRedQuantity, 1, 1);
             this.tlpColorTable.Controls.Add(this.lblYellowQuantity, 1, 3);
             this.tlpColorTable.Controls.Add(this.lblLightGreenQuantity, 1, 4);
@@ -111,85 +109,85 @@ namespace Presentation
             this.lblQuantity.Text = "Cantidad de Contraseñas";
             this.lblQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // lblRed
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblRed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(4, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 40);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Rojo";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRed.AutoSize = true;
+            this.lblRed.BackColor = System.Drawing.SystemColors.Control;
+            this.lblRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblRed.Location = new System.Drawing.Point(4, 42);
+            this.lblRed.Name = "lblRed";
+            this.lblRed.Size = new System.Drawing.Size(105, 40);
+            this.lblRed.TabIndex = 2;
+            this.lblRed.Text = "Rojo";
+            this.lblRed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // lblOrange
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblOrange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(4, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 40);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Naranja";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblOrange.AutoSize = true;
+            this.lblOrange.BackColor = System.Drawing.SystemColors.Control;
+            this.lblOrange.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblOrange.Location = new System.Drawing.Point(4, 83);
+            this.lblOrange.Name = "lblOrange";
+            this.lblOrange.Size = new System.Drawing.Size(105, 40);
+            this.lblOrange.TabIndex = 3;
+            this.lblOrange.Text = "Naranja";
+            this.lblOrange.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // lblYellow
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblYellow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.Control;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(4, 124);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 40);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Amarillo";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblYellow.AutoSize = true;
+            this.lblYellow.BackColor = System.Drawing.SystemColors.Control;
+            this.lblYellow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYellow.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblYellow.Location = new System.Drawing.Point(4, 124);
+            this.lblYellow.Name = "lblYellow";
+            this.lblYellow.Size = new System.Drawing.Size(105, 40);
+            this.lblYellow.TabIndex = 4;
+            this.lblYellow.Text = "Amarillo";
+            this.lblYellow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // lblLightGreen
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblLightGreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(4, 165);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 40);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Verde Claro";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLightGreen.AutoSize = true;
+            this.lblLightGreen.BackColor = System.Drawing.SystemColors.Control;
+            this.lblLightGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLightGreen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblLightGreen.Location = new System.Drawing.Point(4, 165);
+            this.lblLightGreen.Name = "lblLightGreen";
+            this.lblLightGreen.Size = new System.Drawing.Size(105, 40);
+            this.lblLightGreen.TabIndex = 5;
+            this.lblLightGreen.Text = "Verde Claro";
+            this.lblLightGreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // lblDarkGreen
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblDarkGreen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.SystemColors.Control;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(4, 206);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 46);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Verde Oscuro";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDarkGreen.AutoSize = true;
+            this.lblDarkGreen.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDarkGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDarkGreen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDarkGreen.Location = new System.Drawing.Point(4, 206);
+            this.lblDarkGreen.Name = "lblDarkGreen";
+            this.lblDarkGreen.Size = new System.Drawing.Size(105, 46);
+            this.lblDarkGreen.TabIndex = 12;
+            this.lblDarkGreen.Text = "Verde Oscuro";
+            this.lblDarkGreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblRedQuantity
             // 
@@ -278,10 +276,10 @@ namespace Presentation
             this.btnShowPasswordsRed.Location = new System.Drawing.Point(186, 46);
             this.btnShowPasswordsRed.Name = "btnShowPasswordsRed";
             this.btnShowPasswordsRed.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsRed.TabIndex = 10;
+            this.btnShowPasswordsRed.TabIndex = 0;
             this.btnShowPasswordsRed.Text = "Ver";
             this.btnShowPasswordsRed.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsRed.Click += new System.EventHandler(this.btmShowPasswordsRed_Click);
+            this.btnShowPasswordsRed.Click += new System.EventHandler(this.btnShowPasswordsRed_Click);
             // 
             // lblGroup
             // 
@@ -306,10 +304,10 @@ namespace Presentation
             this.btnShowPasswordsOrange.Location = new System.Drawing.Point(186, 87);
             this.btnShowPasswordsOrange.Name = "btnShowPasswordsOrange";
             this.btnShowPasswordsOrange.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsOrange.TabIndex = 14;
+            this.btnShowPasswordsOrange.TabIndex = 1;
             this.btnShowPasswordsOrange.Text = "Ver";
             this.btnShowPasswordsOrange.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsOrange.Click += new System.EventHandler(this.btmShowPasswordsOrange_Click);
+            this.btnShowPasswordsOrange.Click += new System.EventHandler(this.btnShowPasswordsOrange_Click);
             // 
             // btnShowPasswordsYellow
             // 
@@ -318,10 +316,10 @@ namespace Presentation
             this.btnShowPasswordsYellow.Location = new System.Drawing.Point(186, 128);
             this.btnShowPasswordsYellow.Name = "btnShowPasswordsYellow";
             this.btnShowPasswordsYellow.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsYellow.TabIndex = 15;
+            this.btnShowPasswordsYellow.TabIndex = 2;
             this.btnShowPasswordsYellow.Text = "Ver";
             this.btnShowPasswordsYellow.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsYellow.Click += new System.EventHandler(this.btmShowPasswordsYellow_Click);
+            this.btnShowPasswordsYellow.Click += new System.EventHandler(this.btnShowPasswordsYellow_Click);
             // 
             // btnShowPasswordsLightGreen
             // 
@@ -330,10 +328,10 @@ namespace Presentation
             this.btnShowPasswordsLightGreen.Location = new System.Drawing.Point(186, 169);
             this.btnShowPasswordsLightGreen.Name = "btnShowPasswordsLightGreen";
             this.btnShowPasswordsLightGreen.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsLightGreen.TabIndex = 16;
+            this.btnShowPasswordsLightGreen.TabIndex = 3;
             this.btnShowPasswordsLightGreen.Text = "Ver";
             this.btnShowPasswordsLightGreen.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsLightGreen.Click += new System.EventHandler(this.btmShowPasswordsLightGreen_Click);
+            this.btnShowPasswordsLightGreen.Click += new System.EventHandler(this.btnShowPasswordsLightGreen_Click);
             // 
             // btnShowPasswordsDarkGreen
             // 
@@ -342,10 +340,10 @@ namespace Presentation
             this.btnShowPasswordsDarkGreen.Location = new System.Drawing.Point(186, 213);
             this.btnShowPasswordsDarkGreen.Name = "btnShowPasswordsDarkGreen";
             this.btnShowPasswordsDarkGreen.Size = new System.Drawing.Size(73, 32);
-            this.btnShowPasswordsDarkGreen.TabIndex = 17;
+            this.btnShowPasswordsDarkGreen.TabIndex = 4;
             this.btnShowPasswordsDarkGreen.Text = "Ver";
             this.btnShowPasswordsDarkGreen.UseVisualStyleBackColor = true;
-            this.btnShowPasswordsDarkGreen.Click += new System.EventHandler(this.btmShowPasswordsDarkGreen_Click);
+            this.btnShowPasswordsDarkGreen.Click += new System.EventHandler(this.btnShowPasswordsDarkGreen_Click);
             // 
             // pnlChartList
             // 
@@ -354,32 +352,6 @@ namespace Presentation
             this.pnlChartList.Name = "pnlChartList";
             this.pnlChartList.Size = new System.Drawing.Size(445, 314);
             this.pnlChartList.TabIndex = 1;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(19, 15);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(603, 37);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "Reporte de Fortaleza de Constraseñas";
-            // 
-            // btmShowChart
-            // 
-            this.btmShowChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmShowChart.Location = new System.Drawing.Point(85, 333);
-            this.btmShowChart.Name = "btmShowChart";
-            this.btmShowChart.Size = new System.Drawing.Size(138, 28);
-            this.btmShowChart.TabIndex = 3;
-            this.btmShowChart.Text = "Mostrar gráfica";
-            this.btmShowChart.UseVisualStyleBackColor = true;
-            this.btmShowChart.Click += new System.EventHandler(this.btmShowChart_Click);
             // 
             // lblNoPassword
             // 
@@ -395,11 +367,32 @@ namespace Presentation
             this.lblNoPassword.Text = "No tienes constraseñas para mostrar";
             this.lblNoPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblTitle.Location = new System.Drawing.Point(19, 15);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(347, 25);
+            this.lblTitle.TabIndex = 2;
+            this.lblTitle.Text = "Reporte de Fortaleza de Constraseñas";
+            // 
+            // btnShowChart
+            // 
+            this.btnShowChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowChart.Location = new System.Drawing.Point(85, 333);
+            this.btnShowChart.Name = "btnShowChart";
+            this.btnShowChart.Size = new System.Drawing.Size(138, 28);
+            this.btnShowChart.TabIndex = 5;
+            this.btnShowChart.Text = "Mostrar gráfica";
+            this.btnShowChart.UseVisualStyleBackColor = true;
+            this.btnShowChart.Click += new System.EventHandler(this.btnShowChart_Click);
+            // 
             // PasswordStrength
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btmShowChart);
+            this.Controls.Add(this.btnShowChart);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tlpColorTable);
             this.Controls.Add(this.pnlChartList);
@@ -417,23 +410,22 @@ namespace Presentation
 
         #endregion
         private System.Windows.Forms.Panel pnlChartList;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblGroup;
         private System.Windows.Forms.TableLayoutPanel tlpColorTable;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblRed;
+        private System.Windows.Forms.Label lblOrange;
+        private System.Windows.Forms.Label lblYellow;
+        private System.Windows.Forms.Label lblLightGreen;
         private System.Windows.Forms.Label lblDarkGreenQuantity;
         private System.Windows.Forms.Label lblLightGreenQuantity;
         private System.Windows.Forms.Label lblYellowQuantity;
         private System.Windows.Forms.Button btnShowPasswordsRed;
         private System.Windows.Forms.Label lblRedQuantity;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblDarkGreen;
         private System.Windows.Forms.Label lblOrangeQuantity;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btmShowChart;
+        private System.Windows.Forms.Button btnShowChart;
         private System.Windows.Forms.Button btnShowPasswordsOrange;
         private System.Windows.Forms.Button btnShowPasswordsYellow;
         private System.Windows.Forms.Button btnShowPasswordsLightGreen;

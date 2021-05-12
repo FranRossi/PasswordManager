@@ -62,14 +62,29 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                _myPasswordManager.DeletePassword(_selectedPassword);
-                this.lblMessage.Text = "Contraseña eliminada exitosamente.";
-                LoadTblPassword();
+                if (ShowConfirmationPopUp())
+                {
+                    _myPasswordManager.DeletePassword(_selectedPassword);
+                    lblMessage.Text = "Contraseña eliminada exitosamente.";
+                    LoadTblPassword();
+                }
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
             }
+        }
+
+        private bool ShowConfirmationPopUp()
+        {
+            if (!Properties.Settings.Default.DontShowAgainPopUpPassword)
+            {
+                Form DeleteConfirmationPopUp = new DeleteConfirmation("constraseña");
+                DialogResult resultConfirmation = DeleteConfirmationPopUp.ShowDialog();
+                DeleteConfirmationPopUp.Close();
+                return resultConfirmation == DialogResult.OK;
+            }
+            return true;
         }
 
         private void UpdateSelectedPassword()
@@ -82,7 +97,7 @@ namespace Presentation
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                    lblMessage.Text = "Error al seleccionar la contraseña.";
                 }
             }
         }
@@ -110,17 +125,24 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea eliminar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
             }
         }
 
 
         private void btnSharedPasswords_Click(object sender, EventArgs e)
         {
-            Panel parentPanel = (Panel)this.Parent;
-            MainWindow main = (MainWindow)parentPanel.Parent;
             UpdateSelectedPassword();
-            main.ShowSharedPasswordList(_selectedPassword);
+            if (_selectedPassword != null)
+            {
+                Panel parentPanel = (Panel)this.Parent;
+                MainWindow main = (MainWindow)parentPanel.Parent;
+                main.ShowSharedPasswordList(_selectedPassword);
+            }
+            else
+            {
+                lblMessage.Text = "Debe seleccionar la contraseña que desea compartir.";
+            }
         }
 
         private void btnShow_Click(object sender, EventArgs e)
@@ -133,7 +155,7 @@ namespace Presentation
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea mostrar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea mostrar.";
             }
         }
 

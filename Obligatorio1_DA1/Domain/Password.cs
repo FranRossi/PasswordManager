@@ -29,12 +29,15 @@ namespace Obligatorio1_DA1.Domain
 
         public PasswordStrengthColor PasswordStrength { get; private set; }
 
-        private List<User> SharedWith
+        public List<User> SharedWith
         {
-            get => _sharedWith;
-            set
+            get
             {
-                this._sharedWith = value;
+                if (_sharedWith == null)
+                {
+                    _sharedWith = new List<User>();
+                }
+                return _sharedWith;
             }
         }
 
@@ -104,14 +107,9 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordTooLongException();
         }
 
-        public static string GenerateRandomPassword(int length, Boolean uppercase, Boolean lowercase, Boolean digits, Boolean specialDigits)
+        public static string GenerateRandomPassword(PasswordGenerationOptions options)
         {
-            if (length > 25)
-                throw new PasswordGenerationTooLongException();
-            if (length < 5)
-                throw new PasswordGenerationTooShortException();
-            if (!(uppercase || lowercase || digits || specialDigits))
-                throw new PasswordGenerationNotSelectedCharacterTypesException();
+            ValidatePasswordGenerationOptions(options);
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";
@@ -122,23 +120,29 @@ namespace Obligatorio1_DA1.Domain
             string pass = "";
             Random random = new Random();
 
-            if (uppercase)
+            if (options.Uppercase)
                 AddRandomCharFromSubSet(ref pass, uppercaseSet, random, validChars);
-
-            if (lowercase)
+            if (options.Lowercase)
                 AddRandomCharFromSubSet(ref pass, lowercaseSet, random, validChars);
-
-            if (digits)
+            if (options.Digits)
                 AddRandomCharFromSubSet(ref pass, digitsSet, random, validChars);
-
-            if (specialDigits)
+            if (options.SpecialDigits)
                 AddRandomCharFromSubSet(ref pass, specialDigitsSet, random, validChars);
 
-
-            while (pass.Length < length)
+            while (pass.Length < options.Length)
                 AddRandomCharAtRandomPosition(ref pass, validChars, random);
 
             return pass;
+        }
+
+        private static void ValidatePasswordGenerationOptions(PasswordGenerationOptions selectedOptions)
+        {
+            if (selectedOptions.Length > Password.MaxPasswordLength)
+                throw new PasswordGenerationTooLongException();
+            if (selectedOptions.Length < Password.MinPasswordLength)
+                throw new PasswordGenerationTooShortException();
+            if (!(selectedOptions.Uppercase || selectedOptions.Lowercase || selectedOptions.Digits || selectedOptions.SpecialDigits))
+                throw new PasswordGenerationNotSelectedCharacterTypesException();
         }
 
         private static void AddRandomCharFromSubSet(ref string word, string subSet, Random random, List<char> mainSet)
@@ -253,25 +257,11 @@ namespace Obligatorio1_DA1.Domain
 
         public void ShareWithUser(User userShareWith)
         {
-            // TODO why this if? can userShareWIth be null?
-            if (this.SharedWith == null)
-            {
-                this.SharedWith = new List<User>();
-            }
             if (this.User == userShareWith)
             {
                 throw new PasswordSharedWithSameUserException();
             }
             this.SharedWith.Add(userShareWith);
-        }
-
-        public List<User> GetUsersSharedWith()
-        {
-            if (this.SharedWith == null)
-            {
-                return new List<User>();
-            }
-            return this.SharedWith;
         }
 
         public void UnShareWithUser(User userRemoveShare)
@@ -287,7 +277,7 @@ namespace Obligatorio1_DA1.Domain
             {
                 passwordToCompare = (Password)obj;
             }
-            catch (Exception e)
+            catch (InvalidCastException e)
             {
                 return false;
             }
@@ -297,8 +287,8 @@ namespace Obligatorio1_DA1.Domain
         private bool CheckEqualityOfPassword(Password passwordToCompare, Password password)
         {
             bool userObjectAreEqual = passwordToCompare.User == password.User;
-            bool userNameAreEqual = passwordToCompare.Username == password.Username;
-            bool siteAreEqual = passwordToCompare.Site == password.Site;
+            bool userNameAreEqual = passwordToCompare.Username.ToLower() == password.Username.ToLower();
+            bool siteAreEqual = passwordToCompare.Site.ToLower() == password.Site.ToLower();
 
             return (userNameAreEqual && siteAreEqual && userObjectAreEqual);
         }

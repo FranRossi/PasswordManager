@@ -22,98 +22,110 @@ namespace Presentation
     }
     public partial class PasswordStrength : UserControl
     {
-        private PasswordManager _passwordManager;
+        private PasswordManager _myPasswordManager;
         private PasswordStrengthChart chartPanel;
         private List<colorComponent> colorCmp;
         public PasswordStrength(PasswordManager passwordManager)
         {
-            this._passwordManager = passwordManager;
+            _myPasswordManager = passwordManager;
             InitializeComponent();
-            this.SetColorsLabelsAndButtons();
-            this.SetColorQuantities();
-            this.LoadChart();
+            SetColorsLabelsAndButtons();
+            LoadColorQuantities();
+            LoadChart();
+            ShowChart();
         }
 
 
-        private void SetColorQuantities()
+        private void LoadColorQuantities()
         {
-            List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
-            foreach (passwordReportByColor entry in report)
+            List<PasswordReportByColor> report = this._myPasswordManager.GetPasswordReportByColor();
+            foreach (PasswordReportByColor entry in report)
             {
                 colorComponent cmp = colorCmp.Find(component => component.Color == entry.Color);
                 int quantity = entry.Quantity;
                 cmp.Label.Text = quantity.ToString();
                 if (quantity == 0)
                     cmp.Button.Enabled = false;
-
-
+                else
+                    cmp.Button.Enabled = true;
 
             }
         }
 
+        public void Reload()
+        {
+            LoadColorQuantities();
+            ReloadChart();
+        }
 
         private void LoadChart()
         {
             bool enoughtPasswordToShow;
-            List<passwordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = this._myPasswordManager.GetPasswordReportByCategoryAndColor();
             enoughtPasswordToShow = (report.Count() > 0);
 
             if (enoughtPasswordToShow)
             {
-                this.chartPanel = new PasswordStrengthChart(report);
-                this.ShowChart();
+                chartPanel = new PasswordStrengthChart(report);
             }
             else
-                btmShowChart.Enabled = false;
+                btnShowChart.Enabled = false;
         }
 
+        private void ReloadChart()
+        {
+            List<PasswordReportByCategoryAndColor> report = _myPasswordManager.GetPasswordReportByCategoryAndColor();
+            chartPanel = new PasswordStrengthChart(report);
+        }
         private void ShowChart()
         {
             pnlChartList.Controls.Clear();
             pnlChartList.Controls.Add(this.chartPanel);
+            btnShowChart.Enabled = false;
         }
 
         private void ShowPasswordList(PasswordStrengthColor color)
         {
             pnlChartList.Controls.Clear();
-            List<Password> password = this._passwordManager.GetPasswordsByColor(color);
-            UserControl passwordList = new PasswordListOfStrengthColor(password);
+            UserControl passwordList = new PasswordListOfStrengthColor(_myPasswordManager, color);
             pnlChartList.Controls.Add(passwordList);
+            btnShowChart.Enabled = true;
         }
 
-        private void btmShowChart_Click(object sender, EventArgs e)
+        private void btnShowChart_Click(object sender, EventArgs e)
         {
-            this.ShowChart();
+            ReloadChart();
+            ShowChart();
         }
 
-        private void btmShowPasswordsRed_Click(object sender, EventArgs e)
+        private void btnShowPasswordsRed_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.Red);
         }
 
-        private void btmShowPasswordsOrange_Click(object sender, EventArgs e)
+        private void btnShowPasswordsOrange_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.Orange);
         }
 
 
-        private void btmShowPasswordsYellow_Click(object sender, EventArgs e)
+        private void btnShowPasswordsYellow_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.Yellow);
         }
 
-        private void btmShowPasswordsLightGreen_Click(object sender, EventArgs e)
+        private void btnShowPasswordsLightGreen_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.LightGreen);
         }
 
-        private void btmShowPasswordsDarkGreen_Click(object sender, EventArgs e)
+        private void btnShowPasswordsDarkGreen_Click(object sender, EventArgs e)
         {
             ShowPasswordList(PasswordStrengthColor.DarkGreen);
         }
         private void SetColorsLabelsAndButtons()
         {
-            this.colorCmp = new List<colorComponent>
+            colorCmp = new List<colorComponent>
             {
                 new colorComponent{Color = PasswordStrengthColor.DarkGreen, Label = lblDarkGreenQuantity, Button = btnShowPasswordsDarkGreen },
                 new colorComponent{Color = PasswordStrengthColor.LightGreen, Label = lblLightGreenQuantity, Button = btnShowPasswordsLightGreen },

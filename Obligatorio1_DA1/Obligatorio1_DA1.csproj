@@ -56,6 +56,8 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidFormatException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidMonthException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNumberInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNumberLengthIncorrectException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeInvalidCharactersException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeWrongSizeException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNameTooLongException.cs" />
@@ -65,8 +67,6 @@
     <Compile Include="Exceptions\CreditCard\CreditCardAlreadyExistsException.cs" />
     <Compile Include="Exceptions\CreditCard\CreditCardNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Item\ItemInvalidCategoryException.cs" />
-    <Compile Include="Exceptions\CreditCard\CreditCardNumberInvalidCharacters.cs" />
-    <Compile Include="Exceptions\CreditCard\CreditCardNumberLengthIncorrect.cs" />
     <Compile Include="Exceptions\Category\CategoryAlreadyAddedException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationNotSelectedCharacterTypesException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooShortException.cs" />
@@ -94,7 +94,8 @@
     <Compile Include="TestData.cs" />
     <Compile Include="Utilities\DataBreachFromString.cs" />
     <Compile Include="Utilities\IDataBreach.cs" />
-    <Compile Include="Utilities\passwordStrengthReport.cs" />
+    <Compile Include="Utilities\PasswordGenerationOptions.cs" />
+    <Compile Include="Utilities\PasswordStrengthReport.cs" />
     <Compile Include="Utilities\PasswordStrengthColor.cs" />
     <Compile Include="Utilities\Validator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

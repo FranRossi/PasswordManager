@@ -61,6 +61,7 @@ namespace Presentation
             this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblPassword.Location = new System.Drawing.Point(8, 55);
+            this.tblPassword.MultiSelect = false;
             this.tblPassword.Name = "tblPassword";
             this.tblPassword.ReadOnly = true;
             this.tblPassword.RowHeadersVisible = false;
@@ -112,9 +113,9 @@ namespace Presentation
             // btnSharedPasswords
             // 
             this.btnSharedPasswords.Location = new System.Drawing.Point(401, 11);
-            this.btnSharedPasswords.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSharedPasswords.Margin = new System.Windows.Forms.Padding(2);
             this.btnSharedPasswords.Name = "btnSharedPasswords";
-            this.btnSharedPasswords.Size = new System.Drawing.Size(68, 23);
+            this.btnSharedPasswords.Size = new System.Drawing.Size(75, 23);
             this.btnSharedPasswords.TabIndex = 3;
             this.btnSharedPasswords.Text = "Compartir";
             this.btnSharedPasswords.UseVisualStyleBackColor = true;
@@ -146,7 +147,7 @@ namespace Presentation
             this.btnShow.Location = new System.Drawing.Point(306, 11);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(75, 23);
-            this.btnShow.TabIndex = 5;
+            this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Mostrar ";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);

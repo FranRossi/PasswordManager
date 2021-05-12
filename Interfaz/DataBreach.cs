@@ -16,6 +16,8 @@ namespace Presentation
     {
 
         private PasswordManager _myPasswordManager;
+        private Password _selectedPassword;
+
         public DataBreach(PasswordManager pPasswordManager)
         {
             InitializeComponent();
@@ -24,11 +26,11 @@ namespace Presentation
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
-            DataBreachFromString dataBreach = new DataBreachFromString()
-            {
-                Data = txtDataBreach.Text
-            };
-            List<Item> breachResult = _myPasswordManager.GetBreachedItems(dataBreach);
+            LoadDataBreach();
+        }
+
+        private void LoadTables(List<Item> breachResult)
+        {
             List<Password> passwords = new List<Password>();
             List<CreditCard> creditCards = new List<CreditCard>();
             foreach (Item i in breachResult)
@@ -40,6 +42,16 @@ namespace Presentation
             }
             LoadTblCreditCard(creditCards);
             LoadTblPassword(passwords);
+        }
+
+        private void LoadDataBreach()
+        {
+            DataBreachFromString dataBreach = new DataBreachFromString()
+            {
+                Data = txtDataBreach.Text
+            };
+            List<Item> breachResult = _myPasswordManager.GetBreachedItems(dataBreach);
+            LoadTables(breachResult);
         }
 
         private void LoadTblCreditCard(List<CreditCard> creditCards)
@@ -86,6 +98,40 @@ namespace Presentation
                         break;
                 }
             }
+        }
+
+        private void btnModifyPass_Click(object sender, EventArgs e)
+        {
+            UpdateSelectedPassword();
+            if (_selectedPassword != null)
+            {
+                Form createPassword = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
+                createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
+                createPassword.ShowDialog();
+            }
+            else
+            {
+                lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
+            }
+        }
+
+        private void UpdateSelectedPassword()
+        {
+            if (tblDataBreachPassword.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedPassword = (Password)tblDataBreachPassword.SelectedCells[0].OwningRow.DataBoundItem;
+                }
+                catch (FormatException exception)
+                {
+                    lblMessage.Text = "Error al seleccionar la contraseña.";
+                }
+            }
+        }
+        private void RefreshForm(object sender, FormClosingEventArgs e)
+        {
+            LoadDataBreach();
         }
     }
 }
