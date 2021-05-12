@@ -40,11 +40,8 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateNotes(string value)
         {
-            if (value == null)
-                return;
             if (!Validator.MaxLengthOfString(value, Item.MaxNoteLength))
                 throw new ItemNotesTooLongException();
-
         }
     }
 }

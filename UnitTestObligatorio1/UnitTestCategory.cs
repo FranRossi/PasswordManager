@@ -45,6 +45,60 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        [ExpectedException(typeof(CategoryTooShortException))]
+        public void CreateCateogryTooShort()
+        {
+            this._categoryPersonal = new Category()
+            {
+                Name = "Li"
+            };
+        }
+
+        [TestMethod]
+        public void CreateCateogryMinLength()
+        {
+            try
+            {
+                this._categoryPersonal = new Category()
+                {
+                    Name = "Mis"
+                };
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail("Expected no exception, but got: " + exception.Message);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(CategoryTooLongException))]
+        public void CreateCateogryTooLong()
+        {
+            this._categoryPersonal = new Category()
+            {
+                Name = "Peliculas/Series"
+            };
+        }
+
+        [TestMethod]
+        public void CreateCateogryMaxLength()
+        {
+            try
+            {
+                this._categoryPersonal = new Category()
+                {
+                    Name = "Paginas de cine"
+                };
+            }
+            catch (CategoryTooLongException exception)
+            {
+                Assert.Fail("Expected no exception, but got: " + exception.Message);
+            }
+        }
+
+
+
+        [TestMethod]
         public void AddsCategoriesToUser()
         {
             User user = new User("Juancito", "Pepe123");
