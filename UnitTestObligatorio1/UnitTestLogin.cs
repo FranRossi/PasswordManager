@@ -57,6 +57,19 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void LoginUserWrongPasswordExceptionMessage()
+        {
+            try
+            {
+                passwordManager.Login("Lucia", "lucia$123");
+            }
+            catch (ValidationException e)
+            {
+                Assert.AreEqual("El nombre usuario o contraseña son incorrectos.", e.Message);
+            }
+        }
+
+        [TestMethod]
         public void LoginUserWithPasswordAlreadyTaken()
         {
             User newUser = new User("Pepe12", "Lucia123");
