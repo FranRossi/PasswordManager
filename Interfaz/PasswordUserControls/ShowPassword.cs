@@ -56,7 +56,7 @@ namespace Presentation.PasswordUserControls
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

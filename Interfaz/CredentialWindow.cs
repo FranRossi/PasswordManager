@@ -26,7 +26,7 @@ namespace Presentation
         {
             InitializeComponent();
             _credentials = new Credentials(_myPasswordManager);
-            this.pnlCredentials.Controls.Add(_credentials);
+            pnlCredentials.Controls.Add(_credentials);
         }
     }
 }

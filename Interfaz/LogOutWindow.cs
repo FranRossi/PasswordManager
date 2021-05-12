@@ -32,7 +32,7 @@ namespace Presentation
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             CloseMainWindow();
-            this.Close();
+            Close();
         }
 
         void KeepMainWindowOpen()

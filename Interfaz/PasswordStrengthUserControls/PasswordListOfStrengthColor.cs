@@ -69,7 +69,7 @@ namespace Presentation.PasswordStrengthWindow
             }
             else
             {
-                this.lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
+                lblMessage.Text = "Debe seleccionar la contraseña que desea modificar.";
             }
         }
 
@@ -95,7 +95,7 @@ namespace Presentation.PasswordStrengthWindow
                 }
                 catch (FormatException exception)
                 {
-                    this.lblMessage.Text = "Error al seleccionar la contraseña.";
+                    lblMessage.Text = "Error al seleccionar la contraseña.";
                 }
             }
         }
