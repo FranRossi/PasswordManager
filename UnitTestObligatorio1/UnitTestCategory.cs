@@ -190,5 +190,17 @@ namespace UnitTestObligatorio1
 
             Assert.IsFalse(category1.Equals(new object()));
         }
+
+        [TestMethod]
+        public void AddCategoryToUserObject()
+        {
+            User user = new User("Juancito", "Pepe123");
+            Category category1 = new Category()
+            {
+                Name = "Facultad"
+            };
+            user.AddOneCategory(category1);
+            CollectionAssert.Contains(user.Categories, category1);
+        }
     }
 }

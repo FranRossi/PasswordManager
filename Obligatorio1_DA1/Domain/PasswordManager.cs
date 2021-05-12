@@ -55,8 +55,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateCategoryOnCurrentUser(Category category)
         {
-            ValidateCategoryIsUniqueInCurrentUser(category);
-            this.CurrentUser.Categories.Add(category);
+            this.CurrentUser.AddOneCategory(category);
         }
 
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
@@ -66,12 +65,6 @@ namespace Obligatorio1_DA1.Domain
                 if (categoryIterator.Equals(oldCategory))
                     categoryIterator.Name = newCategory.Name;
             }
-        }
-
-        private void ValidateCategoryIsUniqueInCurrentUser(Category category)
-        {
-            if (this.CurrentUser.Categories.Contains(category))
-                throw new CategoryAlreadyAddedException();
         }
 
 
