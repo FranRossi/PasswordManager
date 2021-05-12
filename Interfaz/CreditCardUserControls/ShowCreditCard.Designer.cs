@@ -31,6 +31,7 @@ namespace Presentation.CreditCardUserControls
         {
             this.pnlPassword = new System.Windows.Forms.Panel();
             this.gpbPassword = new System.Windows.Forms.GroupBox();
+            this.mtxtNumber = new System.Windows.Forms.MaskedTextBox();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
@@ -47,7 +48,6 @@ namespace Presentation.CreditCardUserControls
             this.lblName = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.mtxtNumber = new System.Windows.Forms.MaskedTextBox();
             this.pnlPassword.SuspendLayout();
             this.gpbPassword.SuspendLayout();
             this.SuspendLayout();
@@ -88,6 +88,19 @@ namespace Presentation.CreditCardUserControls
             this.gpbPassword.Size = new System.Drawing.Size(289, 351);
             this.gpbPassword.TabIndex = 1;
             this.gpbPassword.TabStop = false;
+            // 
+            // mtxtNumber
+            // 
+            this.mtxtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.mtxtNumber.Location = new System.Drawing.Point(97, 120);
+            this.mtxtNumber.Mask = "AAAA AAAA AAAA AAAA";
+            this.mtxtNumber.Name = "mtxtNumber";
+            this.mtxtNumber.ReadOnly = true;
+            this.mtxtNumber.Size = new System.Drawing.Size(137, 13);
+            this.mtxtNumber.TabIndex = 34;
+            this.mtxtNumber.Text = "1111111111111111";
+            this.mtxtNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtxtNumber.ValidatingType = typeof(int);
             // 
             // txtDate
             // 
@@ -139,7 +152,7 @@ namespace Presentation.CreditCardUserControls
             this.btnShow.TabIndex = 1;
             this.btnShow.Text = "Mostrar";
             this.btnShow.UseVisualStyleBackColor = true;
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click_1);
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // txtNotes
             // 
@@ -203,6 +216,7 @@ namespace Presentation.CreditCardUserControls
             this.btnAccept.TabIndex = 0;
             this.btnAccept.Text = "Aceptar";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // lblNotes
             // 
@@ -253,19 +267,6 @@ namespace Presentation.CreditCardUserControls
             this.lblTitle.Size = new System.Drawing.Size(40, 13);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Tarjeta";
-            // 
-            // mtxtNumber
-            // 
-            this.mtxtNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.mtxtNumber.Location = new System.Drawing.Point(97, 120);
-            this.mtxtNumber.Mask = "AAAA AAAA AAAA AAAA";
-            this.mtxtNumber.Name = "mtxtNumber";
-            this.mtxtNumber.ReadOnly = true;
-            this.mtxtNumber.Size = new System.Drawing.Size(137, 13);
-            this.mtxtNumber.TabIndex = 34;
-            this.mtxtNumber.Text = "1111111111111111";
-            this.mtxtNumber.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.mtxtNumber.ValidatingType = typeof(int);
             // 
             // ShowCreditCard
             // 

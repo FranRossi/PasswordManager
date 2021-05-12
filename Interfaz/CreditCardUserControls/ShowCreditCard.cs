@@ -60,10 +60,5 @@ namespace Presentation.CreditCardUserControls
         {
             this.Close();
         }
-
-        private void btnShow_Click_1(object sender, EventArgs e)
-        {
-            ShowFullInformation();
-        }
     }
 }
