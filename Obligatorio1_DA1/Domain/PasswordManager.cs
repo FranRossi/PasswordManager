@@ -56,7 +56,7 @@ namespace Obligatorio1_DA1.Domain
         public void CreateCategoryOnCurrentUser(Category category)
         {
             ValidateCategoryIsUniqueInCurrentUser(category);
-            this.CurrentUser.Categories.Add(category);
+            this.CurrentUser.AddOneCategory(category);
         }
 
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
