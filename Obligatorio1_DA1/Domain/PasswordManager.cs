@@ -22,8 +22,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void CreateUser(User newUser)
         {
-            if (_users.Exists(user => user.Name == newUser.Name))
-                throw new UsernameAlreadyTakenException();
+            ValidateUser(newUser);
             _users.Add(newUser);
             CurrentUser = newUser;
         }
@@ -40,6 +39,12 @@ namespace Obligatorio1_DA1.Domain
                     else
                         throw new LogInException();
             throw new LogInException();
+        }
+
+        private void ValidateUser(User newUser)
+        {
+            if (_users.Contains(newUser))
+                throw new UsernameAlreadyTakenException();
         }
 
 
