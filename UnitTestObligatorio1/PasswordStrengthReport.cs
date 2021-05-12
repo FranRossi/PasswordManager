@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Utilities;
 using System;
@@ -48,23 +49,24 @@ namespace UnitTestObligatorio1
             AddCategoryToPasswordManager(ref _university, "University");
             AddCategoryToPasswordManager(ref _family, "Family");
 
-            ValueTuple<List<Password>, string, Category>[] passwords = new (List<Password> passwords, string pass, Category category)[]
-              {
-                  (redPassword,redPasswordsName[0] ,_family),
-                  (redPassword,redPasswordsName[1],_family),
-                  (redPassword,redPasswordsName[2],_family),
+            ValueTuple<List<Password>, string, PasswordStrengthColor, Category>[] passwords =
+                new (List<Password> passwords, string pass, PasswordStrengthColor color, Category category)[]
+                 {
+                  (redPassword,redPasswordsName[0], PasswordStrengthColor.Red,_family),
+                  (redPassword,redPasswordsName[1], PasswordStrengthColor.Red,_family),
+                  (redPassword,redPasswordsName[2], PasswordStrengthColor.Red,_family),
 
-                  (yellowPassword,yellowPasswordsName[0],_family),
-                  (yellowPassword,yellowPasswordsName[1],_family),
-                  (yellowPassword,yellowPasswordsName[2],_university),
+                  (yellowPassword,yellowPasswordsName[0], PasswordStrengthColor.Yellow,_family),
+                  (yellowPassword,yellowPasswordsName[1], PasswordStrengthColor.Yellow,_family),
+                  (yellowPassword,yellowPasswordsName[2], PasswordStrengthColor.Yellow,_university),
 
-                  (lightGreenPassword,lightGreenPasswordsName[0],_family),
-                  (lightGreenPassword,lightGreenPasswordsName[1],_university),
-                  (lightGreenPassword,lightGreenPasswordsName[2],_work),
+                  (lightGreenPassword,lightGreenPasswordsName[0], PasswordStrengthColor.LightGreen,_family),
+                  (lightGreenPassword,lightGreenPasswordsName[1], PasswordStrengthColor.LightGreen,_university),
+                  (lightGreenPassword,lightGreenPasswordsName[2], PasswordStrengthColor.LightGreen,_work),
 
-                  (darkGreenPassword,darkGreenPasswordsName[0],_work),
-                  (darkGreenPassword,darkGreenPasswordsName[1],_university),
-              };
+                  (darkGreenPassword,darkGreenPasswordsName[0], PasswordStrengthColor.DarkGreen,_work),
+                  (darkGreenPassword,darkGreenPasswordsName[1], PasswordStrengthColor.DarkGreen,_university),
+                 };
             AddPasswordsToPasswordManager(passwords);
 
         }
@@ -96,6 +98,19 @@ namespace UnitTestObligatorio1
             var redEntry = report.Find(entry => entry.Color == color);
             Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
         }
+
+        /*        [TestMethod]
+                public void GetNumberOfPasswordByStrengthColor2()
+                {
+                    List<passwordReportByColor> expectedReport = new List<passwordReportByColor>()
+                    {
+                        passwordReportByColor
+                    };
+                    List<passwordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
+                    var redEntry = report.Find(entry => entry.Color == color);
+                    Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
+                }*/
+
 
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
@@ -142,21 +157,20 @@ namespace UnitTestObligatorio1
             _passwordManager.CreateCategoryOnCurrentUser(category);
         }
 
-        private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)
+        private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, PasswordStrengthColor, Category>[] passwords)
         {
             for (int i = 0; i < passwords.Length; i++)
             {
-                Password newPassword = new Password
-                {
-                    User = _currentUser,
-                    Category = passwords[i].Item3,
-                    Site = i + "ort.edu.uy",
-                    Username = "23985" + i,
-                    Pass = passwords[i].Item2,
-                    Notes = "No me roben la cuenta"
-                };
-                _passwordManager.CreatePassword(newPassword);
-                passwords[i].Item1.Add(newPassword);
+                Mock<Password> newPassword = new Mock<Password>(MockBehavior.Loose);
+                newPassword.Setup(pass => pass.User).Returns(_currentUser);
+                newPassword.Setup(pass => pass.Category).Returns(passwords[i].Item4);
+                newPassword.Setup(pass => pass.Site).Returns(i + "ort.edu.uy");
+                newPassword.Setup(pass => pass.Username).Returns("23985" + i);
+
+                newPassword.Setup(pass => pass.PasswordStrength).Returns(passwords[i].Item3);
+
+                _passwordManager.CreatePassword(newPassword.Object);
+                passwords[i].Item1.Add(newPassword.Object);
             }
         }
 

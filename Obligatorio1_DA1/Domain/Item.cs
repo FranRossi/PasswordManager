@@ -14,7 +14,7 @@ namespace Obligatorio1_DA1.Domain
 
         private Category _category;
         private string notes;
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public string Notes
         {
             get => notes;
@@ -25,7 +25,7 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-        public Category Category
+        public virtual Category Category
         {
             get => _category;
             set

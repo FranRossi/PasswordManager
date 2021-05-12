@@ -27,7 +27,7 @@ namespace Obligatorio1_DA1.Domain
             LastModification = DateTime.Today;
         }
 
-        public PasswordStrengthColor PasswordStrength { get; private set; }
+        public virtual PasswordStrengthColor PasswordStrength { get; private set; }
 
         private List<User> SharedWith
         {
@@ -38,7 +38,7 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
-        public string Site
+        public virtual string Site
         {
             get => site;
             set
@@ -49,7 +49,7 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
-        public string Username
+        public virtual string Username
         {
             get => username;
             set
@@ -59,7 +59,7 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
-        public string Pass
+        public virtual string Pass
         {
             get => pass;
             set
