@@ -150,8 +150,12 @@ namespace Obligatorio1_DA1.Domain
 
         private static void AddRandomCharAtRandomPosition(ref string word, List<char> validChars, Random random)
         {
-            char randomChar = validChars[random.Next(0, validChars.Count - 1)];
-            int index = random.Next(0, word.Length);
+            int indexFirstValidChart = 0;
+            int indexLastValidChart = validChars.Count - 1;
+            char randomChar = validChars[random.Next(indexFirstValidChart, indexLastValidChart)];
+
+            int indexStartWord = 0;
+            int index = random.Next(indexStartWord, word.Length);
             word = word.Substring(0, index) + randomChar + word.Substring(index);
         }
 
