@@ -91,9 +91,16 @@ namespace Obligatorio1_DA1.Domain
             return this.Name;
         }
 
-        public void AddOneCategory(Category category1)
+        public void AddOneCategory(Category newCategory)
         {
-            this.Categories.Add(category1);
+            ValidateCategoryIsUnique(newCategory);
+            this.Categories.Add(newCategory);
+        }
+
+        private void ValidateCategoryIsUnique(Category newCategory)
+        {
+            if (this.Categories.Contains(newCategory))
+                throw new CategoryAlreadyAddedException();
         }
     }
 }
