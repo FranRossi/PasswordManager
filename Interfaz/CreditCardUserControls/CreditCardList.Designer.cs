@@ -108,7 +108,7 @@ namespace Presentation
             this.btnShow.TabIndex = 3;
             this.btnShow.Text = "Mostrar";
             this.btnShow.UseVisualStyleBackColor = true;
-            this.btnShow.Click += new System.EventHandler(this.BtnShow_Click);
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // btnAddCreditCard
             // 
@@ -118,7 +118,7 @@ namespace Presentation
             this.btnAddCreditCard.TabIndex = 2;
             this.btnAddCreditCard.Text = "Agregar";
             this.btnAddCreditCard.UseVisualStyleBackColor = true;
-            this.btnAddCreditCard.Click += new System.EventHandler(this.BtnAddCreditCard_Click);
+            this.btnAddCreditCard.Click += new System.EventHandler(this.btnAddCreditCard_Click);
             // 
             // btnModifyCreditCard
             // 
@@ -128,7 +128,7 @@ namespace Presentation
             this.btnModifyCreditCard.TabIndex = 1;
             this.btnModifyCreditCard.Text = "Modificar";
             this.btnModifyCreditCard.UseVisualStyleBackColor = true;
-            this.btnModifyCreditCard.Click += new System.EventHandler(this.BtnModifyCreditCard_Click);
+            this.btnModifyCreditCard.Click += new System.EventHandler(this.btnModifyCreditCard_Click);
             // 
             // btnDeleteCreditCard
             // 
@@ -138,7 +138,7 @@ namespace Presentation
             this.btnDeleteCreditCard.TabIndex = 0;
             this.btnDeleteCreditCard.Text = "Eliminar";
             this.btnDeleteCreditCard.UseVisualStyleBackColor = true;
-            this.btnDeleteCreditCard.Click += new System.EventHandler(this.BtnDeleteCreditCard_Click);
+            this.btnDeleteCreditCard.Click += new System.EventHandler(this.btnDeleteCreditCard_Click);
             // 
             // CreditCardList
             // 

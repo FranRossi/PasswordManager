@@ -15,12 +15,12 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
-        private List<User> usersNotSharedWith;
-        public SharedPasswordList(PasswordManager pPasswordManager, Password selectedPassword)
+        private List<User> _usersNotSharedWith;
+        public SharedPasswordList(PasswordManager pPasswordManager, Password pSelectedPassword)
         {
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
-            _selectedPassword = selectedPassword;
+            _selectedPassword = pSelectedPassword;
             LoadTblPassword();
             setSelectedPassoword();
         }
@@ -73,14 +73,14 @@ namespace Presentation
         private void LoadcbUsersNotSharedWith(Password selectedPassword)
         {
             cbUsersNotSharedWith.Items.Clear();
-            usersNotSharedWith = this._myPasswordManager.GetUsersPassNotSharedWith(selectedPassword);
-            if (usersNotSharedWith.Count == 0)
+            _usersNotSharedWith = this._myPasswordManager.GetUsersPassNotSharedWith(selectedPassword);
+            if (_usersNotSharedWith.Count == 0)
             {
                 cbUsersNotSharedWith.Enabled = false;
                 btnShare.Enabled = false;
             }
             else
-                ShowcbUsersNotSharedWith(usersNotSharedWith);
+                ShowcbUsersNotSharedWith(_usersNotSharedWith);
         }
 
         private void ShowcbUsersNotSharedWith(List<User> usersNotSharedWith)
@@ -136,7 +136,7 @@ namespace Presentation
         {
             Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
             int index = cbUsersNotSharedWith.SelectedIndex;
-            User selectedUser = usersNotSharedWith.ElementAt(index);
+            User selectedUser = _usersNotSharedWith.ElementAt(index);
             selectedPassword.ShareWithUser(selectedUser);
             LoadcbUsersNotSharedWith(selectedPassword);
             LoadTblSharedWith(selectedPassword);

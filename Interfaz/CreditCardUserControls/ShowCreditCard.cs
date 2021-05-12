@@ -14,10 +14,10 @@ namespace Presentation.CreditCardUserControls
     public partial class ShowCreditCard : Form
     {
         private CreditCard _creditCard;
-        public ShowCreditCard(CreditCard creditCard)
+        public ShowCreditCard(CreditCard pCreditCard)
         {
             InitializeComponent();
-            _creditCard = creditCard;
+            _creditCard = pCreditCard;
             LoadInformation();
         }
 

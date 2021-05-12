@@ -65,7 +65,6 @@ namespace Presentation
             // lblCreateCategory
             // 
             this.lblCreateCategory.AutoSize = true;
-            this.lblCreateCategory.Enabled = false;
             this.lblCreateCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lblCreateCategory.Location = new System.Drawing.Point(7, 74);
             this.lblCreateCategory.Name = "lblCreateCategory";
@@ -102,7 +101,6 @@ namespace Presentation
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Enabled = false;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblTitle.Location = new System.Drawing.Point(3, 19);
             this.lblTitle.Name = "lblTitle";
@@ -151,7 +149,6 @@ namespace Presentation
             // lblList
             // 
             this.lblList.AutoSize = true;
-            this.lblList.Enabled = false;
             this.lblList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.lblList.Location = new System.Drawing.Point(3, 18);
             this.lblList.Name = "lblList";
@@ -200,7 +197,6 @@ namespace Presentation
             // lblModifyCategory
             // 
             this.lblModifyCategory.AutoSize = true;
-            this.lblModifyCategory.Enabled = false;
             this.lblModifyCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.lblModifyCategory.Location = new System.Drawing.Point(6, 10);
             this.lblModifyCategory.Name = "lblModifyCategory";

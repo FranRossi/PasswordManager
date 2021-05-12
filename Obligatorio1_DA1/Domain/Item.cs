@@ -13,15 +13,15 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxNoteLength = 250;
 
         private Category _category;
-        private string notes;
+        private string _notes;
         public User User { get; set; }
         public string Notes
         {
-            get => notes;
+            get => _notes;
             set
             {
                 ValidateNotes(value);
-                notes = value;
+                _notes = value;
             }
 
         }
