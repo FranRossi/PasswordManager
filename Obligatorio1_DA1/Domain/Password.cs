@@ -156,7 +156,7 @@ namespace Obligatorio1_DA1.Domain
 
             int indexStartWord = 0;
             int index = random.Next(indexStartWord, word.Length);
-            word = word.Substring(0, index) + randomChar + word.Substring(index);
+            word = word.Substring(indexStartWord, index) + randomChar + word.Substring(index);
         }
 
         private PasswordStrengthColor CalculatePasswordStrength(string pass)
