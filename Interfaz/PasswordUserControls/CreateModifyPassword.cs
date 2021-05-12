@@ -23,6 +23,7 @@ namespace Presentation
             InitializeComponent();
             _myPasswordManager = pPasswordManager;
             LoadComboBoxCategory();
+            ShowHidePassword(false);
         }
 
         public CreateModifyPassword(PasswordManager pPasswordManager, Password pCreditCard)
@@ -31,6 +32,7 @@ namespace Presentation
             _myPasswordManager = pPasswordManager;
             _myPasswordToModify = pCreditCard;
             LoadComboBoxCategory();
+            ShowHidePassword(false);
             LoadFromPassword();
         }
 
@@ -125,6 +127,20 @@ namespace Presentation
             {
                 lblMessage.Text = exception.Message;
             }
+        }
+
+        private void cbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            bool showPasswordChecked = cbShowPassword.Checked;
+            ShowHidePassword(showPasswordChecked);
+        }
+
+        private void ShowHidePassword(bool showPassword)
+        {
+            if (showPassword)
+                txtPassword.PasswordChar = '\0';
+            else
+                txtPassword.PasswordChar = '*';
         }
     }
 }

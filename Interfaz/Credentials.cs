@@ -78,8 +78,6 @@ namespace Presentation
         {
             bool showPasswordChecked = cbShowPassword.Checked;
             ShowHidePassword(showPasswordChecked);
-
-
         }
 
         private void ShowHidePassword(bool showPassword)

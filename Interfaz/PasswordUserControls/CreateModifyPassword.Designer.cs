@@ -52,6 +52,7 @@ namespace Presentation
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
+            this.cbShowPassword = new System.Windows.Forms.CheckBox();
             this.pnlPassword.SuspendLayout();
             this.gpbCreditCard.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -65,7 +66,7 @@ namespace Presentation
             this.pnlPassword.Location = new System.Drawing.Point(11, 11);
             this.pnlPassword.Margin = new System.Windows.Forms.Padding(2);
             this.pnlPassword.Name = "pnlPassword";
-            this.pnlPassword.Size = new System.Drawing.Size(401, 496);
+            this.pnlPassword.Size = new System.Drawing.Size(401, 536);
             this.pnlPassword.TabIndex = 2;
             // 
             // gpbCreditCard
@@ -87,20 +88,21 @@ namespace Presentation
             this.gpbCreditCard.Margin = new System.Windows.Forms.Padding(2);
             this.gpbCreditCard.Name = "gpbCreditCard";
             this.gpbCreditCard.Padding = new System.Windows.Forms.Padding(2);
-            this.gpbCreditCard.Size = new System.Drawing.Size(397, 460);
+            this.gpbCreditCard.Size = new System.Drawing.Size(397, 502);
             this.gpbCreditCard.TabIndex = 1;
             this.gpbCreditCard.TabStop = false;
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(9, 429);
+            this.lblMessage.Location = new System.Drawing.Point(9, 477);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
             this.lblMessage.TabIndex = 18;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbShowPassword);
             this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Controls.Add(this.cbSymbol);
             this.groupBox1.Controls.Add(this.cbDigit);
@@ -111,13 +113,13 @@ namespace Presentation
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Location = new System.Drawing.Point(115, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 205);
+            this.groupBox1.Size = new System.Drawing.Size(252, 243);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(107, 173);
+            this.btnGenerate.Location = new System.Drawing.Point(107, 201);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(70, 27);
@@ -129,7 +131,7 @@ namespace Presentation
             // cbSymbol
             // 
             this.cbSymbol.AutoSize = true;
-            this.cbSymbol.Location = new System.Drawing.Point(17, 145);
+            this.cbSymbol.Location = new System.Drawing.Point(17, 173);
             this.cbSymbol.Name = "cbSymbol";
             this.cbSymbol.Size = new System.Drawing.Size(132, 17);
             this.cbSymbol.TabIndex = 9;
@@ -139,7 +141,7 @@ namespace Presentation
             // cbDigit
             // 
             this.cbDigit.AutoSize = true;
-            this.cbDigit.Location = new System.Drawing.Point(17, 122);
+            this.cbDigit.Location = new System.Drawing.Point(17, 150);
             this.cbDigit.Name = "cbDigit";
             this.cbDigit.Size = new System.Drawing.Size(105, 17);
             this.cbDigit.TabIndex = 8;
@@ -149,7 +151,7 @@ namespace Presentation
             // cbLowercase
             // 
             this.cbLowercase.AutoSize = true;
-            this.cbLowercase.Location = new System.Drawing.Point(17, 99);
+            this.cbLowercase.Location = new System.Drawing.Point(17, 127);
             this.cbLowercase.Name = "cbLowercase";
             this.cbLowercase.Size = new System.Drawing.Size(124, 17);
             this.cbLowercase.TabIndex = 7;
@@ -159,7 +161,7 @@ namespace Presentation
             // cbUppercase
             // 
             this.cbUppercase.AutoSize = true;
-            this.cbUppercase.Location = new System.Drawing.Point(17, 76);
+            this.cbUppercase.Location = new System.Drawing.Point(17, 104);
             this.cbUppercase.Name = "cbUppercase";
             this.cbUppercase.Size = new System.Drawing.Size(130, 17);
             this.cbUppercase.TabIndex = 6;
@@ -168,7 +170,7 @@ namespace Presentation
             // 
             // nudLength
             // 
-            this.nudLength.Location = new System.Drawing.Point(53, 42);
+            this.nudLength.Location = new System.Drawing.Point(53, 70);
             this.nudLength.Maximum = new decimal(new int[] {
             25,
             0,
@@ -191,7 +193,7 @@ namespace Presentation
             // lblLength
             // 
             this.lblLength.AutoSize = true;
-            this.lblLength.Location = new System.Drawing.Point(14, 44);
+            this.lblLength.Location = new System.Drawing.Point(14, 72);
             this.lblLength.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLength.Name = "lblLength";
             this.lblLength.Size = new System.Drawing.Size(34, 13);
@@ -208,7 +210,7 @@ namespace Presentation
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(222, 391);
+            this.btnAccept.Location = new System.Drawing.Point(222, 439);
             this.btnAccept.Margin = new System.Windows.Forms.Padding(2);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(140, 27);
@@ -219,7 +221,7 @@ namespace Presentation
             // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(132, 316);
+            this.txtNotes.Location = new System.Drawing.Point(132, 364);
             this.txtNotes.Margin = new System.Windows.Forms.Padding(2);
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.Size = new System.Drawing.Size(207, 64);
@@ -229,7 +231,7 @@ namespace Presentation
             // lblNotes
             // 
             this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(36, 319);
+            this.lblNotes.Location = new System.Drawing.Point(36, 367);
             this.lblNotes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(35, 13);
@@ -312,11 +314,22 @@ namespace Presentation
             this.lblPassword.TabIndex = 0;
             this.lblPassword.Text = "Contraseña";
             // 
+            // cbShowPassword
+            // 
+            this.cbShowPassword.AutoSize = true;
+            this.cbShowPassword.Location = new System.Drawing.Point(17, 36);
+            this.cbShowPassword.Name = "cbShowPassword";
+            this.cbShowPassword.Size = new System.Drawing.Size(117, 17);
+            this.cbShowPassword.TabIndex = 19;
+            this.cbShowPassword.Text = "Mostrar contraseña";
+            this.cbShowPassword.UseVisualStyleBackColor = true;
+            this.cbShowPassword.CheckedChanged += new System.EventHandler(this.cbShowPassword_CheckedChanged);
+            // 
             // CreateModifyPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 518);
+            this.ClientSize = new System.Drawing.Size(423, 558);
             this.Controls.Add(this.pnlPassword);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -359,5 +372,6 @@ namespace Presentation
         private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label lblCategory;
         private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.CheckBox cbShowPassword;
     }
 }
