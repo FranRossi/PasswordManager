@@ -16,9 +16,9 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxPasswordLength = 25;
         public const int MinPasswordLength = 5;
 
-        private string site;
-        private string username;
-        private string pass;
+        private string _site;
+        private string _username;
+        private string _pass;
         private List<User> _sharedWith;
         private DateTime _lastModification;
 
@@ -43,32 +43,32 @@ namespace Obligatorio1_DA1.Domain
 
         public string Site
         {
-            get => site;
+            get => _site;
             set
             {
                 ValidateSite(value);
-                site = value;
+                _site = value;
             }
 
         }
 
         public string Username
         {
-            get => username;
+            get => _username;
             set
             {
                 ValidateUsername(value);
-                username = value;
+                _username = value;
             }
         }
 
         public string Pass
         {
-            get => pass;
+            get => _pass;
             set
             {
                 ValidatePass(value);
-                pass = value;
+                _pass = value;
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
 

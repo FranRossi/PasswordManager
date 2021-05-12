@@ -23,11 +23,11 @@ namespace Presentation
     public partial class PasswordStrength : UserControl
     {
         private PasswordManager _myPasswordManager;
-        private PasswordStrengthChart chartPanel;
-        private List<colorComponent> colorCmp;
-        public PasswordStrength(PasswordManager passwordManager)
+        private PasswordStrengthChart _chartPanel;
+        private List<colorComponent> _colorCmp;
+        public PasswordStrength(PasswordManager pPasswordManager)
         {
-            _myPasswordManager = passwordManager;
+            _myPasswordManager = pPasswordManager;
             InitializeComponent();
             SetColorsLabelsAndButtons();
             LoadColorQuantities();
@@ -41,7 +41,7 @@ namespace Presentation
             List<PasswordReportByColor> report = this._myPasswordManager.GetPasswordReportByColor();
             foreach (PasswordReportByColor entry in report)
             {
-                colorComponent cmp = colorCmp.Find(component => component.Color == entry.Color);
+                colorComponent cmp = _colorCmp.Find(component => component.Color == entry.Color);
                 int quantity = entry.Quantity;
                 cmp.Label.Text = quantity.ToString();
                 if (quantity == 0)
@@ -66,7 +66,7 @@ namespace Presentation
 
             if (enoughtPasswordToShow)
             {
-                chartPanel = new PasswordStrengthChart(report);
+                _chartPanel = new PasswordStrengthChart(report);
             }
             else
                 btnShowChart.Enabled = false;
@@ -75,12 +75,12 @@ namespace Presentation
         private void ReloadChart()
         {
             List<PasswordReportByCategoryAndColor> report = _myPasswordManager.GetPasswordReportByCategoryAndColor();
-            chartPanel = new PasswordStrengthChart(report);
+            _chartPanel = new PasswordStrengthChart(report);
         }
         private void ShowChart()
         {
             pnlChartList.Controls.Clear();
-            pnlChartList.Controls.Add(this.chartPanel);
+            pnlChartList.Controls.Add(this._chartPanel);
             btnShowChart.Enabled = false;
         }
 
@@ -125,7 +125,7 @@ namespace Presentation
         }
         private void SetColorsLabelsAndButtons()
         {
-            colorCmp = new List<colorComponent>
+            _colorCmp = new List<colorComponent>
             {
                 new colorComponent{Color = PasswordStrengthColor.DarkGreen, Label = lblDarkGreenQuantity, Button = btnShowPasswordsDarkGreen },
                 new colorComponent{Color = PasswordStrengthColor.LightGreen, Label = lblLightGreenQuantity, Button = btnShowPasswordsLightGreen },

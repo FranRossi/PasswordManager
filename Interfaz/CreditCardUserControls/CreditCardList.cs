@@ -60,7 +60,7 @@ namespace Presentation
             }
         }
 
-        private void BtnAddCreditCard_Click(object sender, EventArgs e)
+        private void btnAddCreditCard_Click(object sender, EventArgs e)
         {
             Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
@@ -72,7 +72,7 @@ namespace Presentation
             LoadTblCreditCard();
         }
 
-        private void BtnDeleteCreditCard_Click(object sender, EventArgs e)
+        private void btnDeleteCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
@@ -103,7 +103,7 @@ namespace Presentation
             return true;
         }
 
-        private void BtnModifyCreditCard_Click(object sender, EventArgs e)
+        private void btnModifyCreditCard_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
@@ -134,7 +134,7 @@ namespace Presentation
             }
         }
 
-        private void BtnShow_Click(object sender, EventArgs e)
+        private void btnShow_Click(object sender, EventArgs e)
         {
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)

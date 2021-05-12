@@ -12,33 +12,33 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxPasswordLength = 25;
         public const int MinPasswordLength = 5;
 
-        private string masterPass;
-        private string name;
-        private List<Category> categories;
+        private string _masterPass;
+        private string _name;
+        private List<Category> _categories;
         public string Name
         {
-            get => name;
+            get => _name;
             set
             {
                 ValidateName(value);
-                name = value;
+                _name = value;
             }
         }
         public string MasterPass
         {
-            get => masterPass;
+            get => _masterPass;
             set
             {
                 ValidatePassword(value);
-                masterPass = value;
+                _masterPass = value;
             }
         }
         public List<Category> Categories
         {
-            get => categories;
+            get => _categories;
             private set
             {
-                categories = value;
+                _categories = value;
             }
         }
 
