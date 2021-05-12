@@ -25,9 +25,9 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private PasswordStrengthChart chartPanel;
         private List<colorComponent> colorCmp;
-        public PasswordStrength(PasswordManager passwordManager)
+        public PasswordStrength(PasswordManager pPasswordManager)
         {
-            _myPasswordManager = passwordManager;
+            _myPasswordManager = pPasswordManager;
             InitializeComponent();
             SetColorsLabelsAndButtons();
             LoadColorQuantities();
