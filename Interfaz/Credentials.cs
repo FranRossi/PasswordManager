@@ -21,6 +21,7 @@ namespace Presentation
         {
             InitializeComponent();
             Properties.Settings.Default.Reset();
+            ShowHidePassword(false);
             _myPasswordManager = pPasswordManager;
             TestData testData = new TestData(_myPasswordManager);
 
@@ -73,6 +74,18 @@ namespace Presentation
             mainForm.Show();
         }
 
+        private void cbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            bool showPasswordChecked = cbShowPassword.Checked;
+            ShowHidePassword(showPasswordChecked);
+        }
 
+        private void ShowHidePassword(bool showPassword)
+        {
+            if (showPassword)
+                txtMasterPassword.PasswordChar = '\0';
+            else
+                txtMasterPassword.PasswordChar = '*';
+        }
     }
 }

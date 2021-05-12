@@ -39,6 +39,7 @@ namespace Presentation
             this.btnSignUp = new System.Windows.Forms.Button();
             this.lblMessage = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cbShowPassword = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -56,7 +57,7 @@ namespace Presentation
             // lblMasterPassword
             // 
             this.lblMasterPassword.AutoSize = true;
-            this.lblMasterPassword.Location = new System.Drawing.Point(73, 145);
+            this.lblMasterPassword.Location = new System.Drawing.Point(67, 145);
             this.lblMasterPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMasterPassword.Name = "lblMasterPassword";
             this.lblMasterPassword.Size = new System.Drawing.Size(102, 13);
@@ -65,15 +66,15 @@ namespace Presentation
             // 
             // txtMasterPassword
             // 
-            this.txtMasterPassword.Location = new System.Drawing.Point(191, 142);
+            this.txtMasterPassword.Location = new System.Drawing.Point(185, 142);
             this.txtMasterPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtMasterPassword.Name = "txtMasterPassword";
-            this.txtMasterPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtMasterPassword.Size = new System.Drawing.Size(117, 20);
             this.txtMasterPassword.TabIndex = 1;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(75, 184);
+            this.btnLogin.Location = new System.Drawing.Point(75, 208);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(100, 36);
@@ -85,7 +86,7 @@ namespace Presentation
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Location = new System.Drawing.Point(73, 90);
+            this.lblUserName.Location = new System.Drawing.Point(67, 90);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(96, 13);
@@ -94,15 +95,15 @@ namespace Presentation
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(191, 87);
+            this.txtUserName.Location = new System.Drawing.Point(185, 87);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(100, 20);
+            this.txtUserName.Size = new System.Drawing.Size(117, 20);
             this.txtUserName.TabIndex = 0;
             // 
             // btnSignUp
             // 
-            this.btnSignUp.Location = new System.Drawing.Point(191, 184);
+            this.btnSignUp.Location = new System.Drawing.Point(191, 208);
             this.btnSignUp.Margin = new System.Windows.Forms.Padding(2);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(100, 36);
@@ -124,10 +125,22 @@ namespace Presentation
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // cbShowPassword
+            // 
+            this.cbShowPassword.AutoSize = true;
+            this.cbShowPassword.Location = new System.Drawing.Point(185, 167);
+            this.cbShowPassword.Name = "cbShowPassword";
+            this.cbShowPassword.Size = new System.Drawing.Size(117, 17);
+            this.cbShowPassword.TabIndex = 16;
+            this.cbShowPassword.Text = "Mostrar contraseña";
+            this.cbShowPassword.UseVisualStyleBackColor = true;
+            this.cbShowPassword.CheckedChanged += new System.EventHandler(this.cbShowPassword_CheckedChanged);
+            // 
             // Credentials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbShowPassword);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblMasterPassword);
@@ -154,5 +167,6 @@ namespace Presentation
         private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.CheckBox cbShowPassword;
     }
 }
