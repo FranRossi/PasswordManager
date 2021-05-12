@@ -16,7 +16,6 @@ namespace UnitTestObligatorio1
         private User _currentUser;
         private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
         private List<Password> redPassword = new List<Password>();
-        private String[] orangePasswordsName = { "239850232", "abcst333de8762", "-d4502-s--ss-3" };
         private List<Password> orangePassword = new List<Password>();
         private String[] yellowPasswordsName = { "AAHTNINESHRIIHH", "nethiseant3232323hnea", "n$#@$ntdtshneaa" };
         private List<Password> yellowPassword = new List<Password>();
@@ -69,33 +68,36 @@ namespace UnitTestObligatorio1
 
         }
 
-
-        [DataRow(PasswordStrengthColor.Red, "Family", 3)]
-        [DataRow(PasswordStrengthColor.Red, "Work", 0)]
-        [DataRow(PasswordStrengthColor.LightGreen, "Family", 1)]
-        [DataRow(PasswordStrengthColor.Yellow, "Family", 2)]
-        [DataRow(PasswordStrengthColor.Yellow, "University", 1)]
-        [DataRow(PasswordStrengthColor.DarkGreen, "Family", 0)]
-        [DataTestMethod]
-        public void GetNumberOfPasswordByStrengthColorAndCategory(PasswordStrengthColor color, string category, int quantity)
+        [TestMethod]
+        public void GetNumberOfPasswordByStrengthColor()
         {
-            List<PasswordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
-            var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
-            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
+            List<PasswordReportByColor> expectedReport = new List<PasswordReportByColor>() {
+                 new PasswordReportByColor{Color = PasswordStrengthColor.DarkGreen, Quantity = 2 },
+                 new PasswordReportByColor{Color = PasswordStrengthColor.LightGreen, Quantity = 3 },
+                 new PasswordReportByColor{Color = PasswordStrengthColor.Orange, Quantity = 0 },
+                 new PasswordReportByColor{Color = PasswordStrengthColor.Red, Quantity = 3 },
+                 new PasswordReportByColor{Color = PasswordStrengthColor.Yellow, Quantity = 3 },
+            };
+            List<PasswordReportByColor> actualReport = this._passwordManager.GetPasswordReportByColor();
+            CollectionAssert.AreEquivalent(expectedReport, actualReport);
         }
 
-        [DataRow(PasswordStrengthColor.DarkGreen, 2)]
-        [DataRow(PasswordStrengthColor.LightGreen, 3)]
-        [DataRow(PasswordStrengthColor.Orange, 0)]
-        [DataRow(PasswordStrengthColor.Red, 3)]
-        [DataRow(PasswordStrengthColor.Yellow, 3)]
-        [DataTestMethod]
-        public void GetNumberOfPasswordByStrengthColor(PasswordStrengthColor color, int quantity)
+        [TestMethod]
+        public void CheckCorrectNumberOfPasswordByStrengthColorAndCategory()
         {
-            List<PasswordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
-            var redEntry = report.Find(entry => entry.Color == color);
-            Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
+            List<PasswordReportByCategoryAndColor> expectedReport = new List<PasswordReportByCategoryAndColor>() {
+                 new PasswordReportByCategoryAndColor{Color = PasswordStrengthColor.Red, Quantity = 3, Category =  _family},
+                 new PasswordReportByCategoryAndColor{Color = PasswordStrengthColor.Red, Quantity = 0, Category =  _work},
+                 new PasswordReportByCategoryAndColor{Color = PasswordStrengthColor.LightGreen, Quantity = 1, Category =  _family},
+                 new PasswordReportByCategoryAndColor{Color = PasswordStrengthColor.Yellow, Quantity = 2, Category =  _family},
+                 new PasswordReportByCategoryAndColor{Color = PasswordStrengthColor.Yellow, Quantity = 1, Category =  _university},
+                 new PasswordReportByCategoryAndColor{Color = PasswordStrengthColor.DarkGreen, Quantity = 0, Category =  _family}
+            };
+            List<PasswordReportByCategoryAndColor> actualReport = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            CollectionAssert.IsSubsetOf(expectedReport, actualReport);
         }
+
+
 
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
