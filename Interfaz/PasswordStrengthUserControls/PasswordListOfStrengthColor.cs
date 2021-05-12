@@ -18,11 +18,11 @@ namespace Presentation.PasswordStrengthWindow
         private PasswordStrengthColor _color;
         private Password _selectedPassword;
 
-        public PasswordListOfStrengthColor(PasswordManager passwordManager, PasswordStrengthColor color)
+        public PasswordListOfStrengthColor(PasswordManager pPasswordManager, PasswordStrengthColor pColor)
         {
             InitializeComponent();
-            _passwordManager = passwordManager;
-            _color = color;
+            _passwordManager = pPasswordManager;
+            _color = pColor;
             LoadPasswords();
         }
 
@@ -57,7 +57,7 @@ namespace Presentation.PasswordStrengthWindow
             }
         }
 
-        private void btmModify_Click(object sender, EventArgs e)
+        private void btnModify_Click(object sender, EventArgs e)
         {
             UpdateSelectedPassword();
             if (_selectedPassword != null)
