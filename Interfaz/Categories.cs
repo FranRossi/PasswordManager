@@ -70,7 +70,7 @@ namespace Presentation
                 if (_selectedCategory != null)
                     txtNameModify.Text = _selectedCategory.Name;
             }
-            catch (FormatException exception)
+            catch (InvalidCastException exception)
             {
                 lblMessage.Text = "Error al seleccionar la categoria.";
             }
