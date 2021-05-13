@@ -31,7 +31,7 @@ namespace UnitTestObligatorio1
                     Name = "Personal"
                 };
                 _user.Categories.Add(_category);
-                _password = new Password
+                this._password = new Password
                 {
                     User = _user,
                     Category = _category,
@@ -59,8 +59,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _password.Pass = password;
-                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.Red);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Red);
             }
             catch (ValidationException ex)
             {
@@ -88,11 +88,11 @@ namespace UnitTestObligatorio1
 
 
         [DataRow("AAHTNINESHRIIHH")]
-        [DataRow("neanthneaa")]
+        [DataRow("nethiseanthneaa")]
         [DataRow("14893470823575754543")]
         [DataRow("(!&*($$^&#^@($&)&@$)#")]
         [DataRow("AAHTNINESHRIIH5453453")]
-        [DataRow("neant3232323hnea")]
+        [DataRow("nethiseant3232323hnea")]
         [DataRow("n$#@$ntdtshneaa")]
         [DataRow("14893470823@#@#@754543")]
         [DataRow("ARDSDSRUDEIR@@#")]
@@ -121,8 +121,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _password.Pass = password;
-                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.LightGreen);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.LightGreen);
             }
             catch (ValidationException ex)
             {
@@ -140,8 +140,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _password.Pass = password;
-                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.DarkGreen);
+                this._password.Pass = password;
+                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.DarkGreen);
             }
             catch (ValidationException ex)
             {
