@@ -115,7 +115,7 @@ namespace Presentation
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(30, 231);
+            this.lblMessage.Location = new System.Drawing.Point(30, 250);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(0, 13);
             this.lblMessage.TabIndex = 15;
