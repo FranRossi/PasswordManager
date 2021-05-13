@@ -17,7 +17,6 @@ namespace UnitTestObligatorio1
         private User _user;
         private Category _category;
 
-
         [TestInitialize]
         public void TestInitialize()
         {
@@ -148,7 +147,6 @@ namespace UnitTestObligatorio1
             this._password.Pass = "harryharryharryharryharryharry";
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(PasswordSiteTooShortException))]
         public void CreateNewPasswordSiteTooShort()
@@ -156,15 +154,12 @@ namespace UnitTestObligatorio1
             this._password.Site = "hi";
         }
 
-
         [TestMethod]
         [ExpectedException(typeof(PasswordSiteTooLongException))]
         public void CreateNewSiteSiteTooLong()
         {
             this._password.Site = "htpps://wwww.harrywork.com/homepage/signup";
         }
-
-
 
         [TestMethod]
         [ExpectedException(typeof(ItemNotesTooLongException))]
@@ -177,87 +172,6 @@ namespace UnitTestObligatorio1
                 " essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets " +
                 "containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus " +
                 "PageMaker including versions of Lorem ";
-        }
-
-
-
-        [DataRow(5, true, false, false, false, "^[A-Z]{5}$")]
-        [DataRow(6, false, true, false, false, "^[a-z]{6}$")]
-        [DataRow(8, true, true, false, false, "^([a-z]|[A-Z]){8}$")]
-        [DataRow(15, false, false, true, false, "^[0-9]{15}$")]
-        [DataRow(25, false, false, false, true, "^([ -/]|[:-@]|[[-`]|[{-~]){25}$")]
-        [DataRow(6, true, true, true, true, "^[ -~]{6}$")]
-        [DataRow(20, true, true, true, true, "^[ -~]{20}$")]
-        [DataTestMethod]
-        public void GenerateValidPassword
-               (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits, string regex)
-        {
-            PasswordGenerationOptions options = new PasswordGenerationOptions
-            {
-                Length = length,
-                Uppercase = uppercase,
-                Lowercase = lowercase,
-                Digits = digits,
-                SpecialDigits = specialDigits
-            };
-            string pass = Password.GenerateRandomPassword(options);
-            Regex regexToCheck = new Regex(regex);
-            Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
-        }
-
-        [DataRow(6, false, false, false, false)]
-        [DataRow(9, false, false, false, false)]
-        [DataTestMethod]
-        [ExpectedException(typeof(PasswordGenerationNotSelectedCharacterTypesException))]
-        public void GenerateInvalidNotTypesSelectedPassword
-               (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
-        {
-            PasswordGenerationOptions options = new PasswordGenerationOptions
-            {
-                Length = length,
-                Uppercase = uppercase,
-                Lowercase = lowercase,
-                Digits = digits,
-                SpecialDigits = specialDigits
-            };
-            string pass = Password.GenerateRandomPassword(options);
-        }
-
-
-        [DataRow(4, true, false, false, false)]
-        [DataRow(2, true, true, false, true)]
-        [DataTestMethod]
-        [ExpectedException(typeof(PasswordGenerationTooShortException))]
-        public void GenerateInvalidTooShortPassword
-       (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
-        {
-            PasswordGenerationOptions options = new PasswordGenerationOptions
-            {
-                Length = length,
-                Uppercase = uppercase,
-                Lowercase = lowercase,
-                Digits = digits,
-                SpecialDigits = specialDigits
-            };
-            string pass = Password.GenerateRandomPassword(options);
-        }
-
-        [DataRow(3434, true, false, false, false)]
-        [DataRow(26, true, true, false, true)]
-        [DataTestMethod]
-        [ExpectedException(typeof(PasswordGenerationTooLongException))]
-        public void GenerateInvalidTooLongPassword
-        (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
-        {
-            PasswordGenerationOptions options = new PasswordGenerationOptions
-            {
-                Length = length,
-                Uppercase = uppercase,
-                Lowercase = lowercase,
-                Digits = digits,
-                SpecialDigits = specialDigits
-            };
-            string pass = Password.GenerateRandomPassword(options);
         }
 
         [TestMethod]
@@ -300,348 +214,6 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
         }
-
-        [TestMethod]
-        public void ShareOnePasswordWithAnotherUser()
-        {
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreateCategoryOnCurrentUser(category);
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            this._passwordManager.CreateUser(userShareTo);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "www.google.com",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            this._passwordManager.CreatePassword(passwordToShare);
-            this._passwordManager.SharePassword(passwordToShare, userShareTo);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.Contains(sharedWithUser, passwordToShare);
-        }
-
-
-        [TestMethod]
-        [ExpectedException(typeof(PasswordSharedWithSameUserException))]
-        public void SharePasswordWithSameUser()
-        {
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreateCategoryOnCurrentUser(category);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            this._passwordManager.CreatePassword(passwordToShare);
-            this._passwordManager.SharePassword(passwordToShare, userShareFrom);
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
-        }
-        [TestMethod]
-        public void ShareManyPasswordsWithAnotherUser()
-        {
-            List<Password> expectedPasswords = new List<Password>();
-
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreateCategoryOnCurrentUser(category);
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            this._passwordManager.CreateUser(userShareTo);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
-            Password ort = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "www.google.com",
-                Username = "123456",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            this._passwordManager.CreatePassword(ort);
-            expectedPasswords.Add(ort);
-            this._passwordManager.SharePassword(ort, userShareTo);
-
-            Password trello = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "miami.com",
-                Username = "josesito",
-                Pass = "239850Jose2019"
-            };
-            this._passwordManager.CreatePassword(trello);
-            expectedPasswords.Add(trello);
-            this._passwordManager.SharePassword(trello, userShareTo);
-
-            Password amazon = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "trello.com",
-                Username = "josesito",
-                Pass = "239850Jose2019"
-            };
-            this._passwordManager.CreatePassword(amazon);
-            expectedPasswords.Add(amazon);
-            this._passwordManager.SharePassword(amazon, userShareTo);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
-
-        }
-
-        [TestMethod]
-        public void DeleteSharedPassword()
-        {
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreateCategoryOnCurrentUser(category);
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            this._passwordManager.CreateUser(userShareTo);
-
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "www.google.com",
-                Username = "123456",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            this._passwordManager.CreatePassword(passwordToShare);
-            this._passwordManager.SharePassword(passwordToShare, userShareTo);
-            this._passwordManager.DeletePassword(passwordToShare);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
-        }
-
-        [TestMethod]
-        public void GetSharedPasswordUser()
-        {
-            List<User> expectedUser = new List<User>();
-
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            userShareFrom.Categories.Add(category);
-
-            Password pass = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            this._passwordManager.CreateUser(userShareTo);
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreatePassword(pass);
-            this._passwordManager.SharePassword(pass, userShareTo);
-            expectedUser.Add(userShareTo);
-
-            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
-        }
-
-        [TestMethod]
-        public void SharePasswordWithAlreadySharedUser()
-        {
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreateCategoryOnCurrentUser(category);
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            this._passwordManager.CreateUser(userShareTo);
-            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "www.google.com",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            this._passwordManager.CreatePassword(passwordToShare);
-            this._passwordManager.SharePassword(passwordToShare, userShareTo);
-            this._passwordManager.SharePassword(passwordToShare, userShareTo);
-            List<User> actualSharedUsers = this._passwordManager.GetUsersSharedWith(passwordToShare);
-            List<User> expectedSharedUsers = new List<User>() { userShareTo };
-            CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
-        }
-
-        [TestMethod]
-        public void GetSharedPasswordUsersMultipleUsers()
-        {
-            List<User> expectedUser = new List<User>();
-
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            User lucia = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            User pablo = new User()
-            {
-                Name = "Pablo",
-                MasterPass = "pa1230@1"
-            };
-            User juana = new User()
-            {
-                Name = "Juana",
-                MasterPass = "juana0@1"
-            };
-
-            userShareFrom.Categories.Add(category);
-
-            Password pass = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            this._passwordManager.CreateUser(lucia);
-            this._passwordManager.CreateUser(pablo);
-            this._passwordManager.CreateUser(juana);
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreatePassword(pass);
-            this._passwordManager.SharePassword(pass, lucia);
-            this._passwordManager.SharePassword(pass, pablo);
-            this._passwordManager.SharePassword(pass, juana);
-            expectedUser.Add(lucia);
-            expectedUser.Add(pablo);
-            expectedUser.Add(juana);
-
-
-            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
-        }
-
-        [TestMethod]
-        public void GetSharedPasswordNotShared()
-        {
-            List<User> expectedUser = new List<User>();
-            User user = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            user.Categories.Add(category);
-
-            Password pass = new Password
-            {
-                User = user,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            this._passwordManager.CreateUser(user);
-            this._passwordManager.CreatePassword(pass);
-
-            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
-        }
-
 
         [TestMethod]
         public void ModifyPassword()
@@ -715,8 +287,6 @@ namespace UnitTestObligatorio1
             CollectionAssert.Contains(passwords, newPassword);
         }
 
-
-
         [TestMethod]
         [ExpectedException(typeof(PasswordAlreadyExistsException))]
         public void CreatePasswordThatAlreadyExists()
@@ -742,219 +312,6 @@ namespace UnitTestObligatorio1
                 Notes = "Esta es la nueva password"
             };
             this._passwordManager.CreatePassword(newPassword);
-        }
-
-
-
-
-        [TestMethod]
-        public void GetNotSharedWithUser()
-        {
-            List<User> expectedUser = new List<User>();
-
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            User userShareWith = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            User pablo = new User()
-            {
-                Name = "Pablo",
-                MasterPass = "pa1230@1"
-            };
-            User juana = new User()
-            {
-                Name = "Juana",
-                MasterPass = "juana0@1"
-            };
-
-            userShareFrom.Categories.Add(category);
-
-            Password pass = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            this._passwordManager.CreateUser(userShareWith);
-            this._passwordManager.CreateUser(pablo);
-            this._passwordManager.CreateUser(juana);
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreatePassword(pass);
-            this._passwordManager.SharePassword(pass, userShareWith);
-            expectedUser.Add(pablo);
-            expectedUser.Add(juana);
-            expectedUser.Add(this._user);
-
-
-            List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
-        }
-
-
-        [TestMethod]
-        public void GetNotSharedWithAnyUser()
-        {
-            List<User> expectedUser = new List<User>();
-
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            User lucia = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            User pablo = new User()
-            {
-                Name = "Pablo",
-                MasterPass = "pa1230@1"
-            };
-            User juana = new User()
-            {
-                Name = "Juana",
-                MasterPass = "juana0@1"
-            };
-
-            userShareFrom.Categories.Add(category);
-
-            Password pass = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            this._passwordManager.CreateUser(lucia);
-            this._passwordManager.CreateUser(pablo);
-            this._passwordManager.CreateUser(juana);
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreatePassword(pass);
-            expectedUser.Add(lucia);
-            expectedUser.Add(pablo);
-            expectedUser.Add(juana);
-            expectedUser.Add(this._user);
-
-
-            List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
-        }
-
-        [TestMethod]
-        public void GetNotSharedWithAllUsers()
-        {
-
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            User lucia = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            User pablo = new User()
-            {
-                Name = "Pablo",
-                MasterPass = "pa1230@1"
-            };
-            User juana = new User()
-            {
-                Name = "Juana",
-                MasterPass = "juana0@1"
-            };
-
-            userShareFrom.Categories.Add(category);
-
-            Password pass = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            this._passwordManager.CreateUser(lucia);
-            this._passwordManager.CreateUser(pablo);
-            this._passwordManager.CreateUser(juana);
-            this._passwordManager.CreateUser(userShareFrom);
-            this._passwordManager.CreatePassword(pass);
-            this._passwordManager.SharePassword(pass, lucia);
-            this._passwordManager.SharePassword(pass, pablo);
-            this._passwordManager.SharePassword(pass, juana);
-            this._passwordManager.SharePassword(pass, this._user);
-
-
-            List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
-            List<User> expectedUser = new List<User>();
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
-        }
-
-        [TestMethod]
-        public void UnSharePassword()
-        {
-            User userShareFrom = new User()
-            {
-                Name = "Santiago",
-                MasterPass = "HolaSoySantiago1"
-            };
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            _passwordManager.CreateUser(userShareFrom);
-            _passwordManager.CreateCategoryOnCurrentUser(category);
-            _passwordManager.CreateUser(userShareTo);
-            Password passwordToShare = new Password
-            {
-                User = userShareFrom,
-                Category = category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.Login("Santiago", "HolaSoySantiago1");
-            _passwordManager.CreatePassword(passwordToShare);
-            this._passwordManager.SharePassword(passwordToShare, userShareTo);
-            this._passwordManager.UnSharePassword(passwordToShare, userShareTo);
-            _passwordManager.Login("Lucía", "lu2000@1");
-            List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
         }
 
         [DataRow("work.com", "Joseph", "work.com", "Joseph")]
@@ -1036,7 +393,6 @@ namespace UnitTestObligatorio1
                 Pass = "joshpeh2",
                 Notes = "Second password"
             };
-
             Assert.IsFalse(passA.Equals(passB));
         }
 
@@ -1081,7 +437,6 @@ namespace UnitTestObligatorio1
 
             Assert.IsFalse(passA.Equals(new object()));
         }
-
 
         [TestMethod]
         [ExpectedException(typeof(PasswordNotBelongToCurrentUserException))]
@@ -1168,9 +523,5 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(newPassword);
         }
-
-
     }
-
-
 }
