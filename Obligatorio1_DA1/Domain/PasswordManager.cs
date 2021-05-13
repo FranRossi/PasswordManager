@@ -238,6 +238,14 @@ namespace Obligatorio1_DA1.Domain
             return breachedItems;
         }
 
+        public void SharePassword(Password passwordToShare, User userShareTo)
+        {
+            passwordToShare.ShareWithUser(userShareTo);
+        }
 
+        public void UnSharePassword(Password passwordToShare, User userUnshareTo)
+        {
+            passwordToShare.UnShareWithUser(userUnshareTo);
+        }
     }
 }
