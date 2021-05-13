@@ -261,7 +261,8 @@ namespace Obligatorio1_DA1.Domain
             {
                 throw new PasswordSharedWithSameUserException();
             }
-            this.SharedWith.Add(userShareWith);
+            if (!this.SharedWith.Contains(userShareWith))
+                this.SharedWith.Add(userShareWith);
         }
 
         public void UnShareWithUser(User userRemoveShare)

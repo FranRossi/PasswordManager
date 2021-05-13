@@ -50,7 +50,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return this.CurrentUser.Categories;
+            return this.CurrentUser.Categories.ToList();
         }
 
         public void CreateCategoryOnCurrentUser(Category category)
@@ -155,7 +155,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color);
+            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color).ToList();
             return passwords;
         }
 
@@ -177,6 +177,9 @@ namespace Obligatorio1_DA1.Domain
         {
             _creditCards.Remove(card);
         }
+
+
+
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
@@ -235,6 +238,19 @@ namespace Obligatorio1_DA1.Domain
             return breachedItems;
         }
 
+        public void SharePassword(Password passwordToShare, User userShareTo)
+        {
+            passwordToShare.ShareWithUser(userShareTo);
+        }
 
+        public void UnSharePassword(Password passwordToShare, User userUnshareTo)
+        {
+            passwordToShare.UnShareWithUser(userUnshareTo);
+        }
+
+        public List<User> GetUsersSharedWith(Password pass)
+        {
+            return pass.SharedWith.ToList();
+        }
     }
 }

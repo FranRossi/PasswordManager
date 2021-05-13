@@ -332,7 +332,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             this._passwordManager.CreatePassword(passwordToShare);
-            passwordToShare.ShareWithUser(userShareTo);
+            this._passwordManager.SharePassword(passwordToShare, userShareTo);
             this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.Contains(sharedWithUser, passwordToShare);
@@ -365,7 +365,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             this._passwordManager.CreatePassword(passwordToShare);
-            passwordToShare.ShareWithUser(userShareFrom);
+            this._passwordManager.SharePassword(passwordToShare, userShareFrom);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
         }
         [TestMethod]
@@ -402,7 +402,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(ort);
             expectedPasswords.Add(ort);
-            ort.ShareWithUser(userShareTo);
+            this._passwordManager.SharePassword(ort, userShareTo);
 
             Password trello = new Password
             {
@@ -414,7 +414,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(trello);
             expectedPasswords.Add(trello);
-            trello.ShareWithUser(userShareTo);
+            this._passwordManager.SharePassword(trello, userShareTo);
 
             Password amazon = new Password
             {
@@ -426,7 +426,7 @@ namespace UnitTestObligatorio1
             };
             this._passwordManager.CreatePassword(amazon);
             expectedPasswords.Add(amazon);
-            amazon.ShareWithUser(userShareTo);
+            this._passwordManager.SharePassword(amazon, userShareTo);
             this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
@@ -465,7 +465,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             this._passwordManager.CreatePassword(passwordToShare);
-            passwordToShare.ShareWithUser(userShareTo);
+            this._passwordManager.SharePassword(passwordToShare, userShareTo);
             this._passwordManager.DeletePassword(passwordToShare);
             this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
@@ -506,12 +506,49 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreateUser(userShareTo);
             this._passwordManager.CreateUser(userShareFrom);
             this._passwordManager.CreatePassword(pass);
-            pass.ShareWithUser(userShareTo);
+            this._passwordManager.SharePassword(pass, userShareTo);
             expectedUser.Add(userShareTo);
 
-
-            List<User> usersSharedWith = pass.SharedWith;
+            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+        }
+
+        [TestMethod]
+        public void SharePasswordWithAlreadySharedUser()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                MasterPass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreateCategoryOnCurrentUser(category);
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                MasterPass = "lu2000@1"
+            };
+            this._passwordManager.CreateUser(userShareTo);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "www.google.com",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            this._passwordManager.SharePassword(passwordToShare, userShareTo);
+            this._passwordManager.SharePassword(passwordToShare, userShareTo);
+            List<User> actualSharedUsers = this._passwordManager.GetUsersSharedWith(passwordToShare);
+            List<User> expectedSharedUsers = new List<User>() { userShareTo };
+            CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
         }
 
         [TestMethod]
@@ -561,15 +598,15 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreateUser(juana);
             this._passwordManager.CreateUser(userShareFrom);
             this._passwordManager.CreatePassword(pass);
-            pass.ShareWithUser(lucia);
-            pass.ShareWithUser(pablo);
-            pass.ShareWithUser(juana);
+            this._passwordManager.SharePassword(pass, lucia);
+            this._passwordManager.SharePassword(pass, pablo);
+            this._passwordManager.SharePassword(pass, juana);
             expectedUser.Add(lucia);
             expectedUser.Add(pablo);
             expectedUser.Add(juana);
 
 
-            List<User> usersSharedWith = pass.SharedWith;
+            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
@@ -601,7 +638,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreateUser(user);
             this._passwordManager.CreatePassword(pass);
 
-            List<User> usersSharedWith = pass.SharedWith;
+            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
@@ -757,7 +794,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreateUser(juana);
             this._passwordManager.CreateUser(userShareFrom);
             this._passwordManager.CreatePassword(pass);
-            pass.ShareWithUser(userShareWith);
+            this._passwordManager.SharePassword(pass, userShareWith);
             expectedUser.Add(pablo);
             expectedUser.Add(juana);
             expectedUser.Add(this._user);
@@ -871,10 +908,10 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreateUser(juana);
             this._passwordManager.CreateUser(userShareFrom);
             this._passwordManager.CreatePassword(pass);
-            pass.ShareWithUser(lucia);
-            pass.ShareWithUser(pablo);
-            pass.ShareWithUser(juana);
-            pass.ShareWithUser(this._user);
+            this._passwordManager.SharePassword(pass, lucia);
+            this._passwordManager.SharePassword(pass, pablo);
+            this._passwordManager.SharePassword(pass, juana);
+            this._passwordManager.SharePassword(pass, this._user);
 
 
             List<User> usersSharedWith = this._passwordManager.GetUsersPassNotSharedWith(pass);
@@ -901,6 +938,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreateUser(userShareFrom);
             _passwordManager.CreateCategoryOnCurrentUser(category);
+            _passwordManager.CreateUser(userShareTo);
             Password passwordToShare = new Password
             {
                 User = userShareFrom,
@@ -910,10 +948,11 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(passwordToShare);
             _passwordManager.Login("Santiago", "HolaSoySantiago1");
-            passwordToShare.ShareWithUser(userShareTo);
-            passwordToShare.UnShareWithUser(userShareTo);
+            _passwordManager.CreatePassword(passwordToShare);
+            this._passwordManager.SharePassword(passwordToShare, userShareTo);
+            this._passwordManager.UnSharePassword(passwordToShare, userShareTo);
+            _passwordManager.Login("Lucía", "lu2000@1");
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
         }

@@ -15,6 +15,8 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
+        private User _selectedShareWithUser;
+        private User _selectedUnShareWithUser;
         private List<User> _usersNotSharedWith;
         public SharedPasswordList(PasswordManager pPasswordManager, Password pSelectedPassword)
         {
@@ -22,10 +24,10 @@ namespace Presentation
             _myPasswordManager = pPasswordManager;
             _selectedPassword = pSelectedPassword;
             LoadTblPassword();
-            setSelectedPassoword();
+            SetSelectedPassoword();
         }
 
-        private void setSelectedPassoword()
+        private void SetSelectedPassoword()
         {
             tblPassword.ClearSelection();
             foreach (DataGridViewRow row in tblPassword.Rows)
@@ -37,6 +39,7 @@ namespace Presentation
                     return;
                 }
             }
+            UpdateSelectedPassword();
         }
 
         private void LoadTblPassword()
@@ -72,12 +75,12 @@ namespace Presentation
 
         private void LoadcbUsersNotSharedWith(Password selectedPassword)
         {
-            cbUsersNotSharedWith.Items.Clear();
+            cbUsersNotSharedWith.DataSource = null;
             _usersNotSharedWith = this._myPasswordManager.GetUsersPassNotSharedWith(selectedPassword);
             if (_usersNotSharedWith.Count == 0)
             {
-                cbUsersNotSharedWith.Enabled = false;
-                btnShare.Enabled = false;
+                ChangeComboBoxState(cbUsersNotSharedWith, false);
+                ChangeButtonState(btnShare, false);
             }
             else
                 ShowcbUsersNotSharedWith(_usersNotSharedWith);
@@ -85,24 +88,24 @@ namespace Presentation
 
         private void ShowcbUsersNotSharedWith(List<User> usersNotSharedWith)
         {
-            cbUsersNotSharedWith.Enabled = true;
-            btnShare.Enabled = true;
-            foreach (User user in usersNotSharedWith)
-            {
-                cbUsersNotSharedWith.Items.Add(user.ToString());
-            }
-            cbUsersNotSharedWith.SelectedItem = cbUsersNotSharedWith.Items[0];
+            ChangeComboBoxState(cbUsersNotSharedWith, true);
+            ChangeButtonState(btnShare, true);
+            cbUsersNotSharedWith.DataSource = usersNotSharedWith;
         }
 
         private void LoadTblSharedWith(Password selectedPassword)
         {
-            List<User> users = selectedPassword.SharedWith;
+            List<User> users = _myPasswordManager.GetUsersSharedWith(selectedPassword);
             tblSharedWith.DataSource = null;
             tblSharedWith.Rows.Clear();
             tblSharedWith.DataSource = users;
             FormatSharedListOnTable();
-            tblSharedWith.CurrentCell = null;
-            btnUnShare.Enabled = false;
+            if (users.Count == 0)
+            {
+                ChangeButtonState(btnUnShare, false);
+            }
+            else
+                ChangeButtonState(btnUnShare, true);
         }
 
         private void FormatSharedListOnTable()
@@ -124,37 +127,30 @@ namespace Presentation
 
         private void tblPassword_SelectionChanged(object sender, EventArgs e)
         {
-            if (tblPassword.CurrentRow != null)
-            {
-                Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-                LoadTblSharedWith(selectedPassword);
-                LoadcbUsersNotSharedWith(selectedPassword);
-            }
+            UpdateSelectedPassword();
+            LoadTblSharedWith(_selectedPassword);
+            LoadcbUsersNotSharedWith(_selectedPassword);
         }
 
         private void btnShare_Click(object sender, EventArgs e)
         {
-            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-            int index = cbUsersNotSharedWith.SelectedIndex;
-            User selectedUser = _usersNotSharedWith.ElementAt(index);
-            selectedPassword.ShareWithUser(selectedUser);
-            LoadcbUsersNotSharedWith(selectedPassword);
-            LoadTblSharedWith(selectedPassword);
+            UpdateSelectedPassword();
+            UpdateSelectedShareWithUser();
+            _myPasswordManager.SharePassword(_selectedPassword, _selectedShareWithUser);
+            LoadcbUsersNotSharedWith(_selectedPassword);
+            LoadTblSharedWith(_selectedPassword);
         }
 
         private void btnUnShare_Click(object sender, EventArgs e)
         {
-            User user = (User)tblSharedWith.CurrentRow.DataBoundItem;
-            Password selectedPassword = (Password)tblPassword.CurrentRow.DataBoundItem;
-            selectedPassword.UnShareWithUser(user);
-            LoadcbUsersNotSharedWith(selectedPassword);
-            LoadTblSharedWith(selectedPassword);
+            UpdateSelectedPassword();
+            UpdateSelectedUnShareWithUser();
+            _myPasswordManager.UnSharePassword(_selectedPassword, _selectedUnShareWithUser);
+            LoadcbUsersNotSharedWith(_selectedPassword);
+            LoadTblSharedWith(_selectedPassword);
         }
 
-        private void tblSharedWith_SelectionChanged(object sender, EventArgs e)
-        {
-            btnUnShare.Enabled = true;
-        }
+
 
         private void btnSharedPasswords_Click(object sender, EventArgs e)
         {
@@ -162,5 +158,70 @@ namespace Presentation
             MainWindow main = (MainWindow)parentPanel.Parent;
             main.ShowPasswords();
         }
+
+        private void UpdateSelectedPassword()
+        {
+            if (tblPassword.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedPassword = (Password)tblPassword.SelectedCells[0].OwningRow.DataBoundItem;
+                }
+                catch (InvalidCastException exception)
+                {
+                    lblMessage.Text = "Error al seleccionar la contraseña.";
+                }
+            }
+        }
+
+        private void UpdateSelectedShareWithUser()
+        {
+            if (cbUsersNotSharedWith.SelectedIndex > -1)
+            {
+                try
+                {
+                    _selectedShareWithUser = (User)cbUsersNotSharedWith.SelectedItem;
+                }
+                catch (InvalidCastException exception)
+                {
+                    lblMessage.Text = "Error al seleccionar el usuario para compartir.";
+                }
+            }
+        }
+        private void UpdateSelectedUnShareWithUser()
+        {
+            if (tblSharedWith.SelectedCells.Count > 0)
+            {
+                try
+                {
+                    _selectedUnShareWithUser = (User)tblSharedWith.SelectedCells[0].OwningRow.DataBoundItem;
+                    ChangeButtonState(btnUnShare, true);
+                }
+                catch (InvalidCastException exception)
+                {
+                    ChangeButtonState(btnUnShare, false);
+                    lblMessage.Text = "Error al seleccionar el usuario para descompartir.";
+                }
+            }
+        }
+
+        private void ChangeButtonState(Button btn, bool state)
+        {
+            try
+            {
+                btn.Enabled = state;
+            }
+            catch (IndexOutOfRangeException exception) { };
+        }
+
+        private void ChangeComboBoxState(ComboBox cb, bool state)
+        {
+            try
+            {
+                cb.Enabled = state;
+            }
+            catch (IndexOutOfRangeException exception) { };
+        }
+
     }
 }
