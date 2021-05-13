@@ -79,8 +79,8 @@ namespace Presentation
             _usersNotSharedWith = this._myPasswordManager.GetUsersPassNotSharedWith(selectedPassword);
             if (_usersNotSharedWith.Count == 0)
             {
-                cbUsersNotSharedWith.Enabled = false;
-                btnShare.Enabled = false;
+                ChangeComboBoxState(cbUsersNotSharedWith, false);
+                ChangeButtonState(btnShare, false);
             }
             else
                 ShowcbUsersNotSharedWith(_usersNotSharedWith);
@@ -88,8 +88,8 @@ namespace Presentation
 
         private void ShowcbUsersNotSharedWith(List<User> usersNotSharedWith)
         {
-            cbUsersNotSharedWith.Enabled = true;
-            btnShare.Enabled = true;
+            ChangeComboBoxState(cbUsersNotSharedWith, true);
+            ChangeButtonState(btnShare, true);
             cbUsersNotSharedWith.DataSource = usersNotSharedWith;
         }
 
@@ -100,8 +100,12 @@ namespace Presentation
             tblSharedWith.Rows.Clear();
             tblSharedWith.DataSource = users;
             FormatSharedListOnTable();
-            tblSharedWith.CurrentCell = null;
-            btnUnShare.Enabled = false;
+            if (users.Count == 0)
+            {
+                ChangeButtonState(btnUnShare, false);
+            }
+            else
+                ChangeButtonState(btnUnShare, true);
         }
 
         private void FormatSharedListOnTable()
@@ -148,7 +152,7 @@ namespace Presentation
 
         private void tblSharedWith_SelectionChanged(object sender, EventArgs e)
         {
-            btnUnShare.Enabled = true;
+            UpdateSelectedUnShareWithUser();
         }
 
         private void btnSharedPasswords_Click(object sender, EventArgs e)
@@ -194,12 +198,32 @@ namespace Presentation
                 try
                 {
                     _selectedUnShareWithUser = (User)tblSharedWith.SelectedCells[0].OwningRow.DataBoundItem;
+                    ChangeButtonState(btnUnShare, true);
                 }
                 catch (InvalidCastException exception)
                 {
+                    ChangeButtonState(btnUnShare, false);
                     lblMessage.Text = "Error al seleccionar el usuario para descompartir.";
                 }
             }
+        }
+
+        private void ChangeButtonState(Button btn, bool state)
+        {
+            try
+            {
+                btn.Enabled = state;
+            }
+            catch (IndexOutOfRangeException exception) { };
+        }
+
+        private void ChangeComboBoxState(ComboBox cb, bool state)
+        {
+            try
+            {
+                cb.Enabled = state;
+            }
+            catch (IndexOutOfRangeException exception) { };
         }
     }
 }
