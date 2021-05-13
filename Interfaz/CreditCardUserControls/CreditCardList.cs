@@ -127,7 +127,7 @@ namespace Presentation
                 {
                     _selectedCreditCard = (CreditCard)tblCreditCard.CurrentRow.DataBoundItem;
                 }
-                catch (FormatException exception)
+                catch (InvalidCastException exception)
                 {
                     lblMessage.Text = "Error al seleccionar la tarjeta.";
                 }
