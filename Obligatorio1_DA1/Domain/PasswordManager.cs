@@ -50,7 +50,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return this.CurrentUser.Categories;
+            return this.CurrentUser.Categories.ToList();
         }
 
         public void CreateCategoryOnCurrentUser(Category category)
@@ -155,7 +155,7 @@ namespace Obligatorio1_DA1.Domain
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color);
+            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color).ToList();
             return passwords;
         }
 
