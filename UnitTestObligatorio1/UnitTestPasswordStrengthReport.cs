@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    public class PasswordStrengthReport
+    public class UnitTestPasswordStrengthReport
     {
         private PasswordManager _passwordManager;
         private User _currentUser;

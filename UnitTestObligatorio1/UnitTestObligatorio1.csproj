@@ -49,9 +49,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PasswordStrengthReport.cs" />
+    <Compile Include="UnitTestPasswordStrengthReport.cs" />
     <Compile Include="UnitTestDataBreach.cs" />
     <Compile Include="UnitTestCategory.cs" />
+    <Compile Include="UnitTestPasswordGeneration.cs" />
+    <Compile Include="UnitTestPasswordShare.cs" />
     <Compile Include="UnitTestPasswordStrength.cs" />
     <Compile Include="UnitTestCreditCard.cs" />
     <Compile Include="UnitTestPassword.cs" />
