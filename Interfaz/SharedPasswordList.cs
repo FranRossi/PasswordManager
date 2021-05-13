@@ -39,6 +39,7 @@ namespace Presentation
                     return;
                 }
             }
+            UpdateSelectedPassword();
         }
 
         private void LoadTblPassword()
@@ -174,7 +175,7 @@ namespace Presentation
 
         private void UpdateSelectedShareWithUser()
         {
-            if (tblSharedWith.SelectedCells.Count > 0)
+            if (cbUsersNotSharedWith.SelectedIndex > -1)
             {
                 try
                 {
