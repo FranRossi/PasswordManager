@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2DBE2991-F523-4A88-88FD-E17F27462492}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Obligatorio1_DA1</RootNamespace>
+    <AssemblyName>Obligatorio1_DA1</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\Category.cs" />
+    <Compile Include="Domain\CreditCard.cs" />
+    <Compile Include="Domain\Item.cs" />
+    <Compile Include="Domain\Password.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidFormatException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardExpirationDateInvalidMonthException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNumberInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNumberLengthIncorrectException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardSecureCodeWrongSizeException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNameTooLongException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardTypeTooLongException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardTypeTooShortException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNameTooShortException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\CreditCard\CreditCardNotBelongToCurrentUserException.cs" />
+    <Compile Include="Exceptions\Item\ItemInvalidCategoryException.cs" />
+    <Compile Include="Exceptions\Category\CategoryAlreadyAddedException.cs" />
+    <Compile Include="Exceptions\Password\PasswordGenerationNotSelectedCharacterTypesException.cs" />
+    <Compile Include="Exceptions\Password\PasswordGenerationTooShortException.cs" />
+    <Compile Include="Exceptions\Password\PasswordAlreadyExistsException.cs" />
+    <Compile Include="Exceptions\Password\PasswordNotBelongToCurrentUserException.cs" />
+    <Compile Include="Exceptions\Password\PasswordInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\User\UserNameTooLongException.cs" />
+    <Compile Include="Exceptions\Password\PasswordGenerationTooLongException.cs" />
+    <Compile Include="Exceptions\Password\PasswordTooLongException.cs" />
+    <Compile Include="Exceptions\User\UserNameTooShortException.cs" />
+    <Compile Include="Exceptions\Password\PasswordTooShortException.cs" />
+    <Compile Include="Exceptions\User\LogInException.cs" />
+    <Compile Include="Exceptions\User\UsernameAlreadyTakenException.cs" />
+    <Compile Include="Exceptions\Password\PasswordUsernameTooShortException.cs" />
+    <Compile Include="Exceptions\Password\PasswordUsernameTooLongException.cs" />
+    <Compile Include="Exceptions\Password\PasswordSiteTooShortException.cs" />
+    <Compile Include="Exceptions\Password\PasswordSiteTooLongException.cs" />
+    <Compile Include="Exceptions\Category\CategoryTooShortException.cs" />
+    <Compile Include="Exceptions\Category\CategoryTooLongException.cs" />
+    <Compile Include="Exceptions\Item\ItemNotesTooLongException.cs" />
+    <Compile Include="Exceptions\Password\PasswordSharedWithSameUserException.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Domain\PasswordManager.cs" />
+    <Compile Include="Utilities\DataBreachFromString.cs" />
+    <Compile Include="Utilities\IDataBreach.cs" />
+    <Compile Include="Utilities\PasswordGenerationOptions.cs" />
+    <Compile Include="Utilities\PasswordStrengthReport.cs" />
+    <Compile Include="Utilities\PasswordStrengthColor.cs" />
+    <Compile Include="Utilities\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
