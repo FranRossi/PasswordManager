@@ -123,7 +123,7 @@ namespace Presentation
                 {
                     _selectedPassword = (Password)tblDataBreachPassword.SelectedCells[0].OwningRow.DataBoundItem;
                 }
-                catch (FormatException exception)
+                catch (InvalidCastException exception)
                 {
                     lblMessage.Text = "Error al seleccionar la contraseña.";
                 }

@@ -17,7 +17,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._categoryPersonal = new Category()
+                _categoryPersonal = new Category()
                 {
                     Name = "Personal"
                 };
@@ -32,7 +32,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCategoryName()
         {
-            Assert.AreEqual<string>(this._categoryPersonal.Name, "Personal");
+            Assert.AreEqual<string>(_categoryPersonal.Name, "Personal");
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryTooShortException))]
         public void CreateCateogryTooShort()
         {
-            this._categoryPersonal = new Category()
+            _categoryPersonal = new Category()
             {
                 Name = "Li"
             };
@@ -59,7 +59,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._categoryPersonal = new Category()
+                _categoryPersonal = new Category()
                 {
                     Name = "Mis"
                 };
@@ -74,7 +74,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryTooLongException))]
         public void CreateCateogryTooLong()
         {
-            this._categoryPersonal = new Category()
+            _categoryPersonal = new Category()
             {
                 Name = "Peliculas/Series"
             };
@@ -85,7 +85,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._categoryPersonal = new Category()
+                _categoryPersonal = new Category()
                 {
                     Name = "Paginas de cine"
                 };
@@ -103,14 +103,14 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
-            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], this._categoryPersonal);
+            _passwordManager.CreateCategoryOnCurrentUser(_categoryPersonal);
+            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _categoryPersonal);
         }
 
         [TestMethod]
         public void ShowsCategoryAsAString()
         {
-            string categotyName = this._categoryPersonal.ToString();
+            string categotyName = _categoryPersonal.ToString();
             Assert.AreEqual(categotyName, "Personal");
         }
 
@@ -119,12 +119,12 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
+            _passwordManager.CreateCategoryOnCurrentUser(_categoryPersonal);
             Category newCategory = new Category()
             {
                 Name = "Trabajo"
             };
-            _passwordManager.ModifyCategoryOnCurrentUser(this._categoryPersonal, newCategory);
+            _passwordManager.ModifyCategoryOnCurrentUser(_categoryPersonal, newCategory);
             Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], newCategory);
         }
 
@@ -134,7 +134,7 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(this._categoryPersonal);
+            _passwordManager.CreateCategoryOnCurrentUser(_categoryPersonal);
             Category repeatedCategory = new Category()
             {
                 Name = "Personal"

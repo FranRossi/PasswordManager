@@ -33,7 +33,7 @@ namespace UnitTestObligatorio1
                     Name = "Personal"
                 };
                 _user.Categories.Add(_category);
-                this._password = new Password
+                _password = new Password
                 {
                     User = _user,
                     Category = _category,
@@ -55,16 +55,16 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetUserPasswords()
         {
-            List<Password> userPasswords = this._passwordManager.GetPasswords();
-            CollectionAssert.Contains(userPasswords, this._password);
+            List<Password> userPasswords = _passwordManager.GetPasswords();
+            CollectionAssert.Contains(userPasswords, _password);
         }
 
         [TestMethod]
         public void DeletePassword()
         {
-            this._passwordManager.DeletePassword(this._password);
-            List<Password> userPasswords = this._passwordManager.GetPasswords();
-            CollectionAssert.DoesNotContain(userPasswords, this._password);
+            _passwordManager.DeletePassword(_password);
+            List<Password> userPasswords = _passwordManager.GetPasswords();
+            CollectionAssert.DoesNotContain(userPasswords, _password);
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(differentPassword);
             _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
-            List<Password> userPasswords = this._passwordManager.GetPasswords();
+            List<Password> userPasswords = _passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
 
@@ -121,14 +121,14 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(PasswordUsernameTooShortException))]
         public void CreateNewPasswordWithUsernameTooShort()
         {
-            this._password.Username = "Tom";
+            _password.Username = "Tom";
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordUsernameTooLongException))]
         public void CreateNewPasswordWithUsernameTooLong()
         {
-            this._password.Username = "Hubert Blaine Wolfeschlegelsteinhausenbergerdorff ";
+            _password.Username = "Hubert Blaine Wolfeschlegelsteinhausenbergerdorff ";
         }
 
 
@@ -136,7 +136,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(PasswordTooShortException))]
         public void CreateNewPasswordTooShort()
         {
-            this._password.Pass = "tom";
+            _password.Pass = "tom";
         }
 
 
@@ -144,28 +144,28 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(PasswordTooLongException))]
         public void CreateNewPasswordTooLong()
         {
-            this._password.Pass = "harryharryharryharryharryharry";
+            _password.Pass = "harryharryharryharryharryharry";
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordSiteTooShortException))]
         public void CreateNewPasswordSiteTooShort()
         {
-            this._password.Site = "hi";
+            _password.Site = "hi";
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordSiteTooLongException))]
         public void CreateNewSiteSiteTooLong()
         {
-            this._password.Site = "htpps://wwww.harrywork.com/homepage/signup";
+            _password.Site = "htpps://wwww.harrywork.com/homepage/signup";
         }
 
         [TestMethod]
         [ExpectedException(typeof(ItemNotesTooLongException))]
         public void CreateNewPasswordNotesTooLong()
         {
-            this._password.Notes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+            _password.Notes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
                 " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when " +
                 "an unknown printer took a galley of type and scrambled it to make a type specimen book. " +
                 "It has survived not only five centuries, but also the leap into electronic typesetting, remaining" +
@@ -179,7 +179,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._password = new Password
+                _password = new Password
                 {
                     User = _user,
                     Category = _category,
@@ -188,7 +188,7 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreatePassword(this._password);
+                _passwordManager.CreatePassword(_password);
             }
             catch (Exception ex)
             {
@@ -220,15 +220,15 @@ namespace UnitTestObligatorio1
         {
             Password newPassword = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password"
             };
-            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
-            List<Password> passwords = this._passwordManager.GetPasswords();
+            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            List<Password> passwords = _passwordManager.GetPasswords();
             CollectionAssert.Contains(passwords, newPassword);
         }
 
@@ -238,8 +238,8 @@ namespace UnitTestObligatorio1
         {
             Password passwordAlreadyOnPasswordManager = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
@@ -249,14 +249,14 @@ namespace UnitTestObligatorio1
 
             Password newPassword = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "EstoEsUnGIF",
                 Notes = "Esta es la nueva password"
             };
-            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
         }
 
         [TestMethod]
@@ -264,8 +264,8 @@ namespace UnitTestObligatorio1
         {
             Password passwordAlreadyOnPasswordManager = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
@@ -275,15 +275,15 @@ namespace UnitTestObligatorio1
 
             Password newPassword = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "EstoEsUnGIF",
                 Notes = "Esta es la nueva password"
             };
-            this._passwordManager.ModifyPasswordOnCurrentUser(passwordAlreadyOnPasswordManager, newPassword);
-            List<Password> passwords = this._passwordManager.GetPasswords();
+            _passwordManager.ModifyPasswordOnCurrentUser(passwordAlreadyOnPasswordManager, newPassword);
+            List<Password> passwords = _passwordManager.GetPasswords();
             CollectionAssert.Contains(passwords, newPassword);
         }
 
@@ -293,8 +293,8 @@ namespace UnitTestObligatorio1
         {
             Password passwordAlreadyOnPasswordManager = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
@@ -304,14 +304,14 @@ namespace UnitTestObligatorio1
 
             Password newPassword = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "EstoEsUnGIF",
                 Notes = "Esta es la nueva password"
             };
-            this._passwordManager.CreatePassword(newPassword);
+            _passwordManager.CreatePassword(newPassword);
         }
 
         [DataRow("work.com", "Joseph", "work.com", "Joseph")]
@@ -461,7 +461,7 @@ namespace UnitTestObligatorio1
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password"
             };
-            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
+            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
         }
 
 
@@ -470,8 +470,8 @@ namespace UnitTestObligatorio1
         {
             Password newPassword = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "239850",
                 Pass = "1234560Ort2020",
@@ -486,16 +486,16 @@ namespace UnitTestObligatorio1
         {
             Password newPassword = new Password
             {
-                User = this._user,
-                Category = this._category,
+                User = _user,
+                Category = _category,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password",
                 LastModification = new DateTime(2021, 5, 8)
             };
-            this._passwordManager.ModifyPasswordOnCurrentUser(this._password, newPassword);
-            Assert.AreEqual(this._password.LastModification, newPassword.LastModification);
+            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            Assert.AreEqual(_password.LastModification, newPassword.LastModification);
         }
 
         [TestMethod]
@@ -521,7 +521,7 @@ namespace UnitTestObligatorio1
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password"
             };
-            this._passwordManager.CreatePassword(newPassword);
+            _passwordManager.CreatePassword(newPassword);
         }
     }
 }

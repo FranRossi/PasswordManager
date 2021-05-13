@@ -14,9 +14,9 @@ namespace UnitTestObligatorio1
         private string _itemDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
-        private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "nethiseant3232323hnea" };
+        private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "neant3232323hnea" };
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
-        private string[] _breachedItems = { "2354231413003498", "Passoword223", "nethiseant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
+        private string[] _breachedItems = { "2354231413003498", "Passoword223", "neant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
 
         [TestInitialize]
         public void TestInitialize()

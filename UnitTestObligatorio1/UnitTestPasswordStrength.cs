@@ -31,7 +31,7 @@ namespace UnitTestObligatorio1
                     Name = "Personal"
                 };
                 _user.Categories.Add(_category);
-                this._password = new Password
+                _password = new Password
                 {
                     User = _user,
                     Category = _category,
@@ -59,8 +59,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._password.Pass = password;
-                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Red);
+                _password.Pass = password;
+                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.Red);
             }
             catch (ValidationException ex)
             {
@@ -77,8 +77,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._password.Pass = password;
-                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Orange);
+                _password.Pass = password;
+                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.Orange);
             }
             catch (ValidationException ex)
             {
@@ -101,8 +101,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._password.Pass = password;
-                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.Yellow);
+                _password.Pass = password;
+                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.Yellow);
             }
             catch (ValidationException ex)
             {
@@ -121,8 +121,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._password.Pass = password;
-                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.LightGreen);
+                _password.Pass = password;
+                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.LightGreen);
             }
             catch (ValidationException ex)
             {
@@ -140,8 +140,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                this._password.Pass = password;
-                Assert.AreEqual(this._password.PasswordStrength, PasswordStrengthColor.DarkGreen);
+                _password.Pass = password;
+                Assert.AreEqual(_password.PasswordStrength, PasswordStrengthColor.DarkGreen);
             }
             catch (ValidationException ex)
             {
