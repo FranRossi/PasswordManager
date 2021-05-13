@@ -32,7 +32,7 @@ namespace UnitTestObligatorio1
                     Name = "Personal"
                 };
                 _user.Categories.Add(_category);
-                this._password = new Password
+                _password = new Password
                 {
                     User = _user,
                     Category = _category,
