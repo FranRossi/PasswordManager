@@ -509,7 +509,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.SharePassword(pass, userShareTo);
             expectedUser.Add(userShareTo);
 
-            List<User> usersSharedWith = pass.SharedWith;
+            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
@@ -546,7 +546,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(passwordToShare);
             this._passwordManager.SharePassword(passwordToShare, userShareTo);
             this._passwordManager.SharePassword(passwordToShare, userShareTo);
-            List<User> actualSharedUsers = passwordToShare.SharedWith;
+            List<User> actualSharedUsers = this._passwordManager.GetUsersSharedWith(passwordToShare);
             List<User> expectedSharedUsers = new List<User>() { userShareTo };
             CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
         }
@@ -606,7 +606,7 @@ namespace UnitTestObligatorio1
             expectedUser.Add(juana);
 
 
-            List<User> usersSharedWith = pass.SharedWith;
+            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
@@ -638,7 +638,7 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreateUser(user);
             this._passwordManager.CreatePassword(pass);
 
-            List<User> usersSharedWith = pass.SharedWith;
+            List<User> usersSharedWith = this._passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 

@@ -95,7 +95,7 @@ namespace Presentation
 
         private void LoadTblSharedWith(Password selectedPassword)
         {
-            List<User> users = selectedPassword.SharedWith;
+            List<User> users = _myPasswordManager.GetUsersSharedWith(selectedPassword);
             tblSharedWith.DataSource = null;
             tblSharedWith.Rows.Clear();
             tblSharedWith.DataSource = users;
@@ -136,7 +136,7 @@ namespace Presentation
         {
             UpdateSelectedPassword();
             UpdateSelectedShareWithUser();
-            _selectedPassword.ShareWithUser(_selectedShareWithUser);
+            _myPasswordManager.SharePassword(_selectedPassword, _selectedShareWithUser);
             LoadcbUsersNotSharedWith(_selectedPassword);
             LoadTblSharedWith(_selectedPassword);
         }
@@ -145,15 +145,12 @@ namespace Presentation
         {
             UpdateSelectedPassword();
             UpdateSelectedUnShareWithUser();
-            _selectedPassword.UnShareWithUser(_selectedUnShareWithUser);
+            _myPasswordManager.UnSharePassword(_selectedPassword, _selectedUnShareWithUser);
             LoadcbUsersNotSharedWith(_selectedPassword);
             LoadTblSharedWith(_selectedPassword);
         }
 
-        private void tblSharedWith_SelectionChanged(object sender, EventArgs e)
-        {
-            UpdateSelectedUnShareWithUser();
-        }
+
 
         private void btnSharedPasswords_Click(object sender, EventArgs e)
         {
@@ -225,5 +222,6 @@ namespace Presentation
             }
             catch (IndexOutOfRangeException exception) { };
         }
+
     }
 }

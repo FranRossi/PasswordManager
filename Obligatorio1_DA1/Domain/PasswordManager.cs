@@ -247,5 +247,10 @@ namespace Obligatorio1_DA1.Domain
         {
             passwordToShare.UnShareWithUser(userUnshareTo);
         }
+
+        public List<User> GetUsersSharedWith(Password pass)
+        {
+            return pass.SharedWith.ToList();
+        }
     }
 }
