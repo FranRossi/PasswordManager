@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Obligatorio1_DA1
+namespace Presentation
 {
     public class TestData
     {
@@ -28,9 +28,6 @@ namespace Obligatorio1_DA1
             this.CreatePasswordWithColorJuana();
 
             this.ShareJuanaPasswors();
-
-
-
         }
 
         private void ShareJuanaPasswors()
@@ -45,7 +42,6 @@ namespace Obligatorio1_DA1
             passwords[1].ShareWithUser(this._laura);
 
             passwords[3].ShareWithUser(this._mario);
-
         }
 
         private void CreatePasswordWithColorJuana()
@@ -82,7 +78,6 @@ namespace Obligatorio1_DA1
 
 
             this.CreateNCreditCardsForUser("Juana", "Personal");
-
         }
 
         private void CreateNCreditCardsForUser(string userName, string category)
