@@ -9,7 +9,7 @@ namespace Presentation
         public DeleteConfirmation(string pItem)
         {
             InitializeComponent();
-            lblConfirmationMessage.Text += pItem;
+            lblConfirmationMessage.Text += pItem + "?";
             _itemType = pItem;
         }
 
