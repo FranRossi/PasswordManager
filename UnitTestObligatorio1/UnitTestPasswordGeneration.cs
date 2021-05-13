@@ -48,8 +48,8 @@ namespace UnitTestObligatorio1
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
-
         }
+
         [DataRow(5, true, false, false, false, "^[A-Z]{5}$")]
         [DataRow(6, false, true, false, false, "^[a-z]{6}$")]
         [DataRow(8, true, true, false, false, "^([a-z]|[A-Z]){8}$")]
@@ -97,7 +97,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationTooShortException))]
         public void GenerateInvalidTooShortPassword
-       (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
+            (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
             PasswordGenerationOptions options = new PasswordGenerationOptions
             {
@@ -115,7 +115,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         [ExpectedException(typeof(PasswordGenerationTooLongException))]
         public void GenerateInvalidTooLongPassword
-        (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
+            (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
             PasswordGenerationOptions options = new PasswordGenerationOptions
             {
