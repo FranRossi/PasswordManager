@@ -515,6 +515,45 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void SharePasswordWithAlreadySharedUser()
+        {
+            User userShareFrom = new User()
+            {
+                Name = "Santiago",
+                MasterPass = "HolaSoySantiago1"
+            };
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            this._passwordManager.CreateUser(userShareFrom);
+            this._passwordManager.CreateCategoryOnCurrentUser(category);
+            User userShareTo = new User()
+            {
+                Name = "Lucía",
+                MasterPass = "lu2000@1"
+            };
+            this._passwordManager.CreateUser(userShareTo);
+            this._passwordManager.Login(userShareFrom.Name, userShareFrom.MasterPass);
+            Password passwordToShare = new Password
+            {
+                User = userShareFrom,
+                Category = category,
+                Site = "www.google.com",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "No me roben la cuenta"
+            };
+            this._passwordManager.CreatePassword(passwordToShare);
+            passwordToShare.ShareWithUser(userShareTo);
+            passwordToShare.ShareWithUser(userShareTo);
+            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
+            List<User> actualSharedUsers = passwordToShare.SharedWith;
+            List<User> expectedSharedUsers = new List<User>() { userShareTo };
+            CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
+        }
+
+        [TestMethod]
         public void GetSharedPasswordUsersMultipleUsers()
         {
             List<User> expectedUser = new List<User>();
