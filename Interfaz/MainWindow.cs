@@ -79,7 +79,6 @@ namespace Presentation
         {
             Form logOut = new LogOutWindow(e);
             var resonse = logOut.ShowDialog();
-
         }
     }
 }
