@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Obligatorio1_DA1.Utilities
 {
     public enum PasswordStrengthColor
     {
-        Red,
-        Orange,
-        Yellow,
-        LightGreen,
-        DarkGreen
+        Red = 0,
+        Orange = 1,
+        Yellow = 2,
+        LightGreen = 3,
+        DarkGreen = 4
     }
 }

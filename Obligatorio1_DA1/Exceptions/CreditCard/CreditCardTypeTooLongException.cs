@@ -1,6 +1,6 @@
-﻿namespace Obligatorio1_DA1.Exceptions
+﻿
+namespace Obligatorio1_DA1.Exceptions
 {
-
     public class CreditCardTypeTooLongException : ValidationException
     {
         public CreditCardTypeTooLongException()
