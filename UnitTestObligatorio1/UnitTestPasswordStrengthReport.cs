@@ -3,9 +3,6 @@ using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTestObligatorio1
 {
@@ -16,7 +13,6 @@ namespace UnitTestObligatorio1
         private User _currentUser;
         private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
         private List<Password> redPassword = new List<Password>();
-        private String[] orangePasswordsName = { "239850232", "abcst333de8762", "-d4502-s--ss-3" };
         private List<Password> orangePassword = new List<Password>();
         private String[] yellowPasswordsName = { "AAHTNINESHRIIHH", "nethiseant3232323hnea", "n$#@$ntdtshneaa" };
         private List<Password> yellowPassword = new List<Password>();

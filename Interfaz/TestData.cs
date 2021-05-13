@@ -56,7 +56,6 @@ namespace Presentation
             //darkGreen
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Personal");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "3#@rstaAaartsaa", "Personal");
-
             //red
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Trabajo");
             //orange

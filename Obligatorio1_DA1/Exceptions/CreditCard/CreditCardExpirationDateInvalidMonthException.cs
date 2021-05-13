@@ -1,6 +1,6 @@
-﻿namespace Obligatorio1_DA1.Exceptions
+﻿
+namespace Obligatorio1_DA1.Exceptions
 {
-
     public class CreditCardExpirationDateInvalidMonthException : ValidationException
     {
         public CreditCardExpirationDateInvalidMonthException()

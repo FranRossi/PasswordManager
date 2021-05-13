@@ -1,5 +1,4 @@
 ﻿
-
 namespace Obligatorio1_DA1.Exceptions
 {
     public class PasswordAlreadyExistsException : ValidationException
