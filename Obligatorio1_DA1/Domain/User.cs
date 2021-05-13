@@ -97,6 +97,15 @@ namespace Obligatorio1_DA1.Domain
             this.Categories.Add(newCategory);
         }
 
+        public void ModifyCategory(Category oldCategory, Category newCategory)
+        {
+            foreach (Category categoryIterator in this.Categories)
+            {
+                if (categoryIterator.Equals(oldCategory))
+                    categoryIterator.Name = newCategory.Name;
+            }
+        }
+
         private void ValidateCategoryIsUnique(Category newCategory)
         {
             if (this.Categories.Contains(newCategory))

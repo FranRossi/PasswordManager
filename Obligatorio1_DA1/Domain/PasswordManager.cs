@@ -60,11 +60,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
         {
-            foreach (Category categoryIterator in CurrentUser.Categories)
-            {
-                if (categoryIterator.Equals(oldCategory))
-                    categoryIterator.Name = newCategory.Name;
-            }
+            this.CurrentUser.ModifyCategory(oldCategory, newCategory);
         }
 
 
