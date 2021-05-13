@@ -547,7 +547,6 @@ namespace UnitTestObligatorio1
             this._passwordManager.CreatePassword(passwordToShare);
             passwordToShare.ShareWithUser(userShareTo);
             passwordToShare.ShareWithUser(userShareTo);
-            this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<User> actualSharedUsers = passwordToShare.SharedWith;
             List<User> expectedSharedUsers = new List<User>() { userShareTo };
             CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
