@@ -35,12 +35,12 @@ namespace Presentation
             Close();
         }
 
-        void KeepMainWindowOpen()
+        private void KeepMainWindowOpen()
         {
             _mainWindowsClosingEvent.Cancel = true;
         }
 
-        void CloseMainWindow()
+        private void CloseMainWindow()
         {
             _mainWindowsClosingEvent.Cancel = false;
         }
