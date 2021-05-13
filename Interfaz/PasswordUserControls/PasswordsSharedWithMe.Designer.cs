@@ -32,8 +32,8 @@ namespace Presentation
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlList = new System.Windows.Forms.Panel();
             this.tblPassword = new System.Windows.Forms.DataGridView();
-            this.lblTIitle = new System.Windows.Forms.Label();
             this.CategorySharedWithMe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTIitle = new System.Windows.Forms.Label();
             this.pnlList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +51,7 @@ namespace Presentation
             // 
             this.tblPassword.AllowUserToAddRows = false;
             this.tblPassword.AllowUserToDeleteRows = false;
+            this.tblPassword.AllowUserToResizeRows = false;
             this.tblPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblPassword.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -64,6 +65,15 @@ namespace Presentation
             this.tblPassword.Size = new System.Drawing.Size(768, 343);
             this.tblPassword.TabIndex = 6;
             // 
+            // CategorySharedWithMe
+            // 
+            this.CategorySharedWithMe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.NullValue = "Compartida conmigo";
+            this.CategorySharedWithMe.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CategorySharedWithMe.HeaderText = "Categoria";
+            this.CategorySharedWithMe.Name = "CategorySharedWithMe";
+            this.CategorySharedWithMe.ReadOnly = true;
+            // 
             // lblTIitle
             // 
             this.lblTIitle.AutoSize = true;
@@ -73,15 +83,6 @@ namespace Presentation
             this.lblTIitle.Size = new System.Drawing.Size(314, 25);
             this.lblTIitle.TabIndex = 0;
             this.lblTIitle.Text = "Contraseñas compartidas conmigo";
-            // 
-            // CategorySharedWithMe
-            // 
-            this.CategorySharedWithMe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.NullValue = "Compartida conmigo";
-            this.CategorySharedWithMe.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CategorySharedWithMe.HeaderText = "Categoria";
-            this.CategorySharedWithMe.Name = "CategorySharedWithMe";
-            this.CategorySharedWithMe.ReadOnly = true;
             // 
             // PasswordsSharedWithMe
             // 
