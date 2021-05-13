@@ -50,15 +50,16 @@ namespace Presentation
             }
         }
 
-        private void CleanTextBoxes()
+        private void CleanTextBoxesAndMessages()
         {
             txtUserName.Text = "";
             txtMasterPassword.Text = "";
+            lblMessage.Text = "";
         }
 
         private void ShowMainScreen()
         {
-            CleanTextBoxes();
+            CleanTextBoxesAndMessages();
             Form currentForm = this.FindForm();
             currentForm.Hide();
             Form mainForm = new MainWindow(_myPasswordManager);
