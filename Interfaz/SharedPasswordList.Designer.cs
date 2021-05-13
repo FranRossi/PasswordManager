@@ -39,6 +39,7 @@ namespace Presentation
             this.cbUsersNotSharedWith = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblSharedWith)).BeginInit();
             this.SuspendLayout();
@@ -158,10 +159,19 @@ namespace Presentation
             this.lblTitle.TabIndex = 11;
             this.lblTitle.Text = "Compartir Constraseñas";
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Location = new System.Drawing.Point(29, 369);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblMessage.TabIndex = 12;
+            // 
             // SharedPasswordList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbUsersNotSharedWith);
             this.Controls.Add(this.lblTitle);
@@ -192,5 +202,6 @@ namespace Presentation
         private System.Windows.Forms.DataGridView tblSharedWith;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ComboBox cbUsersNotSharedWith;
+        private System.Windows.Forms.Label lblMessage;
     }
 }
