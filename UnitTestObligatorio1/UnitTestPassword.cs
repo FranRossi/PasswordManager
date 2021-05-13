@@ -332,6 +332,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             this._passwordManager.CreatePassword(passwordToShare);
+            this._passwordManager.SharePassword(passwordToShare, userShareTo);
             passwordToShare.ShareWithUser(userShareTo);
             this._passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
             List<Password> sharedWithUser = this._passwordManager.GetSharedPasswordsWithCurrentUser();
