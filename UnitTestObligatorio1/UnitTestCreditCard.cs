@@ -568,6 +568,21 @@ namespace UnitTestObligatorio1
         {
             Assert.IsFalse(_card.Equals(new object()));
         }
+
+        [TestMethod]
+        public void CreditCardId()
+        {
+            _card.Id = 1;
+            Assert.AreEqual<int>(_card.Id, 1);
+        }
+
+        [TestMethod]
+        public void CreditCardDifferentId()
+        {
+            _card.Id = 1254;
+            Assert.AreNotEqual<int>(_card.Id, 1);
+        }
+
     }
 
 

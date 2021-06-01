@@ -518,5 +518,19 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPassword);
         }
+
+        [TestMethod]
+        public void PasswordId()
+        {
+            _password.Id = 1;
+            Assert.AreEqual<int>(_password.Id, 1);
+        }
+
+        [TestMethod]
+        public void PasswordDifferentId()
+        {
+            _password.Id = 1254;
+            Assert.AreNotEqual<int>(_password.Id, 555);
+        }
     }
 }

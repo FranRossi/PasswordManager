@@ -19,6 +19,8 @@ namespace Obligatorio1_DA1.Domain
         private string _type;
         private string _secureCode;
         private string _expirationDate;
+
+        public int Id { get; set; }
         public string Name
         {
             get => _name;

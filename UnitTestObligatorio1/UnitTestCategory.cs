@@ -203,5 +203,19 @@ namespace UnitTestObligatorio1
             user.AddOneCategory(categoryName);
             CollectionAssert.Contains(user.Categories, category1);
         }
+
+        [TestMethod]
+        public void CategoryId()
+        {
+            _categoryPersonal.Id = 1;
+            Assert.AreEqual<int>(_categoryPersonal.Id, 1);
+        }
+
+        [TestMethod]
+        public void CategoryDifferentId()
+        {
+            _categoryPersonal.Id = 1254;
+            Assert.AreNotEqual<int>(_categoryPersonal.Id, 1);
+        }
     }
 }
