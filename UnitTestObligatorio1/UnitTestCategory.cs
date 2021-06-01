@@ -6,10 +6,13 @@ using System.Collections.Generic;
 
 namespace UnitTestObligatorio1
 {
+
     [TestClass]
     public class UnitTestCategory
     {
         private string _personalCategoryName;
+        private Category _personalCategory;
+        private User _user;
         private PasswordManager _passwordManager;
 
         [TestInitialize]
@@ -17,21 +20,28 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _personalCategoryName = "Personal";
                 _passwordManager = new PasswordManager();
-                User newUser = new User()
+                _personalCategoryName = "Personal";
+                _personalCategory = new Category()
+                {
+                    Name = _personalCategoryName
+                };
+                _user = new User()
                 {
                     Name = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
+                _user.Categories.Add(_personalCategory);
+                _passwordManager.CreateUser(_user);
 
-                _passwordManager.CreateUser(newUser);
             }
             catch (Exception exception)
             {
                 Assert.Fail("Expected no exception, but got: " + exception.Message);
             }
+
         }
+
 
         [TestMethod]
         public void GetCategoryName()
@@ -56,8 +66,8 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryTooShortException))]
         public void CreateCateogryTooShort()
         {
-            _personalCategoryName = "Li";
-            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
+            string shortCategoryName = "Li";
+            _passwordManager.CreateCategoryOnCurrentUser(shortCategoryName);
         }
 
         [TestMethod]
@@ -77,8 +87,8 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryTooLongException))]
         public void CreateCateogryTooLong()
         {
-            _personalCategoryName = "Peliculas/Series";
-            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
+            string longCategoryName = "Peliculas/Series";
+            _passwordManager.CreateCategoryOnCurrentUser(longCategoryName);
         }
 
         [TestMethod]
@@ -109,7 +119,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ShowsCategoryAsAString()
         {
-            string categotyName = _personalCategoryName.ToString();
+            string categotyName = _personalCategory.ToString();
             Assert.AreEqual(categotyName, "Personal");
         }
 
@@ -207,15 +217,15 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CategoryId()
         {
-            _categoryPersonal.Id = 1;
-            Assert.AreEqual<int>(_categoryPersonal.Id, 1);
+            _personalCategory.Id = 1;
+            Assert.AreEqual<int>(_personalCategory.Id, 1);
         }
 
         [TestMethod]
         public void CategoryDifferentId()
         {
-            _categoryPersonal.Id = 1254;
-            Assert.AreNotEqual<int>(_categoryPersonal.Id, 1);
+            _personalCategory.Id = 1254;
+            Assert.AreNotEqual<int>(_personalCategory.Id, 1);
         }
     }
 }
