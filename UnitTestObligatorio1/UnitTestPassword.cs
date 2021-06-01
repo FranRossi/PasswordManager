@@ -520,5 +520,12 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPassword);
         }
+
+        [TestMethod]
+        public void PasswordId()
+        {
+            _password.Id = 1;
+            Assert.AreEqual<int>(_password.Id, 1);
+        }
     }
 }
