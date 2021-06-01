@@ -575,6 +575,8 @@ namespace UnitTestObligatorio1
         {
             Assert.IsFalse(_card.Equals(new object()));
         }
+
+
     }
 
 

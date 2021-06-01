@@ -209,5 +209,12 @@ namespace UnitTestObligatorio1
             _categoryPersonal.Id = 1;
             Assert.AreEqual<int>(_categoryPersonal.Id, 1);
         }
+
+        [TestMethod]
+        public void CategoryDifferentId()
+        {
+            _categoryPersonal.Id = 1254;
+            Assert.AreEqual<int>(_categoryPersonal.Id, 1);
+        }
     }
 }
