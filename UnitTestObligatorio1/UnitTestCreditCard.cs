@@ -12,7 +12,7 @@ namespace UnitTestObligatorio1
         private CreditCard _card;
         private PasswordManager _passwordManager;
         private User _user;
-        private Category _category;
+        private string _categoryName;
 
 
         [TestInitialize]
@@ -28,15 +28,13 @@ namespace UnitTestObligatorio1
                 };
 
                 _passwordManager.CreateUser(_user);
-                _category = new Category()
-                {
-                    Name = "Personal"
-                };
-                _passwordManager.CreateCategoryOnCurrentUser(_category);
+                _categoryName = "Personal";
+                _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
+                Category firstCategoryOnUser = _user.Categories[0];
                 _card = new CreditCard
                 {
                     User = _user,
-                    Category = _category,
+                    Category = firstCategoryOnUser,
                     Name = "Visa Gold",
                     Type = "Visa",
                     Number = "2354678713003498",
@@ -61,16 +59,14 @@ namespace UnitTestObligatorio1
                 Name = "Mauricio",
                 MasterPass = "HolaSoyGonzalo123"
             };
-            _category = new Category()
-            {
-                Name = "Personal"
-            };
+            _categoryName = "Personal";
             _passwordManager.CreateUser(_user);
-            _passwordManager.CreateCategoryOnCurrentUser(_category);
+            _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
+            Category firstCategoryOnUser = _user.Categories[0];
             CreditCard creditCard = new CreditCard
             {
                 User = _user,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "Visa Gold",
                 Type = "Visa",
                 Number = "7754678713003477",
@@ -147,10 +143,11 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                Category firstCategoryOnUser = _user.Categories[0];
                 CreditCard newCard = new CreditCard
                 {
                     User = _user,
-                    Category = _category,
+                    Category = firstCategoryOnUser,
                     Name = "Visa Black",
                     Type = "Visa",
                     Number = "2354678713003498",
@@ -193,16 +190,11 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                User user = new User()
-                {
-                    Name = "Felipe",
-                    MasterPass = "12345",
-                };
-                user.Categories.Add(_category);
+                Category firstCategoryOnUser = _user.Categories[0];
                 CreditCard newCreditCard = new CreditCard
                 {
-                    User = user,
-                    Category = _category,
+                    User = _user,
+                    Category = firstCategoryOnUser,
                     Name = "MasterCard Black",
                     Type = "Master",
                     Number = "2354678713001111",
@@ -227,11 +219,12 @@ namespace UnitTestObligatorio1
                 MasterPass = "12345",
             };
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_category);
+            _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
+            Category firstCategoryOnUser = _user.Categories[0];
             CreditCard _card2 = new CreditCard
             {
                 User = user,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -253,11 +246,13 @@ namespace UnitTestObligatorio1
                 Name = "Gonzalo",
                 MasterPass = "HolaSoyGonzalo123",
             };
-            user.Categories.Add(_category);
+            _passwordManager.CreateUser(user);
+            _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
+            Category firstCategoryOnUser = _user.Categories[0];
             CreditCard _card2 = new CreditCard
             {
                 User = user,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -273,10 +268,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyCreditCard()
         {
+            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
             CreditCard _card2 = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -293,10 +289,11 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardAlreadyExistsException))]
         public void ModifyCreditCardThatAlreadyExists()
         {
+            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -309,7 +306,7 @@ namespace UnitTestObligatorio1
             CreditCard newCreditCard = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -323,10 +320,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyOneFieldCreditCard()
         {
+            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -339,7 +337,7 @@ namespace UnitTestObligatorio1
             CreditCard newCreditCard = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -356,10 +354,11 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardAlreadyExistsException))]
         public void CreateCreditCardThatAlreadyExists()
         {
+            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -372,7 +371,7 @@ namespace UnitTestObligatorio1
             CreditCard newCreditCard = new CreditCard
             {
                 User = _passwordManager.CurrentUser,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",

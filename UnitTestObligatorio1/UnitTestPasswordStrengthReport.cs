@@ -39,10 +39,10 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreateUser(_currentUser);
 
-            AddCategoryToPasswordManager(ref _personal, "Personal");
-            AddCategoryToPasswordManager(ref _work, "Work");
-            AddCategoryToPasswordManager(ref _university, "University");
-            AddCategoryToPasswordManager(ref _family, "Family");
+            AddCategoryToPasswordManager("Personal");
+            AddCategoryToPasswordManager("Work");
+            AddCategoryToPasswordManager("University");
+            AddCategoryToPasswordManager("Family");
 
             ValueTuple<List<Password>, string, Category>[] passwords = new (List<Password> passwords, string pass, Category category)[]
               {
@@ -129,13 +129,9 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(redPassword, actualPasswords);
         }
 
-        private void AddCategoryToPasswordManager(ref Category category, string name)
+        private void AddCategoryToPasswordManager(string categoryName)
         {
-            category = new Category()
-            {
-                Name = name
-            };
-            _passwordManager.CreateCategoryOnCurrentUser(category);
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
         }
 
         private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)

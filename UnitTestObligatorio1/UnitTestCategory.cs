@@ -9,7 +9,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCategory
     {
-        private Category _categoryPersonal;
+        private string _personalCategoryName;
         private PasswordManager _passwordManager;
 
         [TestInitialize]
@@ -17,10 +17,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _categoryPersonal = new Category()
-                {
-                    Name = "Personal"
-                };
+                _personalCategoryName = "Personal";
                 _passwordManager = new PasswordManager();
             }
             catch (Exception exception)
@@ -32,7 +29,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCategoryName()
         {
-            Assert.AreEqual<string>(_categoryPersonal.Name, "Personal");
+            Category category = new Category()
+            {
+                Name = "Personal"
+            };
+            Assert.AreEqual<string>(category.Name, "Personal");
         }
 
         [TestMethod]
@@ -48,10 +49,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryTooShortException))]
         public void CreateCateogryTooShort()
         {
-            _categoryPersonal = new Category()
-            {
-                Name = "Li"
-            };
+            _personalCategoryName = "Li";
         }
 
         [TestMethod]
@@ -59,10 +57,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _categoryPersonal = new Category()
-                {
-                    Name = "Mis"
-                };
+                _personalCategoryName = "Mis";
             }
             catch (Exception exception)
             {
@@ -74,10 +69,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryTooLongException))]
         public void CreateCateogryTooLong()
         {
-            _categoryPersonal = new Category()
-            {
-                Name = "Peliculas/Series"
-            };
+            _personalCategoryName = "Peliculas/Series";
         }
 
         [TestMethod]
@@ -85,10 +77,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _categoryPersonal = new Category()
-                {
-                    Name = "Paginas de cine"
-                };
+                _personalCategoryName = "Paginas de cine";
             }
             catch (CategoryTooLongException exception)
             {
@@ -103,14 +92,14 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_categoryPersonal);
-            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _categoryPersonal);
+            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
+            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _personalCategoryName);
         }
 
         [TestMethod]
         public void ShowsCategoryAsAString()
         {
-            string categotyName = _categoryPersonal.ToString();
+            string categotyName = _personalCategoryName.ToString();
             Assert.AreEqual(categotyName, "Personal");
         }
 
@@ -119,12 +108,12 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_categoryPersonal);
+            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             Category newCategory = new Category()
             {
                 Name = "Trabajo"
             };
-            _passwordManager.ModifyCategoryOnCurrentUser(_categoryPersonal, newCategory);
+            _passwordManager.ModifyCategoryOnCurrentUser(_personalCategoryName, newCategory);
             Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], newCategory);
         }
 
@@ -134,12 +123,9 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_categoryPersonal);
-            Category repeatedCategory = new Category()
-            {
-                Name = "Personal"
-            };
-            _passwordManager.CreateCategoryOnCurrentUser(repeatedCategory);
+            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
+            string repeatedCategoryName = "Personal";
+            _passwordManager.CreateCategoryOnCurrentUser(repeatedCategoryName);
         }
 
         [DataRow("Trabajo", "Trabajo")]

@@ -24,12 +24,10 @@ namespace UnitTestObligatorio1
                     Name = "Santiago",
                     MasterPass = "HolaSoySantiago1"
                 };
-                _category = new Category()
-                {
-                    Name = "Personal"
-                };
+                string categoryName = "Personal";
                 _passwordManager.CreateUser(_userShareFrom);
-                _passwordManager.CreateCategoryOnCurrentUser(_category);
+                _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+                _category = _passwordManager.CurrentUser.Categories[0];
             }
             catch (Exception ex)
             {
