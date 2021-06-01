@@ -111,21 +111,19 @@ namespace UnitTestObligatorio1
 
         private void AddPasswordsFromDifferentUserToPasswordManager()
         {
-            Category category = new Category()
-            {
-                Name = "Facultad"
-            };
+            string categoryName = "Facultad";
             User otherUser = new User()
             {
                 Name = "Pedro",
                 MasterPass = "HolaSoyPedro123"
             };
             _passwordManager.CreateUser(otherUser);
-            _passwordManager.CreateCategoryOnCurrentUser(category);
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            Category firstCategoryOnUser = otherUser.Categories[0];
             Password newPassword = new Password
             {
                 User = otherUser,
-                Category = category,
+                Category = firstCategoryOnUser,
                 Site = "aulas.ort.edu.uy",
                 Username = "23985",
                 Pass = "Passoword223",
@@ -164,21 +162,19 @@ namespace UnitTestObligatorio1
 
         private void AddCreditCardsFromDifferentToUserPasswordManager()
         {
-            Category category = new Category()
-            {
-                Name = "Facultad"
-            };
+            string categoryName = "Facultad";
             User otherUser = new User()
             {
                 Name = "Javier",
                 MasterPass = "HolaSoyJavier123"
             };
             _passwordManager.CreateUser(otherUser);
-            _passwordManager.CreateCategoryOnCurrentUser(category);
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            Category firstCategoryOnUser = otherUser.Categories[0];
             CreditCard newCard = new CreditCard
             {
                 User = otherUser,
-                Category = category,
+                Category = firstCategoryOnUser,
                 Name = "Visa Gold",
                 Type = "Visa",
                 Number = "2354231413001234",

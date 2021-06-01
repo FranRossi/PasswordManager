@@ -110,8 +110,7 @@ namespace Presentation
             this._passwordManager.Login(userName, userName);
             foreach (string name in categoriesName)
             {
-                Category category = new Category() { Name = name };
-                this._passwordManager.CreateCategoryOnCurrentUser(category);
+                this._passwordManager.CreateCategoryOnCurrentUser(name);
             }
         }
 

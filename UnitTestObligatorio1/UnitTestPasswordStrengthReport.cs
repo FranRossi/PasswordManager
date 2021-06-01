@@ -77,7 +77,7 @@ namespace UnitTestObligatorio1
         {
             List<PasswordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
             var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
-            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
+            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity + " real " + reportEntry.Quantity);
         }
 
         [DataRow(PasswordStrengthColor.DarkGreen, 2)]
@@ -135,7 +135,7 @@ namespace UnitTestObligatorio1
             {
                 Name = name
             };
-            _passwordManager.CreateCategoryOnCurrentUser(category);
+            _passwordManager.CreateCategoryOnCurrentUser(name);
         }
 
         private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)

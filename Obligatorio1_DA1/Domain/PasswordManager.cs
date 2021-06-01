@@ -53,7 +53,7 @@ namespace Obligatorio1_DA1.Domain
             return this.CurrentUser.Categories.ToList();
         }
 
-        public void CreateCategoryOnCurrentUser(Category category)
+        public void CreateCategoryOnCurrentUser(string category)
         {
             this.CurrentUser.AddOneCategory(category);
         }
@@ -130,7 +130,7 @@ namespace Obligatorio1_DA1.Domain
                     {
                         Category = category,
                         Color = color,
-                        Quantity = this.GetPasswords().Count(pass => pass.Category == category && pass.PasswordStrength == color)
+                        Quantity = this.GetPasswords().Count(pass => pass.Category.Equals(category) && pass.PasswordStrength == color)
                     }
                     );
                 }

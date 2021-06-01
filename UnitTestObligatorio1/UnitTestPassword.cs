@@ -72,16 +72,14 @@ namespace UnitTestObligatorio1
                 Name = "Juan Perez",
                 MasterPass = "juan123"
             };
-            Category categoryPersonal = new Category()
-            {
-                Name = "Personal"
-            };
+            string personalCategoryName = "Personal";
             _passwordManager.CreateUser(differentUser);
-            _passwordManager.CreateCategoryOnCurrentUser(categoryPersonal);
+            _passwordManager.CreateCategoryOnCurrentUser(personalCategoryName);
+            Category firstCategoryOnUser = differentUser.Categories[0];
             Password differentPassword = new Password
             {
                 User = differentUser,
-                Category = categoryPersonal,
+                Category = firstCategoryOnUser,
                 Site = "www.google.com",
                 Username = "123456",
                 Pass = "239850Ort2019"
