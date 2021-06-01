@@ -23,7 +23,7 @@ namespace UnitTestObligatorio1
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
-                    Name = "Gonzalo",
+                    Username = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
                 _category = new Category()

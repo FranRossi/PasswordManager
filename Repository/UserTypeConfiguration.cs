@@ -12,8 +12,8 @@ namespace Repository
     {
         public UserTypeConfiguration()
         {
-            this.HasKey(user => user.Name);
-            this.Property(user => user.Name).HasMaxLength(25);
+            this.HasKey(user => user.MasterName);
+            this.Property(user => user.MasterName).HasMaxLength(25);
             this.Property(user => user.MasterPass).HasMaxLength(25);
             this.Property(user => user.MasterPass).IsRequired();
         }

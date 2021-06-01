@@ -21,7 +21,7 @@ namespace UnitTestObligatorio1
                 _passwordManager = new PasswordManager();
                 User newUser = new User()
                 {
-                    Name = "Gonzalo",
+                    MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
 

@@ -22,7 +22,7 @@ namespace UnitTestObligatorio1
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
-                    Name = "Gonzalo",
+                    Username = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
                 _category = new Category()
@@ -69,7 +69,7 @@ namespace UnitTestObligatorio1
         {
             User differentUser = new User()
             {
-                Name = "Juan Perez",
+                Username = "Juan Perez",
                 MasterPass = "juan123"
             };
             string personalCategoryName = "Personal";
@@ -439,7 +439,7 @@ namespace UnitTestObligatorio1
         {
             User newUser = new User()
             {
-                Name = "Santiago",
+                Username = "Santiago",
                 MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
@@ -499,7 +499,7 @@ namespace UnitTestObligatorio1
         {
             User newUser = new User()
             {
-                Name = "Santiago",
+                Username = "Santiago",
                 MasterPass = "HolaSoySantiago1"
             };
             Category newCategory = new Category()
