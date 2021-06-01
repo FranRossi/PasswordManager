@@ -39,10 +39,10 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreateUser(_currentUser);
 
-            AddCategoryToPasswordManager("Personal");
-            AddCategoryToPasswordManager("Work");
-            AddCategoryToPasswordManager("University");
-            AddCategoryToPasswordManager("Family");
+            AddCategoryToPasswordManager(ref _personal, "Personal");
+            AddCategoryToPasswordManager(ref _work, "Work");
+            AddCategoryToPasswordManager(ref _university, "University");
+            AddCategoryToPasswordManager(ref _family, "Family");
 
             ValueTuple<List<Password>, string, Category>[] passwords = new (List<Password> passwords, string pass, Category category)[]
               {
@@ -77,7 +77,7 @@ namespace UnitTestObligatorio1
         {
             List<PasswordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
             var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
-            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity);
+            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity + " real " + reportEntry.Quantity);
         }
 
         [DataRow(PasswordStrengthColor.DarkGreen, 2)]
@@ -129,9 +129,13 @@ namespace UnitTestObligatorio1
             CollectionAssert.AreEquivalent(redPassword, actualPasswords);
         }
 
-        private void AddCategoryToPasswordManager(string categoryName)
+        private void AddCategoryToPasswordManager(ref Category category, string name)
         {
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            category = new Category()
+            {
+                Name = name
+            };
+            _passwordManager.CreateCategoryOnCurrentUser(name);
         }
 
         private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)

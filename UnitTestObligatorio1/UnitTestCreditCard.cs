@@ -220,7 +220,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
-            Category firstCategoryOnUser = _user.Categories[0];
+            Category firstCategoryOnUser = user.Categories[0];
             CreditCard _card2 = new CreditCard
             {
                 User = user,
@@ -241,17 +241,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCreditCardsRefferingToSameUser()
         {
-            User user = new User()
-            {
-                Name = "Gonzalo",
-                MasterPass = "HolaSoyGonzalo123",
-            };
-            _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
-            Category firstCategoryOnUser = _user.Categories[0];
+            User currentUser = _passwordManager.CurrentUser;
+            Category firstCategoryOnUser = currentUser.Categories[0];
             CreditCard _card2 = new CreditCard
             {
-                User = user,
+                User = currentUser,
                 Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
