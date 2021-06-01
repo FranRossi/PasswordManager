@@ -26,11 +26,8 @@ namespace Presentation
         {
             try
             {
-                Category newCategory = new Category
-                {
-                    Name = this.txtNameAdd.Text
-                };
-                _myPasswordManager.CreateCategoryOnCurrentUser(newCategory);
+                string categoryName = this.txtNameAdd.Text;
+                _myPasswordManager.CreateCategoryOnCurrentUser(categoryName);
                 LoadCategoryList();
                 lblMessage.Text = "Categoria agregada correctamente";
                 txtNameAdd.Text = "";
