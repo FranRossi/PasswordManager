@@ -207,7 +207,7 @@ namespace UnitTestObligatorio1
         public void CategoryId()
         {
             _categoryPersonal.Id = 1;
-            Assert.AreEqual<string>(_categoryPersonal.Id, 1);
+            Assert.AreEqual<int>(_categoryPersonal.Id, 1);
         }
     }
 }

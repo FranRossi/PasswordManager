@@ -10,6 +10,7 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxNameLength = 15;
 
         private string _name;
+        public int Id { get; set; }
         public string Name
         {
             get => _name;
