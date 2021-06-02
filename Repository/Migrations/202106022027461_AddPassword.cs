@@ -23,19 +23,29 @@
                         LastModification = c.DateTime(nullable: false),
                         Notes = c.String(maxLength: 250),
                         Category_Id = c.Int(),
-                        User_MasterName = c.String(maxLength: 25),
+                        User_MasterName = c.String(nullable: false, maxLength: 25),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.Category_Id)
-                .ForeignKey("dbo.Users", t => t.User_MasterName)
+                .ForeignKey("dbo.Users", t => t.User_MasterName, cascadeDelete: true)
                 .Index(t => t.Category_Id)
                 .Index(t => t.User_MasterName);
             
+            CreateTable(
+                "dbo.SharedPasswordUser",
+                c => new
+                    {
+                        PasswordId = c.Int(nullable: false),
+                        UserSharedWithName = c.String(nullable: false, maxLength: 25),
+                    })
+                .PrimaryKey(t => new { t.PasswordId, t.UserSharedWithName })
+                .ForeignKey("dbo.Passwords", t => t.PasswordId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserSharedWithName, cascadeDelete: true)
+                .Index(t => t.PasswordId)
+                .Index(t => t.UserSharedWithName);
+            
             AddColumn("dbo.Users", "MasterName", c => c.String(nullable: false, maxLength: 25));
-            AddColumn("dbo.Users", "Password_Id", c => c.Int());
             AddPrimaryKey("dbo.Users", "MasterName");
-            CreateIndex("dbo.Users", "Password_Id");
-            AddForeignKey("dbo.Users", "Password_Id", "dbo.Passwords", "Id");
             AddForeignKey("dbo.Categories", "User_MasterName", "dbo.Users", "MasterName");
             DropColumn("dbo.Users", "Username");
         }
@@ -45,14 +55,16 @@
             AddColumn("dbo.Users", "Username", c => c.String(nullable: false, maxLength: 25));
             DropForeignKey("dbo.Categories", "User_MasterName", "dbo.Users");
             DropForeignKey("dbo.Passwords", "User_MasterName", "dbo.Users");
-            DropForeignKey("dbo.Users", "Password_Id", "dbo.Passwords");
+            DropForeignKey("dbo.SharedPasswordUser", "UserSharedWithName", "dbo.Users");
+            DropForeignKey("dbo.SharedPasswordUser", "PasswordId", "dbo.Passwords");
             DropForeignKey("dbo.Passwords", "Category_Id", "dbo.Categories");
+            DropIndex("dbo.SharedPasswordUser", new[] { "UserSharedWithName" });
+            DropIndex("dbo.SharedPasswordUser", new[] { "PasswordId" });
             DropIndex("dbo.Passwords", new[] { "User_MasterName" });
             DropIndex("dbo.Passwords", new[] { "Category_Id" });
-            DropIndex("dbo.Users", new[] { "Password_Id" });
             DropPrimaryKey("dbo.Users");
-            DropColumn("dbo.Users", "Password_Id");
             DropColumn("dbo.Users", "MasterName");
+            DropTable("dbo.SharedPasswordUser");
             DropTable("dbo.Passwords");
             AddPrimaryKey("dbo.Users", "Username");
             RenameIndex(table: "dbo.Categories", name: "IX_User_MasterName", newName: "IX_User_Username");
