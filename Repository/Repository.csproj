@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
+    <Compile Include="CreditCardTypeConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PasswordTypeConfiguration.cs" />
     <Compile Include="UserTypeConfiguration.cs" />
