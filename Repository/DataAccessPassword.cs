@@ -45,5 +45,14 @@ namespace Repository
                 context.SaveChanges();
             }
         }
+
+        public IEnumerable<Password> GetAll(String pMasterName)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                IEnumerable<Password> passwords = context.Passwords.Where(pass => pass.User.MasterName == pMasterName);
+                return passwords;
+            }
+        }
     }
 }
