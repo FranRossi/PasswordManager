@@ -31,6 +31,19 @@ namespace Repository
             }
         }
 
-
+        public void Modify(Password pPassword)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passwordToModify = context.Passwords.FirstOrDefault(pass => pass.Id == pPassword.Id);
+                passwordToModify.Category = pPassword.Category;
+                passwordToModify.LastModification = pPassword.LastModification;
+                passwordToModify.Notes = pPassword.Notes;
+                passwordToModify.Pass = pPassword.Pass;
+                passwordToModify.Site = pPassword.Site;
+                passwordToModify.Username = pPassword.Username;
+                context.SaveChanges();
+            }
+        }
     }
 }
