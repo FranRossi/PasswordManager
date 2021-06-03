@@ -63,6 +63,14 @@
     <Compile Include="Migrations\202106031828201_AddPassword.designer.cs">
       <DependentUpon>202106031828201_AddPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106031855480_AddCreditCard.cs" />
+    <Compile Include="Migrations\202106031855480_AddCreditCard.designer.cs">
+      <DependentUpon>202106031855480_AddCreditCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106031910265_AddItem.cs" />
+    <Compile Include="Migrations\202106031910265_AddItem.designer.cs">
+      <DependentUpon>202106031910265_AddItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
     <Compile Include="CreditCardTypeConfiguration.cs" />
@@ -89,6 +97,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106031828201_AddPassword.resx">
       <DependentUpon>202106031828201_AddPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106031855480_AddCreditCard.resx">
+      <DependentUpon>202106031855480_AddCreditCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106031910265_AddItem.resx">
+      <DependentUpon>202106031910265_AddItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

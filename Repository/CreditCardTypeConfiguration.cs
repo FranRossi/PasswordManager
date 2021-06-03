@@ -13,7 +13,7 @@ namespace Repository
         public CreditCardTypeConfiguration()
         {
             this.Property(card => card.Number).IsRequired();
-            this.Property(card => card.Name).IsOptional();
+            this.Property(card => card.Name).IsRequired();
             this.Property(card => card.Type).IsRequired();
             this.Property(card => card.SecureCode).IsRequired();
             this.Property(card => card.ExpirationDate).IsRequired();

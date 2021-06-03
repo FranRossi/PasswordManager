@@ -33,7 +33,7 @@ namespace UnitTestObligatorio1
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
-                Username = "Gonzalo",
+                MasterName = "Gonzalo",
                 MasterPass = "HolaSoyGonzalo123"
 
             };

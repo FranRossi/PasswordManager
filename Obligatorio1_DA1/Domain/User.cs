@@ -42,6 +42,7 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+
         public User(string name, string pass)
         {
             this.MasterName = name;

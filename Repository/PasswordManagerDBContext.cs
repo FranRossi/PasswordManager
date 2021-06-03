@@ -14,6 +14,7 @@ namespace Repository
         public DbSet<User> Users { get; set; }
         public DbSet<Password> Passwords { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         public PasswordManagerDBContext() : base("name=PasswordManagerDB") { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -21,11 +22,16 @@ namespace Repository
             modelBuilder.Configurations.Add(new UserTypeConfiguration());
             modelBuilder.Configurations.Add(new PasswordTypeConfiguration());
             modelBuilder.Configurations.Add(new CreditCardTypeConfiguration());
-            modelBuilder.Entity<CreditCard>()
-                .HasRequired<User>(pass => pass.User)
-                .WithMany();
+            modelBuilder.Entity<Password>().ToTable("Passwords");
+            modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
             modelBuilder.Entity<Password>()
-                .HasRequired<User>(pass => pass.User)
+                .HasRequired<User>(item => item.User)
+                .WithMany();
+            modelBuilder.Entity<CreditCard>()
+                .HasRequired<User>(item => item.User)
+                .WithMany();
+            modelBuilder.Entity<Item>()
+                .HasRequired<Category>(item => item.Category)
                 .WithMany();
             /*modelBuilder.Entity<Password>()
                 .HasRequired(pass => pass.SharedWith)
