@@ -27,8 +27,6 @@ namespace Obligatorio1_DA1.Domain
             LastModification = DateTime.Today;
         }
 
-        public int Id { get; set; }
-
         public PasswordStrengthColor PasswordStrength { get; private set; }
 
         public List<User> SharedWith

@@ -30,7 +30,7 @@ namespace Obligatorio1_DA1.Domain
         public void Login(string name, string password)
         {
             foreach (User user in _users)
-                if (user.Name == name)
+                if (user.MasterName == name)
                     if (user.MasterPass == password)
                     {
                         CurrentUser = user;

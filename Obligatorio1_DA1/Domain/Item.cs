@@ -14,6 +14,8 @@ namespace Obligatorio1_DA1.Domain
 
         private Category _category;
         private string _notes;
+
+        public int Id { get; set; }
         public User User { get; set; }
         public string Notes
         {

@@ -28,7 +28,7 @@ namespace UnitTestObligatorio1
                 };
                 _user = new User()
                 {
-                    Name = "Gonzalo",
+                    MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
                 _user.Categories.Add(_personalCategory);

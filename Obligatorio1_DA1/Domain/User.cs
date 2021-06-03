@@ -13,15 +13,15 @@ namespace Obligatorio1_DA1.Domain
         public const int MinPasswordLength = 5;
 
         private string _masterPass;
-        private string _name;
+        private string _masterName;
         private List<Category> _categories;
-        public string Name
+        public string MasterName
         {
-            get => _name;
+            get => _masterName;
             set
             {
                 ValidateName(value);
-                _name = value;
+                _masterName = value;
             }
         }
         public string MasterPass
@@ -42,9 +42,10 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+
         public User(string name, string pass)
         {
-            this.Name = name;
+            this.MasterName = name;
             this.MasterPass = pass;
             this.Categories = new List<Category>();
         }
@@ -83,12 +84,12 @@ namespace Obligatorio1_DA1.Domain
             {
                 return false;
             }
-            return userToCompare.Name == this.Name;
+            return userToCompare.MasterName == this.MasterName;
         }
 
         public override string ToString()
         {
-            return this.Name;
+            return this.MasterName;
         }
 
         public void AddOneCategory(string newCategoryName)
