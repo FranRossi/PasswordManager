@@ -39,8 +39,8 @@
                         UserSharedWithName = c.String(nullable: false, maxLength: 25),
                     })
                 .PrimaryKey(t => new { t.PasswordId, t.UserSharedWithName })
-                .ForeignKey("dbo.Passwords", t => t.PasswordId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.UserSharedWithName, cascadeDelete: true)
+                .ForeignKey("dbo.Passwords", t => t.PasswordId)
+                .ForeignKey("dbo.Users", t => t.UserSharedWithName)
                 .Index(t => t.PasswordId)
                 .Index(t => t.UserSharedWithName);
             

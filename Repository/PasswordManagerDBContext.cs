@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,10 @@ using Obligatorio1_DA1.Domain;
 
 namespace Repository
 {
-    class PasswordManagerDBContext : DbContext
+    public class PasswordManagerDBContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Password> Passwords { get; set; }
 
         public PasswordManagerDBContext() : base("name=PasswordManagerDB") { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -21,10 +23,10 @@ namespace Repository
             modelBuilder.Entity<Password>()
                 .HasRequired<User>(pass => pass.User)
                 .WithMany();
-            modelBuilder.Entity<Password>()
+            /*modelBuilder.Entity<Password>()
                 .HasRequired(pass => pass.SharedWith)
                 .WithMany()
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false);*/
             modelBuilder.Entity<Password>()
                 .HasMany<User>(pass => pass.SharedWith)
                 .WithMany()
@@ -34,6 +36,8 @@ namespace Repository
                     m.MapRightKey("UserSharedWithName");
                     m.ToTable("SharedPasswordUser");
                 });
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            //modelBuilder.Entity<Password>().HasMany<User>(pass => pass.SharedWith).WithMany();
         }
     }
 }

@@ -59,6 +59,10 @@
     <Compile Include="Migrations\202106012222099_UsernameRename.designer.cs">
       <DependentUpon>202106012222099_UsernameRename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106031828201_AddPassword.cs" />
+    <Compile Include="Migrations\202106031828201_AddPassword.designer.cs">
+      <DependentUpon>202106031828201_AddPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106012222099_UsernameRename.resx">
       <DependentUpon>202106012222099_UsernameRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106031828201_AddPassword.resx">
+      <DependentUpon>202106031828201_AddPassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
