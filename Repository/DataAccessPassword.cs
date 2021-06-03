@@ -21,6 +21,16 @@ namespace Repository
             }
         }
 
+        public void Delete(Password pPassword)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passwordToDelete = context.Passwords.FirstOrDefault(pass => pass.Id == pPassword.Id);
+                context.Passwords.Remove(passwordToDelete);
+                context.SaveChanges();
+            }
+        }
+
 
     }
 }
