@@ -16,6 +16,7 @@ namespace BusinessLogic
         private List<CreditCard> _creditCards;
 
         private DataAccessUser _users;
+        private DataAccessCategory _categories;
 
         public PasswordManager()
         {
@@ -24,6 +25,7 @@ namespace BusinessLogic
             _creditCards = new List<CreditCard>();
 
             _users = new DataAccessUser();
+            _categories = new DataAccessCategory();
         }
 
         public void CreateUser(User newUser)
@@ -57,7 +59,10 @@ namespace BusinessLogic
 
         public void CreateCategoryOnCurrentUser(string category)
         {
-            this.CurrentUser.AddOneCategory(category);
+            //this.CurrentUser.AddOneCategory(category);
+            Category newCategory = new Category { Name = category };
+            _categories.Add(newCategory, CurrentUser.MasterName);
+
         }
 
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)

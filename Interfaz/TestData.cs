@@ -19,7 +19,13 @@ namespace Presentation
             this._passwordManager = passwordManager;
             this._random = new Random();
             _uniqueNumber = 10;
-            this.CreateUsers();
+            try
+            {
+                this.CreateUsers();
+            }
+            catch (Exception e)
+            { // TODO catchear error 
+            }
 
             this.CreateCategories("Juana", new string[] { "Personal", "Trabajo", "Facultad" });
             this.CreateCategories("Pablo", new string[] { "Trabajo", "Facultad" });
