@@ -94,6 +94,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void AddOneCategory(string newCategoryName)
         {
+            //TODO SACAR
             Category newCategory = new Category { Name = newCategoryName };
             ValidateCategoryIsUnique(newCategory);
             this.Categories.Add(newCategory);
@@ -101,6 +102,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void ModifyCategory(Category oldCategory, Category newCategory)
         {
+            //TODO SACAR
             foreach (Category categoryIterator in this.Categories)
             {
                 if (categoryIterator.Equals(oldCategory))
@@ -110,6 +112,7 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateCategoryIsUnique(Category newCategory)
         {
+            //TODO SACAR
             if (this.Categories.Contains(newCategory))
                 throw new CategoryAlreadyAddedException();
         }

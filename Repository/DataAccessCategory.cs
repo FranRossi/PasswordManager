@@ -19,16 +19,25 @@ namespace Repository
             }
         }
 
-        public void Delete(Category pCategroy)
+        public void Modify(Category pCategroy)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Category categoryToDelete = context.Categories.FirstOrDefault(c => c.Id == pCategroy.Id);
-                context.Categories.Remove(categoryToDelete);
+                Category categoryToModfy = context.Categories.FirstOrDefault(c => c.Id == pCategroy.Id);
+                categoryToModfy.Name = pCategroy.Name;
                 context.SaveChanges();
             }
         }
 
+        public bool CheckUniqueness(Category pCategroy, string pMasterName)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == pMasterName).Categories;
+                return !currentUserCategories.Contains(pCategroy);
+            }
+
+        }
 
         public IEnumerable<Category> GetAll(string pMasterName)
         {
@@ -39,15 +48,7 @@ namespace Repository
             }
         }
 
-        public void Modify(Category pCategroy)
-        {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                Category categoryToModfy = context.Categories.FirstOrDefault(c => c.Id == pCategroy.Id);
-                categoryToModfy.Name = pCategroy.Name;
-                context.SaveChanges();
-            }
-        }
+
     }
 
 

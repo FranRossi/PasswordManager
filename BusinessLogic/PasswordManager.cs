@@ -54,20 +54,22 @@ namespace BusinessLogic
 
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return this.CurrentUser.Categories.ToList();
+            return _categories.GetAll(this.CurrentUser.MasterName).ToList();
         }
 
         public void CreateCategoryOnCurrentUser(string category)
         {
-            //this.CurrentUser.AddOneCategory(category);
             Category newCategory = new Category { Name = category };
-            _categories.Add(newCategory, CurrentUser.MasterName);
-
+            string currentUserMasterName = CurrentUser.MasterName;
+            if (_categories.CheckUniqueness(newCategory, currentUserMasterName))
+                _categories.Add(newCategory, currentUserMasterName);
+            else
+                throw new CategoryAlreadyAddedException();
         }
 
-        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
+        public void ModifyCategoryOnCurrentUser(Category modifiedCategory)
         {
-            this.CurrentUser.ModifyCategory(oldCategory, newCategory);
+            _categories.Modify(modifiedCategory);
         }
 
 
