@@ -52,8 +52,19 @@ namespace Repository
                 creditCardToModify.Notes = pCreditCard.Notes;
                 creditCardToModify.Name = pCreditCard.Name;
                 context.SaveChanges();
-             }
+            }
         }
 
+        public bool CheckUniqueness(CreditCard newCreditCard)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+
+                CreditCard cardToCheck = context.CreditCards.FirstOrDefault
+                    (c => c.Number == newCreditCard.Number && c.Id != newCreditCard.Id);
+                bool creditCardIsNull = cardToCheck == null;
+                return creditCardIsNull;
+            }
+        }
     }
 }

@@ -13,19 +13,21 @@ namespace BusinessLogic
         public User CurrentUser { get; private set; }
         private List<User> _usersList;
         private List<Password> _passwords;
-        private List<CreditCard> _creditCards;
+        private List<CreditCard> _creditCardsList;
 
         private DataAccessUser _users;
         private DataAccessCategory _categories;
+        private DataAccessCreditCard _creditCards;
 
         public PasswordManager()
         {
             _usersList = new List<User>();
             _passwords = new List<Password>();
-            _creditCards = new List<CreditCard>();
+            _creditCardsList = new List<CreditCard>();
 
             _users = new DataAccessUser();
             _categories = new DataAccessCategory();
+            _creditCards = new DataAccessCreditCard();
         }
 
         public void CreateUser(User newUser)
@@ -167,21 +169,24 @@ namespace BusinessLogic
 
 
 
-        public void CreateCreditCard(CreditCard creditCard)
+        public void CreateCreditCard(CreditCard newCreditCard)
         {
-            VerifyNonExistenceOfCreditCardOnCreditCardList(creditCard);
-            VerifyCreditCardBelongToCurrentUser(creditCard);
-            _creditCards.Add(creditCard);
+            VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            if (_creditCards.CheckUniqueness(newCreditCard))
+                _creditCards.Add(newCreditCard);
+            else
+                throw new CreditCardAlreadyExistsException();
         }
 
         public List<CreditCard> GetCreditCards()
         {
-            return _creditCards.Where(card => card.User.Equals(CurrentUser)).ToList();
+            string currentUserMasterName = CurrentUser.MasterName;
+            return _creditCards.GetAll(currentUserMasterName).ToList();
         }
 
         public void DeleteCreditCard(CreditCard card)
         {
-            _creditCards.Remove(card);
+            _creditCards.Delete(card);
         }
 
 
@@ -194,25 +199,14 @@ namespace BusinessLogic
             return usersNotShareWith;
         }
 
-        public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
+        public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
         {
-            if (!oldCreditCard.Equals(newCreditCard))
-                VerifyNonExistenceOfCreditCardOnCreditCardList(newCreditCard);
+            VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            if (_creditCards.CheckUniqueness(newCreditCard))
+                _creditCards.Modify(newCreditCard);
+            else
+                throw new CreditCardAlreadyExistsException();
 
-            foreach (CreditCard creditCardIterator in this.GetCreditCards())
-            {
-                if (creditCardIterator.Equals(oldCreditCard))
-                {
-                    VerifyCreditCardBelongToCurrentUser(newCreditCard);
-                    creditCardIterator.Category = newCreditCard.Category;
-                    creditCardIterator.Notes = newCreditCard.Notes;
-                    creditCardIterator.Name = newCreditCard.Name;
-                    creditCardIterator.Number = newCreditCard.Number;
-                    creditCardIterator.SecureCode = newCreditCard.SecureCode;
-                    creditCardIterator.ExpirationDate = newCreditCard.ExpirationDate;
-                    creditCardIterator.Type = newCreditCard.Type;
-                }
-            }
         }
 
         private void VerifyCreditCardBelongToCurrentUser(CreditCard newCreditCard)
@@ -223,7 +217,7 @@ namespace BusinessLogic
 
         private void VerifyNonExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
         {
-            if (this._creditCards.Contains(newCreditCard))
+            if (this._creditCardsList.Contains(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
         }
 
@@ -237,7 +231,7 @@ namespace BusinessLogic
                 foreach (Password pass in _passwords)
                     if (pass.Pass == splittedDataBreach[i] && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
-                foreach (CreditCard card in _creditCards)
+                foreach (CreditCard card in _creditCardsList)
                     if (card.Number == splittedDataBreach[i] && card.User.Equals(CurrentUser))
                         breachedItems.Add(card);
             }
