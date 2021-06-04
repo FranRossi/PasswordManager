@@ -93,6 +93,8 @@
     <Compile Include="UserTypeConfiguration.cs" />
     <Compile Include="IDataAccess.cs" />
     <Compile Include="DataAccessUser.cs" />
+    <Compile Include="DataAccessCategory.cs" />
+    <Compile Include="DataAccessCreditCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
