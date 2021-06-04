@@ -13,8 +13,17 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Users.Attach(pUser);
+                context.Users.Add(pUser);
                 context.SaveChanges();
+            }
+        }
+
+        public User Login(string name, string password)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                User loggedInUser = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == name && u.MasterPass == password);
+                return loggedInUser;
             }
         }
     }
