@@ -185,7 +185,7 @@ namespace BusinessLogic
 
         public void DeleteCreditCard(CreditCard card)
         {
-            _creditCardsList.Remove(card);
+            _creditCards.Delete(card);
         }
 
 
