@@ -180,7 +180,8 @@ namespace BusinessLogic
 
         public List<CreditCard> GetCreditCards()
         {
-            return _creditCardsList.Where(card => card.User.Equals(CurrentUser)).ToList();
+            string currentUserMasterName = CurrentUser.MasterName;
+            return _creditCards.GetAll(currentUserMasterName).ToList();
         }
 
         public void DeleteCreditCard(CreditCard card)
