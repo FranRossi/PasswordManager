@@ -13,7 +13,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Users.Attach(pUser);
+                context.Users.Add(pUser);
                 context.SaveChanges();
             }
         }

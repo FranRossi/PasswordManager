@@ -1,4 +1,5 @@
 ﻿using System;
+using Repository;
 using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
@@ -10,15 +11,19 @@ namespace BusinessLogic
     public class PasswordManager
     {
         public User CurrentUser { get; private set; }
-        private List<User> _users;
+        private List<User> _usersList;
         private List<Password> _passwords;
         private List<CreditCard> _creditCards;
 
+        private DataAccessUser _users;
+
         public PasswordManager()
         {
-            _users = new List<User>();
+            _usersList = new List<User>();
             _passwords = new List<Password>();
             _creditCards = new List<CreditCard>();
+
+            _users = new DataAccessUser();
         }
 
         public void CreateUser(User newUser)
@@ -30,7 +35,7 @@ namespace BusinessLogic
 
         public void Login(string name, string password)
         {
-            foreach (User user in _users)
+            foreach (User user in _usersList)
                 if (user.MasterName == name)
                     if (user.MasterPass == password)
                     {
@@ -44,7 +49,7 @@ namespace BusinessLogic
 
         private void ValidateUser(User newUser)
         {
-            if (_users.Contains(newUser))
+            if (_usersList.Contains(newUser))
                 throw new UsernameAlreadyTakenException();
         }
 
@@ -184,7 +189,7 @@ namespace BusinessLogic
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
-            List<User> usersNotShareWith = _users.Except(password.SharedWith).ToList();
+            List<User> usersNotShareWith = _usersList.Except(password.SharedWith).ToList();
             usersNotShareWith.Remove(CurrentUser);
             return usersNotShareWith;
         }
