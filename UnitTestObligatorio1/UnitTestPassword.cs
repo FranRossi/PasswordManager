@@ -239,16 +239,11 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
 
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            List<Password> passwordBeforeModify = _passwordManager.GetPasswords();
+            Password firstPassword = passwordBeforeModify.ToArray()[0];
+            firstPassword.Pass = "EstoEsUnGIF";
+            firstPassword.Notes = "Esta es la nueva password";
+            _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
         }
 
         [TestMethod]
