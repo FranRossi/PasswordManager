@@ -84,7 +84,6 @@ namespace BusinessLogic
         {
             string currentUserMasterName = CurrentUser.MasterName;
             return _passwords.GetAll(currentUserMasterName).ToList();
-          
         }
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
@@ -94,7 +93,7 @@ namespace BusinessLogic
 
         public void DeletePassword(Password password)
         {
-            _passwordsList.Remove(password);
+            _passwords.Delete(password);
         }
 
         public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
