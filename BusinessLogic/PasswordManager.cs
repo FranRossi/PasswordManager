@@ -67,9 +67,9 @@ namespace BusinessLogic
                 throw new CategoryAlreadyAddedException();
         }
 
-        public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
+        public void ModifyCategoryOnCurrentUser(Category modifiedCategory)
         {
-            this.CurrentUser.ModifyCategory(oldCategory, newCategory);
+            _categories.Modify(modifiedCategory);
         }
 
 
