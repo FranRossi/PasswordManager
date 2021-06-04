@@ -30,9 +30,13 @@ namespace Repository
             }
         }
 
-        public IEnumerable<CreditCard> GetAll()
+        public IEnumerable<CreditCard> GetAll(string pMasterName)
         {
-            throw new NotImplementedException();
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                IEnumerable<CreditCard> creditCards = context.CreditCards.Where(card => card.User.MasterName == pMasterName);
+                return creditCards;
+            }
         }
 
         public void Modify(CreditCard pCreditCard)
@@ -40,7 +44,6 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 CreditCard creditCardToModify = context.CreditCards.FirstOrDefault(c => c.Id == pCreditCard.Id);
-                
                 creditCardToModify.Category = pCreditCard.Category;
                 creditCardToModify.Number = pCreditCard.Number;
                 creditCardToModify.SecureCode = pCreditCard.SecureCode;
