@@ -32,8 +32,8 @@ namespace UnitTestObligatorio1
                     MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
-                _user.Categories.Add(_personalCategory);
                 _passwordManager.CreateUser(_user);
+                _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
 
             }
             catch (Exception exception)
@@ -130,16 +130,12 @@ namespace UnitTestObligatorio1
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-            Category personalCategory = new Category()
-            {
-                Name = _personalCategoryName
-            };
-            Category newCategory = new Category()
-            {
-                Name = "Trabajo"
-            };
-            _passwordManager.ModifyCategoryOnCurrentUser(personalCategory, newCategory);
-            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], newCategory);
+            List<Category> categoriesBeforeModify = _passwordManager.GetCategoriesFromCurrentUser();
+            Category firstCategory = categoriesBeforeModify.ToArray()[0];
+            firstCategory.Name = "Modificado";
+            List<Category> categoriesAfterModify = _passwordManager.GetCategoriesFromCurrentUser();
+            _passwordManager.ModifyCategoryOnCurrentUser(firstCategory);
+            Assert.AreEqual(categoriesAfterModify.ToArray()[0], firstCategory);
         }
 
         [TestMethod]
