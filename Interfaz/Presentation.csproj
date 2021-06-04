@@ -237,6 +237,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{d8d242bd-14a0-479e-8f23-1ba41734e7a6}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
       <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
       <Name>Obligatorio1_DA1</Name>

@@ -89,7 +89,6 @@
     <Compile Include="Exceptions\Item\ItemNotesTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordSharedWithSameUserException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
-    <Compile Include="Domain\PasswordManager.cs" />
     <Compile Include="Utilities\DataBreachFromString.cs" />
     <Compile Include="Utilities\IDataBreach.cs" />
     <Compile Include="Utilities\PasswordGenerationOptions.cs" />

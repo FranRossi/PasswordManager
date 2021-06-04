@@ -65,6 +65,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{D8D242BD-14A0-479E-8F23-1BA41734E7A6}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
       <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
       <Name>Obligatorio1_DA1</Name>

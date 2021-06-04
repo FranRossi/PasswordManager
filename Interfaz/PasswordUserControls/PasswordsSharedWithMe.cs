@@ -1,4 +1,5 @@
-﻿using Obligatorio1_DA1.Domain;
+﻿using BusinessLogic;
+using Obligatorio1_DA1.Domain;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

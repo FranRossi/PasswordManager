@@ -1,4 +1,5 @@
-﻿using Obligatorio1_DA1.Utilities;
+﻿using BusinessLogic;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
