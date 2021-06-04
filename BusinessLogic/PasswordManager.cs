@@ -199,25 +199,13 @@ namespace BusinessLogic
             return usersNotShareWith;
         }
 
-        public void ModifyCreditCardOnCurrentUser(CreditCard oldCreditCard, CreditCard newCreditCard)
+        public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
         {
-            if (!oldCreditCard.Equals(newCreditCard))
-                VerifyNonExistenceOfCreditCardOnCreditCardList(newCreditCard);
+            if (_creditCards.CheckUniqueness(newCreditCard))
+                _creditCards.Modify(newCreditCard);
+            else
+                throw new CreditCardAlreadyExistsException();
 
-            foreach (CreditCard creditCardIterator in this.GetCreditCards())
-            {
-                if (creditCardIterator.Equals(oldCreditCard))
-                {
-                    VerifyCreditCardBelongToCurrentUser(newCreditCard);
-                    creditCardIterator.Category = newCreditCard.Category;
-                    creditCardIterator.Notes = newCreditCard.Notes;
-                    creditCardIterator.Name = newCreditCard.Name;
-                    creditCardIterator.Number = newCreditCard.Number;
-                    creditCardIterator.SecureCode = newCreditCard.SecureCode;
-                    creditCardIterator.ExpirationDate = newCreditCard.ExpirationDate;
-                    creditCardIterator.Type = newCreditCard.Type;
-                }
-            }
         }
 
         private void VerifyCreditCardBelongToCurrentUser(CreditCard newCreditCard)
