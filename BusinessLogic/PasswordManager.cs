@@ -54,7 +54,7 @@ namespace BusinessLogic
 
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return this.CurrentUser.Categories.ToList();
+            return _categories.GetAll(this.CurrentUser.MasterName).ToList();
         }
 
         public void CreateCategoryOnCurrentUser(string category)
