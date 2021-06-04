@@ -54,5 +54,17 @@ namespace Repository
                 return passwords;
             }
         }
+
+        public bool CheckUniqueness(Password newPassword)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passToCheck = context.Passwords.FirstOrDefault
+                    (p => p.Site == newPassword.Site && p.Username == newPassword.Username &&
+                     p.Id != newPassword.Id);
+                bool passwordIsNull = passToCheck == null;
+                return passwordIsNull;
+            }
+        }
     }
 }
