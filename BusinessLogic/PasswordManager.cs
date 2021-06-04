@@ -169,11 +169,13 @@ namespace BusinessLogic
 
 
 
-        public void CreateCreditCard(CreditCard creditCard)
+        public void CreateCreditCard(CreditCard newCreditCard)
         {
-            VerifyNonExistenceOfCreditCardOnCreditCardList(creditCard);
-            VerifyCreditCardBelongToCurrentUser(creditCard);
-            _creditCardsList.Add(creditCard);
+            VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            if (_creditCards.CheckUniqueness(newCreditCard))
+                _creditCards.Add(newCreditCard);
+            else
+                throw new CreditCardAlreadyExistsException();
         }
 
         public List<CreditCard> GetCreditCards()
@@ -219,7 +221,6 @@ namespace BusinessLogic
 
         private void VerifyCreditCardBelongToCurrentUser(CreditCard newCreditCard)
         {
-            _creditCardsList.
             if (!(newCreditCard.User.Equals(this.CurrentUser)))
                 throw new CreditCardNotBelongToCurrentUserException();
         }
