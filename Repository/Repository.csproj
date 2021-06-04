@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202106032124444_AddCategory.designer.cs">
       <DependentUpon>202106032124444_AddCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106040349119_fixCascadeDeleting.cs" />
+    <Compile Include="Migrations\202106040349119_fixCascadeDeleting.designer.cs">
+      <DependentUpon>202106040349119_fixCascadeDeleting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
     <Compile Include="CreditCardTypeConfiguration.cs" />
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106032124444_AddCategory.resx">
       <DependentUpon>202106032124444_AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106040349119_fixCascadeDeleting.resx">
+      <DependentUpon>202106040349119_fixCascadeDeleting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

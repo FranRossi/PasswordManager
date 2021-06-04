@@ -26,22 +26,16 @@ namespace Repository
             modelBuilder.Configurations.Add(new CategoryTypeConfiguration());
             modelBuilder.Entity<Password>().ToTable("Passwords");
             modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
-            modelBuilder.Entity<Password>()
-                .HasRequired<User>(item => item.User)
-                .WithMany();
-            modelBuilder.Entity<CreditCard>()
+            modelBuilder.Entity<Item>()
                 .HasRequired<User>(item => item.User)
                 .WithMany();
             modelBuilder.Entity<Item>()
-                .HasRequired<Category>(item => item.Category)
-                .WithMany();
+               .HasRequired<Category>(item => item.Category)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             modelBuilder.Entity<User>()
                 .HasMany<Category>(user => user.Categories)
                 .WithRequired();
-            /*modelBuilder.Entity<Password>()
-                .HasRequired(pass => pass.SharedWith)
-                .WithMany()
-                .WillCascadeOnDelete(false);*/
             modelBuilder.Entity<Password>()
                 .HasMany<User>(pass => pass.SharedWith)
                 .WithMany()
@@ -51,8 +45,6 @@ namespace Repository
                     m.MapRightKey("UserSharedWithName");
                     m.ToTable("SharedPasswordUser");
                 });
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-            //modelBuilder.Entity<Password>().HasMany<User>(pass => pass.SharedWith).WithMany();
         }
     }
 }
