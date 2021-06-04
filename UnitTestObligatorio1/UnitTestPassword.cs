@@ -442,7 +442,7 @@ namespace UnitTestObligatorio1
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password"
             };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            _passwordManager.ModifyPasswordOnCurrentUser(newPassword);
         }
 
 
@@ -465,18 +465,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void VerifyLastModificationPasswrodChanges()
         {
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password",
-                LastModification = new DateTime(2021, 5, 8)
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
-            Assert.AreEqual(_password.LastModification, newPassword.LastModification);
+            List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
+            Password firstPassword = passwordsBeforeModify.ToArray()[0];
+            firstPassword.LastModification = new DateTime(2021, 5, 8);
+            _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
+            Assert.AreEqual(_password.LastModification, firstPassword.LastModification);
         }
 
         [TestMethod]
