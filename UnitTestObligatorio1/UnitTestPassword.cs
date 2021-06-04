@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using BusinessLogic;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;

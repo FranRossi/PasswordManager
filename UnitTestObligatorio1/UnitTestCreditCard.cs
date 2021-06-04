@@ -3,6 +3,7 @@ using Obligatorio1_DA1.Domain;
 using System;
 using Obligatorio1_DA1.Exceptions;
 using System.Collections.Generic;
+using BusinessLogic;
 
 namespace UnitTestObligatorio1
 {
