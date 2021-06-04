@@ -1,11 +1,11 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
 using Obligatorio1_DA1.Exceptions;
+using Obligatorio1_DA1.Domain;
 using System.Linq;
 
-namespace Obligatorio1_DA1.Domain
+namespace BusinessLogic
 {
     public class PasswordManager
     {
