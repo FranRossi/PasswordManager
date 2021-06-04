@@ -254,29 +254,23 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyOneFieldOnPassword()
         {
+            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
             Password passwordAlreadyOnPasswordManager = new Password
             {
                 User = _user,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
                 Notes = "Esta es una nota"
             };
             _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
-
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(passwordAlreadyOnPasswordManager, newPassword);
-            List<Password> passwords = _passwordManager.GetPasswords();
-            CollectionAssert.Contains(passwords, newPassword);
+            List<Password> passwordBeforeModify = _passwordManager.GetPasswords();
+            Password firstPassword = passwordBeforeModify.ToArray()[0];
+            firstPassword.Pass = "EstoEsUnGIF";
+            _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
+            List<Password> passwordsAfterModify = _passwordManager.GetPasswords();
+            CollectionAssert.Contains(passwordsAfterModify, firstPassword);
         }
 
         [TestMethod]
