@@ -30,8 +30,11 @@ namespace BusinessLogic
 
         public void CreateUser(User newUser)
         {
-            ValidateUser(newUser);
-            _users.Add(newUser);
+            if (_users.CheckUniqueness(newUser))
+                _users.Add(newUser);
+            else
+                throw new CategoryAlreadyAddedException();
+
             CurrentUser = newUser;
         }
 
@@ -43,12 +46,6 @@ namespace BusinessLogic
                 throw new LogInException();
 
             CurrentUser = userFromDB;
-        }
-
-        private void ValidateUser(User newUser)
-        {
-            if (_usersList.Contains(newUser))
-                throw new UsernameAlreadyTakenException();
         }
 
 
