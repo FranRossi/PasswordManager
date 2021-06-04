@@ -201,6 +201,7 @@ namespace BusinessLogic
 
         public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
         {
+            VerifyCreditCardBelongToCurrentUser(newCreditCard);
             if (_creditCards.CheckUniqueness(newCreditCard))
                 _creditCards.Modify(newCreditCard);
             else

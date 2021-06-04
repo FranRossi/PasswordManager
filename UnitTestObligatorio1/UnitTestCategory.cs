@@ -133,8 +133,8 @@ namespace UnitTestObligatorio1
             List<Category> categoriesBeforeModify = _passwordManager.GetCategoriesFromCurrentUser();
             Category firstCategory = categoriesBeforeModify.ToArray()[0];
             firstCategory.Name = "Modificado";
-            List<Category> categoriesAfterModify = _passwordManager.GetCategoriesFromCurrentUser();
             _passwordManager.ModifyCategoryOnCurrentUser(firstCategory);
+            List<Category> categoriesAfterModify = _passwordManager.GetCategoriesFromCurrentUser();
             Assert.AreEqual(categoriesAfterModify.ToArray()[0], firstCategory);
         }
 
