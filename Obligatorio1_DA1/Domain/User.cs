@@ -110,6 +110,7 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateCategoryIsUnique(Category newCategory)
         {
+            //TODO SACAR
             if (this.Categories.Contains(newCategory))
                 throw new CategoryAlreadyAddedException();
         }

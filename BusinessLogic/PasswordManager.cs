@@ -59,10 +59,12 @@ namespace BusinessLogic
 
         public void CreateCategoryOnCurrentUser(string category)
         {
-            //this.CurrentUser.AddOneCategory(category);
             Category newCategory = new Category { Name = category };
-            _categories.Add(newCategory, CurrentUser.MasterName);
-
+            string currentUserMasterName = CurrentUser.MasterName;
+            if (_categories.CheckUniqueness(newCategory, currentUserMasterName))
+                _categories.Add(newCategory, currentUserMasterName);
+            else
+                throw new CategoryAlreadyAddedException();
         }
 
         public void ModifyCategoryOnCurrentUser(Category oldCategory, Category newCategory)
