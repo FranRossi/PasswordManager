@@ -11,8 +11,7 @@ namespace Repository
         void Add(T entry);
         void Delete(T entry);
         void Modify(T entry);
-        IEnumerable<T> GetAll(string pMasterName);
-
+        IEnumerable<T> GetAll(String pMasterName);
     }
 }
 
