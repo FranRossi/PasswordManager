@@ -78,12 +78,13 @@ namespace BusinessLogic
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
             _passwords.Add(newPassword);
-         
         }
 
         public List<Password> GetPasswords()
         {
-            return _passwordsList.Where(pass => pass.User == CurrentUser).ToList();
+            string currentUserMasterName = CurrentUser.MasterName;
+            return _passwords.GetAll(currentUserMasterName).ToList();
+          
         }
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
