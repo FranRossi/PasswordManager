@@ -12,17 +12,18 @@ namespace BusinessLogic
     {
         public User CurrentUser { get; private set; }
         private List<User> _usersList;
-        private List<Password> _passwords;
+        private List<Password> _passwordsList;
         private List<CreditCard> _creditCardsList;
 
         private DataAccessUser _users;
         private DataAccessCategory _categories;
         private DataAccessCreditCard _creditCards;
+        private DataAccessPassword _passwords;
 
         public PasswordManager()
         {
             _usersList = new List<User>();
-            _passwords = new List<Password>();
+            _passwordsList = new List<Password>();
             _creditCardsList = new List<CreditCard>();
 
             _users = new DataAccessUser();
@@ -72,46 +73,34 @@ namespace BusinessLogic
         }
 
 
-        public void CreatePassword(Password password)
+        public void CreatePassword(Password newPassword)
         {
-            VerifyNonExistenceOfPasswordOnPasswordList(password);
-            VerifyPasswordBelongToCurrentUser(password);
-            _passwords.Add(password);
+            VerifyPasswordBelongToCurrentUser(newPassword);
+            VerifyPasswordUniqueness(newPassword);
+            _passwords.Add(newPassword);
         }
 
         public List<Password> GetPasswords()
         {
-            return _passwords.Where(pass => pass.User == CurrentUser).ToList();
+            string currentUserMasterName = CurrentUser.MasterName;
+            return _passwords.GetAll(currentUserMasterName).ToList();
         }
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
-            return _passwords.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
+            return _passwordsList.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
         }
 
         public void DeletePassword(Password password)
         {
-            _passwords.Remove(password);
+            _passwords.Delete(password);
         }
 
-        public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
+        public void ModifyPasswordOnCurrentUser(Password newPassword)
         {
-            if (!oldPassword.Equals(newPassword))
-                VerifyNonExistenceOfPasswordOnPasswordList(newPassword);
-
-            foreach (Password passwordIterator in this.GetPasswords())
-            {
-                if (passwordIterator.Equals(oldPassword))
-                {
-                    VerifyPasswordBelongToCurrentUser(newPassword);
-                    passwordIterator.Username = newPassword.Username;
-                    passwordIterator.Pass = newPassword.Pass;
-                    passwordIterator.Category = newPassword.Category;
-                    passwordIterator.Site = newPassword.Site;
-                    passwordIterator.Notes = newPassword.Notes;
-                    passwordIterator.LastModification = newPassword.LastModification;
-                }
-            }
+            VerifyPasswordBelongToCurrentUser(newPassword);
+            VerifyPasswordUniqueness(newPassword);
+            _passwords.Modify(newPassword);
         }
 
         private void VerifyPasswordBelongToCurrentUser(Password newPassword)
@@ -120,10 +109,10 @@ namespace BusinessLogic
                 throw new PasswordNotBelongToCurrentUserException();
         }
 
-        private void VerifyNonExistenceOfPasswordOnPasswordList(Password newPassword)
+        private void VerifyPasswordUniqueness(Password newPassword)
         {
-            if (_passwords.Contains(newPassword))
-                throw new PasswordAlreadyExistsException();
+            if (!_passwords.CheckUniqueness(newPassword))
+               throw new CreditCardAlreadyExistsException();
         }
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
@@ -228,7 +217,7 @@ namespace BusinessLogic
             string[] splittedDataBreach = dataBreachString.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             for (int i = 0; i < splittedDataBreach.Length; i++)
             {
-                foreach (Password pass in _passwords)
+                foreach (Password pass in _passwordsList)
                     if (pass.Pass == splittedDataBreach[i] && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCardsList)

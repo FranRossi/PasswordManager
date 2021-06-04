@@ -30,7 +30,8 @@ namespace UnitTestObligatorio1
                 {
                     Name = "Personal"
                 };
-                _user.Categories.Add(_category);
+                _passwordManager.CreateUser(_user);
+                _passwordManager.CreateCategoryOnCurrentUser(_category.Name);
                 _password = new Password
                 {
                     User = _user,
@@ -40,7 +41,6 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreateUser(_user);
                 _passwordManager.CreatePassword(_password);
             }
             catch (Exception ex)
@@ -214,18 +214,14 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyPassword()
         {
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
-            List<Password> passwords = _passwordManager.GetPasswords();
-            CollectionAssert.Contains(passwords, newPassword);
+            List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
+            Password newPassword = passwordsBeforeModify.ToArray()[0];
+            newPassword.Username = "123456";
+            newPassword.Pass = "1234560Ort2020";
+            newPassword.Notes = "Esta es la nueva password";
+            _passwordManager.ModifyPasswordOnCurrentUser(newPassword);
+            List<Password> passwordsAfterModify = _passwordManager.GetPasswords();
+            CollectionAssert.Contains(passwordsAfterModify, newPassword);
         }
 
         [TestMethod]
@@ -243,44 +239,33 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
 
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            List<Password> passwordBeforeModify = _passwordManager.GetPasswords();
+            Password firstPassword = passwordBeforeModify.ToArray()[0];
+            firstPassword.Pass = "EstoEsUnGIF";
+            firstPassword.Notes = "Esta es la nueva password";
+            _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
         }
 
         [TestMethod]
         public void ModifyOneFieldOnPassword()
         {
+            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
             Password passwordAlreadyOnPasswordManager = new Password
             {
                 User = _user,
-                Category = _category,
+                Category = firstCategoryOnUser,
                 Site = "ort.edu.uy",
                 Username = "123456",
                 Pass = "1234560Ort2020",
                 Notes = "Esta es una nota"
             };
             _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
-
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(passwordAlreadyOnPasswordManager, newPassword);
-            List<Password> passwords = _passwordManager.GetPasswords();
-            CollectionAssert.Contains(passwords, newPassword);
+            List<Password> passwordBeforeModify = _passwordManager.GetPasswords();
+            Password firstPassword = passwordBeforeModify.ToArray()[0];
+            firstPassword.Pass = "EstoEsUnGIF";
+            _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
+            List<Password> passwordsAfterModify = _passwordManager.GetPasswords();
+            CollectionAssert.Contains(passwordsAfterModify, firstPassword);
         }
 
         [TestMethod]
@@ -457,7 +442,7 @@ namespace UnitTestObligatorio1
                 Pass = "1234560Ort2020",
                 Notes = "Esta es la nueva password"
             };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            _passwordManager.ModifyPasswordOnCurrentUser(newPassword);
         }
 
 
@@ -480,18 +465,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void VerifyLastModificationPasswrodChanges()
         {
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password",
-                LastModification = new DateTime(2021, 5, 8)
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
-            Assert.AreEqual(_password.LastModification, newPassword.LastModification);
+            List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
+            Password firstPassword = passwordsBeforeModify.ToArray()[0];
+            firstPassword.LastModification = new DateTime(2021, 5, 8);
+            _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
+            Assert.AreEqual(_password.LastModification, firstPassword.LastModification);
         }
 
         [TestMethod]
