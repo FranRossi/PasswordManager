@@ -26,6 +26,16 @@ namespace Repository
                 return loggedInUser;
             }
         }
+
+        public bool CheckUniqueness(User pUser)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                User userToCheck = context.Users.FirstOrDefault(u => u.MasterName == pUser.MasterName);
+                bool userIsNull = userToCheck == null;
+                return userIsNull;
+            }
+        }
     }
 }
 

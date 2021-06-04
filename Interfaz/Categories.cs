@@ -73,11 +73,8 @@ namespace Presentation
             {
                 try
                 {
-                    Category modifiedCategory = new Category
-                    {
-                        Name = txtNameModify.Text
-                    };
-                    _myPasswordManager.ModifyCategoryOnCurrentUser(_selectedCategory, modifiedCategory);
+                    _selectedCategory.Name = txtNameModify.Text;
+                    _myPasswordManager.ModifyCategoryOnCurrentUser(_selectedCategory);
                     LoadCategoryList();
                     lblMessage.Text = "Categoria modificada correctamente";
                     txtNameModify.Text = "";

@@ -34,7 +34,8 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == pMasterName).Categories;
-                return !currentUserCategories.Contains(pCategroy);
+                bool categoryIsUnique = !currentUserCategories.Contains(pCategroy);
+                return categoryIsUnique;
             }
 
         }
