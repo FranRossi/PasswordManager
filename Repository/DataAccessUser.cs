@@ -32,7 +32,8 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 User userToCheck = context.Users.FirstOrDefault(u => u.MasterName == pUser.MasterName);
-                return userToCheck != null;
+                bool userIsNull = userToCheck == null;
+                return userIsNull;
             }
         }
     }
