@@ -36,16 +36,11 @@ namespace BusinessLogic
         public void Login(string name, string password)
         {
             User userFromDB = _users.Login(name, password);
-            foreach (User user in _usersList)
-                if (user.MasterName == name)
-                    if (user.MasterPass == password)
-                    {
-                        CurrentUser = user;
-                        return;
-                    }
-                    else
-                        throw new LogInException();
-            throw new LogInException();
+
+            if (userFromDB == null)
+                throw new LogInException();
+
+            CurrentUser = userFromDB;
         }
 
         private void ValidateUser(User newUser)
