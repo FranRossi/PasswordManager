@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    class DataAccessCategory : IDataAccess<Category>
+    public class DataAccessCategory
     {
-        public void Add(Category pCategroy)
+        public void Add(Category pCategory, string masterName)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Categories.Add(pCategroy);
+                context.Database.ExecuteSqlCommand("INSERT INTO Categories(Name, User_MasterName)" +
+                                        "VALUES('" + pCategory.Name + "', '" + masterName + "')");
                 context.SaveChanges();
             }
         }
