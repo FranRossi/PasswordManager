@@ -14,6 +14,7 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 context.Categories.Attach(pCreditCard.Category);
+                context.Users.Attach(pCreditCard.User);
                 context.CreditCards.Add(pCreditCard);
                 context.SaveChanges();
             }
@@ -34,14 +35,22 @@ namespace Repository
             throw new NotImplementedException();
         }
 
-        public void Modify(CreditCard entry)
+        public void Modify(CreditCard pCreditCard)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                CreditCard creditCardToModify = context.CreditCards.FirstOrDefault(c => c.Id == entry.Id);
-                context.CreditCards.
+                CreditCard creditCardToModify = context.CreditCards.FirstOrDefault(c => c.Id == pCreditCard.Id);
+                
+                creditCardToModify.Category = pCreditCard.Category;
+                creditCardToModify.Number = pCreditCard.Number;
+                creditCardToModify.SecureCode = pCreditCard.SecureCode;
+                creditCardToModify.ExpirationDate = pCreditCard.ExpirationDate;
+                creditCardToModify.Type = pCreditCard.Type;
+                creditCardToModify.Notes = pCreditCard.Notes;
+                creditCardToModify.Name = pCreditCard.Name;
                 context.SaveChanges();
-            }
+             }
         }
+
     }
 }
