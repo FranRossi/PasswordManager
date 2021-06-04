@@ -96,24 +96,11 @@ namespace BusinessLogic
             _passwords.Delete(password);
         }
 
-        public void ModifyPasswordOnCurrentUser(Password oldPassword, Password newPassword)
+        public void ModifyPasswordOnCurrentUser(Password newPassword)
         {
-            if (!oldPassword.Equals(newPassword))
-                VerifyPasswordUniqueness(newPassword);
-
-            foreach (Password passwordIterator in this.GetPasswords())
-            {
-                if (passwordIterator.Equals(oldPassword))
-                {
-                    VerifyPasswordBelongToCurrentUser(newPassword);
-                    passwordIterator.Username = newPassword.Username;
-                    passwordIterator.Pass = newPassword.Pass;
-                    passwordIterator.Category = newPassword.Category;
-                    passwordIterator.Site = newPassword.Site;
-                    passwordIterator.Notes = newPassword.Notes;
-                    passwordIterator.LastModification = newPassword.LastModification;
-                }
-            }
+            VerifyPasswordBelongToCurrentUser(newPassword);
+            VerifyPasswordUniqueness(newPassword);
+            _passwords.Modify(newPassword);
         }
 
         private void VerifyPasswordBelongToCurrentUser(Password newPassword)
