@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,8 +15,15 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Categories.Attach(pPassword.Category);
-                context.Users.Attach(pPassword.User);
+                Category passwordCategory = pPassword.Category;
+                User passwordUser = pPassword.User;
+                Category passwordCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == passwordCategory.Id);
+                User passwordUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == passwordUser.MasterName);
+                pPassword.User = passwordUserFromDB;
+                pPassword.Category = passwordCategoryFromDB;
+
+                context.Categories.Attach(passwordCategoryFromDB);
+                context.Users.Attach(passwordUserFromDB);
                 context.Passwords.Add(pPassword);
                 context.SaveChanges();
             }

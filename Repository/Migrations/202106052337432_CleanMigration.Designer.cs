@@ -7,13 +7,13 @@ namespace Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CreditCardRequiredName : IMigrationMetadata
+    public sealed partial class CleanMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreditCardRequiredName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CleanMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106031916201_CreditCardRequiredName"; }
+            get { return "202106052337432_CleanMigration"; }
         }
         
         string IMigrationMetadata.Source
