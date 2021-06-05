@@ -55,6 +55,17 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void GetCategoryUser()
+        {
+            Category category = new Category()
+            {
+                Name = "Personal",
+                User = _user
+            };
+            Assert.AreEqual<User>(category.User, _user);
+        }
+
+        [TestMethod]
         public void CreateListOfCategoriesInUser()
         {
             User user = new User("Juancito", "Pepe123");
