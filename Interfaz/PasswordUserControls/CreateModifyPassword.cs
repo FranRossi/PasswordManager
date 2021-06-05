@@ -44,11 +44,11 @@ namespace Presentation
             {
                 try
                 {
-                    Password newPassword = CreatePasswordObjectFormFields();
+
                     if (_myPasswordToModify == null)
-                        CreateNewPassword(newPassword);
+                        CreateNewPassword();
                     else
-                        ModifyPassword(newPassword);
+                        ModifyPassword();
 
                     CloseForm();
 
@@ -62,13 +62,15 @@ namespace Presentation
                 lblMessage.Text = "Debe seleccionar una categoría";
         }
 
-        private void ModifyPassword(Password newPassword)
+        private void ModifyPassword()
         {
-            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify, newPassword);
+            ModifyPasswordObjectFormFields();
+            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify);
         }
 
-        private void CreateNewPassword(Password newPassword)
+        private void CreateNewPassword()
         {
+            Password newPassword = CreatePasswordObjectFormFields();
             _myPasswordManager.CreatePassword(newPassword);
         }
 
@@ -85,6 +87,15 @@ namespace Presentation
             };
 
             return newPassword;
+        }
+
+        private void ModifyPasswordObjectFormFields()
+        {
+            _myPasswordToModify.Category = (Category)cbCategory.SelectedItem;
+            _myPasswordToModify.Site = txtSite.Text;
+            _myPasswordToModify.Username = txtUserName.Text;
+            _myPasswordToModify.Pass = txtPassword.Text;
+            _myPasswordToModify.Notes = txtNotes.Text;
         }
 
         private void LoadComboBoxCategory()
