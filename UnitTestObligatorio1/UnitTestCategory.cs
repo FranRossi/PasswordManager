@@ -66,6 +66,17 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void GetCategoryUserMasterName()
+        {
+            Category category = new Category()
+            {
+                Name = "Personal",
+                User = _user
+            };
+            Assert.AreEqual<String>(category.getUserMasterName(), _user.MasterName);
+        }
+
+        [TestMethod]
         public void CreateListOfCategoriesInUser()
         {
             User user = new User("Juancito", "Pepe123");
