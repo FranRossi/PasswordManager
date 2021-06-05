@@ -65,7 +65,7 @@ namespace Presentation
         private void ModifyPassword()
         {
             ModifyPasswordObjectFormFields();
-            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify, newPassword);
+            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify);
         }
 
         private void CreateNewPassword()
@@ -89,13 +89,13 @@ namespace Presentation
             return newPassword;
         }
 
-        private Password ModifyPasswordObjectFormFields()
+        private void ModifyPasswordObjectFormFields()
         {
-            __myPasswordToModify.Category = (Category)cbCategory.SelectedItem;
-            __myPasswordToModify.Site = txtSite.Text;
-            __myPasswordToModify.Username = txtUserName.Text;
-            __myPasswordToModify.Pass = txtPassword.Text;
-            __myPasswordToModify.Notes = txtNotes.Text;
+            _myPasswordToModify.Category = (Category)cbCategory.SelectedItem;
+            _myPasswordToModify.Site = txtSite.Text;
+            _myPasswordToModify.Username = txtUserName.Text;
+            _myPasswordToModify.Pass = txtPassword.Text;
+            _myPasswordToModify.Notes = txtNotes.Text;
         }
 
         private void LoadComboBoxCategory()

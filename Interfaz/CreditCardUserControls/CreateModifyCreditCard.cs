@@ -52,7 +52,7 @@ namespace Presentation
                     if (_myCreditCardToModify == null)
                         CreateNewCreditCard();
                     else
-                        ModifyCreditCard(_myCreditCardToModify);
+                        ModifyCreditCard();
 
                     CloseForm();
                 }
