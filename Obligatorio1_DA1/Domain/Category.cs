@@ -49,5 +49,10 @@ namespace Obligatorio1_DA1.Domain
             }
             return categoryToCompare.Name.ToLower() == this.Name.ToLower();
         }
+
+        public string getUserMasterName()
+        {
+            return this.User.MasterName;
+        }
     }
 }
