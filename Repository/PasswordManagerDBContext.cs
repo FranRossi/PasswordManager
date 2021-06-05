@@ -33,9 +33,11 @@ namespace Repository
                .HasRequired<Category>(item => item.Category)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<User>()
-                .HasMany<Category>(user => user.Categories)
-                .WithRequired();
+            modelBuilder.Entity<Category>()
+              .HasRequired<User>(cat => cat.User);
+            /*            modelBuilder.Entity<User>()
+                            .HasMany<Category>(user => user.Categories)
+                            .WithRequired();*/
             modelBuilder.Entity<Password>()
                 .HasMany<User>(pass => pass.SharedWith)
                 .WithMany()
