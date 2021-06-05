@@ -21,6 +21,7 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+        public User User { get; set; }
 
         private void ValidateName(string value)
         {
