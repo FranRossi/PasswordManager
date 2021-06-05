@@ -9,12 +9,11 @@ namespace Repository
 {
     public class DataAccessCategory
     {
-        public void Add(Category pCategory, string masterName)
+        public void Add(Category pCategory)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Database.ExecuteSqlCommand("INSERT INTO Categories(Name, User_MasterName)" +
-                                        "VALUES('" + pCategory.Name + "', '" + masterName + "')");
+                context.Categories.Add(pCategory);
                 context.SaveChanges();
             }
         }
@@ -29,11 +28,12 @@ namespace Repository
             }
         }
 
-        public bool CheckUniqueness(Category pCategroy, string pMasterName)
+        public bool CheckUniqueness(Category pCategroy)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == pMasterName).Categories;
+                string userMasterName = pCategroy.getUserMasterName();
+                List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
                 bool categoryIsUnique = !currentUserCategories.Contains(pCategroy);
                 return categoryIsUnique;
             }

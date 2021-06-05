@@ -65,9 +65,8 @@ namespace BusinessLogic
                 Name = category,
                 User = CurrentUser
             };
-            string currentUserMasterName = CurrentUser.MasterName;
-            if (_categories.CheckUniqueness(newCategory, currentUserMasterName))
-                _categories.Add(newCategory, currentUserMasterName);
+            if (_categories.CheckUniqueness(newCategory))
+                _categories.Add(newCategory);
             else
                 throw new CategoryAlreadyAddedException();
         }
