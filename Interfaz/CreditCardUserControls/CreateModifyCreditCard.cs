@@ -49,11 +49,10 @@ namespace Presentation
             {
                 try
                 {
-                    CreditCard newCreditCard = CreateCreditCardObjectFormFields();
                     if (_myCreditCardToModify == null)
-                        CreateNewCreditCard(newCreditCard);
+                        CreateNewCreditCard();
                     else
-                        ModifyCreditCard(newCreditCard);
+                        ModifyCreditCard(_myCreditCardToModify);
 
                     CloseForm();
                 }
@@ -66,14 +65,16 @@ namespace Presentation
                 lblError.Text = "Debes seleccionar una categoría";
         }
 
-        private void ModifyCreditCard(CreditCard newCreditCard)
+        private void ModifyCreditCard()
         {
-            _myPasswordManager.ModifyCreditCardOnCurrentUser(_myCreditCardToModify, newCreditCard);
+            ModifyCreditCardObjectFormFields();
+            _myPasswordManager.ModifyCreditCardOnCurrentUser(_myCreditCardToModify);
 
         }
 
-        private void CreateNewCreditCard(CreditCard newCreditCard)
+        private void CreateNewCreditCard()
         {
+            CreditCard newCreditCard = CreateCreditCardObjectFormFields();
             _myPasswordManager.CreateCreditCard(newCreditCard);
         }
 
@@ -92,6 +93,17 @@ namespace Presentation
             };
 
             return newCreditCard;
+        }
+
+        private void ModifyCreditCardObjectFormFields()
+        {
+            _myCreditCardToModify.Category = (Category)cbCategory.SelectedItem;
+            _myCreditCardToModify.Name = txtName.Text;
+            _myCreditCardToModify.Type = txtType.Text;
+            _myCreditCardToModify.Number = mtxtNumber.Text;
+            _myCreditCardToModify.SecureCode = mtxtSecureCode.Text;
+            _myCreditCardToModify.ExpirationDate = mtxtExpirationDate.Text;
+            _myCreditCardToModify.Notes = txtNotes.Text;
         }
 
         private void CloseForm()
