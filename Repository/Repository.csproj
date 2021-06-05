@@ -52,37 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessPassword.cs" />
-    <Compile Include="Migrations\202106012202365_AddUser.cs" />
-    <Compile Include="Migrations\202106012202365_AddUser.designer.cs">
-      <DependentUpon>202106012202365_AddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106012222099_UsernameRename.cs" />
-    <Compile Include="Migrations\202106012222099_UsernameRename.designer.cs">
-      <DependentUpon>202106012222099_UsernameRename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106031828201_AddPassword.cs" />
-    <Compile Include="Migrations\202106031828201_AddPassword.designer.cs">
-      <DependentUpon>202106031828201_AddPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106031855480_AddCreditCard.cs" />
-    <Compile Include="Migrations\202106031855480_AddCreditCard.designer.cs">
-      <DependentUpon>202106031855480_AddCreditCard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106031910265_AddItem.cs" />
-    <Compile Include="Migrations\202106031910265_AddItem.designer.cs">
-      <DependentUpon>202106031910265_AddItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106031916201_CreditCardRequiredName.cs" />
-    <Compile Include="Migrations\202106031916201_CreditCardRequiredName.designer.cs">
-      <DependentUpon>202106031916201_CreditCardRequiredName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106032124444_AddCategory.cs" />
-    <Compile Include="Migrations\202106032124444_AddCategory.designer.cs">
-      <DependentUpon>202106032124444_AddCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106040349119_fixCascadeDeleting.cs" />
-    <Compile Include="Migrations\202106040349119_fixCascadeDeleting.designer.cs">
-      <DependentUpon>202106040349119_fixCascadeDeleting.cs</DependentUpon>
+    <Compile Include="Migrations\202106052158002_TestingDBCreation.cs" />
+    <Compile Include="Migrations\202106052158002_TestingDBCreation.designer.cs">
+      <DependentUpon>202106052158002_TestingDBCreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
@@ -107,29 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106012202365_AddUser.resx">
-      <DependentUpon>202106012202365_AddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106012222099_UsernameRename.resx">
-      <DependentUpon>202106012222099_UsernameRename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106031828201_AddPassword.resx">
-      <DependentUpon>202106031828201_AddPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106031855480_AddCreditCard.resx">
-      <DependentUpon>202106031855480_AddCreditCard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106031910265_AddItem.resx">
-      <DependentUpon>202106031910265_AddItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106031916201_CreditCardRequiredName.resx">
-      <DependentUpon>202106031916201_CreditCardRequiredName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106032124444_AddCategory.resx">
-      <DependentUpon>202106032124444_AddCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106040349119_fixCascadeDeleting.resx">
-      <DependentUpon>202106040349119_fixCascadeDeleting.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106052158002_TestingDBCreation.resx">
+      <DependentUpon>202106052158002_TestingDBCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

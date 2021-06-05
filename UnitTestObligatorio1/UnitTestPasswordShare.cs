@@ -4,6 +4,7 @@ using BusinessLogic;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
+using Repository;
 
 namespace UnitTestObligatorio1
 {
@@ -35,6 +36,17 @@ namespace UnitTestObligatorio1
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
 
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
         }
 
         [TestMethod]

@@ -4,6 +4,7 @@ using System;
 using Obligatorio1_DA1.Exceptions;
 using System.Collections.Generic;
 using BusinessLogic;
+using Repository;
 
 namespace UnitTestObligatorio1
 {
@@ -51,6 +52,16 @@ namespace UnitTestObligatorio1
             }
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
+        }
 
         [TestMethod]
         public void CreateValidCreditCard()

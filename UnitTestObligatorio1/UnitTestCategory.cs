@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
+using Repository;
 using System;
 using System.Collections.Generic;
 
@@ -42,7 +43,17 @@ namespace UnitTestObligatorio1
             }
 
         }
+        [TestCleanup]
+        public void Cleanup()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
 
+        }
 
         [TestMethod]
         public void GetCategoryName()
