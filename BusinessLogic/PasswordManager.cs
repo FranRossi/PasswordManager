@@ -28,8 +28,6 @@ namespace BusinessLogic
 
             _users = new DataAccessUser();
             _categories = new DataAccessCategory();
-            _creditCards = new DataAccessCreditCard();
-            _passwords = new DataAccessPassword();
         }
 
         public void CreateUser(User newUser)
