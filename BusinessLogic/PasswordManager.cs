@@ -169,15 +169,22 @@ namespace BusinessLogic
             return passwords;
         }
 
-
+        /*VerifyPasswordBelongToCurrentUser(newPassword);
+        VerifyPasswordUniqueness(newPassword);
+        VerifyItemCategoryBelongsToUser(newPassword);
+        _passwords.Add(newPassword);*/
 
         public void CreateCreditCard(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyCreditCardUniqueness(newCreditCard);
             VerifyItemCategoryBelongsToUser(newCreditCard);
-            if (_creditCards.CheckUniqueness(newCreditCard))
-                _creditCards.Add(newCreditCard);
-            else
+            _creditCards.Add(newCreditCard);
+        }
+
+        private void VerifyCreditCardUniqueness(CreditCard newCreditCard)
+        {
+            if (!_creditCards.CheckUniqueness(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
         }
 
