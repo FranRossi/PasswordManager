@@ -42,6 +42,12 @@ namespace BusinessLogic
             CurrentUser = newUser;
         }
 
+        private void VerifyUserUniqueness(User newUser)
+        {
+            if (!_users.CheckUniqueness(newUser))
+                throw new UsernameAlreadyTakenException();
+        }
+
         public void Login(string name, string password)
         {
             User userFromDB = _users.Login(name, password);
