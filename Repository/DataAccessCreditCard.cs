@@ -41,7 +41,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                IEnumerable<CreditCard> creditCards = context.CreditCards.Where(card => card.User.MasterName == pMasterName).ToList();
+                IEnumerable<CreditCard> creditCards = context.CreditCards.Include("Category").Where(card => card.User.MasterName == pMasterName).ToList();
                 return creditCards;
             }
         }
