@@ -82,5 +82,15 @@ namespace Repository
                 return passwordIsNull;
             }
         }
+
+        public List<Password> GetSharedPasswordsWithCurrentUser(User pCurrentUser)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<Password> passwordList = context.Passwords.Include("SharedWith").ToList();
+                List<Password> passwordsSharedWithMe = passwordList.Where(pass => pass.SharedWith.Contains(pCurrentUser)).ToList();
+                return passwordsSharedWithMe;
+            }
+        }
     }
 }

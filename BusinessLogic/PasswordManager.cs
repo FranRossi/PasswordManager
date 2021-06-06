@@ -93,7 +93,8 @@ namespace BusinessLogic
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
-            return _passwordsList.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
+            List<Password> passwordsSharedWithMe = _passwords.GetSharedPasswordsWithCurrentUser(CurrentUser);
+            return passwordsSharedWithMe;
         }
 
         public void DeletePassword(Password password)
