@@ -17,8 +17,8 @@ namespace BusinessLogic
 
         private DataAccessUser _users;
         private DataAccessCategory _categories;
-        private IDataAccessCreditCard<CreditCard> _creditCards;
-        private IDataAccessPassword<Password> _passwords;
+        private DataAccessCreditCard _creditCards;
+        private DataAccessPassword _passwords;
 
         public PasswordManager()
         {
@@ -28,6 +28,8 @@ namespace BusinessLogic
 
             _users = new DataAccessUser();
             _categories = new DataAccessCategory();
+            _creditCards = new DataAccessCreditCard();
+            _passwords = new DataAccessPassword();
         }
 
         public void CreateUser(User newUser)

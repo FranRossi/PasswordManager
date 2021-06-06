@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessPassword.cs" />
+    <Compile Include="IDataAccessPassword.cs" />
+    <Compile Include="IDataAccessCreditCard.cs" />
     <Compile Include="Migrations\202106052337432_CleanMigration.cs" />
     <Compile Include="Migrations\202106052337432_CleanMigration.designer.cs">
       <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
@@ -67,7 +69,7 @@
     <Compile Include="PasswordTypeConfiguration.cs" />
     <Compile Include="CategoryTypeConfiguration.cs" />
     <Compile Include="UserTypeConfiguration.cs" />
-    <Compile Include="IDataAccess.cs" />
+    <Compile Include="IDataAccessItem.cs" />
     <Compile Include="DataAccessUser.cs" />
     <Compile Include="DataAccessCategory.cs" />
     <Compile Include="DataAccessCreditCard.cs" />
