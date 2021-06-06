@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public interface IDataAccessCreditCard<T> : IDataAccessItem<T>
+    public interface IDataAccessCreditCard<CreditCard> : IDataAccessItem<CreditCard>
     {
       
     }
