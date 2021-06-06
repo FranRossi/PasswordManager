@@ -29,16 +29,15 @@ namespace Repository
             }
         }
 
-        public bool CheckUniqueness(Category pCategroy)
+        public bool CheckUniqueness(Category pCategory)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                string userMasterName = pCategroy.getUserMasterName();
+                string userMasterName = pCategory.getUserMasterName();
                 List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
-                bool categoryIsUnique = !currentUserCategories.Contains(pCategroy);
+                bool categoryIsUnique = !currentUserCategories.Contains(pCategory);
                 return categoryIsUnique;
             }
-
         }
 
         public IEnumerable<Category> GetAll(string pMasterName)
@@ -50,6 +49,16 @@ namespace Repository
             }
         }
 
+        public bool CategoryBelongsToUser(Category pCategory, User pUser)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                string userMasterName = pUser.MasterName;
+                List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
+                bool belongsToUser = currentUserCategories.Contains(pCategory);
+                return belongsToUser;
+            }
+        }
 
     }
 

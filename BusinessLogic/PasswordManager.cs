@@ -81,6 +81,7 @@ namespace BusinessLogic
         {
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
+            VerifyItemCategoryBelongsToUser(newPassword);
             _passwords.Add(newPassword);
         }
 
@@ -117,6 +118,12 @@ namespace BusinessLogic
         {
             if (!_passwords.CheckUniqueness(newPassword))
                 throw new CreditCardAlreadyExistsException();
+        }
+        private void VerifyItemCategoryBelongsToUser(Item newItem)
+        {
+            bool categoryBelongsToUser = _categories.CategoryBelongsToUser(newItem.Category, newItem.User);
+            if (!categoryBelongsToUser)
+                throw new ItemInvalidCategoryException();
         }
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
@@ -165,6 +172,7 @@ namespace BusinessLogic
         public void CreateCreditCard(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyItemCategoryBelongsToUser(newCreditCard);
             if (_creditCards.CheckUniqueness(newCreditCard))
                 _creditCards.Add(newCreditCard);
             else
