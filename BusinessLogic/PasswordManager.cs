@@ -244,7 +244,7 @@ namespace BusinessLogic
 
         public void SharePassword(Password passwordToShare, User userShareTo)
         {
-            passwordToShare.ShareWithUser(userShareTo);
+            _users.SharePassword(passwordToShare, userShareTo);
         }
 
         public void UnSharePassword(Password passwordToShare, User userUnshareTo)

@@ -41,14 +41,14 @@ namespace Presentation
         {
             this._passwordManager.Login("Juana", "Juana");
             List<Password> passwords = this._passwordManager.GetPasswords();
-            passwords[0].ShareWithUser(this._pablo);
-            passwords[0].ShareWithUser(this._mario);
-            passwords[0].ShareWithUser(this._laura);
+            this._passwordManager.SharePassword(passwords[0], this._pablo);
+            this._passwordManager.SharePassword(passwords[0], this._mario);
+            this._passwordManager.SharePassword(passwords[0], this._laura);
 
-            passwords[1].ShareWithUser(this._mario);
-            passwords[1].ShareWithUser(this._laura);
+            this._passwordManager.SharePassword(passwords[1], this._mario);
+            this._passwordManager.SharePassword(passwords[1], this._laura);
 
-            passwords[3].ShareWithUser(this._mario);
+            this._passwordManager.SharePassword(passwords[3], this._mario);
         }
 
         private void CreatePasswordWithColorJuana()
