@@ -249,7 +249,7 @@ namespace BusinessLogic
 
         public void UnSharePassword(Password passwordToShare, User userUnshareTo)
         {
-            passwordToShare.UnShareWithUser(userUnshareTo);
+            _users.UnSharePassword(passwordToShare, userUnshareTo);
         }
 
         public List<User> GetUsersSharedWith(Password pass)

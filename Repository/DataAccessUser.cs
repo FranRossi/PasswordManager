@@ -62,6 +62,21 @@ namespace Repository
                 context.SaveChanges();
             }
         }
+
+        public void UnSharePassword(Password pPasswordToShare, User pUserShareTo)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                /*Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == pPasswordToShare.Id);
+                pPasswordToShare.UnShareWithUser(pUserShareTo);
+                context.Users.Attach(pUserShareTo);
+                context.SaveChanges();*/
+
+                context.Database.ExecuteSqlCommand("DELETE FROM SharedPasswordUser WHERE PasswordId ='" + pPasswordToShare.Id + "' AND" +
+                    " UserSharedWithName = '" + pUserShareTo.MasterName + "'");
+                context.SaveChanges();
+            }
+        }
     }
 }
 
