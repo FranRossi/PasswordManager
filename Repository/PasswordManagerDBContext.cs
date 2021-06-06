@@ -26,9 +26,18 @@ namespace Repository
             modelBuilder.Configurations.Add(new CategoryTypeConfiguration());
             modelBuilder.Entity<Password>().ToTable("Passwords");
             modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
+
+            modelBuilder.Entity<Password>()
+               .HasRequired<User>(pass => pass.User)
+               .WithMany();
+            modelBuilder.Entity<CreditCard>()
+                .HasRequired<User>(card => card.User)
+                .WithMany();
+
             modelBuilder.Entity<Item>()
                 .HasRequired<User>(item => item.User)
                 .WithMany();
+            
             modelBuilder.Entity<Item>()
                .HasRequired<Category>(item => item.Category)
                 .WithMany()

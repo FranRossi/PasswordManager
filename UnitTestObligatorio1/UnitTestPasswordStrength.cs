@@ -4,6 +4,7 @@ using Obligatorio1_DA1.Exceptions;
 using BusinessLogic;
 using Obligatorio1_DA1.Utilities;
 using System;
+using Repository;
 
 namespace UnitTestObligatorio1
 {

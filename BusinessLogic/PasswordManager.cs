@@ -37,7 +37,7 @@ namespace BusinessLogic
             if (_users.CheckUniqueness(newUser))
                 _users.Add(newUser);
             else
-                throw new CategoryAlreadyAddedException();
+                throw new UsernameAlreadyTakenException();
 
             CurrentUser = newUser;
         }
