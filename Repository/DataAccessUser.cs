@@ -36,6 +36,17 @@ namespace Repository
                 return userIsNull;
             }
         }
+
+        public List<User> GetUsersPassNotSharedWith(Password pPassword)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passwordFromDB = context.Passwords.Include("SharedWith").Include("User").FirstOrDefault(pass => pass.Id == pPassword.Id);
+                List<User> usersNotSharedWith = context.Users.Except(passwordFromDB.SharedWith).ToList();
+                usersNotSharedWith.Remove(passwordFromDB.User);
+                return usersNotSharedWith;
+            }
+        }
     }
 }
 

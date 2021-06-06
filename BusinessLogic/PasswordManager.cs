@@ -197,9 +197,8 @@ namespace BusinessLogic
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
-            List<User> usersNotShareWith = _usersList.Except(password.SharedWith).ToList();
-            usersNotShareWith.Remove(CurrentUser);
-            return usersNotShareWith;
+            List<User> usersNotSharedWith = _users.GetUsersPassNotSharedWith(password);
+            return usersNotSharedWith;
         }
 
         public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
