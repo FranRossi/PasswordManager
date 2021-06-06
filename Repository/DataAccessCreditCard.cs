@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessCreditCard : IDataAccess<CreditCard>
+    public class DataAccessCreditCard : IDataAccessCreditCard<CreditCard>
     {
         public void Add(CreditCard pCreditCard)
         {

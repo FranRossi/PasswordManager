@@ -17,8 +17,8 @@ namespace BusinessLogic
 
         private DataAccessUser _users;
         private DataAccessCategory _categories;
-        private IDataAccess<CreditCard> _creditCards;
-        private IDataAccess<Password> _passwords;
+        private IDataAccessCreditCard<CreditCard> _creditCards;
+        private IDataAccessItem<Password> _passwords;
 
         public PasswordManager()
         {
