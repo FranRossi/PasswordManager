@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public interface IDataAccess<T>
+    public interface IDataAccessItem<T>
     {
         void Add(T entry);
         void Delete(T entry);
         void Modify(T entry);
         IEnumerable<T> GetAll(String pMasterName);
+        bool CheckUniqueness(T item);
     }
 }
 

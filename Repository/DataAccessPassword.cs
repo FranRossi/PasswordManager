@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessPassword : IDataAccess<Password>
+    public class DataAccessPassword : IDataAccessPassword<Password>
     {
         public void Add(Password pPassword)
         {

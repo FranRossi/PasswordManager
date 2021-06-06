@@ -169,15 +169,19 @@ namespace BusinessLogic
             return passwords;
         }
 
-
+      
 
         public void CreateCreditCard(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyCreditCardUniqueness(newCreditCard);
             VerifyItemCategoryBelongsToUser(newCreditCard);
-            if (_creditCards.CheckUniqueness(newCreditCard))
-                _creditCards.Add(newCreditCard);
-            else
+            _creditCards.Add(newCreditCard);
+        }
+
+        private void VerifyCreditCardUniqueness(CreditCard newCreditCard)
+        {
+            if (!_creditCards.CheckUniqueness(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
         }
 
@@ -185,6 +189,14 @@ namespace BusinessLogic
         {
             string currentUserMasterName = CurrentUser.MasterName;
             return _creditCards.GetAll(currentUserMasterName).ToList();
+        }
+
+        public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
+        {
+            VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyCreditCardUniqueness(newCreditCard);
+            VerifyItemCategoryBelongsToUser(newCreditCard);
+            _creditCards.Modify(newCreditCard);
         }
 
         public void DeleteCreditCard(CreditCard card)
@@ -202,16 +214,6 @@ namespace BusinessLogic
             return usersNotShareWith;
         }
 
-        public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
-        {
-            VerifyCreditCardBelongToCurrentUser(newCreditCard);
-            VerifyItemCategoryBelongsToUser(newCreditCard);
-            if (_creditCards.CheckUniqueness(newCreditCard))
-                _creditCards.Modify(newCreditCard);
-            else
-                throw new CreditCardAlreadyExistsException();
-
-        }
 
         private void VerifyCreditCardBelongToCurrentUser(CreditCard newCreditCard)
         {
