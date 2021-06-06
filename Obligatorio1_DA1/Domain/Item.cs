@@ -27,18 +27,7 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-        public Category Category
-        {
-            get => _category;
-            set
-            {
-                if (!this.User.Categories.Contains(value))
-                    throw new ItemInvalidCategoryException();
-                _category = value;
-            }
-
-        }
-
+        public Category Category { get; set; }
 
         private void ValidateNotes(string value)
         {
