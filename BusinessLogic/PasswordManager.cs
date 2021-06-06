@@ -74,6 +74,12 @@ namespace BusinessLogic
                 throw new CategoryAlreadyAddedException();
         }
 
+        private void VerifyCategoryUniqueness(Category newCategory)
+        {
+            if (!_categories.CheckUniqueness(newCategory))
+                throw new CategoryAlreadyAddedException();
+        }
+
         public void ModifyCategoryOnCurrentUser(Category modifiedCategory)
         {
             _categories.Modify(modifiedCategory);
