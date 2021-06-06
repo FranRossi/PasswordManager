@@ -91,6 +91,7 @@ namespace Presentation
 
         private void ModifyPasswordObjectFormFields()
         {
+            _myPasswordToModify.User = _myPasswordManager.CurrentUser;
             _myPasswordToModify.Category = (Category)cbCategory.SelectedItem;
             _myPasswordToModify.Site = txtSite.Text;
             _myPasswordToModify.Username = txtUserName.Text;

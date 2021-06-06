@@ -97,6 +97,7 @@ namespace Presentation
 
         private void ModifyCreditCardObjectFormFields()
         {
+            _myCreditCardToModify.User = _myPasswordManager.CurrentUser;
             _myCreditCardToModify.Category = (Category)cbCategory.SelectedItem;
             _myCreditCardToModify.Name = txtName.Text;
             _myCreditCardToModify.Type = txtType.Text;

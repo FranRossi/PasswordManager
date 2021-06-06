@@ -43,13 +43,21 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
+                Category passwordCategory = pPassword.Category;
+                User passwordUser = pPassword.User;
+                Category passwordCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == passwordCategory.Id);
+                User passwordUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == passwordUser.MasterName);
                 Password passwordToModify = context.Passwords.FirstOrDefault(pass => pass.Id == pPassword.Id);
-                passwordToModify.Category = pPassword.Category;
+
+                passwordToModify.User = passwordUserFromDB;
+                passwordToModify.Category = passwordCategoryFromDB;
                 passwordToModify.LastModification = pPassword.LastModification;
                 passwordToModify.Notes = pPassword.Notes;
                 passwordToModify.Pass = pPassword.Pass;
                 passwordToModify.Site = pPassword.Site;
                 passwordToModify.Username = pPassword.Username;
+                context.Categories.Attach(passwordCategoryFromDB);
+                context.Users.Attach(passwordUserFromDB);
                 context.SaveChanges();
             }
         }
