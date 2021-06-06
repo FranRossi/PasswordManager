@@ -237,7 +237,6 @@ namespace UnitTestObligatorio1
             List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
             Password newPassword = passwordsBeforeModify.ToArray()[0];
             newPassword.Username = "123456";
-            newPassword.User = _passwordManager.CurrentUser;
             newPassword.Pass = "1234560Ort2020";
             newPassword.Notes = "Esta es la nueva password";
             _passwordManager.ModifyPasswordOnCurrentUser(newPassword);
@@ -266,7 +265,6 @@ namespace UnitTestObligatorio1
             firstPassword.Username = "123456";
             firstPassword.Pass = "EstoEsUnGIF";
             firstPassword.Notes = "Esta es la nueva password";
-            firstPassword.User = _passwordManager.CurrentUser;
             _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
         }
 
@@ -492,7 +490,6 @@ namespace UnitTestObligatorio1
             List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
             Password firstPassword = passwordsBeforeModify.ToArray()[0];
             firstPassword.LastModification = new DateTime(2021, 5, 8);
-            firstPassword.User = _passwordManager.CurrentUser;
             _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
             Assert.AreNotEqual(_password.LastModification, firstPassword.LastModification);
         }
