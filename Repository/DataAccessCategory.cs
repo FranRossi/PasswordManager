@@ -33,7 +33,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                string userMasterName = pCategory.getUserMasterName();
+                string userMasterName = pCategory.GetUserMasterName();
                 List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
                 bool categoryIsUnique = !currentUserCategories.Contains(pCategory);
                 return categoryIsUnique;

@@ -84,7 +84,7 @@ namespace UnitTestObligatorio1
                 Name = "Personal",
                 User = _user
             };
-            Assert.AreEqual<String>(category.getUserMasterName(), _user.MasterName);
+            Assert.AreEqual<String>(category.GetUserMasterName(), _user.MasterName);
         }
 
         [TestMethod]

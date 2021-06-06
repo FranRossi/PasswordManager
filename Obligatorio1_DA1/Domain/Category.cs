@@ -50,7 +50,7 @@ namespace Obligatorio1_DA1.Domain
             return categoryToCompare.Name.ToLower() == this.Name.ToLower();
         }
 
-        public string getUserMasterName()
+        public string GetUserMasterName()
         {
             return this.User.MasterName;
         }
