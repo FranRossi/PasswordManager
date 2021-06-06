@@ -48,6 +48,15 @@ namespace Repository
             }
         }
 
+        public List<User> GetUsersPassSharedWith(Password pPassword)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == pPassword.Id);
+                return passwordFromDB.SharedWith.ToList();
+            }
+        }
+
         public void SharePassword(Password pPasswordToShare, User pUserShareTo)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())

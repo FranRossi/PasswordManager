@@ -252,9 +252,10 @@ namespace BusinessLogic
             _users.UnSharePassword(passwordToShare, userUnshareTo);
         }
 
-        public List<User> GetUsersSharedWith(Password pass)
+        public List<User> GetUsersSharedWith(Password password)
         {
-            return pass.SharedWith.ToList();
+            List<User> usersSharedWith = _users.GetUsersPassSharedWith(password);
+            return usersSharedWith;
         }
     }
 }
