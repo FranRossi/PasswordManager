@@ -19,6 +19,12 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
             try
             {
                 _passwordManager = new PasswordManager();
@@ -33,6 +39,7 @@ namespace UnitTestObligatorio1
                 };
                 _passwordManager.CreateUser(_user);
                 _passwordManager.CreateCategoryOnCurrentUser(_category.Name);
+                _category = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
                 _password = new Password
                 {
                     User = _user,
@@ -230,6 +237,7 @@ namespace UnitTestObligatorio1
             List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
             Password newPassword = passwordsBeforeModify.ToArray()[0];
             newPassword.Username = "123456";
+            newPassword.User = _passwordManager.CurrentUser;
             newPassword.Pass = "1234560Ort2020";
             newPassword.Notes = "Esta es la nueva password";
             _passwordManager.ModifyPasswordOnCurrentUser(newPassword);
@@ -254,8 +262,11 @@ namespace UnitTestObligatorio1
 
             List<Password> passwordBeforeModify = _passwordManager.GetPasswords();
             Password firstPassword = passwordBeforeModify.ToArray()[0];
+            firstPassword.Site = "ort.edu.uy";
+            firstPassword.Username = "123456";
             firstPassword.Pass = "EstoEsUnGIF";
             firstPassword.Notes = "Esta es la nueva password";
+            firstPassword.User = _passwordManager.CurrentUser;
             _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
         }
 
@@ -481,8 +492,9 @@ namespace UnitTestObligatorio1
             List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
             Password firstPassword = passwordsBeforeModify.ToArray()[0];
             firstPassword.LastModification = new DateTime(2021, 5, 8);
+            firstPassword.User = _passwordManager.CurrentUser;
             _passwordManager.ModifyPasswordOnCurrentUser(firstPassword);
-            Assert.AreEqual(_password.LastModification, firstPassword.LastModification);
+            Assert.AreNotEqual(_password.LastModification, firstPassword.LastModification);
         }
 
         [TestMethod]

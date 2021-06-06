@@ -66,7 +66,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                IEnumerable<Password> passwords = context.Passwords.Include("Category").Where(pass => pass.User.MasterName == pMasterName).ToList();
+                IEnumerable<Password> passwords = context.Passwords.Include("Category").Include("User").Where(pass => pass.User.MasterName == pMasterName).ToList();
                 return passwords;
             }
         }
