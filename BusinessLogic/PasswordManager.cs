@@ -105,6 +105,7 @@ namespace BusinessLogic
         {
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
+            VerifyItemCategoryBelongsToUser(newPassword);
             _passwords.Modify(newPassword);
         }
 
@@ -117,8 +118,9 @@ namespace BusinessLogic
         private void VerifyPasswordUniqueness(Password newPassword)
         {
             if (!_passwords.CheckUniqueness(newPassword))
-                throw new CreditCardAlreadyExistsException();
+                throw new PasswordAlreadyExistsException();
         }
+
         private void VerifyItemCategoryBelongsToUser(Item newItem)
         {
             bool categoryBelongsToUser = _categories.CategoryBelongsToUser(newItem.Category, newItem.User);
@@ -203,6 +205,7 @@ namespace BusinessLogic
         public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyItemCategoryBelongsToUser(newCreditCard);
             if (_creditCards.CheckUniqueness(newCreditCard))
                 _creditCards.Modify(newCreditCard);
             else
@@ -218,6 +221,7 @@ namespace BusinessLogic
 
         private void VerifyNonExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
         {
+            //TODO SACAR
             if (this._creditCardsList.Contains(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
         }
