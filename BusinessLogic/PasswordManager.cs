@@ -34,12 +34,15 @@ namespace BusinessLogic
 
         public void CreateUser(User newUser)
         {
-            if (_users.CheckUniqueness(newUser))
-                _users.Add(newUser);
-            else
-                throw new UsernameAlreadyTakenException();
-
+            VerifyUserUniqueness(newUser);
+            _users.Add(newUser);
             CurrentUser = newUser;
+        }
+
+        private void VerifyUserUniqueness(User newUser)
+        {
+            if (!_users.CheckUniqueness(newUser))
+                throw new UsernameAlreadyTakenException();
         }
 
         public void Login(string name, string password)
@@ -65,14 +68,19 @@ namespace BusinessLogic
                 Name = category,
                 User = CurrentUser
             };
-            if (_categories.CheckUniqueness(newCategory))
-                _categories.Add(newCategory);
-            else
+            VerifyCategoryUniqueness(newCategory);
+            _categories.Add(newCategory);
+        }
+
+        private void VerifyCategoryUniqueness(Category newCategory)
+        {
+            if (!_categories.CheckUniqueness(newCategory))
                 throw new CategoryAlreadyAddedException();
         }
 
         public void ModifyCategoryOnCurrentUser(Category modifiedCategory)
         {
+            VerifyCategoryUniqueness(modifiedCategory);
             _categories.Modify(modifiedCategory);
         }
 
