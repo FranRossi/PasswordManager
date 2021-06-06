@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessPassword.cs" />
+    <Compile Include="Migrations\202106052337432_CleanMigration.cs" />
+    <Compile Include="Migrations\202106052337432_CleanMigration.designer.cs">
+      <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202106052158002_TestingDBCreation.cs" />
     <Compile Include="Migrations\202106052158002_TestingDBCreation.designer.cs">
       <DependentUpon>202106052158002_TestingDBCreation.cs</DependentUpon>
@@ -79,6 +83,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202106052337432_CleanMigration.resx">
+      <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106052158002_TestingDBCreation.resx">
       <DependentUpon>202106052158002_TestingDBCreation.cs</DependentUpon>
     </EmbeddedResource>

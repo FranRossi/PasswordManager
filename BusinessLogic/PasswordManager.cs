@@ -60,10 +60,13 @@ namespace BusinessLogic
 
         public void CreateCategoryOnCurrentUser(string category)
         {
-            Category newCategory = new Category { Name = category };
-            string currentUserMasterName = CurrentUser.MasterName;
-            if (_categories.CheckUniqueness(newCategory, currentUserMasterName))
-                _categories.Add(newCategory, currentUserMasterName);
+            Category newCategory = new Category
+            {
+                Name = category,
+                User = CurrentUser
+            };
+            if (_categories.CheckUniqueness(newCategory))
+                _categories.Add(newCategory);
             else
                 throw new CategoryAlreadyAddedException();
         }
@@ -78,6 +81,7 @@ namespace BusinessLogic
         {
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
+            VerifyItemCategoryBelongsToUser(newPassword);
             _passwords.Add(newPassword);
         }
 
@@ -101,6 +105,7 @@ namespace BusinessLogic
         {
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
+            VerifyItemCategoryBelongsToUser(newPassword);
             _passwords.Modify(newPassword);
         }
 
@@ -113,7 +118,14 @@ namespace BusinessLogic
         private void VerifyPasswordUniqueness(Password newPassword)
         {
             if (!_passwords.CheckUniqueness(newPassword))
-                throw new CreditCardAlreadyExistsException();
+                throw new PasswordAlreadyExistsException();
+        }
+
+        private void VerifyItemCategoryBelongsToUser(Item newItem)
+        {
+            bool categoryBelongsToUser = _categories.CategoryBelongsToUser(newItem.Category, newItem.User);
+            if (!categoryBelongsToUser)
+                throw new ItemInvalidCategoryException();
         }
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
@@ -162,6 +174,7 @@ namespace BusinessLogic
         public void CreateCreditCard(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyItemCategoryBelongsToUser(newCreditCard);
             if (_creditCards.CheckUniqueness(newCreditCard))
                 _creditCards.Add(newCreditCard);
             else
@@ -192,6 +205,7 @@ namespace BusinessLogic
         public void ModifyCreditCardOnCurrentUser(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
+            VerifyItemCategoryBelongsToUser(newCreditCard);
             if (_creditCards.CheckUniqueness(newCreditCard))
                 _creditCards.Modify(newCreditCard);
             else
@@ -207,6 +221,7 @@ namespace BusinessLogic
 
         private void VerifyNonExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
         {
+            //TODO SACAR
             if (this._creditCardsList.Contains(newCreditCard))
                 throw new CreditCardAlreadyExistsException();
         }

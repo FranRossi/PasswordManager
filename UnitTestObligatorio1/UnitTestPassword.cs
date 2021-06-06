@@ -216,11 +216,12 @@ namespace UnitTestObligatorio1
             {
                 User = _user,
                 Category = unusedCategory,
-                Site = "ort.edu.uy",
+                Site = "ort.edu.uy24545443",
                 Username = "239850",
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
+            _passwordManager.CreatePassword(_password);
         }
 
         [TestMethod]

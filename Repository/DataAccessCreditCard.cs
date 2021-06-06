@@ -13,8 +13,15 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Categories.Attach(pCreditCard.Category);
-                context.Users.Attach(pCreditCard.User);
+                Category cardCategory = pCreditCard.Category;
+                User cardUser = pCreditCard.User;
+                Category cardCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == cardCategory.Id);
+                User cardUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == cardUser.MasterName);
+                pCreditCard.Category = cardCategoryFromDB;
+                pCreditCard.User = cardUserFromDB;
+
+                context.Categories.Attach(cardCategoryFromDB);
+                context.Users.Attach(cardUserFromDB);
                 context.CreditCards.Add(pCreditCard);
                 context.SaveChanges();
             }
