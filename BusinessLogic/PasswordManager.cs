@@ -34,11 +34,8 @@ namespace BusinessLogic
 
         public void CreateUser(User newUser)
         {
-            if (_users.CheckUniqueness(newUser))
-                _users.Add(newUser);
-            else
-                throw new UsernameAlreadyTakenException();
-
+            VerifyUserUniqueness(newUser);
+            _users.Add(newUser);
             CurrentUser = newUser;
         }
 
