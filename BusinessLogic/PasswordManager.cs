@@ -80,6 +80,7 @@ namespace BusinessLogic
 
         public void ModifyCategoryOnCurrentUser(Category modifiedCategory)
         {
+            VerifyCategoryUniqueness(modifiedCategory);
             _categories.Modify(modifiedCategory);
         }
 
