@@ -68,10 +68,8 @@ namespace BusinessLogic
                 Name = category,
                 User = CurrentUser
             };
-            if (_categories.CheckUniqueness(newCategory))
-                _categories.Add(newCategory);
-            else
-                throw new CategoryAlreadyAddedException();
+            VerifyCategoryUniqueness(newCategory);
+            _categories.Add(newCategory);
         }
 
         private void VerifyCategoryUniqueness(Category newCategory)
