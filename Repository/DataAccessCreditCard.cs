@@ -50,8 +50,14 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
+                Category cardCategory = pCreditCard.Category;
+                User cardUser = pCreditCard.User;
+                Category cardCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == cardCategory.Id);
+                User cardUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == cardUser.MasterName);
                 CreditCard creditCardToModify = context.CreditCards.FirstOrDefault(c => c.Id == pCreditCard.Id);
-                creditCardToModify.Category = pCreditCard.Category;
+
+                creditCardToModify.Category = cardCategoryFromDB;
+                creditCardToModify.User = cardUserFromDB;
                 creditCardToModify.Number = pCreditCard.Number;
                 creditCardToModify.SecureCode = pCreditCard.SecureCode;
                 creditCardToModify.ExpirationDate = pCreditCard.ExpirationDate;
