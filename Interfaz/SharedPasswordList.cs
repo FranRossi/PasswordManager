@@ -110,7 +110,7 @@ namespace Presentation
             {
                 switch (column.Name)
                 {
-                    case "Name":
+                    case "MasterName":
                         column.HeaderText = "Nombre";
                         break;
                     default:

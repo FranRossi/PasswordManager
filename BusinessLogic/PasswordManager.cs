@@ -93,7 +93,8 @@ namespace BusinessLogic
 
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
-            return _passwordsList.Where(pass => pass.SharedWith.Contains(CurrentUser)).ToList();
+            List<Password> passwordsSharedWithMe = _passwords.GetSharedPasswordsWithCurrentUser(CurrentUser);
+            return passwordsSharedWithMe;
         }
 
         public void DeletePassword(Password password)
@@ -209,9 +210,8 @@ namespace BusinessLogic
 
         public List<User> GetUsersPassNotSharedWith(Password password)
         {
-            List<User> usersNotShareWith = _usersList.Except(password.SharedWith).ToList();
-            usersNotShareWith.Remove(CurrentUser);
-            return usersNotShareWith;
+            List<User> usersNotSharedWith = _users.GetUsersPassNotSharedWith(password);
+            return usersNotSharedWith;
         }
 
 
@@ -247,17 +247,18 @@ namespace BusinessLogic
 
         public void SharePassword(Password passwordToShare, User userShareTo)
         {
-            passwordToShare.ShareWithUser(userShareTo);
+            _users.SharePassword(passwordToShare, userShareTo);
         }
 
         public void UnSharePassword(Password passwordToShare, User userUnshareTo)
         {
-            passwordToShare.UnShareWithUser(userUnshareTo);
+            _users.UnSharePassword(passwordToShare, userUnshareTo);
         }
 
-        public List<User> GetUsersSharedWith(Password pass)
+        public List<User> GetUsersSharedWith(Password password)
         {
-            return pass.SharedWith.ToList();
+            List<User> usersSharedWith = _users.GetUsersPassSharedWith(password);
+            return usersSharedWith;
         }
     }
 }
