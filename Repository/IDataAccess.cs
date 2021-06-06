@@ -12,6 +12,7 @@ namespace Repository
         void Delete(T entry);
         void Modify(T entry);
         IEnumerable<T> GetAll(String pMasterName);
+        bool CheckUniqueness(T item);
     }
 }
 
