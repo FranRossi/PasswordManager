@@ -32,6 +32,12 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
@@ -111,35 +117,35 @@ namespace UnitTestObligatorio1
         public void GetPasswordOfColorDarkGreen()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.DarkGreen);
-            CollectionAssert.AreEquivalent(darkGreenPassword, actualPasswords);
+            CollectionAssert.AreEqual(darkGreenPassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorLightGreen()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.LightGreen);
-            CollectionAssert.AreEquivalent(lightGreenPassword, actualPasswords);
+            CollectionAssert.AreEqual(lightGreenPassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorYellow()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Yellow);
-            CollectionAssert.AreEquivalent(yellowPassword, actualPasswords);
+            CollectionAssert.AreEqual(yellowPassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorOrange()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Orange);
-            CollectionAssert.AreEquivalent(orangePassword, actualPasswords);
+            CollectionAssert.AreEqual(orangePassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorRed()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Red);
-            CollectionAssert.AreEquivalent(redPassword, actualPasswords);
+            CollectionAssert.AreEqual(redPassword, actualPasswords);
         }
 
         private void AddCategoryToPasswordManager(ref Category category, string name)
@@ -149,6 +155,8 @@ namespace UnitTestObligatorio1
                 Name = name
             };
             _passwordManager.CreateCategoryOnCurrentUser(name);
+            List<Category> categories = _passwordManager.GetCategoriesFromCurrentUser();
+            category = categories.Find(c => c.Name == name);
         }
 
         private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)

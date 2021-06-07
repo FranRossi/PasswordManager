@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -66,7 +67,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                IEnumerable<Password> passwords = context.Passwords.Include("Category").Where(pass => pass.User.MasterName == pMasterName).ToList();
+                IEnumerable<Password> passwords = context.Passwords.Include("Category").Include("User").Where(pass => pass.User.MasterName == pMasterName).ToList();
                 return passwords;
             }
         }
@@ -83,13 +84,74 @@ namespace Repository
             }
         }
 
+        public bool CheckPasswordNotSharedTwice(Password newPassword, User userShareTo)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passwordFromDB = context.Passwords.Include("SharedWith").Include("User").FirstOrDefault(pass => pass.Id == newPassword.Id);
+                bool userDoesntKnowPassword = !passwordFromDB.SharedWith.Contains(userShareTo);
+                return userDoesntKnowPassword;
+            }
+        }
+
         public List<Password> GetSharedPasswordsWithCurrentUser(User pCurrentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Password> passwordList = context.Passwords.Include("SharedWith").ToList();
+                List<Password> passwordList = context.Passwords.Include("SharedWith").Include("User").ToList();
                 List<Password> passwordsSharedWithMe = passwordList.Where(pass => pass.SharedWith.Contains(pCurrentUser)).ToList();
                 return passwordsSharedWithMe;
+            }
+        }
+
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<Password> passwords = context.Passwords.Include("User").Where(pass => pass.PasswordStrength == color).ToList();
+                return passwords;
+            }
+        }
+
+        public List<PasswordReportByColor> GetPasswordReportByColor()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<PasswordReportByColor> report = new List<PasswordReportByColor>();
+                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                {
+                    report.Add(new PasswordReportByColor
+                    {
+                        Color = color,
+                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == color)
+                    }
+                    );
+                }
+                return report;
+            }
+        }
+
+        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
+                List<Password> passwordsWithCategories = context.Passwords.Include("Category").ToList();
+
+                foreach (Category category in context.Categories)
+                {
+                    foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                    {
+                        report.Add(new PasswordReportByCategoryAndColor
+                        {
+                            Category = category,
+                            Color = color,
+                            Quantity = passwordsWithCategories.Count(pass => pass.Category.Equals(category) && pass.PasswordStrength == color)
+                        }
+                        );
+                    }
+                }
+                return report;
             }
         }
     }

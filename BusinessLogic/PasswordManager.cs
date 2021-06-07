@@ -139,46 +139,23 @@ namespace BusinessLogic
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
-            List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
-
-            foreach (Category category in GetCategoriesFromCurrentUser())
-            {
-                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
-                {
-                    report.Add(new PasswordReportByCategoryAndColor
-                    {
-                        Category = category,
-                        Color = color,
-                        Quantity = this.GetPasswords().Count(pass => pass.Category.Equals(category) && pass.PasswordStrength == color)
-                    }
-                    );
-                }
-            }
+            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor();
             return report;
         }
 
         public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            List<PasswordReportByColor> report = new List<PasswordReportByColor>();
-            foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
-            {
-                report.Add(new PasswordReportByColor
-                {
-                    Color = color,
-                    Quantity = this.GetPasswords().Count(pass => pass.PasswordStrength == color)
-                }
-                );
-            }
+            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor();
             return report;
         }
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color).ToList();
+            List<Password> passwords = _passwords.GetPasswordsByColor(color);
             return passwords;
         }
 
-      
+
 
         public void CreateCreditCard(CreditCard newCreditCard)
         {
@@ -255,7 +232,21 @@ namespace BusinessLogic
 
         public void SharePassword(Password passwordToShare, User userShareTo)
         {
-            _users.SharePassword(passwordToShare, userShareTo);
+            VerifyPasswordNotSharedWithOwner(passwordToShare, userShareTo);
+            if (VerifyPasswordNotSharedWithUserTwice(passwordToShare, userShareTo))
+                _users.SharePassword(passwordToShare, userShareTo);
+        }
+
+        private void VerifyPasswordNotSharedWithOwner(Password passwordToShare, User userShareTo)
+        {
+            if (passwordToShare.User.Equals(userShareTo))
+                throw new PasswordSharedWithSameUserException();
+        }
+
+        private bool VerifyPasswordNotSharedWithUserTwice(Password passwordToShare, User userShareTo)
+        {
+            bool isNotShared = _passwords.CheckPasswordNotSharedTwice(passwordToShare, userShareTo);
+            return isNotShared;
         }
 
         public void UnSharePassword(Password passwordToShare, User userUnshareTo)
