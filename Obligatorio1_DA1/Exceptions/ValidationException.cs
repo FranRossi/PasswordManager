@@ -4,7 +4,7 @@ namespace Obligatorio1_DA1.Exceptions
 {
     public abstract class ValidationException : Exception
     {
-        protected string message;
-        public override string Message => this.message;
+        protected string messageToDisplay;
+        public override string Message => this.messageToDisplay;
     }
 }

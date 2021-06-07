@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardExpirationDateInvalidMonthException()
         {
-            this.message = "El mes ingresado en la fecha de expiración es inválido.";
+            this.messageToDisplay = "El mes ingresado en la fecha de expiración es inválido.";
         }
     }
 }

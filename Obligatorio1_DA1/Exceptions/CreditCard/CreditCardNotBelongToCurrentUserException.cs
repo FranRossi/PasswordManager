@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardNotBelongToCurrentUserException()
         {
-            this.message = "Esta tarjeta no pertenece al usuario que esta logeado";
+            this.messageToDisplay = "Esta tarjeta no pertenece al usuario que esta logeado";
         }
     }
 }

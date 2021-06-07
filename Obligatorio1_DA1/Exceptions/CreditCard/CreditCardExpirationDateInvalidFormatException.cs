@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardExpirationDateInvalidFormatException()
         {
-            this.message = "El formato de fecha de expiración es inválido, debería ser mes/año.";
+            this.messageToDisplay = "El formato de fecha de expiración es inválido, debería ser mes/año.";
         }
     }
 }

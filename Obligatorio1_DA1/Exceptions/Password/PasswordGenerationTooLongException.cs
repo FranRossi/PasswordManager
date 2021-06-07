@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordGenerationTooLongException()
         {
-            this.message = "La contaseña que desea generar es demasiado larga (max. 25 caracteres).";
+            this.messageToDisplay = "La contaseña que desea generar es demasiado larga (max. 25 caracteres).";
         }
     }
 }

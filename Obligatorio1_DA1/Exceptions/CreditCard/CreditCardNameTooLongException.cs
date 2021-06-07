@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardNameTooLongException()
         {
-            this.message = "El nombre seleccionado para la tarjeta es muy largo.";
+            this.messageToDisplay = "El nombre seleccionado para la tarjeta es muy largo.";
         }
     }
 }

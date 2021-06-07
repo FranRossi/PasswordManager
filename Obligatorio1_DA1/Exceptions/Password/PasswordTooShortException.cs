@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordTooShortException()
         {
-            this.message = "La contaseña ingresada es demasiado corta (min. 5 caracteres).";
+            this.messageToDisplay = "La contaseña ingresada es demasiado corta (min. 5 caracteres).";
         }
     }
 }

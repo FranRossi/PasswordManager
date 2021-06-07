@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardAlreadyExistsException()
         {
-            this.message = "La tarjeta ya existe en el sistema.";
+            this.messageToDisplay = "La tarjeta ya existe en el sistema.";
         }
     }
 }
