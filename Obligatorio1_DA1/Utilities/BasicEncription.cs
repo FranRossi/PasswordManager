@@ -8,19 +8,16 @@ namespace Obligatorio1_DA1.Utilities
 {
     public class BasicEncription : IEncription
     {
-        public string Decript(string encriptedText, string key)
-        {
-            return "hello world";
-        }
 
         public string Encript(string textToEncript, string key)
         {
-            return textToEncript + " ";
+            return textToEncript + key;
+        }
+        public string Decript(string encriptedText, string key)
+        {
+            int origianlTextLength = encriptedText.Length - key.Length;
+            return encriptedText.Substring(0, origianlTextLength);
         }
 
-        private string Shift(string textToShift, int count)
-        {
-            return textToShift.Remove(0, count) + textToShift.Substring(0, count);
-        }
     }
 }

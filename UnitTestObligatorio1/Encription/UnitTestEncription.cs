@@ -30,27 +30,26 @@ namespace UnitTestObligatorio1
 
         }
 
-        [DataRow("mySuperSecurePassword")]
-        [DataRow("12321pass werod")]
-        [DataRow("hello world")]
+        [DataRow("mySuperSecurePassword", "keyy")]
+        [DataRow("12321pass werod", "keyadsfy")]
+        [DataRow("hello world", "asdfasd")]
         [DataTestMethod]
-        public void EncriptDifferentThanOrignal()
+        public void EncriptDifferentThanOrignal(string textToEncript, string key)
         {
-            string textToEncript = "hello world";
-            string key = "keyy";
             string encriptedText = encription.Encript(textToEncript, key);
-            Assert.AreNotEqual(textToEncript, encriptedText);
+            Assert.AreNotEqual(textToEncript, encriptedText, "Original: " + textToEncript + " Result: " + encriptedText);
         }
 
-        [DataRow("mySuperSecurePassword")]
-        [DataRow("hello world")]
+
+        [DataRow("mySuperSecurePassword", "keyy")]
+        [DataRow("12321pass werod", "keyadsfy")]
+        [DataRow("hello world", "asdfasd")]
         [DataTestMethod]
-        public void Decript(string textToEncript)
+        public void Decript(string textToEncript, string key)
         {
-            string key = "keyy";
             string encriptedText = encription.Encript(textToEncript, key);
             string decriptedText = encription.Decript(encriptedText, key);
-            Assert.AreEqual(textToEncript, decriptedText);
+            Assert.AreEqual(textToEncript, decriptedText, "Original: " + textToEncript + " Result: " + decriptedText);
         }
 
     }
