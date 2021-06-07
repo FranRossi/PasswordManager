@@ -75,10 +75,7 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(_password);
-
-            List<Password> userPasswords = _passwordManager.GetPasswords();
-            CollectionAssert.Contains(userPasswords, _password);
+            Assert.AreNotEqual(passName, _password.Pass);
         }
 
     }
