@@ -11,10 +11,10 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private CreditCard _selectedCreditCard;
-        public CreditCardList(PasswordManager pPasswordManager)
+        public CreditCardList(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             LoadTblCreditCard();
         }
 
