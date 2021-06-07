@@ -131,7 +131,8 @@ namespace UnitTestObligatorio1
                 Category = _category,
                 Site = "miami.com",
                 Username = "josesito",
-                Pass = "239850Jose2019"
+                Pass = "239850Jose2019",
+                Notes = ""
             };
             _passwordManager.CreatePassword(trello);
             expectedPasswords.Add(trello);
@@ -143,14 +144,15 @@ namespace UnitTestObligatorio1
                 Category = _category,
                 Site = "trello.com",
                 Username = "josesito",
-                Pass = "239850Jose2019"
+                Pass = "239850Jose2019",
+                Notes = ""
             };
             _passwordManager.CreatePassword(amazon);
             expectedPasswords.Add(amazon);
             _passwordManager.SharePassword(amazon, userShareTo);
             _passwordManager.Login(userShareTo.MasterName, userShareTo.MasterPass);
             List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
+            CollectionAssert.AreEqual(sharedWithUser, expectedPasswords);
 
         }
 
@@ -210,7 +212,7 @@ namespace UnitTestObligatorio1
             expectedUser.Add(userShareTo);
 
             List<User> usersSharedWith = _passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+            CollectionAssert.AreEqual(expectedUser, usersSharedWith);
         }
 
         [TestMethod]
@@ -278,13 +280,14 @@ namespace UnitTestObligatorio1
             _passwordManager.SharePassword(pass, lucia);
             _passwordManager.SharePassword(pass, pablo);
             _passwordManager.SharePassword(pass, juana);
+            expectedUser.Add(juana);
             expectedUser.Add(lucia);
             expectedUser.Add(pablo);
-            expectedUser.Add(juana);
+
 
 
             List<User> usersSharedWith = _passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+            CollectionAssert.AreEqual(expectedUser, usersSharedWith);
         }
 
         [TestMethod]
@@ -344,11 +347,12 @@ namespace UnitTestObligatorio1
             _passwordManager.Login(_userShareFrom.MasterName, _userShareFrom.MasterPass);
             _passwordManager.CreatePassword(pass);
             _passwordManager.SharePassword(pass, userShareWith);
-            expectedUser.Add(pablo);
             expectedUser.Add(juana);
+            expectedUser.Add(pablo);
+
 
             List<User> usersNotSharedWith = _passwordManager.GetUsersPassNotSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersNotSharedWith);
+            CollectionAssert.AreEqual(expectedUser, usersNotSharedWith);
         }
 
         [TestMethod]
@@ -387,13 +391,13 @@ namespace UnitTestObligatorio1
             _passwordManager.CreateUser(juana);
             _passwordManager.Login(_userShareFrom.MasterName, _userShareFrom.MasterPass);
             _passwordManager.CreatePassword(pass);
+            expectedUser.Add(juana);
             expectedUser.Add(lucia);
             expectedUser.Add(pablo);
-            expectedUser.Add(juana);
 
 
             List<User> usersNotSharedWith = _passwordManager.GetUsersPassNotSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersNotSharedWith);
+            CollectionAssert.AreEqual(expectedUser, usersNotSharedWith);
         }
 
         [TestMethod]
@@ -437,7 +441,7 @@ namespace UnitTestObligatorio1
 
             List<User> usersSharedWith = _passwordManager.GetUsersPassNotSharedWith(pass);
             List<User> expectedUser = new List<User>();
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+            CollectionAssert.AreEqual(expectedUser, usersSharedWith);
         }
 
         [TestMethod]

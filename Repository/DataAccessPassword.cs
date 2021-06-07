@@ -97,7 +97,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Password> passwordList = context.Passwords.Include("SharedWith").ToList();
+                List<Password> passwordList = context.Passwords.Include("SharedWith").Include("User").ToList();
                 List<Password> passwordsSharedWithMe = passwordList.Where(pass => pass.SharedWith.Contains(pCurrentUser)).ToList();
                 return passwordsSharedWithMe;
             }
