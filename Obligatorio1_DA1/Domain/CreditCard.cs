@@ -72,19 +72,19 @@ namespace Obligatorio1_DA1.Domain
         }
 
 
-        private void ValidateNumber(string number)
+        private void ValidateNumber(string numberToValidate)
         {
-            if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, number))
+            if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, numberToValidate))
                 throw new CreditCardNumberLengthIncorrectException();
-            if (!Validator.OnlyDigits(number))
+            if (!Validator.OnlyDigits(numberToValidate))
                 throw new CreditCardNumberInvalidCharactersException();
         }
 
-        private void ValidateName(string name)
+        private void ValidateName(string nameToValidate)
         {
-            if (!Validator.MinLengthOfString(name, CreditCard.MinUsernameLength))
+            if (!Validator.MinLengthOfString(nameToValidate, CreditCard.MinUsernameLength))
                 throw new CreditCardNameTooShortException();
-            if (!Validator.MaxLengthOfString(name, CreditCard.MaxUsernameLength))
+            if (!Validator.MaxLengthOfString(nameToValidate, CreditCard.MaxUsernameLength))
                 throw new CreditCardNameTooLongException();
         }
 
