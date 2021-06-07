@@ -15,7 +15,10 @@ namespace Obligatorio1_DA1.Domain
             HashSet<string> dataBreachItems = new HashSet<string>();
             string[] splittedDataBreach = data.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             foreach (string stringItem in splittedDataBreach)
-                dataBreachItems.Add(stringItem);
+            {
+                if (stringItem.Length > 0)
+                    dataBreachItems.Add(stringItem);
+            }
             return dataBreachItems;
         }
     }

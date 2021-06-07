@@ -24,6 +24,12 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
@@ -54,7 +60,7 @@ namespace UnitTestObligatorio1
             HashSet<string> expectedItems = new HashSet<string>();
             for (int i = 0; i < _breachedPasswords.Length; i++)
                 expectedItems.Add(_breachedPasswords[i]);
-            Assert.AreEqual(expectedItems, dataBreach.DataBreachItems);
+            Assert.IsTrue(expectedItems.SetEquals(dataBreach.DataBreachItems));
         }
 
         [TestMethod]
