@@ -90,6 +90,42 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void GetDataBreachBreachedItems()
+        {
+            string categoryName = "Facultad";
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            Category firstCategoryOnUser = _currentUser.Categories[0];
+            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            List<Item> items = new List<Item>();
+            Password newPassword = new Password
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Site = "aulas.ort.edu.uy",
+                Username = "23985",
+                Pass = "Passoword223",
+                Notes = "No me roben la cuenta"
+            };
+            CreditCard newCard = new CreditCard
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "2354231413001234",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Tra­mite 400k UYU"
+            };
+
+            items.Add(newCard);
+            items.Add(newPassword);
+
+            dataBreach.BreachedItems = items;
+            CollectionAssert.AreEqual(dataBreach.BreachedItems, items);
+        }
+
+        [TestMethod]
         public void PasswordOnlyDataBreachFromString()
         {
             AddPasswordsFromDifferentUserToPasswordManager();
@@ -159,13 +195,14 @@ namespace UnitTestObligatorio1
 
         private void AddPasswordsFromDifferentUserToPasswordManager()
         {
-            string categoryName = "Facultad";
+
             User otherUser = new User()
             {
                 MasterName = "Pedro",
                 MasterPass = "HolaSoyPedro123"
             };
             _passwordManager.CreateUser(otherUser);
+            string categoryName = "Facultad";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = otherUser.Categories[0];
             Password newPassword = new Password

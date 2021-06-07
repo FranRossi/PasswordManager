@@ -8,7 +8,7 @@ namespace Obligatorio1_DA1.Domain
     {
         public HashSet<string> DataBreachItems { get; set; }
         public DateTime Date { get; set; }
-
+        public int Id { get; set; }
         protected abstract HashSet<string> GetDataBreachString(T data);
 
         public DataBreach(T data)
