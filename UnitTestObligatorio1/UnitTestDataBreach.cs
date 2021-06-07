@@ -20,6 +20,8 @@ namespace UnitTestObligatorio1
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
         private string[] _breachedItems = { "2354231413003498", "Passoword223", "neant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
 
+        private IDataBreach p;
+
         [TestInitialize]
         public void TestInitialize()
         {
@@ -51,10 +53,7 @@ namespace UnitTestObligatorio1
         {
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            IDataBreach<string> dataBreach = new DataBreachFromString()
-            {
-                Data = _passwordDataBreach
-            };
+            DataBreach<string> dataBreach = new DataBreachFromString(_passwordDataBreach);
             List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
         }
