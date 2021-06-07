@@ -76,6 +76,13 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void GetDataBreachDate()
+        {
+            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            Assert.IsTrue(dataBreach.Date.Equals(DateTime.Today));
+        }
+
+        [TestMethod]
         public void PasswordOnlyDataBreachFromString()
         {
             AddPasswordsFromDifferentUserToPasswordManager();
