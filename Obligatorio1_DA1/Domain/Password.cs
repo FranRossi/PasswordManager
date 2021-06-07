@@ -68,9 +68,17 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 ValidatePass(value);
-                _pass = value;
+                _pass = Encript(value);
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
+
+        }
+
+        private string Encript(string pass)
+        {
+            IEncription encription = new BasicEncription();
+            string encriptedPassword = encription.Encript(pass, this.Username);
+            return encriptedPassword;
 
         }
 
