@@ -13,14 +13,14 @@ namespace UnitTestObligatorio1
     public abstract class UnitTestHash
     {
         protected abstract IHash GetHash();
-        protected IEncription encription;
+        protected IHash hashing;
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
-                encription = GetEncription();
+                hashing = GetHash();
 
             }
             catch (Exception exception)
@@ -30,27 +30,16 @@ namespace UnitTestObligatorio1
 
         }
 
-        [DataRow("mySuperSecurePassword", "keyy")]
-        [DataRow("12321pass werod", "keyadsfy")]
-        [DataRow("hello world", "asdfasd")]
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("12321pass werod")]
+        [DataRow("hello world")]
         [DataTestMethod]
-        public void EncriptDifferentThanOrignal(string textToEncript, string key)
+        public void HashDifferentThanOrignal(string textToHash)
         {
-            string encriptedText = encription.Encript(textToEncript, key);
-            Assert.AreNotEqual(textToEncript, encriptedText, "Original: " + textToEncript + " Result: " + encriptedText);
+            string hashedText = hashing.Hash(textToHash);
+            Assert.AreNotEqual(textToHash, hashedText, "Original: " + textToHash + " Result: " + hashedText);
         }
 
-
-        [DataRow("mySuperSecurePassword", "keyy")]
-        [DataRow("12321pass werod", "keyadsfy")]
-        [DataRow("hello world", "asdfasd")]
-        [DataTestMethod]
-        public void Decript(string textToEncript, string key)
-        {
-            string encriptedText = encription.Encript(textToEncript, key);
-            string decriptedText = encription.Decript(encriptedText, key);
-            Assert.AreEqual(textToEncript, decriptedText, "Original: " + textToEncript + " Result: " + decriptedText);
-        }
 
     }
 }
