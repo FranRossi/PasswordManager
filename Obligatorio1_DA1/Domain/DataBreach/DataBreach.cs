@@ -10,6 +10,7 @@ namespace Obligatorio1_DA1.Domain
         public DateTime Date { get; set; }
         public int Id { get; set; }
         public List<Item> BreachedItems { get; set; }
+        public User User { get; set; }
 
         protected abstract HashSet<string> GetDataBreachString(T data);
 
