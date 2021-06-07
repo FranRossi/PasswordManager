@@ -10,12 +10,12 @@ namespace UnitTestObligatorio1
 {
 
     [TestClass]
-    public class UnitTestBasicEncription : UnitTestEncription
+    public class UnitTestBasicHash : UnitTestHash
     {
-        protected override IEncription GetEncription()
+        protected override IHash GetHash()
         {
-            BasicEncription basicEncription = new BasicEncription();
-            return basicEncription;
+            BasicHash basicHash = new BasicHash();
+            return basicHash;
         }
     }
 }

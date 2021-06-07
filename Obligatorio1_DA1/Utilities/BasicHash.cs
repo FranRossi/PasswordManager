@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Utilities
 {
-    public interface IHash
+    public class BasicHash : IHash
     {
-        string Hash(string textToHash);
+        public string Hash(string textToHash)
+        {
+            return textToHash + textToHash;
+        }
     }
 }
