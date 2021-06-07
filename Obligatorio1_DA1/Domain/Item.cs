@@ -12,7 +12,6 @@ namespace Obligatorio1_DA1.Domain
     {
         public const int MaxNoteLength = 250;
 
-        private Category _category;
         private string _notes;
 
         public int Id { get; set; }
