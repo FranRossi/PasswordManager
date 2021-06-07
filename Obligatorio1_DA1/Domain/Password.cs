@@ -294,6 +294,8 @@ namespace Obligatorio1_DA1.Domain
 
             return (userNameAreEqual && siteAreEqual && userObjectAreEqual);
         }
+
+
     }
 
 

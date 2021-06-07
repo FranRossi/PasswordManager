@@ -112,5 +112,47 @@ namespace Repository
                 return passwords;
             }
         }
+
+        public List<PasswordReportByColor> GetPasswordReportByColor()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<PasswordReportByColor> report = new List<PasswordReportByColor>();
+                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                {
+                    report.Add(new PasswordReportByColor
+                    {
+                        Color = color,
+                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == color)
+                    }
+                    );
+                }
+                return report;
+            }
+        }
+
+        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
+                List<Password> passwordsWithCategories = context.Passwords.Include("Category").ToList();
+
+                foreach (Category category in context.Categories)
+                {
+                    foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                    {
+                        report.Add(new PasswordReportByCategoryAndColor
+                        {
+                            Category = category,
+                            Color = color,
+                            Quantity = passwordsWithCategories.Count(pass => pass.Category.Equals(category) && pass.PasswordStrength == color)
+                        }
+                        );
+                    }
+                }
+                return report;
+            }
+        }
     }
 }

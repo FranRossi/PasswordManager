@@ -131,36 +131,13 @@ namespace BusinessLogic
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
-            List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
-
-            foreach (Category category in GetCategoriesFromCurrentUser())
-            {
-                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
-                {
-                    report.Add(new PasswordReportByCategoryAndColor
-                    {
-                        Category = category,
-                        Color = color,
-                        Quantity = this.GetPasswords().Count(pass => pass.Category.Equals(category) && pass.PasswordStrength == color)
-                    }
-                    );
-                }
-            }
+            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor();
             return report;
         }
 
         public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            List<PasswordReportByColor> report = new List<PasswordReportByColor>();
-            foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
-            {
-                report.Add(new PasswordReportByColor
-                {
-                    Color = color,
-                    Quantity = this.GetPasswords().Count(pass => pass.PasswordStrength == color)
-                }
-                );
-            }
+            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor();
             return report;
         }
 
