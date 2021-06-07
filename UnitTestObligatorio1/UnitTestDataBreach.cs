@@ -90,6 +90,14 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void GetDataBreachUsuario()
+        {
+            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            dataBreach.User = _currentUser;
+            Assert.IsTrue(dataBreach.User.Equals(_currentUser));
+        }
+
+        [TestMethod]
         public void GetDataBreachBreachedItems()
         {
             string categoryName = "Facultad";
