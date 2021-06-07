@@ -15,7 +15,12 @@ namespace Obligatorio1_DA1.Utilities
 
         public string Encript(string textToEncript, string key)
         {
-            return "asdfasdf";
+            return textToEncript + " ";
+        }
+
+        private string Shift(string textToShift, int count)
+        {
+            return textToShift.Remove(0, count) + textToShift.Substring(0, count);
         }
     }
 }

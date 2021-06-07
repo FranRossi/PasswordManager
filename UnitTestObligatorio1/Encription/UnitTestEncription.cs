@@ -30,7 +30,10 @@ namespace UnitTestObligatorio1
 
         }
 
-        [TestMethod]
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("12321pass werod")]
+        [DataRow("hello world")]
+        [DataTestMethod]
         public void EncriptDifferentThanOrignal()
         {
             string textToEncript = "hello world";
