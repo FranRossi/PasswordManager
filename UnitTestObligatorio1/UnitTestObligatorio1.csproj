@@ -57,6 +57,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encription\UnitTestBasicEncription.cs" />
+    <Compile Include="Encription\UnitTestEncription.cs" />
     <Compile Include="UnitTestPasswordStrengthReport.cs" />
     <Compile Include="UnitTestDataBreach.cs" />
     <Compile Include="UnitTestCategory.cs" />
