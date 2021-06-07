@@ -1,13 +1,22 @@
 ﻿
+using System;
+using System.Collections.Generic;
+
 namespace Obligatorio1_DA1.Domain
 {
     public class DataBreachFromString : DataBreach<string>
     {
-        public string Data { set; private get; }
-
-        public string GetDataBreachString()
+        public DataBreachFromString(string data) : base(data)
         {
-            return this.Data;
+        }
+
+        protected override HashSet<string> GetDataBreachString(string data)
+        {
+            HashSet<string> dataBreachItems = new HashSet<string>();
+            string[] splittedDataBreach = data.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            foreach (string stringItem in splittedDataBreach)
+                dataBreachItems.Add(stringItem);
+            return dataBreachItems;
         }
     }
 }

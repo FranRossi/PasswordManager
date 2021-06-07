@@ -6,9 +6,9 @@ namespace Obligatorio1_DA1.Domain
     public abstract class DataBreach<T>
     {
         public HashSet<string> DataBreachItems { get; set; }
-        public abstract HashSet<string> GetDataBreachString(T data);
+        protected abstract HashSet<string> GetDataBreachString(T data);
 
-        DataBreach(T data)
+        public DataBreach(T data)
         {
             this.DataBreachItems = GetDataBreachString(data);
         }

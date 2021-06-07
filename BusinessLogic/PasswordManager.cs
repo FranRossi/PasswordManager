@@ -213,18 +213,17 @@ namespace BusinessLogic
                 throw new CreditCardAlreadyExistsException();
         }
 
-        public List<Item> GetBreachedItems<T>(IDataBreach<T> dataBreach)
+        public List<Item> GetBreachedItems<T>(DataBreach<T> dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
-            string dataBreachString = dataBreach.GetDataBreachString();
-            string[] splittedDataBreach = dataBreachString.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            for (int i = 0; i < splittedDataBreach.Length; i++)
+            HashSet<string> dataBreachItems = dataBreach.DataBreachItems;
+            foreach (string dataBreachItem in dataBreachItems)
             {
                 foreach (Password pass in _passwordsList)
-                    if (pass.Pass == splittedDataBreach[i] && pass.User.Equals(CurrentUser))
+                    if (pass.Pass == dataBreachItem && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCardsList)
-                    if (card.Number == splittedDataBreach[i] && card.User.Equals(CurrentUser))
+                    if (card.Number == dataBreachItem && card.User.Equals(CurrentUser))
                         breachedItems.Add(card);
             }
             return breachedItems;
