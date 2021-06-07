@@ -228,7 +228,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(_password);
+            _passwordManager.CreatePassword(pass);
         }
 
         [TestMethod]
