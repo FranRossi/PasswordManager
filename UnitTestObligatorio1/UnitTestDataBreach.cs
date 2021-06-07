@@ -14,12 +14,13 @@ namespace UnitTestObligatorio1
         private string _passwordDataBreach;
         private string _creditCardDataBreach;
         private string _itemDataBreach;
+        private string _repeatedItemDataBreach;
         private PasswordManager _passwordManager;
         private User _currentUser;
         private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "neant3232323hnea" };
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
         private string[] _breachedItems = { "2354231413003498", "Passoword223", "neant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
-
+        private string[] _repeatedBreachedItems = { "2354231413003498", "2354231413003498", "neant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
 
         [TestInitialize]
         public void TestInitialize()
@@ -33,6 +34,7 @@ namespace UnitTestObligatorio1
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
+            _repeatedItemDataBreach = CreateDataBreachString(_repeatedBreachedItems);
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
@@ -60,6 +62,16 @@ namespace UnitTestObligatorio1
             HashSet<string> expectedItems = new HashSet<string>();
             for (int i = 0; i < _breachedPasswords.Length; i++)
                 expectedItems.Add(_breachedPasswords[i]);
+            Assert.IsTrue(expectedItems.SetEquals(dataBreach.DataBreachItems));
+        }
+
+        [TestMethod]
+        public void GetDataBreachItemsWithRepeatedInput()
+        {
+            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            HashSet<string> expectedItems = new HashSet<string>();
+            for (int i = 0; i < _repeatedBreachedItems.Length; i++)
+                expectedItems.Add(_repeatedBreachedItems[i]);
             Assert.IsTrue(expectedItems.SetEquals(dataBreach.DataBreachItems));
         }
 
