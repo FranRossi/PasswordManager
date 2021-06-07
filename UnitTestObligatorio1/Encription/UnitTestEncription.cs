@@ -39,14 +39,16 @@ namespace UnitTestObligatorio1
             Assert.AreNotEqual(textToEncript, encriptedText);
         }
 
-        [TestMethod]
-        public void Decript()
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("hello world")]
+        [DataTestMethod]
+        public void Decript(string textToEncript)
         {
-            string textToEncript = "hello world";
             string key = "keyy";
             string encriptedText = encription.Encript(textToEncript, key);
             string decriptedText = encription.Decript(encriptedText, key);
             Assert.AreEqual(textToEncript, decriptedText);
         }
+
     }
 }
