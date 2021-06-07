@@ -83,12 +83,20 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
+        public void GetDataBreachId()
+        {
+            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            Assert.IsTrue(dataBreach.Id == 0);
+        }
+
+        [TestMethod]
         public void PasswordOnlyDataBreachFromString()
         {
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
             DataBreach<string> dataBreach = new DataBreachFromString(_passwordDataBreach);
-            List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
+            _passwordManager.SaveBreachedItems(dataBreach);
+            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
         }
 
@@ -98,7 +106,7 @@ namespace UnitTestObligatorio1
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
             DataBreach<string> dataBreach = new DataBreachFromString(_creditCardDataBreach);
-            List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
+            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedCardList);
         }
 
@@ -110,7 +118,7 @@ namespace UnitTestObligatorio1
             List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
             breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
             DataBreach<string> dataBreach = new DataBreachFromString(_itemDataBreach);
-            List<Item> breachResult = _passwordManager.GetBreachedItems(dataBreach);
+            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedItems);
         }
 

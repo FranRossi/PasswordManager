@@ -213,7 +213,7 @@ namespace BusinessLogic
                 throw new CreditCardAlreadyExistsException();
         }
 
-        public List<Item> GetBreachedItems<T>(DataBreach<T> dataBreach)
+        public List<Item> SaveBreachedItems<T>(DataBreach<T> dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
             HashSet<string> dataBreachItems = dataBreach.DataBreachItems;

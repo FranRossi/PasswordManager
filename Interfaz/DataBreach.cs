@@ -42,7 +42,7 @@ namespace Presentation
         private void LoadDataBreach()
         {
             DataBreachFromString dataBreach = new DataBreachFromString(txtDataBreach.Text);
-            List<Item> breachResult = _myPasswordManager.GetBreachedItems(dataBreach);
+            List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreach);
             LoadTables(breachResult);
         }
 
