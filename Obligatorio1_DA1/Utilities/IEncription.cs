@@ -9,5 +9,6 @@ namespace Obligatorio1_DA1.Utilities
     public interface IEncription
     {
         string Encript(string textToEncript, string key);
+        string Decript(string encriptedText, string key);
     }
 }
