@@ -18,6 +18,12 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
             try
             {
                 _passwordManager = new PasswordManager();
@@ -212,7 +218,7 @@ namespace UnitTestObligatorio1
         {
             User userShareTo = new User()
             {
-                MasterName = "Lucía",
+                MasterName = "Lucia",
                 MasterPass = "lu2000@1"
             };
             _passwordManager.CreateUser(userShareTo);
@@ -231,7 +237,7 @@ namespace UnitTestObligatorio1
             _passwordManager.SharePassword(passwordToShare, userShareTo);
             List<User> actualSharedUsers = _passwordManager.GetUsersSharedWith(passwordToShare);
             List<User> expectedSharedUsers = new List<User>() { userShareTo };
-            CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
+            CollectionAssert.AreEqual(expectedSharedUsers, actualSharedUsers);
         }
 
         [TestMethod]

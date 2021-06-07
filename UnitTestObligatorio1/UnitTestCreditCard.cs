@@ -20,6 +20,12 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
             try
             {
                 _passwordManager = new PasswordManager();
@@ -55,12 +61,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
-            }
+
         }
 
         [TestMethod]
@@ -198,28 +199,20 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void DeleteACreditCardNotInPasswordManager()
+        public void DeleteACreditCardAfterModify()
         {
-            try
-            {
-                Category firstCategoryOnUser = _user.Categories[0];
-                CreditCard newCreditCard = new CreditCard
-                {
-                    User = _user,
-                    Category = firstCategoryOnUser,
-                    Name = "MasterCard Black",
-                    Type = "Master",
-                    Number = "2354678713001111",
-                    SecureCode = "111",
-                    ExpirationDate = "02/30",
-                    Notes = "Límite 400 shenn UYU"
-                };
-                _passwordManager.DeleteCreditCard(newCreditCard);
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Expected no exception, but got: " + ex.Message);
-            }
+            List<CreditCard> creditCardBeforeModify = _passwordManager.GetCreditCards();
+            CreditCard firstCreditCard = creditCardBeforeModify.ToArray()[0];
+            firstCreditCard.Name = "Visa Gold";
+            firstCreditCard.Type = "Visa";
+            firstCreditCard.Number = "2354678713003498";
+            firstCreditCard.SecureCode = "189";
+            firstCreditCard.ExpirationDate = "10/21";
+            firstCreditCard.Notes = "Límite 400k UYU";
+            _passwordManager.ModifyCreditCardOnCurrentUser(firstCreditCard);
+            _passwordManager.DeleteCreditCard(firstCreditCard);
+            List<CreditCard> creditCardsAfterModify = _passwordManager.GetCreditCards();
+            CollectionAssert.DoesNotContain(creditCardsAfterModify, firstCreditCard);
         }
 
         [TestMethod]

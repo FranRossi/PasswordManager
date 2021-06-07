@@ -83,6 +83,16 @@ namespace Repository
             }
         }
 
+        public bool CheckPasswordNotSharedTwice(Password newPassword, User userShareTo)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passwordFromDB = context.Passwords.Include("SharedWith").Include("User").FirstOrDefault(pass => pass.Id == newPassword.Id);
+                bool userDoesntKnowPassword = !passwordFromDB.SharedWith.Contains(userShareTo);
+                return userDoesntKnowPassword;
+            }
+        }
+
         public List<Password> GetSharedPasswordsWithCurrentUser(User pCurrentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())

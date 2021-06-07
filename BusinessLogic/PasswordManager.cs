@@ -170,7 +170,7 @@ namespace BusinessLogic
             return passwords;
         }
 
-      
+
 
         public void CreateCreditCard(CreditCard newCreditCard)
         {
@@ -247,7 +247,21 @@ namespace BusinessLogic
 
         public void SharePassword(Password passwordToShare, User userShareTo)
         {
-            _users.SharePassword(passwordToShare, userShareTo);
+            VerifyPasswordNotSharedWithOwner(passwordToShare, userShareTo);
+            if (VerifyPasswordNotSharedWithUserTwice(passwordToShare, userShareTo))
+                _users.SharePassword(passwordToShare, userShareTo);
+        }
+
+        private void VerifyPasswordNotSharedWithOwner(Password passwordToShare, User userShareTo)
+        {
+            if (passwordToShare.User.Equals(userShareTo))
+                throw new PasswordSharedWithSameUserException();
+        }
+
+        private bool VerifyPasswordNotSharedWithUserTwice(Password passwordToShare, User userShareTo)
+        {
+            bool isNotShared = _passwords.CheckPasswordNotSharedTwice(passwordToShare, userShareTo);
+            return isNotShared;
         }
 
         public void UnSharePassword(Password passwordToShare, User userUnshareTo)
