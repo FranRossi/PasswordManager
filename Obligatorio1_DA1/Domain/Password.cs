@@ -84,11 +84,11 @@ namespace Obligatorio1_DA1.Domain
         }
 
 
-        private void ValidateSite(string value)
+        private void ValidateSite(string siteToValidate)
         {
-            if (!Validator.MinLengthOfString(value, Password.MinSiteLength))
+            if (!Validator.MinLengthOfString(siteToValidate, Password.MinSiteLength))
                 throw new PasswordSiteTooShortException();
-            if (!Validator.MaxLengthOfString(value, Password.MaxSiteLength))
+            if (!Validator.MaxLengthOfString(siteToValidate, Password.MaxSiteLength))
                 throw new PasswordSiteTooLongException();
         }
 
