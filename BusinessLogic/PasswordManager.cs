@@ -166,7 +166,7 @@ namespace BusinessLogic
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = this.GetPasswords().FindAll(pass => pass.PasswordStrength == color).ToList();
+            List<Password> passwords = _passwords.GetPasswordsByColor(color);
             return passwords;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -100,6 +101,15 @@ namespace Repository
                 List<Password> passwordList = context.Passwords.Include("SharedWith").Include("User").ToList();
                 List<Password> passwordsSharedWithMe = passwordList.Where(pass => pass.SharedWith.Contains(pCurrentUser)).ToList();
                 return passwordsSharedWithMe;
+            }
+        }
+
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<Password> passwords = context.Passwords.Include("User").Where(pass => pass.PasswordStrength == color).ToList();
+                return passwords;
             }
         }
     }
