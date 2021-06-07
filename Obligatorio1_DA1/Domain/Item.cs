@@ -28,9 +28,9 @@ namespace Obligatorio1_DA1.Domain
         }
         public Category Category { get; set; }
 
-        private void ValidateNotes(string value)
+        private void ValidateNotes(string notesToValidate)
         {
-            if (!Validator.MaxLengthOfString(value, Item.MaxNoteLength))
+            if (!Validator.MaxLengthOfString(notesToValidate, Item.MaxNoteLength))
                 throw new ItemNotesTooLongException();
         }
     }
