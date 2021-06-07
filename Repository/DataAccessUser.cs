@@ -9,55 +9,55 @@ namespace Repository
 {
     public class DataAccessUser
     {
-        public void Add(User pUser)
+        public void Add(User newUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Users.Add(pUser);
+                context.Users.Add(newUser);
                 context.SaveChanges();
             }
         }
 
-        public User Login(string name, string password)
+        public User Login(string userName, string userPassword)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                User loggedInUser = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == name && u.MasterPass == password);
+                User loggedInUser = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userName && u.MasterPass == userPassword);
                 return loggedInUser;
             }
         }
 
-        public bool CheckUniqueness(User pUser)
+        public bool CheckUniqueness(User newUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                User userToCheck = context.Users.FirstOrDefault(u => u.MasterName == pUser.MasterName);
+                User userToCheck = context.Users.FirstOrDefault(u => u.MasterName == newUser.MasterName);
                 bool userIsNull = userToCheck == null;
                 return userIsNull;
             }
         }
 
-        public List<User> GetUsersPassNotSharedWith(Password pPassword)
+        public List<User> GetUsersPassNotSharedWith(Password password)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Password passwordFromDB = context.Passwords.Include("SharedWith").Include("User").FirstOrDefault(pass => pass.Id == pPassword.Id);
+                Password passwordFromDB = context.Passwords.Include("SharedWith").Include("User").FirstOrDefault(pass => pass.Id == password.Id);
                 List<User> usersNotSharedWith = context.Users.ToList().Except(passwordFromDB.SharedWith).ToList();
                 usersNotSharedWith.Remove(passwordFromDB.User);
                 return usersNotSharedWith;
             }
         }
 
-        public List<User> GetUsersPassSharedWith(Password pPassword)
+        public List<User> GetUsersPassSharedWith(Password password)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == pPassword.Id);
+                Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == password.Id);
                 return passwordFromDB.SharedWith.ToList();
             }
         }
 
-        public void SharePassword(Password pPasswordToShare, User pUserShareTo)
+        public void SharePassword(Password passwordToShare, User userShareTo)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
@@ -67,12 +67,12 @@ namespace Repository
                 context.SaveChanges();*/
 
                 context.Database.ExecuteSqlCommand("INSERT INTO SharedPasswordUser(PasswordId, UserSharedWithName) " +
-                                                    "VALUES ('" + pPasswordToShare.Id + "', '" + pUserShareTo.MasterName + "')");
+                                                    "VALUES ('" + passwordToShare.Id + "', '" + userShareTo.MasterName + "')");
                 context.SaveChanges();
             }
         }
 
-        public void UnSharePassword(Password pPasswordToShare, User pUserShareTo)
+        public void UnSharePassword(Password passwordToShare, User userShareTo)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
@@ -81,8 +81,8 @@ namespace Repository
                 context.Users.Attach(pUserShareTo);
                 context.SaveChanges();*/
 
-                context.Database.ExecuteSqlCommand("DELETE FROM SharedPasswordUser WHERE PasswordId ='" + pPasswordToShare.Id + "' AND" +
-                    " UserSharedWithName = '" + pUserShareTo.MasterName + "'");
+                context.Database.ExecuteSqlCommand("DELETE FROM SharedPasswordUser WHERE PasswordId ='" + passwordToShare.Id + "' AND" +
+                    " UserSharedWithName = '" + userShareTo.MasterName + "'");
                 context.SaveChanges();
             }
         }
