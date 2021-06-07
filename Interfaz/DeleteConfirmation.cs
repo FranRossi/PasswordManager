@@ -6,11 +6,11 @@ namespace Presentation
     public partial class DeleteConfirmation : Form
     {
         private string _itemType;
-        public DeleteConfirmation(string pItem)
+        public DeleteConfirmation(string item)
         {
             InitializeComponent();
-            lblConfirmationMessage.Text += pItem + "?";
-            _itemType = pItem;
+            lblConfirmationMessage.Text += item + "?";
+            _itemType = item;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)

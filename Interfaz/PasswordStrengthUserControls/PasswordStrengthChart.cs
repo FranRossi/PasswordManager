@@ -10,23 +10,23 @@ namespace Presentation.PasswordStrengthWindow
     public partial class PasswordStrengthChart : UserControl
     {
         private Dictionary<PasswordStrengthColor, Color> _presentationColor;
-        public PasswordStrengthChart(List<PasswordReportByCategoryAndColor> pChartData)
+        public PasswordStrengthChart(List<PasswordReportByCategoryAndColor> chartData)
         {
             InitializeComponent();
             SetPresentationColor();
-            LoadChart(pChartData);
+            LoadChart(chartData);
         }
 
-        private void LoadChart(List<PasswordReportByCategoryAndColor> chartData)
+        private void LoadChart(List<PasswordReportByCategoryAndColor> chartDataToLoad)
         {
-            foreach (PasswordStrengthColor color in (PasswordStrengthColor[])Enum.GetValues(typeof(PasswordStrengthColor)))
+            foreach (PasswordStrengthColor passColor in (PasswordStrengthColor[])Enum.GetValues(typeof(PasswordStrengthColor)))
             {
-                chartPasswordStrength.Series.Add(color.ToString());
-                chartPasswordStrength.Series[color.ToString()].Color = _presentationColor[color];
-                chartPasswordStrength.Series[color.ToString()].IsVisibleInLegend = false;
+                chartPasswordStrength.Series.Add(passColor.ToString());
+                chartPasswordStrength.Series[passColor.ToString()].Color = _presentationColor[passColor];
+                chartPasswordStrength.Series[passColor.ToString()].IsVisibleInLegend = false;
             }
 
-            foreach (PasswordReportByCategoryAndColor entry in chartData)
+            foreach (PasswordReportByCategoryAndColor entry in chartDataToLoad)
             {
                 chartPasswordStrength.Series[entry.Color.ToString()].Points.AddXY(entry.Category.Name, entry.Quantity);
             }

@@ -9,61 +9,61 @@ namespace Repository
 {
     public class DataAccessCreditCard : IDataAccessCreditCard<CreditCard>
     {
-        public void Add(CreditCard pCreditCard)
+        public void Add(CreditCard newCreditCard)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Category cardCategory = pCreditCard.Category;
-                User cardUser = pCreditCard.User;
+                Category cardCategory = newCreditCard.Category;
+                User cardUser = newCreditCard.User;
                 Category cardCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == cardCategory.Id);
                 User cardUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == cardUser.MasterName);
-                pCreditCard.Category = cardCategoryFromDB;
-                pCreditCard.User = cardUserFromDB;
+                newCreditCard.Category = cardCategoryFromDB;
+                newCreditCard.User = cardUserFromDB;
 
                 context.Categories.Attach(cardCategoryFromDB);
                 context.Users.Attach(cardUserFromDB);
-                context.CreditCards.Add(pCreditCard);
+                context.CreditCards.Add(newCreditCard);
                 context.SaveChanges();
             }
         }
 
-        public void Delete(CreditCard pCreditCard)
+        public void Delete(CreditCard creditCard)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                CreditCard creditCardToDelete = context.CreditCards.FirstOrDefault(c => c.Id == pCreditCard.Id);
+                CreditCard creditCardToDelete = context.CreditCards.FirstOrDefault(c => c.Id == creditCard.Id);
                 context.CreditCards.Remove(creditCardToDelete);
                 context.SaveChanges();
             }
         }
 
-        public IEnumerable<CreditCard> GetAll(string pMasterName)
+        public IEnumerable<CreditCard> GetAll(string userMasterName)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                IEnumerable<CreditCard> creditCards = context.CreditCards.Include("Category").Include("User").Where(card => card.User.MasterName == pMasterName).ToList();
+                IEnumerable<CreditCard> creditCards = context.CreditCards.Include("Category").Include("User").Where(card => card.User.MasterName == userMasterName).ToList();
                 return creditCards;
             }
         }
 
-        public void Modify(CreditCard pCreditCard)
+        public void Modify(CreditCard modifiedCreditCard)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Category cardCategory = pCreditCard.Category;
-                User cardUser = pCreditCard.User;
+                Category cardCategory = modifiedCreditCard.Category;
+                User cardUser = modifiedCreditCard.User;
                 Category cardCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == cardCategory.Id);
                 User cardUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == cardUser.MasterName);
-                CreditCard creditCardToModify = context.CreditCards.FirstOrDefault(c => c.Id == pCreditCard.Id);
+                CreditCard creditCardToModify = context.CreditCards.FirstOrDefault(c => c.Id == modifiedCreditCard.Id);
 
                 creditCardToModify.Category = cardCategoryFromDB;
                 creditCardToModify.User = cardUserFromDB;
-                creditCardToModify.Number = pCreditCard.Number;
-                creditCardToModify.SecureCode = pCreditCard.SecureCode;
-                creditCardToModify.ExpirationDate = pCreditCard.ExpirationDate;
-                creditCardToModify.Type = pCreditCard.Type;
-                creditCardToModify.Notes = pCreditCard.Notes;
-                creditCardToModify.Name = pCreditCard.Name;
+                creditCardToModify.Number = modifiedCreditCard.Number;
+                creditCardToModify.SecureCode = modifiedCreditCard.SecureCode;
+                creditCardToModify.ExpirationDate = modifiedCreditCard.ExpirationDate;
+                creditCardToModify.Type = modifiedCreditCard.Type;
+                creditCardToModify.Notes = modifiedCreditCard.Notes;
+                creditCardToModify.Name = modifiedCreditCard.Name;
                 context.SaveChanges();
             }
         }

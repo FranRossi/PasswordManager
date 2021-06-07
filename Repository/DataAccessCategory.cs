@@ -9,53 +9,53 @@ namespace Repository
 {
     public class DataAccessCategory
     {
-        public void Add(Category pCategory)
+        public void Add(Category newCategory)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                context.Users.Attach(pCategory.User);
-                context.Categories.Add(pCategory);
+                context.Users.Attach(newCategory.User);
+                context.Categories.Add(newCategory);
                 context.SaveChanges();
             }
         }
 
-        public void Modify(Category pCategroy)
+        public void Modify(Category modifiedcategory)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Category categoryToModfy = context.Categories.FirstOrDefault(c => c.Id == pCategroy.Id);
-                categoryToModfy.Name = pCategroy.Name;
+                Category categoryToModify = context.Categories.FirstOrDefault(c => c.Id == modifiedcategory.Id);
+                categoryToModify.Name = modifiedcategory.Name;
                 context.SaveChanges();
             }
         }
 
-        public bool CheckUniqueness(Category pCategory)
+        public bool CheckUniqueness(Category category)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                string userMasterName = pCategory.GetUserMasterName();
+                string userMasterName = category.GetUserMasterName();
                 List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
-                bool categoryIsUnique = !currentUserCategories.Contains(pCategory);
+                bool categoryIsUnique = !currentUserCategories.Contains(category);
                 return categoryIsUnique;
             }
         }
 
-        public IEnumerable<Category> GetAll(string pMasterName)
+        public IEnumerable<Category> GetAll(string userMasterName)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Category> categories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == pMasterName).Categories;
+                List<Category> categories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
                 return categories;
             }
         }
 
-        public bool CategoryBelongsToUser(Category pCategory, User pUser)
+        public bool CategoryBelongsToUser(Category category, User user)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                string userMasterName = pUser.MasterName;
+                string userMasterName = user.MasterName;
                 List<Category> currentUserCategories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userMasterName).Categories;
-                bool belongsToUser = currentUserCategories.Contains(pCategory);
+                bool belongsToUser = currentUserCategories.Contains(category);
                 return belongsToUser;
             }
         }

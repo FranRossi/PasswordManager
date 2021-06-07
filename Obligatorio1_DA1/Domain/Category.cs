@@ -23,11 +23,11 @@ namespace Obligatorio1_DA1.Domain
 
         public User User { get; set; }
 
-        private void ValidateName(string value)
+        private void ValidateName(string nameToValidate)
         {
-            if (!Validator.MinLengthOfString(value, Category.MinNameLength))
+            if (!Validator.MinLengthOfString(nameToValidate, Category.MinNameLength))
                 throw new CategoryTooShortException();
-            if (!Validator.MaxLengthOfString(value, Category.MaxNameLength))
+            if (!Validator.MaxLengthOfString(nameToValidate, Category.MaxNameLength))
                 throw new CategoryTooLongException();
         }
 

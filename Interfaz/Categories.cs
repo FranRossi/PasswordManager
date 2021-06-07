@@ -10,10 +10,10 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Category _selectedCategory;
-        public Categories(PasswordManager pPasswordManager)
+        public Categories(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             LoadCategoryList();
         }
 

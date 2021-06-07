@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordGenerationTooShortException()
         {
-            this.message = "La contaseña que desea generar es demasiado corta (min. 5 caracteres).";
+            this.messageToDisplay = "La contaseña que desea generar es demasiado corta (min. 5 caracteres).";
         }
     }
 }

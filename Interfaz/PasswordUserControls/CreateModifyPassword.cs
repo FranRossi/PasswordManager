@@ -12,19 +12,19 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private Password _myPasswordToModify;
 
-        public CreateModifyPassword(PasswordManager pPasswordManager)
+        public CreateModifyPassword(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             LoadComboBoxCategory();
             ShowHidePassword(false);
         }
 
-        public CreateModifyPassword(PasswordManager pPasswordManager, Password pCreditCard)
+        public CreateModifyPassword(PasswordManager passwordManager, Password password)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
-            _myPasswordToModify = pCreditCard;
+            _myPasswordManager = passwordManager;
+            _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
             LoadFromPassword();
@@ -118,7 +118,7 @@ namespace Presentation
             bool hasSymbol = cbSymbol.Checked;
             try
             {
-                PasswordGenerationOptions options = new PasswordGenerationOptions
+                PasswordGenerationOptions usedOptions = new PasswordGenerationOptions
                 {
                     Length = passwordLength,
                     Uppercase = hasUppercase,
@@ -126,8 +126,8 @@ namespace Presentation
                     Digits = hasDigit,
                     SpecialDigits = hasSymbol
                 };
-                string pass = Password.GenerateRandomPassword(options);
-                txtPassword.Text = Password.GenerateRandomPassword(options);
+                string newPassword = Password.GenerateRandomPassword(usedOptions);
+                txtPassword.Text = Password.GenerateRandomPassword(usedOptions);
             }
             catch (ValidationException exception)
             {

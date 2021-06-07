@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public UserNameTooLongException()
         {
-            this.message = "El nomber ingresado es demasiado largo (max. 25 caracteres)";
+            this.messageToDisplay = "El nomber ingresado es demasiado largo (max. 25 caracteres)";
         }
     }
 }

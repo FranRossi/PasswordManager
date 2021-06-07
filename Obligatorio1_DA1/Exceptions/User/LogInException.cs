@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public LogInException()
         {
-            this.message = "El nombre usuario o contraseña son incorrectos.";
+            this.messageToDisplay = "El nombre usuario o contraseña son incorrectos.";
         }
     }
 }
