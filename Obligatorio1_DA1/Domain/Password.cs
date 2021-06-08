@@ -21,10 +21,12 @@ namespace Obligatorio1_DA1.Domain
         private string _pass;
         private List<User> _sharedWith;
         private DateTime _lastModification;
+        private IEncription encryption;
 
         public Password()
         {
             LastModification = DateTime.Today;
+            encryption = new BasicEncription();
         }
 
         public PasswordStrengthColor PasswordStrength { get; private set; }
@@ -81,15 +83,13 @@ namespace Obligatorio1_DA1.Domain
 
         private string ShowDecyptedPass()
         {
-            IEncription encription = new BasicEncription();
-            string decyptedPassword = encription.Decript(Pass, Username);
+            string decyptedPassword = encryption.Decript(Pass, Username);
             return decyptedPassword;
         }
 
         private string Encript(string pass)
         {
-            IEncription encription = new BasicEncription();
-            string encriptedPassword = encription.Encript(pass, Username);
+            string encriptedPassword = encryption.Encript(pass, Username);
             return encriptedPassword;
 
         }
