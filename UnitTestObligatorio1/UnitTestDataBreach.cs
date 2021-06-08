@@ -43,6 +43,9 @@ namespace UnitTestObligatorio1
                 MasterPass = "HolaSoyGonzalo123"
             };
             _passwordManager.CreateUser(_currentUser);
+            string categoryName = "Personal";
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            _currentUser = _passwordManager.CurrentUser;
         }
 
         [TestCleanup]
@@ -216,7 +219,6 @@ namespace UnitTestObligatorio1
         {
             List<Item> brechedPasswordsList = new List<Item>();
             _passwordManager.Login(_currentUser.MasterName, _currentUser.MasterPass);
-            _currentUser = _passwordManager.CurrentUser;
             Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedPasswords.Length; i++)
             {
@@ -264,9 +266,6 @@ namespace UnitTestObligatorio1
         {
             List<Item> breachedCreditCardList = new List<Item>();
             _passwordManager.Login(_currentUser.MasterName, _currentUser.MasterPass);
-            string categoryName = "Personal";
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
-            _currentUser = _passwordManager.CurrentUser;
             Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedCreditCards.Length; i++)
             {
