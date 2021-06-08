@@ -41,9 +41,11 @@ namespace Presentation
 
         private void LoadDataBreach()
         {
-            //DataBreachFromString dataBreach = new DataBreachFromString();
-            //List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreach);
-            //LoadTables(breachResult);
+            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachItems(txtDataBreach.Text);
+            DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
+            List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
+            LoadTables(breachResult);
         }
 
         private void LoadTblCreditCard(List<CreditCard> creditCards)
