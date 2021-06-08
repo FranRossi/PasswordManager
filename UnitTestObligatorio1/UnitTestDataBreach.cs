@@ -72,7 +72,7 @@ namespace UnitTestObligatorio1
             HashSet<string> expectedItems = new HashSet<string>();
             for (int i = 0; i < _repeatedBreachedItems.Length; i++)
                 expectedItems.Add(_repeatedBreachedItems[i]);
-            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_passwordDataBreach)));
+            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_repeatedBreachedItems)));
         }
 
         [TestMethod]
