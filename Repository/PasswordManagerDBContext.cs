@@ -16,6 +16,7 @@ namespace Repository
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
+
         //public DbSet<DataBreach<T>> DataBreaches { get; set; }
 
         public PasswordManagerDBContext() : base("name=PasswordManagerDB") { }
