@@ -58,9 +58,9 @@
     <Compile Include="Migrations\202106052337432_CleanMigration.designer.cs">
       <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106052158002_TestingDBCreation.cs" />
-    <Compile Include="Migrations\202106052158002_TestingDBCreation.designer.cs">
-      <DependentUpon>202106052158002_TestingDBCreation.cs</DependentUpon>
+    <Compile Include="Migrations\202106082002591_removePassMaxLength.cs" />
+    <Compile Include="Migrations\202106082002591_removePassMaxLength.designer.cs">
+      <DependentUpon>202106082002591_removePassMaxLength.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
@@ -88,8 +88,8 @@
     <EmbeddedResource Include="Migrations\202106052337432_CleanMigration.resx">
       <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106052158002_TestingDBCreation.resx">
-      <DependentUpon>202106052158002_TestingDBCreation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106082002591_removePassMaxLength.resx">
+      <DependentUpon>202106082002591_removePassMaxLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

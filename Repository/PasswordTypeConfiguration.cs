@@ -20,7 +20,6 @@ namespace Repository
             this.Property(pass => pass.Username).IsRequired();
 
             this.Property(pass => pass.Notes).HasMaxLength(250);
-            this.Property(pass => pass.Pass).HasMaxLength(25);
             this.Property(pass => pass.Site).HasMaxLength(25);
             this.Property(pass => pass.Username).HasMaxLength(25);
 
