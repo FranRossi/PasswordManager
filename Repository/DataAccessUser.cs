@@ -61,13 +61,10 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                /*Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == pPasswordToShare.Id);
-                pPasswordToShare.ShareWithUser(pUserShareTo);
-                context.Users.Attach(pUserShareTo);
-                context.SaveChanges();*/
+                Password passwordFromDB = context.Passwords.Include("User").Include("SharedWith").FirstOrDefault(pass => pass.Id == passwordToShare.Id);
+                User userFromDB = context.Users.FirstOrDefault(user => userShareTo.MasterName == user.MasterName);
+                passwordFromDB.ShareWithUser(userFromDB);
 
-                context.Database.ExecuteSqlCommand("INSERT INTO SharedPasswordUser(PasswordId, UserSharedWithName) " +
-                                                    "VALUES ('" + passwordToShare.Id + "', '" + userShareTo.MasterName + "')");
                 context.SaveChanges();
             }
         }
@@ -76,13 +73,9 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                /*Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == pPasswordToShare.Id);
-                pPasswordToShare.UnShareWithUser(pUserShareTo);
-                context.Users.Attach(pUserShareTo);
-                context.SaveChanges();*/
-
-                context.Database.ExecuteSqlCommand("DELETE FROM SharedPasswordUser WHERE PasswordId ='" + passwordToShare.Id + "' AND" +
-                    " UserSharedWithName = '" + userShareTo.MasterName + "'");
+                Password passwordFromDB = context.Passwords.Include("SharedWith").FirstOrDefault(pass => pass.Id == passwordToShare.Id);
+                User userFromDB = context.Users.FirstOrDefault(user => userShareTo.MasterName == user.MasterName);
+                passwordFromDB.UnShareWithUser(userFromDB);
                 context.SaveChanges();
             }
         }
