@@ -46,8 +46,12 @@ namespace Obligatorio1_DA1.Domain
         public User(string name, string pass)
         {
             this.MasterName = name;
-            this.MasterPass = pass;
             this.Categories = new List<Category>();
+
+            IHash hashing = new BasicHash();
+            string hashedPass = hashing.Hash(pass, name);
+            this.MasterPass = hashedPass;
+
         }
 
         public User()

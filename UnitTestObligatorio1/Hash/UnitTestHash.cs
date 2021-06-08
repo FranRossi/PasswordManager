@@ -42,7 +42,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void DifferentSaltProduceDifferentHashed()
+        public void DifferentSaltProduceDifferentHash()
         {
             string firstSalt = "qwerty123";
             string textToHash = "hello world";

@@ -29,21 +29,21 @@ namespace UnitTestObligatorio1
             }
         }
 
-        [DataRow("mySuperSecurePassword")]
-        [DataRow("12321pass werod")]
-        [DataRow("hello world")]
+        [DataRow("mySuper")]
+        [DataRow("12321pfg")]
+        [DataRow("hellworld")]
         [DataTestMethod]
-        public void UserPasswordIsHashed()
+        public void UserPasswordIsHashed(string pass)
         {
 
-            User newUser = new User("Juancito", "hola123");
+            User newUser = new User("Juancito", pass);
             passwordManager.CreateUser(newUser);
 
         }
 
         [DataRow("hola123")]
-        [DataRow("12321pass werod")]
-        [DataRow("hello world")]
+        [DataRow("12321kl")]
+        [DataRow("hellworld")]
         [DataTestMethod]
         public void HashDifferentThanOrignal(string originalMasterPass)
         {
