@@ -12,11 +12,10 @@ namespace Obligatorio1_DA1.Domain
         public List<Item> BreachedItems { get; set; }
         public User User { get; set; }
 
-        protected abstract HashSet<string> GetDataBreachString(T data);
+        public abstract HashSet<string> GetDataBreachItems(T data);
 
-        public DataBreach(T data)
+        public DataBreach()
         {
-            this.DataBreachItems = GetDataBreachString(data);
             this.Date = DateTime.Today;
         }
     }

@@ -6,11 +6,8 @@ namespace Obligatorio1_DA1.Domain
 {
     public class DataBreachFromString : DataBreach<string>
     {
-        public DataBreachFromString(string data) : base(data)
-        {
-        }
 
-        protected override HashSet<string> GetDataBreachString(string data)
+        public override HashSet<string> GetDataBreachItems(string data)
         {
             HashSet<string> dataBreachItems = new HashSet<string>();
             string[] splittedDataBreach = data.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);

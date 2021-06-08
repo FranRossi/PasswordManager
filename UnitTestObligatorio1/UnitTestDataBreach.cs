@@ -58,17 +58,17 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetDataBreachItems()
         {
-            DataBreach<string> dataBreach = new DataBreachFromString(_passwordDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             HashSet<string> expectedItems = new HashSet<string>();
             for (int i = 0; i < _breachedPasswords.Length; i++)
                 expectedItems.Add(_breachedPasswords[i]);
-            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems));
+            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_passwordDataBreach)));
         }
 
         [TestMethod]
         public void GetDataBreachItemsWithRepeatedInput()
         {
-            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             HashSet<string> expectedItems = new HashSet<string>();
             for (int i = 0; i < _repeatedBreachedItems.Length; i++)
                 expectedItems.Add(_repeatedBreachedItems[i]);
@@ -78,21 +78,21 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetDataBreachDate()
         {
-            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             Assert.IsTrue(dataBreach.Date.Equals(DateTime.Today));
         }
 
         [TestMethod]
         public void GetDataBreachId()
         {
-            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             Assert.IsTrue(dataBreach.Id == 0);
         }
 
         [TestMethod]
         public void GetDataBreachUsuario()
         {
-            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             dataBreach.User = _currentUser;
             Assert.IsTrue(dataBreach.User.Equals(_currentUser));
         }
@@ -103,7 +103,7 @@ namespace UnitTestObligatorio1
             string categoryName = "Facultad";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = _currentUser.Categories[0];
-            DataBreach<string> dataBreach = new DataBreachFromString(_repeatedItemDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             List<Item> items = new List<Item>();
             Password newPassword = new Password
             {
@@ -138,7 +138,7 @@ namespace UnitTestObligatorio1
         {
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            DataBreach<string> dataBreach = new DataBreachFromString(_passwordDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             _passwordManager.SaveBreachedItems(dataBreach);
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
@@ -149,7 +149,7 @@ namespace UnitTestObligatorio1
         {
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
-            DataBreach<string> dataBreach = new DataBreachFromString(_creditCardDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedCardList);
         }
@@ -161,7 +161,7 @@ namespace UnitTestObligatorio1
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedItems = AddBreachedCreditCardsToPasswordManager();
             breachedItems.AddRange(AddBreachedPasswordsToPasswordManager());
-            DataBreach<string> dataBreach = new DataBreachFromString(_itemDataBreach);
+            DataBreach<string> dataBreach = new DataBreachFromString();
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreach);
             CollectionAssert.AreEquivalent(breachResult, breachedItems);
         }
