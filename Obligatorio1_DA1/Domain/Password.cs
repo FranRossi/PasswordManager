@@ -74,10 +74,22 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
+        public string DecyptedPass
+        {
+            get => ShowDecyptedPass();
+        }
+
+        private string ShowDecyptedPass()
+        {
+            IEncription encription = new BasicEncription();
+            string decyptedPassword = encription.Decript(Pass, Username);
+            return decyptedPassword;
+        }
+
         private string Encript(string pass)
         {
             IEncription encription = new BasicEncription();
-            string encriptedPassword = encription.Encript(pass, this.Username);
+            string encriptedPassword = encription.Encript(pass, Username);
             return encriptedPassword;
 
         }

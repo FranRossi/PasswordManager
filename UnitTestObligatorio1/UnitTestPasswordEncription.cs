@@ -75,8 +75,30 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            Assert.AreNotEqual(passName, _password.Pass);
+            string encriptedPassword = _password.Pass;
+            string unEncriptedPassword = passName;
+            Assert.AreNotEqual(unEncriptedPassword, encriptedPassword);
         }
 
+
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("12321pass werod")]
+        [DataRow("hello world")]
+        [DataTestMethod]
+        public void DencryptedPasswordDifferentFromOriginal(string passName)
+        {
+            _password = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            string unEncriptedPassword = passName;
+            string decyptedPassword = _password.DecyptedPass;
+            Assert.AreEqual(unEncriptedPassword, decyptedPassword);
+        }
     }
 }
