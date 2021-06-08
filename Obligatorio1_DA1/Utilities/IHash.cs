@@ -8,6 +8,6 @@ namespace Obligatorio1_DA1.Utilities
 {
     public interface IHash
     {
-        string Hash(string textToHash);
+        string Hash(string textToHash, string salt);
     }
 }

@@ -36,10 +36,23 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void HashDifferentThanOrignal(string textToHash)
         {
-            string hashedText = hashing.Hash(textToHash);
+            string salt = "abcedfghi";
+            string hashedText = hashing.Hash(textToHash, salt);
             Assert.AreNotEqual(textToHash, hashedText, "Original: " + textToHash + " Result: " + hashedText);
         }
 
+        [TestMethod]
+        public void DifferentSaltProduceDifferentHashed()
+        {
+            string firstSalt = "qwerty123";
+            string textToHash = "hello world";
+            string hashedTextFirstSalt = hashing.Hash(textToHash, firstSalt);
 
+            string differentSalt = "asldfjasdf";
+            string hashedTextDifferentSalt = hashing.Hash(textToHash, differentSalt);
+
+            Assert.AreNotEqual(hashedTextFirstSalt, hashedTextDifferentSalt);
+
+        }
     }
 }

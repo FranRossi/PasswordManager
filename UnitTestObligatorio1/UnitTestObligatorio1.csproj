@@ -71,6 +71,7 @@
     <Compile Include="UnitTestCreditCard.cs" />
     <Compile Include="UnitTestPassword.cs" />
     <Compile Include="UnitTestLogIn.cs" />
+    <Compile Include="UnitTestUserPassHash.cs" />
     <Compile Include="UnitTestSignUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
