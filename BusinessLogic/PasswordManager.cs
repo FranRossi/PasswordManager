@@ -19,6 +19,7 @@ namespace BusinessLogic
         private DataAccessCategory _categories;
         private DataAccessCreditCard _creditCards;
         private DataAccessPassword _passwords;
+        private DataAccessDataBreach _dataBreaches;
 
         public PasswordManager()
         {
@@ -30,6 +31,7 @@ namespace BusinessLogic
             _categories = new DataAccessCategory();
             _creditCards = new DataAccessCreditCard();
             _passwords = new DataAccessPassword();
+            _dataBreaches = new DataAccessDataBreach();
         }
 
         public void CreateUser(User newUser)
@@ -213,19 +215,10 @@ namespace BusinessLogic
                 throw new CreditCardAlreadyExistsException();
         }
 
-        public List<Item> SaveBreachedItems(DataBreachReport dataBreach)
+        public List<Item> SaveBreachedItems(DataBreachReport dataBreachReport)
         {
-            List<Item> breachedItems = new List<Item>();
-            HashSet<DataBreachReportEntry> dataBreachItems = dataBreach.Entries;
-            foreach (DataBreachReportEntry dataBreachItem in dataBreachItems)
-            {
-                foreach (Password pass in _passwordsList)
-                    if (pass.Pass == dataBreachItem.Value && pass.User.Equals(CurrentUser))
-                        breachedItems.Add(pass);
-                foreach (CreditCard card in _creditCardsList)
-                    if (card.Number == dataBreachItem.Value && card.User.Equals(CurrentUser))
-                        breachedItems.Add(card);
-            }
+            //TODO VER SI HACER VOID Y CARGAR DATABREACH
+            List<Item> breachedItems = _dataBreaches.AddDataBreachReport(dataBreachReport);
             return breachedItems;
         }
 

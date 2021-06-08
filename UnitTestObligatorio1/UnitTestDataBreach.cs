@@ -29,6 +29,7 @@ namespace UnitTestObligatorio1
             {
                 context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
                 context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM DATABREACHREPORTS");
                 context.Database.ExecuteSqlCommand("DELETE FROM USERS");
             }
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
@@ -51,6 +52,7 @@ namespace UnitTestObligatorio1
             {
                 context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
                 context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM DATABREACHREPORTS");
                 context.Database.ExecuteSqlCommand("DELETE FROM USERS");
             }
         }
@@ -100,7 +102,7 @@ namespace UnitTestObligatorio1
         {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.Date.Equals(DateTime.Today));
         }
 
@@ -109,7 +111,7 @@ namespace UnitTestObligatorio1
         {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.Id == 0);
         }
 
@@ -118,8 +120,7 @@ namespace UnitTestObligatorio1
         {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
-            dataBreachReport.User = _currentUser;
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.User.Equals(_currentUser));
         }
 
@@ -131,7 +132,7 @@ namespace UnitTestObligatorio1
             string categoryName = "Facultad";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = _currentUser.Categories[0];
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             List<Item> items = new List<Item>();
             Password newPassword = new Password
             {
@@ -166,12 +167,12 @@ namespace UnitTestObligatorio1
         {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
             _passwordManager.SaveBreachedItems(dataBreachReport);
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
-            CollectionAssert.AreEquivalent(breachResult, breachedPasswordList);
+            CollectionAssert.AreEqual(breachResult, breachedPasswordList);
         }
 
         [TestMethod]
@@ -179,11 +180,11 @@ namespace UnitTestObligatorio1
         {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_creditCardDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
-            CollectionAssert.AreEquivalent(breachResult, breachedCardList);
+            CollectionAssert.AreEqual(breachResult, breachedCardList);
         }
 
         [TestMethod]
@@ -191,13 +192,14 @@ namespace UnitTestObligatorio1
         {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedItemsInDB = AddBreachedCreditCardsToPasswordManager();
             breachedItemsInDB.AddRange(AddBreachedPasswordsToPasswordManager());
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
-            CollectionAssert.AreEquivalent(breachResult, breachedItemsInDB);
+            breachResult.Sort((a, b) => a.Id.CompareTo(b.Id));
+            CollectionAssert.AreEqual(breachResult, breachedItemsInDB);
         }
 
         private string CreateDataBreachString(string[] breachedString)
@@ -213,17 +215,15 @@ namespace UnitTestObligatorio1
         private List<Item> AddBreachedPasswordsToPasswordManager()
         {
             List<Item> brechedPasswordsList = new List<Item>();
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            _currentUser.Categories.Add(category);
+            _passwordManager.Login(_currentUser.MasterName, _currentUser.MasterPass);
+            _currentUser = _passwordManager.CurrentUser;
+            Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedPasswords.Length; i++)
             {
                 Password newPassword = new Password
                 {
                     User = _currentUser,
-                    Category = category,
+                    Category = firstCategoryOnUser,
                     Site = i + "ort.edu.uy",
                     Username = "23985" + i,
                     Pass = _breachedPasswords[i],
@@ -263,17 +263,17 @@ namespace UnitTestObligatorio1
         private List<Item> AddBreachedCreditCardsToPasswordManager()
         {
             List<Item> breachedCreditCardList = new List<Item>();
-            Category category = new Category()
-            {
-                Name = "Trabajo"
-            };
-            _currentUser.Categories.Add(category);
+            _passwordManager.Login(_currentUser.MasterName, _currentUser.MasterPass);
+            string categoryName = "Personal";
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            _currentUser = _passwordManager.CurrentUser;
+            Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedCreditCards.Length; i++)
             {
                 CreditCard newCard = new CreditCard
                 {
                     User = _currentUser,
-                    Category = category,
+                    Category = firstCategoryOnUser,
                     Name = "Visa Gold",
                     Type = "Visa",
                     Number = _breachedCreditCards[i],
