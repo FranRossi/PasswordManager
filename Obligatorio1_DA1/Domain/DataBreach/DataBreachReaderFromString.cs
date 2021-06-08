@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 namespace Obligatorio1_DA1.Domain
 {
-    public class DataBreachFromString : DataBreach<string>
+    public class DataBreachReaderFromString : DataBreach<string>
     {
-
-        public override HashSet<string> GetDataBreachItems(string data)
+        public HashSet<string> GetDataBreachItems(string data)
         {
             HashSet<string> dataBreachItems = new HashSet<string>();
             string[] splittedDataBreach = data.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);

@@ -72,13 +72,15 @@ namespace UnitTestObligatorio1
             HashSet<string> expectedItems = new HashSet<string>();
             for (int i = 0; i < _repeatedBreachedItems.Length; i++)
                 expectedItems.Add(_repeatedBreachedItems[i]);
-            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_repeatedBreachedItems)));
+            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_repeatedItemDataBreach)));
         }
 
         [TestMethod]
-        public void GetDataBreachDate()
+        public void GetDataBreachReportDate()
         {
             DataBreach<string> dataBreach = new DataBreachFromString();
+            HashSet<string> breachedItems = dataBreach.GetDataBreachItems(_itemDataBreach);
+            DataBreachReport<string> dataBreach = new DataBreachReport(breachedItems);
             Assert.IsTrue(dataBreach.Date.Equals(DateTime.Today));
         }
 
