@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Obligatorio1_DA1.Domain
 {
-    public abstract class DataBreach
+    public class DataBreachReport
     {
         public HashSet<string> DataBreachItems { get; set; }
         public DateTime Date { get; set; }
@@ -12,7 +12,7 @@ namespace Obligatorio1_DA1.Domain
         public List<Item> BreachedItems { get; set; }
         public User User { get; set; }
 
-        public DataBreach(HashSet<string> breachReport)
+        public DataBreachReport(HashSet<string> breachReport)
         {
             this.Date = DateTime.Today;
             this.DataBreachItems = breachReport;

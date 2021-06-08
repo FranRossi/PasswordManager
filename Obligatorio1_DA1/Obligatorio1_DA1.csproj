@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\CreditCard.cs" />
+    <Compile Include="Domain\DataBreach\DataBreachReport.cs" />
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
@@ -89,8 +90,8 @@
     <Compile Include="Exceptions\Item\ItemNotesTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordSharedWithSameUserException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
-    <Compile Include="Domain\DataBreach\DataBreachFromString.cs" />
-    <Compile Include="Domain\DataBreach\DataBreach.cs" />
+    <Compile Include="Domain\DataBreach\DataBreachReaderFromString.cs" />
+    <Compile Include="Domain\DataBreach\DataBreachReader.cs" />
     <Compile Include="Utilities\PasswordGenerationOptions.cs" />
     <Compile Include="Utilities\PasswordStrengthReport.cs" />
     <Compile Include="Utilities\PasswordStrengthColor.cs" />
