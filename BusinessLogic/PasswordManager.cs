@@ -216,14 +216,14 @@ namespace BusinessLogic
         public List<Item> SaveBreachedItems(DataBreachReport dataBreach)
         {
             List<Item> breachedItems = new List<Item>();
-            HashSet<string> dataBreachItems = dataBreach.DataBreachItems;
-            foreach (string dataBreachItem in dataBreachItems)
+            HashSet<DataBreachReportEntry> dataBreachItems = dataBreach.Entries;
+            foreach (DataBreachReportEntry dataBreachItem in dataBreachItems)
             {
                 foreach (Password pass in _passwordsList)
-                    if (pass.Pass == dataBreachItem && pass.User.Equals(CurrentUser))
+                    if (pass.Pass == dataBreachItem.Value && pass.User.Equals(CurrentUser))
                         breachedItems.Add(pass);
                 foreach (CreditCard card in _creditCardsList)
-                    if (card.Number == dataBreachItem && card.User.Equals(CurrentUser))
+                    if (card.Number == dataBreachItem.Value && card.User.Equals(CurrentUser))
                         breachedItems.Add(card);
             }
             return breachedItems;
