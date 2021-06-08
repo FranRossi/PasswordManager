@@ -10,17 +10,17 @@ namespace UnitTestObligatorio1
 {
 
     [TestClass]
-    public abstract class UnitTestEncription
+    public abstract class UnitTestEncryption
     {
-        protected abstract IEncription GetEncription();
-        protected IEncription encription;
+        protected abstract IEncryption GetEncryption();
+        protected IEncryption encryption;
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
-                encription = GetEncription();
+                encryption = GetEncryption();
 
             }
             catch (Exception exception)
@@ -34,10 +34,10 @@ namespace UnitTestObligatorio1
         [DataRow("12321pass werod", "keyadsfy")]
         [DataRow("hello world", "asdfasd")]
         [DataTestMethod]
-        public void EncriptDifferentThanOrignal(string textToEncript, string key)
+        public void EncryptDifferentThanOrignal(string textToEncrypt, string key)
         {
-            string encriptedText = encription.Encript(textToEncript, key);
-            Assert.AreNotEqual(textToEncript, encriptedText, "Original: " + textToEncript + " Result: " + encriptedText);
+            string encryptedText = encryption.Encrypt(textToEncrypt, key);
+            Assert.AreNotEqual(textToEncrypt, encryptedText, "Original: " + textToEncrypt + " Result: " + encryptedText);
         }
 
 
@@ -45,11 +45,11 @@ namespace UnitTestObligatorio1
         [DataRow("12321pass werod", "keyadsfy")]
         [DataRow("hello world", "asdfasd")]
         [DataTestMethod]
-        public void Decript(string textToEncript, string key)
+        public void Decrypt(string textToEncrypt, string key)
         {
-            string encriptedText = encription.Encript(textToEncript, key);
-            string decriptedText = encription.Decript(encriptedText, key);
-            Assert.AreEqual(textToEncript, decriptedText, "Original: " + textToEncript + " Result: " + decriptedText);
+            string encryptedText = encryption.Encrypt(textToEncrypt, key);
+            string decryptedText = encryption.Decrypt(encryptedText, key);
+            Assert.AreEqual(textToEncrypt, decryptedText, "Original: " + textToEncrypt + " Result: " + decryptedText);
         }
 
     }

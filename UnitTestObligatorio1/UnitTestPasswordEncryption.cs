@@ -9,7 +9,7 @@ using Repository;
 namespace UnitTestObligatorio1
 {
     [TestClass]
-    public class UnitTestPasswordEncription
+    public class UnitTestPasswordEncryption
     {
         private Password _password;
         private PasswordManager _passwordManager;
@@ -64,7 +64,7 @@ namespace UnitTestObligatorio1
         [DataRow("12321pass werod")]
         [DataRow("hello world")]
         [DataTestMethod]
-        public void EncriptedPasswordDifferentFromOriginal(string passName)
+        public void EncryptedPasswordDifferentFromOriginal(string passName)
         {
             _password = new Password
             {
@@ -75,9 +75,9 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            string encriptedPassword = _password.Pass;
-            string unEncriptedPassword = passName;
-            Assert.AreNotEqual(unEncriptedPassword, encriptedPassword);
+            string encryptedPassword = _password.Pass;
+            string unEncryptedPassword = passName;
+            Assert.AreNotEqual(unEncryptedPassword, encryptedPassword);
         }
 
 
@@ -96,9 +96,9 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            string unEncriptedPassword = passName;
-            string decyptedPassword = _password.DecyptedPass;
-            Assert.AreEqual(unEncriptedPassword, decyptedPassword);
+            string unEncryptedPassword = passName;
+            string decyptedPassword = _password.DecryptedPass;
+            Assert.AreEqual(unEncryptedPassword, decyptedPassword);
         }
     }
 }
