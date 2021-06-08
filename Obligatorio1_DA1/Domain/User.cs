@@ -30,7 +30,8 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 ValidatePassword(value);
-                _masterPass = value;
+                string hashedPassword = HashPassword(value);
+                _masterPass = hashedPassword;
             }
         }
         public List<Category> Categories
@@ -46,12 +47,8 @@ namespace Obligatorio1_DA1.Domain
         public User(string name, string pass)
         {
             this.MasterName = name;
+            this.MasterPass = pass;
             this.Categories = new List<Category>();
-
-            IHash hashing = new BasicHash();
-            string hashedPass = hashing.Hash(pass, name);
-            this.MasterPass = hashedPass;
-
         }
 
         public User()
@@ -119,6 +116,13 @@ namespace Obligatorio1_DA1.Domain
             //TODO SACAR
             if (this.Categories.Contains(newCategory))
                 throw new CategoryAlreadyAddedException();
+        }
+
+        private string HashPassword(string password)
+        {
+            IHash hashing = new BasicHash();
+            string hashedPass = hashing.Hash(password, MasterName);
+            return hashedPass;
         }
     }
 }
