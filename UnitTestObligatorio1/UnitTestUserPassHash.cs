@@ -11,14 +11,6 @@ namespace UnitTestObligatorio1
     public class UnitTestUserPassHash
     {
 
-        [TestMethod]
-        public void CreatePasswordManager()
-        {
-            PasswordManager passwordManager = new PasswordManager();
-            Assert.IsNotNull(passwordManager);
-        }
-
-
         PasswordManager passwordManager;
         [TestInitialize]
         public void CreatePasswordManagerBeforeTests()
@@ -49,14 +41,15 @@ namespace UnitTestObligatorio1
 
         }
 
-        [DataRow("mySuperSecurePassword")]
+        [DataRow("hola123")]
         [DataRow("12321pass werod")]
         [DataRow("hello world")]
         [DataTestMethod]
-        public void HashDifferentThanOrignal(string textToHash)
+        public void HashDifferentThanOrignal(string originalMasterPass)
         {
-            //string hashedText = hashing.Hash(textToHash);
-            //Assert.AreNotEqual(textToHash, hashedText, "Original: " + textToHash + " Result: " + hashedText);
+            User newUser = new User("Juancito", originalMasterPass);
+            string userMasterPass = newUser.MasterPass;
+            Assert.AreNotEqual(userMasterPass, originalMasterPass);
         }
 
     }
