@@ -69,20 +69,27 @@ namespace Presentation
         private void CreateNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
-            SuggestionsForPassword();
+            _myPasswordManager.VerifiesPassword(newPassword);
+            if(lblMessage.Text == "")
+                SuggestionsForPassword(newPassword);
             _myPasswordManager.CreatePassword(newPassword);
         }
 
-        private void SuggestionsForPassword()
+        private void SuggestionsForPassword(Password password)
         {
             //HistoricDataBreachSuggestion();
-            DuplicatePasswordSuggestion();
+            DuplicatePasswordSuggestion(password);
             //SecurePasswordSuggestion();
         }
 
-        private void DuplicatePasswordSuggestion()
+        private void DuplicatePasswordSuggestion(Password password)
         {
-            _myPasswordManager.PasswordTextIsDuplicate();
+
+            if (_myPasswordManager.PasswordTextIsDuplicate(password))
+            {
+                MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?")
+               
+            }
         }
 
         private Password CreatePasswordObjectFormFields()

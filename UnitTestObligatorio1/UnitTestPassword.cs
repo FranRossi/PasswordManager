@@ -530,13 +530,13 @@ namespace UnitTestObligatorio1
             {
                 User = _user,
                 Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
+                Site = "ort.edu.uy/33",
+                Username = "2222340",
                 Pass = "239850Ort2019",
                 Notes = "Esta es la nueva password",
             };
 
-            bool passTetxIsDuplicate = _passwordManager.PasswordTextIsDuplicate();
+            bool passTetxIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
             Assert.IsTrue(passTetxIsDuplicate);
         }
     }

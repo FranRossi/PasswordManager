@@ -89,10 +89,15 @@ namespace BusinessLogic
 
         public void CreatePassword(Password newPassword)
         {
-            VerifyPasswordBelongToCurrentUser(newPassword);
-            VerifyPasswordUniqueness(newPassword);
-            VerifyItemCategoryBelongsToUser(newPassword);
+            VerifiesPassword(newPassword);
             _passwords.Add(newPassword);
+        }
+
+        public void VerifiesPassword(Password passwordToCheck)
+        {
+            VerifyPasswordBelongToCurrentUser(passwordToCheck);
+            VerifyPasswordUniqueness(passwordToCheck);
+            VerifyItemCategoryBelongsToUser(passwordToCheck);
         }
 
         public List<Password> GetPasswords()
@@ -245,12 +250,13 @@ namespace BusinessLogic
             return usersSharedWith;
         }
 
-        public bool PasswordTextIsDuplicate()
+        public bool PasswordTextIsDuplicate(Password password)
         {
             bool passTetxIsDuplicate = true;
+            if (_passwords.CheckTextIsDuplicate(password))
+                return passTetxIsDuplicate;
 
-
-            return passTetxIsDuplicate;
+            return passTetxIsDuplicate = false;
         }
     }
 }
