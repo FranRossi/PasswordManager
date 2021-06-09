@@ -104,12 +104,42 @@ namespace Presentation
             bool userDontWantToChangePassword = true;
             //HistoricDataBreachSuggestion();
             userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
-            //SecurePasswordSuggestion();
+            userDontWantToChangePassword = SecurePasswordSuggestion(password);
 
             if (userDontWantToChangePassword) { 
                 UpdateDataBasePassword(password); 
                 CloseForm();
             }
+        }
+
+        private bool SecurePasswordSuggestion(Password password)
+        {
+            bool userDontWantToChangePassword = true;
+            if (_myPasswordManager.PasswordTextIsDuplicate(password))
+            {
+                string message = "Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?";
+                DialogResult duplicateSuggestion;
+                duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?",
+                    "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (duplicateSuggestion == DialogResult.Yes)
+                    userDontWantToChangePassword = false;
+            }
+
+
+            return userDontWantToChangePassword;
+        }
+
+        private bool ManagePopUpSuggestions(string message)
+        {
+            DialogResult duplicateSuggestion;
+            duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?",
+                "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (duplicateSuggestion == DialogResult.Yes)
+                 return true;
+
+            return false;
         }
 
         private void UpdateDataBasePassword(Password password)
