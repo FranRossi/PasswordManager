@@ -45,7 +45,7 @@ namespace Presentation
                 try
                 {
                     if (_myPasswordToModify == null)
-                        CreateNewPassword();
+                        VerifiesNewPassword();
                     else
                         ModifyPassword();
 
@@ -66,13 +66,12 @@ namespace Presentation
             _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify);
         }
 
-        private void CreateNewPassword()
+        private void VerifiesNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
             _myPasswordManager.VerifiesPassword(newPassword);
             if(lblMessage.Text == "")
                 SuggestionsForPassword(newPassword);
-            _myPasswordManager.CreatePassword(newPassword);
         }
 
         private void SuggestionsForPassword(Password password)
@@ -87,10 +86,28 @@ namespace Presentation
 
             if (_myPasswordManager.PasswordTextIsDuplicate(password))
             {
-                MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?")
-               
+                DialogResult duplicateSuggestion;
+                duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?", 
+                    "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (duplicateSuggestion == DialogResult.Yes)
+                {
+                    Close();
+                }
+                else
+                {
+                    CreateNewPassword(password);
+                    Close();
+                }
             }
         }
+
+        private void CreateNewPassword(Password password)
+        {
+            _myPasswordManager.CreatePassword(password);
+        }
+
+
 
         private Password CreatePasswordObjectFormFields()
         {
