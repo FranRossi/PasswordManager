@@ -478,7 +478,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void VerifyLastModificationPasswrodChanges()
+        public void VerifyLastModificationPasswordChanges()
         {
             List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
             Password firstPassword = passwordsBeforeModify.ToArray()[0];
