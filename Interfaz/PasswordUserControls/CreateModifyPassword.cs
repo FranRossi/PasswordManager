@@ -45,15 +45,11 @@ namespace Presentation
             {
                 try
                 {
-                    if (UserIsCreatingANewPassword())
-                        VerifiesNewPassword();
-                    else
-                        VerifiesModifyPassword();
+                    VerifyPassword();
 
                     if(lblMessage.Text == "")
                         ApplySuggestions();
-                  
-                    CloseForm();
+
                 }
                 catch (ValidationException exception)
                 {
@@ -62,6 +58,14 @@ namespace Presentation
             }
             else
                 lblMessage.Text = "Debe seleccionar una categoría";
+        }
+
+        private void VerifyPassword()
+        {
+            if (UserIsCreatingANewPassword())
+                VerifiesNewPassword();
+            else
+                VerifiesModifyPassword();
         }
 
         private bool UserIsCreatingANewPassword()
@@ -102,8 +106,10 @@ namespace Presentation
             userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
             //SecurePasswordSuggestion();
 
-            if (userDontWantToChangePassword)
-                UpdateDataBasePassword(password);
+            if (userDontWantToChangePassword) { 
+                UpdateDataBasePassword(password); 
+                CloseForm();
+            }
         }
 
         private void UpdateDataBasePassword(Password password)
@@ -125,8 +131,6 @@ namespace Presentation
 
                 if (duplicateSuggestion == DialogResult.Yes)
                      userDontWantToChangePassword = false;
-
-                Close();
             }
             return userDontWantToChangePassword;
         }
