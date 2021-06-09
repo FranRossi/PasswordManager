@@ -245,7 +245,6 @@ namespace UnitTestObligatorio1
             DataBreachReport dataBreachReport2 = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
-            _passwordManager.SaveBreachedItems(dataBreachReport2);
             List<Item> breachResult2 = _passwordManager.SaveBreachedItems(dataBreachReport2);
             dataBreachReport2.BreachedItems = breachResult2;
 
@@ -260,9 +259,7 @@ namespace UnitTestObligatorio1
                 bool isEqualToOne = false;
                 foreach (DataBreachReport expectedReport in expectedReports)
                 {
-                    bool sameItems = report.BreachedItems.Equals(expectedReport.BreachedItems);
-                    bool sameEntries = report.Entries.SetEquals(expectedReport.Entries);
-                    isEqualToOne = isEqualToOne | (sameItems && sameEntries);
+                    isEqualToOne = isEqualToOne | (report.Id == expectedReport.Id);
                 }
                 areEqual = areEqual && isEqualToOne;
             }
