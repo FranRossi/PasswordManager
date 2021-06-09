@@ -13,11 +13,11 @@ namespace Presentation
         private User _selectedShareWithUser;
         private User _selectedUnShareWithUser;
         private List<User> _usersNotSharedWith;
-        public SharedPasswordList(PasswordManager pPasswordManager, Password pSelectedPassword)
+        public SharedPasswordList(PasswordManager passwordManager, Password password)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
-            _selectedPassword = pSelectedPassword;
+            _myPasswordManager = passwordManager;
+            _selectedPassword = password;
             LoadTblPassword();
             SetSelectedPassoword();
         }
@@ -200,20 +200,20 @@ namespace Presentation
             }
         }
 
-        private void ChangeButtonState(Button btn, bool state)
+        private void ChangeButtonState(Button btnToUnShare, bool state)
         {
             try
             {
-                btn.Enabled = state;
+                btnToUnShare.Enabled = state;
             }
             catch (IndexOutOfRangeException exception) { };
         }
 
-        private void ChangeComboBoxState(ComboBox cb, bool state)
+        private void ChangeComboBoxState(ComboBox cbUsersNotSharedWith, bool state)
         {
             try
             {
-                cb.Enabled = state;
+                cbUsersNotSharedWith.Enabled = state;
             }
             catch (IndexOutOfRangeException exception) { };
         }

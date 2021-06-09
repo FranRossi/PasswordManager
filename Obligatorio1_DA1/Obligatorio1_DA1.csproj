@@ -93,6 +93,10 @@
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Domain\DataBreach\DataBreachReaderFromString.cs" />
     <Compile Include="Domain\DataBreach\DataBreachReader.cs" />
+    <Compile Include="Utilities\BasicHash.cs" />
+    <Compile Include="Utilities\BasicEncryption.cs" />
+    <Compile Include="Utilities\IEncryption.cs" />
+    <Compile Include="Utilities\IHash.cs" />
     <Compile Include="Utilities\PasswordGenerationOptions.cs" />
     <Compile Include="Utilities\PasswordStrengthReport.cs" />
     <Compile Include="Utilities\PasswordStrengthColor.cs" />

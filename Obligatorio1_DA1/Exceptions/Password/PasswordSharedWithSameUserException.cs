@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordSharedWithSameUserException()
         {
-            this.message = "Un usuario no se puede compartir la contraseña a si mismo";
+            this.messageToDisplay = "Un usuario no se puede compartir la contraseña a si mismo";
         }
     }
 }

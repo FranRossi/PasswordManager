@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordUsernameTooLongException()
         {
-            this.message = "El nombre de usuario ingresado es demasiado largo (max. 25 caracteres). ";
+            this.messageToDisplay = "El nombre de usuario ingresado es demasiado largo (max. 25 caracteres). ";
         }
     }
 }

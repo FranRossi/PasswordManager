@@ -21,10 +21,12 @@ namespace Obligatorio1_DA1.Domain
         private string _pass;
         private List<User> _sharedWith;
         private DateTime _lastModification;
+        private IEncryption encryption;
 
         public Password()
         {
             LastModification = DateTime.Today;
+            encryption = new BasicEncryption();
         }
 
         public PasswordStrengthColor PasswordStrength { get; private set; }
@@ -68,9 +70,27 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 ValidatePass(value);
-                _pass = value;
+                _pass = Encrypt(value);
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
+
+        }
+
+        public string DecryptedPass
+        {
+            get => ShowDecryptedPass();
+        }
+
+        private string ShowDecryptedPass()
+        {
+            string decyptedPassword = encryption.Decrypt(Pass, Username);
+            return decyptedPassword;
+        }
+
+        private string Encrypt(string pass)
+        {
+            string encryptedPassword = encryption.Encrypt(pass, Username);
+            return encryptedPassword;
 
         }
 
@@ -84,33 +104,33 @@ namespace Obligatorio1_DA1.Domain
         }
 
 
-        private void ValidateSite(string value)
+        private void ValidateSite(string siteToValidate)
         {
-            if (!Validator.MinLengthOfString(value, Password.MinSiteLength))
+            if (!Validator.MinLengthOfString(siteToValidate, Password.MinSiteLength))
                 throw new PasswordSiteTooShortException();
-            if (!Validator.MaxLengthOfString(value, Password.MaxSiteLength))
+            if (!Validator.MaxLengthOfString(siteToValidate, Password.MaxSiteLength))
                 throw new PasswordSiteTooLongException();
         }
 
-        private void ValidateUsername(string username)
+        private void ValidateUsername(string usernameToValidate)
         {
-            if (!Validator.MinLengthOfString(username, Password.MinUsernameLength))
+            if (!Validator.MinLengthOfString(usernameToValidate, Password.MinUsernameLength))
                 throw new PasswordUsernameTooShortException();
-            if (!Validator.MaxLengthOfString(username, Password.MaxUsernameLength))
+            if (!Validator.MaxLengthOfString(usernameToValidate, Password.MaxUsernameLength))
                 throw new PasswordUsernameTooLongException();
         }
 
-        private void ValidatePass(string value)
+        private void ValidatePass(string passToValidate)
         {
-            if (!Validator.MinLengthOfString(value, Password.MinPasswordLength))
+            if (!Validator.MinLengthOfString(passToValidate, Password.MinPasswordLength))
                 throw new PasswordTooShortException();
-            if (!Validator.MaxLengthOfString(value, Password.MaxPasswordLength))
+            if (!Validator.MaxLengthOfString(passToValidate, Password.MaxPasswordLength))
                 throw new PasswordTooLongException();
         }
 
-        public static string GenerateRandomPassword(PasswordGenerationOptions options)
+        public static string GenerateRandomPassword(PasswordGenerationOptions selectedOptions)
         {
-            ValidatePasswordGenerationOptions(options);
+            ValidatePasswordGenerationOptions(selectedOptions);
 
             const string uppercaseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lowercaseSet = "abcdefghijklmnopqrstuvwxyz";
@@ -119,19 +139,19 @@ namespace Obligatorio1_DA1.Domain
 
             List<char> validChars = new List<char>();
             string pass = "";
-            Random random = new Random();
+            Random randomNumber = new Random();
 
-            if (options.Uppercase)
-                AddRandomCharFromSubSet(ref pass, uppercaseSet, random, validChars);
-            if (options.Lowercase)
-                AddRandomCharFromSubSet(ref pass, lowercaseSet, random, validChars);
-            if (options.Digits)
-                AddRandomCharFromSubSet(ref pass, digitsSet, random, validChars);
-            if (options.SpecialDigits)
-                AddRandomCharFromSubSet(ref pass, specialDigitsSet, random, validChars);
+            if (selectedOptions.Uppercase)
+                AddRandomCharFromSubSet(ref pass, uppercaseSet, randomNumber, validChars);
+            if (selectedOptions.Lowercase)
+                AddRandomCharFromSubSet(ref pass, lowercaseSet, randomNumber, validChars);
+            if (selectedOptions.Digits)
+                AddRandomCharFromSubSet(ref pass, digitsSet, randomNumber, validChars);
+            if (selectedOptions.SpecialDigits)
+                AddRandomCharFromSubSet(ref pass, specialDigitsSet, randomNumber, validChars);
 
-            while (pass.Length < options.Length)
-                AddRandomCharAtRandomPosition(ref pass, validChars, random);
+            while (pass.Length < selectedOptions.Length)
+                AddRandomCharAtRandomPosition(ref pass, validChars, randomNumber);
 
             return pass;
         }
@@ -146,57 +166,57 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordGenerationNotSelectedCharacterTypesException();
         }
 
-        private static void AddRandomCharFromSubSet(ref string word, string subSet, Random random, List<char> mainSet)
+        private static void AddRandomCharFromSubSet(ref string word, string subSet, Random randomnumber, List<char> mainSet)
         {
             List<char> newValidChars = subSet.ToList();
-            AddRandomCharAtRandomPosition(ref word, newValidChars, random);
+            AddRandomCharAtRandomPosition(ref word, newValidChars, randomnumber);
             mainSet.AddRange(newValidChars);
         }
 
-        private static void AddRandomCharAtRandomPosition(ref string word, List<char> validChars, Random random)
+        private static void AddRandomCharAtRandomPosition(ref string word, List<char> validChars, Random randomNumber)
         {
             int indexFirstValidChart = 0;
             int indexLastValidChart = validChars.Count - 1;
-            char randomChar = validChars[random.Next(indexFirstValidChart, indexLastValidChart)];
+            char randomChar = validChars[randomNumber.Next(indexFirstValidChart, indexLastValidChart)];
 
             int indexStartWord = 0;
-            int index = random.Next(indexStartWord, word.Length);
+            int index = randomNumber.Next(indexStartWord, word.Length);
             word = word.Substring(indexStartWord, index) + randomChar + word.Substring(index);
         }
 
-        private PasswordStrengthColor CalculatePasswordStrength(string pass)
+        private PasswordStrengthColor CalculatePasswordStrength(string passToCheckedStrength)
         {
-            if (IsRedStrength(pass))
+            if (IsRedStrength(passToCheckedStrength))
                 return PasswordStrengthColor.Red;
-            if (IsOrangeStrength(pass))
+            if (IsOrangeStrength(passToCheckedStrength))
                 return PasswordStrengthColor.Orange;
-            return CalculateLargePasswordStrength(pass);
+            return CalculateLargePasswordStrength(passToCheckedStrength);
         }
 
-        private PasswordStrengthColor CalculateLargePasswordStrength(string pass)
+        private PasswordStrengthColor CalculateLargePasswordStrength(string passToCheckedStrength)
         {
             bool hasUpperCase, hasLowerCase, hasNumber, hasSymbol;
             hasUpperCase = hasLowerCase = hasNumber = hasSymbol = false;
             int typeCount = 0;
             int maxTypeCount = 4;
-            for (int i = 0; i < pass.Length && typeCount < maxTypeCount; i++)
+            for (int i = 0; i < passToCheckedStrength.Length && typeCount < maxTypeCount; i++)
             {
-                if (IsLowerCase(pass.ElementAt(i)) && !hasLowerCase)
+                if (IsLowerCase(passToCheckedStrength.ElementAt(i)) && !hasLowerCase)
                 {
                     typeCount++;
                     hasLowerCase = true;
                 }
-                else if (IsUpperCase(pass.ElementAt(i)) && !hasUpperCase)
+                else if (IsUpperCase(passToCheckedStrength.ElementAt(i)) && !hasUpperCase)
                 {
                     typeCount++;
                     hasUpperCase = true;
                 }
-                else if (IsNumber(pass.ElementAt(i)) && !hasNumber)
+                else if (IsNumber(passToCheckedStrength.ElementAt(i)) && !hasNumber)
                 {
                     typeCount++;
                     hasNumber = true;
                 }
-                else if (IsSymbol(pass.ElementAt(i)) && !hasSymbol)
+                else if (IsSymbol(passToCheckedStrength.ElementAt(i)) && !hasSymbol)
                 {
                     typeCount++;
                     hasSymbol = true;
@@ -220,40 +240,40 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
-        private bool IsRedStrength(string pass)
+        private bool IsRedStrength(string passToCheckedStrength)
         {
             Regex lengthBetween1And8 = new Regex(@"^.{1,8}$", RegexOptions.Compiled);
-            return lengthBetween1And8.IsMatch(pass);
+            return lengthBetween1And8.IsMatch(passToCheckedStrength);
         }
 
-        private bool IsOrangeStrength(string pass)
+        private bool IsOrangeStrength(string passToCheckedStrength)
         {
             Regex lengthBetween8And14 = new Regex(@"^.{8,14}$", RegexOptions.Compiled);
-            return lengthBetween8And14.IsMatch(pass);
+            return lengthBetween8And14.IsMatch(passToCheckedStrength);
         }
 
-        private bool IsSymbol(char character)
+        private bool IsSymbol(char characterToCheck)
         {
             Regex isSymbol = new Regex(@"^[ -/:-@[-`{-~]+$", RegexOptions.Compiled);
-            return isSymbol.IsMatch(character.ToString());
+            return isSymbol.IsMatch(characterToCheck.ToString());
         }
 
-        private bool IsNumber(char character)
+        private bool IsNumber(char characterToCheck)
         {
             Regex isNumber = new Regex(@"^[0-9]+$", RegexOptions.Compiled);
-            return isNumber.IsMatch(character.ToString());
+            return isNumber.IsMatch(characterToCheck.ToString());
         }
 
-        private bool IsUpperCase(char character)
+        private bool IsUpperCase(char characterToCheck)
         {
             Regex isUpperCase = new Regex(@"^[A-Z]+$", RegexOptions.Compiled);
-            return isUpperCase.IsMatch(character.ToString());
+            return isUpperCase.IsMatch(characterToCheck.ToString());
         }
 
-        private bool IsLowerCase(char character)
+        private bool IsLowerCase(char characterToCheck)
         {
             Regex isLowerCase = new Regex(@"^[a-z]+$", RegexOptions.Compiled);
-            return isLowerCase.IsMatch(character.ToString());
+            return isLowerCase.IsMatch(characterToCheck.ToString());
         }
 
         public void ShareWithUser(User userShareWith)

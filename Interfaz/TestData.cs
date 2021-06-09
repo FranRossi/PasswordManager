@@ -112,10 +112,10 @@ namespace Presentation
             this._uniqueNumber++;
         }
 
-        private void CreateCategories(string userName, string[] categoriesName)
+        private void CreateCategories(string userName, string[] categoriesNames)
         {
             this._passwordManager.Login(userName, userName);
-            foreach (string name in categoriesName)
+            foreach (string name in categoriesNames)
             {
                 this._passwordManager.CreateCategoryOnCurrentUser(name);
             }

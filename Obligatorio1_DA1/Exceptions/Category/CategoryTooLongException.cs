@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CategoryTooLongException()
         {
-            this.message = "La categoria es demasiado larga (max. 15 caracteres). ";
+            this.messageToDisplay = "La categoria es demasiado larga (max. 15 caracteres). ";
         }
     }
 }

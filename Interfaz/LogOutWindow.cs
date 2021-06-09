@@ -5,11 +5,11 @@ namespace Presentation
 {
     public partial class LogOutWindow : Form
     {
-        private FormClosingEventArgs _mainWindowsClosingEvent;
-        public LogOutWindow(FormClosingEventArgs pMainWindowsClosingEvent)
+        private FormClosingEventArgs _myMainWindowsClosingEvent;
+        public LogOutWindow(FormClosingEventArgs mainWindowsClosingEvent)
         {
             InitializeComponent();
-            _mainWindowsClosingEvent = pMainWindowsClosingEvent;
+            _myMainWindowsClosingEvent = mainWindowsClosingEvent;
 
             // in case the User closes the Window with the "X"
             KeepMainWindowOpen();
@@ -29,12 +29,12 @@ namespace Presentation
 
         private void KeepMainWindowOpen()
         {
-            _mainWindowsClosingEvent.Cancel = true;
+            _myMainWindowsClosingEvent.Cancel = true;
         }
 
         private void CloseMainWindow()
         {
-            _mainWindowsClosingEvent.Cancel = false;
+            _myMainWindowsClosingEvent.Cancel = false;
         }
 
     }

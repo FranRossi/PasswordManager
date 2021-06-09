@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardSecureCodeWrongSizeException()
         {
-            this.message = "El código de la tarjeta debe ser de 3 dígitos.";
+            this.messageToDisplay = "El código de la tarjeta debe ser de 3 dígitos.";
         }
     }
 }

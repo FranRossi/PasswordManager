@@ -12,62 +12,62 @@ namespace Repository
 {
     public class DataAccessPassword : IDataAccessPassword<Password>
     {
-        public void Add(Password pPassword)
+        public void Add(Password newPassword)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Category passwordCategory = pPassword.Category;
-                User passwordUser = pPassword.User;
+                Category passwordCategory = newPassword.Category;
+                User passwordUser = newPassword.User;
                 Category passwordCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == passwordCategory.Id);
                 User passwordUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == passwordUser.MasterName);
-                pPassword.User = passwordUserFromDB;
-                pPassword.Category = passwordCategoryFromDB;
+                newPassword.User = passwordUserFromDB;
+                newPassword.Category = passwordCategoryFromDB;
 
                 context.Categories.Attach(passwordCategoryFromDB);
                 context.Users.Attach(passwordUserFromDB);
-                context.Passwords.Add(pPassword);
+                context.Passwords.Add(newPassword);
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Password pPassword)
+        public void Delete(Password password)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Password passwordToDelete = context.Passwords.FirstOrDefault(pass => pass.Id == pPassword.Id);
+                Password passwordToDelete = context.Passwords.FirstOrDefault(pass => pass.Id == password.Id);
                 context.Passwords.Remove(passwordToDelete);
                 context.SaveChanges();
             }
         }
 
-        public void Modify(Password pPassword)
+        public void Modify(Password modifiedPassword)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Category passwordCategory = pPassword.Category;
-                User passwordUser = pPassword.User;
+                Category passwordCategory = modifiedPassword.Category;
+                User passwordUser = modifiedPassword.User;
                 Category passwordCategoryFromDB = context.Categories.FirstOrDefault(c => c.Id == passwordCategory.Id);
                 User passwordUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == passwordUser.MasterName);
-                Password passwordToModify = context.Passwords.FirstOrDefault(pass => pass.Id == pPassword.Id);
+                Password passwordToModify = context.Passwords.FirstOrDefault(pass => pass.Id == modifiedPassword.Id);
 
                 passwordToModify.User = passwordUserFromDB;
                 passwordToModify.Category = passwordCategoryFromDB;
-                passwordToModify.LastModification = pPassword.LastModification;
-                passwordToModify.Notes = pPassword.Notes;
-                passwordToModify.Pass = pPassword.Pass;
-                passwordToModify.Site = pPassword.Site;
-                passwordToModify.Username = pPassword.Username;
+                passwordToModify.LastModification = modifiedPassword.LastModification;
+                passwordToModify.Notes = modifiedPassword.Notes;
+                passwordToModify.Pass = modifiedPassword.Pass;
+                passwordToModify.Site = modifiedPassword.Site;
+                passwordToModify.Username = modifiedPassword.Username;
                 context.Categories.Attach(passwordCategoryFromDB);
                 context.Users.Attach(passwordUserFromDB);
                 context.SaveChanges();
             }
         }
 
-        public IEnumerable<Password> GetAll(String pMasterName)
+        public IEnumerable<Password> GetAll(String userMasterName)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                IEnumerable<Password> passwords = context.Passwords.Include("Category").Include("User").Where(pass => pass.User.MasterName == pMasterName).ToList();
+                IEnumerable<Password> passwords = context.Passwords.Include("Category").Include("User").Where(pass => pass.User.MasterName == userMasterName).ToList();
                 return passwords;
             }
         }
@@ -94,21 +94,21 @@ namespace Repository
             }
         }
 
-        public List<Password> GetSharedPasswordsWithCurrentUser(User pCurrentUser)
+        public List<Password> GetSharedPasswordsWithCurrentUser(User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 List<Password> passwordList = context.Passwords.Include("SharedWith").Include("User").ToList();
-                List<Password> passwordsSharedWithMe = passwordList.Where(pass => pass.SharedWith.Contains(pCurrentUser)).ToList();
+                List<Password> passwordsSharedWithMe = passwordList.Where(pass => pass.SharedWith.Contains(currentUser)).ToList();
                 return passwordsSharedWithMe;
             }
         }
 
-        public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor passColor)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Password> passwords = context.Passwords.Include("User").Where(pass => pass.PasswordStrength == color).ToList();
+                List<Password> passwords = context.Passwords.Include("User").Where(pass => pass.PasswordStrength == passColor).ToList();
                 return passwords;
             }
         }
@@ -118,12 +118,12 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 List<PasswordReportByColor> report = new List<PasswordReportByColor>();
-                foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
+                foreach (PasswordStrengthColor passColor in Enum.GetValues(typeof(PasswordStrengthColor)))
                 {
                     report.Add(new PasswordReportByColor
                     {
-                        Color = color,
-                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == color)
+                        Color = passColor,
+                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == passColor)
                     }
                     );
                 }

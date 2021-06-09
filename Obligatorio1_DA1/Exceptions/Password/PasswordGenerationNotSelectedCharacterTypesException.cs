@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordGenerationNotSelectedCharacterTypesException()
         {
-            this.message = "Debe seleccionar al menos un tipo de caracteres para incluir en su contraseñas.";
+            this.messageToDisplay = "Debe seleccionar al menos un tipo de caracteres para incluir en su contraseñas.";
         }
     }
 }

@@ -72,56 +72,56 @@ namespace Obligatorio1_DA1.Domain
         }
 
 
-        private void ValidateNumber(string number)
+        private void ValidateNumber(string numberToValidate)
         {
-            if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, number))
+            if (!Validator.StringIsExactlyThisLong(CreditCard.CreditCardLength, numberToValidate))
                 throw new CreditCardNumberLengthIncorrectException();
-            if (!Validator.OnlyDigits(number))
+            if (!Validator.OnlyDigits(numberToValidate))
                 throw new CreditCardNumberInvalidCharactersException();
         }
 
-        private void ValidateName(string name)
+        private void ValidateName(string nameToValidate)
         {
-            if (!Validator.MinLengthOfString(name, CreditCard.MinUsernameLength))
+            if (!Validator.MinLengthOfString(nameToValidate, CreditCard.MinUsernameLength))
                 throw new CreditCardNameTooShortException();
-            if (!Validator.MaxLengthOfString(name, CreditCard.MaxUsernameLength))
+            if (!Validator.MaxLengthOfString(nameToValidate, CreditCard.MaxUsernameLength))
                 throw new CreditCardNameTooLongException();
         }
 
-        private void ValidateType(string type)
+        private void ValidateType(string typeToValidate)
         {
-            if (!Validator.MinLengthOfString(type, CreditCard.MinTypeLength))
+            if (!Validator.MinLengthOfString(typeToValidate, CreditCard.MinTypeLength))
                 throw new CreditCardTypeTooShortException();
-            if (!Validator.MaxLengthOfString(type, CreditCard.MaxTypeLength))
+            if (!Validator.MaxLengthOfString(typeToValidate, CreditCard.MaxTypeLength))
                 throw new CreditCardTypeTooLongException();
         }
 
-        private void ValidateSecureCode(string secureCode)
+        private void ValidateSecureCode(string secureCodeToValidate)
         {
-            if (!Validator.StringIsExactlyThisLong(CreditCard.SecureCodeLength, secureCode))
+            if (!Validator.StringIsExactlyThisLong(CreditCard.SecureCodeLength, secureCodeToValidate))
                 throw new CreditCardSecureCodeWrongSizeException();
-            if (!Validator.OnlyDigits(secureCode))
+            if (!Validator.OnlyDigits(secureCodeToValidate))
                 throw new CreditCardSecureCodeInvalidCharactersException();
         }
 
-        private void ValidateExpirationDate(string expirationDate)
+        private void ValidateExpirationDate(string expirationDateToValidate)
         {
-            if (!ValidateFormatExpirationDate(expirationDate))
+            if (!ValidateFormatExpirationDate(expirationDateToValidate))
                 throw new CreditCardExpirationDateInvalidFormatException();
-            if (!ValidateMonthExpirationDate(expirationDate))
+            if (!ValidateMonthExpirationDate(expirationDateToValidate))
                 throw new CreditCardExpirationDateInvalidMonthException();
         }
 
-        private bool ValidateMonthExpirationDate(string expirationDate)
+        private bool ValidateMonthExpirationDate(string expirationDateToValidate)
         {
             Regex validMonth = new Regex(@"^(?:0[1-9])|(?:1[0-2])", RegexOptions.Compiled);
-            return validMonth.IsMatch(expirationDate);
+            return validMonth.IsMatch(expirationDateToValidate);
         }
 
-        private bool ValidateFormatExpirationDate(string expirationDate)
+        private bool ValidateFormatExpirationDate(string expirationDateToValidate)
         {
             Regex validMonth = new Regex(@"^[0-9]{2}/[0-9]{2}$", RegexOptions.Compiled);
-            return validMonth.IsMatch(expirationDate);
+            return validMonth.IsMatch(expirationDateToValidate);
         }
 
         public string ShowOnly4LastDigits()

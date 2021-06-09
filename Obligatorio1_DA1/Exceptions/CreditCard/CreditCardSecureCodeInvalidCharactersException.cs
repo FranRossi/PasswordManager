@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardSecureCodeInvalidCharactersException()
         {
-            this.message = "El codigo de seguridad de la tarjeta solo puede estar formado por numeros.";
+            this.messageToDisplay = "El codigo de seguridad de la tarjeta solo puede estar formado por numeros.";
         }
     }
 }

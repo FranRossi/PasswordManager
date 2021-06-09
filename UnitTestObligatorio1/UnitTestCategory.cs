@@ -241,7 +241,8 @@ namespace UnitTestObligatorio1
             {
                 Name = "Facultad"
             };
-            user.AddOneCategory(categoryName);
+            _passwordManager.CreateUser(user);
+            _passwordManager.CreateCategoryOnCurrentUser(category1.Name);
             CollectionAssert.Contains(user.Categories, category1);
         }
 

@@ -8,11 +8,11 @@ namespace Presentation
     public partial class MainWindow : Form
     {
         private PasswordManager _myPasswordManager;
-        public MainWindow(PasswordManager pPasswordManager)
+        public MainWindow(PasswordManager passwordManager)
         {
 
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
         }
 
         private void tsmiPasswords_Click(object sender, EventArgs e)
@@ -22,9 +22,9 @@ namespace Presentation
 
         private void tsmiCreditCards_Click(object sender, EventArgs e)
         {
-            UserControl creditCardList = new CreditCardList(_myPasswordManager);
+            UserControl creditCardsList = new CreditCardList(_myPasswordManager);
             pnlMainScreen.Controls.Clear();
-            pnlMainScreen.Controls.Add(creditCardList);
+            pnlMainScreen.Controls.Add(creditCardsList);
         }
 
         private void tsmiCategories_Click(object sender, EventArgs e)
@@ -43,36 +43,36 @@ namespace Presentation
 
         private void tsmiPasswordStrength_Click(object sender, EventArgs e)
         {
-            UserControl passwordStrength = new PasswordStrength(_myPasswordManager);
+            UserControl passwordsStrength = new PasswordStrength(_myPasswordManager);
             pnlMainScreen.Controls.Clear();
-            pnlMainScreen.Controls.Add(passwordStrength);
+            pnlMainScreen.Controls.Add(passwordsStrength);
         }
 
         public void ShowSharedPasswordList(Password selectedPassword)
         {
-            UserControl sharedPasssworList = new SharedPasswordList(_myPasswordManager, selectedPassword);
+            UserControl sharedPassswordsList = new SharedPasswordList(_myPasswordManager, selectedPassword);
             pnlMainScreen.Controls.Clear();
-            pnlMainScreen.Controls.Add(sharedPasssworList);
+            pnlMainScreen.Controls.Add(sharedPassswordsList);
         }
 
         public void ShowPasswords()
         {
-            UserControl passsworList = new PasswordList(_myPasswordManager);
+            UserControl passswordsList = new PasswordList(_myPasswordManager);
             pnlMainScreen.Controls.Clear();
-            pnlMainScreen.Controls.Add(passsworList);
+            pnlMainScreen.Controls.Add(passswordsList);
         }
 
         private void tsmiSharedWithMe_Click(object sender, EventArgs e)
         {
-            UserControl passwordSharedWithMe = new PasswordsSharedWithMe(_myPasswordManager);
+            UserControl passwordsSharedWithMe = new PasswordsSharedWithMe(_myPasswordManager);
             pnlMainScreen.Controls.Clear();
-            pnlMainScreen.Controls.Add(passwordSharedWithMe);
+            pnlMainScreen.Controls.Add(passwordsSharedWithMe);
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             Form logOut = new LogOutWindow(e);
-            var resonse = logOut.ShowDialog();
+            logOut.ShowDialog();
         }
     }
 }

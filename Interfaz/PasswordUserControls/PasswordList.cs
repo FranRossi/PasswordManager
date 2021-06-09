@@ -11,10 +11,10 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
-        public PasswordList(PasswordManager pPasswordManager)
+        public PasswordList(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             LoadTblPassword();
         }
 

@@ -7,30 +7,30 @@ namespace Presentation.CreditCardUserControls
 {
     public partial class ShowCreditCard : Form
     {
-        private CreditCard _creditCard;
-        public ShowCreditCard(CreditCard pCreditCard)
+        private CreditCard _myCreditCard;
+        public ShowCreditCard(CreditCard creditCard)
         {
             InitializeComponent();
-            _creditCard = pCreditCard;
+            _myCreditCard = creditCard;
             LoadInformation();
         }
 
         private void LoadInformation()
         {
-            txtCategory.Text = _creditCard.Category.ToString();
-            txtName.Text = _creditCard.Name;
-            txtType.Text = _creditCard.Type;
-            txtDate.Text = _creditCard.ExpirationDate;
-            txtNotes.Text = _creditCard.Notes;
+            txtCategory.Text = _myCreditCard.Category.ToString();
+            txtName.Text = _myCreditCard.Name;
+            txtType.Text = _myCreditCard.Type;
+            txtDate.Text = _myCreditCard.ExpirationDate;
+            txtNotes.Text = _myCreditCard.Notes;
 
-            txtCode.Text = _creditCard.SecureCode;
+            txtCode.Text = _myCreditCard.SecureCode;
             ShowFullInformation();
         }
 
         private async void ShowFullInformation()
         {
             txtCode.PasswordChar = '\0';
-            mtxtNumber.Text = _creditCard.Number;
+            mtxtNumber.Text = _myCreditCard.Number;
             btnShow.Enabled = false;
 
             int secondsFullInformationIsShown = 30;
@@ -40,7 +40,7 @@ namespace Presentation.CreditCardUserControls
 
         private void HideFullInformation()
         {
-            mtxtNumber.Text = _creditCard.SecretNumber;
+            mtxtNumber.Text = _myCreditCard.SecretNumber;
             txtCode.PasswordChar = '*';
             btnShow.Enabled = true;
         }

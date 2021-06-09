@@ -9,10 +9,10 @@ namespace Presentation.PasswordUserControls
     public partial class ShowPassword : Form
     {
         private Password _myPasswordToShow;
-        public ShowPassword(Password pPassword)
+        public ShowPassword(Password password)
         {
             InitializeComponent();
-            _myPasswordToShow = pPassword;
+            _myPasswordToShow = password;
             LoadInformation();
         }
 

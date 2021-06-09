@@ -13,10 +13,10 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
 
-        public DataBreach(PasswordManager pPasswordManager)
+        public DataBreach(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
         }
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
@@ -24,16 +24,16 @@ namespace Presentation
             LoadDataBreach();
         }
 
-        private void LoadTables(List<Item> breachResult)
+        private void LoadTables(List<Item> breachResults)
         {
             List<Password> passwords = new List<Password>();
             List<CreditCard> creditCards = new List<CreditCard>();
-            foreach (Item i in breachResult)
+            foreach (Item breachedItem in breachResults)
             {
-                if (i.GetType().Equals(typeof(Password)))
-                    passwords.Add((Password)i);
+                if (breachedItem.GetType().Equals(typeof(Password)))
+                    passwords.Add((Password)breachedItem);
                 else
-                    creditCards.Add((CreditCard)i);
+                    creditCards.Add((CreditCard)breachedItem);
             }
             LoadTblCreditCard(creditCards);
             LoadTblPassword(passwords);

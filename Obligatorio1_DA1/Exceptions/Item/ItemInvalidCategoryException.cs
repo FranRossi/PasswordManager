@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public ItemInvalidCategoryException()
         {
-            this.message = "El usuario no tiene la categoria seleccionada para la contraseña.";
+            this.messageToDisplay = "El usuario no tiene la categoria seleccionada para la contraseña.";
         }
     }
 }

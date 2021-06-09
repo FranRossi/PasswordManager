@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordNotBelongToCurrentUserException()
         {
-            this.message = "Esta contraseña no pertenece al Usuario que esta logeado sesión";
+            this.messageToDisplay = "Esta contraseña no pertenece al Usuario que esta logeado sesión";
         }
     }
 }

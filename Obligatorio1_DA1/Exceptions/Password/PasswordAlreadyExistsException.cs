@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordAlreadyExistsException()
         {
-            this.message = "La contraseña ya existe en el sistema.";
+            this.messageToDisplay = "La contraseña ya existe en el sistema.";
         }
     }
 }
