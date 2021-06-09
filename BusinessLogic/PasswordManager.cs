@@ -256,5 +256,10 @@ namespace BusinessLogic
 
             return passTetxIsDuplicate = false;
         }
+
+        public bool PasswordIsGreenSecure(Password password)
+        {
+            return true;
+        }
     }
 }

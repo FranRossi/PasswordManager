@@ -543,7 +543,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void PassswordIsGreenSecure()
         {
-            bool passIsGreenSecure = _password.IsGreen();
+            bool passIsGreenSecure = _passwordManager.PasswordIsGreenSecure(_password);
             Assert.IsTrue(passIsGreenSecure);
         }
     }
