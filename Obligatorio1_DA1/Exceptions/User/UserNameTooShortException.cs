@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public UserNameTooShortException()
         {
-            this.message = "El nombre ingresado es demasiado corto (min. 5 caracteres).";
+            this.messageToDisplay = "El nombre ingresado es demasiado corto (min. 5 caracteres).";
         }
     }
 }

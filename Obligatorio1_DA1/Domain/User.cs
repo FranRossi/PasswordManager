@@ -44,10 +44,10 @@ namespace Obligatorio1_DA1.Domain
         }
 
 
-        public User(string name, string pass)
+        public User(string newName, string newPass)
         {
-            this.MasterName = name;
-            this.MasterPass = pass;
+            this.MasterName = newName;
+            this.MasterPass = newPass;
             this.Categories = new List<Category>();
         }
 
@@ -56,21 +56,21 @@ namespace Obligatorio1_DA1.Domain
             this.Categories = new List<Category>();
         }
 
-        private void ValidateName(string name)
+        private void ValidateName(string nameToValidate)
         {
-            if (!Validator.MinLengthOfString(name, User.MinNameLength))
+            if (!Validator.MinLengthOfString(nameToValidate, User.MinNameLength))
                 throw new UserNameTooShortException();
-            if (!Validator.MaxLengthOfString(name, User.MaxNameLength))
+            if (!Validator.MaxLengthOfString(nameToValidate, User.MaxNameLength))
                 throw new UserNameTooLongException();
         }
 
-        private void ValidatePassword(string pass)
+        private void ValidatePassword(string passToValidate)
         {
-            if (!Validator.MinLengthOfString(pass, User.MinPasswordLength))
+            if (!Validator.MinLengthOfString(passToValidate, User.MinPasswordLength))
                 throw new PasswordTooShortException();
-            if (!Validator.MaxLengthOfString(pass, User.MaxPasswordLength))
+            if (!Validator.MaxLengthOfString(passToValidate, User.MaxPasswordLength))
                 throw new PasswordTooLongException();
-            if (!Validator.AsciiCharacterRangeForPassword(pass))
+            if (!Validator.AsciiCharacterRangeForPassword(passToValidate))
                 throw new PasswordInvalidCharactersException();
         }
 
@@ -91,31 +91,6 @@ namespace Obligatorio1_DA1.Domain
         public override string ToString()
         {
             return this.MasterName;
-        }
-
-        public void AddOneCategory(string newCategoryName)
-        {
-            //TODO SACAR
-            Category newCategory = new Category { Name = newCategoryName };
-            ValidateCategoryIsUnique(newCategory);
-            this.Categories.Add(newCategory);
-        }
-
-        public void ModifyCategory(Category oldCategory, Category newCategory)
-        {
-            //TODO SACAR
-            foreach (Category categoryIterator in this.Categories)
-            {
-                if (categoryIterator.Equals(oldCategory))
-                    categoryIterator.Name = newCategory.Name;
-            }
-        }
-
-        private void ValidateCategoryIsUnique(Category newCategory)
-        {
-            //TODO SACAR
-            if (this.Categories.Contains(newCategory))
-                throw new CategoryAlreadyAddedException();
         }
 
         private string HashPassword(string password)

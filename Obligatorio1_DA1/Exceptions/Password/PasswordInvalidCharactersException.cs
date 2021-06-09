@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordInvalidCharactersException()
         {
-            this.message = "La contaseña solo puede contener caracteres alfanumericos y simbolos entre 32 y 16 en ASCII.";
+            this.messageToDisplay = "La contaseña solo puede contener caracteres alfanumericos y simbolos entre 32 y 16 en ASCII.";
         }
     }
 }

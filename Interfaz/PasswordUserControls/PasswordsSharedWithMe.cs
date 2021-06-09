@@ -8,10 +8,10 @@ namespace Presentation
     public partial class PasswordsSharedWithMe : UserControl
     {
         private PasswordManager _myPasswordManager;
-        public PasswordsSharedWithMe(PasswordManager pPasswordManager)
+        public PasswordsSharedWithMe(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             LoadTblPassword();
         }
 

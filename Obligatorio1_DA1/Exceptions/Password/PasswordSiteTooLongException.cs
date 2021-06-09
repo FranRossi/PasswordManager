@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordSiteTooLongException()
         {
-            this.message = "El sitio es demasiado largo (max. 25 caracteres). ";
+            this.messageToDisplay = "El sitio es demasiado largo (max. 25 caracteres). ";
         }
     }
 }

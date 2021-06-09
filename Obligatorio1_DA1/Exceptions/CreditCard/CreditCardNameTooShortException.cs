@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardNameTooShortException()
         {
-            this.message = "El nombre seleccionado para la tarjeta es muy corto.";
+            this.messageToDisplay = "El nombre seleccionado para la tarjeta es muy corto.";
         }
     }
 }

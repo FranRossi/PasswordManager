@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardTypeTooShortException()
         {
-            this.message = "El tipo seleccionado para la tarjeta es muy corto.";
+            this.messageToDisplay = "El tipo seleccionado para la tarjeta es muy corto.";
         }
     }
 }

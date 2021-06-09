@@ -11,18 +11,18 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private CreditCard _myCreditCardToModify;
 
-        public CreateModifyCreditCard(PasswordManager pPasswordManager)
+        public CreateModifyCreditCard(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
+            _myPasswordManager = passwordManager;
             LoadComboBoxCategory();
         }
 
-        public CreateModifyCreditCard(PasswordManager pPasswordManager, CreditCard pCreditCard)
+        public CreateModifyCreditCard(PasswordManager passwordManager, CreditCard creditCard)
         {
             InitializeComponent();
-            _myPasswordManager = pPasswordManager;
-            _myCreditCardToModify = pCreditCard;
+            _myPasswordManager = passwordManager;
+            _myCreditCardToModify = creditCard;
             LoadComboBoxCategory();
             LoadFromCreditCard();
         }

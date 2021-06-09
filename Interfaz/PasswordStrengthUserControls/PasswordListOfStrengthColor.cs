@@ -9,21 +9,21 @@ namespace Presentation.PasswordStrengthWindow
 {
     public partial class PasswordListOfStrengthColor : UserControl
     {
-        private PasswordManager _passwordManager;
-        private PasswordStrengthColor _color;
+        private PasswordManager _myPasswordManager;
+        private PasswordStrengthColor _passColor;
         private Password _selectedPassword;
 
-        public PasswordListOfStrengthColor(PasswordManager pPasswordManager, PasswordStrengthColor pColor)
+        public PasswordListOfStrengthColor(PasswordManager passwordManager, PasswordStrengthColor color)
         {
             InitializeComponent();
-            _passwordManager = pPasswordManager;
-            _color = pColor;
+            _myPasswordManager = passwordManager;
+            _passColor = color;
             LoadPasswords();
         }
 
         public void LoadPasswords()
         {
-            List<Password> passwords = this._passwordManager.GetPasswordsByColor(_color);
+            List<Password> passwords = this._myPasswordManager.GetPasswordsByColor(_passColor);
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
@@ -57,7 +57,7 @@ namespace Presentation.PasswordStrengthWindow
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                Form createPassword = new CreateModifyPassword(_passwordManager, _selectedPassword);
+                Form createPassword = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
                 createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
                 createPassword.ShowDialog();
                 ReloadParentData();
