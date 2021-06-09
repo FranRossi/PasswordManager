@@ -63,21 +63,57 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetDataBreachItems()
         {
-            /*DataBreach<string> dataBreach = new DataBreachFromString();
-            HashSet<string> expectedItems = new HashSet<string>();
+            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
+            HashSet<DataBreachReportEntry> expectedItems = new HashSet<DataBreachReportEntry>();
             for (int i = 0; i < _breachedPasswords.Length; i++)
-                expectedItems.Add(_breachedPasswords[i]);
-            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_passwordDataBreach)));*/
+            {
+                DataBreachReportEntry newEntry = new DataBreachReportEntry()
+                {
+                    Value = _breachedPasswords[i]
+                };
+                expectedItems.Add(newEntry);
+            }
+            bool areEqual = true;
+            foreach (DataBreachReportEntry entryA in breachedItems)
+            {
+                bool contained = false;
+                foreach (DataBreachReportEntry entryB in expectedItems)
+                {
+                    if (entryA.Value == entryB.Value)
+                        contained = true;
+                }
+                areEqual = areEqual && contained;
+            }
+            Assert.IsTrue(areEqual);
         }
 
         [TestMethod]
         public void GetDataBreachItemsWithRepeatedInput()
         {
-            /*DataBreach<string> dataBreach = new DataBreachFromString();
-            HashSet<string> expectedItems = new HashSet<string>();
+            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_repeatedItemDataBreach);
+            HashSet<DataBreachReportEntry> expectedItems = new HashSet<DataBreachReportEntry>();
             for (int i = 0; i < _repeatedBreachedItems.Length; i++)
-                expectedItems.Add(_repeatedBreachedItems[i]);
-            Assert.IsTrue(expectedItems.SetEquals(dataBreach.GetDataBreachItems(_repeatedItemDataBreach)));*/
+            {
+                DataBreachReportEntry newEntry = new DataBreachReportEntry()
+                {
+                    Value = _repeatedBreachedItems[i]
+                };
+                expectedItems.Add(newEntry);
+            }
+            bool areEqual = true;
+            foreach (DataBreachReportEntry entryA in breachedItems)
+            {
+                bool contained = false;
+                foreach (DataBreachReportEntry entryB in expectedItems)
+                {
+                    if (entryA.Value == entryB.Value)
+                        contained = true;
+                }
+                areEqual = areEqual && contained;
+            }
+            Assert.IsTrue(areEqual);
         }
 
         [TestMethod]
