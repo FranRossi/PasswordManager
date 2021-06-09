@@ -17,6 +17,7 @@ namespace UnitTestObligatorio1
             {
                 context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
                 context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM DATABREACHREPORTS");
                 context.Database.ExecuteSqlCommand("DELETE FROM USERS");
             }
 
