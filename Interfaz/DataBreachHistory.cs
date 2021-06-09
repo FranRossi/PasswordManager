@@ -26,7 +26,10 @@ namespace Presentation
         private void LoadDataBreach()
         {
             List<DataBreachReport> reports = _myPasswordManager.GetDataBreachReportsFromCurrentUser();
-
+            tblReports.DataSource = null;
+            tblReports.Rows.Clear();
+            tblReports.DataSource = reports;
+            FormatPasswordListOnTable();
         }
 
         private void FormatPasswordListOnTable()
@@ -35,17 +38,14 @@ namespace Presentation
             {
                 switch (column.Name)
                 {
-                    case "Site":
-                        column.HeaderText = "Sitio";
+                    case "Date":
+                        column.HeaderText = "Fecha";
                         break;
-                    case "Username":
-                        column.HeaderText = "Nombre de usuario";
+                    case "EntryQuantity":
+                        column.HeaderText = "Cantidad de entradas";
                         break;
-                    case "Category":
-                        column.HeaderText = "Categoria";
-                        break;
-                    case "LastModification":
-                        column.HeaderText = "Última Modificación";
+                    case "ItemQuantity":
+                        column.HeaderText = "Cantidad de items expuestos";
                         break;
                     default:
                         column.Visible = false;
