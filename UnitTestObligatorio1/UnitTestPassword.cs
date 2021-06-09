@@ -539,5 +539,12 @@ namespace UnitTestObligatorio1
             bool passTetxIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
             Assert.IsTrue(passTetxIsDuplicate);
         }
+
+        [TestMethod]
+        public void PassswordIsGreenSecure()
+        {
+            bool passIsGreenSecure = _password.IsGreen();
+            Assert.IsTrue(passIsGreenSecure);
+        }
     }
 }
