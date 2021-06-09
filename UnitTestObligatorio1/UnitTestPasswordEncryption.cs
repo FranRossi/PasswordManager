@@ -162,50 +162,6 @@ namespace UnitTestObligatorio1
             Assert.AreNotEqual(newPassFromPasswordManger.Pass, secondPassFromPasswordManger.Pass);
         }
 
-        [DataRow("mySuperSecurePassword")]
-        [DataRow("12321pass werod")]
-        [DataRow("hello world")]
-        [DataTestMethod]
-        public void EncryptionDependeOnUser(string passName)
-        {
-            Password newPass = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = passName,
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(newPass);
-
-            User anotherUser = new User
-            {
-                MasterName = "Pablito",
-                MasterPass = "HolaSoyGonzalo123"
-            };
-            List<Password> passwords = _passwordManager.GetPasswords();
-            Password newPassFromPasswordManger = passwords[0];
-
-            _passwordManager.CreateUser(anotherUser);
-
-
-            _passwordManager.CreateCategoryOnCurrentUser(_category.Name);
-            Password secondPass = new Password
-            {
-                User = anotherUser,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = passName,
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(secondPass);
-
-            passwords = _passwordManager.GetPasswords();
-            Password secondPassFromPasswordManger = passwords[0];
-            Assert.AreNotEqual(newPassFromPasswordManger.Pass, secondPassFromPasswordManger.Pass);
-        }
     }
 }
 

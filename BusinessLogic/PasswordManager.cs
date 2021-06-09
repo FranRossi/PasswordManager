@@ -62,6 +62,7 @@ namespace BusinessLogic
             if (userFromDB == null)
                 throw new LogInException();
 
+            userFromDB.PasswordsKey = password;
             CurrentUser = userFromDB;
         }
 
@@ -108,9 +109,15 @@ namespace BusinessLogic
         public List<Password> GetPasswords()
         {
             string currentUserMasterName = CurrentUser.MasterName;
-            return _passwords.GetAll(currentUserMasterName).ToList();
+            List<Password> passwordsFromDB = _passwords.GetAll(currentUserMasterName).ToList();
+            AddPasswordKeyToPasswords(passwordsFromDB);
+            return passwordsFromDB;
         }
 
+        private void AddPasswordKeyToPasswords(List<Password> passwords)
+        {
+            passwords.ForEach(password => password.User.PasswordsKey = CurrentUser.PasswordsKey);
+        }
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
             List<Password> passwordsSharedWithMe = _passwords.GetSharedPasswordsWithCurrentUser(CurrentUser);
