@@ -522,5 +522,22 @@ namespace UnitTestObligatorio1
             _password.Id = 1254;
             Assert.AreNotEqual<int>(_password.Id, 555);
         }
+
+        [TestMethod]
+        public void PassswordWithSameText()
+        {
+            Password newPassword = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = "239850Ort2019",
+                Notes = "Esta es la nueva password",
+            };
+
+            bool passTetxIsDuplicate = _passwordManager.PasswordTextIsDuplicate();
+            Assert.IsTrue(passTetxIsDuplicate);
+        }
     }
 }
