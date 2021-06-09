@@ -69,7 +69,20 @@ namespace Presentation
         private void CreateNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
+            SuggestionsForPassword();
             _myPasswordManager.CreatePassword(newPassword);
+        }
+
+        private void SuggestionsForPassword()
+        {
+            //HistoricDataBreachSuggestion();
+            DuplicatePasswordSuggestion();
+            //SecurePasswordSuggestion();
+        }
+
+        private void DuplicatePasswordSuggestion()
+        {
+            _myPasswordManager.PasswordTextIsDuplicate();
         }
 
         private Password CreatePasswordObjectFormFields()

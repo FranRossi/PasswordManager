@@ -244,5 +244,13 @@ namespace BusinessLogic
             List<User> usersSharedWith = _users.GetUsersPassSharedWith(password);
             return usersSharedWith;
         }
+
+        public bool PasswordTextIsDuplicate()
+        {
+            bool passTetxIsDuplicate = true;
+
+
+            return passTetxIsDuplicate;
+        }
     }
 }
