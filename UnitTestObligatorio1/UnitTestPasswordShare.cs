@@ -18,12 +18,6 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
-            }
             try
             {
                 _passwordManager = new PasswordManager();
@@ -47,12 +41,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
-            }
+            UnitTestSignUp.DataBaseCleanup(null);
         }
 
         [TestMethod]

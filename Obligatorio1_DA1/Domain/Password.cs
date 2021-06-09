@@ -70,7 +70,8 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 ValidatePass(value);
-                _pass = Encrypt(value);
+                //_pass = Encrypt(value);
+                _pass = value;
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
 
@@ -278,10 +279,6 @@ namespace Obligatorio1_DA1.Domain
 
         public void ShareWithUser(User userShareWith)
         {
-            if (this.User == userShareWith)
-            {
-                throw new PasswordSharedWithSameUserException();
-            }
             if (!this.SharedWith.Contains(userShareWith))
                 this.SharedWith.Add(userShareWith);
         }

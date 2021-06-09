@@ -30,8 +30,8 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 ValidatePassword(value);
-                string hashedPassword = HashPassword(value);
-                _masterPass = hashedPassword;
+                //string hashedPassword = HashPassword(value);
+                _masterPass = value;
             }
         }
         public List<Category> Categories

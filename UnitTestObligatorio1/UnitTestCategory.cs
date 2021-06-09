@@ -46,14 +46,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM DATABREACHREPORTS");
-                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
-            }
-
+            UnitTestSignUp.DataBaseCleanup(null);
         }
 
         [TestMethod]

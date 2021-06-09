@@ -54,12 +54,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
-            }
+            UnitTestSignUp.DataBaseCleanup(null);
         }
 
         [DataRow(5, true, false, false, false, "^[A-Z]{5}$")]

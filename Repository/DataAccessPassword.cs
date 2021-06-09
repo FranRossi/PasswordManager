@@ -3,7 +3,9 @@ using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +28,22 @@ namespace Repository
                 context.Categories.Attach(passwordCategoryFromDB);
                 context.Users.Attach(passwordUserFromDB);
                 context.Passwords.Add(newPassword);
-                context.SaveChanges();
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}",
+                                validationError.PropertyName,
+                                validationError.ErrorMessage);
+                        }
+                    }
+                }
             }
         }
 

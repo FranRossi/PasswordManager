@@ -7,13 +7,13 @@ namespace Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class DataBreachReport : IMigrationMetadata
+    public sealed partial class CleanMigrationMerge : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DataBreachReport));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CleanMigrationMerge));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106082122243_DataBreachReport"; }
+            get { return "202106091821446_CleanMigrationMerge"; }
         }
         
         string IMigrationMetadata.Source

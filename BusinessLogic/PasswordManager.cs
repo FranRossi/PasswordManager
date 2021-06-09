@@ -208,13 +208,6 @@ namespace BusinessLogic
                 throw new CreditCardNotBelongToCurrentUserException();
         }
 
-        private void VerifyNonExistenceOfCreditCardOnCreditCardList(CreditCard newCreditCard)
-        {
-            //TODO SACAR
-            if (this._creditCardsList.Contains(newCreditCard))
-                throw new CreditCardAlreadyExistsException();
-        }
-
         public List<Item> SaveBreachedItems(DataBreachReport dataBreachReport)
         {
             //TODO VER SI HACER VOID Y CARGAR DATABREACH

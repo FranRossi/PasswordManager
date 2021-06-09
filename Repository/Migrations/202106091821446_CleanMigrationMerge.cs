@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CleanMigration : DbMigration
+    public partial class CleanMigrationMerge : DbMigration
     {
         public override void Up()
         {
@@ -24,7 +24,7 @@
                 c => new
                     {
                         MasterName = c.String(nullable: false, maxLength: 25),
-                        MasterPass = c.String(nullable: false, maxLength: 25),
+                        MasterPass = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.MasterName);
             
@@ -44,6 +44,30 @@
                 .Index(t => t.User_MasterName);
             
             CreateTable(
+                "dbo.DataBreachReports",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(nullable: false),
+                        User_MasterName = c.String(maxLength: 25),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.User_MasterName)
+                .Index(t => t.User_MasterName);
+            
+            CreateTable(
+                "dbo.DataBreachReportEntries",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Value = c.String(),
+                        DataBreachReport_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.DataBreachReports", t => t.DataBreachReport_Id, cascadeDelete: true)
+                .Index(t => t.DataBreachReport_Id);
+            
+            CreateTable(
                 "dbo.SharedPasswordUser",
                 c => new
                     {
@@ -55,6 +79,19 @@
                 .ForeignKey("dbo.Users", t => t.UserSharedWithName, cascadeDelete: true)
                 .Index(t => t.PasswordId)
                 .Index(t => t.UserSharedWithName);
+            
+            CreateTable(
+                "dbo.DataBreachReportItems",
+                c => new
+                    {
+                        DataBreachReport_Id = c.Int(nullable: false),
+                        Item_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.DataBreachReport_Id, t.Item_Id })
+                .ForeignKey("dbo.DataBreachReports", t => t.DataBreachReport_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Items", t => t.Item_Id, cascadeDelete: true)
+                .Index(t => t.DataBreachReport_Id)
+                .Index(t => t.Item_Id);
             
             CreateTable(
                 "dbo.CreditCards",
@@ -79,7 +116,7 @@
                         PasswordStrength = c.Int(nullable: false),
                         Site = c.String(nullable: false, maxLength: 25),
                         Username = c.String(nullable: false, maxLength: 25),
-                        Pass = c.String(nullable: false, maxLength: 25),
+                        Pass = c.String(nullable: false),
                         LastModification = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -92,6 +129,10 @@
         {
             DropForeignKey("dbo.Passwords", "Id", "dbo.Items");
             DropForeignKey("dbo.CreditCards", "Id", "dbo.Items");
+            DropForeignKey("dbo.DataBreachReports", "User_MasterName", "dbo.Users");
+            DropForeignKey("dbo.DataBreachReportEntries", "DataBreachReport_Id", "dbo.DataBreachReports");
+            DropForeignKey("dbo.DataBreachReportItems", "Item_Id", "dbo.Items");
+            DropForeignKey("dbo.DataBreachReportItems", "DataBreachReport_Id", "dbo.DataBreachReports");
             DropForeignKey("dbo.SharedPasswordUser", "UserSharedWithName", "dbo.Users");
             DropForeignKey("dbo.SharedPasswordUser", "PasswordId", "dbo.Passwords");
             DropForeignKey("dbo.Items", "User_MasterName", "dbo.Users");
@@ -99,14 +140,21 @@
             DropForeignKey("dbo.Categories", "User_MasterName", "dbo.Users");
             DropIndex("dbo.Passwords", new[] { "Id" });
             DropIndex("dbo.CreditCards", new[] { "Id" });
+            DropIndex("dbo.DataBreachReportItems", new[] { "Item_Id" });
+            DropIndex("dbo.DataBreachReportItems", new[] { "DataBreachReport_Id" });
             DropIndex("dbo.SharedPasswordUser", new[] { "UserSharedWithName" });
             DropIndex("dbo.SharedPasswordUser", new[] { "PasswordId" });
+            DropIndex("dbo.DataBreachReportEntries", new[] { "DataBreachReport_Id" });
+            DropIndex("dbo.DataBreachReports", new[] { "User_MasterName" });
             DropIndex("dbo.Items", new[] { "User_MasterName" });
             DropIndex("dbo.Items", new[] { "Category_Id" });
             DropIndex("dbo.Categories", new[] { "User_MasterName" });
             DropTable("dbo.Passwords");
             DropTable("dbo.CreditCards");
+            DropTable("dbo.DataBreachReportItems");
             DropTable("dbo.SharedPasswordUser");
+            DropTable("dbo.DataBreachReportEntries");
+            DropTable("dbo.DataBreachReports");
             DropTable("dbo.Items");
             DropTable("dbo.Users");
             DropTable("dbo.Categories");
