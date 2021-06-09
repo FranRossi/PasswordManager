@@ -76,6 +76,14 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
+        public DateTime LastModification
+        {
+            get => _lastModification;
+            set
+            {
+                _lastModification = value;
+            }
+        }
 
         public string DecryptedPass
         {
@@ -95,14 +103,7 @@ namespace Obligatorio1_DA1.Domain
 
         }
 
-        public DateTime LastModification
-        {
-            get => _lastModification;
-            set
-            {
-                _lastModification = value;
-            }
-        }
+        
 
 
         private void ValidateSite(string siteToValidate)

@@ -112,24 +112,6 @@ namespace Presentation
             }
         }
 
-        private bool SecurePasswordSuggestion(Password password)
-        {
-            bool userDontWantToChangePassword = true;
-            if (_myPasswordManager.PasswordTextIsDuplicate(password))
-            {
-                string message = "Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?";
-                DialogResult duplicateSuggestion;
-                duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?",
-                    "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (duplicateSuggestion == DialogResult.Yes)
-                    userDontWantToChangePassword = false;
-            }
-
-
-            return userDontWantToChangePassword;
-        }
-
         private bool ManagePopUpSuggestions(string message)
         {
             DialogResult duplicateSuggestion;
@@ -141,6 +123,20 @@ namespace Presentation
 
             return false;
         }
+
+        private bool SecurePasswordSuggestion(Password password)
+        {
+            bool userDontWantToChangePassword = true;
+            if (_myPasswordManager.PasswordIsGreenSecure(password))
+            {
+                string message = "Esta pass no se encuentra en el rango de seguridad verde claro" +
+                    " o verde oscuro, ¿le gustaría cambiarla?";
+                userDontWantToChangePassword = !ManagePopUpSuggestions(message);
+            }
+
+            return userDontWantToChangePassword;
+        }
+
 
         private void UpdateDataBasePassword(Password password)
         {

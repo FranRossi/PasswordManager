@@ -259,7 +259,9 @@ namespace BusinessLogic
 
         public bool PasswordIsGreenSecure(Password password)
         {
-            return true;
+            PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
+            PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
+            return password.PasswordStrength == lightGreen || password.PasswordStrength == darkGreen;
         }
     }
 }
