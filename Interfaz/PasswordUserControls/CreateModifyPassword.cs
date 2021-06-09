@@ -127,7 +127,7 @@ namespace Presentation
         private bool SecurePasswordSuggestion(Password password)
         {
             bool userDontWantToChangePassword = true;
-            if (_myPasswordManager.PasswordIsGreenSecure(password))
+            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
             {
                 string message = "Esta pass no se encuentra en el rango de seguridad verde claro" +
                     " o verde oscuro, ¿le gustaría cambiarla?";

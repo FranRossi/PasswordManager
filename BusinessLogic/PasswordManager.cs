@@ -257,11 +257,11 @@ namespace BusinessLogic
             return passTetxIsDuplicate = false;
         }
 
-        public bool PasswordIsGreenSecure(Password password)
+        public bool PasswordIsNotGreenSecure(Password password)
         {
             PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
             PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
-            return password.PasswordStrength == lightGreen || password.PasswordStrength == darkGreen;
+            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
         }
     }
 }

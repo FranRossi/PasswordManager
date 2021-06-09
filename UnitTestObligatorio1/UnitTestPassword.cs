@@ -543,8 +543,8 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void PassswordIsNotGreenSecure()
         {
-            bool passIsGreenSecure = _passwordManager.PasswordIsGreenSecure(_password);
-            Assert.IsFalse(passIsGreenSecure);
+            bool passIsNotGreenSecure = _passwordManager.PasswordIsNotGreenSecure(_password);
+            Assert.IsTrue(passIsNotGreenSecure);
         }
 
         [TestMethod]
@@ -559,8 +559,8 @@ namespace UnitTestObligatorio1
                 Pass = "#stsrtARSRT2332",
                 Notes = "Esta es la nueva password",
             };
-            bool passIsGreenSecure = _passwordManager.PasswordIsGreenSecure(_password);
-            Assert.IsFalse(passIsGreenSecure);
+            bool passIsNotGreenSecure = _passwordManager.PasswordIsNotGreenSecure(newPassword);
+            Assert.IsFalse(passIsNotGreenSecure);
         }
     }
 }
