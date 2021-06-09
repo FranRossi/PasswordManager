@@ -12,8 +12,9 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxPasswordLength = 25;
         public const int MinPasswordLength = 5;
 
-        private string _masterPass;
         private string _masterName;
+        private string _masterPass;
+        private string _passwordsKey;
         private List<Category> _categories;
         public string MasterName
         {
@@ -32,6 +33,14 @@ namespace Obligatorio1_DA1.Domain
                 _masterPass = value;
             }
         }
+        public string PasswordsKey
+        {
+            get => _passwordsKey;
+            set
+            {
+                _passwordsKey = value;
+            }
+        }
         public List<Category> Categories
         {
             get => _categories;
@@ -46,6 +55,7 @@ namespace Obligatorio1_DA1.Domain
         {
             this.MasterName = newName;
             this.MasterPass = newPass;
+            this.PasswordsKey = newPass;
             this.Categories = new List<Category>();
         }
 

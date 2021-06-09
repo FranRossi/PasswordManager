@@ -81,8 +81,10 @@ namespace UnitTestObligatorio1
         public void GetUserOriginalPassword(string originalMasterPass)
         {
             User newUser = new User("Juancito", originalMasterPass);
-            string userMasterPass = newUser.MasterPass;
-            Assert.AreNotEqual(userMasterPass, originalMasterPass);
+            passwordManager.CreateUser(newUser);
+            User newUserFromPasswordManager = passwordManager.CurrentUser;
+            string userPasswordsKey = newUserFromPasswordManager.PasswordsKey;
+            Assert.AreEqual(originalMasterPass, userPasswordsKey);
         }
 
 

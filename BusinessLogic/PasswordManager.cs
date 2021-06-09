@@ -37,6 +37,7 @@ namespace BusinessLogic
         public void CreateUser(User newUser)
         {
             VerifyUserUniqueness(newUser);
+            newUser.ValidatePassword();
             newUser.HashPassword();
             _users.Add(newUser);
             CurrentUser = newUser;
@@ -126,6 +127,7 @@ namespace BusinessLogic
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
             VerifyItemCategoryBelongsToUser(newPassword);
+            newPassword.ValidatePass();
             _passwords.Modify(newPassword);
         }
 
