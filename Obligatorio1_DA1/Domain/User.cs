@@ -30,7 +30,8 @@ namespace Obligatorio1_DA1.Domain
             set
             {
                 ValidatePassword(value);
-                _masterPass = value;
+                string hashedPassword = HashPassword(value);
+                _masterPass = hashedPassword;
             }
         }
         public List<Category> Categories
@@ -92,5 +93,11 @@ namespace Obligatorio1_DA1.Domain
             return this.MasterName;
         }
 
+        private string HashPassword(string password)
+        {
+            IHash hashing = new BasicHash();
+            string hashedPass = hashing.Hash(password, MasterName);
+            return hashedPass;
+        }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1_DA1.Utilities
 {
-    public interface IEncription
+    public interface IEncryption
     {
-        string Encript(string textToEncript, string key);
-        string Decript(string encriptedText, string key);
+        string Encrypt(string textToEncrypt, string key);
+        string Decrypt(string encryptedText, string key);
     }
 }

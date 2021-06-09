@@ -7,13 +7,13 @@ namespace Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class TestingDBCreation : IMigrationMetadata
+    public sealed partial class removePassMaxLength : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TestingDBCreation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removePassMaxLength));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106052158002_TestingDBCreation"; }
+            get { return "202106082002591_removePassMaxLength"; }
         }
         
         string IMigrationMetadata.Source

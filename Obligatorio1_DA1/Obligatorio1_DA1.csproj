@@ -90,10 +90,10 @@
     <Compile Include="Exceptions\Password\PasswordSharedWithSameUserException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Utilities\BasicHash.cs" />
-    <Compile Include="Utilities\BasicEncription.cs" />
+    <Compile Include="Utilities\BasicEncryption.cs" />
     <Compile Include="Utilities\DataBreachFromString.cs" />
     <Compile Include="Utilities\IDataBreach.cs" />
-    <Compile Include="Utilities\IEncription.cs" />
+    <Compile Include="Utilities\IEncryption.cs" />
     <Compile Include="Utilities\IHash.cs" />
     <Compile Include="Utilities\PasswordGenerationOptions.cs" />
     <Compile Include="Utilities\PasswordStrengthReport.cs" />

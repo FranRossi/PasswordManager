@@ -8,9 +8,9 @@ namespace Obligatorio1_DA1.Utilities
 {
     public class BasicHash : IHash
     {
-        public string Hash(string textToHash)
+        public string Hash(string textToHash, string salt)
         {
-            return textToHash + textToHash;
+            return textToHash + textToHash + salt;
         }
     }
 }

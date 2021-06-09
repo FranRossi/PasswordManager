@@ -58,9 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hash\UnitTestBasicHash.cs" />
-    <Compile Include="Encription\UnitTestBasicEncription.cs" />
+    <Compile Include="Encription\UnitTestBasicEncryption.cs" />
     <Compile Include="Hash\UnitTestHash.cs" />
-    <Compile Include="Encription\UnitTestEncription.cs" />
+    <Compile Include="Encription\UnitTestEncryption.cs" />
+    <Compile Include="UnitTestPasswordEncryption.cs" />
     <Compile Include="UnitTestPasswordStrengthReport.cs" />
     <Compile Include="UnitTestDataBreach.cs" />
     <Compile Include="UnitTestCategory.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="UnitTestCreditCard.cs" />
     <Compile Include="UnitTestPassword.cs" />
     <Compile Include="UnitTestLogIn.cs" />
+    <Compile Include="UnitTestUserPassHash.cs" />
     <Compile Include="UnitTestSignUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
