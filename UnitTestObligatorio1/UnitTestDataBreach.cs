@@ -142,12 +142,21 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void GetDataBreachUsuario()
+        public void GetDataBreachUser()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.User.Equals(_currentUser));
+        }
+
+        [TestMethod]
+        public void GetDataBreachItemQuantity()
+        {
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
+            Assert.IsTrue(dataBreachReport.ItemQuantity == breachedItems.Count());
         }
 
         [TestMethod]
