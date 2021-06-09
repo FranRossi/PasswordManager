@@ -44,14 +44,12 @@ namespace Presentation
             {
                 try
                 {
-
                     if (_myPasswordToModify == null)
                         CreateNewPassword();
                     else
                         ModifyPassword();
 
                     CloseForm();
-
                 }
                 catch (ValidationException exception)
                 {
