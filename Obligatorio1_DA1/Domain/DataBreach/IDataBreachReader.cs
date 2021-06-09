@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Obligatorio1_DA1.Domain
 {
-    public interface DataBreachReader<T>
+    public interface IDataBreachReader<T>
     {
         HashSet<DataBreachReportEntry> GetDataBreachItems(T data);
     }

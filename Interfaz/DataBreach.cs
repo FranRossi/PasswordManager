@@ -41,7 +41,7 @@ namespace Presentation
 
         private void LoadDataBreach()
         {
-            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachItems(txtDataBreach.Text);
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
