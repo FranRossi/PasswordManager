@@ -69,8 +69,6 @@ namespace Obligatorio1_DA1.Domain
             get => _pass;
             set
             {
-                ValidatePass(value);
-                //_pass = Encrypt(value);
                 _pass = value;
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
@@ -88,11 +86,10 @@ namespace Obligatorio1_DA1.Domain
             return decyptedPassword;
         }
 
-        private string Encrypt(string pass)
+        public void Encrypt()
         {
-            string encryptedPassword = encryption.Encrypt(pass, Username);
-            return encryptedPassword;
-
+            string encryptedPassword = encryption.Encrypt(this.Pass, Username);
+            this._pass = encryptedPassword;
         }
 
         public DateTime LastModification
@@ -121,8 +118,9 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordUsernameTooLongException();
         }
 
-        private void ValidatePass(string passToValidate)
+        public void ValidatePass()
         {
+            string passToValidate = this._pass;
             if (!Validator.MinLengthOfString(passToValidate, Password.MinPasswordLength))
                 throw new PasswordTooShortException();
             if (!Validator.MaxLengthOfString(passToValidate, Password.MaxPasswordLength))

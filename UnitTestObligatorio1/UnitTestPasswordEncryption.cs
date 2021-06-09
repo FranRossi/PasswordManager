@@ -11,7 +11,6 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordEncryption
     {
-        private Password _password;
         private PasswordManager _passwordManager;
         private User _user;
         private Category _category;
@@ -55,7 +54,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void EncryptedPasswordDifferentFromOriginal(string passName)
         {
-            _password = new Password
+            Password newPass = new Password
             {
                 User = _user,
                 Category = _category,
@@ -64,7 +63,9 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            string encryptedPassword = _password.Pass;
+            _passwordManager.CreatePassword(newPass);
+            Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
+            string encryptedPassword = newPassFromPasswordManger.Pass;
             string unEncryptedPassword = passName;
             Assert.AreNotEqual(unEncryptedPassword, encryptedPassword);
         }
@@ -76,7 +77,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void DencryptedPasswordDifferentFromOriginal(string passName)
         {
-            _password = new Password
+            Password newPass = new Password
             {
                 User = _user,
                 Category = _category,
@@ -85,8 +86,10 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
+            _passwordManager.CreatePassword(newPass);
             string unEncryptedPassword = passName;
-            string decyptedPassword = _password.DecryptedPass;
+            Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
+            string decyptedPassword = newPassFromPasswordManger.DecryptedPass;
             Assert.AreEqual(unEncryptedPassword, decyptedPassword);
         }
     }

@@ -29,8 +29,6 @@ namespace Obligatorio1_DA1.Domain
             get => _masterPass;
             set
             {
-                ValidatePassword(value);
-                //string hashedPassword = HashPassword(value);
                 _masterPass = value;
             }
         }
@@ -64,8 +62,9 @@ namespace Obligatorio1_DA1.Domain
                 throw new UserNameTooLongException();
         }
 
-        private void ValidatePassword(string passToValidate)
+        public void ValidatePassword()
         {
+            string passToValidate = this.MasterPass;
             if (!Validator.MinLengthOfString(passToValidate, User.MinPasswordLength))
                 throw new PasswordTooShortException();
             if (!Validator.MaxLengthOfString(passToValidate, User.MaxPasswordLength))
@@ -93,11 +92,11 @@ namespace Obligatorio1_DA1.Domain
             return this.MasterName;
         }
 
-        private string HashPassword(string password)
+        public void HashPassword()
         {
             IHash hashing = new BasicHash();
-            string hashedPass = hashing.Hash(password, MasterName);
-            return hashedPass;
+            string hashedPass = hashing.Hash(this.MasterPass, this.MasterName);
+            _masterPass = hashedPass;
         }
     }
 }
