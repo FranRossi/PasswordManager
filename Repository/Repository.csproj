@@ -51,12 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessPassword.cs" />
     <Compile Include="IDataAccessPassword.cs" />
     <Compile Include="IDataAccessCreditCard.cs" />
     <Compile Include="Migrations\202106052337432_CleanMigration.cs" />
     <Compile Include="Migrations\202106052337432_CleanMigration.designer.cs">
       <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106082122243_DataBreachReport.cs" />
+    <Compile Include="Migrations\202106082122243_DataBreachReport.designer.cs">
+      <DependentUpon>202106082122243_DataBreachReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202106082002591_removePassMaxLength.cs" />
     <Compile Include="Migrations\202106082002591_removePassMaxLength.designer.cs">
@@ -87,6 +92,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106052337432_CleanMigration.resx">
       <DependentUpon>202106052337432_CleanMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106082122243_DataBreachReport.resx">
+      <DependentUpon>202106082122243_DataBreachReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106082002591_removePassMaxLength.resx">
       <DependentUpon>202106082002591_removePassMaxLength.cs</DependentUpon>

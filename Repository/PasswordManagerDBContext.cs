@@ -16,6 +16,7 @@ namespace Repository
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<DataBreachReport> DataBreachReports { get; set; }
 
         public PasswordManagerDBContext() : base("name=PasswordManagerDB") { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -37,16 +38,19 @@ namespace Repository
             modelBuilder.Entity<Item>()
                 .HasRequired<User>(item => item.User)
                 .WithMany();
-            
+
             modelBuilder.Entity<Item>()
                .HasRequired<Category>(item => item.Category)
                 .WithMany()
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<Category>()
               .HasRequired<User>(cat => cat.User);
-            /*            modelBuilder.Entity<User>()
-                            .HasMany<Category>(user => user.Categories)
-                            .WithRequired();*/
+            modelBuilder.Entity<DataBreachReport>()
+                .HasMany<Item>(dataBreach => dataBreach.BreachedItems)
+                .WithMany();
+            modelBuilder.Entity<DataBreachReport>()
+                .HasMany<DataBreachReportEntry>(dataBreach => dataBreach.Entries)
+                .WithRequired();
             modelBuilder.Entity<Password>()
                 .HasMany<User>(pass => pass.SharedWith)
                 .WithMany()
