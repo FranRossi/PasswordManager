@@ -541,10 +541,26 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void PassswordIsGreenSecure()
+        public void PassswordIsNotGreenSecure()
         {
             bool passIsGreenSecure = _passwordManager.PasswordIsGreenSecure(_password);
-            Assert.IsTrue(passIsGreenSecure);
+            Assert.IsFalse(passIsGreenSecure);
+        }
+
+        [TestMethod]
+        public void PassswordIsGreenSecure()
+        {
+            Password newPassword = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy/IM",
+                Username = "123321",
+                Pass = "#stsrtARSRT2332",
+                Notes = "Esta es la nueva password",
+            };
+            bool passIsGreenSecure = _passwordManager.PasswordIsGreenSecure(_password);
+            Assert.IsFalse(passIsGreenSecure);
         }
     }
 }

@@ -103,7 +103,7 @@ namespace Presentation
         {
             bool userDontWantToChangePassword = true;
             //HistoricDataBreachSuggestion();
-            userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
+            //userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
             userDontWantToChangePassword = SecurePasswordSuggestion(password);
 
             if (userDontWantToChangePassword) { 
