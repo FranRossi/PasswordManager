@@ -11,6 +11,7 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Password _myPasswordToModify;
+        private Password _myNewPassword;
 
         public CreateModifyPassword(PasswordManager passwordManager)
         {
@@ -44,11 +45,14 @@ namespace Presentation
             {
                 try
                 {
-                    if (_myPasswordToModify == null)
+                    if (UserIsCreatingANewPassword())
                         VerifiesNewPassword();
                     else
-                        ModifyPassword();
+                        VerifiesModifyPassword();
 
+                    if(lblMessage.Text == "")
+                        ApplySuggestions();
+                  
                     CloseForm();
                 }
                 catch (ValidationException exception)
@@ -60,18 +64,35 @@ namespace Presentation
                 lblMessage.Text = "Debe seleccionar una categoría";
         }
 
-        private void ModifyPassword()
+        private bool UserIsCreatingANewPassword()
+        {
+            if (_myPasswordToModify == null)
+                return true;
+
+            return false;
+        }
+
+        private void ApplySuggestions()
+        {
+            if (UserIsCreatingANewPassword())
+            {
+                SuggestionsForPassword(_myNewPassword);
+            }
+            else
+                SuggestionsForPassword(_myPasswordToModify);
+        }
+
+        private void VerifiesModifyPassword()
         {
             ModifyPasswordObjectFormFields();
-            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify);
+            _myPasswordManager.VerifiesPassword(_myPasswordToModify);
         }
 
         private void VerifiesNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
-            _myPasswordManager.VerifiesPassword(newPassword);
-            if(lblMessage.Text == "")
-                SuggestionsForPassword(newPassword);
+            _myNewPassword = newPassword;
+            _myPasswordManager.VerifiesPassword(_myNewPassword);
         }
 
         private void SuggestionsForPassword(Password password)
@@ -92,7 +113,11 @@ namespace Presentation
 
                 if (duplicateSuggestion == DialogResult.No)
                 {
-                    CreateNewPassword(password);
+                    if (UserIsCreatingANewPassword())
+                        CreateNewPassword(password);
+                    else
+                        _myPasswordManager.ModifyPasswordOnCurrentUser(password);
+
                     Close();
                 }
                 else
