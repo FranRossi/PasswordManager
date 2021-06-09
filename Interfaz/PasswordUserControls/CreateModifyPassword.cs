@@ -97,39 +97,40 @@ namespace Presentation
 
         private void SuggestionsForPassword(Password password)
         {
+            bool userDontWantToChangePassword = true;
             //HistoricDataBreachSuggestion();
-            DuplicatePasswordSuggestion(password);
+            userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
             //SecurePasswordSuggestion();
+
+            if (userDontWantToChangePassword)
+                UpdateDataBasePassword(password);
         }
 
-        private void DuplicatePasswordSuggestion(Password password)
+        private void UpdateDataBasePassword(Password password)
         {
+            if (UserIsCreatingANewPassword())
+                _myPasswordManager.CreatePassword(password);
+            else
+                _myPasswordManager.ModifyPasswordOnCurrentUser(password);
+        }
 
+        private bool DuplicatePasswordSuggestion(Password password)
+        {
+            bool userDontWantToChangePassword = true;
             if (_myPasswordManager.PasswordTextIsDuplicate(password))
             {
                 DialogResult duplicateSuggestion;
                 duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?", 
                     "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                if (duplicateSuggestion == DialogResult.No)
-                {
-                    if (UserIsCreatingANewPassword())
-                        CreateNewPassword(password);
-                    else
-                        _myPasswordManager.ModifyPasswordOnCurrentUser(password);
+                if (duplicateSuggestion == DialogResult.Yes)
+                     userDontWantToChangePassword = false;
 
-                    Close();
-                }
-                else
-                    Close();
-               
+                Close();
             }
+            return userDontWantToChangePassword;
         }
 
-        private void CreateNewPassword(Password password)
-        {
-            _myPasswordManager.CreatePassword(password);
-        }
 
 
 
