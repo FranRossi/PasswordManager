@@ -48,11 +48,42 @@ namespace UnitTestObligatorio1
         public void HashDifferentThanOrignal(string originalMasterPass)
         {
             User newUser = new User("Juancito", originalMasterPass);
-            string userMasterPass = newUser.MasterPass;
+            passwordManager.CreateUser(newUser);
+            User newUserFromPasswordManager = passwordManager.CurrentUser;
+            string userMasterPass = newUserFromPasswordManager.MasterPass;
             Assert.AreNotEqual(userMasterPass, originalMasterPass);
         }
 
 
+        [DataRow("asdfasdf")]
+        [DataRow("1232qwerty1231kl")]
+        [DataRow("mypass")]
+        [DataTestMethod]
+        public void HashingInUserLogin(string originalMasterPass)
+        {
+            User newUser = new User("Juancito", originalMasterPass);
+            passwordManager.CreateUser(newUser);
+
+            User anotherUser = new User("Pedrito", "Pedrito12345");
+            passwordManager.CreateUser(anotherUser);
+
+            passwordManager.Login("Juancito", originalMasterPass);
+
+            User newUserFromPasswordManager = passwordManager.CurrentUser;
+            string userMasterPass = newUserFromPasswordManager.MasterPass;
+            Assert.AreNotEqual(userMasterPass, originalMasterPass);
+        }
+
+        [DataRow("hola123")]
+        [DataRow("12321kl")]
+        [DataRow("hellworld")]
+        [DataTestMethod]
+        public void GetUserOriginalPassword(string originalMasterPass)
+        {
+            User newUser = new User("Juancito", originalMasterPass);
+            string userMasterPass = newUser.MasterPass;
+            Assert.AreNotEqual(userMasterPass, originalMasterPass);
+        }
 
 
     }

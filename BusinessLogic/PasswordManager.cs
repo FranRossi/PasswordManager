@@ -37,6 +37,7 @@ namespace BusinessLogic
         public void CreateUser(User newUser)
         {
             VerifyUserUniqueness(newUser);
+            newUser.HashPassword();
             _users.Add(newUser);
             CurrentUser = newUser;
         }
