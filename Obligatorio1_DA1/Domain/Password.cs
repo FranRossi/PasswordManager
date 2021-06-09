@@ -82,13 +82,13 @@ namespace Obligatorio1_DA1.Domain
 
         private string ShowDecryptedPass()
         {
-            string decyptedPassword = encryption.Decrypt(Pass, Username);
+            string decyptedPassword = encryption.Decrypt(this.Pass, this.User.MasterName);
             return decyptedPassword;
         }
 
         public void Encrypt()
         {
-            string encryptedPassword = encryption.Encrypt(this.Pass, Username);
+            string encryptedPassword = encryption.Encrypt(this.Pass, this.User.MasterName);
             this._pass = encryptedPassword;
         }
 

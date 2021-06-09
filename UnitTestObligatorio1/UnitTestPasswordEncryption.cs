@@ -92,5 +92,41 @@ namespace UnitTestObligatorio1
             string decyptedPassword = newPassFromPasswordManger.DecryptedPass;
             Assert.AreEqual(unEncryptedPassword, decyptedPassword);
         }
+
+
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("12321pass werod")]
+        [DataRow("hello world")]
+        [DataTestMethod]
+        public void SameUserAndPassResultsInSameEncryption(string passName)
+        {
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordManager.CreatePassword(newPass);
+
+
+            Password secondPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "amazon",
+                Username = "amazingssss",
+                Pass = passName
+            };
+            _passwordManager.CreatePassword(secondPass);
+
+            List<Password> passwords = _passwordManager.GetPasswords();
+            Password newPassFromPasswordManger = passwords[0];
+            Password secondPassFromPasswordManger = passwords[1];
+            Assert.AreEqual(newPassFromPasswordManger.Pass, secondPassFromPasswordManger.Pass);
+        }
     }
 }
+
