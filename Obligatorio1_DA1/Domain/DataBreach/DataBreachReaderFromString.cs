@@ -6,7 +6,7 @@ namespace Obligatorio1_DA1.Domain
 {
     public class DataBreachReaderFromString : IDataBreachReader<string>
     {
-        public HashSet<DataBreachReportEntry> GetDataBreachItems(string data)
+        public HashSet<DataBreachReportEntry> GetDataBreachEntries(string data)
         {
             HashSet<DataBreachReportEntry> dataBreachItems = new HashSet<DataBreachReportEntry>();
             string[] splittedDataBreach = data.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);

@@ -11,6 +11,7 @@ namespace Obligatorio1_DA1.Domain
         public int Id { get; set; }
         public List<Item> BreachedItems { get; set; }
         public User User { get; set; }
+        public int ItemQuantity { get => this.BreachedItems.Count; }
 
         public DataBreachReport(HashSet<DataBreachReportEntry> breachReport, User curentUser)
         {

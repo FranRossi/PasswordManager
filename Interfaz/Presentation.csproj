@@ -75,6 +75,12 @@
     <Compile Include="CreditCardUserControls\ShowCreditCard.Designer.cs">
       <DependentUpon>ShowCreditCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBreachHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataBreachHistory.Designer.cs">
+      <DependentUpon>DataBreachHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeleteConfirmation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreditCardUserControls\ShowCreditCard.resx">
       <DependentUpon>ShowCreditCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataBreachHistory.resx">
+      <DependentUpon>DataBreachHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteConfirmation.resx">
       <DependentUpon>DeleteConfirmation.cs</DependentUpon>

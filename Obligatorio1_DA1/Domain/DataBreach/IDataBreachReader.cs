@@ -6,6 +6,6 @@ namespace Obligatorio1_DA1.Domain
 {
     public interface IDataBreachReader<T>
     {
-        HashSet<DataBreachReportEntry> GetDataBreachItems(T data);
+        HashSet<DataBreachReportEntry> GetDataBreachEntries(T data);
     }
 }

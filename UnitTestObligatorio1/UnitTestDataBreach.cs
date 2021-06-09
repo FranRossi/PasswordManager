@@ -51,7 +51,7 @@ namespace UnitTestObligatorio1
         public void GetDataBreachItems()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
             HashSet<DataBreachReportEntry> expectedItems = new HashSet<DataBreachReportEntry>();
             for (int i = 0; i < _breachedPasswords.Length; i++)
             {
@@ -79,7 +79,7 @@ namespace UnitTestObligatorio1
         public void GetDataBreachItemsWithRepeatedInput()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_repeatedItemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_repeatedItemDataBreach);
             HashSet<DataBreachReportEntry> expectedItems = new HashSet<DataBreachReportEntry>();
             for (int i = 0; i < _repeatedBreachedItems.Length; i++)
             {
@@ -127,7 +127,7 @@ namespace UnitTestObligatorio1
         public void GetDataBreachReportDate()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.Date.Equals(DateTime.Today));
         }
@@ -136,7 +136,7 @@ namespace UnitTestObligatorio1
         public void GetDataBreachId()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.Id == 0);
         }
@@ -145,7 +145,7 @@ namespace UnitTestObligatorio1
         public void GetDataBreachUser()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             Assert.IsTrue(dataBreachReport.User.Equals(_currentUser));
         }
@@ -154,16 +154,29 @@ namespace UnitTestObligatorio1
         public void GetDataBreachItemQuantity()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_creditCardDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
-            Assert.IsTrue(dataBreachReport.ItemQuantity == breachedItems.Count());
+            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
+            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
+            dataBreachReport.BreachedItems = breachResult;
+            Assert.IsTrue(dataBreachReport.ItemQuantity == breachResult.Count);
+        }
+
+        [TestMethod]
+        public void GetDataBreachEntryQuantity()
+        {
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
+            Assert.IsTrue(dataBreachReport.User.Equals(_currentUser));
+            Assert.IsTrue(dataBreachReport.EntryQuantity == breachedItems.Count);
         }
 
         [TestMethod]
         public void GetDataBreachBreachedItems()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
             string categoryName = "Facultad";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = _currentUser.Categories[0];
@@ -201,7 +214,7 @@ namespace UnitTestObligatorio1
         public void PasswordOnlyDataBreachFromString()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
@@ -214,7 +227,7 @@ namespace UnitTestObligatorio1
         public void CreditCardOnlyDataBreachFromString()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_creditCardDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_creditCardDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
@@ -226,7 +239,7 @@ namespace UnitTestObligatorio1
         public void CreditCardAndPasswordDataBreachFromString()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             AddPasswordsFromDifferentUserToPasswordManager();
@@ -242,7 +255,7 @@ namespace UnitTestObligatorio1
         {
             //TODO REFACTOR REPETECION DE CODIGO
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_creditCardDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachEntries(_creditCardDataBreach);
             DataBreachReport dataBreachReport1 = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
@@ -250,7 +263,7 @@ namespace UnitTestObligatorio1
             dataBreachReport1.BreachedItems = breachResult;
 
             IDataBreachReader<string> dataBreachReader2 = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems2 = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
+            HashSet<DataBreachReportEntry> breachedItems2 = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
             DataBreachReport dataBreachReport2 = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();

@@ -42,7 +42,7 @@ namespace Presentation
         private void LoadDataBreach()
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachItems(txtDataBreach.Text);
+            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachEntries(txtDataBreach.Text);
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
             LoadTables(breachResult);
