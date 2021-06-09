@@ -90,15 +90,14 @@ namespace Presentation
                 duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?", 
                     "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                if (duplicateSuggestion == DialogResult.Yes)
-                {
-                    Close();
-                }
-                else
+                if (duplicateSuggestion == DialogResult.No)
                 {
                     CreateNewPassword(password);
                     Close();
                 }
+                else
+                    Close();
+               
             }
         }
 

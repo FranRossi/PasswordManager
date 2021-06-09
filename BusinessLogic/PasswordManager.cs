@@ -119,9 +119,7 @@ namespace BusinessLogic
 
         public void ModifyPasswordOnCurrentUser(Password newPassword)
         {
-            VerifyPasswordBelongToCurrentUser(newPassword);
-            VerifyPasswordUniqueness(newPassword);
-            VerifyItemCategoryBelongsToUser(newPassword);
+            VerifiesPassword(newPassword);
             _passwords.Modify(newPassword);
         }
 
