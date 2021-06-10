@@ -536,8 +536,8 @@ namespace UnitTestObligatorio1
                 Notes = "Esta es la nueva password",
             };
 
-            bool passTetxIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
-            Assert.IsTrue(passTetxIsDuplicate);
+            bool passTextIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
+            Assert.IsTrue(passTextIsDuplicate);
         }
 
         [TestMethod]
