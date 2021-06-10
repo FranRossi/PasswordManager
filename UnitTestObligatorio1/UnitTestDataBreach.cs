@@ -338,36 +338,21 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetOnlyPasswordFormDataBreach() {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
-            string categoryName = "Facultad";
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
             Category firstCategoryOnUser = _currentUser.Categories[0];
             DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
-            List<Item> items = new List<Item>();
             Password newPassword = new Password
             {
                 User = _currentUser,
                 Category = firstCategoryOnUser,
-                Site = "aulas.ort.edu.uy",
-                Username = "23985",
+                Site = "0ort.edu.uy",
+                Username = "239850",
                 Pass = "Passoword223",
-                Notes = "No me roben la cuenta"
+                Notes = "Esta pass esta modificada y aparece en breach"
             };
-            CreditCard newCard = new CreditCard
-            {
-                User = _currentUser,
-                Category = firstCategoryOnUser,
-                Name = "Visa Gold",
-                Type = "Visa",
-                Number = "2354231413001234",
-                SecureCode = "189",
-                ExpirationDate = "10/21",
-                Notes = "Tra­mite 400k UYU"
-            };
-            items.Add(newPassword);
-            items.Add(newCard);
-            dataBreachReport.BreachedItems = items;
-            _passwordManager.SaveBreachedItems(dataBreachReport);
+            AddBreachedPasswordsToPasswordManager();
+
+            List<Item>itemsBreached = _passwordManager.SaveBreachedItems(dataBreachReport);
 
             bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
             Assert.IsTrue(passwordHasBeenBreached);

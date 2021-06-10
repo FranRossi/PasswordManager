@@ -47,9 +47,16 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 bool passwordHasBeenBreached = false; 
-                DataBreachReport newDataBreachReport = context.DataBreachReports.Include("User").Include("BreachedItems").
-                    FirstOrDefault(breach => breach.User.Equals(currentUser));
-                passwordHasBeenBreached = newDataBreachReport.BreachedItems.Contains(passwordToCheck);
+                List<DataBreachReport> dataBreachReportsForCurrentUser = context.DataBreachReports.Include("User").Include("BreachedItems").
+                    Where(breach => breach.User.MasterName == currentUser.MasterName).ToList();
+
+                foreach (DataBreachReport breach in dataBreachReportsForCurrentUser)
+                {
+                    passwordHasBeenBreached = breach.BreachedItems.Contains(passwordToCheck);
+                    if (passwordHasBeenBreached)
+                        return passwordHasBeenBreached;
+                }
+                    
               
                 return passwordHasBeenBreached;
             }

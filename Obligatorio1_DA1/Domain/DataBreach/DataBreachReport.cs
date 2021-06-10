@@ -18,5 +18,7 @@ namespace Obligatorio1_DA1.Domain
             this.Entries = breachReport;
             this.User = curentUser;
         }
+
+        private DataBreachReport() { }
     }
 }
