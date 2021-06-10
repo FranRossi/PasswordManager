@@ -53,6 +53,23 @@ namespace Repository
             context.SaveChanges();
         }
 
+        public bool CheckIfPasswordHasBeenBreached(User currentUser, Password passwordToCheck)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                bool passwordHasBeenBreached = false; 
+                List<DataBreachReport> dataBreachReportsForCurrentUser = GetDataBreachReportsFromUser(currentUser.MasterName);
+
+                foreach (DataBreachReport breach in dataBreachReportsForCurrentUser)
+                {
+                    passwordHasBeenBreached = breach.BreachedItems.Contains(passwordToCheck);
+                    if (passwordHasBeenBreached)
+                        return passwordHasBeenBreached;
+                }
+            }      
+                return passwordHasBeenBreached;
+        }
+      
         public List<DataBreachReport> GetDataBreachReportsFromUser(String userMasterName)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())

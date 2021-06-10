@@ -22,8 +22,7 @@ namespace Obligatorio1_DA1.Domain
             this.User = curentUser;
         }
 
-        public DataBreachReport()
-        {
-        }
+        private DataBreachReport() { }
+
     }
 }

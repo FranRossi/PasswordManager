@@ -11,6 +11,7 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private Password _myPasswordToModify;
+        private Password _myNewPassword;
 
         public CreateModifyPassword(PasswordManager passwordManager)
         {
@@ -44,13 +45,10 @@ namespace Presentation
             {
                 try
                 {
+                    VerifyPassword();
 
-                    if (_myPasswordToModify == null)
-                        CreateNewPassword();
-                    else
-                        ModifyPassword();
-
-                    CloseForm();
+                    if(lblMessage.Text == "")
+                        ApplySuggestions();
 
                 }
                 catch (ValidationException exception)
@@ -62,17 +60,118 @@ namespace Presentation
                 lblMessage.Text = "Debe seleccionar una categoría";
         }
 
-        private void ModifyPassword()
+        private void VerifyPassword()
         {
-            ModifyPasswordObjectFormFields();
-            _myPasswordManager.ModifyPasswordOnCurrentUser(_myPasswordToModify);
+            if (UserIsCreatingANewPassword())
+                VerifiesNewPassword();
+            else
+                VerifiesModifyPassword();
         }
 
-        private void CreateNewPassword()
+        private bool UserIsCreatingANewPassword()
+        {
+            if (_myPasswordToModify == null)
+                return true;
+
+            return false;
+        }
+
+        private void ApplySuggestions()
+        {
+            if (UserIsCreatingANewPassword())
+            {
+                SuggestionsForPassword(_myNewPassword);
+            }
+            else
+                SuggestionsForPassword(_myPasswordToModify);
+        }
+
+        private void VerifiesModifyPassword()
+        {
+            ModifyPasswordObjectFormFields();
+            _myPasswordManager.VerifyPassword(_myPasswordToModify);
+        }
+
+        private void VerifiesNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
-            _myPasswordManager.CreatePassword(newPassword);
+            _myNewPassword = newPassword;
+            _myPasswordManager.VerifyPassword(_myNewPassword);
         }
+
+        private void SuggestionsForPassword(Password password)
+        {
+            string historicalSuggestion = HistoricDataBreachSuggestion(password);
+            string duplicateSuggestion = DuplicatePasswordSuggestion(password);
+            string secureSuggestion = SecurePasswordSuggestion(password);
+
+            bool userDontWantToChangePassword = 
+                !ManagePopUpSuggestions(historicalSuggestion, duplicateSuggestion, secureSuggestion);
+           
+            if (userDontWantToChangePassword) { 
+                UpdateDataBasePassword(password); 
+                CloseForm();
+            }
+        }
+
+        private bool ManagePopUpSuggestions(string historic, string duplicate, string secure)
+        {
+            string messageToShow = mergeStrings(historic, duplicate, secure);
+            DialogResult duplicateSuggestion;
+            duplicateSuggestion = MessageBox.Show(messageToShow + Environment.NewLine + "¿Le gustaría cambiarla?",
+                "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (duplicateSuggestion == DialogResult.Yes)
+                 return true;
+
+            return false;
+        }
+
+        private string mergeStrings(string historic, string duplicate, string secure)
+        {
+           string stringMerged = "";
+           stringMerged += historic + duplicate + secure;
+           return stringMerged;
+        }
+
+        private string HistoricDataBreachSuggestion(Password password)
+        {
+            string historicSuggestion = "";
+            if (_myPasswordManager.VerifyPasswordHasBeenBreached(password))
+                 historicSuggestion = "- Esta contraseña se encuentra en un data breach" + Environment.NewLine;
+
+            return historicSuggestion;
+        }
+
+        private string SecurePasswordSuggestion(Password password)
+        {
+            string secureSuggestion = "";
+            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
+                secureSuggestion = "- Esta contraseña no se encuentra en el rango de seguridad verde claro o verde oscuro" + Environment.NewLine;
+
+            return secureSuggestion;
+        }
+
+        private string DuplicatePasswordSuggestion(Password password)
+        {
+            string duplicateSuggestion = "";
+            if (_myPasswordManager.PasswordTextIsDuplicate(password))
+                duplicateSuggestion = "- Esta contraseña ya se encuentre en el sistema" + Environment.NewLine;
+
+            return duplicateSuggestion;
+        }
+
+
+        private void UpdateDataBasePassword(Password password)
+        {
+            if (UserIsCreatingANewPassword())
+                _myPasswordManager.CreatePassword(password);
+            else
+                _myPasswordManager.ModifyPasswordOnCurrentUser(password);
+        }
+
+
+
 
         private Password CreatePasswordObjectFormFields()
         {

@@ -526,5 +526,45 @@ namespace UnitTestObligatorio1
             _password.Id = 1254;
             Assert.AreNotEqual<int>(_password.Id, 555);
         }
+
+        [TestMethod]
+        public void PassswordWithSameText()
+        {
+            Password newPassword = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy/33",
+                Username = "2222340",
+                Pass = "239850Ort2019",
+                Notes = "Esta es la nueva password",
+            };
+
+            bool passTextIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
+            Assert.IsTrue(passTextIsDuplicate);
+        }
+
+        [TestMethod]
+        public void PassswordIsNotGreenSecure()
+        {
+            bool passIsNotGreenSecure = _passwordManager.PasswordIsNotGreenSecure(_password);
+            Assert.IsTrue(passIsNotGreenSecure);
+        }
+
+        [TestMethod]
+        public void PassswordIsGreenSecure()
+        {
+            Password newPassword = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy/IM",
+                Username = "123321",
+                Pass = "#stsrtARSRT2332",
+                Notes = "Esta es la nueva password",
+            };
+            bool passIsNotGreenSecure = _passwordManager.PasswordIsNotGreenSecure(newPassword);
+            Assert.IsFalse(passIsNotGreenSecure);
+        }
     }
 }

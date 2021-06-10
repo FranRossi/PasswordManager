@@ -171,5 +171,16 @@ namespace Repository
                 return report;
             }
         }
+
+        public bool CheckTextIsDuplicate(Password password)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                Password passToCheck = context.Passwords.FirstOrDefault
+                    (p => p.Pass == password.Pass);
+                bool passTextIsDuplicate = passToCheck != null;
+                return passTextIsDuplicate;
+            }
+        }
     }
 }

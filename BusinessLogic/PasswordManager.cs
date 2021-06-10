@@ -98,11 +98,16 @@ namespace BusinessLogic
 
         public void CreatePassword(Password newPassword)
         {
-            VerifyPasswordBelongToCurrentUser(newPassword);
-            VerifyPasswordUniqueness(newPassword);
-            VerifyItemCategoryBelongsToUser(newPassword);
+            VerifyPassword(newPassword);
             newPassword.Encrypt();
             _passwords.Add(newPassword);
+        }
+
+        public void VerifyPassword(Password passwordToCheck)
+        {
+            VerifyPasswordBelongToCurrentUser(passwordToCheck);
+            VerifyPasswordUniqueness(passwordToCheck);
+            VerifyItemCategoryBelongsToUser(passwordToCheck);
         }
 
         public List<Password> GetPasswords()
@@ -130,9 +135,7 @@ namespace BusinessLogic
 
         public void ModifyPasswordOnCurrentUser(Password newPassword)
         {
-            VerifyPasswordBelongToCurrentUser(newPassword);
-            VerifyPasswordUniqueness(newPassword);
-            VerifyItemCategoryBelongsToUser(newPassword);
+            VerifyPassword(newPassword);
             _passwords.Modify(newPassword);
         }
 
@@ -261,6 +264,25 @@ namespace BusinessLogic
             return usersSharedWith;
         }
 
+        public bool PasswordTextIsDuplicate(Password password)
+        {
+            bool passTextIsDuplicate = _passwords.CheckTextIsDuplicate(password);
+            return passTextIsDuplicate;
+        }
+
+        public bool PasswordIsNotGreenSecure(Password password)
+        {
+            PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
+            PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
+            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
+        }
+
+        public bool VerifyPasswordHasBeenBreached(Password passwordToCheck)
+        {
+            bool passwordIsBreached = _dataBreaches.CheckIfPasswordHasBeenBreached(CurrentUser, passwordToCheck);
+            return passwordIsBreached;
+        }
+      
         public List<DataBreachReport> GetDataBreachReportsFromCurrentUser()
         {
             List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(this.CurrentUser.MasterName);
