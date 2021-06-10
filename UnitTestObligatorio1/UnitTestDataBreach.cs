@@ -88,7 +88,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void GetDataBreachEntriesInBothImplementations(string dataString, string dataTextFile)
+        public void GetDataBreachEntriesInBothImplementations()
         {
             IDataBreachReader<string> dataBreachReaderString = new DataBreachReaderFromString();
             IDataBreachReader<string> dataBreachReaderTextFile = new DataBreachReaderFromTextFile();
