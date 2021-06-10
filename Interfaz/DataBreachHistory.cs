@@ -87,34 +87,13 @@ namespace Presentation
             tblPasswords.DataSource = null;
             tblPasswords.Rows.Clear();
             tblPasswords.DataSource = passwords;
-            FormatPasswordListOnTable();
+            FormatPasswordListOnTable(report.Date);
         }
 
 
-        private void FormatPasswordListOnTable()
+        private void FormatPasswordListOnTable(DateTime reportDatetime)
         {
-            DataGridViewButtonColumn uninstallButtonColumn = new DataGridViewButtonColumn();
-            uninstallButtonColumn.Name = "uninstall_column";
-            uninstallButtonColumn.Text = "✍";
-            uninstallButtonColumn.UseColumnTextForButtonValue = true;
-            uninstallButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            int columnIndex = 0;
-            if (tblPasswords.Columns["uninstall_column"] == null)
-            {
-                tblPasswords.Columns.Insert(columnIndex, uninstallButtonColumn);
-            }
-            for (int i = 0; i < tblPasswords.Rows.Count; i++)
-            {
-
-                //DateTime Id = (DateTime)((DataRowView)tblPasswords.Rows[i].DataBoundItem)["LastModification"];
-                if (i % 2 == 0)
-                {
-                    DataGridViewButtonCell button = (DataGridViewButtonCell)tblPasswords.Rows[i].Cells[0];
-                    DataGridViewCellStyle dataGridViewCellStyleCustom = new DataGridViewCellStyle();
-                    dataGridViewCellStyleCustom.Padding = new Padding(70, 0, 0, 0);
-                    button.Style = dataGridViewCellStyleCustom;
-                }
-            }
+            CreateTblPasswordModifyButton(reportDatetime);
             foreach (DataGridViewColumn column in tblPasswords.Columns)
             {
                 switch (column.Name)
@@ -128,7 +107,7 @@ namespace Presentation
                     case "LastModification":
                         column.HeaderText = "Última Modificación";
                         break;
-                    case "uninstall_column":
+                    case "ModifyButton":
                         column.HeaderText = "Modificar";
                         break;
                     default:
@@ -136,7 +115,45 @@ namespace Presentation
                         break;
                 }
             }
+            tblPasswords.Rows[0].Selected = false;
+        }
 
+        private void CreateTblPasswordModifyButton(DateTime reportDatetime)
+        {
+            DataGridViewButtonColumn uninstallButtonColumn = new DataGridViewButtonColumn();
+            uninstallButtonColumn.Name = "ModifyButton";
+            uninstallButtonColumn.Text = "✍";
+            uninstallButtonColumn.UseColumnTextForButtonValue = true;
+            uninstallButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            int columnIndex = 0;
+            if (tblPasswords.Columns["ModifyButton"] == null)
+            {
+                tblPasswords.Columns.Insert(columnIndex, uninstallButtonColumn);
+            }
+            CalculateModifiableRows(reportDatetime);
+        }
+
+        private void CalculateModifiableRows(DateTime reportDatetime)
+        {
+            for (int i = 0; i < tblPasswords.Rows.Count; i++)
+            {
+
+                DateTime date = (DateTime)tblPasswords.Rows[i].Cells[6].Value;
+                if (date <= reportDatetime)
+                {
+                    DataGridViewButtonCell button = (DataGridViewButtonCell)tblPasswords.Rows[i].Cells[0];
+                    DataGridViewCellStyle dataGridViewCellStyleCustom = new DataGridViewCellStyle
+                    {
+                        Padding = new Padding(70, 0, 0, 0)
+                    };
+                    button.Style = dataGridViewCellStyleCustom;
+                    tblPasswords.Rows[i].DefaultCellStyle.BackColor = Color.IndianRed;
+                }
+                else
+                {
+                    tblPasswords.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+            }
         }
 
         private void tblPasswords_CellContentClick(object sender, DataGridViewCellEventArgs e)
