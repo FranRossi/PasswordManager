@@ -42,6 +42,9 @@ namespace Presentation
             this.btnModifyPass = new System.Windows.Forms.Button();
             this.lblCard = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
+            this.btnOpenTextFile = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.pnlDataBreachText.SuspendLayout();
             this.pnlResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblDataBreachCreditCard)).BeginInit();
@@ -50,6 +53,8 @@ namespace Presentation
             // 
             // pnlDataBreachText
             // 
+            this.pnlDataBreachText.Controls.Add(this.btnCancel);
+            this.pnlDataBreachText.Controls.Add(this.btnOpenTextFile);
             this.pnlDataBreachText.Controls.Add(this.lblMessage);
             this.pnlDataBreachText.Controls.Add(this.btnVerifyDataBreach);
             this.pnlDataBreachText.Controls.Add(this.txtDataBreach);
@@ -70,7 +75,7 @@ namespace Presentation
             // 
             // btnVerifyDataBreach
             // 
-            this.btnVerifyDataBreach.Location = new System.Drawing.Point(209, 348);
+            this.btnVerifyDataBreach.Location = new System.Drawing.Point(209, 367);
             this.btnVerifyDataBreach.Name = "btnVerifyDataBreach";
             this.btnVerifyDataBreach.Size = new System.Drawing.Size(75, 23);
             this.btnVerifyDataBreach.TabIndex = 1;
@@ -142,7 +147,7 @@ namespace Presentation
             this.tblDataBreachCreditCard.RowHeadersVisible = false;
             this.tblDataBreachCreditCard.RowHeadersWidth = 62;
             this.tblDataBreachCreditCard.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(469, 128);
+            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(469, 145);
             this.tblDataBreachCreditCard.TabIndex = 4;
             // 
             // tblDataBreachPassword
@@ -190,6 +195,31 @@ namespace Presentation
             this.lblPass.TabIndex = 4;
             this.lblPass.Text = "Contraseñas expuestas:";
             // 
+            // btnOpenTextFile
+            // 
+            this.btnOpenTextFile.Location = new System.Drawing.Point(9, 367);
+            this.btnOpenTextFile.Name = "btnOpenTextFile";
+            this.btnOpenTextFile.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenTextFile.TabIndex = 5;
+            this.btnOpenTextFile.Text = "Abrir archivo";
+            this.btnOpenTextFile.UseVisualStyleBackColor = true;
+            this.btnOpenTextFile.Click += new System.EventHandler(this.btnOpenTextFile_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(209, 331);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // DataBreach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,5 +253,8 @@ namespace Presentation
         private System.Windows.Forms.Button btnModifyPass;
         private System.Windows.Forms.DataGridView tblDataBreachCreditCard;
         private System.Windows.Forms.DataGridView tblDataBreachPassword;
+        private System.Windows.Forms.Button btnOpenTextFile;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

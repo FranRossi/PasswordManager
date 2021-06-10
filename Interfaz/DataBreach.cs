@@ -3,6 +3,7 @@ using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Presentation
@@ -130,6 +131,23 @@ namespace Presentation
         private void RefreshForm(object sender, FormClosingEventArgs e)
         {
             LoadDataBreach();
+        }
+
+        private void btnOpenTextFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            string filename = openFileDialog1.FileName;
+            string readfile = File.ReadAllText(filename);
+            txtDataBreach.Text = readfile;
+            txtDataBreach.Enabled = false;
+            btnCancel.Visible = true;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnCancel.Visible = false;
+            txtDataBreach.Enabled = true;
+            txtDataBreach.Text = "";
         }
     }
 }
