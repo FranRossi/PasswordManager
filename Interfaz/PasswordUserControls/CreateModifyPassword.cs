@@ -102,14 +102,26 @@ namespace Presentation
         private void SuggestionsForPassword(Password password)
         {
             bool userDontWantToChangePassword = true;
-            //HistoricDataBreachSuggestion();
+            userDontWantToChangePassword = HistoricDataBreachSuggestion(password;
             //userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
-            userDontWantToChangePassword = SecurePasswordSuggestion(password);
+            //userDontWantToChangePassword = SecurePasswordSuggestion(password);
 
             if (userDontWantToChangePassword) { 
                 UpdateDataBasePassword(password); 
                 CloseForm();
             }
+        }
+
+        private bool HistoricDataBreachSuggestion(Password password)
+        {
+            bool userDontWantToChangePassword = true;
+            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
+            {
+                string message = "Esta pass se encuentra en un data breach, ¿le gustaría cambiarla?";
+                userDontWantToChangePassword = !ManagePopUpSuggestions(message);
+            }
+
+            return userDontWantToChangePassword;
         }
 
         private bool ManagePopUpSuggestions(string message)

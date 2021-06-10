@@ -335,6 +335,30 @@ namespace UnitTestObligatorio1
             _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
+        [TestMethod]
+        public void GetOnlyPasswordFormDataBreach() {
+            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_itemDataBreach);
+            string categoryName = "Facultad";
+            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            Category firstCategoryOnUser = _currentUser.Categories[0];
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
+            List<Item> items = new List<Item>();
+            Password newPassword = new Password
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Site = "aulas.ort.edu.uy",
+                Username = "23985",
+                Pass = "Passoword223",
+                Notes = "No me roben la cuenta"
+            };
+            items.Add(newPassword);
+            dataBreachReport.BreachedItems = items;
+
+            List<Password> passwordsBreached = _passwordManager.GetPasswordsFromDataBreachForCurrentUser(_currentUser);
+            CollectionAssert.Contains(dataBreachReport.BreachedItems, newPassword);
+        }
 
     }
 }
