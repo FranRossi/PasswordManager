@@ -130,8 +130,8 @@ namespace Presentation
         private string HistoricDataBreachSuggestion(Password password)
         {
             string historicSuggestion = "";
-            /* if (_myPasswordManager.PasswordIsNotGreenSecure(password))
-                 historicSuggestion = "- Esta contraseña se encuentra en un data breach";*/
+            if (_myPasswordManager.VerifyPasswordHasBeenBreached(password))
+                 historicSuggestion = "- Esta contraseña se encuentra en un data breach";
 
             return historicSuggestion;
         }
