@@ -250,11 +250,8 @@ namespace BusinessLogic
 
         public bool PasswordTextIsDuplicate(Password password)
         {
-            bool passTextIsDuplicate = true;
-            if (_passwords.CheckTextIsDuplicate(password))
-                return passTextIsDuplicate;
-
-            return passTextIsDuplicate = false;
+            bool passTextIsDuplicate = _passwords.CheckTextIsDuplicate(password);
+            return passTextIsDuplicate;
         }
 
         public bool PasswordIsNotGreenSecure(Password password)
