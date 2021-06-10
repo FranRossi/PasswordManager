@@ -336,7 +336,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void GetOnlyPasswordFormDataBreach() {
+        public void CheckPassBeenBreached() {
             DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
             Category firstCategoryOnUser = _currentUser.Categories[0];
@@ -356,6 +356,30 @@ namespace UnitTestObligatorio1
 
             bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
             Assert.IsTrue(passwordHasBeenBreached);
+        }
+
+        [TestMethod]
+        public void CheckPassNotBeenBreached()
+        {
+            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> breachedItems = dataBreachReader.GetDataBreachItems(_passwordDataBreach);
+            Category firstCategoryOnUser = _currentUser.Categories[0];
+            DataBreachReport dataBreachReport = new DataBreachReport(breachedItems, _passwordManager.CurrentUser);
+            Password newPassword = new Password
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Site = "NuevoSitio",
+                Username = "239850",
+                Pass = "Passoword223",
+                Notes = "Esta pass esta modificada y no aparece en breach"
+            };
+            AddBreachedPasswordsToPasswordManager();
+
+            List<Item> itemsBreached = _passwordManager.SaveBreachedItems(dataBreachReport);
+
+            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
+            Assert.IsFalse(passwordHasBeenBreached);
         }
 
     }
