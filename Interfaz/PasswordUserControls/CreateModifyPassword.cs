@@ -116,9 +116,9 @@ namespace Presentation
 
         private bool ManagePopUpSuggestions(string historic, string duplicate, string secure)
         {
+            string messageToShow = mergeStrings(historic, duplicate, secure);
             DialogResult duplicateSuggestion;
-            duplicateSuggestion = MessageBox.Show(historic + Environment.NewLine + duplicate + Environment.NewLine + secure
-                + Environment.NewLine + "¿Le gustaría cambiarla?",
+            duplicateSuggestion = MessageBox.Show(messageToShow + Environment.NewLine + "¿Le gustaría cambiarla?",
                 "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (duplicateSuggestion == DialogResult.Yes)
@@ -127,11 +127,18 @@ namespace Presentation
             return false;
         }
 
+        private string mergeStrings(string historic, string duplicate, string secure)
+        {
+           string stringMerged = "";
+           stringMerged += historic + duplicate + secure;
+           return stringMerged;
+        }
+
         private string HistoricDataBreachSuggestion(Password password)
         {
             string historicSuggestion = "";
             if (_myPasswordManager.VerifyPasswordHasBeenBreached(password))
-                 historicSuggestion = "- Esta contraseña se encuentra en un data breach";
+                 historicSuggestion = "- Esta contraseña se encuentra en un data breach" + Environment.NewLine;
 
             return historicSuggestion;
         }
@@ -140,11 +147,18 @@ namespace Presentation
         {
             string secureSuggestion = "";
             if (_myPasswordManager.PasswordIsNotGreenSecure(password))
-            {
-                secureSuggestion = "- Esta contraseña no se encuentra en el rango de seguridad verde claro o verde oscuro";
-            }
+                secureSuggestion = "- Esta contraseña no se encuentra en el rango de seguridad verde claro o verde oscuro" + Environment.NewLine;
 
             return secureSuggestion;
+        }
+
+        private string DuplicatePasswordSuggestion(Password password)
+        {
+            string duplicateSuggestion = "";
+            if (_myPasswordManager.PasswordTextIsDuplicate(password))
+                duplicateSuggestion = "- Esta contraseña ya se encuentre en el sistema" + Environment.NewLine;
+
+            return duplicateSuggestion;
         }
 
 
@@ -154,17 +168,6 @@ namespace Presentation
                 _myPasswordManager.CreatePassword(password);
             else
                 _myPasswordManager.ModifyPasswordOnCurrentUser(password);
-        }
-
-        private string DuplicatePasswordSuggestion(Password password)
-        {
-            string duplicateSuggestion = "";
-            if (_myPasswordManager.PasswordTextIsDuplicate(password))
-            {
-                duplicateSuggestion = "- Esta contraseña ya se encuentre en el sistema";   
-            }
-
-            return duplicateSuggestion;
         }
 
 
