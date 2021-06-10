@@ -281,7 +281,7 @@ namespace UnitTestObligatorio1
                 bool isEqualToOne = false;
                 foreach (DataBreachReport expectedReport in expectedReports)
                 {
-                    isEqualToOne = isEqualToOne | (report.Id == expectedReport.Id);
+                    isEqualToOne = isEqualToOne || (report.Id == expectedReport.Id);
                 }
                 areEqual = areEqual && isEqualToOne;
             }
