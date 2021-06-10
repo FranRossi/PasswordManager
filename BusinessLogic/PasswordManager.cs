@@ -89,11 +89,11 @@ namespace BusinessLogic
 
         public void CreatePassword(Password newPassword)
         {
-            VerifiesPassword(newPassword);
+            VerifyPassword(newPassword);
             _passwords.Add(newPassword);
         }
 
-        public void VerifiesPassword(Password passwordToCheck)
+        public void VerifyPassword(Password passwordToCheck)
         {
             VerifyPasswordBelongToCurrentUser(passwordToCheck);
             VerifyPasswordUniqueness(passwordToCheck);
@@ -119,7 +119,7 @@ namespace BusinessLogic
 
         public void ModifyPasswordOnCurrentUser(Password newPassword)
         {
-            VerifiesPassword(newPassword);
+            VerifyPassword(newPassword);
             _passwords.Modify(newPassword);
         }
 
@@ -250,11 +250,11 @@ namespace BusinessLogic
 
         public bool PasswordTextIsDuplicate(Password password)
         {
-            bool passTetxIsDuplicate = true;
+            bool passTextIsDuplicate = true;
             if (_passwords.CheckTextIsDuplicate(password))
-                return passTetxIsDuplicate;
+                return passTextIsDuplicate;
 
-            return passTetxIsDuplicate = false;
+            return passTextIsDuplicate = false;
         }
 
         public bool PasswordIsNotGreenSecure(Password password)

@@ -89,14 +89,14 @@ namespace Presentation
         private void VerifiesModifyPassword()
         {
             ModifyPasswordObjectFormFields();
-            _myPasswordManager.VerifiesPassword(_myPasswordToModify);
+            _myPasswordManager.VerifyPassword(_myPasswordToModify);
         }
 
         private void VerifiesNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
             _myNewPassword = newPassword;
-            _myPasswordManager.VerifiesPassword(_myNewPassword);
+            _myPasswordManager.VerifyPassword(_myNewPassword);
         }
 
         private void SuggestionsForPassword(Password password)
