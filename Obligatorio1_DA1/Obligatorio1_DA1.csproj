@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\CreditCard.cs" />
-    <Compile Include="Domain\DataBreach\DataBreachReaderFromString - Copy.cs" />
+    <Compile Include="Domain\DataBreach\DataBreachReaderFromTextFile.cs" />
     <Compile Include="Domain\DataBreach\DataBreachReportEntry.cs" />
     <Compile Include="Domain\DataBreach\DataBreachReport.cs" />
     <Compile Include="Domain\Item.cs" />

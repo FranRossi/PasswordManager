@@ -43,7 +43,7 @@ namespace Presentation
             this.lblCard = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
             this.btnOpenTextFile = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnlDataBreachText.SuspendLayout();
             this.pnlResults.SuspendLayout();
@@ -75,7 +75,7 @@ namespace Presentation
             // 
             // btnVerifyDataBreach
             // 
-            this.btnVerifyDataBreach.Location = new System.Drawing.Point(209, 367);
+            this.btnVerifyDataBreach.Location = new System.Drawing.Point(209, 342);
             this.btnVerifyDataBreach.Name = "btnVerifyDataBreach";
             this.btnVerifyDataBreach.Size = new System.Drawing.Size(75, 23);
             this.btnVerifyDataBreach.TabIndex = 1;
@@ -85,7 +85,7 @@ namespace Presentation
             // 
             // txtDataBreach
             // 
-            this.txtDataBreach.Location = new System.Drawing.Point(7, 69);
+            this.txtDataBreach.Location = new System.Drawing.Point(7, 53);
             this.txtDataBreach.Multiline = true;
             this.txtDataBreach.Name = "txtDataBreach";
             this.txtDataBreach.Size = new System.Drawing.Size(277, 256);
@@ -94,7 +94,7 @@ namespace Presentation
             // lblSubtitle
             // 
             this.lblSubtitle.AutoSize = true;
-            this.lblSubtitle.Location = new System.Drawing.Point(4, 53);
+            this.lblSubtitle.Location = new System.Drawing.Point(4, 37);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(80, 13);
             this.lblSubtitle.TabIndex = 1;
@@ -104,7 +104,7 @@ namespace Presentation
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(73, 18);
+            this.lblTitle.Location = new System.Drawing.Point(73, 2);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(141, 25);
             this.lblTitle.TabIndex = 0;
@@ -114,7 +114,7 @@ namespace Presentation
             // 
             this.lblDataBreachResult.AutoSize = true;
             this.lblDataBreachResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataBreachResult.Location = new System.Drawing.Point(3, 18);
+            this.lblDataBreachResult.Location = new System.Drawing.Point(7, 2);
             this.lblDataBreachResult.Name = "lblDataBreachResult";
             this.lblDataBreachResult.Size = new System.Drawing.Size(109, 25);
             this.lblDataBreachResult.TabIndex = 4;
@@ -140,14 +140,14 @@ namespace Presentation
             this.tblDataBreachCreditCard.AllowUserToResizeRows = false;
             this.tblDataBreachCreditCard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblDataBreachCreditCard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblDataBreachCreditCard.Location = new System.Drawing.Point(8, 245);
+            this.tblDataBreachCreditCard.Location = new System.Drawing.Point(12, 229);
             this.tblDataBreachCreditCard.MultiSelect = false;
             this.tblDataBreachCreditCard.Name = "tblDataBreachCreditCard";
             this.tblDataBreachCreditCard.ReadOnly = true;
             this.tblDataBreachCreditCard.RowHeadersVisible = false;
             this.tblDataBreachCreditCard.RowHeadersWidth = 62;
             this.tblDataBreachCreditCard.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(469, 145);
+            this.tblDataBreachCreditCard.Size = new System.Drawing.Size(469, 136);
             this.tblDataBreachCreditCard.TabIndex = 4;
             // 
             // tblDataBreachPassword
@@ -157,7 +157,7 @@ namespace Presentation
             this.tblDataBreachPassword.AllowUserToResizeRows = false;
             this.tblDataBreachPassword.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblDataBreachPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblDataBreachPassword.Location = new System.Drawing.Point(8, 69);
+            this.tblDataBreachPassword.Location = new System.Drawing.Point(12, 53);
             this.tblDataBreachPassword.MultiSelect = false;
             this.tblDataBreachPassword.Name = "tblDataBreachPassword";
             this.tblDataBreachPassword.ReadOnly = true;
@@ -169,7 +169,7 @@ namespace Presentation
             // 
             // btnModifyPass
             // 
-            this.btnModifyPass.Location = new System.Drawing.Point(402, 206);
+            this.btnModifyPass.Location = new System.Drawing.Point(406, 190);
             this.btnModifyPass.Name = "btnModifyPass";
             this.btnModifyPass.Size = new System.Drawing.Size(75, 23);
             this.btnModifyPass.TabIndex = 3;
@@ -180,7 +180,7 @@ namespace Presentation
             // lblCard
             // 
             this.lblCard.AutoSize = true;
-            this.lblCard.Location = new System.Drawing.Point(5, 229);
+            this.lblCard.Location = new System.Drawing.Point(9, 213);
             this.lblCard.Name = "lblCard";
             this.lblCard.Size = new System.Drawing.Size(99, 13);
             this.lblCard.TabIndex = 6;
@@ -189,7 +189,7 @@ namespace Presentation
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(5, 53);
+            this.lblPass.Location = new System.Drawing.Point(9, 37);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(120, 13);
             this.lblPass.TabIndex = 4;
@@ -197,7 +197,7 @@ namespace Presentation
             // 
             // btnOpenTextFile
             // 
-            this.btnOpenTextFile.Location = new System.Drawing.Point(9, 367);
+            this.btnOpenTextFile.Location = new System.Drawing.Point(7, 342);
             this.btnOpenTextFile.Name = "btnOpenTextFile";
             this.btnOpenTextFile.Size = new System.Drawing.Size(75, 23);
             this.btnOpenTextFile.TabIndex = 5;
@@ -205,17 +205,17 @@ namespace Presentation
             this.btnOpenTextFile.UseVisualStyleBackColor = true;
             this.btnOpenTextFile.Click += new System.EventHandler(this.btnOpenTextFile_Click);
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "Text files (*.txt)|*.txt";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(209, 331);
+            this.btnCancel.Location = new System.Drawing.Point(161, 315);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(123, 23);
             this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.Text = "Agregar manualmente";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -254,7 +254,7 @@ namespace Presentation
         private System.Windows.Forms.DataGridView tblDataBreachCreditCard;
         private System.Windows.Forms.DataGridView tblDataBreachPassword;
         private System.Windows.Forms.Button btnOpenTextFile;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btnCancel;
     }
 }

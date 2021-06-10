@@ -141,13 +141,25 @@ namespace Presentation
 
         private void btnOpenTextFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            string filename = openFileDialog1.FileName;
-            string readfile = File.ReadAllText(filename);
-            txtDataBreach.Text = readfile;
-            txtDataBreach.Enabled = false;
-            btnCancel.Visible = true;
-            _isTextFileBreach = true;
+            try
+            {
+                string fileString = CreateDialog();
+                txtDataBreach.Text = fileString;
+                txtDataBreach.Enabled = false;
+                btnCancel.Visible = true;
+                _isTextFileBreach = true;
+            }
+            catch (ArgumentException ex)
+            {
+                lblMessage.Text = "El archivo seleccionado no es válido o no se puede leer.";
+            }
+        }
+
+        private string CreateDialog()
+        {
+            openFileDialog.ShowDialog();
+            string filename = openFileDialog.FileName;
+            return File.ReadAllText(filename);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
