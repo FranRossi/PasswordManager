@@ -15,6 +15,9 @@ namespace UnitTestObligatorio1
         private string _creditCardDataBreach;
         private string _itemDataBreach;
         private string _repeatedItemDataBreach;
+        private string _itemDataBreachFromTextFile;
+        private string _creditCardDataBreachFromTextFile;
+        private string _passwordDataBreachFromTextFile;
         private PasswordManager _passwordManager;
         private User _currentUser;
         private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "neant3232323hnea" };
@@ -29,6 +32,9 @@ namespace UnitTestObligatorio1
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
             _repeatedItemDataBreach = CreateDataBreachString(_repeatedBreachedItems);
+            _itemDataBreachFromTextFile = CreateDataBreachTextFile(_breachedItems);
+            _passwordDataBreachFromTextFile = CreateDataBreachTextFile(_breachedPasswords);
+            _creditCardDataBreachFromTextFile = CreateDataBreachTextFile(_breachedCreditCards);
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
@@ -61,18 +67,7 @@ namespace UnitTestObligatorio1
                 };
                 expectedItems.Add(newEntry);
             }
-            bool areEqual = true;
-            foreach (DataBreachReportEntry entryA in breachedItems)
-            {
-                bool contained = false;
-                foreach (DataBreachReportEntry entryB in expectedItems)
-                {
-                    if (entryA.Value == entryB.Value)
-                        contained = true;
-                }
-                areEqual = areEqual && contained;
-            }
-            Assert.IsTrue(areEqual);
+            Assert.IsTrue(CompareEntries(breachedItems, expectedItems));
         }
 
         [TestMethod]
@@ -89,6 +84,29 @@ namespace UnitTestObligatorio1
                 };
                 expectedItems.Add(newEntry);
             }
+            Assert.IsTrue(CompareEntries(breachedItems, expectedItems));
+        }
+
+        [TestMethod]
+        public void GetDataBreachEntriesInBothImplementations(string dataString, string dataTextFile)
+        {
+            IDataBreachReader<string> dataBreachReaderString = new DataBreachReaderFromString();
+            IDataBreachReader<string> dataBreachReaderTextFile = new DataBreachReaderFromTextFile();
+            HashSet<DataBreachReportEntry> breachedItemsString = dataBreachReaderString.GetDataBreachEntries(_passwordDataBreach);
+            HashSet<DataBreachReportEntry> breachedItemsTextFile = dataBreachReaderTextFile.GetDataBreachEntries(_passwordDataBreachFromTextFile);
+            Assert.IsTrue(CompareEntries(breachedItemsString, breachedItemsTextFile));
+        }
+
+        private bool CompareEntries(HashSet<DataBreachReportEntry> breachedItems, HashSet<DataBreachReportEntry> expectedItems)
+        {
+            for (int i = 0; i < _breachedPasswords.Length; i++)
+            {
+                DataBreachReportEntry newEntry = new DataBreachReportEntry()
+                {
+                    Value = _breachedPasswords[i]
+                };
+                expectedItems.Add(newEntry);
+            }
             bool areEqual = true;
             foreach (DataBreachReportEntry entryA in breachedItems)
             {
@@ -100,7 +118,7 @@ namespace UnitTestObligatorio1
                 }
                 areEqual = areEqual && contained;
             }
-            Assert.IsTrue(areEqual);
+            return areEqual;
         }
 
         [TestMethod]
@@ -294,6 +312,16 @@ namespace UnitTestObligatorio1
             for (int i = 0; i < breachedString.Length; i++)
             {
                 dataBreach += breachedString[i] + Environment.NewLine;
+            }
+            return dataBreach;
+        }
+
+        private string CreateDataBreachTextFile(string[] breachedString)
+        {
+            string dataBreach = "";
+            for (int i = 0; i < breachedString.Length; i++)
+            {
+                dataBreach += breachedString[i] + "\t";
             }
             return dataBreach;
         }
