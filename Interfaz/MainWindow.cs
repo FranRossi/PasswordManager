@@ -74,5 +74,12 @@ namespace Presentation
             Form logOut = new LogOutWindow(e);
             logOut.ShowDialog();
         }
+
+        private void tsmiDataBreachHistory_Click(object sender, EventArgs e)
+        {
+            UserControl dataBreachHistory = new DataBreachHistory(_myPasswordManager);
+            pnlMainScreen.Controls.Clear();
+            pnlMainScreen.Controls.Add(dataBreachHistory);
+        }
     }
 }

@@ -12,8 +12,9 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxPasswordLength = 25;
         public const int MinPasswordLength = 5;
 
-        private string _masterPass;
         private string _masterName;
+        private string _masterPass;
+        private string _decryptionKey;
         private List<Category> _categories;
         public string MasterName
         {
@@ -29,9 +30,15 @@ namespace Obligatorio1_DA1.Domain
             get => _masterPass;
             set
             {
-                ValidatePassword(value);
-                //string hashedPassword = HashPassword(value);
                 _masterPass = value;
+            }
+        }
+        public string DecryptionKey
+        {
+            get => _decryptionKey;
+            set
+            {
+                _decryptionKey = value;
             }
         }
         public List<Category> Categories
@@ -48,6 +55,7 @@ namespace Obligatorio1_DA1.Domain
         {
             this.MasterName = newName;
             this.MasterPass = newPass;
+            this.DecryptionKey = newPass;
             this.Categories = new List<Category>();
         }
 
@@ -64,8 +72,9 @@ namespace Obligatorio1_DA1.Domain
                 throw new UserNameTooLongException();
         }
 
-        private void ValidatePassword(string passToValidate)
+        public void ValidatePassword()
         {
+            string passToValidate = this.MasterPass;
             if (!Validator.MinLengthOfString(passToValidate, User.MinPasswordLength))
                 throw new PasswordTooShortException();
             if (!Validator.MaxLengthOfString(passToValidate, User.MaxPasswordLength))
@@ -93,11 +102,12 @@ namespace Obligatorio1_DA1.Domain
             return this.MasterName;
         }
 
-        private string HashPassword(string password)
+        public void HashPassword()
         {
             IHash hashing = new BasicHash();
-            string hashedPass = hashing.Hash(password, MasterName);
-            return hashedPass;
+            string hashedPass = hashing.Hash(this.MasterPass, this.MasterName);
+            this.DecryptionKey = this.MasterPass;
+            _masterPass = hashedPass;
         }
     }
 }

@@ -71,7 +71,7 @@ namespace Repository
                 passwordToModify.Category = passwordCategoryFromDB;
                 passwordToModify.LastModification = modifiedPassword.LastModification;
                 passwordToModify.Notes = modifiedPassword.Notes;
-                passwordToModify.Pass = modifiedPassword.Pass;
+                passwordToModify.EncryptedPass = modifiedPassword.EncryptedPass;
                 passwordToModify.Site = modifiedPassword.Site;
                 passwordToModify.Username = modifiedPassword.Username;
                 context.Categories.Attach(passwordCategoryFromDB);
@@ -93,8 +93,8 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                Password passToCheck = context.Passwords.FirstOrDefault
-                    (p => p.Site == newPassword.Site && p.Username == newPassword.Username &&
+                Password passToCheck = context.Passwords.Include("User").FirstOrDefault
+                    (p => p.User.MasterName == newPassword.User.MasterName && p.Site == newPassword.Site && p.Username == newPassword.Username &&
                      p.Id != newPassword.Id);
                 bool passwordIsNull = passToCheck == null;
                 return passwordIsNull;

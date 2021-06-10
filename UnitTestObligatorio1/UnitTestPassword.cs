@@ -44,6 +44,7 @@ namespace UnitTestObligatorio1
                     Notes = "No me roben la cuenta"
                 };
                 _passwordManager.CreatePassword(_password);
+                _password = _passwordManager.GetPasswords()[0];
             }
             catch (Exception ex)
             {
@@ -141,6 +142,7 @@ namespace UnitTestObligatorio1
         public void CreateNewPasswordTooShort()
         {
             _password.Pass = "tom";
+            _passwordManager.ModifyPasswordOnCurrentUser(_password);
         }
 
 
@@ -149,6 +151,8 @@ namespace UnitTestObligatorio1
         public void CreateNewPasswordTooLong()
         {
             _password.Pass = "harryharryharryharryharryharry";
+            _passwordManager.ModifyPasswordOnCurrentUser(_password);
+
         }
 
         [TestMethod]
@@ -474,7 +478,7 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void VerifyLastModificationPasswrodChanges()
+        public void VerifyLastModificationPasswordChanges()
         {
             List<Password> passwordsBeforeModify = _passwordManager.GetPasswords();
             Password firstPassword = passwordsBeforeModify.ToArray()[0];

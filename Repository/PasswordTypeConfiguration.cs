@@ -14,7 +14,7 @@ namespace Repository
         {
             this.Property(pass => pass.LastModification).IsRequired();
             this.Property(pass => pass.Notes).IsOptional();
-            this.Property(pass => pass.Pass).IsRequired();
+            this.Property(pass => pass.EncryptedPass).IsRequired();
             this.Property(pass => pass.PasswordStrength).IsRequired();
             this.Property(pass => pass.Site).IsRequired();
             this.Property(pass => pass.Username).IsRequired();

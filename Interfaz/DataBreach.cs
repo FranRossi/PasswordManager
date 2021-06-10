@@ -3,6 +3,7 @@ using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Presentation
@@ -12,16 +13,21 @@ namespace Presentation
 
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
+        private bool _isTextFileBreach;
 
         public DataBreach(PasswordManager passwordManager)
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
+            _isTextFileBreach = false;
         }
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
-            LoadDataBreach();
+            if (txtDataBreach.TextLength > 0)
+                LoadDataBreach();
+            else
+                lblMessage.Text = "Ingresar datos en el campo de texto para verificar el Data Breach";
         }
 
         private void LoadTables(List<Item> breachResults)
@@ -41,11 +47,16 @@ namespace Presentation
 
         private void LoadDataBreach()
         {
-            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachItems(txtDataBreach.Text);
+            IDataBreachReader<string> dataBreachReader;
+            if (_isTextFileBreach)
+                dataBreachReader = new DataBreachReaderFromTextFile();
+            else
+                dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachEntries(txtDataBreach.Text);
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
             LoadTables(breachResult);
+            lblMessage.Text = "";
         }
 
         private void LoadTblCreditCard(List<CreditCard> creditCards)
@@ -126,6 +137,37 @@ namespace Presentation
         private void RefreshForm(object sender, FormClosingEventArgs e)
         {
             LoadDataBreach();
+        }
+
+        private void btnOpenTextFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string fileString = CreateDialog();
+                txtDataBreach.Text = fileString;
+                txtDataBreach.Enabled = false;
+                btnCancel.Visible = true;
+                _isTextFileBreach = true;
+            }
+            catch (ArgumentException ex)
+            {
+                lblMessage.Text = "El archivo seleccionado no es válido o no se puede leer.";
+            }
+        }
+
+        private string CreateDialog()
+        {
+            openFileDialog.ShowDialog();
+            string filename = openFileDialog.FileName;
+            return File.ReadAllText(filename);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnCancel.Visible = false;
+            txtDataBreach.Enabled = true;
+            txtDataBreach.Text = "";
+            _isTextFileBreach = false;
         }
     }
 }

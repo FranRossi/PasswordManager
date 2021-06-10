@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CleanMigrationMerge : DbMigration
+    public partial class CleanMigration : DbMigration
     {
         public override void Up()
         {
@@ -116,7 +116,7 @@
                         PasswordStrength = c.Int(nullable: false),
                         Site = c.String(nullable: false, maxLength: 25),
                         Username = c.String(nullable: false, maxLength: 25),
-                        Pass = c.String(nullable: false),
+                        EncryptedPass = c.String(nullable: false),
                         LastModification = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

@@ -41,6 +41,7 @@ namespace Presentation
             this.tsmiDataBreaches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPasswordStrength = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.tsmiDataBreachHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMainScreen.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.pnlMenu.SuspendLayout();
@@ -99,6 +100,7 @@ namespace Presentation
             this.tsmiCreditCards,
             this.tsmiCategories,
             this.tsmiDataBreaches,
+            this.tsmiDataBreachHistory,
             this.tsmiPasswordStrength});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -154,6 +156,13 @@ namespace Presentation
             this.pnlMenu.Size = new System.Drawing.Size(777, 26);
             this.pnlMenu.TabIndex = 5;
             // 
+            // tsmiDataBreachHistory
+            // 
+            this.tsmiDataBreachHistory.Name = "tsmiDataBreachHistory";
+            this.tsmiDataBreachHistory.Size = new System.Drawing.Size(259, 22);
+            this.tsmiDataBreachHistory.Text = "Histórico de Data Breaches";
+            this.tsmiDataBreachHistory.Click += new System.EventHandler(this.tsmiDataBreachHistory_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,5 +200,6 @@ namespace Presentation
         private System.Windows.Forms.ToolStripMenuItem tsmiSharedWithMe;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDataBreachHistory;
     }
 }

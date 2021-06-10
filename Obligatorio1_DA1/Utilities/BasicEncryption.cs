@@ -16,7 +16,8 @@ namespace Obligatorio1_DA1.Utilities
         public string Decrypt(string encryptedText, string key)
         {
             int originalTextLength = encryptedText.Length - key.Length;
-            return encryptedText.Substring(0, originalTextLength);
+            string decryptedText = encryptedText.Substring(0, originalTextLength);
+            return decryptedText;
         }
 
     }
