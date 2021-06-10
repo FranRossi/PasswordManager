@@ -101,12 +101,12 @@ namespace Presentation
 
         private void SuggestionsForPassword(Password password)
         {
-            //string historicalSuggestion = HistoricDataBreachSuggestion(password);
+            string historicalSuggestion = HistoricDataBreachSuggestion(password);
             string duplicateSuggestion = DuplicatePasswordSuggestion(password);
             string secureSuggestion = SecurePasswordSuggestion(password);
 
             bool userDontWantToChangePassword = 
-                !ManagePopUpSuggestions("Esto no se implemento", duplicateSuggestion, secureSuggestion);
+                !ManagePopUpSuggestions(historicalSuggestion, duplicateSuggestion, secureSuggestion);
            
             if (userDontWantToChangePassword) { 
                 UpdateDataBasePassword(password); 
@@ -117,8 +117,9 @@ namespace Presentation
         private bool ManagePopUpSuggestions(string historic, string duplicate, string secure)
         {
             DialogResult duplicateSuggestion;
-            duplicateSuggestion = MessageBox.Show(historic + Environment.NewLine + duplicate + Environment.NewLine + secure,
-                "Pass Sugesstions", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            duplicateSuggestion = MessageBox.Show(historic + Environment.NewLine + duplicate + Environment.NewLine + secure
+                + Environment.NewLine + "¿Le gustaría cambiarla?",
+                "Sugerencias Password", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (duplicateSuggestion == DialogResult.Yes)
                  return true;
@@ -128,9 +129,9 @@ namespace Presentation
 
         private string HistoricDataBreachSuggestion(Password password)
         {
-            string historicSuggestion = "";
-            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
-                historicSuggestion = "Esta pass se encuentra en un data breach, ¿le gustaría cambiarla?";
+            string historicSuggestion = "- ";
+           /* if (_myPasswordManager.PasswordIsNotGreenSecure(password))
+                historicSuggestion = "- Esta pass se encuentra en un data breach";*/
 
             return historicSuggestion;
         }
@@ -140,8 +141,7 @@ namespace Presentation
             string secureSuggestion = "";
             if (_myPasswordManager.PasswordIsNotGreenSecure(password))
             {
-                secureSuggestion = "Esta pass no se encuentra en el rango de seguridad verde claro" +
-                    " o verde oscuro, ¿le gustaría cambiarla?";
+                secureSuggestion = "- Esta pass no se encuentra en el rango de seguridad verde claro o verde oscuro";
             }
 
             return secureSuggestion;
@@ -161,7 +161,7 @@ namespace Presentation
             string duplicateSuggestion = "";
             if (_myPasswordManager.PasswordTextIsDuplicate(password))
             {
-                duplicateSuggestion = "Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?";   
+                duplicateSuggestion = "- Esta pass ya se encuentre en el sistema";   
             }
 
             return duplicateSuggestion;
