@@ -65,7 +65,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPass);
             Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
-            string encryptedPassword = newPassFromPasswordManger.Pass;
+            string encryptedPassword = newPassFromPasswordManger.EncryptedPass;
             string unEncryptedPassword = passName;
             Assert.AreNotEqual(unEncryptedPassword, encryptedPassword);
         }
@@ -75,7 +75,7 @@ namespace UnitTestObligatorio1
         [DataRow("12321pass werod")]
         [DataRow("hello world")]
         [DataTestMethod]
-        public void DencryptedPasswordDifferentFromOriginal(string passName)
+        public void DencryptedPasswordSameThanOriginal(string passName)
         {
             Password newPass = new Password
             {
@@ -89,7 +89,7 @@ namespace UnitTestObligatorio1
             _passwordManager.CreatePassword(newPass);
             string unEncryptedPassword = passName;
             Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
-            string decyptedPassword = newPassFromPasswordManger.DecryptedPass;
+            string decyptedPassword = newPassFromPasswordManger.Pass;
             Assert.AreEqual(unEncryptedPassword, decyptedPassword);
         }
 
@@ -125,7 +125,7 @@ namespace UnitTestObligatorio1
             List<Password> passwords = _passwordManager.GetPasswords();
             Password newPassFromPasswordManger = passwords[0];
             Password secondPassFromPasswordManger = passwords[1];
-            Assert.AreEqual(newPassFromPasswordManger.Pass, secondPassFromPasswordManger.Pass);
+            Assert.AreEqual(newPassFromPasswordManger.EncryptedPass, secondPassFromPasswordManger.EncryptedPass);
         }
 
         [DataRow("mySuperSecurePassword")]
@@ -159,7 +159,7 @@ namespace UnitTestObligatorio1
             List<Password> passwords = _passwordManager.GetPasswords();
             Password newPassFromPasswordManger = passwords[0];
             Password secondPassFromPasswordManger = passwords[1];
-            Assert.AreNotEqual(newPassFromPasswordManger.Pass, secondPassFromPasswordManger.Pass);
+            Assert.AreNotEqual(newPassFromPasswordManger.EncryptedPass, secondPassFromPasswordManger.EncryptedPass);
         }
 
     }

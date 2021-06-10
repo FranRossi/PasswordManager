@@ -101,7 +101,6 @@ namespace BusinessLogic
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
             VerifyItemCategoryBelongsToUser(newPassword);
-            newPassword.ValidatePass();
             newPassword.Encrypt();
             _passwords.Add(newPassword);
         }
@@ -134,7 +133,6 @@ namespace BusinessLogic
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
             VerifyItemCategoryBelongsToUser(newPassword);
-            newPassword.ValidatePass();
             _passwords.Modify(newPassword);
         }
 

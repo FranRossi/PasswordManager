@@ -63,6 +63,14 @@
     <Compile Include="Migrations\202106092149283_IgnorePasswordsKey.designer.cs">
       <DependentUpon>202106092149283_IgnorePasswordsKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106101522467_EncryptedPass.cs" />
+    <Compile Include="Migrations\202106101522467_EncryptedPass.designer.cs">
+      <DependentUpon>202106101522467_EncryptedPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106101525596_ClearDB.cs" />
+    <Compile Include="Migrations\202106101525596_ClearDB.designer.cs">
+      <DependentUpon>202106101525596_ClearDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
     <Compile Include="CreditCardTypeConfiguration.cs" />
@@ -91,6 +99,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106092149283_IgnorePasswordsKey.resx">
       <DependentUpon>202106092149283_IgnorePasswordsKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106101522467_EncryptedPass.resx">
+      <DependentUpon>202106101522467_EncryptedPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106101525596_ClearDB.resx">
+      <DependentUpon>202106101525596_ClearDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
