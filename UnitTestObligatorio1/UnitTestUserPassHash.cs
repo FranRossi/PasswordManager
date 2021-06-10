@@ -83,7 +83,7 @@ namespace UnitTestObligatorio1
             User newUser = new User("Juancito", originalMasterPass);
             passwordManager.CreateUser(newUser);
             User newUserFromPasswordManager = passwordManager.CurrentUser;
-            string userPasswordsKey = newUserFromPasswordManager.PasswordsKey;
+            string userPasswordsKey = newUserFromPasswordManager.DecryptionKey;
             Assert.AreEqual(originalMasterPass, userPasswordsKey);
         }
 

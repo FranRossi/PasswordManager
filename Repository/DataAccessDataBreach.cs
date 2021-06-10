@@ -27,7 +27,7 @@ namespace Repository
                     {
                         if (pass.User.Equals(dataBreachUserFromDB))
                         {
-                            pass.User.PasswordsKey = originalUser.PasswordsKey;
+                            SynchronizeLocalAndDBUsersDecryptionKey(originalUser, pass.User);
                             if (pass.Pass == dataBreachItem.Value)
                                 breachedItems.Add(pass);
                         }
@@ -42,6 +42,10 @@ namespace Repository
             }
         }
 
+        private void SynchronizeLocalAndDBUsersDecryptionKey(User originalUser, User user)
+        {
+            user.DecryptionKey = originalUser.DecryptionKey;
+        }
 
         private void SaveDataBreach(DataBreachReport dataBreachReport, PasswordManagerDBContext context)
         {

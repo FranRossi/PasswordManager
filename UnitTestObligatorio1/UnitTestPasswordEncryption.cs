@@ -145,7 +145,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPass);
 
-            _user.PasswordsKey = "newPasswordKey";
+            _user.DecryptionKey = "newPasswordKey";
             Password secondPass = new Password
             {
                 User = _user,

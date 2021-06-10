@@ -94,13 +94,13 @@ namespace Obligatorio1_DA1.Domain
 
         private void DecryptedPass()
         {
-            string decyptedPassword = encryption.Decrypt(this.EncryptedPass, this.User.PasswordsKey);
+            string decyptedPassword = encryption.Decrypt(this.EncryptedPass, this.User.DecryptionKey);
             this.Pass = decyptedPassword;
         }
 
         public void Encrypt()
         {
-            string encryptedPassword = encryption.Encrypt(this.Pass, this.User.PasswordsKey);
+            string encryptedPassword = encryption.Encrypt(this.Pass, this.User.DecryptionKey);
             this.EncryptedPass = encryptedPassword;
         }
 

@@ -27,7 +27,7 @@ namespace Repository
             modelBuilder.Configurations.Add(new CategoryTypeConfiguration());
             modelBuilder.Entity<Password>().ToTable("Passwords");
             modelBuilder.Entity<CreditCard>().ToTable("CreditCards");
-            modelBuilder.Entity<User>().Ignore(u => u.PasswordsKey);
+            modelBuilder.Entity<User>().Ignore(u => u.DecryptionKey);
             modelBuilder.Entity<Password>().Ignore(p => p.Pass);
 
             modelBuilder.Entity<Password>()

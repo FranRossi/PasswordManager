@@ -14,7 +14,7 @@ namespace Obligatorio1_DA1.Domain
 
         private string _masterName;
         private string _masterPass;
-        private string _passwordsKey;
+        private string _decryptionKey;
         private List<Category> _categories;
         public string MasterName
         {
@@ -33,12 +33,12 @@ namespace Obligatorio1_DA1.Domain
                 _masterPass = value;
             }
         }
-        public string PasswordsKey
+        public string DecryptionKey
         {
-            get => _passwordsKey;
+            get => _decryptionKey;
             set
             {
-                _passwordsKey = value;
+                _decryptionKey = value;
             }
         }
         public List<Category> Categories
@@ -55,7 +55,7 @@ namespace Obligatorio1_DA1.Domain
         {
             this.MasterName = newName;
             this.MasterPass = newPass;
-            this.PasswordsKey = newPass;
+            this.DecryptionKey = newPass;
             this.Categories = new List<Category>();
         }
 
@@ -106,7 +106,7 @@ namespace Obligatorio1_DA1.Domain
         {
             IHash hashing = new BasicHash();
             string hashedPass = hashing.Hash(this.MasterPass, this.MasterName);
-            this.PasswordsKey = this.MasterPass;
+            this.DecryptionKey = this.MasterPass;
             _masterPass = hashedPass;
         }
     }
