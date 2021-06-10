@@ -20,6 +20,7 @@ namespace UnitTestObligatorio1
         private string _passwordDataBreachFromTextFile;
         private PasswordManager _passwordManager;
         private User _currentUser;
+        private string _currentUserMasterPass;
         private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "neant3232323hnea" };
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
         private string[] _breachedItems = { "2354231413003498", "Passoword223", "neant3232323hnea", "2354678713003498", "abcde876", "7685678713567898", "1256478713003498", "239850232", };
@@ -36,6 +37,7 @@ namespace UnitTestObligatorio1
             _passwordDataBreachFromTextFile = CreateDataBreachTextFile(_breachedPasswords);
             _creditCardDataBreachFromTextFile = CreateDataBreachTextFile(_breachedCreditCards);
             _passwordManager = new PasswordManager();
+            _currentUserMasterPass = "HolaSoyGonzalo123";
             _currentUser = new User()
             {
                 MasterName = "Gonzalo",
@@ -329,7 +331,7 @@ namespace UnitTestObligatorio1
         private List<Item> AddBreachedPasswordsToPasswordManager()
         {
             List<Item> brechedPasswordsList = new List<Item>();
-            _passwordManager.Login(_currentUser.MasterName, _currentUser.MasterPass);
+            _passwordManager.Login(_currentUser.MasterName, _currentUserMasterPass);
             Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedPasswords.Length; i++)
             {
@@ -376,7 +378,7 @@ namespace UnitTestObligatorio1
         private List<Item> AddBreachedCreditCardsToPasswordManager()
         {
             List<Item> breachedCreditCardList = new List<Item>();
-            _passwordManager.Login(_currentUser.MasterName, _currentUser.MasterPass);
+            _passwordManager.Login(_currentUser.MasterName, _currentUserMasterPass);
             Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedCreditCards.Length; i++)
             {

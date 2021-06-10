@@ -18,11 +18,11 @@ namespace Repository
             }
         }
 
-        public User Login(string userName, string userPassword)
+        public User Login(User userToLogIn)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                User loggedInUser = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userName && u.MasterPass == userPassword);
+                User loggedInUser = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == userToLogIn.MasterName && u.MasterPass == userToLogIn.MasterPass);
                 return loggedInUser;
             }
         }

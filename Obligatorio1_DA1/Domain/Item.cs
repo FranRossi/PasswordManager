@@ -30,7 +30,7 @@ namespace Obligatorio1_DA1.Domain
 
         private void ValidateNotes(string notesToValidate)
         {
-            if (!Validator.MaxLengthOfString(notesToValidate, Item.MaxNoteLength))
+            if (notesToValidate != null && !Validator.MaxLengthOfString(notesToValidate, Item.MaxNoteLength))
                 throw new ItemNotesTooLongException();
         }
     }

@@ -19,12 +19,19 @@ namespace Repository
                 List<Item> breachedItems = new List<Item>();
                 HashSet<DataBreachReportEntry> dataBreachItems = dataBreachReport.Entries;
                 User dataBreachUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == dataBreachReport.User.MasterName);
+                User originalUser = dataBreachReport.User;
                 dataBreachReport.User = dataBreachUserFromDB;
                 foreach (DataBreachReportEntry dataBreachItem in dataBreachItems)
                 {
                     foreach (Password pass in context.Passwords.Include("User").Include("Category"))
-                        if (pass.Pass == dataBreachItem.Value && pass.User.Equals(dataBreachUserFromDB))
-                            breachedItems.Add(pass);
+                    {
+                        if (pass.User.Equals(dataBreachUserFromDB))
+                        {
+                            SynchronizeLocalAndDBUsersDecryptionKey(originalUser, pass.User);
+                            if (pass.Pass == dataBreachItem.Value)
+                                breachedItems.Add(pass);
+                        }
+                    }
                     foreach (CreditCard card in context.CreditCards.Include("User").Include("Category"))
                         if (card.Number == dataBreachItem.Value && card.User.Equals(dataBreachUserFromDB))
                             breachedItems.Add(card);
@@ -35,6 +42,10 @@ namespace Repository
             }
         }
 
+        private void SynchronizeLocalAndDBUsersDecryptionKey(User originalUser, User user)
+        {
+            user.DecryptionKey = originalUser.DecryptionKey;
+        }
 
         private void SaveDataBreach(DataBreachReport dataBreachReport, PasswordManagerDBContext context)
         {

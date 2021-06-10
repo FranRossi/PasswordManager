@@ -19,6 +19,7 @@ namespace Obligatorio1_DA1.Domain
         private string _site;
         private string _username;
         private string _pass;
+        private string _encryptedPass;
         private List<User> _sharedWith;
         private DateTime _lastModification;
         private IEncryption encryption;
@@ -66,33 +67,41 @@ namespace Obligatorio1_DA1.Domain
 
         public string Pass
         {
-            get => _pass;
+            get
+            {
+                if (_pass == null)
+                    DecryptedPass();
+                return _pass;
+            }
             set
             {
                 ValidatePass(value);
-                //_pass = Encrypt(value);
                 _pass = value;
                 this.PasswordStrength = CalculatePasswordStrength(value);
             }
 
         }
 
-        public string DecryptedPass
+        public string EncryptedPass
         {
-            get => ShowDecryptedPass();
+            get => _encryptedPass;
+            set
+            {
+                _encryptedPass = value;
+            }
+
         }
 
-        private string ShowDecryptedPass()
+        private void DecryptedPass()
         {
-            string decyptedPassword = encryption.Decrypt(Pass, Username);
-            return decyptedPassword;
+            string decyptedPassword = encryption.Decrypt(this.EncryptedPass, this.User.DecryptionKey);
+            this.Pass = decyptedPassword;
         }
 
-        private string Encrypt(string pass)
+        public void Encrypt()
         {
-            string encryptedPassword = encryption.Encrypt(pass, Username);
-            return encryptedPassword;
-
+            string encryptedPassword = encryption.Encrypt(this.Pass, this.User.DecryptionKey);
+            this.EncryptedPass = encryptedPassword;
         }
 
         public DateTime LastModification
@@ -121,7 +130,7 @@ namespace Obligatorio1_DA1.Domain
                 throw new PasswordUsernameTooLongException();
         }
 
-        private void ValidatePass(string passToValidate)
+        public void ValidatePass(string passToValidate)
         {
             if (!Validator.MinLengthOfString(passToValidate, Password.MinPasswordLength))
                 throw new PasswordTooShortException();

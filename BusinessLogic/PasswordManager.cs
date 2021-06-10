@@ -37,6 +37,8 @@ namespace BusinessLogic
         public void CreateUser(User newUser)
         {
             VerifyUserUniqueness(newUser);
+            newUser.ValidatePassword();
+            newUser.HashPassword();
             _users.Add(newUser);
             CurrentUser = newUser;
         }
@@ -49,11 +51,18 @@ namespace BusinessLogic
 
         public void Login(string name, string password)
         {
-            User userFromDB = _users.Login(name, password);
+            User userToLogin = new User
+            {
+                MasterName = name,
+                MasterPass = password
+            };
+            userToLogin.HashPassword();
+            User userFromDB = _users.Login(userToLogin);
 
             if (userFromDB == null)
                 throw new LogInException();
 
+            userFromDB.DecryptionKey = password;
             CurrentUser = userFromDB;
         }
 
@@ -92,15 +101,22 @@ namespace BusinessLogic
             VerifyPasswordBelongToCurrentUser(newPassword);
             VerifyPasswordUniqueness(newPassword);
             VerifyItemCategoryBelongsToUser(newPassword);
+            newPassword.Encrypt();
             _passwords.Add(newPassword);
         }
 
         public List<Password> GetPasswords()
         {
             string currentUserMasterName = CurrentUser.MasterName;
-            return _passwords.GetAll(currentUserMasterName).ToList();
+            List<Password> passwordsFromDB = _passwords.GetAll(currentUserMasterName).ToList();
+            AddPasswordKeyToPasswords(passwordsFromDB);
+            return passwordsFromDB;
         }
 
+        private void AddPasswordKeyToPasswords(List<Password> passwords)
+        {
+            passwords.ForEach(password => password.User.DecryptionKey = CurrentUser.DecryptionKey);
+        }
         public List<Password> GetSharedPasswordsWithCurrentUser()
         {
             List<Password> passwordsSharedWithMe = _passwords.GetSharedPasswordsWithCurrentUser(CurrentUser);

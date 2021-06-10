@@ -11,7 +11,6 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordEncryption
     {
-        private Password _password;
         private PasswordManager _passwordManager;
         private User _user;
         private Category _category;
@@ -55,7 +54,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void EncryptedPasswordDifferentFromOriginal(string passName)
         {
-            _password = new Password
+            Password newPass = new Password
             {
                 User = _user,
                 Category = _category,
@@ -64,7 +63,9 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            string encryptedPassword = _password.Pass;
+            _passwordManager.CreatePassword(newPass);
+            Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
+            string encryptedPassword = newPassFromPasswordManger.EncryptedPass;
             string unEncryptedPassword = passName;
             Assert.AreNotEqual(unEncryptedPassword, encryptedPassword);
         }
@@ -74,9 +75,9 @@ namespace UnitTestObligatorio1
         [DataRow("12321pass werod")]
         [DataRow("hello world")]
         [DataTestMethod]
-        public void DencryptedPasswordDifferentFromOriginal(string passName)
+        public void DencryptedPasswordSameThanOriginal(string passName)
         {
-            _password = new Password
+            Password newPass = new Password
             {
                 User = _user,
                 Category = _category,
@@ -85,9 +86,82 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
+            _passwordManager.CreatePassword(newPass);
             string unEncryptedPassword = passName;
-            string decyptedPassword = _password.DecryptedPass;
+            Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
+            string decyptedPassword = newPassFromPasswordManger.Pass;
             Assert.AreEqual(unEncryptedPassword, decyptedPassword);
         }
+
+
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("12321pass werod")]
+        [DataRow("hello world")]
+        [DataTestMethod]
+        public void SameUserAndPassResultsInSameEncryption(string passName)
+        {
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordManager.CreatePassword(newPass);
+
+
+            Password secondPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "amazon",
+                Username = "amazingssss",
+                Pass = passName
+            };
+            _passwordManager.CreatePassword(secondPass);
+
+            List<Password> passwords = _passwordManager.GetPasswords();
+            Password newPassFromPasswordManger = passwords[0];
+            Password secondPassFromPasswordManger = passwords[1];
+            Assert.AreEqual(newPassFromPasswordManger.EncryptedPass, secondPassFromPasswordManger.EncryptedPass);
+        }
+
+        [DataRow("mySuperSecurePassword")]
+        [DataRow("12321pass werod")]
+        [DataRow("hello world")]
+        [DataTestMethod]
+        public void EncryptionDependeOnUsersKey(string passName)
+        {
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordManager.CreatePassword(newPass);
+
+            _user.DecryptionKey = "newPasswordKey";
+            Password secondPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "amazon",
+                Username = "amazingssss",
+                Pass = passName
+            };
+            _passwordManager.CreatePassword(secondPass);
+
+            List<Password> passwords = _passwordManager.GetPasswords();
+            Password newPassFromPasswordManger = passwords[0];
+            Password secondPassFromPasswordManger = passwords[1];
+            Assert.AreNotEqual(newPassFromPasswordManger.EncryptedPass, secondPassFromPasswordManger.EncryptedPass);
+        }
+
     }
 }
+
