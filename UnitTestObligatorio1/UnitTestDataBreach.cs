@@ -353,11 +353,24 @@ namespace UnitTestObligatorio1
                 Pass = "Passoword223",
                 Notes = "No me roben la cuenta"
             };
+            CreditCard newCard = new CreditCard
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "2354231413001234",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Tra­mite 400k UYU"
+            };
             items.Add(newPassword);
+            items.Add(newCard);
             dataBreachReport.BreachedItems = items;
+            _passwordManager.SaveBreachedItems(dataBreachReport);
 
-            List<Password> passwordsBreached = _passwordManager.GetPasswordsFromDataBreachForCurrentUser();
-            CollectionAssert.Contains(dataBreachReport.BreachedItems, newPassword);
+            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
+            Assert.IsTrue(passwordHasBeenBreached);
         }
 
     }

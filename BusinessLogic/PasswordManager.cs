@@ -264,9 +264,10 @@ namespace BusinessLogic
             return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
         }
 
-        public List<Password> GetPasswordsFromDataBreachForCurrentUser()
+        public bool VerifyPasswordHasBeenBreached(Password passwordToCheck)
         {
-            throw new NotImplementedException();
+            bool passwordIsBreached = _dataBreaches.CheckIfPasswordHasBeenBreached(CurrentUser, passwordToCheck);
+            return passwordIsBreached;
         }
     }
 }

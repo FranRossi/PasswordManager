@@ -119,7 +119,7 @@ namespace Presentation
             DialogResult duplicateSuggestion;
             duplicateSuggestion = MessageBox.Show(historic + Environment.NewLine + duplicate + Environment.NewLine + secure
                 + Environment.NewLine + "¿Le gustaría cambiarla?",
-                "Sugerencias Password", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (duplicateSuggestion == DialogResult.Yes)
                  return true;
@@ -129,9 +129,9 @@ namespace Presentation
 
         private string HistoricDataBreachSuggestion(Password password)
         {
-            string historicSuggestion = "- ";
-           /* if (_myPasswordManager.PasswordIsNotGreenSecure(password))
-                historicSuggestion = "- Esta pass se encuentra en un data breach";*/
+            string historicSuggestion = "";
+            /* if (_myPasswordManager.PasswordIsNotGreenSecure(password))
+                 historicSuggestion = "- Esta contraseña se encuentra en un data breach";*/
 
             return historicSuggestion;
         }
@@ -141,7 +141,7 @@ namespace Presentation
             string secureSuggestion = "";
             if (_myPasswordManager.PasswordIsNotGreenSecure(password))
             {
-                secureSuggestion = "- Esta pass no se encuentra en el rango de seguridad verde claro o verde oscuro";
+                secureSuggestion = "- Esta contraseña no se encuentra en el rango de seguridad verde claro o verde oscuro";
             }
 
             return secureSuggestion;
@@ -161,7 +161,7 @@ namespace Presentation
             string duplicateSuggestion = "";
             if (_myPasswordManager.PasswordTextIsDuplicate(password))
             {
-                duplicateSuggestion = "- Esta pass ya se encuentre en el sistema";   
+                duplicateSuggestion = "- Esta contraseña ya se encuentre en el sistema";   
             }
 
             return duplicateSuggestion;

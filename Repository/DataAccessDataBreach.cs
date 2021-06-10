@@ -42,5 +42,17 @@ namespace Repository
             context.SaveChanges();
         }
 
+        public bool CheckIfPasswordHasBeenBreached(User currentUser, Password passwordToCheck)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                bool passwordHasBeenBreached = false; 
+                DataBreachReport newDataBreachReport = context.DataBreachReports.Include("User").Include("BreachedItems").
+                    FirstOrDefault(breach => breach.User.Equals(currentUser));
+                passwordHasBeenBreached = newDataBreachReport.BreachedItems.Contains(passwordToCheck);
+              
+                return passwordHasBeenBreached;
+            }
+        }
     }
 }
