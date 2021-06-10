@@ -7,13 +7,13 @@ namespace Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class EncryptedPass : IMigrationMetadata
+    public sealed partial class CleanMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EncryptedPass));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CleanMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106101522467_EncryptedPass"; }
+            get { return "202106102215097_CleanMigration"; }
         }
         
         string IMigrationMetadata.Source
