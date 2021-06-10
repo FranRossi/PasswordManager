@@ -55,9 +55,9 @@
     <Compile Include="DataAccessPassword.cs" />
     <Compile Include="IDataAccessPassword.cs" />
     <Compile Include="IDataAccessCreditCard.cs" />
-    <Compile Include="Migrations\202106102215097_CleanMigration.cs" />
-    <Compile Include="Migrations\202106102215097_CleanMigration.designer.cs">
-      <DependentUpon>202106102215097_CleanMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202106102319598_Clean-Migration-MergeConflict.cs" />
+    <Compile Include="Migrations\202106102319598_Clean-Migration-MergeConflict.designer.cs">
+      <DependentUpon>202106102319598_Clean-Migration-MergeConflict.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
@@ -82,8 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106102215097_CleanMigration.resx">
-      <DependentUpon>202106102215097_CleanMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106102319598_Clean-Migration-MergeConflict.resx">
+      <DependentUpon>202106102319598_Clean-Migration-MergeConflict.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

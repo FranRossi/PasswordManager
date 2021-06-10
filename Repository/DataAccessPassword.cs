@@ -172,12 +172,12 @@ namespace Repository
             }
         }
 
-        public bool CheckTextIsDuplicate(Password password)
+        public bool CheckTextIsDuplicate(Password password, User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 Password passToCheck = context.Passwords.FirstOrDefault
-                    (p => p.Pass == password.Pass);
+                    (p => p.EncryptedPass == password.EncryptedPass && p.User.MasterName == currentUser.MasterName);
                 bool passTextIsDuplicate = passToCheck != null;
                 return passTextIsDuplicate;
             }

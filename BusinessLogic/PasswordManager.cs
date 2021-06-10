@@ -266,7 +266,7 @@ namespace BusinessLogic
 
         public bool PasswordTextIsDuplicate(Password password)
         {
-            bool passTextIsDuplicate = _passwords.CheckTextIsDuplicate(password);
+            bool passTextIsDuplicate = _passwords.CheckTextIsDuplicate(password, CurrentUser);
             return passTextIsDuplicate;
         }
 
