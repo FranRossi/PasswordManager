@@ -13,11 +13,13 @@ namespace Presentation
 
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
+        private bool _isTextFileBreach;
 
         public DataBreach(PasswordManager passwordManager)
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
+            _isTextFileBreach = false;
         }
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
@@ -45,7 +47,11 @@ namespace Presentation
 
         private void LoadDataBreach()
         {
-            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            IDataBreachReader<string> dataBreachReader;
+            if (_isTextFileBreach)
+                dataBreachReader = new DataBreachReaderFromTextFile();
+            else
+                dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachEntries(txtDataBreach.Text);
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
@@ -141,6 +147,7 @@ namespace Presentation
             txtDataBreach.Text = readfile;
             txtDataBreach.Enabled = false;
             btnCancel.Visible = true;
+            _isTextFileBreach = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -148,6 +155,7 @@ namespace Presentation
             btnCancel.Visible = false;
             txtDataBreach.Enabled = true;
             txtDataBreach.Text = "";
+            _isTextFileBreach = false;
         }
     }
 }
