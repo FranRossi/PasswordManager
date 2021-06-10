@@ -534,12 +534,12 @@ namespace UnitTestObligatorio1
             {
                 User = _user,
                 Category = _category,
-                Site = "ort.edu.uy/33",
+                Site = "Este es un nuevo sitio",
                 Username = "2222340",
                 Pass = "239850Ort2019",
                 Notes = "Esta es la nueva password",
             };
-
+            newPassword.Encrypt();
             bool passTextIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
             Assert.IsTrue(passTextIsDuplicate);
         }

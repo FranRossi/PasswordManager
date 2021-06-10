@@ -57,7 +57,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                bool passwordHasBeenBreached = false; 
+                bool passwordHasBeenBreached = false;
                 List<DataBreachReport> dataBreachReportsForCurrentUser = GetDataBreachReportsFromUser(currentUser.MasterName);
 
                 foreach (DataBreachReport breach in dataBreachReportsForCurrentUser)
@@ -66,8 +66,9 @@ namespace Repository
                     if (passwordHasBeenBreached)
                         return passwordHasBeenBreached;
                 }
-            }      
+
                 return passwordHasBeenBreached;
+            }
         }
       
         public List<DataBreachReport> GetDataBreachReportsFromUser(String userMasterName)
