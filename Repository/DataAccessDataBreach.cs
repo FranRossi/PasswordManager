@@ -42,5 +42,13 @@ namespace Repository
             context.SaveChanges();
         }
 
+        public List<DataBreachReport> GetDataBreachReportsFromUser(String userMasterName)
+        {
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                List<DataBreachReport> reports = context.DataBreachReports.Include("User").Include("BreachedItems").Include("Entries").Where(report => report.User.MasterName == userMasterName).ToList();
+                return reports;
+            }
+        }
     }
 }

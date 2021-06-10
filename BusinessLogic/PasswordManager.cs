@@ -244,5 +244,11 @@ namespace BusinessLogic
             List<User> usersSharedWith = _users.GetUsersPassSharedWith(password);
             return usersSharedWith;
         }
+
+        public List<DataBreachReport> GetDataBreachReportsFromCurrentUser()
+        {
+            List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(this.CurrentUser.MasterName);
+            return reports;
+        }
     }
 }

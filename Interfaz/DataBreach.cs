@@ -21,7 +21,10 @@ namespace Presentation
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
-            LoadDataBreach();
+            if (txtDataBreach.TextLength > 0)
+                LoadDataBreach();
+            else
+                lblMessage.Text = "Ingresar datos en el campo de texto para verificar el Data Breach";
         }
 
         private void LoadTables(List<Item> breachResults)
@@ -41,11 +44,12 @@ namespace Presentation
 
         private void LoadDataBreach()
         {
-            DataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachItems(txtDataBreach.Text);
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachEntries(txtDataBreach.Text);
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
             LoadTables(breachResult);
+            lblMessage.Text = "";
         }
 
         private void LoadTblCreditCard(List<CreditCard> creditCards)
