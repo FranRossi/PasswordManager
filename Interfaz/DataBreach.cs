@@ -21,7 +21,10 @@ namespace Presentation
 
         private void btnVerifyDataBreach_Click(object sender, EventArgs e)
         {
-            LoadDataBreach();
+            if (txtDataBreach.TextLength > 0)
+                LoadDataBreach();
+            else
+                lblMessage.Text = "Debe ingresar los datos en el textbox para verificar el Data Breach";
         }
 
         private void LoadTables(List<Item> breachResults)
@@ -46,6 +49,7 @@ namespace Presentation
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
             LoadTables(breachResult);
+            lblMessage.Text = "";
         }
 
         private void LoadTblCreditCard(List<CreditCard> creditCards)

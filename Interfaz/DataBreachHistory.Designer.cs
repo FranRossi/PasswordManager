@@ -46,15 +46,16 @@ namespace Presentation
             this.tblPasswords.AllowUserToResizeRows = false;
             this.tblPasswords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tblPasswords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tblPasswords.Location = new System.Drawing.Point(299, 87);
+            this.tblPasswords.Location = new System.Drawing.Point(352, 87);
             this.tblPasswords.MultiSelect = false;
             this.tblPasswords.Name = "tblPasswords";
             this.tblPasswords.ReadOnly = true;
             this.tblPasswords.RowHeadersVisible = false;
             this.tblPasswords.RowHeadersWidth = 62;
             this.tblPasswords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblPasswords.Size = new System.Drawing.Size(418, 231);
+            this.tblPasswords.Size = new System.Drawing.Size(410, 231);
             this.tblPasswords.TabIndex = 24;
+            this.tblPasswords.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblPasswords_CellContentClick);
             // 
             // lblMessage
             // 
@@ -98,14 +99,15 @@ namespace Presentation
             this.tblReports.ReadOnly = true;
             this.tblReports.RowHeadersVisible = false;
             this.tblReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblReports.Size = new System.Drawing.Size(249, 231);
+            this.tblReports.Size = new System.Drawing.Size(309, 231);
             this.tblReports.TabIndex = 15;
+            this.tblReports.SelectionChanged += new System.EventHandler(this.tblReports_SelectionChanged);
             // 
             // lblSharedWith
             // 
             this.lblSharedWith.AutoSize = true;
             this.lblSharedWith.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.lblSharedWith.Location = new System.Drawing.Point(295, 59);
+            this.lblSharedWith.Location = new System.Drawing.Point(348, 62);
             this.lblSharedWith.Name = "lblSharedWith";
             this.lblSharedWith.Size = new System.Drawing.Size(112, 22);
             this.lblSharedWith.TabIndex = 20;
@@ -122,7 +124,7 @@ namespace Presentation
             this.Controls.Add(this.tblReports);
             this.Controls.Add(this.lblSharedWith);
             this.Name = "DataBreachHistory";
-            this.Size = new System.Drawing.Size(748, 368);
+            this.Size = new System.Drawing.Size(776, 368);
             ((System.ComponentModel.ISupportInitialize)(this.tblPasswords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblReports)).EndInit();
             this.ResumeLayout(false);
