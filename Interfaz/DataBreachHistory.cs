@@ -45,7 +45,7 @@ namespace Presentation
                         column.HeaderText = "Cantidad de entradas";
                         break;
                     case "ItemQuantity":
-                        column.HeaderText = "Cantidad de items expuestos";
+                        column.HeaderText = "Cantidad de datos expuestos";
                         break;
                     default:
                         column.Visible = false;
