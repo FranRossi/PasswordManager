@@ -24,7 +24,7 @@ namespace Presentation
             if (txtDataBreach.TextLength > 0)
                 LoadDataBreach();
             else
-                lblMessage.Text = "Debe ingresar los datos en el textbox para verificar el Data Breach";
+                lblMessage.Text = "Ingresar datos en el campo de texto para verificar el Data Breach";
         }
 
         private void LoadTables(List<Item> breachResults)
