@@ -101,34 +101,24 @@ namespace Presentation
 
         private void SuggestionsForPassword(Password password)
         {
-            bool userDontWantToChangePassword = true;
-            userDontWantToChangePassword = HistoricDataBreachSuggestion(password;
-            //userDontWantToChangePassword = DuplicatePasswordSuggestion(password);
-            //userDontWantToChangePassword = SecurePasswordSuggestion(password);
+            //string historicalSuggestion = HistoricDataBreachSuggestion(password);
+            string duplicateSuggestion = DuplicatePasswordSuggestion(password);
+            string secureSuggestion = SecurePasswordSuggestion(password);
 
+            bool userDontWantToChangePassword = 
+                !ManagePopUpSuggestions("Esto no se implemento", duplicateSuggestion, secureSuggestion);
+           
             if (userDontWantToChangePassword) { 
                 UpdateDataBasePassword(password); 
                 CloseForm();
             }
         }
 
-        private bool HistoricDataBreachSuggestion(Password password)
-        {
-            bool userDontWantToChangePassword = true;
-            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
-            {
-                string message = "Esta pass se encuentra en un data breach, ¿le gustaría cambiarla?";
-                userDontWantToChangePassword = !ManagePopUpSuggestions(message);
-            }
-
-            return userDontWantToChangePassword;
-        }
-
-        private bool ManagePopUpSuggestions(string message)
+        private bool ManagePopUpSuggestions(string historic, string duplicate, string secure)
         {
             DialogResult duplicateSuggestion;
-            duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?",
-                "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            duplicateSuggestion = MessageBox.Show(historic + Environment.NewLine + duplicate + Environment.NewLine + secure,
+                "Pass Sugesstions", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (duplicateSuggestion == DialogResult.Yes)
                  return true;
@@ -136,17 +126,25 @@ namespace Presentation
             return false;
         }
 
-        private bool SecurePasswordSuggestion(Password password)
+        private string HistoricDataBreachSuggestion(Password password)
         {
-            bool userDontWantToChangePassword = true;
+            string historicSuggestion = "";
+            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
+                historicSuggestion = "Esta pass se encuentra en un data breach, ¿le gustaría cambiarla?";
+
+            return historicSuggestion;
+        }
+
+        private string SecurePasswordSuggestion(Password password)
+        {
+            string secureSuggestion = "";
             if (_myPasswordManager.PasswordIsNotGreenSecure(password))
             {
-                string message = "Esta pass no se encuentra en el rango de seguridad verde claro" +
+                secureSuggestion = "Esta pass no se encuentra en el rango de seguridad verde claro" +
                     " o verde oscuro, ¿le gustaría cambiarla?";
-                userDontWantToChangePassword = !ManagePopUpSuggestions(message);
             }
 
-            return userDontWantToChangePassword;
+            return secureSuggestion;
         }
 
 
@@ -158,19 +156,15 @@ namespace Presentation
                 _myPasswordManager.ModifyPasswordOnCurrentUser(password);
         }
 
-        private bool DuplicatePasswordSuggestion(Password password)
+        private string DuplicatePasswordSuggestion(Password password)
         {
-            bool userDontWantToChangePassword = true;
+            string duplicateSuggestion = "";
             if (_myPasswordManager.PasswordTextIsDuplicate(password))
             {
-                DialogResult duplicateSuggestion;
-                duplicateSuggestion = MessageBox.Show("Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?", 
-                    "Pass Duplicate", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                if (duplicateSuggestion == DialogResult.Yes)
-                     userDontWantToChangePassword = false;
+                duplicateSuggestion = "Esta pass ya se encuentre en el sistema, ¿le gustaría cambiarla?";   
             }
-            return userDontWantToChangePassword;
+
+            return duplicateSuggestion;
         }
 
 

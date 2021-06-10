@@ -263,5 +263,10 @@ namespace BusinessLogic
             PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
             return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
         }
+
+        public List<Password> GetPasswordsFromDataBreachForCurrentUser()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

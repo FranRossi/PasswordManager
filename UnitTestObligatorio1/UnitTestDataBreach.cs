@@ -356,7 +356,7 @@ namespace UnitTestObligatorio1
             items.Add(newPassword);
             dataBreachReport.BreachedItems = items;
 
-            List<Password> passwordsBreached = _passwordManager.GetPasswordsFromDataBreachForCurrentUser(_currentUser);
+            List<Password> passwordsBreached = _passwordManager.GetPasswordsFromDataBreachForCurrentUser();
             CollectionAssert.Contains(dataBreachReport.BreachedItems, newPassword);
         }
 
