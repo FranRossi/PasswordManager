@@ -26,8 +26,7 @@ namespace BusinessLogic
             _dataBreaches = new DataAccessDataBreach();
             _sessionController = SessionController.GetInstance();
         }
-
-        //-------------------------------------------------CATEGORY CONTROLLER--------------------------------------------------
+        
         public List<Category> GetCategoriesFromCurrentUser()
         {
             return _categories.GetAll(_sessionController.GetCurrentUserMasterName()).ToList();
