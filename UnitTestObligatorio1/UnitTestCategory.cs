@@ -15,6 +15,7 @@ namespace UnitTestObligatorio1
         private string _personalCategoryName;
         private Category _categoryPersonalInitialize;
         private User _user;
+        private SessionController _sessionController;
         private PasswordManager _passwordManager;
 
         [TestInitialize]
@@ -22,13 +23,14 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _personalCategoryName = "Personal";
                 _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
                 _categoryPersonalInitialize = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
@@ -103,7 +105,7 @@ namespace UnitTestObligatorio1
         public void AddsCategoriesToNewUser()
         {
             User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _categoryPersonalInitialize);
         }
@@ -175,7 +177,12 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void AddCategoryToUserObject()
         {
-            CollectionAssert.Contains(_user.Categories, _categoryPersonalInitialize);
+            Category category1 = new Category()
+            {
+                Name = "Facultad"
+            };
+            _passwordManager.CreateCategoryOnCurrentUser(category1.Name);
+            CollectionAssert.Contains(_user.Categories, category1);
         }
 
         [TestMethod]

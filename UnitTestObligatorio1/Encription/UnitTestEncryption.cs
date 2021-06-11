@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
 using Repository;
 using System;
@@ -40,6 +41,17 @@ namespace UnitTestObligatorio1
             Assert.AreNotEqual(textToEncrypt, encryptedText, "Original: " + textToEncrypt + " Result: " + encryptedText);
         }
 
+        [DataRow("mySuperSecurePassword", "keyy")]
+        [DataRow("12321pass werod", "keyadsfy")]
+        [DataRow("hello world", "asdfasd")]
+        [DataTestMethod]
+        public void SameTextAndKeyGiveSameResult(string textToEncrypt, string key)
+        {
+            string encryptedText = encryption.Encrypt(textToEncrypt, key);
+            string secondEncryptedText = encryption.Encrypt(textToEncrypt, key);
+            Assert.AreEqual(encryptedText, secondEncryptedText, "First: " + encryptedText + " Second: " + secondEncryptedText);
+        }
+
 
         [DataRow("mySuperSecurePassword", "keyy")]
         [DataRow("12321pass werod", "keyadsfy")]
@@ -52,5 +64,19 @@ namespace UnitTestObligatorio1
             Assert.AreEqual(textToEncrypt, decryptedText, "Original: " + textToEncrypt + " Result: " + decryptedText);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(EncryptionException))]
+        public void InvalidEncryption()
+        {
+            string encryptedText = encryption.Encrypt("superSecretPassword", "❤");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EncryptionException))]
+        public void InvalidDecryption()
+        {
+            string encryptedText = encryption.Encrypt("superSecretPassword", "asdf");
+            string decryptedText = encryption.Decrypt(encryptedText, "❤");
+        }
     }
 }

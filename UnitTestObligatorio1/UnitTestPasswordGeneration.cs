@@ -12,6 +12,8 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordGeneration
     {
+
+        private SessionController _sessionController;
         private Password _password;
         private PasswordManager _passwordManager;
         private User _user;
@@ -22,6 +24,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
@@ -42,7 +45,7 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _passwordManager.CreatePassword(_password);
             }
             catch (Exception ex)

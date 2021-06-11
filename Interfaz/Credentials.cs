@@ -10,11 +10,13 @@ namespace Presentation
     {
 
         private PasswordManager _myPasswordManager;
+        private SessionController _mySessionController;
         public Credentials(PasswordManager passwordManager)
         {
             InitializeComponent();
             Properties.Settings.Default.Reset();
             ShowHidePassword(false);
+            _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             TestData testData = new TestData(_myPasswordManager);
         }
@@ -25,7 +27,7 @@ namespace Presentation
             string masterPassword = txtMasterPassword.Text;
             try
             {
-                _myPasswordManager.Login(userName, masterPassword);
+                _mySessionController.Login(userName, masterPassword);
                 ShowMainScreen();
             }
             catch (LogInException exception)
@@ -41,7 +43,7 @@ namespace Presentation
             try
             {
                 User newUser = new User(userName, masterPassword);
-                _myPasswordManager.CreateUser(newUser);
+                _mySessionController.CreateUser(newUser);
                 ShowMainScreen();
             }
             catch (ValidationException exception)

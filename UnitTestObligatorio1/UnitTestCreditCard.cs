@@ -12,7 +12,7 @@ namespace UnitTestObligatorio1
     public class UnitTestCreditCard
     {
         private CreditCard _cardInitialize;
-        private CreditCard _secondCardInitialize;
+        private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private User _user;
         private Category _categoryInitialize;
@@ -24,6 +24,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
@@ -31,7 +32,7 @@ namespace UnitTestObligatorio1
                     MasterPass = "HolaSoyGonzalo123"
                 };
 
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _categoryName = "Personal";
                 _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
                 _categoryInitialize = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
@@ -64,7 +65,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateValidCreditCard()
         {
-            CreditCard creditCard = new CreditCard
+           CreditCard creditCard = new CreditCard
             {
                 User = _user,
                 Category = _categoryInitialize,
@@ -203,7 +204,7 @@ namespace UnitTestObligatorio1
                 MasterName = "Felipe",
                 MasterPass = "12345",
             };
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
             Category firstCategoryOnUser = user.Categories[0];
             CreditCard _card2 = new CreditCard
@@ -218,7 +219,7 @@ namespace UnitTestObligatorio1
                 Notes = "Límite 400 shenn UYU"
             };
             _passwordManager.CreateCreditCard(_card2);
-            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
+            _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
             List<CreditCard> creditCards = _passwordManager.GetCreditCards();
             CollectionAssert.DoesNotContain(creditCards, _card2);
         }
@@ -255,7 +256,6 @@ namespace UnitTestObligatorio1
             List<CreditCard> creditCardAfterModify = _passwordManager.GetCreditCards();
             CollectionAssert.Contains(creditCardAfterModify, _cardInitialize);
         }
-
 
 
         [TestMethod]

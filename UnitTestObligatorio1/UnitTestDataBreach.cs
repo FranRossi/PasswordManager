@@ -11,6 +11,10 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestDataBreach
     {
+        private SessionController _sessionController;
+        private PasswordManager _passwordManager;
+        private User _currentUser;
+
         private string _passwordDataBreach;
         private string _creditCardDataBreach;
         private string _itemDataBreach;
@@ -18,8 +22,6 @@ namespace UnitTestObligatorio1
         private string _itemDataBreachFromTextFile;
         private string _creditCardDataBreachFromTextFile;
         private string _passwordDataBreachFromTextFile;
-        private PasswordManager _passwordManager;
-        private User _currentUser;
         private string _currentUserMasterPass;
         private string[] _breachedPasswords = { "Passoword223", "239850232", "abcde876", "neant3232323hnea" };
         private string[] _breachedCreditCards = { "2354231413003498", "2354678713003498", "1256478713003498", "7685678713567898" };
@@ -29,6 +31,8 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            _sessionController = SessionController.GetInstance();
+
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
@@ -43,10 +47,10 @@ namespace UnitTestObligatorio1
                 MasterName = "Gonzalo",
                 MasterPass = "HolaSoyGonzalo123"
             };
-            _passwordManager.CreateUser(_currentUser);
+            _sessionController.CreateUser(_currentUser);
             string categoryName = "Personal";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
-            _currentUser = _passwordManager.CurrentUser;
+            _currentUser = _sessionController.CurrentUser;
         }
 
         [TestCleanup]
@@ -148,7 +152,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             Assert.IsTrue(dataBreachReport.Date.Equals(DateTime.Today));
         }
 
@@ -157,7 +161,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             Assert.IsTrue(dataBreachReport.Id == 0);
         }
 
@@ -166,7 +170,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             Assert.IsTrue(dataBreachReport.User.Equals(_currentUser));
         }
 
@@ -175,7 +179,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_creditCardDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
             dataBreachReport.BreachedItems = breachResult;
@@ -187,7 +191,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             Assert.IsTrue(dataBreachReport.User.Equals(_currentUser));
             Assert.IsTrue(dataBreachReport.EntryQuantity == entries.Count);
         }
@@ -200,7 +204,7 @@ namespace UnitTestObligatorio1
             string categoryName = "Facultad";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = _currentUser.Categories[0];
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             List<Item> items = new List<Item>();
             Password newPassword = new Password
             {
@@ -235,7 +239,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
             _passwordManager.SaveBreachedItems(dataBreachReport);
@@ -248,7 +252,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_creditCardDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
@@ -260,7 +264,7 @@ namespace UnitTestObligatorio1
         {
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedItemsInDB = AddBreachedCreditCardsToPasswordManager();
@@ -276,7 +280,7 @@ namespace UnitTestObligatorio1
             //TODO REFACTOR REPETECION DE CODIGO
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_creditCardDataBreach);
-            DataBreachReport dataBreachReport1 = new DataBreachReport(entries, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport1 = new DataBreachReport(entries, _sessionController.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordManager();
             List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
             List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport1);
@@ -284,7 +288,7 @@ namespace UnitTestObligatorio1
 
             IDataBreachReader<string> dataBreachReader2 = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries2 = dataBreachReader2.GetDataBreachEntries(_passwordDataBreach);
-            DataBreachReport dataBreachReport2 = new DataBreachReport(entries2, _passwordManager.CurrentUser);
+            DataBreachReport dataBreachReport2 = new DataBreachReport(entries2, _sessionController.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordManager();
             List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
             List<Item> breachResult2 = _passwordManager.SaveBreachedItems(dataBreachReport2);
@@ -306,6 +310,54 @@ namespace UnitTestObligatorio1
                 areEqual = areEqual && isEqualToOne;
             }
             Assert.IsTrue(areEqual);
+        }
+
+        [TestMethod]
+        public void CheckPassBeenBreached()
+        {
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
+            Category firstCategoryOnUser = _currentUser.Categories[0];
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
+            Password newPassword = new Password
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Site = "0ort.edu.uy",
+                Username = "239850",
+                Pass = "Passoword223",
+                Notes = "Esta pass esta modificada y aparece en breach"
+            };
+            AddBreachedPasswordsToPasswordManager();
+
+            _passwordManager.SaveBreachedItems(dataBreachReport);
+
+            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
+            Assert.IsTrue(passwordHasBeenBreached);
+        }
+
+        [TestMethod]
+        public void CheckPassNotBeenBreached()
+        {
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
+            Category firstCategoryOnUser = _currentUser.Categories[0];
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
+            Password newPassword = new Password
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Site = "NuevoSitio",
+                Username = "239850",
+                Pass = "Passoword223",
+                Notes = "Esta pass esta modificada y no aparece en breach"
+            };
+            AddBreachedPasswordsToPasswordManager();
+
+            _passwordManager.SaveBreachedItems(dataBreachReport);
+
+            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
+            Assert.IsFalse(passwordHasBeenBreached);
         }
 
         private string CreateDataBreachString(string[] breachedString)
@@ -331,7 +383,7 @@ namespace UnitTestObligatorio1
         private List<Item> AddBreachedPasswordsToPasswordManager()
         {
             List<Item> brechedPasswordsList = new List<Item>();
-            _passwordManager.Login(_currentUser.MasterName, _currentUserMasterPass);
+            _sessionController.Login(_currentUser.MasterName, _currentUserMasterPass);
             Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedPasswords.Length; i++)
             {
@@ -358,7 +410,7 @@ namespace UnitTestObligatorio1
                 MasterName = "Pedro",
                 MasterPass = "HolaSoyPedro123"
             };
-            _passwordManager.CreateUser(otherUser);
+            _sessionController.CreateUser(otherUser);
             string categoryName = "Facultad";
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = otherUser.Categories[0];
@@ -372,13 +424,13 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             _passwordManager.CreatePassword(newPassword);
-            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
+            _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
         private List<Item> AddBreachedCreditCardsToPasswordManager()
         {
             List<Item> breachedCreditCardList = new List<Item>();
-            _passwordManager.Login(_currentUser.MasterName, _currentUserMasterPass);
+            _sessionController.Login(_currentUser.MasterName, _currentUserMasterPass);
             Category firstCategoryOnUser = _currentUser.Categories[0];
             for (int i = 0; i < _breachedCreditCards.Length; i++)
             {
@@ -407,7 +459,7 @@ namespace UnitTestObligatorio1
                 MasterName = "Javier",
                 MasterPass = "HolaSoyJavier123"
             };
-            _passwordManager.CreateUser(otherUser);
+            _sessionController.CreateUser(otherUser);
             _passwordManager.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = otherUser.Categories[0];
             CreditCard newCard = new CreditCard
@@ -422,55 +474,10 @@ namespace UnitTestObligatorio1
                 Notes = "Tra­mite 400k UYU"
             };
             _passwordManager.CreateCreditCard(newCard);
-            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
+            _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
-        [TestMethod]
-        public void CheckPassBeenBreached() {
-            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
-            Category firstCategoryOnUser = _currentUser.Categories[0];
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
-            Password newPassword = new Password
-            {
-                User = _currentUser,
-                Category = firstCategoryOnUser,
-                Site = "0ort.edu.uy",
-                Username = "239850",
-                Pass = "Passoword223",
-                Notes = "Esta pass esta modificada y aparece en breach"
-            };
-            AddBreachedPasswordsToPasswordManager();
 
-            _passwordManager.SaveBreachedItems(dataBreachReport);
-
-            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
-            Assert.IsTrue(passwordHasBeenBreached);
-        }
-
-        [TestMethod]
-        public void CheckPassNotBeenBreached()
-        {
-            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
-            HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
-            Category firstCategoryOnUser = _currentUser.Categories[0];
-            DataBreachReport dataBreachReport = new DataBreachReport(entries, _passwordManager.CurrentUser);
-            Password newPassword = new Password
-            {
-                User = _currentUser,
-                Category = firstCategoryOnUser,
-                Site = "NuevoSitio",
-                Username = "239850",
-                Pass = "Passoword223",
-                Notes = "Esta pass esta modificada y no aparece en breach"
-            };
-            AddBreachedPasswordsToPasswordManager();
-
-            _passwordManager.SaveBreachedItems(dataBreachReport);
-
-            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
-            Assert.IsFalse(passwordHasBeenBreached);
-        }
 
     }
 }
