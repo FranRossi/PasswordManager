@@ -99,21 +99,21 @@ namespace UnitTestObligatorio1
         }*/
 
 
-        [TestMethod]
+       /* [TestMethod]
         public void AddsCategoriesToNewUser()
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _personalCategory);
-        }
-
+        }*/
+/*
         [TestMethod]
-        public void ShowsCategoryAsAString()
+        public void ConfiguresCategoryToString()
         {
             string categotyName = _personalCategory.ToString();
             Assert.AreEqual(categotyName, "Personal");
-        }
+        }*/
 
         [TestMethod]
         public void ModifyCategory()
