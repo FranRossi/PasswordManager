@@ -13,7 +13,7 @@ namespace UnitTestObligatorio1
     public class UnitTestCategory
     {
         private string _personalCategoryName;
-        private Category _personalCategory;
+        private Category _categoryPersonalInitialize;
         private User _user;
         private PasswordManager _passwordManager;
 
@@ -31,7 +31,7 @@ namespace UnitTestObligatorio1
                 _passwordManager.CreateUser(_user);
                 _personalCategoryName = "Personal";
                 _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-                _personalCategory = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
+                _categoryPersonalInitialize = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
             }
             catch (Exception exception)
             {
@@ -45,32 +45,32 @@ namespace UnitTestObligatorio1
             UnitTestSignUp.DataBaseCleanup(null);
         }
 
-      /*  [TestMethod]
+        [TestMethod]
         public void GetCategoryName()
         {
-            Assert.AreEqual<string>(_personalCategory.Name, "Personal");
+            Assert.AreEqual<string>(_categoryPersonalInitialize.Name, "Personal");
         }
 
         [TestMethod]
         public void GetCategoryUser()
         {
-            Assert.AreEqual<User>(_personalCategory.User, _user);
-        }*/
+            Assert.AreEqual<User>(_categoryPersonalInitialize.User, _user);
+        }
 
-       /* [TestMethod]
+        [TestMethod]
         public void GetCategoryUserMasterName()
         {
-            Assert.AreEqual<String>(_personalCategory.GetUserMasterName(), _user.MasterName);
-        }*/
+            Assert.AreEqual<String>(_categoryPersonalInitialize.GetUserMasterName(), _user.MasterName);
+        }
 
-     /*   [TestMethod]
+        [TestMethod]
         public void CreateListOfCategoriesInUser()
         {
             List<Category> categories = _passwordManager.GetCategoriesFromCurrentUser();
             Assert.IsNotNull(categories);
-        }*/
+        }
 
-        /*[TestMethod]
+        [TestMethod]
         [ExpectedException(typeof(CategoryTooShortException))]
         public void CreateCateogryTooShort()
         {
@@ -81,46 +81,43 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateCateogryMinLength()
         {
-           _personalCategoryName = "Mis";
-        }*/
+            _personalCategoryName = "Mis";
+        }
 
-       /* [TestMethod]
+        [TestMethod]
         [ExpectedException(typeof(CategoryTooLongException))]
         public void CreateCateogryTooLong()
         {
             string longCategoryName = "Peliculas/Series";
             _passwordManager.CreateCategoryOnCurrentUser(longCategoryName);
-        }*/
+        }
 
-       /* [TestMethod]
+        [TestMethod]
         public void CreateCateogryMaxLength()
         {
-           _personalCategoryName = "Paginas de cine"; 
-        }*/
+            _personalCategoryName = "Paginas de cine";
+        }
 
 
-       /* [TestMethod]
+        [TestMethod]
         public void AddsCategoriesToNewUser()
         {
             User user = new User("Juancito", "Pepe123");
             _passwordManager.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _personalCategory);
-        }*/
-/*
+            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _categoryPersonalInitialize);
+        }
+
         [TestMethod]
         public void ConfiguresCategoryToString()
         {
-            string categotyName = _personalCategory.ToString();
+            string categotyName = _categoryPersonalInitialize.ToString();
             Assert.AreEqual(categotyName, "Personal");
-        }*/
+        }
 
         [TestMethod]
         public void ModifyCategory()
         {
-            User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             List<Category> categoriesBeforeModify = _passwordManager.GetCategoriesFromCurrentUser();
             Category firstCategory = categoriesBeforeModify.ToArray()[0];
             firstCategory.Name = "Modificado";
@@ -133,11 +130,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryAlreadyAddedException))]
         public void AddsAlreadyAddedCategoryToUser()
         {
-            User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-            string repeatedCategoryName = "Personal";
-            _passwordManager.CreateCategoryOnCurrentUser(repeatedCategoryName);
         }
 
         [DataRow("Trabajo", "Trabajo")]
@@ -170,51 +163,33 @@ namespace UnitTestObligatorio1
                 Name = "Facultad"
             };
 
-            Category category2 = new Category()
-            {
-                Name = "Trabajo"
-            };
-
-            Assert.IsFalse(category1.Equals(category2));
+            Assert.IsFalse(category1.Equals(_categoryPersonalInitialize));
         }
 
         [TestMethod]
         public void CategoryNotEqualInvalidObject()
         {
-            Category category1 = new Category()
-            {
-                Name = "Facultad"
-            };
-
-            Assert.IsFalse(category1.Equals(new object()));
+            Assert.IsFalse(_categoryPersonalInitialize.Equals(new object()));
         }
 
         [TestMethod]
         public void AddCategoryToUserObject()
         {
-            User user = new User("Juancito", "Pepe123");
-            string categoryName = "Facultad";
-            Category category1 = new Category()
-            {
-                Name = "Facultad"
-            };
-            _passwordManager.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(category1.Name);
-            CollectionAssert.Contains(user.Categories, category1);
+            CollectionAssert.Contains(_user.Categories, _categoryPersonalInitialize);
         }
 
         [TestMethod]
         public void CategoryId()
         {
-            _personalCategory.Id = 1;
-            Assert.AreEqual<int>(_personalCategory.Id, 1);
+            _categoryPersonalInitialize.Id = 1;
+            Assert.AreEqual<int>(_categoryPersonalInitialize.Id, 1);
         }
 
         [TestMethod]
         public void CategoryDifferentId()
         {
-            _personalCategory.Id = 1254;
-            Assert.AreNotEqual<int>(_personalCategory.Id, 1);
+            _categoryPersonalInitialize.Id = 1254;
+            Assert.AreNotEqual<int>(_categoryPersonalInitialize.Id, 1);
         }
     }
 }
