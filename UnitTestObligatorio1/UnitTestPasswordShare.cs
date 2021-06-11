@@ -16,6 +16,7 @@ namespace UnitTestObligatorio1
         private PasswordManager _passwordManager;
         private SessionController _sessionController;
         private CategoryController _categoryController;
+        private PasswordController _myPasswordController;
         private User _userShareFrom;
         private string _userShareFromMasterPass;
         private Category _category;
@@ -28,6 +29,7 @@ namespace UnitTestObligatorio1
                 _categoryController = new CategoryController();
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
+                _myPasswordController = new PasswordController();
                 _userShareFromMasterPass = "HolaSoySantiago1";
                 _userShareFrom = new User()
                 {
@@ -72,7 +74,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(passwordToShare);
+            _myPasswordController.CreatePassword(passwordToShare);
             _passwordManager.SharePassword(passwordToShare, userShareTo);
             _sessionController.Login(userShareTo.MasterName, "lu2000_1");
             List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
@@ -93,7 +95,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(passwordToShare);
+            _myPasswordController.CreatePassword(passwordToShare);
             _passwordManager.SharePassword(passwordToShare, _userShareFrom);
             List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
         }
@@ -118,7 +120,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(ort);
+            _myPasswordController.CreatePassword(ort);
             expectedPasswords.Add(ort);
             _passwordManager.SharePassword(ort, userShareTo);
 
@@ -131,7 +133,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Jose2019",
                 Notes = ""
             };
-            _passwordManager.CreatePassword(trello);
+            _myPasswordController.CreatePassword(trello);
             expectedPasswords.Add(trello);
             _passwordManager.SharePassword(trello, userShareTo);
 
@@ -144,7 +146,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Jose2019",
                 Notes = ""
             };
-            _passwordManager.CreatePassword(amazon);
+            _myPasswordController.CreatePassword(amazon);
             expectedPasswords.Add(amazon);
             _passwordManager.SharePassword(amazon, userShareTo);
             _sessionController.Login(userShareTo.MasterName, "lu2000@1");
@@ -173,9 +175,9 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(passwordToShare);
+            _myPasswordController.CreatePassword(passwordToShare);
             _passwordManager.SharePassword(passwordToShare, userShareTo);
-            _passwordManager.DeletePassword(passwordToShare);
+            _myPasswordController.DeletePassword(passwordToShare);
             _sessionController.Login(userShareTo.MasterName, "lu2000@1");
             List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
             CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
@@ -204,7 +206,7 @@ namespace UnitTestObligatorio1
 
             _sessionController.CreateUser(userShareTo);
             _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
-            _passwordManager.CreatePassword(pass);
+            _myPasswordController.CreatePassword(pass);
             _passwordManager.SharePassword(pass, userShareTo);
             expectedUser.Add(userShareTo);
 
@@ -231,7 +233,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(passwordToShare);
+            _myPasswordController.CreatePassword(passwordToShare);
             _passwordManager.SharePassword(passwordToShare, userShareTo);
             _passwordManager.SharePassword(passwordToShare, userShareTo);
             List<User> actualSharedUsers = _passwordManager.GetUsersSharedWith(passwordToShare);
@@ -273,7 +275,7 @@ namespace UnitTestObligatorio1
             _sessionController.CreateUser(pablo);
             _sessionController.CreateUser(juana);
             _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
-            _passwordManager.CreatePassword(pass);
+            _myPasswordController.CreatePassword(pass);
             _passwordManager.SharePassword(pass, lucia);
             _passwordManager.SharePassword(pass, pablo);
             _passwordManager.SharePassword(pass, juana);
@@ -302,7 +304,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
 
-            _passwordManager.CreatePassword(pass);
+            _myPasswordController.CreatePassword(pass);
 
             List<User> usersSharedWith = _passwordManager.GetUsersSharedWith(pass);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
@@ -342,7 +344,7 @@ namespace UnitTestObligatorio1
             _sessionController.CreateUser(pablo);
             _sessionController.CreateUser(juana);
             _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
-            _passwordManager.CreatePassword(pass);
+            _myPasswordController.CreatePassword(pass);
             _passwordManager.SharePassword(pass, userShareWith);
             expectedUser.Add(juana);
             expectedUser.Add(pablo);
@@ -387,7 +389,7 @@ namespace UnitTestObligatorio1
             _sessionController.CreateUser(pablo);
             _sessionController.CreateUser(juana);
             _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
-            _passwordManager.CreatePassword(pass);
+            _myPasswordController.CreatePassword(pass);
             expectedUser.Add(juana);
             expectedUser.Add(lucia);
             expectedUser.Add(pablo);
@@ -430,7 +432,7 @@ namespace UnitTestObligatorio1
             _sessionController.CreateUser(pablo);
             _sessionController.CreateUser(juana);
             _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
-            _passwordManager.CreatePassword(pass);
+            _myPasswordController.CreatePassword(pass);
             _passwordManager.SharePassword(pass, lucia);
             _passwordManager.SharePassword(pass, pablo);
             _passwordManager.SharePassword(pass, juana);
@@ -460,7 +462,7 @@ namespace UnitTestObligatorio1
                 Notes = "No me roben la cuenta"
             };
             _sessionController.Login("Santiago", "HolaSoySantiago1");
-            _passwordManager.CreatePassword(passwordToShare);
+            _myPasswordController.CreatePassword(passwordToShare);
             _passwordManager.SharePassword(passwordToShare, userShareTo);
             _passwordManager.UnSharePassword(passwordToShare, userShareTo);
             _sessionController.Login("Lucía", "lu2000@1");

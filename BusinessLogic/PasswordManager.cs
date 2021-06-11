@@ -27,82 +27,7 @@ namespace BusinessLogic
             _categoryController = new CategoryController();
         }
 
-        //-------------------------------------------------PASSWORD CONTROLLER--------------------------------------------------
-        public void CreatePassword(Password newPassword)
-        {
-            VerifyPassword(newPassword);
-            newPassword.Encrypt();
-            _passwords.Add(newPassword);
-        }
-
-        public void VerifyPassword(Password passwordToCheck)
-        {
-            VerifyPasswordBelongToCurrentUser(passwordToCheck);
-            VerifyPasswordUniqueness(passwordToCheck);
-            _categoryController.VerifyItemCategoryBelongsToUser(passwordToCheck);
-        }
-
-        public List<Password> GetPasswords()
-        {
-            string currentUserMasterName = _sessionController.GetCurrentUserMasterName();
-            List<Password> passwordsFromDB = _passwords.GetAll(currentUserMasterName).ToList();
-            AddPasswordKeyToPasswords(passwordsFromDB);
-            return passwordsFromDB;
-        }
-
-        private void AddPasswordKeyToPasswords(List<Password> passwords)
-        {
-            passwords.ForEach(password => password.User.DecryptionKey = _sessionController.CurrentUser.DecryptionKey);
-        }
-        public List<Password> GetSharedPasswordsWithCurrentUser()
-        {
-            List<Password> passwordsSharedWithMe = _passwords.GetSharedPasswordsWithCurrentUser(_sessionController.CurrentUser);
-            return passwordsSharedWithMe;
-        }
-
-        public void DeletePassword(Password password)
-        {
-            _passwords.Delete(password);
-        }
-
-        public void ModifyPasswordOnCurrentUser(Password newPassword)
-        {
-            VerifyPassword(newPassword);
-            _passwords.Modify(newPassword);
-        }
-
-        private void VerifyPasswordBelongToCurrentUser(Password newPassword)
-        {
-            if (!(newPassword.User.Equals(_sessionController.CurrentUser)))
-                throw new PasswordNotBelongToCurrentUserException();
-        }
-
-        private void VerifyPasswordUniqueness(Password newPassword)
-        {
-            if (!_passwords.CheckUniqueness(newPassword))
-                throw new PasswordAlreadyExistsException();
-        }
-
-        public bool PasswordTextIsDuplicate(Password password)
-        {
-            bool passTextIsDuplicate = _passwords.CheckTextIsDuplicate(password, _sessionController.CurrentUser);
-            return passTextIsDuplicate;
-        }
-
-        public bool PasswordIsNotGreenSecure(Password password)
-        {
-            PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
-            PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
-            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
-        }
-
-        public bool VerifyPasswordHasBeenBreached(Password passwordToCheck)
-        {
-            bool passwordIsBreached = _dataBreaches.CheckIfPasswordHasBeenBreached(_sessionController.CurrentUser, passwordToCheck);
-            return passwordIsBreached;
-        }
-
-        //-------------------------------------------------PASSWORD REPORT CONTROLLER--------------------------------------------------
+        //-------------------------------------------------PASSWORD COLOR REPORT CONTROLLER--------------------------------------------------
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
@@ -120,6 +45,13 @@ namespace BusinessLogic
         {
             List<Password> passwords = _passwords.GetPasswordsByColor(color);
             return passwords;
+        }
+
+        public bool PasswordIsNotGreenSecure(Password password)
+        {
+            PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
+            PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
+            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
         }
 
 
@@ -178,6 +110,12 @@ namespace BusinessLogic
             return reports;
         }
 
+        public bool VerifyPasswordHasBeenBreached(Password passwordToCheck)
+        {
+            bool passwordIsBreached = _dataBreaches.CheckIfPasswordHasBeenBreached(_sessionController.CurrentUser, passwordToCheck);
+            return passwordIsBreached;
+        }
+
 
         //-------------------------------------------------------SHARE PASSWORD CONTROLLER------------------------------------------------
         public void SharePassword(Password passwordToShare, User userShareTo)
@@ -214,6 +152,12 @@ namespace BusinessLogic
         {
             List<User> usersNotSharedWith = _users.GetUsersPassNotSharedWith(password);
             return usersNotSharedWith;
+        }
+
+        public List<Password> GetSharedPasswordsWithCurrentUser()
+        {
+            List<Password> passwordsSharedWithMe = _passwords.GetSharedPasswordsWithCurrentUser(_sessionController.CurrentUser);
+            return passwordsSharedWithMe;
         }
     }
 }

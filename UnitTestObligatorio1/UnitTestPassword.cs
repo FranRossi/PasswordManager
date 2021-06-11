@@ -16,6 +16,7 @@ namespace UnitTestObligatorio1
         private Password _password;
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
+        private PasswordController _myPasswordController;
         private User _user;
         private Category _category;
 
@@ -27,6 +28,7 @@ namespace UnitTestObligatorio1
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _categoryController = new CategoryController();
+                _myPasswordController = new PasswordController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -48,8 +50,8 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreatePassword(_password);
-                _password = _passwordManager.GetPasswords()[0];
+                _myPasswordController.CreatePassword(_password);
+                _password = _myPasswordController.GetPasswords()[0];
             }
             catch (Exception ex)
             {
@@ -66,15 +68,15 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetUserPasswords()
         {
-            List<Password> userPasswords = _passwordManager.GetPasswords();
+            List<Password> userPasswords = _myPasswordController.GetPasswords();
             CollectionAssert.Contains(userPasswords, _password);
         }
 
         [TestMethod]
         public void DeletePassword()
         {
-            _passwordManager.DeletePassword(_password);
-            List<Password> userPasswords = _passwordManager.GetPasswords();
+            _myPasswordController.DeletePassword(_password);
+            List<Password> userPasswords = _myPasswordController.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, _password);
         }
 
@@ -98,9 +100,9 @@ namespace UnitTestObligatorio1
                 Username = "123456",
                 Pass = "239850Ort2019"
             };
-            _passwordManager.CreatePassword(differentPassword);
+            _myPasswordController.CreatePassword(differentPassword);
             _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
-            List<Password> userPasswords = _passwordManager.GetPasswords();
+            List<Password> userPasswords = _myPasswordController.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
 
@@ -117,7 +119,7 @@ namespace UnitTestObligatorio1
                     Username = "Joseph",
                     Pass = "wwwjosph"
                 };
-                _passwordManager.CreatePassword(pass);
+                _myPasswordController.CreatePassword(pass);
             }
             catch (Exception ex)
             {
@@ -146,7 +148,7 @@ namespace UnitTestObligatorio1
         public void CreateNewPasswordTooShort()
         {
             _password.Pass = "tom";
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
         }
 
 
@@ -155,7 +157,7 @@ namespace UnitTestObligatorio1
         public void CreateNewPasswordTooLong()
         {
             _password.Pass = "harryharryharryharryharryharry";
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
 
         }
 
@@ -200,7 +202,7 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreatePassword(_password);
+                _myPasswordController.CreatePassword(_password);
             }
             catch (Exception ex)
             {
@@ -217,7 +219,7 @@ namespace UnitTestObligatorio1
                 Name = "Work"
             };
             _password.Category = unusedCategory;
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
         }
 
         [TestMethod]
@@ -226,8 +228,8 @@ namespace UnitTestObligatorio1
             _password.Username = "123456";
             _password.Pass = "1234560Ort2020";
             _password.Notes = "Esta es la nueva password";
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
-            List<Password> passwordsAfterModify = _passwordManager.GetPasswords();
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
+            List<Password> passwordsAfterModify = _myPasswordController.GetPasswords();
             CollectionAssert.Contains(passwordsAfterModify, _password);
         }
 
@@ -236,8 +238,8 @@ namespace UnitTestObligatorio1
         public void ModifyOneFieldOnPassword()
         {
             _password.Pass = "EstoEsUnGIF";
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
-            List<Password> passwordsAfterModify = _passwordManager.GetPasswords();
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
+            List<Password> passwordsAfterModify = _myPasswordController.GetPasswords();
             CollectionAssert.Contains(passwordsAfterModify, _password);
         }
 
@@ -255,7 +257,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "Esta es la nueva password"
             };
-            _passwordManager.CreatePassword(newPassword);
+            _myPasswordController.CreatePassword(newPassword);
         }
 
         [DataRow("work.com", "Joseph", "work.com", "Joseph")]
@@ -352,7 +354,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "HolaSoySantiago1"
             };
             _password.User = newUser;
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
         }
 
 
@@ -366,7 +368,7 @@ namespace UnitTestObligatorio1
         public void VerifyLastModificationPasswordChanges()
         {
             _password.LastModification = new DateTime(2021, 5, 8);
-            _passwordManager.ModifyPasswordOnCurrentUser(_password);
+            _myPasswordController.ModifyPasswordOnCurrentUser(_password);
             Assert.AreNotEqual(this._password.LastModification, DateTime.Today);
         }
 
@@ -380,7 +382,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "HolaSoySantiago1"
             };
             _password.User = newUser;
-            _passwordManager.CreatePassword(_password);
+            _myPasswordController.CreatePassword(_password);
         }
 
         [TestMethod]
@@ -410,7 +412,7 @@ namespace UnitTestObligatorio1
                 Notes = "Esta es la nueva password con pass repetido",
             };
             newPassword.Encrypt();
-            bool passTextIsDuplicate = _passwordManager.PasswordTextIsDuplicate(newPassword);
+            bool passTextIsDuplicate = _myPasswordController.PasswordTextIsDuplicate(newPassword);
             Assert.IsTrue(passTextIsDuplicate);
         }
 
