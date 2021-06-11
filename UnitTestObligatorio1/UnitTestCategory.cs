@@ -23,19 +23,15 @@ namespace UnitTestObligatorio1
             try
             {
                 _passwordManager = new PasswordManager();
-                _personalCategoryName = "Personal";
-                _personalCategory = new Category()
-                {
-                    Name = _personalCategoryName
-                };
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
                 _passwordManager.CreateUser(_user);
+                _personalCategoryName = "Personal";
                 _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-
+                _personalCategory = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
             }
             catch (Exception exception)
             {
@@ -52,22 +48,13 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCategoryName()
         {
-            Category category = new Category()
-            {
-                Name = "Personal"
-            };
-            Assert.AreEqual<string>(category.Name, "Personal");
+            Assert.AreEqual<string>(_personalCategory.Name, "Personal");
         }
 
         [TestMethod]
         public void GetCategoryUser()
         {
-            Category category = new Category()
-            {
-                Name = "Personal",
-                User = _user
-            };
-            Assert.AreEqual<User>(category.User, _user);
+            Assert.AreEqual<User>(_personalCategory.User, _user);
         }
 
         [TestMethod]
