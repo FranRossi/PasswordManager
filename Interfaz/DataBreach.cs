@@ -11,6 +11,7 @@ namespace Presentation
     public partial class DataBreach : UserControl
     {
 
+        private SessionController _mySessionController;
         private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
         private bool _isTextFileBreach;
@@ -18,6 +19,7 @@ namespace Presentation
         public DataBreach(PasswordManager passwordManager)
         {
             InitializeComponent();
+            _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             _isTextFileBreach = false;
         }
@@ -53,7 +55,7 @@ namespace Presentation
             else
                 dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachEntries(txtDataBreach.Text);
-            DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _myPasswordManager.CurrentUser);
+            DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _mySessionController.CurrentUser);
             List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
             LoadTables(breachResult);
             lblMessage.Text = "";

@@ -11,6 +11,8 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPassword
     {
+
+        private SessionController _sessionController;
         private Password _password;
         private PasswordManager _passwordManager;
         private User _user;
@@ -21,6 +23,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
@@ -31,7 +34,7 @@ namespace UnitTestObligatorio1
                 {
                     Name = "Personal"
                 };
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _passwordManager.CreateCategoryOnCurrentUser(_category.Name);
                 _category = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
                 _password = new Password
@@ -83,7 +86,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "juan123"
             };
             string personalCategoryName = "Personal";
-            _passwordManager.CreateUser(differentUser);
+            _sessionController.CreateUser(differentUser);
             _passwordManager.CreateCategoryOnCurrentUser(personalCategoryName);
             Category firstCategoryOnUser = differentUser.Categories[0];
             Password differentPassword = new Password
@@ -95,7 +98,7 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019"
             };
             _passwordManager.CreatePassword(differentPassword);
-            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
+            _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
             List<Password> userPasswords = _passwordManager.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
@@ -264,7 +267,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyOneFieldOnPassword()
         {
-            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
+            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
             Password passwordAlreadyOnPasswordManager = new Password
             {
                 User = _user,

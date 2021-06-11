@@ -8,6 +8,7 @@ namespace Presentation
     public class TestData
     {
         private PasswordManager _passwordManager;
+        private SessionController _sessionController;
         private Random _random;
         private int _uniqueNumber;
         private User _juana;
@@ -16,6 +17,7 @@ namespace Presentation
         private User _laura;
         public TestData(PasswordManager passwordManager)
         {
+            this._sessionController = SessionController.GetInstance();
             this._passwordManager = passwordManager;
             this._random = new Random();
             _uniqueNumber = 10;
@@ -39,7 +41,7 @@ namespace Presentation
 
         private void ShareJuanaPasswors()
         {
-            this._passwordManager.Login("Juana", "Juana");
+            this._sessionController.Login("Juana", "Juana");
             List<Password> passwords = this._passwordManager.GetPasswords();
             this._passwordManager.SharePassword(passwords[0], this._pablo);
             this._passwordManager.SharePassword(passwords[0], this._mario);
@@ -88,7 +90,7 @@ namespace Presentation
 
         private void CreateNCreditCardsForUser(string userName, string category)
         {
-            this._passwordManager.Login(userName, userName);
+            this._sessionController.Login(userName, userName);
 
             for (int i = 0; i < _random.Next(1, 4); i++)
             {
@@ -98,10 +100,10 @@ namespace Presentation
 
         private void CreatePasswordOnlyPassNameAndCategory(string userName, string password, string category)
         {
-            this._passwordManager.Login(userName, userName);
+            this._sessionController.Login(userName, userName);
             Password newPassword = new Password
             {
-                User = this._passwordManager.CurrentUser,
+                User = this._sessionController.CurrentUser,
                 Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
                 Site = "ort.edu.uy/" + this._uniqueNumber,
                 Username = "23985" + this._uniqueNumber,
@@ -114,7 +116,7 @@ namespace Presentation
 
         private void CreateCategories(string userName, string[] categoriesNames)
         {
-            this._passwordManager.Login(userName, userName);
+            this._sessionController.Login(userName, userName);
             foreach (string name in categoriesNames)
             {
                 this._passwordManager.CreateCategoryOnCurrentUser(name);
@@ -127,18 +129,18 @@ namespace Presentation
             this._pablo = new User("Pablo", "Pablo");
             this._mario = new User("Mario", "Mario");
             this._laura = new User("Laura", "Laura");
-            this._passwordManager.CreateUser(_juana);
-            this._passwordManager.CreateUser(_pablo);
-            this._passwordManager.CreateUser(_mario);
-            this._passwordManager.CreateUser(_laura);
+            this._sessionController.CreateUser(_juana);
+            this._sessionController.CreateUser(_pablo);
+            this._sessionController.CreateUser(_mario);
+            this._sessionController.CreateUser(_laura);
         }
 
         private void CreateCreditCardsForCurrentUser(string category, string userName)
         {
-            this._passwordManager.Login(userName, userName);
+            this._sessionController.Login(userName, userName);
             CreditCard newCreditCard = new CreditCard
             {
-                User = _passwordManager.CurrentUser,
+                User = _sessionController.CurrentUser,
                 Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
                 Name = "MasterCard Black",
                 Type = "Master",
