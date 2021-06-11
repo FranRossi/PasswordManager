@@ -21,7 +21,7 @@ namespace Repository
             this.Property(card => card.Number).HasMaxLength(16);
             this.Property(card => card.Name).HasMaxLength(25);
             this.Property(card => card.Type).HasMaxLength(25);
-            this.Property(card => card.SecureCode).HasMaxLength(3);
+            this.Property(card => card.SecureCode).HasMaxLength(4);
             this.Property(card => card.ExpirationDate).HasMaxLength(5);
         }
     }

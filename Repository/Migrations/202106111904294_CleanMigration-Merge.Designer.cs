@@ -7,13 +7,13 @@ namespace Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CleanMigrationMergeConflict : IMigrationMetadata
+    public sealed partial class CleanMigrationMerge : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CleanMigrationMergeConflict));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CleanMigrationMerge));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106102319598_Clean-Migration-MergeConflict"; }
+            get { return "202106111904294_CleanMigration-Merge"; }
         }
         
         string IMigrationMetadata.Source
