@@ -111,8 +111,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPass);
 
-
-            Password secondPass = new Password
+    Password secondPass = new Password
             {
                 User = _user,
                 Category = _category,

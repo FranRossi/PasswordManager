@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace Obligatorio1_DA1.Utilities
@@ -13,6 +10,7 @@ namespace Obligatorio1_DA1.Utilities
     {
         private static char keyPaddingChar = '0';
         private static int keyLength = 32;
+        private static byte[] IV = new byte[] { 237, 187, 70, 157, 153, 181, 4, 169, 105, 218, 240, 155, 181, 155, 44, 19 };
         public string Encrypt(string textToEncrypt, string key)
         {
             key = key.PadLeft(keyLength, keyPaddingChar);
@@ -28,6 +26,8 @@ namespace Obligatorio1_DA1.Utilities
 
         private static readonly Encoding encoding = Encoding.UTF8;
 
+
+        // Modifed from: https://gist.github.com/doncadavona/fd493b6ced456371da8879c22bb1c263
         private static string EncryptAes(string plainText, string key)
         {
             try
@@ -37,9 +37,8 @@ namespace Obligatorio1_DA1.Utilities
                 aes.BlockSize = 128;
                 aes.Padding = PaddingMode.PKCS7;
                 aes.Mode = CipherMode.CBC;
-
                 aes.Key = encoding.GetBytes(key);
-                aes.GenerateIV();
+                aes.IV = IV;
 
                 ICryptoTransform AESEncrypt = aes.CreateEncryptor(aes.Key, aes.IV);
                 byte[] buffer = encoding.GetBytes(plainText);
