@@ -12,7 +12,7 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxUsernameLength = 25;
         public const int MinTypeLength = 3;
         public const int MaxTypeLength = 25;
-        public const int SecureCodeLength = 3;
+        public const int SecureCodeLength = 4;
 
         private string _number;
         private string _name;
