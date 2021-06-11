@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Obligatorio1_DA1.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -62,7 +63,7 @@ namespace Obligatorio1_DA1.Utilities
             }
             catch (Exception e)
             {
-                throw new Exception("Error encrypting: " + e.Message);
+                throw new EncryptionException();
             }
         }
 
@@ -94,7 +95,7 @@ namespace Obligatorio1_DA1.Utilities
             }
             catch (Exception e)
             {
-                throw new Exception("Error decrypting: " + e.Message);
+                throw new EncryptionException();
             }
         }
 

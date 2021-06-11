@@ -66,16 +66,17 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(EncryptionException))]
-        public void InvalidKey()
+        public void InvalidEncryption()
         {
-            try
-            {
-                string encryptedText = encryption.Encrypt("superSecretPassword", "❤");
-            }
-            catch (Exception exception)
-            {
-                Assert.Fail("Expected no exception, but got: " + exception.Message);
-            }
+            string encryptedText = encryption.Encrypt("superSecretPassword", "❤");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(EncryptionException))]
+        public void InvalidDecryption()
+        {
+            string encryptedText = encryption.Encrypt("superSecretPassword", "asdf");
+            string decryptedText = encryption.Decrypt(encryptedText, "❤");
         }
     }
 }

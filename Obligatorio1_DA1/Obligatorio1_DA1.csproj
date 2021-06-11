@@ -77,6 +77,7 @@
     <Compile Include="Exceptions\Password\PasswordAlreadyExistsException.cs" />
     <Compile Include="Exceptions\Password\PasswordNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Password\PasswordInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\Password\EncryptionException.cs" />
     <Compile Include="Exceptions\User\UserNameTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordTooLongException.cs" />
