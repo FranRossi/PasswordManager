@@ -30,7 +30,7 @@ namespace BusinessLogic
         //-------------------------------------------------CATEGORY CONTROLLER--------------------------------------------------
         public List<Category> GetCategoriesFromCurrentUser()
         {
-            return _categories.GetAll(_sessionController.CurrentUser.MasterName).ToList();
+            return _categories.GetAll(_sessionController.GetCurrentUserMasterName()).ToList();
         }
 
         public void CreateCategoryOnCurrentUser(string category)
@@ -81,7 +81,7 @@ namespace BusinessLogic
 
         public List<Password> GetPasswords()
         {
-            string currentUserMasterName = _sessionController.CurrentUser.MasterName;
+            string currentUserMasterName = _sessionController.GetCurrentUserMasterName();
             List<Password> passwordsFromDB = _passwords.GetAll(currentUserMasterName).ToList();
             AddPasswordKeyToPasswords(passwordsFromDB);
             return passwordsFromDB;
@@ -177,7 +177,7 @@ namespace BusinessLogic
 
         public List<CreditCard> GetCreditCards()
         {
-            string currentUserMasterName = _sessionController.CurrentUser.MasterName;
+            string currentUserMasterName = _sessionController.GetCurrentUserMasterName();
             return _creditCards.GetAll(currentUserMasterName).ToList();
         }
 
@@ -211,7 +211,7 @@ namespace BusinessLogic
 
         public List<DataBreachReport> GetDataBreachReportsFromCurrentUser()
         {
-            List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(_sessionController.CurrentUser.MasterName);
+            List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(_sessionController.GetCurrentUserMasterName());
             return reports;
         }
 

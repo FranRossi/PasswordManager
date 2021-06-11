@@ -33,7 +33,7 @@ namespace BusinessLogic
             newUser.ValidatePassword();
             newUser.HashPassword();
             _users.Add(newUser);
-            CurrentUser = newUser;
+            this.CurrentUser = newUser;
         }
 
         private void VerifyUserUniqueness(User newUser)
@@ -56,8 +56,12 @@ namespace BusinessLogic
                 throw new LogInException();
 
             userFromDB.DecryptionKey = password;
-            CurrentUser = userFromDB;
+            this.CurrentUser = userFromDB;
         }
 
+        public string GetCurrentUserMasterName()
+        {
+            return this.CurrentUser.MasterName;
+        }
     }
 }

@@ -105,7 +105,7 @@ namespace UnitTestObligatorio1
             User newUser = new User("Pepe12", "Lucia123");
             _sessionController.CreateUser(newUser);
             _sessionController.Login("Pepe12", "Lucia123");
-            Assert.Equals(_sessionController.GetCurrentUserMasterName(), newUser.MasterName);
+            Assert.AreEqual(_sessionController.GetCurrentUserMasterName(), newUser.MasterName);
         }
 
     }
