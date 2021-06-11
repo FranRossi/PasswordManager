@@ -52,12 +52,6 @@ namespace UnitTestObligatorio1
             }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(LogInException))]
-        public void LoginUserWrongPassword()
-        {
-            _sessionController.Login("Lucia", "hoal3823");
-        }
 
         [DataRow("hoal3823")]
         [DataRow("")]
