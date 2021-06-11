@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Utilities;
 using Repository;
 using System;
@@ -63,5 +64,18 @@ namespace UnitTestObligatorio1
             Assert.AreEqual(textToEncrypt, decryptedText, "Original: " + textToEncrypt + " Result: " + decryptedText);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(EncryptionException))]
+        public void InvalidKey()
+        {
+            try
+            {
+                string encryptedText = encryption.Encrypt("superSecretPassword", "❤");
+            }
+            catch (Exception exception)
+            {
+                Assert.Fail("Expected no exception, but got: " + exception.Message);
+            }
+        }
     }
 }
