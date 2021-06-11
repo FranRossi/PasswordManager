@@ -40,6 +40,17 @@ namespace UnitTestObligatorio1
             Assert.AreNotEqual(textToEncrypt, encryptedText, "Original: " + textToEncrypt + " Result: " + encryptedText);
         }
 
+        [DataRow("mySuperSecurePassword", "keyy")]
+        [DataRow("12321pass werod", "keyadsfy")]
+        [DataRow("hello world", "asdfasd")]
+        [DataTestMethod]
+        public void SameTextAndKeyGiveSameResult(string textToEncrypt, string key)
+        {
+            string encryptedText = encryption.Encrypt(textToEncrypt, key);
+            string secondEncryptedText = encryption.Encrypt(textToEncrypt, key);
+            Assert.AreEqual(encryptedText, secondEncryptedText, "First: " + encryptedText + " Second: " + secondEncryptedText);
+        }
+
 
         [DataRow("mySuperSecurePassword", "keyy")]
         [DataRow("12321pass werod", "keyadsfy")]
