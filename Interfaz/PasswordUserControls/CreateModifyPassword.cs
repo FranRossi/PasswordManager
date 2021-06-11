@@ -9,6 +9,8 @@ namespace Presentation
 {
     public partial class CreateModifyPassword : Form
     {
+
+        private SessionController _mySessionController;
         private PasswordManager _myPasswordManager;
         private Password _myPasswordToModify;
         private Password _myNewPassword;
@@ -16,6 +18,7 @@ namespace Presentation
         public CreateModifyPassword(PasswordManager passwordManager)
         {
             InitializeComponent();
+            _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             LoadComboBoxCategory();
             ShowHidePassword(false);
@@ -47,7 +50,7 @@ namespace Presentation
                 {
                     VerifyPassword();
 
-                    if(lblMessage.Text == "")
+                    if (lblMessage.Text == "")
                         ApplySuggestions();
 
                 }
@@ -105,11 +108,12 @@ namespace Presentation
             string duplicateSuggestion = DuplicatePasswordSuggestion(password);
             string secureSuggestion = SecurePasswordSuggestion(password);
 
-            bool userDontWantToChangePassword = 
+            bool userDontWantToChangePassword =
                 !ManagePopUpSuggestions(historicalSuggestion, duplicateSuggestion, secureSuggestion);
-           
-            if (userDontWantToChangePassword) { 
-                UpdateDataBasePassword(password); 
+
+            if (userDontWantToChangePassword)
+            {
+                UpdateDataBasePassword(password);
                 CloseForm();
             }
         }
@@ -122,23 +126,23 @@ namespace Presentation
                 "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (duplicateSuggestion == DialogResult.Yes)
-                 return true;
+                return true;
 
             return false;
         }
 
         private string mergeStrings(string historic, string duplicate, string secure)
         {
-           string stringMerged = "";
-           stringMerged += historic + duplicate + secure;
-           return stringMerged;
+            string stringMerged = "";
+            stringMerged += historic + duplicate + secure;
+            return stringMerged;
         }
 
         private string HistoricDataBreachSuggestion(Password password)
         {
             string historicSuggestion = "";
             if (_myPasswordManager.VerifyPasswordHasBeenBreached(password))
-                 historicSuggestion = "- Esta contraseña se encuentra en un data breach" + Environment.NewLine;
+                historicSuggestion = "- Esta contraseña se encuentra en un data breach" + Environment.NewLine;
 
             return historicSuggestion;
         }
@@ -177,7 +181,7 @@ namespace Presentation
         {
             Password newPassword = new Password
             {
-                User = _myPasswordManager.CurrentUser,
+                User = _mySessionController.CurrentUser,
                 Category = (Category)cbCategory.SelectedItem,
                 Site = txtSite.Text,
                 Username = txtUserName.Text,
@@ -190,7 +194,7 @@ namespace Presentation
 
         private void ModifyPasswordObjectFormFields()
         {
-            _myPasswordToModify.User = _myPasswordManager.CurrentUser;
+            _myPasswordToModify.User = _mySessionController.CurrentUser;
             _myPasswordToModify.Category = (Category)cbCategory.SelectedItem;
             _myPasswordToModify.Site = txtSite.Text;
             _myPasswordToModify.Username = txtUserName.Text;

@@ -11,9 +11,12 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private CreditCard _myCreditCardToModify;
 
+        private SessionController _mySessionController;
+
         public CreateModifyCreditCard(PasswordManager passwordManager)
         {
             InitializeComponent();
+            _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             LoadComboBoxCategory();
         }
@@ -21,6 +24,7 @@ namespace Presentation
         public CreateModifyCreditCard(PasswordManager passwordManager, CreditCard creditCard)
         {
             InitializeComponent();
+            _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             _myCreditCardToModify = creditCard;
             LoadComboBoxCategory();
@@ -82,7 +86,7 @@ namespace Presentation
         {
             CreditCard newCreditCard = new CreditCard
             {
-                User = _myPasswordManager.CurrentUser,
+                User = _mySessionController.CurrentUser,
                 Category = (Category)cbCategory.SelectedItem,
                 Name = txtName.Text,
                 Type = txtType.Text,
@@ -97,7 +101,7 @@ namespace Presentation
 
         private void ModifyCreditCardObjectFormFields()
         {
-            _myCreditCardToModify.User = _myPasswordManager.CurrentUser;
+            _myCreditCardToModify.User = _mySessionController.CurrentUser;
             _myCreditCardToModify.Category = (Category)cbCategory.SelectedItem;
             _myCreditCardToModify.Name = txtName.Text;
             _myCreditCardToModify.Type = txtType.Text;
