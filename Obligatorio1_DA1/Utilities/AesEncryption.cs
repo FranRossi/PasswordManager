@@ -19,25 +19,13 @@ namespace Obligatorio1_DA1.Utilities
         }
         public string Encrypt(string textToEncrypt, string key)
         {
-            key = "ALSweFKJdfgfFsdfALSweFKJdfgfFsdf";
             key = key.PadLeft(32, '0');
-
-            /*            key = "ALSweFKJdfgfFsdfALSweFKJdfgfFsdf";
-                        byte[] keyInByte = Encoding.ASCII.GetBytes(key);
-                        byte[] encryptedBytes = EncryptStringToBytes_Aes(textToEncrypt, keyInByte);
-                        char[] encryptedBytesInChars = Encoding.ASCII.GetChars(encryptedBytes);
-                        string encryptedString = new string(encryptedBytesInChars);*/
             string encryptedText = EncryptAes(textToEncrypt, key);
             return encryptedText;
         }
         public string Decrypt(string encryptedText, string key)
         {
-            key = "ALSweFKJdfgfFsdfALSweFKJdfgfFsdf";
             key = key.PadLeft(32, '0');
-            /*           ;
-                        byte[] keyInByte = Encoding.ASCII.GetBytes(key);
-                        byte[] encryptedTextInByte = Encoding.ASCII.GetBytes(encryptedText);
-                        string decryptedText = DecryptStringFromBytes_Aes(encryptedTextInByte, keyInByte);*/
             string decryptedText = DecryptAes(encryptedText, key);
             return decryptedText;
         }
