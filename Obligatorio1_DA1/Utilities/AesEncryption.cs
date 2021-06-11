@@ -11,15 +11,17 @@ namespace Obligatorio1_DA1.Utilities
 {
     public class AesEncryption : IEncryption
     {
+        private static char keyPaddingChar = '0';
+        private static int keyLength = 32;
         public string Encrypt(string textToEncrypt, string key)
         {
-            key = key.PadLeft(32, '0');
+            key = key.PadLeft(keyLength, keyPaddingChar);
             string encryptedText = EncryptAes(textToEncrypt, key);
             return encryptedText;
         }
         public string Decrypt(string encryptedText, string key)
         {
-            key = key.PadLeft(32, '0');
+            key = key.PadLeft(keyLength, keyPaddingChar);
             string decryptedText = DecryptAes(encryptedText, key);
             return decryptedText;
         }
