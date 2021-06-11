@@ -168,7 +168,6 @@ namespace UnitTestObligatorio1
         {
             List<CreditCard> creditCards = _passwordManager.GetCreditCards();
             CollectionAssert.Contains(creditCards, _cardInitialize);
-            CollectionAssert.Contains(creditCards, _secondCardInitialize);
         }
 
         [TestMethod]
