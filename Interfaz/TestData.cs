@@ -9,6 +9,7 @@ namespace Presentation
     {
         private PasswordManager _passwordManager;
         private SessionController _sessionController;
+        private CategoryController _myCategoryController;
         private Random _random;
         private int _uniqueNumber;
         private User _juana;
@@ -19,6 +20,7 @@ namespace Presentation
         {
             this._sessionController = SessionController.GetInstance();
             this._passwordManager = passwordManager;
+            _myCategoryController = new CategoryController();
             this._random = new Random();
             _uniqueNumber = 10;
             try
@@ -104,7 +106,7 @@ namespace Presentation
             Password newPassword = new Password
             {
                 User = this._sessionController.CurrentUser,
-                Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
+                Category = this._myCategoryController.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
                 Site = "ort.edu.uy/" + this._uniqueNumber,
                 Username = "23985" + this._uniqueNumber,
                 Pass = password,
@@ -119,7 +121,7 @@ namespace Presentation
             this._sessionController.Login(userName, userName);
             foreach (string name in categoriesNames)
             {
-                this._passwordManager.CreateCategoryOnCurrentUser(name);
+                this._myCategoryController.CreateCategoryOnCurrentUser(name);
             }
         }
 
@@ -141,7 +143,7 @@ namespace Presentation
             CreditCard newCreditCard = new CreditCard
             {
                 User = _sessionController.CurrentUser,
-                Category = this._passwordManager.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
+                Category = this._myCategoryController.GetCategoriesFromCurrentUser().Find(cat => cat.Name == category),
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = this._uniqueNumber + RandomCreditCardNumber().ToString(),

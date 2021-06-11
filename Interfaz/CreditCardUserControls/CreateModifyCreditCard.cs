@@ -10,6 +10,7 @@ namespace Presentation
     {
         private PasswordManager _myPasswordManager;
         private CreditCard _myCreditCardToModify;
+        private CategoryController _myCategoryController;
 
         private SessionController _mySessionController;
 
@@ -18,6 +19,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myCategoryController = new CategoryController();
             LoadComboBoxCategory();
         }
 
@@ -26,6 +28,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myCategoryController = new CategoryController();
             _myCreditCardToModify = creditCard;
             LoadComboBoxCategory();
             LoadFromCreditCard();
@@ -34,7 +37,7 @@ namespace Presentation
 
         private void LoadComboBoxCategory()
         {
-            cbCategory.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
+            cbCategory.DataSource = _myCategoryController.GetCategoriesFromCurrentUser();
         }
 
         private void LoadFromCreditCard()

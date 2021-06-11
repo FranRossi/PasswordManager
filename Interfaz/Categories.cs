@@ -9,18 +9,20 @@ namespace Presentation
     public partial class Categories : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private CategoryController _myCategoryController;
         private Category _selectedCategory;
         public Categories(PasswordManager passwordManager)
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
+            _myCategoryController = new CategoryController();
             LoadCategoryList();
         }
 
         private void LoadCategoryList()
         {
             lstCategories.DataSource = null;
-            lstCategories.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
+            lstCategories.DataSource = _myCategoryController.GetCategoriesFromCurrentUser();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace Presentation
             try
             {
                 string categoryName = this.txtNameAdd.Text;
-                _myPasswordManager.CreateCategoryOnCurrentUser(categoryName);
+                _myCategoryController.CreateCategoryOnCurrentUser(categoryName);
                 LoadCategoryList();
                 lblMessage.Text = "Categoria agregada correctamente";
                 txtNameAdd.Text = "";
@@ -74,7 +76,7 @@ namespace Presentation
                 try
                 {
                     _selectedCategory.Name = txtNameModify.Text;
-                    _myPasswordManager.ModifyCategoryOnCurrentUser(_selectedCategory);
+                    _myCategoryController.ModifyCategoryOnCurrentUser(_selectedCategory);
                     LoadCategoryList();
                     lblMessage.Text = "Categoria modificada correctamente";
                     txtNameModify.Text = "";

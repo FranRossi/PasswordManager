@@ -14,6 +14,7 @@ namespace UnitTestObligatorio1
 
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
+        private CategoryController _categoryController;
         private User _currentUser;
         private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
         private List<Password> redPassword = new List<Password>();
@@ -36,6 +37,7 @@ namespace UnitTestObligatorio1
         {
             _sessionController = SessionController.GetInstance();
             _passwordManager = new PasswordManager();
+            _categoryController = new CategoryController();
             _currentUser = new User()
             {
                 MasterName = "Gonzalo",
@@ -146,8 +148,8 @@ namespace UnitTestObligatorio1
             {
                 Name = name
             };
-            _passwordManager.CreateCategoryOnCurrentUser(name);
-            List<Category> categories = _passwordManager.GetCategoriesFromCurrentUser();
+            _categoryController.CreateCategoryOnCurrentUser(name);
+            List<Category> categories = _categoryController.GetCategoriesFromCurrentUser();
             category = categories.Find(c => c.Name == name);
         }
 

@@ -17,6 +17,7 @@ namespace UnitTestObligatorio1
         private User _user;
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
+        private CategoryController _categoryController;
 
         [TestInitialize]
         public void TestInitialize()
@@ -25,6 +26,7 @@ namespace UnitTestObligatorio1
             {
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
+                _categoryController = new CategoryController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -32,8 +34,8 @@ namespace UnitTestObligatorio1
                 };
                 _sessionController.CreateUser(_user);
                 _personalCategoryName = "Personal";
-                _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-                _categoryPersonalInitialize = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
+                _categoryController.CreateCategoryOnCurrentUser(_personalCategoryName);
+                _categoryPersonalInitialize = _categoryController.GetCategoriesFromCurrentUser().ToArray()[0];
             }
             catch (Exception exception)
             {
@@ -68,7 +70,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateListOfCategoriesInUser()
         {
-            List<Category> categories = _passwordManager.GetCategoriesFromCurrentUser();
+            List<Category> categories = _categoryController.GetCategoriesFromCurrentUser();
             Assert.IsNotNull(categories);
         }
 
@@ -77,7 +79,7 @@ namespace UnitTestObligatorio1
         public void CreateCateogryTooShort()
         {
             string shortCategoryName = "Li";
-            _passwordManager.CreateCategoryOnCurrentUser(shortCategoryName);
+            _categoryController.CreateCategoryOnCurrentUser(shortCategoryName);
         }
 
         [TestMethod]
@@ -91,7 +93,7 @@ namespace UnitTestObligatorio1
         public void CreateCateogryTooLong()
         {
             string longCategoryName = "Peliculas/Series";
-            _passwordManager.CreateCategoryOnCurrentUser(longCategoryName);
+            _categoryController.CreateCategoryOnCurrentUser(longCategoryName);
         }
 
         [TestMethod]
@@ -106,8 +108,8 @@ namespace UnitTestObligatorio1
         {
             User user = new User("Juancito", "Pepe123");
             _sessionController.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
-            Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], _categoryPersonalInitialize);
+            _categoryController.CreateCategoryOnCurrentUser(_personalCategoryName);
+            Assert.AreEqual(_categoryController.GetCategoriesFromCurrentUser().ToArray()[0], _categoryPersonalInitialize);
         }
 
         [TestMethod]
@@ -120,11 +122,11 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyCategory()
         {
-            List<Category> categoriesBeforeModify = _passwordManager.GetCategoriesFromCurrentUser();
+            List<Category> categoriesBeforeModify = _categoryController.GetCategoriesFromCurrentUser();
             Category firstCategory = categoriesBeforeModify.ToArray()[0];
             firstCategory.Name = "Modificado";
-            _passwordManager.ModifyCategoryOnCurrentUser(firstCategory);
-            List<Category> categoriesAfterModify = _passwordManager.GetCategoriesFromCurrentUser();
+            _categoryController.ModifyCategoryOnCurrentUser(firstCategory);
+            List<Category> categoriesAfterModify = _categoryController.GetCategoriesFromCurrentUser();
             Assert.AreEqual(categoriesAfterModify.ToArray()[0], firstCategory);
         }
 
@@ -132,7 +134,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CategoryAlreadyAddedException))]
         public void AddsAlreadyAddedCategoryToUser()
         {
-            _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
+            _categoryController.CreateCategoryOnCurrentUser(_personalCategoryName);
         }
 
         [DataRow("Trabajo", "Trabajo")]
@@ -181,7 +183,7 @@ namespace UnitTestObligatorio1
             {
                 Name = "Facultad"
             };
-            _passwordManager.CreateCategoryOnCurrentUser(category1.Name);
+            _categoryController.CreateCategoryOnCurrentUser(category1.Name);
             CollectionAssert.Contains(_user.Categories, category1);
         }
 

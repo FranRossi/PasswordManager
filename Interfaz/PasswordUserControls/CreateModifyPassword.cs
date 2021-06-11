@@ -12,6 +12,7 @@ namespace Presentation
 
         private SessionController _mySessionController;
         private PasswordManager _myPasswordManager;
+        private CategoryController _myCategoryController;
         private Password _myPasswordToModify;
         private Password _myNewPassword;
 
@@ -20,6 +21,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myCategoryController = new CategoryController();
             LoadComboBoxCategory();
             ShowHidePassword(false);
         }
@@ -29,6 +31,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myCategoryController = new CategoryController();
             _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
@@ -205,7 +208,7 @@ namespace Presentation
 
         private void LoadComboBoxCategory()
         {
-            cbCategory.DataSource = _myPasswordManager.GetCategoriesFromCurrentUser();
+            cbCategory.DataSource = _myCategoryController.GetCategoriesFromCurrentUser();
         }
 
         private void CloseForm()

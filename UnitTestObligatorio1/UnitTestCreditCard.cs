@@ -14,6 +14,7 @@ namespace UnitTestObligatorio1
         private CreditCard _cardInitialize;
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
+        private CategoryController _categoryController;
         private User _user;
         private Category _categoryInitialize;
         private string _categoryName;
@@ -26,6 +27,7 @@ namespace UnitTestObligatorio1
             {
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
+                _categoryController = new CategoryController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -34,8 +36,8 @@ namespace UnitTestObligatorio1
 
                 _sessionController.CreateUser(_user);
                 _categoryName = "Personal";
-                _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
-                _categoryInitialize = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
+                _categoryController.CreateCategoryOnCurrentUser(_categoryName);
+                _categoryInitialize = _categoryController.GetCategoriesFromCurrentUser().ToArray()[0];
                 _cardInitialize = new CreditCard
                 {
                     User = _user,
@@ -65,7 +67,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateValidCreditCard()
         {
-           CreditCard creditCard = new CreditCard
+            CreditCard creditCard = new CreditCard
             {
                 User = _user,
                 Category = _categoryInitialize,
@@ -204,7 +206,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "12345",
             };
             _sessionController.CreateUser(user);
-            _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
+            _categoryController.CreateCategoryOnCurrentUser(_categoryName);
             Category firstCategoryOnUser = user.Categories[0];
             CreditCard _card2 = new CreditCard
             {
