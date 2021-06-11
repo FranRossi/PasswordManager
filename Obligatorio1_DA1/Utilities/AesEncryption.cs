@@ -27,7 +27,7 @@ namespace Obligatorio1_DA1.Utilities
         private static readonly Encoding encoding = Encoding.UTF8;
 
 
-        // Modifed from: https://gist.github.com/doncadavona/fd493b6ced456371da8879c22bb1c263
+        // Modifed from: https://gist.github.com/doncadavona/fd493b6ced456371da8879c22bb1c263 11/6/2021
         private static string EncryptAes(string plainText, string key)
         {
             try
