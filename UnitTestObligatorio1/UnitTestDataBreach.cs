@@ -14,7 +14,7 @@ namespace UnitTestObligatorio1
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
-        private PasswordController _myPasswordController;
+        private PasswordController _passwordController;
         private User _currentUser;
 
         private string _passwordDataBreach;
@@ -35,7 +35,7 @@ namespace UnitTestObligatorio1
         {
             _sessionController = SessionController.GetInstance();
             _categoryController = new CategoryController();
-            _myPasswordController = new PasswordController();
+            _passwordController = new PasswordController();
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
@@ -400,7 +400,7 @@ namespace UnitTestObligatorio1
                     Notes = "No me roben la cuenta"
                 };
                 brechedPasswordsList.Add(newPassword);
-                _myPasswordController.CreatePassword(newPassword);
+                _passwordController.CreatePassword(newPassword);
             }
             return brechedPasswordsList;
         }
@@ -426,7 +426,7 @@ namespace UnitTestObligatorio1
                 Pass = "Passoword223",
                 Notes = "No me roben la cuenta"
             };
-            _myPasswordController.CreatePassword(newPassword);
+            _passwordController.CreatePassword(newPassword);
             _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
