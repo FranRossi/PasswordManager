@@ -31,11 +31,13 @@ namespace UnitTestObligatorio1
         }
 
 
-        PasswordManager passwordManager;
+        private SessionController _sessionController;
+        private PasswordManager _passwordManager;
         [TestInitialize]
         public void CreatePasswordManagerBeforeTests()
         {
-            passwordManager = new PasswordManager();
+            _passwordManager = new PasswordManager();
+            _sessionController = SessionController.GetInstance();
         }
 
         [TestCleanup]
@@ -55,7 +57,7 @@ namespace UnitTestObligatorio1
             try
             {
                 User newUser = new User("Juancito", "hola123");
-                passwordManager.CreateUser(newUser);
+                _sessionController.CreateUser(newUser);
             }
             catch (Exception ex)
             {
@@ -68,7 +70,7 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserPasswordTooShort()
         {
             User newUser = new User("Juan12", "hola");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -76,7 +78,7 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserPasswordTooLong()
         {
             User newUser = new User("Pepe12", "hola12345678910111213141516171819202122");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -84,7 +86,7 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserPasswordInvalidCharacter()
         {
             User newUser = new User("Pepe12", "½½½½hola½½½½");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -92,9 +94,9 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserNameAlreadyTaken()
         {
             User newUser = new User("Pepe12", "pepe1232");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
             User newUser2 = new User("Pepe12", "121hola");
-            passwordManager.CreateUser(newUser2);
+            _sessionController.CreateUser(newUser2);
         }
 
 
@@ -103,7 +105,7 @@ namespace UnitTestObligatorio1
         public void CreateUserEmptyName()
         {
             User newUser = new User("", "password");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -111,7 +113,7 @@ namespace UnitTestObligatorio1
         public void CreateUserNameTooShort()
         {
             User newUser = new User("Khea", " ");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -119,7 +121,7 @@ namespace UnitTestObligatorio1
         public void CreateUserNameTooLong()
         {
             User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         // TODO move test to another unitTest file

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hash\UnitTestAdvancedHash.cs" />
+    <Compile Include="Encription\UnitTestAesEncryption.cs" />
     <Compile Include="Hash\UnitTestBasicHash.cs" />
     <Compile Include="Encription\UnitTestBasicEncryption.cs" />
     <Compile Include="Hash\UnitTestHash.cs" />

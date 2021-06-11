@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +77,7 @@
     <Compile Include="Exceptions\Password\PasswordAlreadyExistsException.cs" />
     <Compile Include="Exceptions\Password\PasswordNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Password\PasswordInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\Password\EncryptionException.cs" />
     <Compile Include="Exceptions\User\UserNameTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordTooLongException.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Domain\DataBreach\DataBreachReaderFromString.cs" />
     <Compile Include="Domain\DataBreach\IDataBreachReader.cs" />
     <Compile Include="Utilities\AdvancedHash.cs" />
+    <Compile Include="Utilities\AesEncryption.cs" />
     <Compile Include="Utilities\BasicHash.cs" />
     <Compile Include="Utilities\BasicEncryption.cs" />
     <Compile Include="Utilities\IEncryption.cs" />

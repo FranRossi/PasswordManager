@@ -15,6 +15,7 @@ namespace UnitTestObligatorio1
         private string _personalCategoryName;
         private Category _personalCategory;
         private User _user;
+        private SessionController _sessionController;
         private PasswordManager _passwordManager;
 
         [TestInitialize]
@@ -22,6 +23,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _personalCategoryName = "Personal";
                 _personalCategory = new Category()
@@ -33,7 +35,7 @@ namespace UnitTestObligatorio1
                     MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
 
             }
@@ -85,7 +87,7 @@ namespace UnitTestObligatorio1
         public void CreateListOfCategoriesInUser()
         {
             User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             List<Category> categories = _passwordManager.GetCategoriesFromCurrentUser();
             Assert.IsNotNull(categories);
         }
@@ -138,7 +140,7 @@ namespace UnitTestObligatorio1
         public void AddsCategoriesToUser()
         {
             User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             Category categoryToCompare = new Category { Name = _personalCategoryName };
             Assert.AreEqual(_passwordManager.GetCategoriesFromCurrentUser().ToArray()[0], categoryToCompare);
@@ -155,7 +157,7 @@ namespace UnitTestObligatorio1
         public void ModifyCategory()
         {
             User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             List<Category> categoriesBeforeModify = _passwordManager.GetCategoriesFromCurrentUser();
             Category firstCategory = categoriesBeforeModify.ToArray()[0];
@@ -170,7 +172,7 @@ namespace UnitTestObligatorio1
         public void AddsAlreadyAddedCategoryToUser()
         {
             User user = new User("Juancito", "Pepe123");
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_personalCategoryName);
             string repeatedCategoryName = "Personal";
             _passwordManager.CreateCategoryOnCurrentUser(repeatedCategoryName);
@@ -234,7 +236,7 @@ namespace UnitTestObligatorio1
             {
                 Name = "Facultad"
             };
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(category1.Name);
             CollectionAssert.Contains(user.Categories, category1);
         }

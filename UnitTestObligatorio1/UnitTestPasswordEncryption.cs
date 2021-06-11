@@ -11,6 +11,8 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordEncryption
     {
+
+        private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private User _user;
         private Category _category;
@@ -20,6 +22,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
@@ -30,7 +33,7 @@ namespace UnitTestObligatorio1
                 {
                     Name = "Personal"
                 };
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _passwordManager.CreateCategoryOnCurrentUser(_category.Name);
                 _category = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
 
@@ -111,8 +114,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPass);
 
-
-            Password secondPass = new Password
+    Password secondPass = new Password
             {
                 User = _user,
                 Category = _category,

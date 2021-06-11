@@ -11,6 +11,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCreditCard
     {
+        private SessionController _sessionController;
         private CreditCard _card;
         private PasswordManager _passwordManager;
         private User _user;
@@ -22,6 +23,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _user = new User()
                 {
@@ -29,7 +31,7 @@ namespace UnitTestObligatorio1
                     MasterPass = "HolaSoyGonzalo123"
                 };
 
-                _passwordManager.CreateUser(_user);
+                _sessionController.CreateUser(_user);
                 _categoryName = "Personal";
                 _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
                 Category firstCategoryOnUser = _user.Categories[0];
@@ -67,7 +69,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "HolaSoyGonzalo123"
             };
             _categoryName = "Personal";
-            _passwordManager.CreateUser(_user);
+            _sessionController.CreateUser(_user);
             _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
             Category firstCategoryOnUser = _user.Categories[0];
             CreditCard creditCard = new CreditCard
@@ -217,7 +219,7 @@ namespace UnitTestObligatorio1
                 MasterName = "Felipe",
                 MasterPass = "12345",
             };
-            _passwordManager.CreateUser(user);
+            _sessionController.CreateUser(user);
             _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
             Category firstCategoryOnUser = user.Categories[0];
             CreditCard _card2 = new CreditCard
@@ -232,7 +234,7 @@ namespace UnitTestObligatorio1
                 Notes = "Límite 400 shenn UYU"
             };
             _passwordManager.CreateCreditCard(_card2);
-            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
+            _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
             List<CreditCard> creditCards = _passwordManager.GetCreditCards();
             CollectionAssert.DoesNotContain(creditCards, _card2);
         }
@@ -240,7 +242,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCreditCardsRefferingToSameUser()
         {
-            User currentUser = _passwordManager.CurrentUser;
+            User currentUser = _sessionController.CurrentUser;
             Category firstCategoryOnUser = currentUser.Categories[0];
             CreditCard _card2 = new CreditCard
             {
@@ -279,10 +281,10 @@ namespace UnitTestObligatorio1
         public void ModifyCreditCardThatAlreadyExists()
         {
 
-            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
+            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
-                User = _passwordManager.CurrentUser,
+                User = _sessionController.CurrentUser,
                 Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
@@ -307,10 +309,10 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyOneFieldCreditCard()
         {
-            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
+            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
-                User = _passwordManager.CurrentUser,
+                User = _sessionController.CurrentUser,
                 Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
@@ -333,10 +335,10 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardAlreadyExistsException))]
         public void CreateCreditCardThatAlreadyExists()
         {
-            Category firstCategoryOnUser = _passwordManager.CurrentUser.Categories[0];
+            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
-                User = _passwordManager.CurrentUser,
+                User = _sessionController.CurrentUser,
                 Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",
@@ -349,7 +351,7 @@ namespace UnitTestObligatorio1
 
             CreditCard newCreditCard = new CreditCard
             {
-                User = _passwordManager.CurrentUser,
+                User = _sessionController.CurrentUser,
                 Category = firstCategoryOnUser,
                 Name = "MasterCard Black",
                 Type = "Master",

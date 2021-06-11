@@ -11,6 +11,8 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordStrengthReport
     {
+
+        private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private User _currentUser;
         private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
@@ -32,6 +34,7 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            _sessionController = SessionController.GetInstance();
             _passwordManager = new PasswordManager();
             _currentUser = new User()
             {
@@ -39,7 +42,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "HolaSoyGonzalo123"
 
             };
-            _passwordManager.CreateUser(_currentUser);
+            _sessionController.CreateUser(_currentUser);
 
             AddCategoryToPasswordManager(ref _personal, "Personal");
             AddCategoryToPasswordManager(ref _work, "Work");

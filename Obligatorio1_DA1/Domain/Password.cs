@@ -27,7 +27,7 @@ namespace Obligatorio1_DA1.Domain
         public Password()
         {
             LastModification = DateTime.Today;
-            encryption = new BasicEncryption();
+            encryption = new AesEncryption();
         }
 
         public PasswordStrengthColor PasswordStrength { get; private set; }
@@ -112,7 +112,7 @@ namespace Obligatorio1_DA1.Domain
             this.EncryptedPass = encryptedPassword;
         }
 
-        
+
 
 
         private void ValidateSite(string siteToValidate)

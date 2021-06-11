@@ -10,22 +10,29 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestLogIn
     {
+
+        private SessionController _sessionController;
+        private PasswordManager _passwordManager;
+
+
         [TestMethod]
         [ExpectedException(typeof(LogInException))]
         public void LoginUserWithoutAnyUserCreated()
         {
-            passwordManager = new PasswordManager();
-            passwordManager.Login("Pepe12", "alsdfjadf");
+            _passwordManager = new PasswordManager();
+            _sessionController.Login("Pepe12", "alsdfjadf");
         }
 
-        private PasswordManager passwordManager;
+
         [TestInitialize]
         public void createPasswordManagerBeforeTests()
         {
-            passwordManager = new PasswordManager();
+            _passwordManager = new PasswordManager();
+            _sessionController = SessionController.GetInstance();
             User newUser = new User("Lucia", "Lucia123");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
+
         [TestCleanup]
         public void Cleanup()
         {
@@ -37,7 +44,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                passwordManager.Login("Lucia", "Lucia123");
+                _sessionController.Login("Lucia", "Lucia123");
             }
             catch (Exception ex)
             {
@@ -49,7 +56,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(LogInException))]
         public void LoginUserWrongPassword()
         {
-            passwordManager.Login("Lucia", "hoal3823");
+            _sessionController.Login("Lucia", "hoal3823");
         }
 
         [DataRow("hoal3823")]
@@ -60,7 +67,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(LogInException))]
         public void LoginUserWrongPassword(string wrongPassword)
         {
-            passwordManager.Login("Lucia", wrongPassword);
+            _sessionController.Login("Lucia", wrongPassword);
         }
 
         [TestMethod]
@@ -68,7 +75,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                passwordManager.Login("Lucia", "lucia$123");
+                _sessionController.Login("Lucia", "lucia$123");
             }
             catch (ValidationException e)
             {
@@ -80,16 +87,25 @@ namespace UnitTestObligatorio1
         public void LoginUserWithPasswordAlreadyTaken()
         {
             User newUser = new User("Pepe12", "Lucia123");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
             try
             {
-                passwordManager.Login("Pepe12", "Lucia123");
+                _sessionController.Login("Pepe12", "Lucia123");
 
             }
             catch (LogInException ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void CheckGetMasterNameOnCurrentUser()
+        {
+            User newUser = new User("Pepe12", "Lucia123");
+            _sessionController.CreateUser(newUser);
+            _sessionController.Login("Pepe12", "Lucia123");
+            Assert.AreEqual(_sessionController.GetCurrentUserMasterName(), newUser.MasterName);
         }
 
     }

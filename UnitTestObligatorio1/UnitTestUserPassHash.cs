@@ -10,12 +10,14 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestUserPassHash
     {
+        private SessionController _sessionController;
+        PasswordManager _passwordManager;
 
-        PasswordManager passwordManager;
         [TestInitialize]
         public void CreatePasswordManagerBeforeTests()
         {
-            passwordManager = new PasswordManager();
+            _sessionController = SessionController.GetInstance();
+            _passwordManager = new PasswordManager();
         }
 
         [TestCleanup]
@@ -37,7 +39,7 @@ namespace UnitTestObligatorio1
         {
 
             User newUser = new User("Juancito", pass);
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
 
         }
 
@@ -48,8 +50,8 @@ namespace UnitTestObligatorio1
         public void HashDifferentThanOrignal(string originalMasterPass)
         {
             User newUser = new User("Juancito", originalMasterPass);
-            passwordManager.CreateUser(newUser);
-            User newUserFromPasswordManager = passwordManager.CurrentUser;
+            _sessionController.CreateUser(newUser);
+            User newUserFromPasswordManager = _sessionController.CurrentUser;
             string userMasterPass = newUserFromPasswordManager.MasterPass;
             Assert.AreNotEqual(userMasterPass, originalMasterPass);
         }
@@ -62,14 +64,14 @@ namespace UnitTestObligatorio1
         public void HashingInUserLogin(string originalMasterPass)
         {
             User newUser = new User("Juancito", originalMasterPass);
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
 
             User anotherUser = new User("Pedrito", "Pedrito12345");
-            passwordManager.CreateUser(anotherUser);
+            _sessionController.CreateUser(anotherUser);
 
-            passwordManager.Login("Juancito", originalMasterPass);
+            _sessionController.Login("Juancito", originalMasterPass);
 
-            User newUserFromPasswordManager = passwordManager.CurrentUser;
+            User newUserFromPasswordManager = _sessionController.CurrentUser;
             string userMasterPass = newUserFromPasswordManager.MasterPass;
             Assert.AreNotEqual(userMasterPass, originalMasterPass);
         }
@@ -81,8 +83,8 @@ namespace UnitTestObligatorio1
         public void GetUserOriginalPassword(string originalMasterPass)
         {
             User newUser = new User("Juancito", originalMasterPass);
-            passwordManager.CreateUser(newUser);
-            User newUserFromPasswordManager = passwordManager.CurrentUser;
+            _sessionController.CreateUser(newUser);
+            User newUserFromPasswordManager = _sessionController.CurrentUser;
             string userPasswordsKey = newUserFromPasswordManager.DecryptionKey;
             Assert.AreEqual(originalMasterPass, userPasswordsKey);
         }
