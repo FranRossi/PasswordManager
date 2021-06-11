@@ -16,6 +16,7 @@ namespace Obligatorio1_DA1.Domain
 
         public int Id { get; set; }
         public User User { get; set; }
+        public Category Category { get; set; }
         public string Notes
         {
             get => _notes;
@@ -26,7 +27,6 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-        public Category Category { get; set; }
 
         private void ValidateNotes(string notesToValidate)
         {

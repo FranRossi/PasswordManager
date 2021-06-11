@@ -11,10 +11,11 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCreditCard
     {
+        private CreditCard _cardInitialize;
         private SessionController _sessionController;
-        private CreditCard _card;
         private PasswordManager _passwordManager;
         private User _user;
+        private Category _categoryInitialize;
         private string _categoryName;
 
 
@@ -34,11 +35,11 @@ namespace UnitTestObligatorio1
                 _sessionController.CreateUser(_user);
                 _categoryName = "Personal";
                 _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
-                Category firstCategoryOnUser = _user.Categories[0];
-                _card = new CreditCard
+                _categoryInitialize = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
+                _cardInitialize = new CreditCard
                 {
                     User = _user,
-                    Category = firstCategoryOnUser,
+                    Category = _categoryInitialize,
                     Name = "Visa Gold",
                     Type = "Visa",
                     Number = "2354678713003498",
@@ -46,7 +47,8 @@ namespace UnitTestObligatorio1
                     ExpirationDate = "10/21",
                     Notes = "Límite 400k UYU"
                 };
-                _passwordManager.CreateCreditCard(_card);
+                _passwordManager.CreateCreditCard(_cardInitialize);
+
             }
             catch (Exception exception)
             {
@@ -63,19 +65,10 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateValidCreditCard()
         {
-            _user = new User()
-            {
-                MasterName = "Mauricio",
-                MasterPass = "HolaSoyGonzalo123"
-            };
-            _categoryName = "Personal";
-            _sessionController.CreateUser(_user);
-            _passwordManager.CreateCategoryOnCurrentUser(_categoryName);
-            Category firstCategoryOnUser = _user.Categories[0];
-            CreditCard creditCard = new CreditCard
+           CreditCard creditCard = new CreditCard
             {
                 User = _user,
-                Category = firstCategoryOnUser,
+                Category = _categoryInitialize,
                 Name = "Visa Gold",
                 Type = "Visa",
                 Number = "7754678713003477",
@@ -91,58 +84,58 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCategoryCard()
         {
-            Assert.AreEqual<string>(_card.Category.Name, "Personal");
+            Assert.AreEqual<string>(_cardInitialize.Category.Name, "Personal");
         }
 
         [TestMethod]
         public void GetExpirationDateCard()
         {
-            Assert.AreEqual<string>(_card.ExpirationDate, "10/21");
+            Assert.AreEqual<string>(_cardInitialize.ExpirationDate, "10/21");
         }
 
         [TestMethod]
         public void GetNameCard()
         {
-            Assert.AreEqual<string>(_card.Name, "Visa Gold");
+            Assert.AreEqual<string>(_cardInitialize.Name, "Visa Gold");
         }
 
         [TestMethod]
         public void GetNotesCard()
         {
-            Assert.AreEqual<string>(_card.Notes, "Límite 400k UYU");
+            Assert.AreEqual<string>(_cardInitialize.Notes, "Límite 400k UYU");
         }
 
         [TestMethod]
         public void GetSecureCodeCard()
         {
-            Assert.AreEqual<string>(_card.SecureCode, "189");
+            Assert.AreEqual<string>(_cardInitialize.SecureCode, "189");
         }
 
         [TestMethod]
         public void GetTypeCard()
         {
-            Assert.AreEqual<string>(_card.Type, "Visa");
+            Assert.AreEqual<string>(_cardInitialize.Type, "Visa");
         }
 
         [TestMethod]
         [ExpectedException(typeof(CreditCardNumberLengthIncorrectException))]
         public void CreateInvalidCardNumberTooShort()
         {
-            _card.Number = "235467871";
+            _cardInitialize.Number = "235467871";
         }
 
         [TestMethod]
         [ExpectedException(typeof(CreditCardNumberInvalidCharactersException))]
         public void CreateInvalidCardNumberWithWrongCharacters()
         {
-            _card.Number = "2s46f871/00r3498";
+            _cardInitialize.Number = "2s46f871/00r3498";
         }
 
         [TestMethod]
         [ExpectedException(typeof(CreditCardNumberLengthIncorrectException))]
         public void CreateInvalidCardNumberTooLong()
         {
-            _card.Number = "2354 6787 1300 3498 134/00r3498";
+            _cardInitialize.Number = "2354 6787 1300 3498 134/00r3498";
         }
 
 
@@ -150,31 +143,22 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void CreateNewCardWithoutNotes()
         {
-            try
+            CreditCard newCard = new CreditCard
             {
-                Category firstCategoryOnUser = _user.Categories[0];
-                CreditCard newCard = new CreditCard
-                {
-                    User = _user,
-                    Category = firstCategoryOnUser,
-                    Name = "Visa Black",
-                    Type = "Visa",
-                    Number = "2354678713003498",
-                    SecureCode = "189",
-                    ExpirationDate = "10/21"
-                };
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail("Expected no exception, but got: " + ex.Message);
-            }
-
+                User = _user,
+                Category = _categoryInitialize,
+                Name = "Visa Black",
+                Type = "Visa",
+                Number = "2354678713003498",
+                SecureCode = "189",
+                ExpirationDate = "10/21"
+            };
         }
 
         [TestMethod]
-        public void CreateCardShowingOnlyLast4Digits()
+        public void CardShowingOnlyLast4Digits()
         {
-            string cardNumberShowingOnlyLast4Digits = _card.SecretNumber;
+            string cardNumberShowingOnlyLast4Digits = _cardInitialize.SecretNumber;
             Assert.AreEqual<string>("XXXX XXXX XXXX 3498", cardNumberShowingOnlyLast4Digits);
         }
 
@@ -183,15 +167,16 @@ namespace UnitTestObligatorio1
         public void GetCreditCards()
         {
             List<CreditCard> creditCards = _passwordManager.GetCreditCards();
-            CollectionAssert.Contains(creditCards, _card);
+            CollectionAssert.Contains(creditCards, _cardInitialize);
+            CollectionAssert.Contains(creditCards, _secondCardInitialize);
         }
 
         [TestMethod]
         public void DeleteACreditCard()
         {
-            _passwordManager.DeleteCreditCard(_card);
+            _passwordManager.DeleteCreditCard(_cardInitialize);
             List<CreditCard> creditCards = _passwordManager.GetCreditCards();
-            CollectionAssert.DoesNotContain(creditCards, _card);
+            CollectionAssert.DoesNotContain(creditCards, _cardInitialize);
         }
 
         [TestMethod]
@@ -242,12 +227,10 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCreditCardsRefferingToSameUser()
         {
-            User currentUser = _sessionController.CurrentUser;
-            Category firstCategoryOnUser = currentUser.Categories[0];
             CreditCard _card2 = new CreditCard
             {
-                User = currentUser,
-                Category = firstCategoryOnUser,
+                User = _user,
+                Category = _categoryInitialize,
                 Name = "MasterCard Black",
                 Type = "Master",
                 Number = "2354678713001111",
@@ -263,104 +246,43 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void ModifyCreditCard()
         {
-            List<CreditCard> creditCardBeforeModify = _passwordManager.GetCreditCards();
-            CreditCard firstCreditCard = creditCardBeforeModify.ToArray()[0];
-            firstCreditCard.Name = "Visa Gold";
-            firstCreditCard.Type = "Visa";
-            firstCreditCard.Number = "2354678713003498";
-            firstCreditCard.SecureCode = "189";
-            firstCreditCard.ExpirationDate = "10/21";
-            firstCreditCard.Notes = "Límite 400k UYU";
-            _passwordManager.ModifyCreditCardOnCurrentUser(firstCreditCard);
+            _cardInitialize.Name = "Visa Gold";
+            _cardInitialize.Type = "Visa";
+            _cardInitialize.Number = "2354678713003498";
+            _cardInitialize.SecureCode = "189";
+            _cardInitialize.ExpirationDate = "10/21";
+            _cardInitialize.Notes = "Límite 400k UYU";
+            _passwordManager.ModifyCreditCardOnCurrentUser(_cardInitialize);
             List<CreditCard> creditCardAfterModify = _passwordManager.GetCreditCards();
-            CollectionAssert.Contains(creditCardAfterModify, firstCreditCard);
+            CollectionAssert.Contains(creditCardAfterModify, _cardInitialize);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(CreditCardAlreadyExistsException))]
-        public void ModifyCreditCardThatAlreadyExists()
-        {
-
-            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
-            CreditCard creditCardAlreadyInPasswordManager = new CreditCard
-            {
-                User = _sessionController.CurrentUser,
-                Category = firstCategoryOnUser,
-                Name = "MasterCard Black",
-                Type = "Master",
-                Number = "2354678713001111",
-                SecureCode = "111",
-                ExpirationDate = "02/30",
-                Notes = "Límite 400 shenn UYU"
-            };
-            _passwordManager.CreateCreditCard(creditCardAlreadyInPasswordManager);
-
-            List<CreditCard> creditCardBeforeModify = _passwordManager.GetCreditCards();
-            CreditCard firstCreditCard = creditCardBeforeModify.ToArray()[0];
-            firstCreditCard.Name = "Visa Gold";
-            firstCreditCard.Type = "Visa";
-            firstCreditCard.Number = "2354678713001111";
-            firstCreditCard.SecureCode = "189";
-            firstCreditCard.ExpirationDate = "10/21";
-            firstCreditCard.Notes = "Límite 400k UYU";
-            _passwordManager.ModifyCreditCardOnCurrentUser(firstCreditCard);
-        }
 
         [TestMethod]
         public void ModifyOneFieldCreditCard()
         {
-            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
-            CreditCard creditCardAlreadyInPasswordManager = new CreditCard
-            {
-                User = _sessionController.CurrentUser,
-                Category = firstCategoryOnUser,
-                Name = "MasterCard Black",
-                Type = "Master",
-                Number = "2354678713001111",
-                SecureCode = "111",
-                ExpirationDate = "02/30",
-                Notes = "Límite 400 shenn UYU"
-            };
-            _passwordManager.CreateCreditCard(creditCardAlreadyInPasswordManager);
-
-            List<CreditCard> creditCardBeforeModify = _passwordManager.GetCreditCards();
-            CreditCard firstCreditCard = creditCardBeforeModify.ToArray()[0];
-            firstCreditCard.SecureCode = "123";
-            _passwordManager.ModifyCreditCardOnCurrentUser(firstCreditCard);
+            _cardInitialize.SecureCode = "123";
+            _passwordManager.ModifyCreditCardOnCurrentUser(_cardInitialize);
             List<CreditCard> creditCardAfterModify = _passwordManager.GetCreditCards();
-            CollectionAssert.Contains(creditCardAfterModify, firstCreditCard);
+            CollectionAssert.Contains(creditCardAfterModify, _cardInitialize);
         }
 
         [TestMethod]
         [ExpectedException(typeof(CreditCardAlreadyExistsException))]
         public void CreateCreditCardThatAlreadyExists()
         {
-            Category firstCategoryOnUser = _sessionController.CurrentUser.Categories[0];
             CreditCard creditCardAlreadyInPasswordManager = new CreditCard
             {
-                User = _sessionController.CurrentUser,
-                Category = firstCategoryOnUser,
-                Name = "MasterCard Black",
-                Type = "Master",
-                Number = "2354678713001111",
-                SecureCode = "111",
-                ExpirationDate = "02/30",
-                Notes = "Límite 400 shenn UYU"
+                User = _user,
+                Category = _categoryInitialize,
+                Name = "Visa Gold",
+                Type = "Visa",
+                Number = "2354678713003498",
+                SecureCode = "189",
+                ExpirationDate = "10/21",
+                Notes = "Límite 400k UYU"
             };
             _passwordManager.CreateCreditCard(creditCardAlreadyInPasswordManager);
-
-            CreditCard newCreditCard = new CreditCard
-            {
-                User = _sessionController.CurrentUser,
-                Category = firstCategoryOnUser,
-                Name = "MasterCard Black",
-                Type = "Master",
-                Number = "2354678713001111",
-                SecureCode = "111",
-                ExpirationDate = "02/30",
-                Notes = "Límite 400 shenn UYU"
-            };
-            _passwordManager.CreateCreditCard(newCreditCard);
         }
 
         [TestMethod]
@@ -377,18 +299,9 @@ namespace UnitTestObligatorio1
                 Name = "NewCategory"
             };
             newUser.Categories.Add(newCategory);
-            CreditCard newCreditCard = new CreditCard
-            {
-                User = newUser,
-                Category = newCategory,
-                Name = "MasterCard Black",
-                Type = "Master",
-                Number = "2354678713001111",
-                SecureCode = "111",
-                ExpirationDate = "02/30",
-                Notes = "Límite 400 shenn UYU"
-            };
-            _passwordManager.ModifyCreditCardOnCurrentUser(newCreditCard);
+            _cardInitialize.Category = newCategory;
+            _cardInitialize.User = newUser;
+            _passwordManager.ModifyCreditCardOnCurrentUser(_cardInitialize);
         }
 
 
@@ -429,7 +342,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void SetValidNameOnCard(string text)
         {
-            _card.Name = text;
+            _cardInitialize.Name = text;
         }
 
         [DataRow("AB")]
@@ -439,7 +352,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardNameTooShortException))]
         public void SeInvalidNameOnCardTooShort(string text)
         {
-            _card.Name = text;
+            _cardInitialize.Name = text;
         }
 
         [DataRow("Abcdefghijklmnopqrstuvwxyz")]
@@ -448,7 +361,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardNameTooLongException))]
         public void SeInvalidNameOnCardTooLong(string text)
         {
-            _card.Name = text;
+            _cardInitialize.Name = text;
         }
 
         [DataRow("ABC")]
@@ -459,7 +372,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void SetValidTypeOnCard(string text)
         {
-            _card.Type = text;
+            _cardInitialize.Type = text;
         }
 
         [DataRow("AB")]
@@ -469,7 +382,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardTypeTooShortException))]
         public void SeInvalidTypeOnCardTooShort(string text)
         {
-            _card.Type = text;
+            _cardInitialize.Type = text;
         }
 
         [DataRow("Abcdefghijklmnopqrstuvwxyz")]
@@ -478,7 +391,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardTypeTooLongException))]
         public void SeInvalidTypeOnCardTooLong(string text)
         {
-            _card.Type = text;
+            _cardInitialize.Type = text;
         }
 
         [DataRow("124")]
@@ -489,7 +402,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void SetValidSecureCodeOnCard(string text)
         {
-            _card.SecureCode = text;
+            _cardInitialize.SecureCode = text;
         }
 
         [DataRow("23")]
@@ -499,7 +412,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardSecureCodeWrongSizeException))]
         public void SeInvalidSecureCodeOnCardWrongSize(string text)
         {
-            _card.SecureCode = text;
+            _cardInitialize.SecureCode = text;
         }
 
         [DataRow("3rr")]
@@ -510,7 +423,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardSecureCodeInvalidCharactersException))]
         public void SeInvalidSecureCodeOnCardInvalidCharacters(string text)
         {
-            _card.SecureCode = text;
+            _cardInitialize.SecureCode = text;
         }
 
         [DataRow("12/24")]
@@ -521,7 +434,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void SetValidExpirationDateOnCard(string text)
         {
-            _card.ExpirationDate = text;
+            _cardInitialize.ExpirationDate = text;
         }
 
         [DataRow("00/24")]
@@ -533,7 +446,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardExpirationDateInvalidMonthException))]
         public void SetInvalidExpirationDateOnCardInvalidMonth(string text)
         {
-            _card.ExpirationDate = text;
+            _cardInitialize.ExpirationDate = text;
         }
 
         [DataRow("aa/24")]
@@ -546,27 +459,27 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(CreditCardExpirationDateInvalidFormatException))]
         public void SetInvalidExpirationDateOnCardInvalidFormat(string text)
         {
-            _card.ExpirationDate = text;
+            _cardInitialize.ExpirationDate = text;
         }
 
         [TestMethod]
         public void CreditCardEqualityWithInvalidObject()
         {
-            Assert.IsFalse(_card.Equals(new object()));
+            Assert.IsFalse(_cardInitialize.Equals(new object()));
         }
 
         [TestMethod]
         public void CreditCardId()
         {
-            _card.Id = 1;
-            Assert.AreEqual<int>(_card.Id, 1);
+            _cardInitialize.Id = 1;
+            Assert.AreEqual<int>(_cardInitialize.Id, 1);
         }
 
         [TestMethod]
         public void CreditCardDifferentId()
         {
-            _card.Id = 1254;
-            Assert.AreNotEqual<int>(_card.Id, 1);
+            _cardInitialize.Id = 1254;
+            Assert.AreNotEqual<int>(_cardInitialize.Id, 1);
         }
 
     }
