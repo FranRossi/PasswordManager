@@ -14,6 +14,7 @@ namespace UnitTestObligatorio1
 
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
+        private CategoryController _categoryController;
         private User _user;
         private Category _category;
 
@@ -24,6 +25,7 @@ namespace UnitTestObligatorio1
             {
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
+                _categoryController = new CategoryController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -34,8 +36,8 @@ namespace UnitTestObligatorio1
                     Name = "Personal"
                 };
                 _sessionController.CreateUser(_user);
-                _passwordManager.CreateCategoryOnCurrentUser(_category.Name);
-                _category = _passwordManager.GetCategoriesFromCurrentUser().ToArray()[0];
+                _categoryController.CreateCategoryOnCurrentUser(_category.Name);
+                _category = _categoryController.GetCategoriesFromCurrentUser().ToArray()[0];
 
             }
             catch (Exception ex)
@@ -114,7 +116,7 @@ namespace UnitTestObligatorio1
             };
             _passwordManager.CreatePassword(newPass);
 
-    Password secondPass = new Password
+            Password secondPass = new Password
             {
                 User = _user,
                 Category = _category,

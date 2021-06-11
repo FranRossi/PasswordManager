@@ -13,6 +13,7 @@ namespace UnitTestObligatorio1
     {
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
+        private CategoryController _categoryController;
         private User _currentUser;
 
         private string _passwordDataBreach;
@@ -32,7 +33,7 @@ namespace UnitTestObligatorio1
         public void TestInitialize()
         {
             _sessionController = SessionController.GetInstance();
-
+            _categoryController = new CategoryController();
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
@@ -49,7 +50,7 @@ namespace UnitTestObligatorio1
             };
             _sessionController.CreateUser(_currentUser);
             string categoryName = "Personal";
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            _categoryController.CreateCategoryOnCurrentUser(categoryName);
             _currentUser = _sessionController.CurrentUser;
         }
 
@@ -202,7 +203,7 @@ namespace UnitTestObligatorio1
             IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_itemDataBreach);
             string categoryName = "Facultad";
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            _categoryController.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = _currentUser.Categories[0];
             DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
             List<Item> items = new List<Item>();
@@ -412,7 +413,7 @@ namespace UnitTestObligatorio1
             };
             _sessionController.CreateUser(otherUser);
             string categoryName = "Facultad";
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            _categoryController.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = otherUser.Categories[0];
             Password newPassword = new Password
             {
@@ -460,7 +461,7 @@ namespace UnitTestObligatorio1
                 MasterPass = "HolaSoyJavier123"
             };
             _sessionController.CreateUser(otherUser);
-            _passwordManager.CreateCategoryOnCurrentUser(categoryName);
+            _categoryController.CreateCategoryOnCurrentUser(categoryName);
             Category firstCategoryOnUser = otherUser.Categories[0];
             CreditCard newCard = new CreditCard
             {
