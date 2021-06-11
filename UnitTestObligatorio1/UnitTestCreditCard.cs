@@ -482,15 +482,14 @@ namespace UnitTestObligatorio1
         [DataRow("124")]
         [DataRow("434")]
         [DataRow("333")]
-        [DataRow("983")]
-        [DataRow("343")]
+        [DataRow("9832")]
+        [DataRow("3432")]
         [DataTestMethod]
         public void SetValidSecureCodeOnCard(string text)
         {
             _card.SecureCode = text;
         }
 
-        [DataRow("3243")]
         [DataRow("23")]
         [DataRow("")]
         [DataRow("343442323342342")]

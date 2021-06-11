@@ -55,9 +55,13 @@
     <Compile Include="DataAccessPassword.cs" />
     <Compile Include="IDataAccessPassword.cs" />
     <Compile Include="IDataAccessCreditCard.cs" />
-    <Compile Include="Migrations\202106102319598_Clean-Migration-MergeConflict.cs" />
-    <Compile Include="Migrations\202106102319598_Clean-Migration-MergeConflict.designer.cs">
-      <DependentUpon>202106102319598_Clean-Migration-MergeConflict.cs</DependentUpon>
+    <Compile Include="Migrations\202106111904294_CleanMigration-Merge.cs" />
+    <Compile Include="Migrations\202106111904294_CleanMigration-Merge.designer.cs">
+      <DependentUpon>202106111904294_CleanMigration-Merge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106111909587_Changes-CreditCard-SecureCode-Length.cs" />
+    <Compile Include="Migrations\202106111909587_Changes-CreditCard-SecureCode-Length.designer.cs">
+      <DependentUpon>202106111909587_Changes-CreditCard-SecureCode-Length.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PasswordManagerDBContext.cs" />
@@ -82,8 +86,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106102319598_Clean-Migration-MergeConflict.resx">
-      <DependentUpon>202106102319598_Clean-Migration-MergeConflict.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106111904294_CleanMigration-Merge.resx">
+      <DependentUpon>202106111904294_CleanMigration-Merge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106111909587_Changes-CreditCard-SecureCode-Length.resx">
+      <DependentUpon>202106111909587_Changes-CreditCard-SecureCode-Length.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
