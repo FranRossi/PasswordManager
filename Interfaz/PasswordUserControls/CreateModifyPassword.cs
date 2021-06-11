@@ -27,6 +27,7 @@ namespace Presentation
         public CreateModifyPassword(PasswordManager passwordManager, Password password)
         {
             InitializeComponent();
+            _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             _myPasswordToModify = password;
             LoadComboBoxCategory();
