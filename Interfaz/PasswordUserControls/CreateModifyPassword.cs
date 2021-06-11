@@ -34,6 +34,7 @@ namespace Presentation
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
+            _myPasswordController = new PasswordController();
             _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
