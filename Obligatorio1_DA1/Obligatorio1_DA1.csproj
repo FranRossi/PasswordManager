@@ -96,6 +96,7 @@
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Domain\DataBreach\DataBreachReaderFromString.cs" />
     <Compile Include="Domain\DataBreach\IDataBreachReader.cs" />
+    <Compile Include="Utilities\AdvancedHash.cs" />
     <Compile Include="Utilities\AesEncryption.cs" />
     <Compile Include="Utilities\BasicHash.cs" />
     <Compile Include="Utilities\BasicEncryption.cs" />

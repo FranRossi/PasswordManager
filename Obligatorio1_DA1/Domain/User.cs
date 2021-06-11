@@ -104,7 +104,7 @@ namespace Obligatorio1_DA1.Domain
 
         public void HashPassword()
         {
-            IHash hashing = new BasicHash();
+            IHash hashing = new AdvancedHash();
             string hashedPass = hashing.Hash(this.MasterPass, this.MasterName);
             this.DecryptionKey = this.MasterPass;
             _masterPass = hashedPass;
