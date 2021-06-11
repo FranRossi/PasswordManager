@@ -99,5 +99,14 @@ namespace UnitTestObligatorio1
             }
         }
 
+        [TestMethod]
+        public void CheckGetMasterNameOnCurrentUser()
+        {
+            User newUser = new User("Pepe12", "Lucia123");
+            _sessionController.CreateUser(newUser);
+            _sessionController.Login("Pepe12", "Lucia123");
+            Assert.Equals(_sessionController.GetCurrentUserMasterName(), newUser.MasterName);
+        }
+
     }
 }
