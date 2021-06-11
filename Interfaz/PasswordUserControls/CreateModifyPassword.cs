@@ -13,6 +13,7 @@ namespace Presentation
         private SessionController _mySessionController;
         private PasswordManager _myPasswordManager;
         private CategoryController _myCategoryController;
+        private PasswordController _myPasswordController;
         private Password _myPasswordToModify;
         private Password _myNewPassword;
 
@@ -22,6 +23,7 @@ namespace Presentation
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
+            _myPasswordController = new PasswordController();
             LoadComboBoxCategory();
             ShowHidePassword(false);
         }
@@ -32,6 +34,7 @@ namespace Presentation
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
+            _myPasswordController = new PasswordController();
             _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
@@ -96,14 +99,14 @@ namespace Presentation
         private void VerifiesModifyPassword()
         {
             ModifyPasswordObjectFormFields();
-            _myPasswordManager.VerifyPassword(_myPasswordToModify);
+            _myPasswordController.VerifyPassword(_myPasswordToModify);
         }
 
         private void VerifiesNewPassword()
         {
             Password newPassword = CreatePasswordObjectFormFields();
             _myNewPassword = newPassword;
-            _myPasswordManager.VerifyPassword(_myNewPassword);
+            _myPasswordController.VerifyPassword(_myNewPassword);
         }
 
         private void SuggestionsForPassword(Password password)
@@ -163,7 +166,7 @@ namespace Presentation
         private string DuplicatePasswordSuggestion(Password password)
         {
             string duplicateSuggestion = "";
-            if (_myPasswordManager.PasswordTextIsDuplicate(password))
+            if (_myPasswordController.PasswordTextIsDuplicate(password))
                 duplicateSuggestion = "- Esta contraseña ya se encuentre en el sistema" + Environment.NewLine;
 
             return duplicateSuggestion;
@@ -173,9 +176,9 @@ namespace Presentation
         private void UpdateDataBasePassword(Password password)
         {
             if (UserIsCreatingANewPassword())
-                _myPasswordManager.CreatePassword(password);
+                _myPasswordController.CreatePassword(password);
             else
-                _myPasswordManager.ModifyPasswordOnCurrentUser(password);
+                _myPasswordController.ModifyPasswordOnCurrentUser(password);
         }
 
 

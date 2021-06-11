@@ -10,6 +10,7 @@ namespace Presentation
         private PasswordManager _passwordManager;
         private SessionController _sessionController;
         private CategoryController _myCategoryController;
+        private PasswordController _myPasswordController;
         private Random _random;
         private int _uniqueNumber;
         private User _juana;
@@ -21,6 +22,7 @@ namespace Presentation
             this._sessionController = SessionController.GetInstance();
             this._passwordManager = passwordManager;
             _myCategoryController = new CategoryController();
+            _myPasswordController = new PasswordController();
             this._random = new Random();
             _uniqueNumber = 10;
             try
@@ -44,7 +46,7 @@ namespace Presentation
         private void ShareJuanaPasswors()
         {
             this._sessionController.Login("Juana", "Juana");
-            List<Password> passwords = this._passwordManager.GetPasswords();
+            List<Password> passwords = this._myPasswordController.GetPasswords();
             this._passwordManager.SharePassword(passwords[0], this._pablo);
             this._passwordManager.SharePassword(passwords[0], this._mario);
             this._passwordManager.SharePassword(passwords[0], this._laura);
@@ -112,7 +114,7 @@ namespace Presentation
                 Pass = password,
                 Notes = "Numero aleatorio: " + this._random.Next(1, 10)
             };
-            this._passwordManager.CreatePassword(newPassword);
+            this._myPasswordController.CreatePassword(newPassword);
             this._uniqueNumber++;
         }
 

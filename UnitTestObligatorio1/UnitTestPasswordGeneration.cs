@@ -14,6 +14,7 @@ namespace UnitTestObligatorio1
     {
 
         private SessionController _sessionController;
+        private PasswordController _passwordController;
         private Password _password;
         private PasswordManager _passwordManager;
         private User _user;
@@ -26,6 +27,7 @@ namespace UnitTestObligatorio1
             {
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
+                _passwordController = new PasswordController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -46,7 +48,7 @@ namespace UnitTestObligatorio1
                     Notes = "No me roben la cuenta"
                 };
                 _sessionController.CreateUser(_user);
-                _passwordManager.CreatePassword(_password);
+                _passwordController.CreatePassword(_password);
             }
             catch (Exception ex)
             {

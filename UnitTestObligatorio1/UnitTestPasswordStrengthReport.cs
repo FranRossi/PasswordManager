@@ -15,6 +15,7 @@ namespace UnitTestObligatorio1
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
+        private PasswordController _passwordController;
         private User _currentUser;
         private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
         private List<Password> redPassword = new List<Password>();
@@ -38,6 +39,7 @@ namespace UnitTestObligatorio1
             _sessionController = SessionController.GetInstance();
             _passwordManager = new PasswordManager();
             _categoryController = new CategoryController();
+            _passwordController = new PasswordController();
             _currentUser = new User()
             {
                 MasterName = "Gonzalo",
@@ -166,7 +168,7 @@ namespace UnitTestObligatorio1
                     Pass = passwords[i].Item2,
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreatePassword(newPassword);
+                _passwordController.CreatePassword(newPassword);
                 passwords[i].Item1.Add(newPassword);
             }
         }

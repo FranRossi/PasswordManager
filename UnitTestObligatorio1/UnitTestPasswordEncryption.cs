@@ -15,6 +15,7 @@ namespace UnitTestObligatorio1
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
+        private PasswordController _passwordController;
         private User _user;
         private Category _category;
 
@@ -26,6 +27,7 @@ namespace UnitTestObligatorio1
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
                 _categoryController = new CategoryController();
+                _passwordController = new PasswordController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -68,8 +70,8 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(newPass);
-            Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
+            _passwordController.CreatePassword(newPass);
+            Password newPassFromPasswordManger = _passwordController.GetPasswords()[0];
             string encryptedPassword = newPassFromPasswordManger.EncryptedPass;
             string unEncryptedPassword = passName;
             Assert.AreNotEqual(unEncryptedPassword, encryptedPassword);
@@ -91,9 +93,9 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(newPass);
+            _passwordController.CreatePassword(newPass);
             string unEncryptedPassword = passName;
-            Password newPassFromPasswordManger = _passwordManager.GetPasswords()[0];
+            Password newPassFromPasswordManger = _passwordController.GetPasswords()[0];
             string decyptedPassword = newPassFromPasswordManger.Pass;
             Assert.AreEqual(unEncryptedPassword, decyptedPassword);
         }
@@ -114,7 +116,7 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(newPass);
+            _passwordController.CreatePassword(newPass);
 
             Password secondPass = new Password
             {
@@ -124,9 +126,9 @@ namespace UnitTestObligatorio1
                 Username = "amazingssss",
                 Pass = passName
             };
-            _passwordManager.CreatePassword(secondPass);
+            _passwordController.CreatePassword(secondPass);
 
-            List<Password> passwords = _passwordManager.GetPasswords();
+            List<Password> passwords = _passwordController.GetPasswords();
             Password newPassFromPasswordManger = passwords[0];
             Password secondPassFromPasswordManger = passwords[1];
             Assert.AreEqual(newPassFromPasswordManger.EncryptedPass, secondPassFromPasswordManger.EncryptedPass);
@@ -147,7 +149,7 @@ namespace UnitTestObligatorio1
                 Pass = passName,
                 Notes = "No me roben la cuenta"
             };
-            _passwordManager.CreatePassword(newPass);
+            _passwordController.CreatePassword(newPass);
 
             _user.DecryptionKey = "newPasswordKey";
             Password secondPass = new Password
@@ -158,9 +160,9 @@ namespace UnitTestObligatorio1
                 Username = "amazingssss",
                 Pass = passName
             };
-            _passwordManager.CreatePassword(secondPass);
+            _passwordController.CreatePassword(secondPass);
 
-            List<Password> passwords = _passwordManager.GetPasswords();
+            List<Password> passwords = _passwordController.GetPasswords();
             Password newPassFromPasswordManger = passwords[0];
             Password secondPassFromPasswordManger = passwords[1];
             Assert.AreNotEqual(newPassFromPasswordManger.EncryptedPass, secondPassFromPasswordManger.EncryptedPass);
