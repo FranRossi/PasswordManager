@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessPassword.cs" />
+    <Compile Include="IDataAccessDataBreach.cs" />
+    <Compile Include="IDataAccessCategory.cs" />
+    <Compile Include="IDataAccessUser.cs" />
     <Compile Include="IDataAccessPassword.cs" />
     <Compile Include="IDataAccessCreditCard.cs" />
     <Compile Include="Migrations\202106111904294_CleanMigration-Merge.cs" />
