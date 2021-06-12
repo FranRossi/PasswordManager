@@ -43,7 +43,8 @@ namespace BusinessLogic
         {
             PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
             PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
-            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
+            bool passwordIsNotGreenSecure = password.PasswordStrength != darkGreen && password.PasswordStrength != lightGreen;
+            return passwordIsNotGreenSecure;
         }
 
 
