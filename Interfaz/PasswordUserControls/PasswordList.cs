@@ -20,7 +20,7 @@ namespace Presentation
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = _myPasswordManager.GetPasswords();
+            List<Password> passwords = null;// _myPasswordManager.GetPasswords();
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
@@ -59,7 +59,7 @@ namespace Presentation
             {
                 if (ShowConfirmationPopUp())
                 {
-                    _myPasswordManager.DeletePassword(_selectedPassword);
+                    //_myPasswordManager.DeletePassword(_selectedPassword);
                     lblMessage.Text = "Contraseña eliminada exitosamente.";
                     LoadTblPassword();
                 }

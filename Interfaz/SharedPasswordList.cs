@@ -39,7 +39,7 @@ namespace Presentation
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = _myPasswordManager.GetPasswords();
+            List<Password> passwords = null; //_myPasswordManager.GetPasswords();
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
