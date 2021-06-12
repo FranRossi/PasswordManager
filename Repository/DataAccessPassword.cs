@@ -28,22 +28,7 @@ namespace Repository
                 context.Categories.Attach(passwordCategoryFromDB);
                 context.Users.Attach(passwordUserFromDB);
                 context.Passwords.Add(newPassword);
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                validationError.PropertyName,
-                                validationError.ErrorMessage);
-                        }
-                    }
-                }
+                context.SaveChanges();
             }
         }
 
