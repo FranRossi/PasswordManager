@@ -28,22 +28,7 @@ namespace Repository
                 context.Categories.Attach(passwordCategoryFromDB);
                 context.Users.Attach(passwordUserFromDB);
                 context.Passwords.Add(newPassword);
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                validationError.PropertyName,
-                                validationError.ErrorMessage);
-                        }
-                    }
-                }
+                context.SaveChanges();
             }
         }
 
@@ -121,16 +106,19 @@ namespace Repository
             }
         }
 
-        public List<Password> GetPasswordsByColor(PasswordStrengthColor passColor)
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor passColor, User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Password> passwords = context.Passwords.Include("User").Where(pass => pass.PasswordStrength == passColor).ToList();
+                List<Password> passwords = context.Passwords.Include("User").Include("Category").Where(
+                            pass => pass.PasswordStrength == passColor && pass.User.MasterName == currentUser.MasterName).ToList();
+                foreach (Password pass in passwords)
+                    SynchronizeLocalAndDBUsersDecryptionKey(currentUser, pass.User);
                 return passwords;
             }
         }
 
-        public List<PasswordReportByColor> GetPasswordReportByColor()
+        public List<PasswordReportByColor> GetPasswordReportByColor(User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
@@ -140,7 +128,7 @@ namespace Repository
                     report.Add(new PasswordReportByColor
                     {
                         Color = passColor,
-                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == passColor)
+                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == passColor && pass.User.MasterName == currentUser.MasterName)
                     }
                     );
                 }
@@ -148,14 +136,14 @@ namespace Repository
             }
         }
 
-        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
+        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor(User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 List<PasswordReportByCategoryAndColor> report = new List<PasswordReportByCategoryAndColor>();
-                List<Password> passwordsWithCategories = context.Passwords.Include("Category").ToList();
+                List<Category> categories = context.Users.Include("Categories").FirstOrDefault(u => u.MasterName == currentUser.MasterName).Categories;
 
-                foreach (Category category in context.Categories)
+                foreach (Category category in categories)
                 {
                     foreach (PasswordStrengthColor color in Enum.GetValues(typeof(PasswordStrengthColor)))
                     {
@@ -163,7 +151,9 @@ namespace Repository
                         {
                             Category = category,
                             Color = color,
-                            Quantity = passwordsWithCategories.Count(pass => pass.Category.Equals(category) && pass.PasswordStrength == color)
+                            Quantity = context.Passwords.Include("User").Include("Category").Count(
+                                    pass => pass.Category.Name == category.Name && pass.PasswordStrength == color
+                                        && pass.User.MasterName == currentUser.MasterName)
                         }
                         );
                     }
@@ -181,6 +171,11 @@ namespace Repository
                 bool passTextIsDuplicate = passToCheck != null;
                 return passTextIsDuplicate;
             }
+        }
+
+        private void SynchronizeLocalAndDBUsersDecryptionKey(User originalUser, User user)
+        {
+            user.DecryptionKey = originalUser.DecryptionKey;
         }
     }
 }

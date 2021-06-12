@@ -40,7 +40,6 @@ namespace UnitTestObligatorio1
             _sessionController = SessionController.GetInstance();
             _categoryController = new CategoryController();
             _passwordController = new PasswordController();
-            _passwordColorReportController = new PasswordColorReportController();
             _currentUser = new User()
             {
                 MasterName = "Gonzalo",
@@ -48,6 +47,7 @@ namespace UnitTestObligatorio1
 
             };
             _sessionController.CreateUser(_currentUser);
+            _passwordColorReportController = new PasswordColorReportController();
 
             AddCategoryToCategoryController(ref _personal, "Personal");
             AddCategoryToCategoryController(ref _work, "Work");
@@ -92,7 +92,7 @@ namespace UnitTestObligatorio1
         public void GetNumberOfPasswordByStrengthColorAndCategory(PasswordStrengthColor color, string category, int quantity)
         {
             List<PasswordReportByCategoryAndColor> report = this._passwordColorReportController.GetPasswordReportByCategoryAndColor();
-            var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
+            PasswordReportByCategoryAndColor reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
             Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity + " real " + reportEntry.Quantity);
         }
 
@@ -105,8 +105,8 @@ namespace UnitTestObligatorio1
         public void GetNumberOfPasswordByStrengthColor(PasswordStrengthColor color, int quantity)
         {
             List<PasswordReportByColor> report = this._passwordColorReportController.GetPasswordReportByColor();
-            var redEntry = report.Find(entry => entry.Color == color);
-            Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
+            PasswordReportByColor reportEntry = report.Find(entry => entry.Color == color);
+            Assert.IsTrue(reportEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
         }
 
         [TestMethod]

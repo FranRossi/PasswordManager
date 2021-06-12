@@ -11,27 +11,31 @@ namespace BusinessLogic
     public class PasswordColorReportController
     {
         private IDataAccessPassword<Password> _passwords;
+        private SessionController _sessionController;
+        private User _currentUser;
 
         public PasswordColorReportController()
         {
+            _sessionController = SessionController.GetInstance();
+            _currentUser = _sessionController.CurrentUser;
             _passwords = new DataAccessPassword();
         }
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
-            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor(_currentUser);
             return report;
         }
 
         public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor();
+            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor(_currentUser);
             return report;
         }
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = _passwords.GetPasswordsByColor(color);
+            List<Password> passwords = _passwords.GetPasswordsByColor(color, _currentUser);
             return passwords;
         }
 
@@ -39,7 +43,8 @@ namespace BusinessLogic
         {
             PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
             PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
-            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
+            bool passwordIsNotGreenSecure = password.PasswordStrength != darkGreen && password.PasswordStrength != lightGreen;
+            return passwordIsNotGreenSecure;
         }
 
 
