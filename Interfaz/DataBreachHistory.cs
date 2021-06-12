@@ -15,17 +15,19 @@ namespace Presentation
     public partial class DataBreachHistory : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private DataBreachController _myDatabreachController;
         private DataBreachReport _selectedReport;
         public DataBreachHistory(PasswordManager passwordManager)
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
+            _myDatabreachController = new DataBreachController();
             LoadTblDataBreach();
         }
 
         private void LoadTblDataBreach()
         {
-            List<DataBreachReport> reports = _myPasswordManager.GetDataBreachReportsFromCurrentUser();
+            List<DataBreachReport> reports = _myDatabreachController.GetDataBreachReportsFromCurrentUser();
             tblReports.DataSource = null;
             tblReports.Rows.Clear();
             tblReports.DataSource = reports;
