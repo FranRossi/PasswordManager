@@ -12,10 +12,10 @@ namespace BusinessLogic
     {
         private SessionController _sessionController;
         private CategoryController _categoryController;
-        private DataAccessUser _users;
-        private DataAccessCreditCard _creditCards;
-        private DataAccessPassword _passwords;
-        private DataAccessDataBreach _dataBreaches;
+        private IDataAccessUser _users;
+        private IDataAccessCreditCard<CreditCard> _creditCards;
+        private IDataAccessPassword<Password> _passwords;
+        private IDataAccessDataBreach _dataBreaches;
 
         public PasswordManager()
         {
