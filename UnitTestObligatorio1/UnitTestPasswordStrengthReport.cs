@@ -92,7 +92,7 @@ namespace UnitTestObligatorio1
         public void GetNumberOfPasswordByStrengthColorAndCategory(PasswordStrengthColor color, string category, int quantity)
         {
             List<PasswordReportByCategoryAndColor> report = this._passwordColorReportController.GetPasswordReportByCategoryAndColor();
-            PasswordReportByColor reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
+            PasswordReportByCategoryAndColor reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
             Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity + " real " + reportEntry.Quantity);
         }
 
