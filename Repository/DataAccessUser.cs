@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessUser
+    public class DataAccessUser : IDataAccessUser
     {
         public void Add(User newUser)
         {
