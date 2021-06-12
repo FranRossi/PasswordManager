@@ -132,7 +132,7 @@ namespace Repository
             }
         }
 
-        public List<PasswordReportByColor> GetPasswordReportByColor()
+        public List<PasswordReportByColor> GetPasswordReportByColor(User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
@@ -142,7 +142,7 @@ namespace Repository
                     report.Add(new PasswordReportByColor
                     {
                         Color = passColor,
-                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == passColor)
+                        Quantity = context.Passwords.Count(pass => pass.PasswordStrength == passColor && pass.User.MasterName == currentUser.MasterName)
                     }
                     );
                 }

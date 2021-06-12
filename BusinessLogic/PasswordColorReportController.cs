@@ -27,7 +27,8 @@ namespace BusinessLogic
 
         public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor();
+            User currentUser = _sessionController.CurrentUser;
+            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor(currentUser);
             return report;
         }
 
