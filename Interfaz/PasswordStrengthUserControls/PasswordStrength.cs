@@ -19,11 +19,13 @@ namespace Presentation
     public partial class PasswordStrength : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private PasswordColorReportController _myPasswordColorReportController;
         private PasswordStrengthChart _chartPanel;
         private List<colorComponent> _colorsCmp;
         public PasswordStrength(PasswordManager passwordManager)
         {
             _myPasswordManager = passwordManager;
+            _myPasswordColorReportController = new PasswordColorReportController();
             InitializeComponent();
             SetColorsLabelsAndButtons();
             LoadColorQuantities();
@@ -34,7 +36,7 @@ namespace Presentation
 
         private void LoadColorQuantities()
         {
-            List<PasswordReportByColor> reportsByPassColor = this._myPasswordManager.GetPasswordReportByColor();
+            List<PasswordReportByColor> reportsByPassColor = this._myPasswordColorReportController.GetPasswordReportByColor();
             foreach (PasswordReportByColor entry in reportsByPassColor)
             {
                 colorComponent componentByPassColor = _colorsCmp.Find(component => component.Color == entry.Color);
@@ -56,7 +58,7 @@ namespace Presentation
         private void LoadChart()
         {
             bool enoughtPasswordToShow;
-            List<PasswordReportByCategoryAndColor> reportsByPassColor = this._myPasswordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> reportsByPassColor = this._myPasswordColorReportController.GetPasswordReportByCategoryAndColor();
             enoughtPasswordToShow = (reportsByPassColor.Count() > 0);
 
             if (enoughtPasswordToShow)
@@ -69,7 +71,7 @@ namespace Presentation
 
         private void ReloadChart()
         {
-            List<PasswordReportByCategoryAndColor> reportsByPassColor = _myPasswordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> reportsByPassColor = _myPasswordColorReportController.GetPasswordReportByCategoryAndColor();
             _chartPanel = new PasswordStrengthChart(reportsByPassColor);
         }
         private void ShowChart()

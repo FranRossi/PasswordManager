@@ -10,6 +10,8 @@ namespace Presentation
         private PasswordManager _passwordManager;
         private SessionController _sessionController;
         private CategoryController _myCategoryController;
+        private CreditCardController _myCreditCardController;
+
         private PasswordController _myPasswordController;
         private Random _random;
         private int _uniqueNumber;
@@ -23,6 +25,7 @@ namespace Presentation
             this._passwordManager = passwordManager;
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
+            _myCreditCardController = new CreditCardController();
             this._random = new Random();
             _uniqueNumber = 10;
             try
@@ -153,7 +156,7 @@ namespace Presentation
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
-            this._passwordManager.CreateCreditCard(newCreditCard);
+            this._myCreditCardController.CreateCreditCard(newCreditCard);
             this._uniqueNumber++;
         }
 
