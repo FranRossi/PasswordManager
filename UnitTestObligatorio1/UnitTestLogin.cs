@@ -12,19 +12,22 @@ namespace UnitTestObligatorio1
     {
 
         private SessionController _sessionController;
+        private PasswordManager _passwordManager;
 
 
         [TestMethod]
         [ExpectedException(typeof(LogInException))]
         public void LoginUserWithoutAnyUserCreated()
         {
+            _passwordManager = new PasswordManager();
             _sessionController.Login("Pepe12", "alsdfjadf");
         }
 
 
         [TestInitialize]
-        public void createSessionControllerBeforeTests()
+        public void createPasswordManagerBeforeTests()
         {
+            _passwordManager = new PasswordManager();
             _sessionController = SessionController.GetInstance();
             User newUser = new User("Lucia", "Lucia123");
             _sessionController.CreateUser(newUser);
@@ -98,22 +101,6 @@ namespace UnitTestObligatorio1
             _sessionController.Login("Pepe12", "Lucia123");
             Assert.AreEqual(_sessionController.GetCurrentUserMasterName(), newUser.MasterName);
         }
-
-
-        [DataRow("MaritoBaracus")]
-        [DataRow("Maria")]
-        [DataRow("Pepe Gonzales Segundo")]
-        [DataTestMethod]
-        public void UserToString(string name)
-        {
-            User newUser = new User(name, "password");
-            string actualName = newUser.ToString();
-            _sessionController.CreateUser(newUser);
-            _sessionController.Login(actualName, "password");
-            string expectedName = name;
-            Equals(expectedName, actualName);
-        }
-
 
     }
 }

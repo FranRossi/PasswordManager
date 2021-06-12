@@ -11,17 +11,24 @@ namespace UnitTestObligatorio1
     public class UnitTestUserPassHash
     {
         private SessionController _sessionController;
+        PasswordManager _passwordManager;
 
         [TestInitialize]
-        public void CreateSessionControllerBeforeTests()
+        public void CreatePasswordManagerBeforeTests()
         {
             _sessionController = SessionController.GetInstance();
+            _passwordManager = new PasswordManager();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            UnitTestSignUp.DataBaseCleanup(null);
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
         }
 
         [DataRow("mySuper")]
@@ -30,8 +37,10 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void UserPasswordIsHashed(string pass)
         {
+
             User newUser = new User("Juancito", pass);
             _sessionController.CreateUser(newUser);
+
         }
 
         [DataRow("hola123")]
