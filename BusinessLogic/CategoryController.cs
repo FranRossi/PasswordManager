@@ -11,11 +11,11 @@ namespace BusinessLogic
     public class CategoryController
     {
         private SessionController _sessionController;
-        private DataAccessUser _users;
-        private DataAccessCategory _categories;
-        private DataAccessCreditCard _creditCards;
-        private DataAccessPassword _passwords;
-        private DataAccessDataBreach _dataBreaches;
+        private IDataAccessUser _users;
+        private IDataAccessCategory _categories;
+        private IDataAccessCreditCard<CreditCard> _creditCards;
+        private IDataAccessPassword<Password> _passwords;
+        private IDataAccessDataBreach _dataBreaches;
 
         public CategoryController()
         {
@@ -26,7 +26,7 @@ namespace BusinessLogic
             _dataBreaches = new DataAccessDataBreach();
             _sessionController = SessionController.GetInstance();
         }
-        
+
         public List<Category> GetCategoriesFromCurrentUser()
         {
             return _categories.GetAll(_sessionController.GetCurrentUserMasterName()).ToList();
