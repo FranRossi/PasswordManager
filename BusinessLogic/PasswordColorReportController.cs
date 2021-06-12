@@ -12,30 +12,30 @@ namespace BusinessLogic
     {
         private IDataAccessPassword<Password> _passwords;
         private SessionController _sessionController;
+        private User _currentUser;
 
         public PasswordColorReportController()
         {
             _sessionController = SessionController.GetInstance();
+            _currentUser = _sessionController.CurrentUser;
             _passwords = new DataAccessPassword();
         }
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
         {
-            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor(_currentUser);
             return report;
         }
 
         public List<PasswordReportByColor> GetPasswordReportByColor()
         {
-            User currentUser = _sessionController.CurrentUser;
-            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor(currentUser);
+            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor(_currentUser);
             return report;
         }
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            User currentUser = _sessionController.CurrentUser;
-            List<Password> passwords = _passwords.GetPasswordsByColor(color, currentUser);
+            List<Password> passwords = _passwords.GetPasswordsByColor(color, _currentUser);
             return passwords;
         }
 
