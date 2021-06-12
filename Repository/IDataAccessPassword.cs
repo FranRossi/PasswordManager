@@ -12,16 +12,11 @@ namespace Repository
     {
 
         bool CheckPasswordNotSharedTwice(Password newPassword, User userShareTo);
-
-        List<Password> GetSharedPasswordsWithCurrentUser(User currentUser);
-
-        List<Password> GetPasswordsByColor(PasswordStrengthColor passColor);
-
-        List<PasswordReportByColor> GetPasswordReportByColor();
-
-        List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor();
-
         bool CheckTextIsDuplicate(Password password, User currentUser);
+        List<Password> GetSharedPasswordsWithCurrentUser(User currentUser);
+        List<Password> GetPasswordsByColor(PasswordStrengthColor passColor);
+        List<PasswordReportByColor> GetPasswordReportByColor();
+        List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor();
     }
 }
 
