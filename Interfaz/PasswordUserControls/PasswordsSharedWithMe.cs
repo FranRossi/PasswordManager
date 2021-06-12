@@ -8,7 +8,7 @@ namespace Presentation
     public partial class PasswordsSharedWithMe : UserControl
     {
         private SharePasswordController _mySharePasswordController;
-        public PasswordsSharedWithMe(PasswordManager passwordManager)
+        public PasswordsSharedWithMe()
         {
             InitializeComponent();
             _mySharePasswordController = new SharePasswordController();

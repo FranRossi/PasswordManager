@@ -13,7 +13,7 @@ namespace Presentation
         private User _selectedShareWithUser;
         private User _selectedUnShareWithUser;
         private List<User> _usersNotSharedWith;
-        public SharedPasswordList(PasswordManager passwordManager, Password password)
+        public SharedPasswordList(Password password)
         {
             InitializeComponent();
             _mySharePasswordController = new SharePasswordController();

@@ -19,7 +19,7 @@ namespace Presentation
         private User _pablo;
         private User _mario;
         private User _laura;
-        public TestData(PasswordManager passwordManager)
+        public TestData()
         {
             this._sessionController = SessionController.GetInstance();
             this._sharePasswordController = new SharePasswordController();

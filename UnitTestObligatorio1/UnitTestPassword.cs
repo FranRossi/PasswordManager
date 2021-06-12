@@ -14,7 +14,6 @@ namespace UnitTestObligatorio1
 
         private SessionController _sessionController;
         private Password _password;
-        private PasswordManager _passwordManager;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
         private PasswordColorReportController _passwordColorReportController;
@@ -28,7 +27,6 @@ namespace UnitTestObligatorio1
             try
             {
                 _sessionController = SessionController.GetInstance();
-                _passwordManager = new PasswordManager();
                 _categoryController = new CategoryController();
                 _passwordController = new PasswordController();
                 _passwordColorReportController = new PasswordColorReportController();

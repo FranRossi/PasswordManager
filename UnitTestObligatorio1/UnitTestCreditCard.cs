@@ -14,7 +14,6 @@ namespace UnitTestObligatorio1
         private CreditCard _cardInitialize;
         private SessionController _sessionController;
         private CreditCardController _creditCardController;
-        private PasswordManager _passwordManager;
         private CategoryController _categoryController;
         private User _user;
         private Category _categoryInitialize;
@@ -27,7 +26,6 @@ namespace UnitTestObligatorio1
             try
             {
                 _sessionController = SessionController.GetInstance();
-                _passwordManager = new PasswordManager();
                 _creditCardController = new CreditCardController();
                 _categoryController = new CategoryController();
                 _user = new User()

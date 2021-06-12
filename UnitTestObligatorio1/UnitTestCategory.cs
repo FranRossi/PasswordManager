@@ -16,7 +16,6 @@ namespace UnitTestObligatorio1
         private Category _categoryPersonalInitialize;
         private User _user;
         private SessionController _sessionController;
-        private PasswordManager _passwordManager;
         private CategoryController _categoryController;
 
         [TestInitialize]
@@ -25,7 +24,6 @@ namespace UnitTestObligatorio1
             try
             {
                 _sessionController = SessionController.GetInstance();
-                _passwordManager = new PasswordManager();
                 _categoryController = new CategoryController();
                 _user = new User()
                 {

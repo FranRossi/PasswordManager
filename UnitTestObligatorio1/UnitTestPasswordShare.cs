@@ -13,7 +13,6 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordShare
     {
-        private PasswordManager _passwordManager;
         private SessionController _sessionController;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
@@ -31,8 +30,8 @@ namespace UnitTestObligatorio1
             {
                 _categoryController = new CategoryController();
                 _sessionController = SessionController.GetInstance();
-                _passwordManager = new PasswordManager();
                 _passwordController = new PasswordController();
+                _sharePasswordController = new SharePasswordController();
                 _userShareFromMasterPass = "HolaSoySantiago1";
                 _userShareTo = new User()
                 {
