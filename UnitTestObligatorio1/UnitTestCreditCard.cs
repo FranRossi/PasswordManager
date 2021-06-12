@@ -13,6 +13,7 @@ namespace UnitTestObligatorio1
     {
         private CreditCard _cardInitialize;
         private SessionController _sessionController;
+        private CreditCardController _creditCardController;
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
         private User _user;
@@ -27,6 +28,7 @@ namespace UnitTestObligatorio1
             {
                 _sessionController = SessionController.GetInstance();
                 _passwordManager = new PasswordManager();
+                _creditCardController = new CreditCardController();
                 _categoryController = new CategoryController();
                 _user = new User()
                 {
@@ -49,7 +51,7 @@ namespace UnitTestObligatorio1
                     ExpirationDate = "10/21",
                     Notes = "Límite 400k UYU"
                 };
-                _passwordManager.CreateCreditCard(_cardInitialize);
+                _creditCardController.CreateCreditCard(_cardInitialize);
 
             }
             catch (Exception exception)
@@ -79,7 +81,7 @@ namespace UnitTestObligatorio1
                 Notes = "Límite 400k UYU"
             };
 
-            _passwordManager.CreateCreditCard(creditCard);
+            _creditCardController.CreateCreditCard(creditCard);
         }
 
 
@@ -168,22 +170,22 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void GetCreditCards()
         {
-            List<CreditCard> creditCards = _passwordManager.GetCreditCards();
+            List<CreditCard> creditCards = _creditCardController.GetCreditCards();
             CollectionAssert.Contains(creditCards, _cardInitialize);
         }
 
         [TestMethod]
         public void DeleteACreditCard()
         {
-            _passwordManager.DeleteCreditCard(_cardInitialize);
-            List<CreditCard> creditCards = _passwordManager.GetCreditCards();
+            _creditCardController.DeleteCreditCard(_cardInitialize);
+            List<CreditCard> creditCards = _creditCardController.GetCreditCards();
             CollectionAssert.DoesNotContain(creditCards, _cardInitialize);
         }
 
         [TestMethod]
         public void DeleteACreditCardAfterModify()
         {
-            List<CreditCard> creditCardBeforeModify = _passwordManager.GetCreditCards();
+            List<CreditCard> creditCardBeforeModify = _creditCardController.GetCreditCards();
             CreditCard firstCreditCard = creditCardBeforeModify.ToArray()[0];
             firstCreditCard.Name = "Visa Gold";
             firstCreditCard.Type = "Visa";
@@ -191,9 +193,9 @@ namespace UnitTestObligatorio1
             firstCreditCard.SecureCode = "189";
             firstCreditCard.ExpirationDate = "10/21";
             firstCreditCard.Notes = "Límite 400k UYU";
-            _passwordManager.ModifyCreditCardOnCurrentUser(firstCreditCard);
-            _passwordManager.DeleteCreditCard(firstCreditCard);
-            List<CreditCard> creditCardsAfterModify = _passwordManager.GetCreditCards();
+            _creditCardController.ModifyCreditCardOnCurrentUser(firstCreditCard);
+            _creditCardController.DeleteCreditCard(firstCreditCard);
+            List<CreditCard> creditCardsAfterModify = _creditCardController.GetCreditCards();
             CollectionAssert.DoesNotContain(creditCardsAfterModify, firstCreditCard);
         }
 
@@ -219,9 +221,9 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
-            _passwordManager.CreateCreditCard(_card2);
+            _creditCardController.CreateCreditCard(_card2);
             _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
-            List<CreditCard> creditCards = _passwordManager.GetCreditCards();
+            List<CreditCard> creditCards = _creditCardController.GetCreditCards();
             CollectionAssert.DoesNotContain(creditCards, _card2);
         }
 
@@ -239,8 +241,8 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
-            _passwordManager.CreateCreditCard(_card2);
-            List<CreditCard> creditCards = _passwordManager.GetCreditCards();
+            _creditCardController.CreateCreditCard(_card2);
+            List<CreditCard> creditCards = _creditCardController.GetCreditCards();
             CollectionAssert.Contains(creditCards, _card2);
         }
 
@@ -253,8 +255,8 @@ namespace UnitTestObligatorio1
             _cardInitialize.SecureCode = "189";
             _cardInitialize.ExpirationDate = "10/21";
             _cardInitialize.Notes = "Límite 400k UYU";
-            _passwordManager.ModifyCreditCardOnCurrentUser(_cardInitialize);
-            List<CreditCard> creditCardAfterModify = _passwordManager.GetCreditCards();
+            _creditCardController.ModifyCreditCardOnCurrentUser(_cardInitialize);
+            List<CreditCard> creditCardAfterModify = _creditCardController.GetCreditCards();
             CollectionAssert.Contains(creditCardAfterModify, _cardInitialize);
         }
 
@@ -263,8 +265,8 @@ namespace UnitTestObligatorio1
         public void ModifyOneFieldCreditCard()
         {
             _cardInitialize.SecureCode = "123";
-            _passwordManager.ModifyCreditCardOnCurrentUser(_cardInitialize);
-            List<CreditCard> creditCardAfterModify = _passwordManager.GetCreditCards();
+            _creditCardController.ModifyCreditCardOnCurrentUser(_cardInitialize);
+            List<CreditCard> creditCardAfterModify = _creditCardController.GetCreditCards();
             CollectionAssert.Contains(creditCardAfterModify, _cardInitialize);
         }
 
@@ -283,7 +285,7 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "10/21",
                 Notes = "Límite 400k UYU"
             };
-            _passwordManager.CreateCreditCard(creditCardAlreadyInPasswordManager);
+            _creditCardController.CreateCreditCard(creditCardAlreadyInPasswordManager);
         }
 
         [TestMethod]
@@ -302,7 +304,7 @@ namespace UnitTestObligatorio1
             newUser.Categories.Add(newCategory);
             _cardInitialize.Category = newCategory;
             _cardInitialize.User = newUser;
-            _passwordManager.ModifyCreditCardOnCurrentUser(_cardInitialize);
+            _creditCardController.ModifyCreditCardOnCurrentUser(_cardInitialize);
         }
 
 
@@ -331,7 +333,7 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "02/30",
                 Notes = "Límite 400 shenn UYU"
             };
-            _passwordManager.CreateCreditCard(newCreditCard);
+            _creditCardController.CreateCreditCard(newCreditCard);
         }
 
 
