@@ -70,7 +70,7 @@ namespace UnitTestObligatorio1
                   (darkGreenPassword,darkGreenPasswordsName[0],_work),
                   (darkGreenPassword,darkGreenPasswordsName[1],_university),
               };
-            AddPasswordsToPasswordManager(passwords);
+            AddPasswordsToPasswordController(passwords);
 
         }
 
@@ -155,7 +155,7 @@ namespace UnitTestObligatorio1
             category = categories.Find(c => c.Name == name);
         }
 
-        private void AddPasswordsToPasswordManager(ValueTuple<List<Password>, string, Category>[] passwords)
+        private void AddPasswordsToPasswordController(ValueTuple<List<Password>, string, Category>[] passwords)
         {
             for (int i = 0; i < passwords.Length; i++)
             {
