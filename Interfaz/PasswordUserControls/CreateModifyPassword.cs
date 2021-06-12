@@ -35,6 +35,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myDatabreachController = new DataBreachController();
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
             _myPasswordToModify = password;
