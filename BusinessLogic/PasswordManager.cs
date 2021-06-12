@@ -95,28 +95,6 @@ namespace BusinessLogic
                 throw new CreditCardNotBelongToCurrentUserException();
         }
 
-
-        //--------------------------------------------DATA BREACH CONTROLLER----------------------------------------------------------------
-        public List<Item> SaveBreachedItems(DataBreachReport dataBreachReport)
-        {
-            //TODO VER SI HACER VOID Y CARGAR DATABREACH
-            List<Item> breachedItems = _dataBreaches.AddDataBreachReport(dataBreachReport);
-            return breachedItems;
-        }
-
-        public List<DataBreachReport> GetDataBreachReportsFromCurrentUser()
-        {
-            List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(_sessionController.GetCurrentUserMasterName());
-            return reports;
-        }
-
-        public bool VerifyPasswordHasBeenBreached(Password passwordToCheck)
-        {
-            bool passwordIsBreached = _dataBreaches.CheckIfPasswordHasBeenBreached(_sessionController.CurrentUser, passwordToCheck);
-            return passwordIsBreached;
-        }
-
-
         //-------------------------------------------------------SHARE PASSWORD CONTROLLER------------------------------------------------
         public void SharePassword(Password passwordToShare, User userShareTo)
         {

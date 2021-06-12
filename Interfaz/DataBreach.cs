@@ -13,6 +13,7 @@ namespace Presentation
 
         private SessionController _mySessionController;
         private PasswordManager _myPasswordManager;
+        private DataBreachController _myDatabreachController;
         private Password _selectedPassword;
         private bool _isTextFileBreach;
 
@@ -20,6 +21,7 @@ namespace Presentation
         {
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
+            _myDatabreachController = new DataBreachController();
             _myPasswordManager = passwordManager;
             _isTextFileBreach = false;
         }
@@ -56,7 +58,7 @@ namespace Presentation
                 dataBreachReader = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> dataBreachEntries = dataBreachReader.GetDataBreachEntries(txtDataBreach.Text);
             DataBreachReport dataBreachReport = new DataBreachReport(dataBreachEntries, _mySessionController.CurrentUser);
-            List<Item> breachResult = _myPasswordManager.SaveBreachedItems(dataBreachReport);
+            List<Item> breachResult = _myDatabreachController.SaveBreachedItems(dataBreachReport);
             LoadTables(breachResult);
             lblMessage.Text = "";
         }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CategoryController.cs" />
     <Compile Include="PasswordController.cs" />
+    <Compile Include="DataBreachController.cs" />
     <Compile Include="SessionController.cs" />
     <Compile Include="PasswordManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
