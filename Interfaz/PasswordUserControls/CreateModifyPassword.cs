@@ -37,6 +37,7 @@ namespace Presentation
             _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
+            _myPasswordColorReportController = new PasswordColorReportController();
             _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
