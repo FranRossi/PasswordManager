@@ -23,25 +23,32 @@ namespace UnitTestObligatorio1
 
         }
 
+        [TestMethod]
+        public void CreatePasswordManager()
+        {
+            PasswordManager passwordManager = new PasswordManager();
+            Assert.IsNotNull(passwordManager);
+        }
+
 
         private SessionController _sessionController;
+        private PasswordManager _passwordManager;
         [TestInitialize]
-        public void CreateSessionControllerBeforeTests()
+        public void CreatePasswordManagerBeforeTests()
         {
+            _passwordManager = new PasswordManager();
             _sessionController = SessionController.GetInstance();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            DataBaseCleanup(null);
-        }
-
-        [TestMethod]
-        public void CreatePasswordManager()
-        {
-            PasswordManager passwordManager = new PasswordManager();
-            Assert.IsNotNull(passwordManager);
+            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
+            {
+                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
+                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
+            }
         }
 
         [TestMethod]
@@ -116,6 +123,20 @@ namespace UnitTestObligatorio1
             User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");
             _sessionController.CreateUser(newUser);
         }
+
+        // TODO move test to another unitTest file
+        [DataRow("MaritoBaracus")]
+        [DataRow("Lucia")]
+        [DataRow("Pepe Gonzales Segundo")]
+        [DataTestMethod]
+        public void UserToString(string name)
+        {
+            User newUser = new User(name, "password");
+            string actualName = newUser.ToString();
+            string expectedName = name;
+            StringAssert.Equals(expectedName, actualName);
+        }
+
 
 
         [TestMethod]

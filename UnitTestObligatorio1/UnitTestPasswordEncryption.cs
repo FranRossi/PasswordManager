@@ -18,7 +18,6 @@ namespace UnitTestObligatorio1
         private PasswordController _passwordController;
         private User _user;
         private Category _category;
-        private Password _newPass;
 
         [TestInitialize]
         public void TestInitialize()
@@ -42,16 +41,6 @@ namespace UnitTestObligatorio1
                 _categoryController.CreateCategoryOnCurrentUser(_category.Name);
                 _category = _categoryController.GetCategoriesFromCurrentUser().ToArray()[0];
 
-               _newPass = new Password
-                {
-                    User = _user,
-                    Category = _category,
-                    Site = "ort.edu.uy",
-                    Username = "239850",
-                    Pass = "123453",
-                    Notes = "No me roben la cuenta"
-                };
-
             }
             catch (Exception ex)
             {
@@ -72,9 +61,16 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void EncryptedPasswordDifferentFromOriginal(string passName)
         {
-            _newPass.Pass = passName;
-          
-            _passwordController.CreatePassword(_newPass);
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordController.CreatePassword(newPass);
             Password newPassFromPasswordManger = _passwordController.GetPasswords()[0];
             string encryptedPassword = newPassFromPasswordManger.EncryptedPass;
             string unEncryptedPassword = passName;
@@ -88,9 +84,16 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void DencryptedPasswordSameThanOriginal(string passName)
         {
-            _newPass.Pass = passName;
-
-            _passwordController.CreatePassword(_newPass);
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordController.CreatePassword(newPass);
             string unEncryptedPassword = passName;
             Password newPassFromPasswordManger = _passwordController.GetPasswords()[0];
             string decyptedPassword = newPassFromPasswordManger.Pass;
@@ -104,8 +107,16 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void SameUserAndPassResultsInSameEncryption(string passName)
         {
-            _newPass.Pass = passName;
-            _passwordController.CreatePassword(_newPass);
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordController.CreatePassword(newPass);
 
             Password secondPass = new Password
             {
@@ -129,8 +140,16 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void EncryptionDependeOnUsersKey(string passName)
         {
-            _newPass.Pass = passName;
-            _passwordController.CreatePassword(_newPass);
+            Password newPass = new Password
+            {
+                User = _user,
+                Category = _category,
+                Site = "ort.edu.uy",
+                Username = "239850",
+                Pass = passName,
+                Notes = "No me roben la cuenta"
+            };
+            _passwordController.CreatePassword(newPass);
 
             _user.DecryptionKey = "newPasswordKey";
             Password secondPass = new Password

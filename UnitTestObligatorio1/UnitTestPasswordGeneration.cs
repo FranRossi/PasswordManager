@@ -19,7 +19,6 @@ namespace UnitTestObligatorio1
         private PasswordManager _passwordManager;
         private User _user;
         private Category _category;
-        private PasswordGenerationOptions _options;
 
         [TestInitialize]
         public void TestInitialize()
@@ -50,15 +49,6 @@ namespace UnitTestObligatorio1
                 };
                 _sessionController.CreateUser(_user);
                 _passwordController.CreatePassword(_password);
-
-                _options = new PasswordGenerationOptions
-                {
-                    Length = 0,
-                    Uppercase = false,
-                    Lowercase = false,
-                    Digits = false,
-                    SpecialDigits = false
-                };
             }
             catch (Exception ex)
             {
@@ -83,8 +73,15 @@ namespace UnitTestObligatorio1
         public void GenerateValidPassword
        (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits, string regex)
         {
-            SetPasswordGenerationOptions(length, uppercase, lowercase, digits,specialDigits);
-            string pass = Password.GenerateRandomPassword(_options);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
             Regex regexToCheck = new Regex(regex);
             Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
@@ -96,8 +93,15 @@ namespace UnitTestObligatorio1
         public void GenerateInvalidNotTypesSelectedPassword
                (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
-            SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            Password.GenerateRandomPassword(_options);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
         }
 
         [DataRow(4, true, false, false, false)]
@@ -107,8 +111,15 @@ namespace UnitTestObligatorio1
         public void GenerateInvalidTooShortPassword
             (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
-            SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            Password.GenerateRandomPassword(_options);
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
         }
 
         [DataRow(3434, true, false, false, false)]
@@ -118,17 +129,15 @@ namespace UnitTestObligatorio1
         public void GenerateInvalidTooLongPassword
             (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
-            SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            Password.GenerateRandomPassword(_options);
-        }
-
-        private void SetPasswordGenerationOptions(int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
-        {
-            _options.Length = length;
-            _options.Uppercase = uppercase;
-            _options.Lowercase = lowercase;
-            _options.Digits = digits;
-            _options.SpecialDigits = specialDigits;
+            PasswordGenerationOptions options = new PasswordGenerationOptions
+            {
+                Length = length,
+                Uppercase = uppercase,
+                Lowercase = lowercase,
+                Digits = digits,
+                SpecialDigits = specialDigits
+            };
+            string pass = Password.GenerateRandomPassword(options);
         }
     }
 }
