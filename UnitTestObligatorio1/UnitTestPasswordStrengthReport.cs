@@ -16,6 +16,8 @@ namespace UnitTestObligatorio1
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
+        private PasswordColorReportController _passwordColorReportController;
+
         private User _currentUser;
         private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
         private List<Password> redPassword = new List<Password>();
@@ -40,6 +42,7 @@ namespace UnitTestObligatorio1
             _passwordManager = new PasswordManager();
             _categoryController = new CategoryController();
             _passwordController = new PasswordController();
+            _passwordColorReportController = new PasswordColorReportController();
             _currentUser = new User()
             {
                 MasterName = "Gonzalo",
@@ -90,7 +93,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void GetNumberOfPasswordByStrengthColorAndCategory(PasswordStrengthColor color, string category, int quantity)
         {
-            List<PasswordReportByCategoryAndColor> report = this._passwordManager.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> report = this._passwordColorReportController.GetPasswordReportByCategoryAndColor();
             var reportEntry = report.Find(entry => entry.Color == color && entry.Category.Name == category);
             Assert.IsTrue(reportEntry.Quantity == quantity, "Error: " + color + " " + category + " " + quantity + " real " + reportEntry.Quantity);
         }
@@ -103,7 +106,7 @@ namespace UnitTestObligatorio1
         [DataTestMethod]
         public void GetNumberOfPasswordByStrengthColor(PasswordStrengthColor color, int quantity)
         {
-            List<PasswordReportByColor> report = this._passwordManager.GetPasswordReportByColor();
+            List<PasswordReportByColor> report = this._passwordColorReportController.GetPasswordReportByColor();
             var redEntry = report.Find(entry => entry.Color == color);
             Assert.IsTrue(redEntry.Quantity == quantity, "Error: Color:" + color + " Quantity: " + quantity);
         }
@@ -112,35 +115,35 @@ namespace UnitTestObligatorio1
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorDarkGreen()
         {
-            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.DarkGreen);
+            List<Password> actualPasswords = this._passwordColorReportController.GetPasswordsByColor(PasswordStrengthColor.DarkGreen);
             CollectionAssert.AreEqual(darkGreenPassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorLightGreen()
         {
-            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.LightGreen);
+            List<Password> actualPasswords = this._passwordColorReportController.GetPasswordsByColor(PasswordStrengthColor.LightGreen);
             CollectionAssert.AreEqual(lightGreenPassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorYellow()
         {
-            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Yellow);
+            List<Password> actualPasswords = this._passwordColorReportController.GetPasswordsByColor(PasswordStrengthColor.Yellow);
             CollectionAssert.AreEqual(yellowPassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorOrange()
         {
-            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Orange);
+            List<Password> actualPasswords = this._passwordColorReportController.GetPasswordsByColor(PasswordStrengthColor.Orange);
             CollectionAssert.AreEqual(orangePassword, actualPasswords);
         }
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorRed()
         {
-            List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Red);
+            List<Password> actualPasswords = this._passwordColorReportController.GetPasswordsByColor(PasswordStrengthColor.Red);
             CollectionAssert.AreEqual(redPassword, actualPasswords);
         }
 

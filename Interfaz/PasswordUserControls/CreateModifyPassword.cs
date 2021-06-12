@@ -14,6 +14,7 @@ namespace Presentation
         private PasswordManager _myPasswordManager;
         private CategoryController _myCategoryController;
         private PasswordController _myPasswordController;
+        private PasswordColorReportController _myPasswordColorReportController;
         private Password _myPasswordToModify;
         private Password _myNewPassword;
 
@@ -24,6 +25,7 @@ namespace Presentation
             _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
+            _myPasswordColorReportController = new PasswordColorReportController();
             LoadComboBoxCategory();
             ShowHidePassword(false);
         }
@@ -35,6 +37,7 @@ namespace Presentation
             _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
+            _myPasswordColorReportController = new PasswordColorReportController();
             _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
@@ -157,7 +160,7 @@ namespace Presentation
         private string SecurePasswordSuggestion(Password password)
         {
             string secureSuggestion = "";
-            if (_myPasswordManager.PasswordIsNotGreenSecure(password))
+            if (_myPasswordColorReportController.PasswordIsNotGreenSecure(password))
                 secureSuggestion = "- Esta contraseña no se encuentra en el rango de seguridad verde claro o verde oscuro" + Environment.NewLine;
 
             return secureSuggestion;
