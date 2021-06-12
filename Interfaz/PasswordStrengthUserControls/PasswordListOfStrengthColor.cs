@@ -10,6 +10,7 @@ namespace Presentation.PasswordStrengthWindow
     public partial class PasswordListOfStrengthColor : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private PasswordColorReportController _myPasswordColorReportController;
         private PasswordStrengthColor _passColor;
         private Password _selectedPassword;
 
@@ -17,13 +18,14 @@ namespace Presentation.PasswordStrengthWindow
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
+            _myPasswordColorReportController = new PasswordColorReportController();
             _passColor = color;
             LoadPasswords();
         }
 
         public void LoadPasswords()
         {
-            List<Password> passwords = this._myPasswordManager.GetPasswordsByColor(_passColor);
+            List<Password> passwords = this._myPasswordColorReportController.GetPasswordsByColor(_passColor);
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;

@@ -17,6 +17,8 @@ namespace UnitTestObligatorio1
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
+        private PasswordColorReportController _passwordColorReportController;
+
         private User _user;
         private Category _category;
 
@@ -29,6 +31,7 @@ namespace UnitTestObligatorio1
                 _passwordManager = new PasswordManager();
                 _categoryController = new CategoryController();
                 _passwordController = new PasswordController();
+                _passwordColorReportController = new PasswordColorReportController();
                 _user = new User()
                 {
                     MasterName = "Gonzalo",
@@ -419,7 +422,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void PassswordIsNotGreenSecure()
         {
-            bool passIsNotGreenSecure = _passwordManager.PasswordIsNotGreenSecure(_password);
+            bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
             Assert.IsTrue(passIsNotGreenSecure);
         }
 
@@ -427,7 +430,7 @@ namespace UnitTestObligatorio1
         public void PassswordIsGreenSecure()
         {
             _password.Pass = "#stsrtARSRT2332";
-            bool passIsNotGreenSecure = _passwordManager.PasswordIsNotGreenSecure(_password);
+            bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
             Assert.IsFalse(passIsNotGreenSecure);
         }
     }

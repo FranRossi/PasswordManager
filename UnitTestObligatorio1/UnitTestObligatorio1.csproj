@@ -58,11 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hash\UnitTestAdvancedHash.cs" />
-    <Compile Include="Encription\UnitTestAesEncryption.cs" />
+    <Compile Include="Encryption\UnitTestAesEncryption.cs" />
     <Compile Include="Hash\UnitTestBasicHash.cs" />
-    <Compile Include="Encription\UnitTestBasicEncryption.cs" />
+    <Compile Include="Encryption\UnitTestBasicEncryption.cs" />
     <Compile Include="Hash\UnitTestHash.cs" />
-    <Compile Include="Encription\UnitTestEncryption.cs" />
+    <Compile Include="Encryption\UnitTestEncryption.cs" />
     <Compile Include="UnitTestPasswordEncryption.cs" />
     <Compile Include="UnitTestPasswordStrengthReport.cs" />
     <Compile Include="UnitTestDataBreach.cs" />
