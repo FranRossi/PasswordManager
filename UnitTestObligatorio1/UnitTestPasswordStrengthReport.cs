@@ -17,15 +17,15 @@ namespace UnitTestObligatorio1
         private CategoryController _categoryController;
         private PasswordController _passwordController;
         private User _currentUser;
-        private String[] redPasswordsName = { "23985023", "abcde876", "-d45023" };
-        private List<Password> redPassword = new List<Password>();
-        private List<Password> orangePassword = new List<Password>();
-        private String[] yellowPasswordsName = { "AAHTNINESHRIIHH", "nethiseant3232323hnea", "n$#@$ntdtshneaa" };
-        private List<Password> yellowPassword = new List<Password>();
-        private String[] lightGreenPasswordsName = { "AAHTNrtsrHRIISH", "148srtarst#$#@$5754543", "chau123(!&*($$^&#^@($*@#&", };
-        private List<Password> lightGreenPassword = new List<Password>();
-        private String[] darkGreenPasswordsName = { "3#@rstaAaartsaa", "Chau123(!&*($$^&#^@#&", "AAHTNrtsr#3IIHH" };
-        private List<Password> darkGreenPassword = new List<Password>();
+        private String[] redPasswordsNames = { "23985023", "abcde876", "-d45023" };
+        private List<Password> redPasswords = new List<Password>();
+        private List<Password> orangePasswords = new List<Password>();
+        private String[] yellowPasswordsNames = { "AAHTNINESHRIIHH", "nethiseant3232323hnea", "n$#@$ntdtshneaa" };
+        private List<Password> yellowPasswords = new List<Password>();
+        private String[] lightGreenPasswordsNames = { "AAHTNrtsrHRIISH", "148srtarst#$#@$5754543", "chau123(!&*($$^&#^@($*@#&", };
+        private List<Password> lightGreenPasswords = new List<Password>();
+        private String[] darkGreenPasswordsNames = { "3#@rstaAaartsaa", "Chau123(!&*($$^&#^@#&", "AAHTNrtsr#3IIHH" };
+        private List<Password> darkGreenPasswords = new List<Password>();
         private Category _personal;
         private Category _work;
         private Category _university;
@@ -48,27 +48,27 @@ namespace UnitTestObligatorio1
             };
             _sessionController.CreateUser(_currentUser);
 
-            AddCategoryToPasswordManager(ref _personal, "Personal");
-            AddCategoryToPasswordManager(ref _work, "Work");
-            AddCategoryToPasswordManager(ref _university, "University");
-            AddCategoryToPasswordManager(ref _family, "Family");
+            AddCategoryToCategoryController(ref _personal, "Personal");
+            AddCategoryToCategoryController(ref _work, "Work");
+            AddCategoryToCategoryController(ref _university, "University");
+            AddCategoryToCategoryController(ref _family, "Family");
 
             ValueTuple<List<Password>, string, Category>[] passwords = new (List<Password> passwords, string pass, Category category)[]
               {
-                  (redPassword,redPasswordsName[0] ,_family),
-                  (redPassword,redPasswordsName[1],_family),
-                  (redPassword,redPasswordsName[2],_family),
+                  (redPasswords,redPasswordsNames[0] ,_family),
+                  (redPasswords,redPasswordsNames[1],_family),
+                  (redPasswords,redPasswordsNames[2],_family),
 
-                  (yellowPassword,yellowPasswordsName[0],_family),
-                  (yellowPassword,yellowPasswordsName[1],_family),
-                  (yellowPassword,yellowPasswordsName[2],_university),
+                  (yellowPasswords,yellowPasswordsNames[0],_family),
+                  (yellowPasswords,yellowPasswordsNames[1],_family),
+                  (yellowPasswords,yellowPasswordsNames[2],_university),
 
-                  (lightGreenPassword,lightGreenPasswordsName[0],_family),
-                  (lightGreenPassword,lightGreenPasswordsName[1],_university),
-                  (lightGreenPassword,lightGreenPasswordsName[2],_work),
+                  (lightGreenPasswords,lightGreenPasswordsNames[0],_family),
+                  (lightGreenPasswords,lightGreenPasswordsNames[1],_university),
+                  (lightGreenPasswords,lightGreenPasswordsNames[2],_work),
 
-                  (darkGreenPassword,darkGreenPasswordsName[0],_work),
-                  (darkGreenPassword,darkGreenPasswordsName[1],_university),
+                  (darkGreenPasswords,darkGreenPasswordsNames[0],_work),
+                  (darkGreenPasswords,darkGreenPasswordsNames[1],_university),
               };
             AddPasswordsToPasswordController(passwords);
 
@@ -113,38 +113,42 @@ namespace UnitTestObligatorio1
         public void GetPasswordOfColorDarkGreen()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.DarkGreen);
-            CollectionAssert.AreEqual(darkGreenPassword, actualPasswords);
+            CollectionAssert.AreEqual(darkGreenPasswords, actualPasswords);
         }
+
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorLightGreen()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.LightGreen);
-            CollectionAssert.AreEqual(lightGreenPassword, actualPasswords);
+            CollectionAssert.AreEqual(lightGreenPasswords, actualPasswords);
         }
+
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorYellow()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Yellow);
-            CollectionAssert.AreEqual(yellowPassword, actualPasswords);
+            CollectionAssert.AreEqual(yellowPasswords, actualPasswords);
         }
+
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorOrange()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Orange);
-            CollectionAssert.AreEqual(orangePassword, actualPasswords);
+            CollectionAssert.AreEqual(orangePasswords, actualPasswords);
         }
+
         [TestMethod]
         [TestCategory("GetPasswordOfSpecificColor")]
         public void GetPasswordOfColorRed()
         {
             List<Password> actualPasswords = this._passwordManager.GetPasswordsByColor(PasswordStrengthColor.Red);
-            CollectionAssert.AreEqual(redPassword, actualPasswords);
+            CollectionAssert.AreEqual(redPasswords, actualPasswords);
         }
 
-        private void AddCategoryToPasswordManager(ref Category category, string name)
+        private void AddCategoryToCategoryController(ref Category category, string name)
         {
             category = new Category()
             {
