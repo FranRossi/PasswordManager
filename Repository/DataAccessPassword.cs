@@ -121,11 +121,13 @@ namespace Repository
             }
         }
 
-        public List<Password> GetPasswordsByColor(PasswordStrengthColor passColor)
+        public List<Password> GetPasswordsByColor(PasswordStrengthColor passColor, User currentUser)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<Password> passwords = context.Passwords.Include("User").Where(pass => pass.PasswordStrength == passColor).ToList();
+                List<Password> passwords = context.Passwords.Include("User").Include("Category").Where(pass => pass.PasswordStrength == passColor && pass.User.MasterName == currentUser.MasterName).ToList();
+                foreach (Password pass in passwords)
+                    SynchronizeLocalAndDBUsersDecryptionKey(currentUser, pass.User);
                 return passwords;
             }
         }
@@ -181,6 +183,11 @@ namespace Repository
                 bool passTextIsDuplicate = passToCheck != null;
                 return passTextIsDuplicate;
             }
+        }
+
+        private void SynchronizeLocalAndDBUsersDecryptionKey(User originalUser, User user)
+        {
+            user.DecryptionKey = originalUser.DecryptionKey;
         }
     }
 }

@@ -11,9 +11,11 @@ namespace BusinessLogic
     public class PasswordColorReportController
     {
         private IDataAccessPassword<Password> _passwords;
+        private SessionController _sessionController;
 
         public PasswordColorReportController()
         {
+            _sessionController = SessionController.GetInstance();
             _passwords = new DataAccessPassword();
         }
 
@@ -31,7 +33,8 @@ namespace BusinessLogic
 
         public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
         {
-            List<Password> passwords = _passwords.GetPasswordsByColor(color);
+            User currentUser = _sessionController.CurrentUser;
+            List<Password> passwords = _passwords.GetPasswordsByColor(color, currentUser);
             return passwords;
         }
 
