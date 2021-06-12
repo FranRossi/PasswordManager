@@ -10,17 +10,19 @@ namespace Presentation
     public partial class CreditCardList : UserControl
     {
         private PasswordManager _myPasswordManager;
+        private CreditCardController _myCreditCardController;
         private CreditCard _selectedCreditCard;
         public CreditCardList(PasswordManager passwordManager)
         {
             InitializeComponent();
             _myPasswordManager = passwordManager;
+            _myCreditCardController = new CreditCardController();
             LoadTblCreditCard();
         }
 
         private void LoadTblCreditCard()
         {
-            List<CreditCard> creditCards = _myPasswordManager.GetCreditCards();
+            List<CreditCard> creditCards = _myCreditCardController.GetCreditCards();
             tblCreditCard.DataSource = null;
             tblCreditCard.Rows.Clear();
             tblCreditCard.DataSource = creditCards;
@@ -74,7 +76,7 @@ namespace Presentation
             {
                 if (ShowConfirmationPopUp())
                 {
-                    _myPasswordManager.DeleteCreditCard(_selectedCreditCard);
+                    _myCreditCardController.DeleteCreditCard(_selectedCreditCard);
                     lblMessage.Text = "Tarjeta eliminada exitosamente.";
                     LoadTblCreditCard();
                 }
