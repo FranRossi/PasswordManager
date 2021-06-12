@@ -101,7 +101,7 @@ namespace UnitTestObligatorio1
 
 
         [DataRow("MaritoBaracus")]
-        [DataRow("Maria")]
+        [DataRow("Juana")]
         [DataRow("Pepe Gonzales Segundo")]
         [DataTestMethod]
         public void UserToString(string name)
