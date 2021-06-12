@@ -48,6 +48,12 @@ namespace UnitTestObligatorio1
 
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            UnitTestSignUp.DataBaseCleanup(null);
+        }
+
 
         [DataRow("23985023")]
         [DataRow("abcde876")]
