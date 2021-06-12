@@ -18,13 +18,11 @@ namespace Presentation
     }
     public partial class PasswordStrength : UserControl
     {
-        private PasswordManager _myPasswordManager;
         private PasswordColorReportController _myPasswordColorReportController;
         private PasswordStrengthChart _chartPanel;
         private List<colorComponent> _colorsCmp;
-        public PasswordStrength(PasswordManager passwordManager)
+        public PasswordStrength()
         {
-            _myPasswordManager = passwordManager;
             _myPasswordColorReportController = new PasswordColorReportController();
             InitializeComponent();
             SetColorsLabelsAndButtons();
@@ -84,7 +82,7 @@ namespace Presentation
         private void ShowPasswordList(PasswordStrengthColor passColor)
         {
             pnlChartList.Controls.Clear();
-            UserControl passwordsToShow = new PasswordListOfStrengthColor(_myPasswordManager, passColor);
+            UserControl passwordsToShow = new PasswordListOfStrengthColor(passColor);
             pnlChartList.Controls.Add(passwordsToShow);
             btnShowChart.Enabled = true;
         }

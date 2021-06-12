@@ -9,12 +9,10 @@ namespace Presentation
 {
     public partial class PasswordList : UserControl
     {
-        private PasswordManager _myPasswordManager;
         private Password _selectedPassword;
-        public PasswordList(PasswordManager passwordManager)
+        public PasswordList()
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
             LoadTblPassword();
         }
 
@@ -99,7 +97,7 @@ namespace Presentation
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form createPassword = new CreateModifyPassword(_myPasswordManager);
+            Form createPassword = new CreateModifyPassword();
             createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
             createPassword.ShowDialog();
         }
@@ -114,7 +112,7 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                Form createPassword = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
+                Form createPassword = new CreateModifyPassword(_selectedPassword);
                 createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
                 createPassword.ShowDialog();
             }
