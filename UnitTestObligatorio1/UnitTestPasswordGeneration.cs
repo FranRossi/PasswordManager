@@ -16,7 +16,6 @@ namespace UnitTestObligatorio1
         private SessionController _sessionController;
         private PasswordController _passwordController;
         private Password _password;
-        private PasswordManager _passwordManager;
         private User _user;
         private Category _category;
         private PasswordGenerationOptions _options;
@@ -27,7 +26,6 @@ namespace UnitTestObligatorio1
             try
             {
                 _sessionController = SessionController.GetInstance();
-                _passwordManager = new PasswordManager();
                 _passwordController = new PasswordController();
                 _user = new User()
                 {
@@ -83,7 +81,7 @@ namespace UnitTestObligatorio1
         public void GenerateValidPassword
        (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits, string regex)
         {
-            SetPasswordGenerationOptions(length, uppercase, lowercase, digits,specialDigits);
+            SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
             string pass = Password.GenerateRandomPassword(_options);
             Regex regexToCheck = new Regex(regex);
             Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);

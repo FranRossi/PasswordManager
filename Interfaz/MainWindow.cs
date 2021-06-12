@@ -7,12 +7,10 @@ namespace Presentation
 {
     public partial class MainWindow : Form
     {
-        private PasswordManager _myPasswordManager;
-        public MainWindow(PasswordManager passwordManager)
+        public MainWindow()
         {
 
             InitializeComponent();
-            _myPasswordManager = passwordManager;
         }
 
         private void tsmiPasswords_Click(object sender, EventArgs e)
@@ -22,49 +20,49 @@ namespace Presentation
 
         private void tsmiCreditCards_Click(object sender, EventArgs e)
         {
-            UserControl creditCardsList = new CreditCardList(_myPasswordManager);
+            UserControl creditCardsList = new CreditCardList();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(creditCardsList);
         }
 
         private void tsmiCategories_Click(object sender, EventArgs e)
         {
-            UserControl categories = new Categories(_myPasswordManager);
+            UserControl categories = new Categories();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(categories);
         }
 
         private void tsmiDataBreaches_Click(object sender, EventArgs e)
         {
-            UserControl dataBreaches = new DataBreach(_myPasswordManager);
+            UserControl dataBreaches = new DataBreach();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(dataBreaches);
         }
 
         private void tsmiPasswordStrength_Click(object sender, EventArgs e)
         {
-            UserControl passwordsStrength = new PasswordStrength(_myPasswordManager);
+            UserControl passwordsStrength = new PasswordStrength();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(passwordsStrength);
         }
 
         public void ShowSharedPasswordList(Password selectedPassword)
         {
-            UserControl sharedPassswordsList = new SharedPasswordList(_myPasswordManager, selectedPassword);
+            UserControl sharedPassswordsList = new SharedPasswordList(selectedPassword);
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(sharedPassswordsList);
         }
 
         public void ShowPasswords()
         {
-            UserControl passswordsList = new PasswordList(_myPasswordManager);
+            UserControl passswordsList = new PasswordList();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(passswordsList);
         }
 
         private void tsmiSharedWithMe_Click(object sender, EventArgs e)
         {
-            UserControl passwordsSharedWithMe = new PasswordsSharedWithMe(_myPasswordManager);
+            UserControl passwordsSharedWithMe = new PasswordsSharedWithMe();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(passwordsSharedWithMe);
         }
@@ -77,7 +75,7 @@ namespace Presentation
 
         private void tsmiDataBreachHistory_Click(object sender, EventArgs e)
         {
-            UserControl dataBreachHistory = new DataBreachHistory(_myPasswordManager);
+            UserControl dataBreachHistory = new DataBreachHistory();
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(dataBreachHistory);
         }

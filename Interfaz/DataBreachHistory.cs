@@ -14,13 +14,11 @@ namespace Presentation
 {
     public partial class DataBreachHistory : UserControl
     {
-        private PasswordManager _myPasswordManager;
         private DataBreachController _myDatabreachController;
         private DataBreachReport _selectedReport;
-        public DataBreachHistory(PasswordManager passwordManager)
+        public DataBreachHistory()
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
             _myDatabreachController = new DataBreachController();
             LoadTblDataBreach();
         }
@@ -167,7 +165,7 @@ namespace Presentation
                 try
                 {
                     Password selectedPassword = (Password)tblPasswords.SelectedCells[0].OwningRow.DataBoundItem;
-                    Form createPassword = new CreateModifyPassword(_myPasswordManager, selectedPassword);
+                    Form createPassword = new CreateModifyPassword(selectedPassword);
                     createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
                     createPassword.ShowDialog();
                 }

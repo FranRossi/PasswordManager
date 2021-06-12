@@ -8,15 +8,15 @@ namespace Presentation
 {
     public partial class SharedPasswordList : UserControl
     {
-        private PasswordManager _myPasswordManager;
+        private SharePasswordController _mySharePasswordController;
         private Password _selectedPassword;
         private User _selectedShareWithUser;
         private User _selectedUnShareWithUser;
         private List<User> _usersNotSharedWith;
-        public SharedPasswordList(PasswordManager passwordManager, Password password)
+        public SharedPasswordList(Password password)
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
+            _mySharePasswordController = new SharePasswordController();
             _selectedPassword = password;
             LoadTblPassword();
             SetSelectedPassoword();
@@ -71,7 +71,7 @@ namespace Presentation
         private void LoadcbUsersNotSharedWith(Password selectedPassword)
         {
             cbUsersNotSharedWith.DataSource = null;
-            _usersNotSharedWith = this._myPasswordManager.GetUsersPassNotSharedWith(selectedPassword);
+            _usersNotSharedWith = this._mySharePasswordController.GetUsersPassNotSharedWith(selectedPassword);
             if (_usersNotSharedWith.Count == 0)
             {
                 ChangeComboBoxState(cbUsersNotSharedWith, false);
@@ -90,7 +90,7 @@ namespace Presentation
 
         private void LoadTblSharedWith(Password selectedPassword)
         {
-            List<User> users = _myPasswordManager.GetUsersSharedWith(selectedPassword);
+            List<User> users = _mySharePasswordController.GetUsersSharedWith(selectedPassword);
             tblSharedWith.DataSource = null;
             tblSharedWith.Rows.Clear();
             tblSharedWith.DataSource = users;
@@ -131,7 +131,7 @@ namespace Presentation
         {
             UpdateSelectedPassword();
             UpdateSelectedShareWithUser();
-            _myPasswordManager.SharePassword(_selectedPassword, _selectedShareWithUser);
+            _mySharePasswordController.SharePassword(_selectedPassword, _selectedShareWithUser);
             LoadcbUsersNotSharedWith(_selectedPassword);
             LoadTblSharedWith(_selectedPassword);
         }
@@ -140,7 +140,7 @@ namespace Presentation
         {
             UpdateSelectedPassword();
             UpdateSelectedUnShareWithUser();
-            _myPasswordManager.UnSharePassword(_selectedPassword, _selectedUnShareWithUser);
+            _mySharePasswordController.UnSharePassword(_selectedPassword, _selectedUnShareWithUser);
             LoadcbUsersNotSharedWith(_selectedPassword);
             LoadTblSharedWith(_selectedPassword);
         }

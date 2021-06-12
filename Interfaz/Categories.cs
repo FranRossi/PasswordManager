@@ -8,13 +8,11 @@ namespace Presentation
 {
     public partial class Categories : UserControl
     {
-        private PasswordManager _myPasswordManager;
         private CategoryController _myCategoryController;
         private Category _selectedCategory;
-        public Categories(PasswordManager passwordManager)
+        public Categories()
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
             _myCategoryController = new CategoryController();
             LoadCategoryList();
         }

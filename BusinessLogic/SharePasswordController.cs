@@ -8,26 +8,19 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class PasswordManager
+    public class SharePasswordController
     {
         private SessionController _sessionController;
-        private CategoryController _categoryController;
         private IDataAccessUser _users;
-        private IDataAccessCreditCard<CreditCard> _creditCards;
         private IDataAccessPassword<Password> _passwords;
-        private IDataAccessDataBreach _dataBreaches;
 
-        public PasswordManager()
+        public SharePasswordController()
         {
             _users = new DataAccessUser();
-            _creditCards = new DataAccessCreditCard();
             _passwords = new DataAccessPassword();
-            _dataBreaches = new DataAccessDataBreach();
             _sessionController = SessionController.GetInstance();
-            _categoryController = new CategoryController();
         }
 
-        //-------------------------------------------------------SHARE PASSWORD CONTROLLER------------------------------------------------
         public void SharePassword(Password passwordToShare, User userShareTo)
         {
             VerifyPasswordNotSharedWithOwner(passwordToShare, userShareTo);

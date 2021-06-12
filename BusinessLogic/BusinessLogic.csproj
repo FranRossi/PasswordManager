@@ -46,8 +46,8 @@
     <Compile Include="DataBreachController.cs" />
     <Compile Include="CreditCardController.cs" />
     <Compile Include="PasswordColorReportController.cs" />
+    <Compile Include="SharePasswordController.cs" />
     <Compile Include="SessionController.cs" />
-    <Compile Include="PasswordManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

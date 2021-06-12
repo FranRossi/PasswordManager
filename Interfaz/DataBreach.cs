@@ -12,17 +12,15 @@ namespace Presentation
     {
 
         private SessionController _mySessionController;
-        private PasswordManager _myPasswordManager;
         private DataBreachController _myDatabreachController;
         private Password _selectedPassword;
         private bool _isTextFileBreach;
 
-        public DataBreach(PasswordManager passwordManager)
+        public DataBreach()
         {
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myDatabreachController = new DataBreachController();
-            _myPasswordManager = passwordManager;
             _isTextFileBreach = false;
         }
 
@@ -114,7 +112,7 @@ namespace Presentation
             UpdateSelectedPassword();
             if (_selectedPassword != null)
             {
-                Form createPassword = new CreateModifyPassword(_myPasswordManager, _selectedPassword);
+                Form createPassword = new CreateModifyPassword(_selectedPassword);
                 createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
                 createPassword.ShowDialog();
             }

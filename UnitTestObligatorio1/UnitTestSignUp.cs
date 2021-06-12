@@ -38,13 +38,6 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void CreatePasswordManager()
-        {
-            PasswordManager passwordManager = new PasswordManager();
-            Assert.IsNotNull(passwordManager);
-        }
-
-        [TestMethod]
         public void CreateValidUser()
         {
             try

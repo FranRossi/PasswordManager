@@ -8,28 +8,25 @@ namespace Presentation
 {
     public partial class CreateModifyCreditCard : Form
     {
-        private PasswordManager _myPasswordManager;
         private CreditCard _myCreditCardToModify;
         private CategoryController _myCategoryController;
 
         private SessionController _mySessionController;
         private CreditCardController _myCreditCardController;
 
-        public CreateModifyCreditCard(PasswordManager passwordManager)
+        public CreateModifyCreditCard()
         {
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
-            _myPasswordManager = passwordManager;
             _myCreditCardController = new CreditCardController();
             _myCategoryController = new CategoryController();
             LoadComboBoxCategory();
         }
 
-        public CreateModifyCreditCard(PasswordManager passwordManager, CreditCard creditCard)
+        public CreateModifyCreditCard(CreditCard creditCard)
         {
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
-            _myPasswordManager = passwordManager;
             _myCreditCardController = new CreditCardController();
             _myCategoryController = new CategoryController();
             _myCreditCardToModify = creditCard;

@@ -13,7 +13,6 @@ namespace UnitTestObligatorio1
     {
 
         private SessionController _sessionController;
-        private PasswordManager _passwordManager;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
         private User _user;
@@ -26,7 +25,6 @@ namespace UnitTestObligatorio1
             try
             {
                 _sessionController = SessionController.GetInstance();
-                _passwordManager = new PasswordManager();
                 _categoryController = new CategoryController();
                 _passwordController = new PasswordController();
                 _user = new User()
@@ -42,7 +40,7 @@ namespace UnitTestObligatorio1
                 _categoryController.CreateCategoryOnCurrentUser(_category.Name);
                 _category = _categoryController.GetCategoriesFromCurrentUser().ToArray()[0];
 
-               _newPass = new Password
+                _newPass = new Password
                 {
                     User = _user,
                     Category = _category,
@@ -73,7 +71,7 @@ namespace UnitTestObligatorio1
         public void EncryptedPasswordDifferentFromOriginal(string passName)
         {
             _newPass.Pass = passName;
-          
+
             _passwordController.CreatePassword(_newPass);
             Password newPassFromPasswordManger = _passwordController.GetPasswords()[0];
             string encryptedPassword = newPassFromPasswordManger.EncryptedPass;

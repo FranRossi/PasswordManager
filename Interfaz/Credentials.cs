@@ -9,16 +9,14 @@ namespace Presentation
     public partial class Credentials : UserControl
     {
 
-        private PasswordManager _myPasswordManager;
         private SessionController _mySessionController;
-        public Credentials(PasswordManager passwordManager)
+        public Credentials()
         {
             InitializeComponent();
             Properties.Settings.Default.Reset();
             ShowHidePassword(false);
             _mySessionController = SessionController.GetInstance();
-            _myPasswordManager = passwordManager;
-            TestData testData = new TestData(_myPasswordManager);
+            TestData testData = new TestData();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -64,7 +62,7 @@ namespace Presentation
             CleanTextBoxesAndMessages();
             Form currentForm = this.FindForm();
             currentForm.Hide();
-            Form mainForm = new MainWindow(_myPasswordManager);
+            Form mainForm = new MainWindow();
             mainForm.Closed += (s, args) => currentForm.Show();
             mainForm.Show();
         }

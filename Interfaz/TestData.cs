@@ -7,7 +7,7 @@ namespace Presentation
 {
     public class TestData
     {
-        private PasswordManager _passwordManager;
+        private SharePasswordController _sharePasswordController;
         private SessionController _sessionController;
         private CategoryController _myCategoryController;
         private CreditCardController _myCreditCardController;
@@ -19,10 +19,10 @@ namespace Presentation
         private User _pablo;
         private User _mario;
         private User _laura;
-        public TestData(PasswordManager passwordManager)
+        public TestData()
         {
             this._sessionController = SessionController.GetInstance();
-            this._passwordManager = passwordManager;
+            this._sharePasswordController = new SharePasswordController();
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
             _myCreditCardController = new CreditCardController();
@@ -50,14 +50,14 @@ namespace Presentation
         {
             this._sessionController.Login("Juana", "Juana");
             List<Password> passwords = this._myPasswordController.GetPasswords();
-            this._passwordManager.SharePassword(passwords[0], this._pablo);
-            this._passwordManager.SharePassword(passwords[0], this._mario);
-            this._passwordManager.SharePassword(passwords[0], this._laura);
+            this._sharePasswordController.SharePassword(passwords[0], this._pablo);
+            this._sharePasswordController.SharePassword(passwords[0], this._mario);
+            this._sharePasswordController.SharePassword(passwords[0], this._laura);
 
-            this._passwordManager.SharePassword(passwords[1], this._mario);
-            this._passwordManager.SharePassword(passwords[1], this._laura);
+            this._sharePasswordController.SharePassword(passwords[1], this._mario);
+            this._sharePasswordController.SharePassword(passwords[1], this._laura);
 
-            this._passwordManager.SharePassword(passwords[3], this._mario);
+            this._sharePasswordController.SharePassword(passwords[3], this._mario);
         }
 
         private void CreatePasswordWithColorJuana()

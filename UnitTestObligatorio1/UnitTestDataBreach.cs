@@ -12,7 +12,6 @@ namespace UnitTestObligatorio1
     public class UnitTestDataBreach
     {
         private SessionController _sessionController;
-        private PasswordManager _passwordManager;
         private DataBreachController _databreachController;
         private CategoryController _categoryController;
         private CreditCardController _creditCardController;
@@ -49,7 +48,6 @@ namespace UnitTestObligatorio1
             _itemDataBreachFromTextFile = CreateDataBreachTextFile(_breachedItems);
             _passwordDataBreachFromTextFile = CreateDataBreachTextFile(_breachedPasswords);
             _creditCardDataBreachFromTextFile = CreateDataBreachTextFile(_breachedCreditCards);
-            _passwordManager = new PasswordManager();
             _currentUserMasterPass = "HolaSoyGonzalo123";
             _currentUser = new User()
             {

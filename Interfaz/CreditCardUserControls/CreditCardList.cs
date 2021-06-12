@@ -9,13 +9,11 @@ namespace Presentation
 {
     public partial class CreditCardList : UserControl
     {
-        private PasswordManager _myPasswordManager;
         private CreditCardController _myCreditCardController;
         private CreditCard _selectedCreditCard;
-        public CreditCardList(PasswordManager passwordManager)
+        public CreditCardList()
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
             _myCreditCardController = new CreditCardController();
             LoadTblCreditCard();
         }
@@ -59,7 +57,7 @@ namespace Presentation
 
         private void btnAddCreditCard_Click(object sender, EventArgs e)
         {
-            Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager);
+            Form createCreditCard = new CreateModifyCreditCard();
             createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
             createCreditCard.ShowDialog();
         }
@@ -105,7 +103,7 @@ namespace Presentation
             UpdateSelectedCreditCard();
             if (_selectedCreditCard != null)
             {
-                Form createCreditCard = new CreateModifyCreditCard(_myPasswordManager, _selectedCreditCard);
+                Form createCreditCard = new CreateModifyCreditCard(_selectedCreditCard);
                 createCreditCard.FormClosing += new FormClosingEventHandler(RefreshForm);
                 createCreditCard.ShowDialog();
             }

@@ -11,7 +11,6 @@ namespace Presentation
     {
 
         private SessionController _mySessionController;
-        private PasswordManager _myPasswordManager;
         private DataBreachController _myDatabreachController;
         private CategoryController _myCategoryController;
         private PasswordController _myPasswordController;
@@ -19,11 +18,10 @@ namespace Presentation
         private Password _myPasswordToModify;
         private Password _myNewPassword;
 
-        public CreateModifyPassword(PasswordManager passwordManager)
+        public CreateModifyPassword()
         {
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
-            _myPasswordManager = passwordManager;
             _myDatabreachController = new DataBreachController();
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
@@ -32,11 +30,10 @@ namespace Presentation
             ShowHidePassword(false);
         }
 
-        public CreateModifyPassword(PasswordManager passwordManager, Password password)
+        public CreateModifyPassword(Password password)
         {
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
-            _myPasswordManager = passwordManager;
             _myDatabreachController = new DataBreachController();
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
