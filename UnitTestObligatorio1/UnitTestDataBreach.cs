@@ -13,6 +13,7 @@ namespace UnitTestObligatorio1
     {
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
+        private DataBreachController _databreachController;
         private CategoryController _categoryController;
         private CreditCardController _creditCardController;
         private PasswordController _passwordController;
@@ -37,6 +38,7 @@ namespace UnitTestObligatorio1
         public void TestInitialize()
         {
             _sessionController = SessionController.GetInstance();
+            _databreachController = new DataBreachController();
             _categoryController = new CategoryController();
             _passwordController = new PasswordController();
             _creditCardController = new CreditCardController();
@@ -146,8 +148,8 @@ namespace UnitTestObligatorio1
         {
             HashSet<DataBreachReportEntry> entries = _dataBreachReaderFromString.GetDataBreachEntries(_creditCardDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
-            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordController();
-            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
+            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
+            List<Item> breachResult = _databreachController.SaveBreachedItems(dataBreachReport);
             dataBreachReport.BreachedItems = breachResult;
             Assert.IsTrue(dataBreachReport.ItemQuantity == breachResult.Count);
         }
@@ -203,10 +205,10 @@ namespace UnitTestObligatorio1
         {
             HashSet<DataBreachReportEntry> entries = _dataBreachReaderFromString.GetDataBreachEntries(_passwordDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
-            AddPasswordsFromDifferentUserToPasswordController();
-            List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordController();
-            _passwordManager.SaveBreachedItems(dataBreachReport);
-            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
+            AddPasswordsFromDifferentUserToPasswordManager();
+            List<Item> breachedPasswordList = AddBreachedPasswordsToPasswordManager();
+            _databreachController.SaveBreachedItems(dataBreachReport);
+            List<Item> breachResult = _databreachController.SaveBreachedItems(dataBreachReport);
             CollectionAssert.AreEqual(breachResult, breachedPasswordList);
         }
 
@@ -215,9 +217,9 @@ namespace UnitTestObligatorio1
         {
             HashSet<DataBreachReportEntry> entries = _dataBreachReaderFromString.GetDataBreachEntries(_creditCardDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
-            AddCreditCardsFromDifferentToUserPasswordController();
-            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordController();
-            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
+            AddCreditCardsFromDifferentToUserPasswordManager();
+            List<Item> breachedCardList = AddBreachedCreditCardsToPasswordManager();
+            List<Item> breachResult = _databreachController.SaveBreachedItems(dataBreachReport);
             CollectionAssert.AreEqual(breachResult, breachedCardList);
         }
 
@@ -226,11 +228,11 @@ namespace UnitTestObligatorio1
         {
             HashSet<DataBreachReportEntry> entries = _dataBreachReaderFromString.GetDataBreachEntries(_itemDataBreach);
             DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
-            AddCreditCardsFromDifferentToUserPasswordController();
-            AddPasswordsFromDifferentUserToPasswordController();
-            List<Item> breachedItemsInDB = AddBreachedCreditCardsToPasswordController();
-            breachedItemsInDB.AddRange(AddBreachedPasswordsToPasswordController());
-            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport);
+            AddCreditCardsFromDifferentToUserPasswordManager();
+            AddPasswordsFromDifferentUserToPasswordManager();
+            List<Item> breachedItemsInDB = AddBreachedCreditCardsToPasswordManager();
+            breachedItemsInDB.AddRange(AddBreachedPasswordsToPasswordManager());
+            List<Item> breachResult = _databreachController.SaveBreachedItems(dataBreachReport);
             breachResult.Sort((a, b) => a.Id.CompareTo(b.Id));
             CollectionAssert.AreEqual(breachResult, breachedItemsInDB);
         }
@@ -241,21 +243,21 @@ namespace UnitTestObligatorio1
             HashSet<DataBreachReportEntry> entries = _dataBreachReaderFromString.GetDataBreachEntries(_creditCardDataBreach);
             DataBreachReport dataBreachReport1 = new DataBreachReport(entries, _sessionController.CurrentUser);
             AddCreditCardsFromDifferentToUserPasswordController();
-            List<Item> breachResult = _passwordManager.SaveBreachedItems(dataBreachReport1);
+            List<Item> breachResult = _databreachController.SaveBreachedItems(dataBreachReport1);
             dataBreachReport1.BreachedItems = breachResult;
 
             IDataBreachReader<string> dataBreachReader2 = new DataBreachReaderFromString();
             HashSet<DataBreachReportEntry> entries2 = dataBreachReader2.GetDataBreachEntries(_passwordDataBreach);
             DataBreachReport dataBreachReport2 = new DataBreachReport(entries2, _sessionController.CurrentUser);
             AddPasswordsFromDifferentUserToPasswordController();
-            List<Item> breachResult2 = _passwordManager.SaveBreachedItems(dataBreachReport2);
+            List<Item> breachResult2 = _databreachController.SaveBreachedItems(dataBreachReport2);
             dataBreachReport2.BreachedItems = breachResult2;
 
             List<DataBreachReport> expectedReports = new List<DataBreachReport>();
             expectedReports.Add(dataBreachReport1);
             expectedReports.Add(dataBreachReport2);
 
-            List<DataBreachReport> reports = _passwordManager.GetDataBreachReportsFromCurrentUser();
+            List<DataBreachReport> reports = _databreachController.GetDataBreachReportsFromCurrentUser();
             bool areEqual = true;
             foreach (DataBreachReport report in reports)
             {
@@ -287,9 +289,9 @@ namespace UnitTestObligatorio1
             };
             AddBreachedPasswordsToPasswordController();
 
-            _passwordManager.SaveBreachedItems(dataBreachReport);
+            _databreachController.SaveBreachedItems(dataBreachReport);
 
-            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
+            bool passwordHasBeenBreached = _databreachController.VerifyPasswordHasBeenBreached(newPassword);
             Assert.IsTrue(passwordHasBeenBreached);
         }
 
@@ -311,9 +313,9 @@ namespace UnitTestObligatorio1
             };
             AddBreachedPasswordsToPasswordController();
 
-            _passwordManager.SaveBreachedItems(dataBreachReport);
+            _databreachController.SaveBreachedItems(dataBreachReport);
 
-            bool passwordHasBeenBreached = _passwordManager.VerifyPasswordHasBeenBreached(newPassword);
+            bool passwordHasBeenBreached = _databreachController.VerifyPasswordHasBeenBreached(newPassword);
             Assert.IsFalse(passwordHasBeenBreached);
         }
 

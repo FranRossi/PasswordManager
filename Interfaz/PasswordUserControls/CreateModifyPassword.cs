@@ -12,6 +12,7 @@ namespace Presentation
 
         private SessionController _mySessionController;
         private PasswordManager _myPasswordManager;
+        private DataBreachController _myDatabreachController;
         private CategoryController _myCategoryController;
         private PasswordController _myPasswordController;
         private PasswordColorReportController _myPasswordColorReportController;
@@ -23,6 +24,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myDatabreachController = new DataBreachController();
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
             _myPasswordColorReportController = new PasswordColorReportController();
@@ -35,6 +37,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myDatabreachController = new DataBreachController();
             _myCategoryController = new CategoryController();
             _myPasswordController = new PasswordController();
             _myPasswordColorReportController = new PasswordColorReportController();
@@ -151,7 +154,7 @@ namespace Presentation
         private string HistoricDataBreachSuggestion(Password password)
         {
             string historicSuggestion = "";
-            if (_myPasswordManager.VerifyPasswordHasBeenBreached(password))
+            if (_myDatabreachController.VerifyPasswordHasBeenBreached(password))
                 historicSuggestion = "- Esta contraseña se encuentra en un data breach" + Environment.NewLine;
 
             return historicSuggestion;
