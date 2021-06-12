@@ -10,15 +10,17 @@ namespace Presentation
     public partial class PasswordList : UserControl
     {
         private Password _selectedPassword;
+        private PasswordController _myPasswordController;
         public PasswordList()
         {
+            _myPasswordController = new PasswordController();
             InitializeComponent();
             LoadTblPassword();
         }
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = null;// _myPasswordManager.GetPasswords();
+            List<Password> passwords = _myPasswordController.GetPasswords(); ;
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
@@ -57,7 +59,7 @@ namespace Presentation
             {
                 if (ShowConfirmationPopUp())
                 {
-                    //_myPasswordManager.DeletePassword(_selectedPassword);
+                    _myPasswordController.DeletePassword(_selectedPassword);
                     lblMessage.Text = "Contraseña eliminada exitosamente.";
                     LoadTblPassword();
                 }
