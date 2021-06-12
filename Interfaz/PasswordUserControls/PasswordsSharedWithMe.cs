@@ -7,17 +7,17 @@ namespace Presentation
 {
     public partial class PasswordsSharedWithMe : UserControl
     {
-        private PasswordManager _myPasswordManager;
+        private SharePasswordController _mySharePasswordController;
         public PasswordsSharedWithMe(PasswordManager passwordManager)
         {
             InitializeComponent();
-            _myPasswordManager = passwordManager;
+            _mySharePasswordController = new SharePasswordController();
             LoadTblPassword();
         }
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = _myPasswordManager.GetSharedPasswordsWithCurrentUser();
+            List<Password> passwords = _mySharePasswordController.GetSharedPasswordsWithCurrentUser();
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
