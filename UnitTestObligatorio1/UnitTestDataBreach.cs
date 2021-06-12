@@ -14,6 +14,7 @@ namespace UnitTestObligatorio1
         private SessionController _sessionController;
         private PasswordManager _passwordManager;
         private CategoryController _categoryController;
+        private CreditCardController _creditCardController;
         private PasswordController _passwordController;
         private User _currentUser;
         private IDataBreachReader<string> _dataBreachReaderFromString;
@@ -38,6 +39,7 @@ namespace UnitTestObligatorio1
             _sessionController = SessionController.GetInstance();
             _categoryController = new CategoryController();
             _passwordController = new PasswordController();
+            _creditCardController = new CreditCardController();
             _passwordDataBreach = CreateDataBreachString(_breachedPasswords);
             _creditCardDataBreach = CreateDataBreachString(_breachedCreditCards);
             _itemDataBreach = CreateDataBreachString(_breachedItems);
@@ -401,7 +403,7 @@ namespace UnitTestObligatorio1
                     Notes = "Tra­mite 400k UYU"
                 };
                 breachedCreditCardList.Add(newCard);
-                _passwordManager.CreateCreditCard(newCard);
+                _creditCardController.CreateCreditCard(newCard);
             }
             return breachedCreditCardList;
         }
@@ -428,7 +430,7 @@ namespace UnitTestObligatorio1
                 ExpirationDate = "10/21",
                 Notes = "Tra­mite 400k UYU"
             };
-            _passwordManager.CreateCreditCard(newCard);
+            _creditCardController.CreateCreditCard(newCard);
             _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
         }
 
