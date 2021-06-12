@@ -44,6 +44,7 @@
     <Compile Include="CategoryController.cs" />
     <Compile Include="PasswordController.cs" />
     <Compile Include="CreditCardController.cs" />
+    <Compile Include="PasswordColorReportController.cs" />
     <Compile Include="SessionController.cs" />
     <Compile Include="PasswordManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

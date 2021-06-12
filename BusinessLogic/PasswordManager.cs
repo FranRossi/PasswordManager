@@ -27,32 +27,6 @@ namespace BusinessLogic
             _categoryController = new CategoryController();
         }
 
-        //-------------------------------------------------PASSWORD COLOR REPORT CONTROLLER--------------------------------------------------
-
-        public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()
-        {
-            List<PasswordReportByCategoryAndColor> report = _passwords.GetPasswordReportByCategoryAndColor();
-            return report;
-        }
-
-        public List<PasswordReportByColor> GetPasswordReportByColor()
-        {
-            List<PasswordReportByColor> report = _passwords.GetPasswordReportByColor();
-            return report;
-        }
-
-        public List<Password> GetPasswordsByColor(PasswordStrengthColor color)
-        {
-            List<Password> passwords = _passwords.GetPasswordsByColor(color);
-            return passwords;
-        }
-
-        public bool PasswordIsNotGreenSecure(Password password)
-        {
-            PasswordStrengthColor lightGreen = PasswordStrengthColor.LightGreen;
-            PasswordStrengthColor darkGreen = PasswordStrengthColor.DarkGreen;
-            return password.PasswordStrength != lightGreen && password.PasswordStrength != darkGreen;
-        }
 
         //--------------------------------------------DATA BREACH CONTROLLER----------------------------------------------------------------
         public List<Item> SaveBreachedItems(DataBreachReport dataBreachReport)
