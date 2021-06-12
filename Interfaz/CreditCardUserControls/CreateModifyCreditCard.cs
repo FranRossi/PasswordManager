@@ -30,6 +30,7 @@ namespace Presentation
             InitializeComponent();
             _mySessionController = SessionController.GetInstance();
             _myPasswordManager = passwordManager;
+            _myCreditCardController = new CreditCardController();
             _myCategoryController = new CategoryController();
             _myCreditCardToModify = creditCard;
             LoadComboBoxCategory();
