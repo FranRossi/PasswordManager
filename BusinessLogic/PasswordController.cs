@@ -12,7 +12,7 @@ namespace BusinessLogic
     {
         private SessionController _sessionController;
         private CategoryController _categoryController;
-        private DataAccessPassword _passwords;
+        private IDataAccessPassword<Password> _passwords;
 
         public PasswordController()
         {
