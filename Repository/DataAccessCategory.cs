@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessCategory
+    public class DataAccessCategory : IDataAccessCategory
     {
         public void Add(Category newCategory)
         {

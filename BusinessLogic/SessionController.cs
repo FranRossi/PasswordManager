@@ -20,7 +20,7 @@ namespace BusinessLogic
 
         public User CurrentUser { get; private set; }
 
-        private DataAccessUser _users;
+        private IDataAccessUser _users;
 
         public SessionController()
         {

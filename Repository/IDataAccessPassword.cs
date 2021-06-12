@@ -1,4 +1,5 @@
 ﻿using Obligatorio1_DA1.Domain;
+using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,13 @@ namespace Repository
 {
     public interface IDataAccessPassword<Password> : IDataAccessItem<Password>
     {
-      
+
+        bool CheckPasswordNotSharedTwice(Password newPassword, User userShareTo);
+        bool CheckTextIsDuplicate(Password password, User currentUser);
+        List<Password> GetSharedPasswordsWithCurrentUser(User currentUser);
+        List<Password> GetPasswordsByColor(PasswordStrengthColor passColor);
+        List<PasswordReportByColor> GetPasswordReportByColor();
+        List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor();
     }
 }
 

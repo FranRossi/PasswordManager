@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessDataBreach
+    public class DataAccessDataBreach : IDataAccessDataBreach
     {
         public List<Item> AddDataBreachReport(DataBreachReport dataBreachReport)
         {
@@ -70,7 +70,7 @@ namespace Repository
                 return passwordHasBeenBreached;
             }
         }
-      
+
         public List<DataBreachReport> GetDataBreachReportsFromUser(String userMasterName)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
