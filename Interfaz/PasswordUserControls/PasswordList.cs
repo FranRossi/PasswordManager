@@ -10,7 +10,7 @@ namespace Presentation
     public partial class PasswordList : UserControl
     {
         private Password _selectedPassword;
-        private PasswordController _myPasswordController;
+        private IPasswordController _myPasswordController;
         public PasswordList()
         {
             _myPasswordController = new PasswordController();

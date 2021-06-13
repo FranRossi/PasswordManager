@@ -10,11 +10,11 @@ namespace Presentation
     public partial class CreateModifyPassword : Form
     {
 
-        private SessionController _mySessionController;
-        private DataBreachController _myDatabreachController;
-        private CategoryController _myCategoryController;
-        private PasswordController _myPasswordController;
-        private PasswordColorReportController _myPasswordColorReportController;
+        private ISessionController _mySessionController;
+        private IDataBreachController _myDatabreachController;
+        private ICategoryController _myCategoryController;
+        private IPasswordController _myPasswordController;
+        private IPasswordColorReportController _myPasswordColorReportController;
         private Password _myPasswordToModify;
         private Password _myNewPassword;
 

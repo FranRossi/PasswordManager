@@ -9,7 +9,7 @@ namespace Presentation
     public partial class Credentials : UserControl
     {
 
-        private SessionController _mySessionController;
+        private ISessionController _mySessionController;
         public Credentials()
         {
             InitializeComponent();
