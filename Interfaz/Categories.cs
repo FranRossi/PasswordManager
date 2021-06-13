@@ -8,7 +8,7 @@ namespace Presentation
 {
     public partial class Categories : UserControl
     {
-        private CategoryController _myCategoryController;
+        private ICategoryController _myCategoryController;
         private Category _selectedCategory;
         public Categories()
         {

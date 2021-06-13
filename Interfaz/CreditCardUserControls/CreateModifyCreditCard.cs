@@ -9,10 +9,10 @@ namespace Presentation
     public partial class CreateModifyCreditCard : Form
     {
         private CreditCard _myCreditCardToModify;
-        private CategoryController _myCategoryController;
+        private ICategoryController _myCategoryController;
 
-        private SessionController _mySessionController;
-        private CreditCardController _myCreditCardController;
+        private ISessionController _mySessionController;
+        private ICreditCardController _myCreditCardController;
 
         public CreateModifyCreditCard()
         {

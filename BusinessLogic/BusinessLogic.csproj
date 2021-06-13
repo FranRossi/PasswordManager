@@ -41,11 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ICreditCardController.cs" />
+    <Compile Include="Interfaces\IDataBreachController.cs" />
+    <Compile Include="Interfaces\ICategoryController.cs" />
     <Compile Include="CategoryController.cs" />
+    <Compile Include="Interfaces\IPasswordColorReportController.cs" />
+    <Compile Include="Interfaces\IPasswordController.cs" />
     <Compile Include="PasswordController.cs" />
     <Compile Include="DataBreachController.cs" />
     <Compile Include="CreditCardController.cs" />
     <Compile Include="PasswordColorReportController.cs" />
+    <Compile Include="Interfaces\ISessionController.cs" />
+    <Compile Include="Interfaces\ISharePasswordController.cs" />
     <Compile Include="SharePasswordController.cs" />
     <Compile Include="SessionController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

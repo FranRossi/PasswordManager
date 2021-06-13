@@ -7,7 +7,7 @@ namespace Presentation
 {
     public partial class PasswordsSharedWithMe : UserControl
     {
-        private SharePasswordController _mySharePasswordController;
+        private ISharePasswordController _mySharePasswordController;
         public PasswordsSharedWithMe()
         {
             InitializeComponent();

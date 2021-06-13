@@ -20,6 +20,6 @@ namespace BusinessLogic
 
         void ModifyPasswordOnCurrentUser(Password newPassword);
 
-        public bool PasswordTextIsDuplicate(Password password);
+        bool PasswordTextIsDuplicate(Password password);
     }
 }

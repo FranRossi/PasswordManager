@@ -9,7 +9,7 @@ namespace Presentation
 {
     public partial class CreditCardList : UserControl
     {
-        private CreditCardController _myCreditCardController;
+        private ICreditCardController _myCreditCardController;
         private CreditCard _selectedCreditCard;
         public CreditCardList()
         {
