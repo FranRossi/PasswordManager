@@ -57,6 +57,7 @@ namespace Repository
                 passwordToModify.LastModification = modifiedPassword.LastModification;
                 passwordToModify.Notes = modifiedPassword.Notes;
                 passwordToModify.EncryptedPass = modifiedPassword.EncryptedPass;
+                passwordToModify.PasswordStrength = modifiedPassword.PasswordStrength;
                 passwordToModify.Site = modifiedPassword.Site;
                 passwordToModify.Username = modifiedPassword.Username;
                 context.Categories.Attach(passwordCategoryFromDB);

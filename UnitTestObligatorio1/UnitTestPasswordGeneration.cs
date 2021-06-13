@@ -27,11 +27,7 @@ namespace UnitTestObligatorio1
             {
                 _sessionController = SessionController.GetInstance();
                 _passwordController = new PasswordController();
-                _user = new User()
-                {
-                    MasterName = "Gonzalo",
-                    MasterPass = "HolaSoyGonzalo123"
-                };
+                _user = new User("Gonzalo", "HolaSoyGonzalo123");
                 _category = new Category()
                 {
                     Name = "Personal"

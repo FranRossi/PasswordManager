@@ -30,7 +30,7 @@ namespace Obligatorio1_DA1.Domain
             encryption = new AesEncryption();
         }
 
-        public PasswordStrengthColor PasswordStrength { get; private set; }
+        public PasswordStrengthColor PasswordStrength { get; set; }
 
         public List<User> SharedWith
         {
