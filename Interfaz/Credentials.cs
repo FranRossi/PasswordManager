@@ -16,7 +16,7 @@ namespace Presentation
             Properties.Settings.Default.Reset();
             ShowHidePassword(false);
             _mySessionController = SessionController.GetInstance();
-            TestData testData = new TestData();
+            //TestData testData = new TestData();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

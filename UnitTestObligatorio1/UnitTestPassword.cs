@@ -412,7 +412,6 @@ namespace UnitTestObligatorio1
                 Pass = "239850Ort2019",
                 Notes = "Esta es la nueva password con pass repetido",
             };
-            newPassword.Encrypt();
             bool passTextIsDuplicate = _passwordController.PasswordTextIsDuplicate(newPassword);
             Assert.IsTrue(passTextIsDuplicate);
         }

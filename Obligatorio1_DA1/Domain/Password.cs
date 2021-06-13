@@ -78,6 +78,7 @@ namespace Obligatorio1_DA1.Domain
                 ValidatePass(value);
                 _pass = value;
                 this.PasswordStrength = CalculatePasswordStrength(value);
+                Encrypt();
             }
 
         }
