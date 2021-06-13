@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class SharePasswordController
+    public class SharePasswordController : ISharePasswordController
     {
         private SessionController _sessionController;
         private IDataAccessUser _users;
