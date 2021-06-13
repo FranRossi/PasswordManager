@@ -20,6 +20,8 @@ namespace Presentation
         private User _mario;
         private User _laura;
         private User _santiago;
+        private DataBreachReaderFromString _dataBreachReaderFromString;
+
         public TestData()
         {
             this._sessionController = SessionController.GetInstance();
@@ -51,6 +53,8 @@ namespace Presentation
             this.CreatePasswordWithColorSantiago();
 
             this.ShareJuanaPasswords();
+
+            Create3DataBreachJuana();
         }
 
         private void ShareJuanaPasswords()
@@ -93,6 +97,7 @@ namespace Presentation
                 Pass = password,
                 Notes = "Numero aleatorio: " + this._random.Next(1, 10)
             };
+            newPassword.LastModification = new DateTime(2021, 4, 5);
             this._myPasswordController.CreatePassword(newPassword);
             this._uniqueNumber++;
         }
@@ -162,9 +167,9 @@ namespace Presentation
 
             //Trabajo
             //red
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "2398345023", "Trabajo");
             //orange
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "239850232", "Trabajo");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "234850232", "Trabajo");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcst333de8762", "Trabajo");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "-d4502-s--ss-3", "Trabajo");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "sT4-@234a", "Trabajo");
@@ -211,7 +216,7 @@ namespace Presentation
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "-d4502-s--ss-3", "Familia");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "sT4-@234a", "Familia");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "148934sdf708", "Familia");
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "nethisean3", "Familia");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "nethisean4", "Familia");
 
 
             this.CreateNCreditCardsForUser("Juana", "Personal");
@@ -518,6 +523,92 @@ namespace Presentation
             this.CreateNCreditCardsForUser("Santiago", "Juegos");
         }
 
+        private void Create3DataBreachJuana()
+        {
+            this._sessionController.Login("Juana", "Juana");
+
+            string[] _breachedPasswords = { "23985023", "14893470823575754543", "#stsrtARSRT2332", "2398345023", "mySecretPassword", "qwerty" };
+            CreateDataBreach(_breachedPasswords, new DateTime(2021, 5, 5));
+
+            ModifyBreachedPassoword("14893470823575754543", "1489347082357234234");
+            ModifyBreachedPassoword("#stsrtARSRT2332", "#asdrtARSRT2332");
+            ModifyBreachedPassoword("2398345023", "2398341234");
+
+            string[] _breachedPasswords2 = { "-d4502-s--ss-3", "babushcka", "148srtarst#$#@$5754543", "aaaaaa", "abcst333de8762", "qwerty123" };
+            CreateDataBreach(_breachedPasswords2, new DateTime(2021, 5, 15));
+
+            ModifyBreachedPassoword("-d4502-s--ss-3", "myDuperSecret");
+            ModifyBreachedPassoword("148srtarst#$#@$5754543", "yeaha");
+            ModifyBreachedPassoword("abcst333de8762", "dfkljsjfj");
+
+
+            CreditCard newCreditCard = new CreditCard
+            {
+                User = _sessionController.CurrentUser,
+                Category = this._myCategoryController.GetCategoriesFromCurrentUser().Find(cat => cat.Name == "Personal"),
+                Name = "Visa Premium",
+                Type = "Visa",
+                Number = "2354232313003498",
+                SecureCode = "1234",
+                ExpirationDate = "02/30",
+                Notes = "Límite 400 23 UYU"
+            };
+            this._myCreditCardController.CreateCreditCard(newCreditCard);
+
+
+            string[] _breachedItems = { "Chsau344(!&*($$^&#^@#&", "nethisean4", "2354232313003498", "2352331413003498", "1254231413003498", "sdsdsd123" };
+            CreateDataBreach(_breachedItems, new DateTime(2021, 5, 25));
+
+
+
+        }
+        private void CreateDataBreach(string[] breachItems, DateTime date)
+        {
+            string _passwordDataBreach = CreateDataBreachString(breachItems);
+            DataBreachReaderFromString _dataBreachReaderFromString = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> entries = _dataBreachReaderFromString.GetDataBreachEntries(_passwordDataBreach);
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
+            dataBreachReport.Date = date;
+            DataBreachController _databreachController = new DataBreachController();
+            _databreachController.SaveBreachedItems(dataBreachReport);
+        }
+
+        private void ModifyBreachedPassoword(string oldPass, string newPass)
+        {
+            Password breachedPassword;
+            breachedPassword = GetPasswordFromCurrentUser(oldPass);
+            breachedPassword.Pass = newPass;
+            _myPasswordController.ModifyPasswordOnCurrentUser(breachedPassword);
+        }
+        private Password GetPasswordFromCurrentUser(string pass)
+        {
+            return _myPasswordController.GetPasswords().Find(p => p.Pass == pass);
+        }
+        private string CreateDataBreachString(string[] breachedString)
+        {
+            string dataBreach = "";
+            for (int i = 0; i < breachedString.Length; i++)
+            {
+                dataBreach += breachedString[i] + Environment.NewLine;
+            }
+            return dataBreach;
+        }
+
+        private HashSet<DataBreachReportEntry> LoadDataBreachReportEntry(string[] breachedItem, HashSet<DataBreachReportEntry> expectedEntries)
+        {
+            for (int i = 0; i < breachedItem.Length; i++)
+            {
+                DataBreachReportEntry newEntry = new DataBreachReportEntry()
+                {
+                    Value = breachedItem[i]
+                };
+                expectedEntries.Add(newEntry);
+            }
+            return expectedEntries;
+        }
+
+
+
         /*
             // cat1
             //red
@@ -589,7 +680,7 @@ namespace Presentation
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "AAHTNrtsr#3IIHH", "Amigos");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "Chau123(!&*($$^&#^@#&", "Amigos");
 
-        
+
             // cat3
             //red
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Amigos");
@@ -696,12 +787,13 @@ namespace Presentation
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "Chau123(!&*($$^&#^@#&", "Amigos");
 
 
-            
+
             this.CreateNCreditCardsForUser("Pablo", "Personal");
             this.CreateNCreditCardsForUser("Pablo", "Facultad");
             this.CreateNCreditCardsForUser("Pablo", "Juegos");
             this.CreateNCreditCardsForUser("Pablo", "Juegos");
 
         */
+
     }
 }
