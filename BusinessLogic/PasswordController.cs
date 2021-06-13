@@ -24,7 +24,6 @@ namespace BusinessLogic
         public void CreatePassword(Password newPassword)
         {
             VerifyPassword(newPassword);
-            newPassword.Encrypt();
             _passwords.Add(newPassword);
         }
 
