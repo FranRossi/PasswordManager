@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class CreditCardController
+    public class CreditCardController : ICreditCardController
     {
         private SessionController _sessionController;
         private CategoryController _categoryController;
@@ -21,7 +21,6 @@ namespace BusinessLogic
             _categoryController = new CategoryController();
         }
 
-        //----------------------------------------------------CREDIT CARD CONTROLLER---------------------------------------
         public void CreateCreditCard(CreditCard newCreditCard)
         {
             VerifyCreditCardBelongToCurrentUser(newCreditCard);
