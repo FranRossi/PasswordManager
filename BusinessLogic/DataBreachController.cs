@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class DataBreachController
+    public class DataBreachController : IDataBreachController
     {
         private SessionController _sessionController;
         private IDataAccessDataBreach _dataBreaches;

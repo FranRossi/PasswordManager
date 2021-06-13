@@ -14,8 +14,6 @@ namespace BusinessLogic
 
         void CreateCategoryOnCurrentUser(string category);
 
-        void VerifyCategoryUniqueness(Category newCategory);
-
         void ModifyCategoryOnCurrentUser(Category modifiedCategory);
 
         void VerifyItemCategoryBelongsToUser(Item newItem);
