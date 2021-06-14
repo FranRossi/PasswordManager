@@ -59,9 +59,15 @@ namespace Presentation
                 try
                 {
                     if (UserIsCreatingANewPassword())
-                        CreateVerifiedNewPassword();
+                    {
+                        CreatePasswordObjectFormFields();
+                        VerifyNewPassword();
+                    }
                     else
-                        ModifyVerifiedPassword();
+                    {
+                        ModifyPasswordObjectFormFields();
+                        VerifyModificatedPassword();
+                    }
 
 
                     if (PasswordIsVerified())
@@ -94,15 +100,13 @@ namespace Presentation
                 SuggestionsForPassword(_myPasswordToModify);
         }
 
-        private void ModifyVerifiedPassword()
+        private void VerifyModificatedPassword()
         {
-            ModifyPasswordObjectFormFields();
             _myPasswordController.VerifyPassword(_myPasswordToModify);
         }
 
-        private void CreateVerifiedNewPassword()
+        private void VerifyNewPassword()
         {
-            _myNewPassword = CreatePasswordObjectFormFields();
             _myPasswordController.VerifyPassword(_myNewPassword);
         }
 
@@ -179,7 +183,7 @@ namespace Presentation
         }
 
 
-        private Password CreatePasswordObjectFormFields()
+        private void CreatePasswordObjectFormFields()
         {
             Password newPassword = new Password
             {
@@ -191,7 +195,7 @@ namespace Presentation
                 Notes = txtNotes.Text,
             };
 
-            return newPassword;
+            _myNewPassword = newPassword;
         }
 
         private void ModifyPasswordObjectFormFields()
