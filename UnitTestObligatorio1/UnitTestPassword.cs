@@ -425,9 +425,17 @@ namespace UnitTestObligatorio1
         }
 
         [TestMethod]
-        public void PassswordIsGreenSecure()
+        public void PassswordIsDarkGreenSecure()
         {
             _password.Pass = "#stsrtARSRT2332";
+            bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
+            Assert.IsFalse(passIsNotGreenSecure);
+        }
+
+        [TestMethod]
+        public void PassswordIsLightGreenSecure()
+        {
+            _password.Pass = "#AAHTNrtsrHRIISH"; 
             bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
             Assert.IsFalse(passIsNotGreenSecure);
         }

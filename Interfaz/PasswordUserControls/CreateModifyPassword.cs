@@ -58,10 +58,20 @@ namespace Presentation
             {
                 try
                 {
-                    VerifyPassword();
+                    if (UserIsCreatingANewPassword())
+                    {
+                        CreatePasswordObjectFormFields();
+                        VerifyNewPassword();
+                    }
+                    else
+                    {
+                        ModifyPasswordObjectFormFields();
+                        VerifyModifiedPassword();
+                    }
 
-                    if (lblMessage.Text == "")
-                        ApplySuggestions();
+
+                    if (PasswordIsVerified())
+                        SuggestionsBeforeUpdatingDataBase();
 
                 }
                 catch (ValidationException exception)
@@ -73,13 +83,6 @@ namespace Presentation
                 lblMessage.Text = "Debe seleccionar una categoría";
         }
 
-        private void VerifyPassword()
-        {
-            if (UserIsCreatingANewPassword())
-                VerifiesNewPassword();
-            else
-                VerifiesModifyPassword();
-        }
 
         private bool UserIsCreatingANewPassword()
         {
@@ -89,26 +92,21 @@ namespace Presentation
             return false;
         }
 
-        private void ApplySuggestions()
+        private void SuggestionsBeforeUpdatingDataBase()
         {
             if (UserIsCreatingANewPassword())
-            {
                 SuggestionsForPassword(_myNewPassword);
-            }
             else
                 SuggestionsForPassword(_myPasswordToModify);
         }
 
-        private void VerifiesModifyPassword()
+        private void VerifyModifiedPassword()
         {
-            ModifyPasswordObjectFormFields();
             _myPasswordController.VerifyPassword(_myPasswordToModify);
         }
 
-        private void VerifiesNewPassword()
+        private void VerifyNewPassword()
         {
-            Password newPassword = CreatePasswordObjectFormFields();
-            _myNewPassword = newPassword;
             _myPasswordController.VerifyPassword(_myNewPassword);
         }
 
@@ -118,10 +116,10 @@ namespace Presentation
             string duplicateSuggestion = DuplicatePasswordSuggestion(password);
             string secureSuggestion = SecurePasswordSuggestion(password);
 
-            bool userDontWantToChangePassword =
-                !ManagePopUpSuggestions(historicalSuggestion, duplicateSuggestion, secureSuggestion);
+            bool userConfirmesChanges =
+                ManagePopUpSuggestions(historicalSuggestion, duplicateSuggestion, secureSuggestion);
 
-            if (userDontWantToChangePassword)
+            if (userConfirmesChanges)
             {
                 UpdateDataBasePassword(password);
                 CloseForm();
@@ -131,12 +129,12 @@ namespace Presentation
         private bool ManagePopUpSuggestions(string historic, string duplicate, string secure)
         {
             string messageToShow = mergeStrings(historic, duplicate, secure);
-            DialogResult duplicateSuggestion;
-            duplicateSuggestion = MessageBox.Show(messageToShow + Environment.NewLine + "¿Le gustaría cambiarla?",
-                "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (duplicateSuggestion == DialogResult.Yes)
-                return true;
+                DialogResult suggestionResponse;
+                suggestionResponse = MessageBox.Show(messageToShow + Environment.NewLine + "¿Está seguro de querer continuar?",
+                    "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+ 
+                if (suggestionResponse == DialogResult.Yes)
+                    return true;
 
             return false;
         }
@@ -170,7 +168,7 @@ namespace Presentation
         {
             string duplicateSuggestion = "";
             if (_myPasswordController.PasswordTextIsDuplicate(password))
-                duplicateSuggestion = "- Esta contraseña ya se encuentre en el sistema" + Environment.NewLine;
+                duplicateSuggestion = "- Esta contraseña ya se encuentra en el sistema" + Environment.NewLine;
 
             return duplicateSuggestion;
         }
@@ -185,9 +183,7 @@ namespace Presentation
         }
 
 
-
-
-        private Password CreatePasswordObjectFormFields()
+        private void CreatePasswordObjectFormFields()
         {
             Password newPassword = new Password
             {
@@ -199,7 +195,7 @@ namespace Presentation
                 Notes = txtNotes.Text,
             };
 
-            return newPassword;
+            _myNewPassword = newPassword;
         }
 
         private void ModifyPasswordObjectFormFields()
@@ -260,6 +256,11 @@ namespace Presentation
                 txtPassword.PasswordChar = '\0';
             else
                 txtPassword.PasswordChar = '*';
+        }
+
+        private bool PasswordIsVerified()
+        {
+            return lblMessage.Text == "";
         }
     }
 }
