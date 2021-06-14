@@ -66,7 +66,7 @@ namespace Presentation
                     else
                     {
                         ModifyPasswordObjectFormFields();
-                        VerifyModificatedPassword();
+                        VerifyModifiedPassword();
                     }
 
 
@@ -100,7 +100,7 @@ namespace Presentation
                 SuggestionsForPassword(_myPasswordToModify);
         }
 
-        private void VerifyModificatedPassword()
+        private void VerifyModifiedPassword()
         {
             _myPasswordController.VerifyPassword(_myPasswordToModify);
         }
