@@ -179,12 +179,12 @@ namespace Presentation
 
             //Facultad
             //red
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "239850238", "Facultad");
             //orange
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "239850232", "Facultad");
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcst333de8762", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "123st333de8762", "Facultad");
             //darkGreen
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Facultad");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT1232", "Facultad");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "Chsau344(!&*($$^&#^@#&", "Facultad");
 
             //Amigos
@@ -204,7 +204,7 @@ namespace Presentation
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "sadfasDSFASDFdfSDFsSH", "Amigos");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "148sdfsdarst#$#@$5754543", "Amigos");
             //darkGreen
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT2332", "Amigos");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "#stsrtARSRT1234", "Amigos");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "3#@rstaAaartsaa", "Amigos");
 
 
@@ -213,7 +213,7 @@ namespace Presentation
             //orange
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "239850232", "Familia");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "abcst333de8762", "Familia");
-            this.CreatePasswordOnlyPassNameAndCategory("Juana", "-d4502-s--ss-3", "Familia");
+            this.CreatePasswordOnlyPassNameAndCategory("Juana", "-d4502-s--ss-4", "Familia");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "sT4-@234a", "Familia");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "148934sdf708", "Familia");
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "nethisean4", "Familia");
@@ -534,11 +534,11 @@ namespace Presentation
             ModifyBreachedPassoword("#stsrtARSRT2332", "#asdrtARSRT2332");
             ModifyBreachedPassoword("2398345023", "2398341234");
 
-            string[] _breachedPasswords2 = { "-d4502-s--ss-3", "babushcka", "148srtarst#$#@$5754543", "aaaaaa", "abcst333de8762", "qwerty123" };
+            string[] _breachedPasswords2 = { "-d4502-s--ss-3", "babushcka", "148sdfsdarst#$#@$5754543", "aaaaaa", "abcst333de8762", "qwerty123" };
             CreateDataBreach(_breachedPasswords2, new DateTime(2021, 5, 15));
 
             ModifyBreachedPassoword("-d4502-s--ss-3", "myDuperSecret");
-            ModifyBreachedPassoword("148srtarst#$#@$5754543", "yeaha");
+            ModifyBreachedPassoword("148sdfsdarst#$#@$5754543", "yeaha");
             ModifyBreachedPassoword("abcst333de8762", "dfkljsjfj");
 
 
