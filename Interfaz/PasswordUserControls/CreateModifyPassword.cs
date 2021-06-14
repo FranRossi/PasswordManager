@@ -50,6 +50,7 @@ namespace Presentation
             txtUserName.Text = _myPasswordToModify.Username;
             txtPassword.Text = _myPasswordToModify.Pass;
             txtNotes.Text = _myPasswordToModify.Notes;
+            cbCategory.SelectedItem = _myPasswordToModify.Category;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -129,12 +130,12 @@ namespace Presentation
         private bool ManagePopUpSuggestions(string historic, string duplicate, string secure)
         {
             string messageToShow = mergeStrings(historic, duplicate, secure);
-                DialogResult suggestionResponse;
-                suggestionResponse = MessageBox.Show(messageToShow + Environment.NewLine + "¿Está seguro de querer continuar?",
-                    "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
- 
-                if (suggestionResponse == DialogResult.Yes)
-                    return true;
+            DialogResult suggestionResponse;
+            suggestionResponse = MessageBox.Show(messageToShow + Environment.NewLine + "¿Está seguro de querer continuar?",
+                "Sugerencias contraseña", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2);
+
+            if (suggestionResponse == DialogResult.Yes)
+                return true;
 
             return false;
         }
