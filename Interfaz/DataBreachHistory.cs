@@ -137,15 +137,10 @@ namespace Presentation
         {
             for (int i = 0; i < tblPasswords.Rows.Count; i++)
             {
-                DateTime date = System.DateTime.Today;
-                for (int j = 0; j < tblPasswords.Rows[i].Cells.Count; j++)
-                {
-                    if (tblPasswords.Rows[i].Cells[j].GetType().Name == "DateTime")
-                    {
-                        date = (DateTime)tblPasswords.Rows[i].Cells[j].Value;
-                    }
-                }
-                if (date <= reportDatetime)
+                Password password = (Password)tblPasswords.Rows[i].DataBoundItem;
+                if (password.LastModification <= reportDatetime)
+                    tblPasswords.Rows[i].DefaultCellStyle.BackColor = Color.IndianRed;
+                else
                 {
                     DataGridViewButtonCell button = (DataGridViewButtonCell)tblPasswords.Rows[i].Cells[0];
                     DataGridViewCellStyle dataGridViewCellStyleCustom = new DataGridViewCellStyle
@@ -153,10 +148,6 @@ namespace Presentation
                         Padding = new Padding(70, 0, 0, 0)
                     };
                     button.Style = dataGridViewCellStyleCustom;
-                    tblPasswords.Rows[i].DefaultCellStyle.BackColor = Color.IndianRed;
-                }
-                else
-                {
                     tblPasswords.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
             }
