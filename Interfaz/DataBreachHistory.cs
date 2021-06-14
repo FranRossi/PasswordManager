@@ -137,8 +137,14 @@ namespace Presentation
         {
             for (int i = 0; i < tblPasswords.Rows.Count; i++)
             {
-
-                DateTime date = (DateTime)tblPasswords.Rows[i].Cells[6].Value;
+                DateTime date = System.DateTime.Today;
+                for (int j = 0; j < tblPasswords.Rows[i].Cells.Count; j++)
+                {
+                    if (tblPasswords.Rows[i].Cells[j].GetType().Name == "DateTime")
+                    {
+                        date = (DateTime)tblPasswords.Rows[i].Cells[j].Value;
+                    }
+                }
                 if (date <= reportDatetime)
                 {
                     DataGridViewButtonCell button = (DataGridViewButtonCell)tblPasswords.Rows[i].Cells[0];
