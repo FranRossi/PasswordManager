@@ -21,7 +21,6 @@ namespace BusinessLogic
 
         public List<Item> SaveBreachedItems(DataBreachReport dataBreachReport)
         {
-            //TODO VER SI HACER VOID Y CARGAR DATABREACH
             List<Item> breachedItems = _dataBreaches.AddDataBreachReport(dataBreachReport);
             return breachedItems;
         }
