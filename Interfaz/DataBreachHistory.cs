@@ -122,7 +122,7 @@ namespace Presentation
         {
             DataGridViewButtonColumn uninstallButtonColumn = new DataGridViewButtonColumn();
             uninstallButtonColumn.Name = "ModifyButton";
-            uninstallButtonColumn.Text = "✍";
+            uninstallButtonColumn.Text = "✏️";
             uninstallButtonColumn.UseColumnTextForButtonValue = true;
             uninstallButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             int columnIndex = 0;
