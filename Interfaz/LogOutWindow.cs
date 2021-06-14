@@ -6,6 +6,7 @@ namespace Presentation
     public partial class LogOutWindow : Form
     {
         private FormClosingEventArgs _myMainWindowsClosingEvent;
+
         public LogOutWindow(FormClosingEventArgs mainWindowsClosingEvent)
         {
             InitializeComponent();

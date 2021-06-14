@@ -7,10 +7,13 @@ namespace Presentation
 {
     public partial class MainWindow : Form
     {
+
+        private bool userWantsToLogOut;
+
         public MainWindow()
         {
-
             InitializeComponent();
+            userWantsToLogOut = false;
         }
 
         private void tsmiPasswords_Click(object sender, EventArgs e)
@@ -69,8 +72,10 @@ namespace Presentation
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Form logOut = new LogOutWindow(e);
-            logOut.ShowDialog();
+            if (UserPressedExitOnMainWindow()) { 
+                Form logOut = new LogOutWindow(e);
+                logOut.ShowDialog();
+            }
         }
 
         private void tsmiDataBreachHistory_Click(object sender, EventArgs e)
@@ -79,5 +84,17 @@ namespace Presentation
             pnlMainScreen.Controls.Clear();
             pnlMainScreen.Controls.Add(dataBreachHistory);
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            userWantsToLogOut = true;
+            Close();
+        }
+
+        private bool UserPressedExitOnMainWindow()
+        {
+            return !userWantsToLogOut;
+        }
+
     }
 }
