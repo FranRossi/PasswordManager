@@ -234,7 +234,7 @@ namespace Obligatorio1_DA1.Domain
                     hasSymbol = true;
                 }
             }
-            if (hasLowerCase && hasUpperCase && typeCount == 2)
+            if (hasLowerCase && hasUpperCase && !hasNumber && !hasSymbol)
                 return PasswordStrengthColor.LightGreen;
             return CheckResultDependingOnTypeCount(typeCount);
         }
