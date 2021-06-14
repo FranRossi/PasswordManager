@@ -241,15 +241,11 @@ namespace Obligatorio1_DA1.Domain
 
         private PasswordStrengthColor CheckResultDependingOnTypeCount(int typeCount)
         {
-            switch (typeCount)
-            {
-                case 3:
-                    return PasswordStrengthColor.LightGreen;
-                case 4:
-                    return PasswordStrengthColor.DarkGreen;
-                default:
-                    return PasswordStrengthColor.Yellow;
-            }
+            int minTypeCountForGreen = 2;
+            if (typeCount > minTypeCountForGreen)
+                return (PasswordStrengthColor)typeCount;
+            else
+                return PasswordStrengthColor.Yellow;
         }
 
         private bool IsRedStrength(string passToCheckedStrength)
