@@ -28,7 +28,7 @@ namespace BusinessLogic
 
         public List<DataBreachReport> GetDataBreachReportsFromCurrentUser()
         {
-            List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(_sessionController.GetCurrentUserMasterName());
+            List<DataBreachReport> reports = _dataBreaches.GetDataBreachReportsFromUser(_sessionController.CurrentUser);
             return reports;
         }
 

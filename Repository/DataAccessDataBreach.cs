@@ -58,7 +58,7 @@ namespace Repository
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
                 bool passwordHasBeenBreached = false;
-                List<DataBreachReport> dataBreachReportsForCurrentUser = GetDataBreachReportsFromUser(currentUser.MasterName);
+                List<DataBreachReport> dataBreachReportsForCurrentUser = GetDataBreachReportsFromUser(currentUser);
 
                 foreach (DataBreachReport breach in dataBreachReportsForCurrentUser)
                 {
@@ -71,11 +71,13 @@ namespace Repository
             }
         }
 
-        public List<DataBreachReport> GetDataBreachReportsFromUser(String userMasterName)
+        public List<DataBreachReport> GetDataBreachReportsFromUser(User user)
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<DataBreachReport> reports = context.DataBreachReports.Include("User").Include("BreachedItems").Include("Entries").Where(report => report.User.MasterName == userMasterName).ToList();
+                List<DataBreachReport> reports = context.DataBreachReports.Include("User").Include("BreachedItems").Include("Entries").Where(report => report.User.MasterName == user.MasterName).ToList();
+                foreach (DataBreachReport report in reports)
+                    SynchronizeLocalAndDBUsersDecryptionKey(user, report.User);
                 return reports;
             }
         }

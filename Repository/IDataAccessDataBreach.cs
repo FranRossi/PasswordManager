@@ -10,7 +10,7 @@ namespace Repository
     public interface IDataAccessDataBreach
     {
         List<Item> AddDataBreachReport(DataBreachReport dataBreachReport);
-        List<DataBreachReport> GetDataBreachReportsFromUser(String userMasterName);
+        List<DataBreachReport> GetDataBreachReportsFromUser(User user);
         bool CheckIfPasswordHasBeenBreached(User currentUser, Password passwordToCheck);
     }
 }
