@@ -540,6 +540,7 @@ namespace Presentation
             ModifyBreachedPassoword("-d4502-s--ss-3", "myDuperSecret");
             ModifyBreachedPassoword("148sdfsdarst#$#@$5754543", "yeaha");
             ModifyBreachedPassoword("abcst333de8762", "dfkljsjfj");
+            ModifyBreachedPassoword("abcst333de8762", "abcst333de9999");
 
 
             CreditCard newCreditCard = new CreditCard
