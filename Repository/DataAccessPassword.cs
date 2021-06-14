@@ -54,6 +54,8 @@ namespace Repository
 
                 passwordToModify.User = passwordUserFromDB;
                 passwordToModify.Category = passwordCategoryFromDB;
+                if (passwordToModify.EncryptedPass != modifiedPassword.EncryptedPass)
+                    modifiedPassword.LastModification = DateTime.Today;
                 passwordToModify.LastModification = modifiedPassword.LastModification;
                 passwordToModify.Notes = modifiedPassword.Notes;
                 passwordToModify.EncryptedPass = modifiedPassword.EncryptedPass;
