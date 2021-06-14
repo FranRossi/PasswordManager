@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class PasswordColorReportController
+    public class PasswordColorReportController : IPasswordColorReportController
     {
         private IDataAccessPassword<Password> _passwords;
         private SessionController _sessionController;

@@ -11,8 +11,8 @@ namespace Presentation
     public partial class DataBreach : UserControl
     {
 
-        private SessionController _mySessionController;
-        private DataBreachController _myDatabreachController;
+        private ISessionController _mySessionController;
+        private IDataBreachController _myDatabreachController;
         private Password _selectedPassword;
         private bool _isTextFileBreach;
 

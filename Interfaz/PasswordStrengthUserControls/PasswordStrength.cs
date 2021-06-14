@@ -18,7 +18,7 @@ namespace Presentation
     }
     public partial class PasswordStrength : UserControl
     {
-        private PasswordColorReportController _myPasswordColorReportController;
+        private IPasswordColorReportController _myPasswordColorReportController;
         private PasswordStrengthChart _chartPanel;
         private List<colorComponent> _colorsCmp;
         public PasswordStrength()

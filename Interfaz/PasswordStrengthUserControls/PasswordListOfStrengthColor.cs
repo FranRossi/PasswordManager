@@ -9,7 +9,7 @@ namespace Presentation.PasswordStrengthWindow
 {
     public partial class PasswordListOfStrengthColor : UserControl
     {
-        private PasswordColorReportController _myPasswordColorReportController;
+        private IPasswordColorReportController _myPasswordColorReportController;
         private PasswordStrengthColor _passColor;
         private Password _selectedPassword;
 

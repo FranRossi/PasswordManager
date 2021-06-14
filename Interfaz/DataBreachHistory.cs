@@ -14,7 +14,7 @@ namespace Presentation
 {
     public partial class DataBreachHistory : UserControl
     {
-        private DataBreachController _myDatabreachController;
+        private IDataBreachController _myDatabreachController;
         private DataBreachReport _selectedReport;
         public DataBreachHistory()
         {

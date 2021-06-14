@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class PasswordController
+    public class PasswordController : IPasswordController
     {
         private SessionController _sessionController;
         private CategoryController _categoryController;

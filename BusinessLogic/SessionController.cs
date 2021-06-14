@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class SessionController
+    public class SessionController : ISessionController
     {
         private static SessionController _instance;
         public static SessionController GetInstance()

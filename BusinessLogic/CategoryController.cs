@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BusinessLogic
 {
-    public class CategoryController
+    public class CategoryController : ICategoryController
     {
         private SessionController _sessionController;
         private IDataAccessUser _users;
@@ -61,5 +61,6 @@ namespace BusinessLogic
             if (!categoryBelongsToUser)
                 throw new ItemInvalidCategoryException();
         }
+
     }
 }
