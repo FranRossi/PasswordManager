@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8D242BD-14A0-479E-8F23-1BA41734E7A6}</ProjectGuid>
+    <ProjectGuid>{7D0EAE7A-41E8-45DF-8B74-71825AD2DE6E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>BusinessInterfaces</RootNamespace>
+    <AssemblyName>BusinessInterfaces</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,30 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryController.cs" />
-    <Compile Include="PasswordController.cs" />
-    <Compile Include="DataBreachController.cs" />
-    <Compile Include="CreditCardController.cs" />
-    <Compile Include="PasswordColorReportController.cs" />
-    <Compile Include="SharePasswordController.cs" />
-    <Compile Include="SessionController.cs" />
+    <Compile Include="Interfaces\ICategoryController.cs" />
+    <Compile Include="Interfaces\ICreditCardController.cs" />
+    <Compile Include="Interfaces\IDataBreachController.cs" />
+    <Compile Include="Interfaces\IPasswordColorReportController.cs" />
+    <Compile Include="Interfaces\IPasswordController.cs" />
+    <Compile Include="Interfaces\ISessionController.cs" />
+    <Compile Include="Interfaces\ISharePasswordController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessInterfaces\BusinessInterfaces.csproj">
-      <Project>{7d0eae7a-41e8-45df-8b74-71825ad2de6e}</Project>
-      <Name>BusinessInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj">
-      <Project>{7d1295b0-5bb8-4802-b38b-1620006826c3}</Project>
-      <Name>DataAccessInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FactoryDataAccess\FactoryDataAccess.csproj">
-      <Project>{aa38758c-1580-4966-a4bc-b5c54e2dcc38}</Project>
-      <Name>FactoryDataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
-      <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
+      <Project>{2dbe2991-f523-4a88-88fd-e17f27462492}</Project>
       <Name>Obligatorio1_DA1</Name>
     </ProjectReference>
   </ItemGroup>

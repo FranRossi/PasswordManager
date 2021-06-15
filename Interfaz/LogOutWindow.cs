@@ -19,7 +19,7 @@ namespace Presentation
         private void btnClose_Click(object sender, EventArgs e)
         {
             CloseMainWindow();
-            System.Environment.Exit(0);
+            Environment.Exit(0);
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

@@ -1,16 +1,17 @@
-﻿using BusinessLogic;
+﻿
+using BusinessInterfaces;
 using Obligatorio1_DA1.Domain;
 using System;
 using System.Collections.Generic;
 
 namespace Presentation
 {
-    public class TestData
+   /* public class TestData
     {
-        private SharePasswordController _sharePasswordController;
-        private SessionController _sessionController;
-        private CategoryController _myCategoryController;
-        private CreditCardController _myCreditCardController;
+        private ISharePasswordController _sharePasswordController;
+        private ISessionController _sessionController;
+        private ICategoryController _myCategoryController;
+        private ICreditCardController _myCreditCardController;
 
         private PasswordController _myPasswordController;
         private Random _random;
@@ -610,7 +611,7 @@ namespace Presentation
 
 
 
-        /*
+        *//*
             // cat1
             //red
             this.CreatePasswordOnlyPassNameAndCategory("Juana", "23985023", "Amigos");
@@ -794,7 +795,7 @@ namespace Presentation
             this.CreateNCreditCardsForUser("Pablo", "Juegos");
             this.CreateNCreditCardsForUser("Pablo", "Juegos");
 
-        */
+        *//*
 
-    }
+    }*/
 }

@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using System;
@@ -15,7 +16,7 @@ namespace Presentation
             InitializeComponent();
             Properties.Settings.Default.Reset();
             ShowHidePassword(false);
-            _mySessionController = SessionController.GetInstance();
+            _mySessionController = FactoryBusinessInterfaces.GetInstanceSessionController();
             //TestData testData = new TestData();
         }
 

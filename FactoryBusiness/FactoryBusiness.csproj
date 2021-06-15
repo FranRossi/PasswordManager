@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8D242BD-14A0-479E-8F23-1BA41734E7A6}</ProjectGuid>
+    <ProjectGuid>{64A83F82-B7E6-432E-B950-259E66478065}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>FactoryBusiness</RootNamespace>
+    <AssemblyName>FactoryBusiness</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,13 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryController.cs" />
-    <Compile Include="PasswordController.cs" />
-    <Compile Include="DataBreachController.cs" />
-    <Compile Include="CreditCardController.cs" />
-    <Compile Include="PasswordColorReportController.cs" />
-    <Compile Include="SharePasswordController.cs" />
-    <Compile Include="SessionController.cs" />
+    <Compile Include="FactoryBusinessInterfaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,17 +49,9 @@
       <Project>{7d0eae7a-41e8-45df-8b74-71825ad2de6e}</Project>
       <Name>BusinessInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj">
-      <Project>{7d1295b0-5bb8-4802-b38b-1620006826c3}</Project>
-      <Name>DataAccessInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FactoryDataAccess\FactoryDataAccess.csproj">
-      <Project>{aa38758c-1580-4966-a4bc-b5c54e2dcc38}</Project>
-      <Name>FactoryDataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
-      <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
-      <Name>Obligatorio1_DA1</Name>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{d8d242bd-14a0-479e-8f23-1ba41734e7a6}</Project>
+      <Name>BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

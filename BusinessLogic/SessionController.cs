@@ -1,16 +1,16 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
-using Obligatorio1_DA1.Utilities;
-using Obligatorio1_DA1.Exceptions;
+﻿using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Domain;
-using System.Linq;
+using DataAccessInterfaces;
+using BusinessInterfaces;
+using FactoryDataAccess;
 
 namespace BusinessLogic
 {
     public class SessionController : ISessionController
     {
         private static SessionController _instance;
+        private IDataAccessUser _users;
+        
         public static SessionController GetInstance()
         {
             if (_instance == null)
@@ -20,11 +20,9 @@ namespace BusinessLogic
 
         public User CurrentUser { get; private set; }
 
-        private IDataAccessUser _users;
-
         public SessionController()
         {
-            _users = new DataAccessUser();
+            _users = FactoryDataAccessInterfaces.CreateDataAccessUser();
         }
 
         public void CreateUser(User newUser)

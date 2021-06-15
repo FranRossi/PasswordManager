@@ -1,29 +1,22 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
-using Obligatorio1_DA1.Utilities;
+﻿using System.Collections.Generic;
 using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Domain;
 using System.Linq;
+using DataAccessInterfaces;
+using FactoryDataAccess;
+using BusinessInterfaces;
 
 namespace BusinessLogic
 {
     public class CategoryController : ICategoryController
     {
         private SessionController _sessionController;
-        private IDataAccessUser _users;
         private IDataAccessCategory _categories;
-        private IDataAccessCreditCard<CreditCard> _creditCards;
-        private IDataAccessPassword<Password> _passwords;
-        private IDataAccessDataBreach _dataBreaches;
+
 
         public CategoryController()
         {
-            _users = new DataAccessUser();
-            _categories = new DataAccessCategory();
-            _creditCards = new DataAccessCreditCard();
-            _passwords = new DataAccessPassword();
-            _dataBreaches = new DataAccessDataBreach();
+            _categories = FactoryDataAccessInterfaces.CreateDataAccessCategory();
             _sessionController = SessionController.GetInstance();
         }
 

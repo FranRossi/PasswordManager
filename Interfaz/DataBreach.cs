@@ -1,6 +1,6 @@
-﻿using BusinessLogic;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Domain;
-using Obligatorio1_DA1.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,8 +19,8 @@ namespace Presentation
         public DataBreach()
         {
             InitializeComponent();
-            _mySessionController = SessionController.GetInstance();
-            _myDatabreachController = new DataBreachController();
+            _mySessionController = FactoryBusinessInterfaces.GetInstanceSessionController();
+            _myDatabreachController = FactoryBusinessInterfaces.CreateDataBreachController();
             _isTextFileBreach = false;
         }
 

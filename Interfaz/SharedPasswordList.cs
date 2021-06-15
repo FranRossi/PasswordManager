@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Domain;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Presentation
 {
     public partial class SharedPasswordList : UserControl
     {
-        private SharePasswordController _mySharePasswordController;
+        private ISharePasswordController _mySharePasswordController;
         private Password _selectedPassword;
         private User _selectedShareWithUser;
         private User _selectedUnShareWithUser;
@@ -16,7 +17,7 @@ namespace Presentation
         public SharedPasswordList(Password password)
         {
             InitializeComponent();
-            _mySharePasswordController = new SharePasswordController();
+            _mySharePasswordController = FactoryBusinessInterfaces.CreateSharePasswordController();
             _selectedPassword = password;
             LoadTblPassword();
             SetSelectedPassoword();
@@ -39,7 +40,7 @@ namespace Presentation
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = null; //_myPasswordManager.GetPasswords();
+            List<Password> passwords = _mySharePasswordController.GetSharedPasswordsWithCurrentUser();//Revisar esto, estaba en null
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;

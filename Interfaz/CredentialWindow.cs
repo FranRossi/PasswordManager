@@ -1,6 +1,4 @@
-﻿using BusinessLogic;
-using Obligatorio1_DA1.Domain;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Presentation
 {
