@@ -1,11 +1,7 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
-using Obligatorio1_DA1.Utilities;
-using Obligatorio1_DA1.Exceptions;
+﻿using System.Collections.Generic;
 using Obligatorio1_DA1.Domain;
-using System.Linq;
 using DataAccessInterfaces;
+using FactoryDataAccess;
 
 namespace BusinessLogic
 {
@@ -16,7 +12,7 @@ namespace BusinessLogic
 
         public DataBreachController()
         {
-            _dataBreaches = new DataAccessDataBreach();
+            _dataBreaches = FactoryDataAccessInterfaces.CreateDataAccessDataBreach();
             _sessionController = SessionController.GetInstance();
         }
 

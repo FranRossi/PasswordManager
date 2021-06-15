@@ -1,11 +1,8 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
-using Obligatorio1_DA1.Utilities;
+﻿using System.Collections.Generic;
 using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Domain;
-using System.Linq;
 using DataAccessInterfaces;
+using FactoryDataAccess;
 
 namespace BusinessLogic
 {
@@ -17,8 +14,8 @@ namespace BusinessLogic
 
         public SharePasswordController()
         {
-            _users = new DataAccessUser();
-            _passwords = new DataAccessPassword();
+            _users = FactoryDataAccessInterfaces.CreateDataAccessUser();
+            _passwords = FactoryDataAccessInterfaces.CreateDataAccessPassword();
             _sessionController = SessionController.GetInstance();
         }
 

@@ -1,11 +1,8 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Obligatorio1_DA1.Utilities;
-using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Domain;
-using System.Linq;
 using DataAccessInterfaces;
+using FactoryDataAccess;
 
 namespace BusinessLogic
 {
@@ -19,7 +16,7 @@ namespace BusinessLogic
         {
             _sessionController = SessionController.GetInstance();
             _currentUser = _sessionController.CurrentUser;
-            _passwords = new DataAccessPassword();
+            _passwords = FactoryDataAccessInterfaces.CreateDataAccessPassword();
         }
 
         public List<PasswordReportByCategoryAndColor> GetPasswordReportByCategoryAndColor()

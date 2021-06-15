@@ -1,7 +1,4 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
-using Obligatorio1_DA1.Utilities;
+﻿using System.Collections.Generic;
 using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Domain;
 using System.Linq;
@@ -13,19 +10,12 @@ namespace BusinessLogic
     public class CategoryController : ICategoryController
     {
         private SessionController _sessionController;
-        private IDataAccessUser _users;
         private IDataAccessCategory _categories;
-        private IDataAccessCreditCard<CreditCard> _creditCards;
-        private IDataAccessPassword<Password> _passwords;
-        private IDataAccessDataBreach _dataBreaches;
+
 
         public CategoryController()
         {
-            _users = new DataAccessUser();
             _categories = FactoryDataAccessInterfaces.CreateDataAccessCategory();
-            _creditCards = FactoryDataAccessInterfaces.CreateDataAccessCreditCard();
-            _passwords = FactoryDataAccessInterfaces.CreateDataAccessPassword();
-            _dataBreaches = FactoryDataAccessInterfaces.CreateDataAccessDataBreach();
             _sessionController = SessionController.GetInstance();
         }
 
