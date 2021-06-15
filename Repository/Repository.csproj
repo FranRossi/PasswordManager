@@ -53,11 +53,6 @@
   <ItemGroup>
     <Compile Include="DataAccessDataBreach.cs" />
     <Compile Include="DataAccessPassword.cs" />
-    <Compile Include="Interfaces\IDataAccessDataBreach.cs" />
-    <Compile Include="Interfaces\IDataAccessCategory.cs" />
-    <Compile Include="Interfaces\IDataAccessUser.cs" />
-    <Compile Include="Interfaces\IDataAccessPassword.cs" />
-    <Compile Include="Interfaces\IDataAccessCreditCard.cs" />
     <Compile Include="Migrations\202106111904294_CleanMigration-Merge.cs" />
     <Compile Include="Migrations\202106111904294_CleanMigration-Merge.designer.cs">
       <DependentUpon>202106111904294_CleanMigration-Merge.cs</DependentUpon>
@@ -73,7 +68,6 @@
     <Compile Include="PasswordTypeConfiguration.cs" />
     <Compile Include="CategoryTypeConfiguration.cs" />
     <Compile Include="UserTypeConfiguration.cs" />
-    <Compile Include="Interfaces\IDataAccessItem.cs" />
     <Compile Include="DataAccessUser.cs" />
     <Compile Include="DataAccessCategory.cs" />
     <Compile Include="DataAccessCreditCard.cs" />

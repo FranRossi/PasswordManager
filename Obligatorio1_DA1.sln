@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{D8D242BD-14A0-479E-8F23-1BA41734E7A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDataAccess", "FactoryDataAccess\FactoryDataAccess.csproj", "{AA38758C-1580-4966-A4BC-B5C54E2DCC38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessInterfaces", "DataAccessInterfaces\DataAccessInterfaces.csproj", "{7D1295B0-5BB8-4802-B38B-1620006826C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{D8D242BD-14A0-479E-8F23-1BA41734E7A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8D242BD-14A0-479E-8F23-1BA41734E7A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8D242BD-14A0-479E-8F23-1BA41734E7A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA38758C-1580-4966-A4BC-B5C54E2DCC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA38758C-1580-4966-A4BC-B5C54E2DCC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA38758C-1580-4966-A4BC-B5C54E2DCC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA38758C-1580-4966-A4BC-B5C54E2DCC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D1295B0-5BB8-4802-B38B-1620006826C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D1295B0-5BB8-4802-B38B-1620006826C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D1295B0-5BB8-4802-B38B-1620006826C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D1295B0-5BB8-4802-B38B-1620006826C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
