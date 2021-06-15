@@ -40,7 +40,7 @@ namespace Presentation
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = _mySharePasswordController.GetSharedPasswordsWithCurrentUser();//Revisar esto, estaba en null
+            List<Password> passwords = _mySharePasswordController.GetSharedPasswordsWithCurrentUser();
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;

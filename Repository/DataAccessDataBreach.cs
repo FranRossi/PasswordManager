@@ -76,7 +76,7 @@ namespace Repository
         {
             using (PasswordManagerDBContext context = new PasswordManagerDBContext())
             {
-                List<DataBreachReport> reports = context.DataBreachReports.Include("User").Include("BreachedItems").Include("Entries").Where(report => report.User.MasterName == user.MasterName).ToList();
+                List<DataBreachReport> reports = context.DataBreachReports.Include("User").Include("BreachedItems").Include("BreachedItems.Category").Include("Entries").Where(report => report.User.MasterName == user.MasterName).ToList();
                 foreach (DataBreachReport report in reports)
                     SynchronizeLocalAndDBUsersDecryptionKey(user, report.User);
                 return reports;

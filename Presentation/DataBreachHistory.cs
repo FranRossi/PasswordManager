@@ -111,7 +111,8 @@ namespace Presentation
                         break;
                 }
             }
-            tblPasswords.Rows[0].Selected = false;
+            if (tblPasswords.Rows.Count > 0)
+                tblPasswords.Rows[0].Selected = false;
         }
 
         private void CreateTblPasswordModifyButton(DateTime reportDatetime)
