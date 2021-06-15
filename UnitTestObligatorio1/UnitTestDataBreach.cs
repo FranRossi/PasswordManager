@@ -11,6 +11,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestDataBreach
     {
+        private Services _cleanUp;
         private SessionController _sessionController;
         private DataBreachController _databreachController;
         private CategoryController _categoryController;
@@ -36,6 +37,8 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
             _sessionController = SessionController.GetInstance();
             _databreachController = new DataBreachController();
             _categoryController = new CategoryController();
@@ -65,7 +68,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            UnitTestSignUp.DataBaseCleanup(null);
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]

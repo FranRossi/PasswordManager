@@ -10,31 +10,21 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestSignUp
     {
-        [AssemblyInitialize]
-        public static void DataBaseCleanup(TestContext testContext)
-        {
-            using (PasswordManagerDBContext context = new PasswordManagerDBContext())
-            {
-                context.Database.ExecuteSqlCommand("DELETE FROM PASSWORDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM CREDITCARDS");
-                context.Database.ExecuteSqlCommand("DELETE FROM DATABREACHREPORTS");
-                context.Database.ExecuteSqlCommand("DELETE FROM USERS");
-            }
 
-        }
-
-
+        private Services _cleanUp;
         private SessionController _sessionController;
         [TestInitialize]
         public void CreateSessionControllerBeforeTests()
         {
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
             _sessionController = SessionController.GetInstance();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            DataBaseCleanup(null);
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]

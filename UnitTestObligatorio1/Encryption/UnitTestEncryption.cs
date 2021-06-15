@@ -15,12 +15,15 @@ namespace UnitTestObligatorio1
     {
         protected abstract IEncryption GetEncryption();
         protected IEncryption encryption;
+        private Services _cleanUp;
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 encryption = GetEncryption();
 
             }

@@ -12,6 +12,7 @@ namespace UnitTestObligatorio1
     public class UnitTestPasswordStrengthReport
     {
 
+        private Services _cleanUp;
         private SessionController _sessionController;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
@@ -37,6 +38,8 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void TestInitialize()
         {
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
             _sessionController = SessionController.GetInstance();
             _categoryController = new CategoryController();
             _passwordController = new PasswordController();
@@ -78,7 +81,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            UnitTestSignUp.DataBaseCleanup(null);
+            _cleanUp.DataBaseCleanup();
         }
 
 

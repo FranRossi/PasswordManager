@@ -12,6 +12,7 @@ namespace UnitTestObligatorio1
     public class UnitTestPassword
     {
 
+        private Services _cleanUp;
         private SessionController _sessionController;
         private Password _password;
         private CategoryController _categoryController;
@@ -26,6 +27,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _sessionController = SessionController.GetInstance();
                 _categoryController = new CategoryController();
                 _passwordController = new PasswordController();
@@ -63,7 +66,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            UnitTestSignUp.DataBaseCleanup(null);
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]
@@ -434,7 +437,7 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void PassswordIsLightGreenSecure()
         {
-            _password.Pass = "#AAHTNrtsrHRIISH"; 
+            _password.Pass = "#AAHTNrtsrHRIISH";
             bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
             Assert.IsFalse(passIsNotGreenSecure);
         }

@@ -12,6 +12,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public abstract class UnitTestHash
     {
+        private Services _cleanUp;
         protected abstract IHash GetHash();
         protected IHash hashing;
 
@@ -20,6 +21,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 hashing = GetHash();
 
             }

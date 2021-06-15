@@ -11,6 +11,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCreditCard
     {
+        private Services _cleanUp;
         private CreditCard _cardInitialize;
         private SessionController _sessionController;
         private CreditCardController _creditCardController;
@@ -25,6 +26,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _sessionController = SessionController.GetInstance();
                 _creditCardController = new CreditCardController();
                 _categoryController = new CategoryController();
@@ -61,7 +64,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            UnitTestSignUp.DataBaseCleanup(null);
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]

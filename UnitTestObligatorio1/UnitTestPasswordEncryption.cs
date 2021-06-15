@@ -12,6 +12,7 @@ namespace UnitTestObligatorio1
     public class UnitTestPasswordEncryption
     {
 
+        private Services _cleanUp;
         private SessionController _sessionController;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
@@ -24,6 +25,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _sessionController = SessionController.GetInstance();
                 _categoryController = new CategoryController();
                 _passwordController = new PasswordController();
@@ -61,7 +64,7 @@ namespace UnitTestObligatorio1
         [TestCleanup]
         public void Cleanup()
         {
-            UnitTestSignUp.DataBaseCleanup(null);
+            _cleanUp.DataBaseCleanup();
         }
 
         [DataRow("mySuperSecurePassword")]
