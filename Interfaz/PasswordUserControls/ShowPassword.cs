@@ -1,5 +1,4 @@
-﻿using BusinessLogic;
-using Obligatorio1_DA1.Domain;
+﻿using Obligatorio1_DA1.Domain;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;

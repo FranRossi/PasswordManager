@@ -67,10 +67,6 @@
       <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
       <Name>Obligatorio1_DA1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{9920ca39-d916-4c47-8c68-4e51dde949c6}</Project>
-      <Name>Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

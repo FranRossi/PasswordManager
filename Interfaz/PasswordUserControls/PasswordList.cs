@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Domain;
 using Presentation.PasswordUserControls;
 using System;
@@ -13,7 +14,7 @@ namespace Presentation
         private IPasswordController _myPasswordController;
         public PasswordList()
         {
-            _myPasswordController = new PasswordController();
+            _myPasswordController = FactoryBusinessInterfaces.CreatePasswordController();
             InitializeComponent();
             LoadTblPassword();
         }

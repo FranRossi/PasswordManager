@@ -1,9 +1,10 @@
 ﻿using Obligatorio1_DA1.Domain;
-using BusinessLogic;
+using BusinessInterfaces;
 using Presentation.CreditCardUserControls;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using FactoryBusiness;
 
 namespace Presentation
 {
@@ -14,7 +15,7 @@ namespace Presentation
         public CreditCardList()
         {
             InitializeComponent();
-            _myCreditCardController = new CreditCardController();
+            _myCreditCardController = FactoryBusinessInterfaces.CreateCreditCardController();
             LoadTblCreditCard();
         }
 

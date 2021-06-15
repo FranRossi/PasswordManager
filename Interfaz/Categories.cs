@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
 using System;
@@ -13,7 +14,7 @@ namespace Presentation
         public Categories()
         {
             InitializeComponent();
-            _myCategoryController = new CategoryController();
+            _myCategoryController = FactoryBusinessInterfaces.CreateCategoryController();
             LoadCategoryList();
         }
 

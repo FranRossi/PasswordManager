@@ -6,29 +6,39 @@ namespace FactoryBusiness
 {
     public static class FactoryBusinessInterfaces
     {
-        public static ICategoryController CreateDataAccessCategory()
+        public static ISessionController GetInstanceSessionController()
+        {
+            return SessionController.GetInstance();
+        }
+
+        public static ICategoryController CreateCategoryController()
         {
             return new CategoryController();
         }
 
-        public static IDataAccessCreditCard<CreditCard> CreateDataAccessCreditCard()
+        public static ICreditCardController CreateCreditCardController()
         {
-            return new DataAccessCreditCard();
+            return new CreditCardController();
         }
 
-        public static IDataAccessPassword<Password> CreateDataAccessPassword()
+        public static IDataBreachController CreateDataBreachController()
         {
-            return new DataAccessPassword();
+            return new DataBreachController();
         }
 
-        public static IDataAccessDataBreach CreateDataAccessDataBreach()
+        public static IPasswordColorReportController CreatePasswordColorReportController()
         {
-            return new DataAccessDataBreach();
+            return new PasswordColorReportController();
         }
 
-        public static IDataAccessUser CreateDataAccessUser()
+        public static IPasswordController CreatePasswordController()
         {
-            return new DataAccessUser();
+            return new PasswordController();
+        }
+
+        public static ISharePasswordController CreateSharePasswordController()
+        {
+            return new SharePasswordController();
         }
     }
 }

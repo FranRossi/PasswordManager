@@ -1,5 +1,5 @@
-﻿using BusinessLogic;
-using Obligatorio1_DA1.Domain;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Utilities;
 using Presentation.PasswordStrengthWindow;
 using System;
@@ -23,7 +23,7 @@ namespace Presentation
         private List<colorComponent> _colorsCmp;
         public PasswordStrength()
         {
-            _myPasswordColorReportController = new PasswordColorReportController();
+            _myPasswordColorReportController = FactoryBusinessInterfaces.CreatePasswordColorReportController(); ;
             InitializeComponent();
             SetColorsLabelsAndButtons();
             LoadColorQuantities();

@@ -1,8 +1,9 @@
 ﻿using Obligatorio1_DA1.Domain;
-using BusinessLogic;
+using BusinessInterfaces;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Windows.Forms;
+using FactoryBusiness;
 
 namespace Presentation
 {
@@ -17,18 +18,18 @@ namespace Presentation
         public CreateModifyCreditCard()
         {
             InitializeComponent();
-            _mySessionController = SessionController.GetInstance();
-            _myCreditCardController = new CreditCardController();
-            _myCategoryController = new CategoryController();
+            _mySessionController = FactoryBusinessInterfaces.GetInstanceSessionController();
+            _myCreditCardController = FactoryBusinessInterfaces.CreateCreditCardController();
+            _myCategoryController = FactoryBusinessInterfaces.CreateCategoryController();
             LoadComboBoxCategory();
         }
 
         public CreateModifyCreditCard(CreditCard creditCard)
         {
             InitializeComponent();
-            _mySessionController = SessionController.GetInstance();
-            _myCreditCardController = new CreditCardController();
-            _myCategoryController = new CategoryController();
+            _mySessionController = FactoryBusinessInterfaces.GetInstanceSessionController();
+            _myCreditCardController = FactoryBusinessInterfaces.CreateCreditCardController();
+            _myCategoryController = FactoryBusinessInterfaces.CreateCategoryController();
             _myCreditCardToModify = creditCard;
             LoadComboBoxCategory();
             LoadFromCreditCard();

@@ -1,4 +1,5 @@
-﻿using BusinessLogic;
+﻿using BusinessInterfaces;
+using FactoryBusiness;
 using Obligatorio1_DA1.Domain;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace Presentation
         public PasswordsSharedWithMe()
         {
             InitializeComponent();
-            _mySharePasswordController = new SharePasswordController();
+            _mySharePasswordController = FactoryBusinessInterfaces.CreateSharePasswordController();
             LoadTblPassword();
         }
 
