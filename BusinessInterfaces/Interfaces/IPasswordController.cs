@@ -1,12 +1,7 @@
-﻿using System;
-using Repository;
-using System.Collections.Generic;
-using Obligatorio1_DA1.Utilities;
-using Obligatorio1_DA1.Exceptions;
+﻿using System.Collections.Generic;
 using Obligatorio1_DA1.Domain;
-using System.Linq;
 
-namespace BusinessLogic
+namespace BusinessInterfaces
 {
     public interface IPasswordController
     {

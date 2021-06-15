@@ -7,9 +7,9 @@ namespace FactoryDataAccess
     public static class FactoryDataAccessInterfaces
     {
        public static IDataAccessCategory CreateDataAccessCategory()
-        {
+       {
             return new DataAccessCategory();
-        }
+       }
 
         public static IDataAccessCreditCard<CreditCard> CreateDataAccessCreditCard()
         {
