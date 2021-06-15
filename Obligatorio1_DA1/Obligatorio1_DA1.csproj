@@ -104,6 +104,7 @@
     <Compile Include="Utilities\EncryptionAndHashing\IHash.cs" />
     <Compile Include="Utilities\PasswordGeneration\PasswordGeneration.cs" />
     <Compile Include="Utilities\PasswordGeneration\PasswordGenerationOptions.cs" />
+    <Compile Include="Utilities\PasswordStrength\PasswordStrengthCalculation.cs" />
     <Compile Include="Utilities\PasswordStrength\PasswordStrengthReport.cs" />
     <Compile Include="Utilities\PasswordStrength\PasswordStrengthColor.cs" />
     <Compile Include="Utilities\Validator.cs" />
