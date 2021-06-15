@@ -8,7 +8,7 @@ namespace DataAccessInterfaces
 {
     public interface IDataAccessCreditCard<CreditCard> : IDataAccessItem<CreditCard>
     {
-      
+
     }
 }
 

@@ -320,6 +320,30 @@ namespace UnitTestObligatorio1
             Assert.IsFalse(passwordHasBeenBreached);
         }
 
+        [TestMethod]
+        public void CheckPassBreachedAfterDataBreachAdded()
+        {
+            IDataBreachReader<string> dataBreachReader = new DataBreachReaderFromString();
+            HashSet<DataBreachReportEntry> entries = dataBreachReader.GetDataBreachEntries(_passwordDataBreach);
+            Category firstCategoryOnUser = _currentUser.Categories[0];
+            DataBreachReport dataBreachReport = new DataBreachReport(entries, _sessionController.CurrentUser);
+            Password newPassword = new Password
+            {
+                User = _currentUser,
+                Category = firstCategoryOnUser,
+                Site = "NuevoSitio",
+                Username = "239850",
+                Pass = "Passoword223",
+                Notes = "Esta pass esta modificada y aparece"
+            };
+            AddBreachedPasswordsToPasswordController();
+
+            _databreachController.SaveBreachedItems(dataBreachReport);
+
+            bool passwordHasBeenBreached = _databreachController.VerifyPasswordHasBeenBreached(newPassword);
+            Assert.IsTrue(passwordHasBeenBreached);
+        }
+
         private string CreateDataBreachString(string[] breachedString)
         {
             string dataBreach = "";

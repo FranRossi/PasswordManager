@@ -63,9 +63,13 @@ namespace Repository
 
                 foreach (DataBreachReport breach in dataBreachReportsForCurrentUser)
                 {
-                    passwordHasBeenBreached = breach.BreachedItems.Contains(passwordToCheck);
-                    if (passwordHasBeenBreached)
-                        return passwordHasBeenBreached;
+                    HashSet<DataBreachReportEntry> entries = breach.Entries;
+                    foreach (DataBreachReportEntry entry in entries)
+                    {
+                        passwordHasBeenBreached = entry.Value == passwordToCheck.Pass;
+                        if (passwordHasBeenBreached)
+                            return passwordHasBeenBreached;
+                    }
                 }
 
                 return passwordHasBeenBreached;
