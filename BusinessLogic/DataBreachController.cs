@@ -2,6 +2,7 @@
 using Obligatorio1_DA1.Domain;
 using DataAccessInterfaces;
 using FactoryDataAccess;
+using BusinessInterfaces;
 
 namespace BusinessLogic
 {

@@ -4,6 +4,7 @@ using Obligatorio1_DA1.Domain;
 using System.Linq;
 using DataAccessInterfaces;
 using FactoryDataAccess;
+using BusinessInterfaces;
 
 namespace BusinessLogic
 {

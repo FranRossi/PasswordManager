@@ -1,7 +1,8 @@
-﻿using Repository;
-using Obligatorio1_DA1.Exceptions;
+﻿using Obligatorio1_DA1.Exceptions;
 using Obligatorio1_DA1.Domain;
 using DataAccessInterfaces;
+using BusinessInterfaces;
+using FactoryDataAccess;
 
 namespace BusinessLogic
 {
@@ -21,7 +22,7 @@ namespace BusinessLogic
 
         public SessionController()
         {
-            _users = new DataAccessUser();
+            _users = FactoryDataAccessInterfaces.CreateDataAccessUser();
         }
 
         public void CreateUser(User newUser)
