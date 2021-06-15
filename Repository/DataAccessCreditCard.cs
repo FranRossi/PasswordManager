@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessCreditCard : IDataAccessCreditCard<CreditCard>
+    public class DataAccessCreditCard : IDataAccessCreditCard
     {
         public void Add(CreditCard newCreditCard)
         {
