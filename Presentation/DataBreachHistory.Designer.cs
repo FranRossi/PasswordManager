@@ -35,8 +35,11 @@ namespace Presentation
             this.lblPassword = new System.Windows.Forms.Label();
             this.tblReports = new System.Windows.Forms.DataGridView();
             this.lblSharedWith = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tblCreditCards = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.tblPasswords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblReports)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).BeginInit();
             this.SuspendLayout();
             // 
             // tblPasswords
@@ -53,7 +56,7 @@ namespace Presentation
             this.tblPasswords.RowHeadersVisible = false;
             this.tblPasswords.RowHeadersWidth = 62;
             this.tblPasswords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblPasswords.Size = new System.Drawing.Size(410, 231);
+            this.tblPasswords.Size = new System.Drawing.Size(410, 151);
             this.tblPasswords.TabIndex = 24;
             this.tblPasswords.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblPasswords_CellContentClick);
             // 
@@ -99,7 +102,7 @@ namespace Presentation
             this.tblReports.ReadOnly = true;
             this.tblReports.RowHeadersVisible = false;
             this.tblReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblReports.Size = new System.Drawing.Size(309, 231);
+            this.tblReports.Size = new System.Drawing.Size(309, 309);
             this.tblReports.TabIndex = 15;
             this.tblReports.SelectionChanged += new System.EventHandler(this.tblReports_SelectionChanged);
             // 
@@ -113,10 +116,39 @@ namespace Presentation
             this.lblSharedWith.TabIndex = 20;
             this.lblSharedWith.Text = "Contraseñas";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label1.Location = new System.Drawing.Point(348, 241);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 22);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Tarjetas";
+            // 
+            // tblCreditCards
+            // 
+            this.tblCreditCards.AllowUserToAddRows = false;
+            this.tblCreditCards.AllowUserToDeleteRows = false;
+            this.tblCreditCards.AllowUserToResizeRows = false;
+            this.tblCreditCards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tblCreditCards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tblCreditCards.Location = new System.Drawing.Point(352, 266);
+            this.tblCreditCards.MultiSelect = false;
+            this.tblCreditCards.Name = "tblCreditCards";
+            this.tblCreditCards.ReadOnly = true;
+            this.tblCreditCards.RowHeadersVisible = false;
+            this.tblCreditCards.RowHeadersWidth = 62;
+            this.tblCreditCards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tblCreditCards.Size = new System.Drawing.Size(410, 130);
+            this.tblCreditCards.TabIndex = 26;
+            // 
             // DataBreachHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tblCreditCards);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tblPasswords);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblTitle);
@@ -124,9 +156,10 @@ namespace Presentation
             this.Controls.Add(this.tblReports);
             this.Controls.Add(this.lblSharedWith);
             this.Name = "DataBreachHistory";
-            this.Size = new System.Drawing.Size(776, 368);
+            this.Size = new System.Drawing.Size(780, 399);
             ((System.ComponentModel.ISupportInitialize)(this.tblPasswords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblReports)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblCreditCards)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +173,7 @@ namespace Presentation
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.DataGridView tblReports;
         private System.Windows.Forms.Label lblSharedWith;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView tblCreditCards;
     }
 }

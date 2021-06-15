@@ -94,11 +94,8 @@ namespace Presentation
                     case "Site":
                         column.HeaderText = "Sitio";
                         break;
-                    case "username":
+                    case "Username":
                         column.HeaderText = "Nombre de usuario";
-                        break;
-                    case "Category":
-                        column.HeaderText = "Categoria";
                         break;
                     default:
                         column.Visible = false;
