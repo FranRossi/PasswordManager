@@ -237,8 +237,8 @@ namespace Presentation
                     Digits = hasDigit,
                     SpecialDigits = hasSymbol
                 };
-                string newPassword = Password.GenerateRandomPassword(usedOptions);
-                txtPassword.Text = Password.GenerateRandomPassword(usedOptions);
+                string newPassword = PasswordGeneration.GenerateRandomPassword(usedOptions);
+                txtPassword.Text = newPassword;
             }
             catch (ValidationException exception)
             {

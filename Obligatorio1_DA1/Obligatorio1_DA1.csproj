@@ -96,15 +96,16 @@
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Domain\DataBreach\DataBreachReaderFromString.cs" />
     <Compile Include="Domain\DataBreach\IDataBreachReader.cs" />
-    <Compile Include="Utilities\AdvancedHash.cs" />
-    <Compile Include="Utilities\AesEncryption.cs" />
-    <Compile Include="Utilities\BasicHash.cs" />
-    <Compile Include="Utilities\BasicEncryption.cs" />
-    <Compile Include="Utilities\IEncryption.cs" />
-    <Compile Include="Utilities\IHash.cs" />
-    <Compile Include="Utilities\PasswordGenerationOptions.cs" />
-    <Compile Include="Utilities\PasswordStrengthReport.cs" />
-    <Compile Include="Utilities\PasswordStrengthColor.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\AdvancedHash.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\AesEncryption.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\BasicHash.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\BasicEncryption.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\IEncryption.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\IHash.cs" />
+    <Compile Include="Utilities\PasswordGeneration\PasswordGeneration.cs" />
+    <Compile Include="Utilities\PasswordGeneration\PasswordGenerationOptions.cs" />
+    <Compile Include="Utilities\PasswordStrength\PasswordStrengthReport.cs" />
+    <Compile Include="Utilities\PasswordStrength\PasswordStrengthColor.cs" />
     <Compile Include="Utilities\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
