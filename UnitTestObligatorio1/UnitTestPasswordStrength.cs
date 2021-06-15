@@ -12,6 +12,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordStrength
     {
+        private Services _cleanUp;
         private Password _password;
         private User _user;
         private Category _category;
@@ -21,6 +22,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _user = new User("Gonzalo", "HolaSoyGonzalo123");
                 _category = new Category()
                 {

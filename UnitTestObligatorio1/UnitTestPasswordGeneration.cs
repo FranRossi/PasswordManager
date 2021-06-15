@@ -13,6 +13,7 @@ namespace UnitTestObligatorio1
     public class UnitTestPasswordGeneration
     {
 
+        private Services _cleanUp;
         private SessionController _sessionController;
         private PasswordController _passwordController;
         private Password _password;
@@ -25,6 +26,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _sessionController = SessionController.GetInstance();
                 _passwordController = new PasswordController();
                 _user = new User("Gonzalo", "HolaSoyGonzalo123");

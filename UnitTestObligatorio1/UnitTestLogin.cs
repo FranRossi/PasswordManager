@@ -11,6 +11,7 @@ namespace UnitTestObligatorio1
     public class UnitTestLogIn
     {
 
+        private Services _cleanUp;
         private SessionController _sessionController;
 
 
@@ -25,6 +26,8 @@ namespace UnitTestObligatorio1
         [TestInitialize]
         public void createSessionControllerBeforeTests()
         {
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
             _sessionController = SessionController.GetInstance();
             User newUser = new User("Lucia", "Lucia123");
             _sessionController.CreateUser(newUser);

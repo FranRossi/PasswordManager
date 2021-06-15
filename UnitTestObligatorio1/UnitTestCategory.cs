@@ -12,6 +12,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestCategory
     {
+        private Services _cleanUp;
         private string _personalCategoryName;
         private Category _categoryPersonalInitialize;
         private User _user;
@@ -23,6 +24,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _sessionController = SessionController.GetInstance();
                 _categoryController = new CategoryController();
                 _user = new User()

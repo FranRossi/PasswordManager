@@ -13,6 +13,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordShare
     {
+        private Services _cleanUp;
         private SessionController _sessionController;
         private CategoryController _categoryController;
         private PasswordController _passwordController;
@@ -28,6 +29,8 @@ namespace UnitTestObligatorio1
         {
             try
             {
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
                 _categoryController = new CategoryController();
                 _sessionController = SessionController.GetInstance();
                 _passwordController = new PasswordController();

@@ -10,11 +10,14 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestUserPassHash
     {
+        private Services _cleanUp;
         private SessionController _sessionController;
 
         [TestInitialize]
         public void CreateSessionControllerBeforeTests()
         {
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
             _sessionController = SessionController.GetInstance();
         }
 
