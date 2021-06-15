@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccessInterfaces\DataAccessInterfaces.csproj">
+      <Project>{7d1295b0-5bb8-4802-b38b-1620006826c3}</Project>
+      <Name>DataAccessInterfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
       <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>
       <Name>Obligatorio1_DA1</Name>
