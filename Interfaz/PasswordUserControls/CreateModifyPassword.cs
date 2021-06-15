@@ -34,11 +34,11 @@ namespace Presentation
         public CreateModifyPassword(Password password)
         {
             InitializeComponent();
-            _mySessionController = SessionController.GetInstance();
-            _myDatabreachController = new DataBreachController();
-            _myCategoryController = new CategoryController();
-            _myPasswordController = new PasswordController();
-            _myPasswordColorReportController = new PasswordColorReportController();
+            _mySessionController = FactoryBusinessInterfaces.GetInstanceSessionController();
+            _myDatabreachController = FactoryBusinessInterfaces.CreateDataBreachController();
+            _myCategoryController = FactoryBusinessInterfaces.CreateCategoryController();
+            _myPasswordController = FactoryBusinessInterfaces.CreatePasswordController();
+            _myPasswordColorReportController = FactoryBusinessInterfaces.CreatePasswordColorReportController();
             _myPasswordToModify = password;
             LoadComboBoxCategory();
             ShowHidePassword(false);
