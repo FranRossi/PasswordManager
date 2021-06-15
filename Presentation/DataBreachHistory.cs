@@ -68,24 +68,40 @@ namespace Presentation
         private void tblReports_SelectionChanged(object sender, EventArgs e)
         {
             UpdateSelectedReport();
-            LoadTblPassword(_selectedReport);
+            LoadItemTables(_selectedReport);
         }
 
-        private void LoadTblPassword(DataBreachReport report)
+        private void LoadItemTables(DataBreachReport report)
         {
             List<Item> items = report.BreachedItems;
             List<Password> passwords = new List<Password>();
+            List<CreditCard> cards = new List<CreditCard>();
             foreach (Item i in items)
             {
                 if (i.GetType().Equals(typeof(Password)))
                     passwords.Add((Password)i);
+                else if (i.GetType().Equals(typeof(CreditCard)))
+                    cards.Add((CreditCard)i);
             }
-            tblPasswords.DataSource = null;
-            tblPasswords.Rows.Clear();
-            tblPasswords.DataSource = passwords;
+            LoadTblCreditCard(cards);
+            FormatCreditCardListOnTable();
+            LoadTblPassword(passwords);
             FormatPasswordListOnTable(report.Date);
         }
 
+        private void LoadTblCreditCard(List<CreditCard> cards)
+        {
+            tblCreditCards.DataSource = null;
+            tblCreditCards.Rows.Clear();
+            tblCreditCards.DataSource = cards;
+        }
+
+        private void LoadTblPassword(List<Password> passwords)
+        {
+            tblPasswords.DataSource = null;
+            tblPasswords.Rows.Clear();
+            tblPasswords.DataSource = passwords;
+        }
 
         private void FormatPasswordListOnTable(DateTime reportDatetime)
         {
@@ -113,6 +129,28 @@ namespace Presentation
             }
             if (tblPasswords.Rows.Count > 0)
                 tblPasswords.Rows[0].Selected = false;
+        }
+
+        private void FormatCreditCardListOnTable()
+        {
+            foreach (DataGridViewColumn column in tblCreditCards.Columns)
+            {
+                switch (column.Name)
+                {
+                    case "Name":
+                        column.HeaderText = "Nombre";
+                        break;
+                    case "SecretNumber":
+                        column.HeaderText = "Numero";
+                        break;
+                    case "Type":
+                        column.HeaderText = "Tipo";
+                        break;
+                    default:
+                        column.Visible = false;
+                        break;
+                }
+            }
         }
 
         private void CreateTblPasswordModifyButton(DateTime reportDatetime)
