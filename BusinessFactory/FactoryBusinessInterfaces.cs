@@ -2,7 +2,7 @@
 using BusinessLogic;
 
 
-namespace FactoryBusiness
+namespace BusinessFactory
 {
     public static class FactoryBusinessInterfaces
     {

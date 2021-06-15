@@ -7,8 +7,8 @@
     <ProjectGuid>{AA38758C-1580-4966-A4BC-B5C54E2DCC38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FactoryDataAccess</RootNamespace>
-    <AssemblyName>FactoryDataAccess</AssemblyName>
+    <RootNamespace>DataAccessFactory</RootNamespace>
+    <AssemblyName>DataAccessFactory</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

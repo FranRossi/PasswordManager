@@ -258,13 +258,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessFactory\BusinessFactory.csproj">
+      <Project>{64a83f82-b7e6-432e-b950-259e66478065}</Project>
+      <Name>BusinessFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusinessInterfaces\BusinessInterfaces.csproj">
       <Project>{7d0eae7a-41e8-45df-8b74-71825ad2de6e}</Project>
       <Name>BusinessInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FactoryBusiness\FactoryBusiness.csproj">
-      <Project>{64a83f82-b7e6-432e-b950-259e66478065}</Project>
-      <Name>FactoryBusiness</Name>
     </ProjectReference>
     <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
       <Project>{2DBE2991-F523-4A88-88FD-E17F27462492}</Project>

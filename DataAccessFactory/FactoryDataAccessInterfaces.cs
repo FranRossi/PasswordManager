@@ -2,14 +2,14 @@
 using Obligatorio1_DA1.Domain;
 using Repository;
 
-namespace FactoryDataAccess
+namespace DataAccessFactory
 {
     public static class FactoryDataAccessInterfaces
     {
-       public static IDataAccessCategory CreateDataAccessCategory()
-       {
+        public static IDataAccessCategory CreateDataAccessCategory()
+        {
             return new DataAccessCategory();
-       }
+        }
 
         public static IDataAccessCreditCard<CreditCard> CreateDataAccessCreditCard()
         {

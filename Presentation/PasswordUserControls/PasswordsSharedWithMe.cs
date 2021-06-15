@@ -1,5 +1,5 @@
 ﻿using BusinessInterfaces;
-using FactoryBusiness;
+using BusinessFactory;
 using Obligatorio1_DA1.Domain;
 using System.Collections.Generic;
 using System.Windows.Forms;

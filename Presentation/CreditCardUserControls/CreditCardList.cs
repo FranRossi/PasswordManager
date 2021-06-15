@@ -4,7 +4,7 @@ using Presentation.CreditCardUserControls;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using FactoryBusiness;
+using BusinessFactory;
 
 namespace Presentation
 {
