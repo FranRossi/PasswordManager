@@ -70,7 +70,7 @@ namespace Obligatorio1_DA1.Domain
             get
             {
                 if (_pass == null)
-                    DecryptedPass();
+                    _pass = DecryptPass(this.EncryptedPass);
                 return _pass;
             }
             set
@@ -78,7 +78,7 @@ namespace Obligatorio1_DA1.Domain
                 ValidatePass(value);
                 _pass = value;
                 this.PasswordStrength = CalculatePasswordStrength(value);
-                Encrypt();
+                this.EncryptedPass = EncryptPass(value);
             }
 
         }
@@ -98,23 +98,19 @@ namespace Obligatorio1_DA1.Domain
             {
                 _encryptedPass = value;
             }
-
         }
 
-        private void DecryptedPass()
+        private string DecryptPass(string encryptedPass)
         {
-            string decyptedPassword = encryption.Decrypt(this.EncryptedPass, this.User.DecryptionKey);
-            this.Pass = decyptedPassword;
+            string decyptedPassword = encryption.Decrypt(encryptedPass, this.User.DecryptionKey);
+            return decyptedPassword;
         }
 
-        public void Encrypt()
+        private string EncryptPass(string pass)
         {
             string encryptedPassword = encryption.Encrypt(this.Pass, this.User.DecryptionKey);
-            this.EncryptedPass = encryptedPassword;
+            return encryptedPassword;
         }
-
-
-
 
         private void ValidateSite(string siteToValidate)
         {
