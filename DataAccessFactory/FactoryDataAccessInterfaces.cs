@@ -1,5 +1,4 @@
 ﻿using DataAccessInterfaces;
-using Obligatorio1_DA1.Domain;
 using Repository;
 
 namespace DataAccessFactory
