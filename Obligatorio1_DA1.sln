@@ -7,19 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obligatorio1_DA1", "Obligat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestObligatorio1", "UnitTestObligatorio1\UnitTestObligatorio1.csproj", "{DD34AD00-E10B-4715-BCD7-D4F9CE07E1C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Interfaz\Presentation.csproj", "{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{24A1A6F1-C6B1-44D5-88EC-9C51567A791E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{9920CA39-D916-4C47-8C68-4E51DDE949C6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{D8D242BD-14A0-479E-8F23-1BA41734E7A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDataAccess", "FactoryDataAccess\FactoryDataAccess.csproj", "{AA38758C-1580-4966-A4BC-B5C54E2DCC38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessFactory", "DataAccessFactory\DataAccessFactory.csproj", "{AA38758C-1580-4966-A4BC-B5C54E2DCC38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessInterfaces", "DataAccessInterfaces\DataAccessInterfaces.csproj", "{7D1295B0-5BB8-4802-B38B-1620006826C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessInterfaces", "BusinessInterfaces\BusinessInterfaces.csproj", "{7D0EAE7A-41E8-45DF-8B74-71825AD2DE6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryBusiness", "FactoryBusiness\FactoryBusiness.csproj", "{64A83F82-B7E6-432E-B950-259E66478065}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFactory", "BusinessFactory\BusinessFactory.csproj", "{64A83F82-B7E6-432E-B950-259E66478065}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

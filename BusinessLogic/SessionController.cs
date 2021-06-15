@@ -2,7 +2,7 @@
 using Obligatorio1_DA1.Domain;
 using DataAccessInterfaces;
 using BusinessInterfaces;
-using FactoryDataAccess;
+using DataAccessFactory;
 
 namespace BusinessLogic
 {
@@ -10,7 +10,7 @@ namespace BusinessLogic
     {
         private static SessionController _instance;
         private IDataAccessUser _users;
-        
+
         public static SessionController GetInstance()
         {
             if (_instance == null)

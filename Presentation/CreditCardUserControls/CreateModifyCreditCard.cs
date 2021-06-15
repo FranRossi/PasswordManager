@@ -3,7 +3,7 @@ using BusinessInterfaces;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Windows.Forms;
-using FactoryBusiness;
+using BusinessFactory;
 
 namespace Presentation
 {
