@@ -1,14 +1,10 @@
 ﻿using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Utilities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessInterfaces
 {
-    public interface IDataAccessPassword<Password> : IDataAccessItem<Password>
+    public interface IDataAccessPassword : IDataAccessItem<Password>
     {
 
         bool CheckPasswordNotSharedTwice(Password newPassword, User userShareTo);

@@ -49,10 +49,6 @@
       <Project>{7d1295b0-5bb8-4802-b38b-1620006826c3}</Project>
       <Name>DataAccessInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Obligatorio1_DA1\Obligatorio1_DA1.csproj">
-      <Project>{2dbe2991-f523-4a88-88fd-e17f27462492}</Project>
-      <Name>Obligatorio1_DA1</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{9920ca39-d916-4c47-8c68-4e51dde949c6}</Project>
       <Name>Repository</Name>

@@ -12,7 +12,7 @@ namespace BusinessLogic
     {
         private SessionController _sessionController;
         private CategoryController _categoryController;
-        private IDataAccessCreditCard<CreditCard> _creditCards;
+        private IDataAccessCreditCard _creditCards;
 
         public CreditCardController()
         {

@@ -81,7 +81,7 @@ namespace UnitTestObligatorio1
        (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits, string regex)
         {
             SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            string pass = Password.GenerateRandomPassword(_options);
+            string pass = PasswordGeneration.GenerateRandomPassword(_options);
             Regex regexToCheck = new Regex(regex);
             Assert.IsTrue(regexToCheck.IsMatch(pass), "Password: " + pass + " Regex: " + regex);
         }
@@ -94,7 +94,7 @@ namespace UnitTestObligatorio1
                (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
             SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            Password.GenerateRandomPassword(_options);
+            PasswordGeneration.GenerateRandomPassword(_options);
         }
 
         [DataRow(4, true, false, false, false)]
@@ -105,7 +105,7 @@ namespace UnitTestObligatorio1
             (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
             SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            Password.GenerateRandomPassword(_options);
+            PasswordGeneration.GenerateRandomPassword(_options);
         }
 
         [DataRow(3434, true, false, false, false)]
@@ -116,7 +116,7 @@ namespace UnitTestObligatorio1
             (int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)
         {
             SetPasswordGenerationOptions(length, uppercase, lowercase, digits, specialDigits);
-            Password.GenerateRandomPassword(_options);
+            PasswordGeneration.GenerateRandomPassword(_options);
         }
 
         private void SetPasswordGenerationOptions(int length, bool uppercase, bool lowercase, bool digits, bool specialDigits)

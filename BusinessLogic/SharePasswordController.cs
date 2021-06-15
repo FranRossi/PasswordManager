@@ -11,7 +11,7 @@ namespace BusinessLogic
     {
         private ISessionController _sessionController;
         private IDataAccessUser _users;
-        private IDataAccessPassword<Password> _passwords;
+        private IDataAccessPassword _passwords;
 
         public SharePasswordController()
         {

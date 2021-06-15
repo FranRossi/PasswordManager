@@ -9,7 +9,7 @@ namespace BusinessLogic
 {
     public class PasswordColorReportController : IPasswordColorReportController
     {
-        private IDataAccessPassword<Password> _passwords;
+        private IDataAccessPassword _passwords;
         private SessionController _sessionController;
         private User _currentUser;
 

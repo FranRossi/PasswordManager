@@ -1,5 +1,4 @@
 ﻿using DataAccessInterfaces;
-using Obligatorio1_DA1.Domain;
 using Repository;
 
 namespace DataAccessFactory
@@ -11,12 +10,12 @@ namespace DataAccessFactory
             return new DataAccessCategory();
         }
 
-        public static IDataAccessCreditCard<CreditCard> CreateDataAccessCreditCard()
+        public static IDataAccessCreditCard CreateDataAccessCreditCard()
         {
             return new DataAccessCreditCard();
         }
 
-        public static IDataAccessPassword<Password> CreateDataAccessPassword()
+        public static IDataAccessPassword CreateDataAccessPassword()
         {
             return new DataAccessPassword();
         }

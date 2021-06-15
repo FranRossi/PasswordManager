@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class DataAccessPassword : IDataAccessPassword<Password>
+    public class DataAccessPassword : IDataAccessPassword
     {
         public void Add(Password newPassword)
         {
