@@ -112,6 +112,7 @@ namespace Presentation
                 Form createPassword = new CreateModifyPassword(_selectedPassword);
                 createPassword.FormClosing += new FormClosingEventHandler(RefreshForm);
                 createPassword.ShowDialog();
+                _selectedPassword = null;
             }
             else
             {
