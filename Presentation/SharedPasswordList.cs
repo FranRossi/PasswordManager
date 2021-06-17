@@ -10,6 +10,7 @@ namespace Presentation
     public partial class SharedPasswordList : UserControl
     {
         private ISharePasswordController _mySharePasswordController;
+        private IPasswordController _myPasswordController;
         private Password _selectedPassword;
         private User _selectedShareWithUser;
         private User _selectedUnShareWithUser;
@@ -18,6 +19,7 @@ namespace Presentation
         {
             InitializeComponent();
             _mySharePasswordController = FactoryBusinessInterfaces.CreateSharePasswordController();
+            _myPasswordController = FactoryBusinessInterfaces.CreatePasswordController();
             _selectedPassword = password;
             LoadTblPassword();
             SetSelectedPassoword();
@@ -40,7 +42,7 @@ namespace Presentation
 
         private void LoadTblPassword()
         {
-            List<Password> passwords = _mySharePasswordController.GetSharedPasswordsWithCurrentUser();
+            List<Password> passwords = _myPasswordController.GetPasswords();
             tblPassword.DataSource = null;
             tblPassword.Rows.Clear();
             tblPassword.DataSource = passwords;
