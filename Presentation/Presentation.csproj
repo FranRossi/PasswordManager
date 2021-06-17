@@ -174,7 +174,6 @@
     <Compile Include="CreditCardUserControls\CreditCardList.Designer.cs">
       <DependentUpon>CreditCardList.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestData.cs" />
     <EmbeddedResource Include="Categories.resx">
       <DependentUpon>Categories.cs</DependentUpon>
     </EmbeddedResource>

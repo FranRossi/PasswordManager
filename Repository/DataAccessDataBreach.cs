@@ -22,9 +22,11 @@ namespace Repository
                 User dataBreachUserFromDB = context.Users.FirstOrDefault(u => u.MasterName == dataBreachReport.User.MasterName);
                 User originalUser = dataBreachReport.User;
                 dataBreachReport.User = dataBreachUserFromDB;
+                List<Password> passwords = context.Passwords.Include("User").Include("Category").ToList();
+                List<CreditCard> creditCards = context.CreditCards.Include("User").Include("Category").ToList();
                 foreach (DataBreachReportEntry dataBreachItem in dataBreachItems)
                 {
-                    foreach (Password pass in context.Passwords.Include("User").Include("Category"))
+                    foreach (Password pass in passwords)
                     {
                         if (pass.User.Equals(dataBreachUserFromDB))
                         {
@@ -33,7 +35,7 @@ namespace Repository
                                 breachedItems.Add(pass);
                         }
                     }
-                    foreach (CreditCard card in context.CreditCards.Include("User").Include("Category"))
+                    foreach (CreditCard card in creditCards)
                         if (card.Number == dataBreachItem.Value && card.User.Equals(dataBreachUserFromDB))
                             breachedItems.Add(card);
                 }
