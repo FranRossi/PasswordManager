@@ -56,6 +56,7 @@ namespace Presentation
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
+            lblMessage.Text = "";
             if (cbCategory.SelectedItem != null)
             {
                 try
