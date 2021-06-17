@@ -23,7 +23,7 @@ namespace Presentation
         private List<colorComponent> _colorsCmp;
         public PasswordStrength()
         {
-            _myPasswordColorReportController = FactoryBusinessInterfaces.CreatePasswordColorReportController(); ;
+            _myPasswordColorReportController = FactoryBusinessInterfaces.CreatePasswordColorReportController();
             InitializeComponent();
             SetColorsLabelsAndButtons();
             LoadColorQuantities();
@@ -34,7 +34,7 @@ namespace Presentation
 
         private void LoadColorQuantities()
         {
-            List<PasswordReportByColor> reportsByPassColor = this._myPasswordColorReportController.GetPasswordReportByColor();
+            List<PasswordReportByColor> reportsByPassColor = _myPasswordColorReportController.GetPasswordReportByColor();
             foreach (PasswordReportByColor entry in reportsByPassColor)
             {
                 colorComponent componentByPassColor = _colorsCmp.Find(component => component.Color == entry.Color);
@@ -56,7 +56,7 @@ namespace Presentation
         private void LoadChart()
         {
             bool enoughtPasswordToShow;
-            List<PasswordReportByCategoryAndColor> reportsByPassColor = this._myPasswordColorReportController.GetPasswordReportByCategoryAndColor();
+            List<PasswordReportByCategoryAndColor> reportsByPassColor = _myPasswordColorReportController.GetPasswordReportByCategoryAndColor();
             enoughtPasswordToShow = (reportsByPassColor.Count() > 0);
 
             if (enoughtPasswordToShow)
