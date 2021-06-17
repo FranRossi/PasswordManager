@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
+using BusinessLogic;
 using Obligatorio1_DA1.Utilities;
 using System;
+using Repository;
 
 namespace UnitTestObligatorio1
 {
@@ -10,6 +12,7 @@ namespace UnitTestObligatorio1
     [TestClass]
     public class UnitTestPasswordStrength
     {
+        private Services _cleanUp;
         private Password _password;
         private User _user;
         private Category _category;
@@ -19,11 +22,9 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _user = new User()
-                {
-                    Name = "Gonzalo",
-                    MasterPass = "HolaSoyGonzalo123"
-                };
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
+                _user = new User("Gonzalo", "HolaSoyGonzalo123");
                 _category = new Category()
                 {
                     Name = "Personal"
@@ -44,6 +45,12 @@ namespace UnitTestObligatorio1
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
 
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _cleanUp.DataBaseCleanup();
         }
 
 

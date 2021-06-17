@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public PasswordTooLongException()
         {
-            this.message = "La contaseña ingresada es demasiado larga (max. 25 caracteres)";
+            this.messageToDisplay = "La contaseña ingresada es demasiado larga (max. 25 caracteres)";
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public UsernameAlreadyTakenException()
         {
-            this.message = "El usuario ingresado ya esta en uso.";
+            this.messageToDisplay = "El usuario ingresado ya esta en uso.";
         }
     }
 }

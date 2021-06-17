@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
+using BusinessLogic;
 using System;
-
+using Repository;
 
 namespace UnitTestObligatorio1
 {
@@ -10,19 +11,20 @@ namespace UnitTestObligatorio1
     public class UnitTestSignUp
     {
 
-        [TestMethod]
-        public void CreatePasswordManager()
+        private Services _cleanUp;
+        private SessionController _sessionController;
+        [TestInitialize]
+        public void CreateSessionControllerBeforeTests()
         {
-            PasswordManager passwordManager = new PasswordManager();
-            Assert.IsNotNull(passwordManager);
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
+            _sessionController = SessionController.GetInstance();
         }
 
-
-        PasswordManager passwordManager;
-        [TestInitialize]
-        public void CreatePasswordManagerBeforeTests()
+        [TestCleanup]
+        public void Cleanup()
         {
-            passwordManager = new PasswordManager();
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]
@@ -31,7 +33,7 @@ namespace UnitTestObligatorio1
             try
             {
                 User newUser = new User("Juancito", "hola123");
-                passwordManager.CreateUser(newUser);
+                _sessionController.CreateUser(newUser);
             }
             catch (Exception ex)
             {
@@ -44,7 +46,7 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserPasswordTooShort()
         {
             User newUser = new User("Juan12", "hola");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -52,7 +54,7 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserPasswordTooLong()
         {
             User newUser = new User("Pepe12", "hola12345678910111213141516171819202122");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -60,7 +62,7 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserPasswordInvalidCharacter()
         {
             User newUser = new User("Pepe12", "½½½½hola½½½½");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -68,9 +70,9 @@ namespace UnitTestObligatorio1
         public void CreateInvalidUserNameAlreadyTaken()
         {
             User newUser = new User("Pepe12", "pepe1232");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
             User newUser2 = new User("Pepe12", "121hola");
-            passwordManager.CreateUser(newUser2);
+            _sessionController.CreateUser(newUser2);
         }
 
 
@@ -79,7 +81,7 @@ namespace UnitTestObligatorio1
         public void CreateUserEmptyName()
         {
             User newUser = new User("", "password");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -87,7 +89,7 @@ namespace UnitTestObligatorio1
         public void CreateUserNameTooShort()
         {
             User newUser = new User("Khea", " ");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
 
         [TestMethod]
@@ -95,22 +97,8 @@ namespace UnitTestObligatorio1
         public void CreateUserNameTooLong()
         {
             User newUser = new User("MaritoBaracus1234VisualStudioEnterprise", "password");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
         }
-
-        // TODO move test to another unitTest file
-        [DataRow("MaritoBaracus")]
-        [DataRow("Lucia")]
-        [DataRow("Pepe Gonzales Segundo")]
-        [DataTestMethod]
-        public void UserToString(string name)
-        {
-            User newUser = new User(name, "password");
-            string actualName = newUser.ToString();
-            string expectedName = name;
-            StringAssert.Equals(expectedName, actualName);
-        }
-
 
 
         [TestMethod]

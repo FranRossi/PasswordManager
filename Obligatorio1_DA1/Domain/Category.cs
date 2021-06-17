@@ -10,6 +10,7 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxNameLength = 15;
 
         private string _name;
+        public int Id { get; set; }
         public string Name
         {
             get => _name;
@@ -20,12 +21,13 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
+        public User User { get; set; }
 
-        private void ValidateName(string value)
+        private void ValidateName(string nameToValidate)
         {
-            if (!Validator.MinLengthOfString(value, Category.MinNameLength))
+            if (!Validator.MinLengthOfString(nameToValidate, Category.MinNameLength))
                 throw new CategoryTooShortException();
-            if (!Validator.MaxLengthOfString(value, Category.MaxNameLength))
+            if (!Validator.MaxLengthOfString(nameToValidate, Category.MaxNameLength))
                 throw new CategoryTooLongException();
         }
 
@@ -46,6 +48,11 @@ namespace Obligatorio1_DA1.Domain
                 return false;
             }
             return categoryToCompare.Name.ToLower() == this.Name.ToLower();
+        }
+
+        public string GetUserMasterName()
+        {
+            return this.User.MasterName;
         }
     }
 }

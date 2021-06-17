@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,9 @@
   <ItemGroup>
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\CreditCard.cs" />
+    <Compile Include="Utilities\DataBreachReader\DataBreachReaderFromTextFile.cs" />
+    <Compile Include="Domain\DataBreach\DataBreachReportEntry.cs" />
+    <Compile Include="Domain\DataBreach\DataBreachReport.cs" />
     <Compile Include="Domain\Item.cs" />
     <Compile Include="Domain\Password.cs" />
     <Compile Include="Domain\User.cs" />
@@ -73,6 +77,7 @@
     <Compile Include="Exceptions\Password\PasswordAlreadyExistsException.cs" />
     <Compile Include="Exceptions\Password\PasswordNotBelongToCurrentUserException.cs" />
     <Compile Include="Exceptions\Password\PasswordInvalidCharactersException.cs" />
+    <Compile Include="Exceptions\Password\EncryptionException.cs" />
     <Compile Include="Exceptions\User\UserNameTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordGenerationTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordTooLongException.cs" />
@@ -89,12 +94,19 @@
     <Compile Include="Exceptions\Item\ItemNotesTooLongException.cs" />
     <Compile Include="Exceptions\Password\PasswordSharedWithSameUserException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
-    <Compile Include="Domain\PasswordManager.cs" />
-    <Compile Include="Utilities\DataBreachFromString.cs" />
-    <Compile Include="Utilities\IDataBreach.cs" />
-    <Compile Include="Utilities\PasswordGenerationOptions.cs" />
-    <Compile Include="Utilities\PasswordStrengthReport.cs" />
-    <Compile Include="Utilities\PasswordStrengthColor.cs" />
+    <Compile Include="Utilities\DataBreachReader\DataBreachReaderFromString.cs" />
+    <Compile Include="Utilities\DataBreachReader\IDataBreachReader.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\AdvancedHash.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\AesEncryption.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\BasicHash.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\BasicEncryption.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\IEncryption.cs" />
+    <Compile Include="Utilities\EncryptionAndHashing\IHash.cs" />
+    <Compile Include="Utilities\PasswordGeneration\PasswordGeneration.cs" />
+    <Compile Include="Utilities\PasswordGeneration\PasswordGenerationOptions.cs" />
+    <Compile Include="Utilities\PasswordStrength\PasswordStrengthCalculation.cs" />
+    <Compile Include="Utilities\PasswordStrength\PasswordStrengthReport.cs" />
+    <Compile Include="Utilities\PasswordStrength\PasswordStrengthColor.cs" />
     <Compile Include="Utilities\Validator.cs" />
   </ItemGroup>
   <ItemGroup>

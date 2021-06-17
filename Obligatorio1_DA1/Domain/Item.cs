@@ -12,9 +12,11 @@ namespace Obligatorio1_DA1.Domain
     {
         public const int MaxNoteLength = 250;
 
-        private Category _category;
         private string _notes;
+
+        public int Id { get; set; }
         public User User { get; set; }
+        public Category Category { get; set; }
         public string Notes
         {
             get => _notes;
@@ -25,22 +27,10 @@ namespace Obligatorio1_DA1.Domain
             }
 
         }
-        public Category Category
+
+        private void ValidateNotes(string notesToValidate)
         {
-            get => _category;
-            set
-            {
-                if (!this.User.Categories.Contains(value))
-                    throw new ItemInvalidCategoryException();
-                _category = value;
-            }
-
-        }
-
-
-        private void ValidateNotes(string value)
-        {
-            if (!Validator.MaxLengthOfString(value, Item.MaxNoteLength))
+            if (notesToValidate != null && !Validator.MaxLengthOfString(notesToValidate, Item.MaxNoteLength))
                 throw new ItemNotesTooLongException();
         }
     }

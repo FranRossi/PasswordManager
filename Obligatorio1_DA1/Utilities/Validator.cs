@@ -14,6 +14,11 @@ namespace Obligatorio1_DA1.Utilities
             return (text.Length >= minNumber);
         }
 
+        public static bool LengthOfStringBetweenTwoNumbers(string text, int minNumber, int maxNumber)
+        {
+            return MinLengthOfString(text, minNumber) && MaxLengthOfString(text, maxNumber);
+        }
+
         public static bool AsciiCharacterRangeForPassword(string text)
         {
             Regex AllCharactersAcceptedInPassword = new Regex(@"^[ -~]+$", RegexOptions.Compiled);

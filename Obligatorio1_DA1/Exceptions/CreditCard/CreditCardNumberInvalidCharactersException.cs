@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public CreditCardNumberInvalidCharactersException()
         {
-            this.message = "El número contiene caracteres inválidos. (Solo digitos separados por espacios)";
+            this.messageToDisplay = "El número contiene caracteres inválidos. (Solo digitos separados por espacios)";
         }
     }
 }

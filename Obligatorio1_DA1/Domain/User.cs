@@ -12,16 +12,17 @@ namespace Obligatorio1_DA1.Domain
         public const int MaxPasswordLength = 25;
         public const int MinPasswordLength = 5;
 
+        private string _masterName;
         private string _masterPass;
-        private string _name;
+        private string _decryptionKey;
         private List<Category> _categories;
-        public string Name
+        public string MasterName
         {
-            get => _name;
+            get => _masterName;
             set
             {
                 ValidateName(value);
-                _name = value;
+                _masterName = value;
             }
         }
         public string MasterPass
@@ -29,8 +30,15 @@ namespace Obligatorio1_DA1.Domain
             get => _masterPass;
             set
             {
-                ValidatePassword(value);
                 _masterPass = value;
+            }
+        }
+        public string DecryptionKey
+        {
+            get => _decryptionKey;
+            set
+            {
+                _decryptionKey = value;
             }
         }
         public List<Category> Categories
@@ -42,10 +50,12 @@ namespace Obligatorio1_DA1.Domain
             }
         }
 
-        public User(string name, string pass)
+
+        public User(string newName, string newPass)
         {
-            this.Name = name;
-            this.MasterPass = pass;
+            this.MasterName = newName;
+            this.MasterPass = newPass;
+            this.DecryptionKey = newPass;
             this.Categories = new List<Category>();
         }
 
@@ -54,21 +64,22 @@ namespace Obligatorio1_DA1.Domain
             this.Categories = new List<Category>();
         }
 
-        private void ValidateName(string name)
+        private void ValidateName(string nameToValidate)
         {
-            if (!Validator.MinLengthOfString(name, User.MinNameLength))
+            if (!Validator.MinLengthOfString(nameToValidate, User.MinNameLength))
                 throw new UserNameTooShortException();
-            if (!Validator.MaxLengthOfString(name, User.MaxNameLength))
+            if (!Validator.MaxLengthOfString(nameToValidate, User.MaxNameLength))
                 throw new UserNameTooLongException();
         }
 
-        private void ValidatePassword(string pass)
+        public void ValidatePassword()
         {
-            if (!Validator.MinLengthOfString(pass, User.MinPasswordLength))
+            string passToValidate = this.MasterPass;
+            if (!Validator.MinLengthOfString(passToValidate, User.MinPasswordLength))
                 throw new PasswordTooShortException();
-            if (!Validator.MaxLengthOfString(pass, User.MaxPasswordLength))
+            if (!Validator.MaxLengthOfString(passToValidate, User.MaxPasswordLength))
                 throw new PasswordTooLongException();
-            if (!Validator.AsciiCharacterRangeForPassword(pass))
+            if (!Validator.AsciiCharacterRangeForPassword(passToValidate))
                 throw new PasswordInvalidCharactersException();
         }
 
@@ -83,33 +94,20 @@ namespace Obligatorio1_DA1.Domain
             {
                 return false;
             }
-            return userToCompare.Name == this.Name;
+            return userToCompare.MasterName == this.MasterName;
         }
 
         public override string ToString()
         {
-            return this.Name;
+            return this.MasterName;
         }
 
-        public void AddOneCategory(Category newCategory)
+        public void HashPassword()
         {
-            ValidateCategoryIsUnique(newCategory);
-            this.Categories.Add(newCategory);
-        }
-
-        public void ModifyCategory(Category oldCategory, Category newCategory)
-        {
-            foreach (Category categoryIterator in this.Categories)
-            {
-                if (categoryIterator.Equals(oldCategory))
-                    categoryIterator.Name = newCategory.Name;
-            }
-        }
-
-        private void ValidateCategoryIsUnique(Category newCategory)
-        {
-            if (this.Categories.Contains(newCategory))
-                throw new CategoryAlreadyAddedException();
+            IHash hashing = new AdvancedHash();
+            string hashedPass = hashing.Hash(this.MasterPass, this.MasterName);
+            this.DecryptionKey = this.MasterPass;
+            _masterPass = hashedPass;
         }
     }
 }

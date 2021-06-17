@@ -5,7 +5,7 @@ namespace Obligatorio1_DA1.Exceptions
     {
         public ItemNotesTooLongException()
         {
-            this.message = "Las notas son demasiado largas (max. 250 caracteres). ";
+            this.messageToDisplay = "Las notas son demasiado largas (max. 250 caracteres). ";
         }
     }
 }

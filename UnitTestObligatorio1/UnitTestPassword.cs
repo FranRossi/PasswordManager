@@ -1,16 +1,24 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using BusinessLogic;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
+using Repository;
 
 namespace UnitTestObligatorio1
 {
     [TestClass]
     public class UnitTestPassword
     {
+
+        private Services _cleanUp;
+        private SessionController _sessionController;
         private Password _password;
-        private PasswordManager _passwordManager;
+        private CategoryController _categoryController;
+        private PasswordController _passwordController;
+        private PasswordColorReportController _passwordColorReportController;
+
         private User _user;
         private Category _category;
 
@@ -19,17 +27,24 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                _passwordManager = new PasswordManager();
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
+                _sessionController = SessionController.GetInstance();
+                _categoryController = new CategoryController();
+                _passwordController = new PasswordController();
+                _passwordColorReportController = new PasswordColorReportController();
                 _user = new User()
                 {
-                    Name = "Gonzalo",
+                    MasterName = "Gonzalo",
                     MasterPass = "HolaSoyGonzalo123"
                 };
                 _category = new Category()
                 {
                     Name = "Personal"
                 };
-                _user.Categories.Add(_category);
+                _sessionController.CreateUser(_user);
+                _categoryController.CreateCategoryOnCurrentUser(_category.Name);
+                _category = _categoryController.GetCategoriesFromCurrentUser().ToArray()[0];
                 _password = new Password
                 {
                     User = _user,
@@ -39,28 +54,33 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreateUser(_user);
-                _passwordManager.CreatePassword(_password);
+                _passwordController.CreatePassword(_password);
+                _password = _passwordController.GetPasswords()[0];
             }
             catch (Exception ex)
             {
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
+        }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]
         public void GetUserPasswords()
         {
-            List<Password> userPasswords = _passwordManager.GetPasswords();
+            List<Password> userPasswords = _passwordController.GetPasswords();
             CollectionAssert.Contains(userPasswords, _password);
         }
 
         [TestMethod]
         public void DeletePassword()
         {
-            _passwordManager.DeletePassword(_password);
-            List<Password> userPasswords = _passwordManager.GetPasswords();
+            _passwordController.DeletePassword(_password);
+            List<Password> userPasswords = _passwordController.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, _password);
         }
 
@@ -69,26 +89,24 @@ namespace UnitTestObligatorio1
         {
             User differentUser = new User()
             {
-                Name = "Juan Perez",
+                MasterName = "Juan Perez",
                 MasterPass = "juan123"
             };
-            Category categoryPersonal = new Category()
-            {
-                Name = "Personal"
-            };
-            _passwordManager.CreateUser(differentUser);
-            _passwordManager.CreateCategoryOnCurrentUser(categoryPersonal);
+            string personalCategoryName = "Personal";
+            _sessionController.CreateUser(differentUser);
+            _categoryController.CreateCategoryOnCurrentUser(personalCategoryName);
+            Category firstCategoryOnUser = differentUser.Categories[0];
             Password differentPassword = new Password
             {
                 User = differentUser,
-                Category = categoryPersonal,
+                Category = firstCategoryOnUser,
                 Site = "www.google.com",
                 Username = "123456",
                 Pass = "239850Ort2019"
             };
-            _passwordManager.CreatePassword(differentPassword);
-            _passwordManager.Login("Gonzalo", "HolaSoyGonzalo123");
-            List<Password> userPasswords = _passwordManager.GetPasswords();
+            _passwordController.CreatePassword(differentPassword);
+            _sessionController.Login("Gonzalo", "HolaSoyGonzalo123");
+            List<Password> userPasswords = _passwordController.GetPasswords();
             CollectionAssert.DoesNotContain(userPasswords, differentPassword);
         }
 
@@ -105,7 +123,7 @@ namespace UnitTestObligatorio1
                     Username = "Joseph",
                     Pass = "wwwjosph"
                 };
-                _passwordManager.CreatePassword(pass);
+                _passwordController.CreatePassword(pass);
             }
             catch (Exception ex)
             {
@@ -134,6 +152,7 @@ namespace UnitTestObligatorio1
         public void CreateNewPasswordTooShort()
         {
             _password.Pass = "tom";
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
         }
 
 
@@ -142,6 +161,8 @@ namespace UnitTestObligatorio1
         public void CreateNewPasswordTooLong()
         {
             _password.Pass = "harryharryharryharryharryharry";
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
+
         }
 
         [TestMethod]
@@ -185,7 +206,7 @@ namespace UnitTestObligatorio1
                     Pass = "239850Ort2019",
                     Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreatePassword(_password);
+                _passwordController.CreatePassword(_password);
             }
             catch (Exception ex)
             {
@@ -195,120 +216,52 @@ namespace UnitTestObligatorio1
 
         [TestMethod]
         [ExpectedException(typeof(ItemInvalidCategoryException))]
-        public void CreateInvalidPasswordWrongCategory()
+        public void InvalidPasswordWrongCategory()
         {
             Category unusedCategory = new Category()
             {
                 Name = "Work"
             };
-            Password pass = new Password
-            {
-                User = _user,
-                Category = unusedCategory,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
+            _password.Category = unusedCategory;
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
         }
 
         [TestMethod]
         public void ModifyPassword()
         {
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
-            List<Password> passwords = _passwordManager.GetPasswords();
-            CollectionAssert.Contains(passwords, newPassword);
+            _password.Username = "123456";
+            _password.Pass = "1234560Ort2020";
+            _password.Notes = "Esta es la nueva password";
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
+            List<Password> passwordsAfterModify = _passwordController.GetPasswords();
+            CollectionAssert.Contains(passwordsAfterModify, _password);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(PasswordAlreadyExistsException))]
-        public void ModifyPasswordThatAlreadyExists()
-        {
-            Password passwordAlreadyOnPasswordManager = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es una nota"
-            };
-            _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
-
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
-        }
 
         [TestMethod]
         public void ModifyOneFieldOnPassword()
         {
-            Password passwordAlreadyOnPasswordManager = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es una nota"
-            };
-            _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
-
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(passwordAlreadyOnPasswordManager, newPassword);
-            List<Password> passwords = _passwordManager.GetPasswords();
-            CollectionAssert.Contains(passwords, newPassword);
+            _password.Pass = "EstoEsUnGIF";
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
+            List<Password> passwordsAfterModify = _passwordController.GetPasswords();
+            CollectionAssert.Contains(passwordsAfterModify, _password);
         }
 
         [TestMethod]
         [ExpectedException(typeof(PasswordAlreadyExistsException))]
+
         public void CreatePasswordThatAlreadyExists()
         {
-            Password passwordAlreadyOnPasswordManager = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es una nota"
-            };
-            _passwordManager.CreatePassword(passwordAlreadyOnPasswordManager);
-
             Password newPassword = new Password
             {
                 User = _user,
                 Category = _category,
                 Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "EstoEsUnGIF",
+                Username = "239850",
+                Pass = "239850Ort2019",
                 Notes = "Esta es la nueva password"
             };
-            _passwordManager.CreatePassword(newPassword);
+            _passwordController.CreatePassword(newPassword);
         }
 
         [DataRow("work.com", "Joseph", "work.com", "Joseph")]
@@ -345,16 +298,6 @@ namespace UnitTestObligatorio1
         [TestMethod]
         public void PasswordEqualityDifferentSite()
         {
-            Password passA = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "work.com.uy",
-                Username = "Joseph",
-                Pass = "wwwjosph",
-                Notes = "First password"
-            };
-
             Password passB = new Password
             {
                 User = _user,
@@ -365,22 +308,12 @@ namespace UnitTestObligatorio1
                 Notes = "Second password"
             };
 
-            Assert.IsFalse(passA.Equals(passB));
+            Assert.IsFalse(_password.Equals(passB));
         }
 
         [TestMethod]
         public void PasswordEqualityDifferentUsername()
         {
-            Password passA = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "work.com",
-                Username = "Joseph1",
-                Pass = "wwwjosph",
-                Notes = "First password"
-            };
-
             Password passB = new Password
             {
                 User = _user,
@@ -390,22 +323,12 @@ namespace UnitTestObligatorio1
                 Pass = "joshpeh2",
                 Notes = "Second password"
             };
-            Assert.IsFalse(passA.Equals(passB));
+            Assert.IsFalse(_password.Equals(passB));
         }
 
         [TestMethod]
         public void PasswordEqualityDifferentUsernameAndSite()
         {
-            Password passA = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "work.com.uy",
-                Username = "Joseph1",
-                Pass = "wwwjosph",
-                Notes = "First password"
-            };
-
             Password passB = new Password
             {
                 User = _user,
@@ -416,23 +339,13 @@ namespace UnitTestObligatorio1
                 Notes = "Second password"
             };
 
-            Assert.IsFalse(passA.Equals(passB));
+            Assert.IsFalse(_password.Equals(passB));
         }
 
         [TestMethod]
         public void PasswordEqualityWithInvalidObject()
         {
-            Password passA = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "work.com.uy",
-                Username = "Joseph1",
-                Pass = "wwwjosph",
-                Notes = "First password"
-            };
-
-            Assert.IsFalse(passA.Equals(new object()));
+            Assert.IsFalse(_password.Equals(new object()));
         }
 
         [TestMethod]
@@ -441,58 +354,26 @@ namespace UnitTestObligatorio1
         {
             User newUser = new User()
             {
-                Name = "Santiago",
+                MasterName = "Santiago",
                 MasterPass = "HolaSoySantiago1"
             };
-            Category newCategory = new Category()
-            {
-                Name = "NewCategory"
-            };
-            newUser.Categories.Add(newCategory);
-            Password newPassword = new Password
-            {
-                User = newUser,
-                Category = newCategory,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password"
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
+            _password.User = newUser;
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
         }
 
 
         [TestMethod]
         public void VerifyLastModificationPassword()
         {
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password",
-            };
-
-            Assert.AreEqual(newPassword.LastModification, DateTime.Today);
+            Assert.AreEqual(_password.LastModification, DateTime.Today);
         }
 
         [TestMethod]
-        public void VerifyLastModificationPasswrodChanges()
+        public void VerifyLastModificationPasswordChanges()
         {
-            Password newPassword = new Password
-            {
-                User = _user,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "123456",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password",
-                LastModification = new DateTime(2021, 5, 8)
-            };
-            _passwordManager.ModifyPasswordOnCurrentUser(_password, newPassword);
-            Assert.AreEqual(_password.LastModification, newPassword.LastModification);
+            _password.LastModification = new DateTime(2021, 5, 8);
+            _passwordController.ModifyPasswordOnCurrentUser(_password);
+            Assert.AreNotEqual(this._password.LastModification, DateTime.Today);
         }
 
         [TestMethod]
@@ -501,24 +382,64 @@ namespace UnitTestObligatorio1
         {
             User newUser = new User()
             {
-                Name = "Santiago",
+                MasterName = "Santiago",
                 MasterPass = "HolaSoySantiago1"
             };
-            Category newCategory = new Category()
-            {
-                Name = "NewCategory"
-            };
-            newUser.Categories.Add(newCategory);
+            _password.User = newUser;
+            _passwordController.CreatePassword(_password);
+        }
+
+        [TestMethod]
+        public void PasswordId()
+        {
+            _password.Id = 1;
+            Assert.AreEqual<int>(_password.Id, 1);
+        }
+
+        [TestMethod]
+        public void PasswordDifferentId()
+        {
+            _password.Id = 1254;
+            Assert.AreNotEqual<int>(_password.Id, 555);
+        }
+
+        [TestMethod]
+        public void PassswordWithSameText()
+        {
             Password newPassword = new Password
             {
-                User = newUser,
-                Category = newCategory,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "1234560Ort2020",
-                Notes = "Esta es la nueva password"
+                User = _user,
+                Category = _category,
+                Site = "Este es un nuevo sitio",
+                Username = "2222340",
+                Pass = "239850Ort2019",
+                Notes = "Esta es la nueva password con pass repetido",
             };
-            _passwordManager.CreatePassword(newPassword);
+            bool passTextIsDuplicate = _passwordController.PasswordTextIsDuplicate(newPassword);
+            Assert.IsTrue(passTextIsDuplicate);
+        }
+
+        [TestMethod]
+        public void PassswordIsNotGreenSecure()
+        {
+            bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
+            Assert.IsTrue(passIsNotGreenSecure);
+        }
+
+        [TestMethod]
+        public void PassswordIsDarkGreenSecure()
+        {
+            _password.Pass = "#stsrtARSRT2332";
+            bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
+            Assert.IsFalse(passIsNotGreenSecure);
+        }
+
+        [TestMethod]
+        public void PassswordIsLightGreenSecure()
+        {
+            _password.Pass = "#AAHTNrtsrHRIISH";
+            bool passIsNotGreenSecure = _passwordColorReportController.PasswordIsNotGreenSecure(_password);
+            Assert.IsFalse(passIsNotGreenSecure);
         }
     }
 }

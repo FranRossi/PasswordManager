@@ -1,0 +1,378 @@
+USE [master]
+GO
+/****** Object:  Database [PasswordManagerDB]    Script Date: 17/06/2021 16:08:32 ******/
+CREATE DATABASE [PasswordManagerDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'PasswordManagerDB', FILENAME = N'D:\Microsoft SQL Server\MSSQL15.SQLEXPRESS01\MSSQL\DATA\PasswordManagerDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'PasswordManagerDB_log', FILENAME = N'D:\Microsoft SQL Server\MSSQL15.SQLEXPRESS01\MSSQL\DATA\PasswordManagerDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [PasswordManagerDB] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [PasswordManagerDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [PasswordManagerDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [PasswordManagerDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [PasswordManagerDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [PasswordManagerDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [PasswordManagerDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [PasswordManagerDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [PasswordManagerDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [PasswordManagerDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [PasswordManagerDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [PasswordManagerDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [PasswordManagerDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [PasswordManagerDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [PasswordManagerDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [PasswordManagerDB] SET QUERY_STORE = OFF
+GO
+USE [PasswordManagerDB]
+GO
+/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](15) NOT NULL,
+	[User_MasterName] [nvarchar](25) NOT NULL,
+ CONSTRAINT [PK_dbo.Categories] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CreditCards]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CreditCards](
+	[Id] [int] NOT NULL,
+	[Name] [nvarchar](25) NOT NULL,
+	[Type] [nvarchar](25) NOT NULL,
+	[Number] [nvarchar](16) NOT NULL,
+	[SecureCode] [nvarchar](4) NOT NULL,
+	[ExpirationDate] [nvarchar](5) NOT NULL,
+ CONSTRAINT [PK_dbo.CreditCards] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DataBreachReportEntries]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DataBreachReportEntries](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Value] [nvarchar](max) NULL,
+	[DataBreachReport_Id] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.DataBreachReportEntries] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DataBreachReportItems]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DataBreachReportItems](
+	[DataBreachReport_Id] [int] NOT NULL,
+	[Item_Id] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.DataBreachReportItems] PRIMARY KEY CLUSTERED 
+(
+	[DataBreachReport_Id] ASC,
+	[Item_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DataBreachReports]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DataBreachReports](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Date] [datetime] NOT NULL,
+	[User_MasterName] [nvarchar](25) NULL,
+ CONSTRAINT [PK_dbo.DataBreachReports] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Items]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Items](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Notes] [nvarchar](250) NULL,
+	[Category_Id] [int] NOT NULL,
+	[User_MasterName] [nvarchar](25) NOT NULL,
+ CONSTRAINT [PK_dbo.Items] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Passwords]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Passwords](
+	[Id] [int] NOT NULL,
+	[PasswordStrength] [int] NOT NULL,
+	[Site] [nvarchar](25) NOT NULL,
+	[Username] [nvarchar](25) NOT NULL,
+	[LastModification] [datetime] NOT NULL,
+	[EncryptedPass] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_dbo.Passwords] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SharedPasswordUser]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SharedPasswordUser](
+	[PasswordId] [int] NOT NULL,
+	[UserSharedWithName] [nvarchar](25) NOT NULL,
+ CONSTRAINT [PK_dbo.SharedPasswordUser] PRIMARY KEY CLUSTERED 
+(
+	[PasswordId] ASC,
+	[UserSharedWithName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 17/06/2021 16:08:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[MasterName] [nvarchar](25) NOT NULL,
+	[MasterPass] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED 
+(
+	[MasterName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_User_MasterName]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_User_MasterName] ON [dbo].[Categories]
+(
+	[User_MasterName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Id]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_Id] ON [dbo].[CreditCards]
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_DataBreachReport_Id]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_DataBreachReport_Id] ON [dbo].[DataBreachReportEntries]
+(
+	[DataBreachReport_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_DataBreachReport_Id]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_DataBreachReport_Id] ON [dbo].[DataBreachReportItems]
+(
+	[DataBreachReport_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Item_Id]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_Item_Id] ON [dbo].[DataBreachReportItems]
+(
+	[Item_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_User_MasterName]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_User_MasterName] ON [dbo].[DataBreachReports]
+(
+	[User_MasterName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Category_Id]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_Category_Id] ON [dbo].[Items]
+(
+	[Category_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_User_MasterName]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_User_MasterName] ON [dbo].[Items]
+(
+	[User_MasterName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Id]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_Id] ON [dbo].[Passwords]
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_PasswordId]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_PasswordId] ON [dbo].[SharedPasswordUser]
+(
+	[PasswordId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_UserSharedWithName]    Script Date: 17/06/2021 16:08:33 ******/
+CREATE NONCLUSTERED INDEX [IX_UserSharedWithName] ON [dbo].[SharedPasswordUser]
+(
+	[UserSharedWithName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Categories_dbo.Users_User_MasterName] FOREIGN KEY([User_MasterName])
+REFERENCES [dbo].[Users] ([MasterName])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_dbo.Categories_dbo.Users_User_MasterName]
+GO
+ALTER TABLE [dbo].[CreditCards]  WITH CHECK ADD  CONSTRAINT [FK_dbo.CreditCards_dbo.Items_Id] FOREIGN KEY([Id])
+REFERENCES [dbo].[Items] ([Id])
+GO
+ALTER TABLE [dbo].[CreditCards] CHECK CONSTRAINT [FK_dbo.CreditCards_dbo.Items_Id]
+GO
+ALTER TABLE [dbo].[DataBreachReportEntries]  WITH CHECK ADD  CONSTRAINT [FK_dbo.DataBreachReportEntries_dbo.DataBreachReports_DataBreachReport_Id] FOREIGN KEY([DataBreachReport_Id])
+REFERENCES [dbo].[DataBreachReports] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[DataBreachReportEntries] CHECK CONSTRAINT [FK_dbo.DataBreachReportEntries_dbo.DataBreachReports_DataBreachReport_Id]
+GO
+ALTER TABLE [dbo].[DataBreachReportItems]  WITH CHECK ADD  CONSTRAINT [FK_dbo.DataBreachReportItems_dbo.DataBreachReports_DataBreachReport_Id] FOREIGN KEY([DataBreachReport_Id])
+REFERENCES [dbo].[DataBreachReports] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[DataBreachReportItems] CHECK CONSTRAINT [FK_dbo.DataBreachReportItems_dbo.DataBreachReports_DataBreachReport_Id]
+GO
+ALTER TABLE [dbo].[DataBreachReportItems]  WITH CHECK ADD  CONSTRAINT [FK_dbo.DataBreachReportItems_dbo.Items_Item_Id] FOREIGN KEY([Item_Id])
+REFERENCES [dbo].[Items] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[DataBreachReportItems] CHECK CONSTRAINT [FK_dbo.DataBreachReportItems_dbo.Items_Item_Id]
+GO
+ALTER TABLE [dbo].[DataBreachReports]  WITH CHECK ADD  CONSTRAINT [FK_dbo.DataBreachReports_dbo.Users_User_MasterName] FOREIGN KEY([User_MasterName])
+REFERENCES [dbo].[Users] ([MasterName])
+GO
+ALTER TABLE [dbo].[DataBreachReports] CHECK CONSTRAINT [FK_dbo.DataBreachReports_dbo.Users_User_MasterName]
+GO
+ALTER TABLE [dbo].[Items]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Items_dbo.Categories_Category_Id] FOREIGN KEY([Category_Id])
+REFERENCES [dbo].[Categories] ([Id])
+GO
+ALTER TABLE [dbo].[Items] CHECK CONSTRAINT [FK_dbo.Items_dbo.Categories_Category_Id]
+GO
+ALTER TABLE [dbo].[Items]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Items_dbo.Users_User_MasterName] FOREIGN KEY([User_MasterName])
+REFERENCES [dbo].[Users] ([MasterName])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Items] CHECK CONSTRAINT [FK_dbo.Items_dbo.Users_User_MasterName]
+GO
+ALTER TABLE [dbo].[Passwords]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Passwords_dbo.Items_Id] FOREIGN KEY([Id])
+REFERENCES [dbo].[Items] ([Id])
+GO
+ALTER TABLE [dbo].[Passwords] CHECK CONSTRAINT [FK_dbo.Passwords_dbo.Items_Id]
+GO
+ALTER TABLE [dbo].[SharedPasswordUser]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SharedPasswordUser_dbo.Passwords_PasswordId] FOREIGN KEY([PasswordId])
+REFERENCES [dbo].[Passwords] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[SharedPasswordUser] CHECK CONSTRAINT [FK_dbo.SharedPasswordUser_dbo.Passwords_PasswordId]
+GO
+ALTER TABLE [dbo].[SharedPasswordUser]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SharedPasswordUser_dbo.Users_UserSharedWithName] FOREIGN KEY([UserSharedWithName])
+REFERENCES [dbo].[Users] ([MasterName])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[SharedPasswordUser] CHECK CONSTRAINT [FK_dbo.SharedPasswordUser_dbo.Users_UserSharedWithName]
+GO
+USE [master]
+GO
+ALTER DATABASE [PasswordManagerDB] SET  READ_WRITE 
+GO

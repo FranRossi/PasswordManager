@@ -1,28 +1,42 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
 using Obligatorio1_DA1.Exceptions;
+using BusinessLogic;
 using System;
+using Repository;
 
 namespace UnitTestObligatorio1
 {
     [TestClass]
     public class UnitTestLogIn
     {
+
+        private Services _cleanUp;
+        private SessionController _sessionController;
+
+
         [TestMethod]
         [ExpectedException(typeof(LogInException))]
         public void LoginUserWithoutAnyUserCreated()
         {
-            passwordManager = new PasswordManager();
-            passwordManager.Login("Pepe12", "alsdfjadf");
+            _sessionController.Login("Pepe12", "alsdfjadf");
         }
 
-        PasswordManager passwordManager;
+
         [TestInitialize]
-        public void createPasswordManagerBeforeTests()
+        public void createSessionControllerBeforeTests()
         {
-            passwordManager = new PasswordManager();
+            _cleanUp = new Services();
+            _cleanUp.DataBaseCleanup();
+            _sessionController = SessionController.GetInstance();
             User newUser = new User("Lucia", "Lucia123");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _cleanUp.DataBaseCleanup();
         }
 
         [TestMethod]
@@ -30,7 +44,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                passwordManager.Login("Lucia", "Lucia123");
+                _sessionController.Login("Lucia", "Lucia123");
             }
             catch (Exception ex)
             {
@@ -38,12 +52,6 @@ namespace UnitTestObligatorio1
             }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(LogInException))]
-        public void LoginUserWrongPassword()
-        {
-            passwordManager.Login("Lucia", "hoal3823");
-        }
 
         [DataRow("hoal3823")]
         [DataRow("")]
@@ -53,7 +61,7 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(LogInException))]
         public void LoginUserWrongPassword(string wrongPassword)
         {
-            passwordManager.Login("Lucia", wrongPassword);
+            _sessionController.Login("Lucia", wrongPassword);
         }
 
         [TestMethod]
@@ -61,7 +69,7 @@ namespace UnitTestObligatorio1
         {
             try
             {
-                passwordManager.Login("Lucia", "lucia$123");
+                _sessionController.Login("Lucia", "lucia$123");
             }
             catch (ValidationException e)
             {
@@ -73,10 +81,10 @@ namespace UnitTestObligatorio1
         public void LoginUserWithPasswordAlreadyTaken()
         {
             User newUser = new User("Pepe12", "Lucia123");
-            passwordManager.CreateUser(newUser);
+            _sessionController.CreateUser(newUser);
             try
             {
-                passwordManager.Login("Pepe12", "Lucia123");
+                _sessionController.Login("Pepe12", "Lucia123");
 
             }
             catch (LogInException ex)
@@ -84,6 +92,31 @@ namespace UnitTestObligatorio1
                 Assert.Fail("Expected no exception, but got: " + ex.Message);
             }
         }
+
+        [TestMethod]
+        public void CheckGetMasterNameOnCurrentUser()
+        {
+            User newUser = new User("Pepe12", "Lucia123");
+            _sessionController.CreateUser(newUser);
+            _sessionController.Login("Pepe12", "Lucia123");
+            Assert.AreEqual(_sessionController.GetCurrentUserMasterName(), newUser.MasterName);
+        }
+
+
+        [DataRow("MaritoBaracus")]
+        [DataRow("Maria")]
+        [DataRow("Pepe Gonzales Segundo")]
+        [DataTestMethod]
+        public void UserToString(string name)
+        {
+            User newUser = new User(name, "password");
+            string actualName = newUser.ToString();
+            _sessionController.CreateUser(newUser);
+            _sessionController.Login(actualName, "password");
+            string expectedName = name;
+            Equals(expectedName, actualName);
+        }
+
 
     }
 }

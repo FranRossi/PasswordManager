@@ -1,35 +1,67 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Obligatorio1_DA1.Domain;
+using BusinessLogic;
 using Obligatorio1_DA1.Exceptions;
 using System;
 using System.Collections.Generic;
+using Repository;
 
 namespace UnitTestObligatorio1
 {
+
+
     [TestClass]
     public class UnitTestPasswordShare
     {
-        private PasswordManager _passwordManager;
+        private Services _cleanUp;
+        private SessionController _sessionController;
+        private CategoryController _categoryController;
+        private PasswordController _passwordController;
+        private SharePasswordController _sharePasswordController;
         private User _userShareFrom;
+        private User _userShareTo;
+        private string _userShareFromMasterPass;
         private Category _category;
+        private Password _passwordToShare;
 
         [TestInitialize]
         public void TestInitialize()
         {
             try
             {
-                _passwordManager = new PasswordManager();
+                _cleanUp = new Services();
+                _cleanUp.DataBaseCleanup();
+                _categoryController = new CategoryController();
+                _sessionController = SessionController.GetInstance();
+                _passwordController = new PasswordController();
+                _sharePasswordController = new SharePasswordController();
+                _userShareFromMasterPass = "HolaSoySantiago1";
+                _userShareTo = new User()
+                {
+                    MasterName = "Lucía",
+                    MasterPass = "lu2000_1"
+                };
                 _userShareFrom = new User()
                 {
-                    Name = "Santiago",
-                    MasterPass = "HolaSoySantiago1"
+                    MasterName = "Santiago",
+                    MasterPass = _userShareFromMasterPass
                 };
-                _category = new Category()
+                string categoryName = "Personal";
+                _sessionController.CreateUser(_userShareTo);
+                _sessionController.CreateUser(_userShareFrom);
+                _categoryController.CreateCategoryOnCurrentUser(categoryName);
+                _category = _sessionController.CurrentUser.Categories[0];
+
+                _passwordToShare = new Password
                 {
-                    Name = "Personal"
+                    User = _userShareFrom,
+                    Category = _category,
+                    Site = "www.google.com",
+                    Username = "239850",
+                    Pass = "239850Ort2019",
+                    Notes = "No me roben la cuenta"
                 };
-                _passwordManager.CreateUser(_userShareFrom);
-                _passwordManager.CreateCategoryOnCurrentUser(_category);
+                _passwordController.CreatePassword(_passwordToShare);
             }
             catch (Exception ex)
             {
@@ -38,31 +70,20 @@ namespace UnitTestObligatorio1
 
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            _cleanUp.DataBaseCleanup();
+        }
+
         [TestMethod]
         public void ShareOnePasswordWithAnotherUser()
         {
-
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            _passwordManager.CreateUser(userShareTo);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "www.google.com",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(passwordToShare);
-            _passwordManager.SharePassword(passwordToShare, userShareTo);
-            _passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
-            List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.Contains(sharedWithUser, passwordToShare);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            _sessionController.Login(_userShareTo.MasterName, "lu2000_1");
+            List<Password> sharedWithUser = _sharePasswordController.GetSharedPasswordsWithCurrentUser();
+            CollectionAssert.Contains(sharedWithUser, _passwordToShare);
         }
 
 
@@ -70,43 +91,17 @@ namespace UnitTestObligatorio1
         [ExpectedException(typeof(PasswordSharedWithSameUserException))]
         public void SharePasswordWithSameUser()
         {
-            Password passwordToShare = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(passwordToShare);
-            _passwordManager.SharePassword(passwordToShare, _userShareFrom);
-            List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareFrom);
+            List<Password> sharedWithUser = _sharePasswordController.GetSharedPasswordsWithCurrentUser();
         }
         [TestMethod]
         public void ShareManyPasswordsWithAnotherUser()
         {
             List<Password> expectedPasswords = new List<Password>();
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
 
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            _passwordManager.CreateUser(userShareTo);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            Password ort = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "www.google.com",
-                Username = "123456",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(ort);
-            expectedPasswords.Add(ort);
-            _passwordManager.SharePassword(ort, userShareTo);
+            expectedPasswords.Add(_passwordToShare);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
 
             Password trello = new Password
             {
@@ -114,160 +109,79 @@ namespace UnitTestObligatorio1
                 Category = _category,
                 Site = "miami.com",
                 Username = "josesito",
-                Pass = "239850Jose2019"
+                Pass = "239850Jose2019",
+                Notes = ""
             };
-            _passwordManager.CreatePassword(trello);
+            _passwordController.CreatePassword(trello);
             expectedPasswords.Add(trello);
-            _passwordManager.SharePassword(trello, userShareTo);
+            _sharePasswordController.SharePassword(trello, _userShareTo);
 
-            Password amazon = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "trello.com",
-                Username = "josesito",
-                Pass = "239850Jose2019"
-            };
-            _passwordManager.CreatePassword(amazon);
-            expectedPasswords.Add(amazon);
-            _passwordManager.SharePassword(amazon, userShareTo);
-            _passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
-            List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.AreEquivalent(sharedWithUser, expectedPasswords);
+            _sessionController.Login(_userShareTo.MasterName, "lu2000_1");
+            List<Password> sharedWithUser = _sharePasswordController.GetSharedPasswordsWithCurrentUser();
+            CollectionAssert.AreEqual(sharedWithUser, expectedPasswords);
 
         }
 
         [TestMethod]
         public void DeleteSharedPassword()
         {
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            _passwordManager.CreateUser(userShareTo);
-
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "www.google.com",
-                Username = "123456",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(passwordToShare);
-            _passwordManager.SharePassword(passwordToShare, userShareTo);
-            _passwordManager.DeletePassword(passwordToShare);
-            _passwordManager.Login(userShareTo.Name, userShareTo.MasterPass);
-            List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            _passwordController.DeletePassword(_passwordToShare);
+            _sessionController.Login(_userShareTo.MasterName, "lu2000_1");
+            List<Password> sharedWithUser = _sharePasswordController.GetSharedPasswordsWithCurrentUser();
+            CollectionAssert.DoesNotContain(sharedWithUser, _passwordToShare);
         }
 
         [TestMethod]
         public void GetSharedPasswordUser()
         {
             List<User> expectedUser = new List<User>();
-
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-
-            Password pass = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            _passwordManager.CreateUser(userShareTo);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            _passwordManager.CreatePassword(pass);
-            _passwordManager.SharePassword(pass, userShareTo);
-            expectedUser.Add(userShareTo);
-
-            List<User> usersSharedWith = _passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            expectedUser.Add(_userShareTo);
+            List<User> usersSharedWith = _sharePasswordController.GetUsersSharedWith(_passwordToShare);
+            CollectionAssert.AreEqual(expectedUser, usersSharedWith);
         }
 
         [TestMethod]
         public void SharePasswordWithAlreadySharedUser()
         {
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            _passwordManager.CreateUser(userShareTo);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            Password passwordToShare = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "www.google.com",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.CreatePassword(passwordToShare);
-            _passwordManager.SharePassword(passwordToShare, userShareTo);
-            _passwordManager.SharePassword(passwordToShare, userShareTo);
-            List<User> actualSharedUsers = _passwordManager.GetUsersSharedWith(passwordToShare);
-            List<User> expectedSharedUsers = new List<User>() { userShareTo };
-            CollectionAssert.AreEquivalent(expectedSharedUsers, actualSharedUsers);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            List<User> actualSharedUsers = _sharePasswordController.GetUsersSharedWith(_passwordToShare);
+            List<User> expectedSharedUsers = new List<User>() { _userShareTo };
+            CollectionAssert.AreEqual(expectedSharedUsers, actualSharedUsers);
         }
 
         [TestMethod]
         public void GetSharedPasswordUsersMultipleUsers()
         {
             List<User> expectedUser = new List<User>();
-            User lucia = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
             User pablo = new User()
             {
-                Name = "Pablo",
+                MasterName = "Pablo",
                 MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
-                Name = "Juana",
+                MasterName = "Juana",
                 MasterPass = "juana0@1"
             };
 
-            Password pass = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            _passwordManager.CreateUser(lucia);
-            _passwordManager.CreateUser(pablo);
-            _passwordManager.CreateUser(juana);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            _passwordManager.CreatePassword(pass);
-            _passwordManager.SharePassword(pass, lucia);
-            _passwordManager.SharePassword(pass, pablo);
-            _passwordManager.SharePassword(pass, juana);
-            expectedUser.Add(lucia);
-            expectedUser.Add(pablo);
+            _sessionController.CreateUser(pablo);
+            _sessionController.CreateUser(juana);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            _sharePasswordController.SharePassword(_passwordToShare, pablo);
+            _sharePasswordController.SharePassword(_passwordToShare, juana);
             expectedUser.Add(juana);
+            expectedUser.Add(_userShareTo);
+            expectedUser.Add(pablo);
 
-
-            List<User> usersSharedWith = _passwordManager.GetUsersSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+            List<User> usersSharedWith = _sharePasswordController.GetUsersSharedWith(_passwordToShare);
+            CollectionAssert.AreEqual(expectedUser, usersSharedWith);
         }
 
         [TestMethod]
@@ -275,19 +189,7 @@ namespace UnitTestObligatorio1
         {
             List<User> expectedUser = new List<User>();
 
-            Password pass = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            _passwordManager.CreatePassword(pass);
-
-            List<User> usersSharedWith = _passwordManager.GetUsersSharedWith(pass);
+            List<User> usersSharedWith = _sharePasswordController.GetUsersSharedWith(_passwordToShare);
             CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
         }
 
@@ -295,159 +197,90 @@ namespace UnitTestObligatorio1
         public void GetNotSharedWithUser()
         {
             List<User> expectedUser = new List<User>();
-            User userShareWith = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
             User pablo = new User()
             {
-                Name = "Pablo",
+                MasterName = "Pablo",
                 MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
-                Name = "Juana",
+                MasterName = "Juana",
                 MasterPass = "juana0@1"
             };
 
-            Password pass = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            _passwordManager.CreateUser(userShareWith);
-            _passwordManager.CreateUser(pablo);
-            _passwordManager.CreateUser(juana);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            _passwordManager.CreatePassword(pass);
-            _passwordManager.SharePassword(pass, userShareWith);
-            expectedUser.Add(pablo);
+            _sessionController.CreateUser(pablo);
+            _sessionController.CreateUser(juana);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
             expectedUser.Add(juana);
+            expectedUser.Add(pablo);
 
-            List<User> usersNotSharedWith = _passwordManager.GetUsersPassNotSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersNotSharedWith);
+            List<User> usersNotSharedWith = _sharePasswordController.GetUsersPassNotSharedWith(_passwordToShare);
+            CollectionAssert.AreEqual(expectedUser, usersNotSharedWith);
         }
 
         [TestMethod]
         public void GetNotSharedWithAnyUser()
         {
             List<User> expectedUser = new List<User>();
-
-            User lucia = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
             User pablo = new User()
             {
-                Name = "Pablo",
+                MasterName = "Pablo",
                 MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
-                Name = "Juana",
+                MasterName = "Juana",
                 MasterPass = "juana0@1"
             };
 
-            Password pass = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-
-            _passwordManager.CreateUser(lucia);
-            _passwordManager.CreateUser(pablo);
-            _passwordManager.CreateUser(juana);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            _passwordManager.CreatePassword(pass);
-            expectedUser.Add(lucia);
-            expectedUser.Add(pablo);
+            _sessionController.CreateUser(pablo);
+            _sessionController.CreateUser(juana);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
             expectedUser.Add(juana);
+            expectedUser.Add(_userShareTo);
+            expectedUser.Add(pablo);
 
-
-            List<User> usersNotSharedWith = _passwordManager.GetUsersPassNotSharedWith(pass);
-            CollectionAssert.AreEquivalent(expectedUser, usersNotSharedWith);
+            List<User> usersNotSharedWith = _sharePasswordController.GetUsersPassNotSharedWith(_passwordToShare);
+            CollectionAssert.AreEqual(expectedUser, usersNotSharedWith);
         }
 
         [TestMethod]
         public void GetNotSharedWithAllUsers()
         {
-            User lucia = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
             User pablo = new User()
             {
-                Name = "Pablo",
+                MasterName = "Pablo",
                 MasterPass = "pa1230@1"
             };
             User juana = new User()
             {
-                Name = "Juana",
+                MasterName = "Juana",
                 MasterPass = "juana0@1"
             };
 
-            Password pass = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
+            _sessionController.CreateUser(pablo);
+            _sessionController.CreateUser(juana);
+            _sessionController.Login(_userShareFrom.MasterName, _userShareFromMasterPass);
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            _sharePasswordController.SharePassword(_passwordToShare, pablo);
+            _sharePasswordController.SharePassword(_passwordToShare, juana);
 
-            _passwordManager.CreateUser(lucia);
-            _passwordManager.CreateUser(pablo);
-            _passwordManager.CreateUser(juana);
-            _passwordManager.Login(_userShareFrom.Name, _userShareFrom.MasterPass);
-            _passwordManager.CreatePassword(pass);
-            _passwordManager.SharePassword(pass, lucia);
-            _passwordManager.SharePassword(pass, pablo);
-            _passwordManager.SharePassword(pass, juana);
-
-
-            List<User> usersSharedWith = _passwordManager.GetUsersPassNotSharedWith(pass);
+            List<User> usersSharedWith = _sharePasswordController.GetUsersPassNotSharedWith(_passwordToShare);
             List<User> expectedUser = new List<User>();
-            CollectionAssert.AreEquivalent(expectedUser, usersSharedWith);
+            CollectionAssert.AreEqual(expectedUser, usersSharedWith);
         }
 
         [TestMethod]
         public void UnSharePassword()
         {
-            User userShareTo = new User()
-            {
-                Name = "Lucía",
-                MasterPass = "lu2000@1"
-            };
-            _passwordManager.CreateUser(userShareTo);
-            Password passwordToShare = new Password
-            {
-                User = _userShareFrom,
-                Category = _category,
-                Site = "ort.edu.uy",
-                Username = "239850",
-                Pass = "239850Ort2019",
-                Notes = "No me roben la cuenta"
-            };
-            _passwordManager.Login("Santiago", "HolaSoySantiago1");
-            _passwordManager.CreatePassword(passwordToShare);
-            _passwordManager.SharePassword(passwordToShare, userShareTo);
-            _passwordManager.UnSharePassword(passwordToShare, userShareTo);
-            _passwordManager.Login("Lucía", "lu2000@1");
-            List<Password> sharedWithUser = _passwordManager.GetSharedPasswordsWithCurrentUser();
-            CollectionAssert.DoesNotContain(sharedWithUser, passwordToShare);
+
+            _sessionController.Login("Santiago", "HolaSoySantiago1");
+            _sharePasswordController.SharePassword(_passwordToShare, _userShareTo);
+            _sharePasswordController.UnSharePassword(_passwordToShare, _userShareTo);
+            _sessionController.Login("Lucía", "lu2000_1");
+            List<Password> sharedWithUser = _sharePasswordController.GetSharedPasswordsWithCurrentUser();
+            CollectionAssert.DoesNotContain(sharedWithUser, _passwordToShare);
         }
 
 
